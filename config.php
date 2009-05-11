@@ -49,7 +49,7 @@ unset($CFG);  // Ignore this line
 
 $CFG->dbtype    = 'mysql';       // mysql or postgres7 (for now)
 $CFG->dbhost    = 'localhost';   // eg localhost or db.isp.com
-$CFG->dbname    = 'gu2009';      // database name, eg moodle
+$CFG->dbname    = 'dev_2009';      // database name, eg moodle
 $CFG->dbuser    = 'learnadmin';    // your database username
 $CFG->dbpass    = 'lrn@29';    // your database password
 $CFG->prefix    = 'mdl_';        // Prefix to use for all table names
