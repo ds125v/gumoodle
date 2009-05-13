@@ -308,6 +308,11 @@ $CFG->admin = 'admin';
 // When working with production data on test servers, no emails should ever be send to real users
 // $CFG->noemailever = true;
 //
+// Local settings
+require_once( 'local_settings.php' );
+
+//
+//
 //
 //=========================================================================
 // ALL DONE!  To continue installation, visit your main page with a browser
