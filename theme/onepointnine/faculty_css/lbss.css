@@ -1,0 +1,35 @@
+#bannercontainer { background-image: url(t4/lbss/i/bannerback.gif); }
+#bannerleft { background-image: url(t4/lbss/i/banner.gif); }
+#toprow,
+#subhead {background-image: url(t4/generic/i/lbss/subhead.gif); }
+#left-column .sideblock .header {background-color: #305c74;}
+
+body.category-2 #bannercontainer { background-image: url(t4/accfin/i/bannerback.gif); }
+body.category-2 #bannerleft { background-image: url(t4/accfin/i/banner.gif); }
+body.category-3 #bannercontainer { background-image: url(t4/management/i/bannerback.gif); }
+body.category-3 #bannerleft { background-image: url(t4/management/i/banner.gif); }
+body.category-4 #bannercontainer { background-image: url(t4/centraleasteuro/i/bannerback.gif); }
+body.category-4 #bannerleft { background-image: url(t4/centraleasteuro/i/banner.gif); }
+body.category-6 #bannercontainer { background-image: url(t4/economichistory/i/bannerback.gif); }
+body.category-6 #bannerleft { background-image: url(t4/economichistory/i/banner.gif); height: 120px; }
+body.category-7 #bannercontainer { background-image: url(t4/economics/i/bannerback.gif); }
+body.category-7 #bannerleft { background-image: url(t4/economics/i/banner.gif); }
+body.category-8 #bannercontainer { background-image: url(t4/law/i/bannerback.gif); }
+body.category-8 #bannerleft { background-image: url(t4/law/i/banner.gif); }
+body.category-10 #bannercontainer { background-image: url(t4/politics/i/bannerback.gif); }
+body.category-10 #bannerleft { background-image: url(t4/politics/i/banner.gif); }
+body.category-11 #bannercontainer { background-image: url(t4/sociology/i/bannerback.gif); }
+body.category-11 #bannerleft { background-image: url(t4/sociology/i/banner.gif); }
+body.category-12 #bannercontainer { background-image: url(t4/urbanstudies/i/bannerback.gif); }
+body.category-12 #bannerleft { background-image: url(t4/urbanstudies/i/banner.gif); }
+
+body.category-2 #subhead,
+body.category-3 #subhead,
+body.category-4 #subhead,
+body.category-5 #subhead,
+body.category-6 #subhead,
+body.category-7 #subhead,
+body.category-8 #subhead,
+body.category-10 #subhead,
+body.category-11 #subhead,
+body.category-12 #subhead {display: block; }

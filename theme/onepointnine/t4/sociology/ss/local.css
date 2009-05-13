@@ -1,0 +1,80 @@
+/* for sociology  */
+
+
+.splashpic {
+background-color:#549bb0;
+
+background: #3c89de url(http://www.gla.ac.uk/t4/sociology/i/splashback.gif);
+background-repeat: repeat-x;
+background-position:top;
+  }
+  
+
+
+
+
+#bannercontainer {
+background:none;
+
+
+background-color:#89a4cb; 
+background-image: url(http://www.gla.ac.uk/t4/sociology/i/bannerback.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/sociology/i/banner2.gif);
+width:544px;  }
+ 
+
+
+ 
+#navigation p.toptail {
+background:#305c74;
+margin-bottom: 0px;
+border-bottom: 0; 
+}
+ 
+#navigation p {
+background-color:#305c74;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #305c74  url(http://www.gla.ac.uk/t4/generic/ilbss//li.gif) repeat-y;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #305c74  url(http://www.gla.ac.uk/t4/generic/i/lbss/li.gif) repeat-y;
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lbss/li.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+
+ 
+
+
+
+.links h1 {
+	
+	color: #fff;
+	background-color:#5c2b26;
+	
+	  }
+	  
+	  h1, h3 { color:#5c2b26;  }
+	  
+  h2, h4, h5, h6 { color:#444;  }	 

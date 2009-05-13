@@ -1,0 +1,148 @@
+/* for generic/external  */
+
+
+	  
+/* @@@@@@@@@ left navigation @@@@@@@@@ */	  
+
+#navigation p {
+background-color:#666666; }
+
+#navigation p a:link {
+color: #fff;
+background: #666666  url(http://www.gla.ac.uk/t4/generic/i/external/li.gif) repeat-y; }
+
+#navigation p a:visited {
+color: #fff;
+background: #666666  url(http://www.gla.ac.uk/t4/generic/i/external/li.gif) repeat-y; }
+
+#navigation p a:hover {
+color: #fff;
+background: #666666    url(http://www.gla.ac.uk/t4/generic/i/external/li.gif) repeat-y; }
+
+#navigation ul li a {
+background: #f4f4f4  url(http://www.gla.ac.uk/t4/generic/i/external/li.gif) repeat-y;
+border-top: 1px solid #dbcddf; }
+
+#navigation  li .currentsection {
+
+background: #c6c6c6  url(http://www.gla.ac.uk/t4/generic/i/lion.gif) no-repeat;    
+border-top: 1px solid #dbcddf;
+}
+
+#navigation  li ul li .currentsection {
+
+background: #c6c6c6  url(http://www.gla.ac.uk/t4/generic/i/lilion.gif) no-repeat;    
+border-top: 1px solid #dbcddf;
+}
+
+#navigation  li ul li ul li .currentsection {
+
+background: #c6c6c6  url(http://www.gla.ac.uk/t4/generic/i/lililion.gif) no-repeat;    
+border-top: 1px solid #808080;
+}
+	  
+
+#navigation ul li ul li a {
+background: #f4f4f4  url(http://www.gla.ac.uk/t4/generic/i/fbls/lili.gif) repeat-y;
+border-top: 1px solid #808080; }
+
+#navigation ul li ul li ul li a {
+background: #f4f4f4  url(http://www.gla.ac.uk/t4/generic/i/fbls/lilili.gif) repeat-y;
+border-top: 1px solid #808080; }
+
+/* @@@@@@@@@ right navigation : links @@@@@@@@@ */
+
+.links ul   { background-color:#fff;  }
+
+.links ul li   {
+
+border-bottom: 1px solid #808080; 
+
+}
+
+
+.links ul li a   {
+display: block;
+text-decoration: none;
+font-weight:normal;
+color: #404040;
+width:142px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:137px; 
+}
+	  
+html>body .links ul li  a {width: auto;}
+
+.links ul li a:link { 
+color: #404040; 
+text-decoration: none;
+border: 0; 
+}
+
+.links ul li a:visited { 
+color: #404040; 
+text-decoration: none;
+border: 0; 
+}
+
+.links ul li a:hover  { 
+color: #666666;  
+text-decoration: none;
+border: 0; }
+
+
+.links h1 {
+color: #fff;
+background-color:#666666;
+text-transform: none;
+border-bottom: 1px solid #fff; 
+}
+	 	  
+
+#navigation p.toptail {
+background: #666666;
+padding: 0px 1px 0px 7px;
+width:160px;
+height:6px;
+overflow: hidden;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px;
+margin-bottom:10px;  }
+
+
+/* @@@@@@@@@ other stuff @@@@@@@@@ */
+
+#facultyarrow {
+color: #404040; 
+font-family: lucida, arial, helvetica, sans-serif;
+}
+
+.pullquote  {
+color: #fff;
+background: #404040;
+text-indent: 0;
+}
+
+.pullquote a:link {
+color: #fff;
+text-decoration:underline; 
+border-bottom: 0;
+}
+
+.pullquote a:visited {
+color: #fafafa;
+text-decoration: none; 
+border-bottom: 0;  
+}
+.pullquote a:hover {
+color: #fff;
+text-decoration: none;
+border-bottom: 0;
+}
+
+.textsplash  {
+color: #000;
+background:#404040;
+}

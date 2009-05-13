@@ -1,0 +1,101 @@
+/* for /departments/music  */
+
+
+
+
+
+#bannercontainer { 
+
+background-position: top right;
+background-repeat:no-repeat;
+background-color:#ffffe5; 
+background-image: url(http://www.gla.ac.uk/t4/music/i/bannerback.gif);
+ }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/music/i/banner.gif);
+width:270px;  }
+ 
+
+
+
+
+.links h1 {
+	
+	color: #fff;
+	background-color:#693f58;
+	
+	  }
+	  
+/* 
+#navigation p.toptail {
+background:#39507c; }
+ 
+#navigation p {
+background-color:#39507c;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #39507c  url(http://www.gla.ac.uk/t4/generic/i/arts/li.gif) repeat-y;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #39507c
+url(http://www.gla.ac.uk/t4/generic/i/arts/li.gif) repeat-y;
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/arts/li.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+*/
+
+
+.newsstoryphoto  { float: left; 
+width:142px;
+
+border:1px solid #cecece;
+padding:5px;
+position:relative;
+min-height:6px;
+  }
+
+.newsstoryphoto  img { margin:0;  }
+
+.newsstory {margin-left: 170px; padding-bottom: 6px; } 
+
+.newsstory h2 a:link {
+
+color: #003c69;
+text-decoration: none; 
+border-bottom:0;
+
+}
+
+.newsstory h2 a:visited {
+color: #003c69;
+text-decoration: none;
+border-bottom:0;
+}
+
+.newsstory h2 a:hover {
+color: #141414;
+text-decoration: none;
+border-bottom:0;
+}
+
+
+
+  

@@ -1,0 +1,95 @@
+/* for philosophy  */
+
+
+.splashpic {
+background-color:#e1d4dd;
+
+/*
+background: #3c89de url(http://www.gla.ac.uk/t4/philosophy/i/splashback_pink.gif);
+background-repeat: repeat-x; */
+  }
+  
+
+
+.textsplash {
+background-color:#f2edf1;  }
+
+
+#bannercontainer {
+background:none;
+
+
+background-color:#89a4cb; 
+background-image: url(http://www.gla.ac.uk/t4/philosophy/i/bannerback2.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/philosophy/i/banner2.gif);
+width:390px;  }
+ 
+
+
+ 
+#navigation p.toptail {
+background:#30408b;
+margin-bottom: 0px;
+border-bottom: 0; 
+}
+ 
+#navigation p {
+background-color:#30408b;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #30408b  url(http://www.gla.ac.uk/t4/generic/i/arts/li.gif) repeat-y;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #30408b  url(http://www.gla.ac.uk/t4/generic/i/arts/li.gif) repeat-y;
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/arts/li.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+#mainpage {
+background:url(http://www.gla.ac.uk/t4/philosophy/i/navbottom_p.gif) no-repeat left bottom;
+
+}
+
+#container {
+
+background: url(http://www.gla.ac.uk/t4/philosophy/i/navback_p.gif) repeat-y ;
+
+
+}
+ 
+
+/*
+.links ul   { background-color:#dfdfdf;  }    */
+
+.links h1 {
+	
+	color: #fff;
+	background-color:#693f58;
+	
+	  }
+	  
+	 
+	  
+	  h1, h2 { color:#6d1c18;  }
+	  
+  h3, h4, h5, h6 { color:#183e6c;  }	 

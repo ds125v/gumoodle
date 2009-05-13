@@ -1,0 +1,25 @@
+/* for aerospaceengineering  */
+
+
+/* @@@@@@@@@ banners @@@@@@@@@ */
+
+#bannercontainer {
+background:none;
+background-color:#121212; 
+background-image: url(http://www.gla.ac.uk/t4/aerospaceengineering/i/bannerback.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/aerospaceengineering/i/banner_new.gif);
+width:300px;  }
+
+
+.splashpic {
+
+
+background: #5c5ea8 url(http://www.gla.ac.uk/t4/aerospaceengineering/i/splashback4.gif);
+background-repeat: repeat-x;
+background-position:top;
+  }
+  

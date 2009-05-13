@@ -1,0 +1,47 @@
+/* for eeengineering  */
+
+
+.splashpic { 
+background: #2a4592 url(http://www.gla.ac.uk/t4/eeengineering/i/splashback4.gif);
+background-repeat: no-repeat;
+background-position: bottom right;
+  }
+  
+
+
+
+  
+
+
+
+
+
+#bannercontainer {
+background:none;
+
+
+background-color:#415d84; 
+background-image: url(http://www.gla.ac.uk/t4/eeengineering/i/bannerback.gif);
+background-position: top right;
+background-repeat:no-repeat;   }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/eeengineering/i/banner.gif);
+width:430px;  }
+ 
+
+ 
+ 
+
+
+
+.links ul   { background-color:#fdfdfd;  }
+
+.links h1 {
+	
+	color: #fff;
+	background-color:#5e1111;
+	
+	  }
+	  

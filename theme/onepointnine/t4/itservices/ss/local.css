@@ -1,0 +1,421 @@
+/* for /services/it  */
+
+.splashpic {
+background-color:#8092b5;  }
+
+  
+#subhead  {  background: #121212 url(http://www.gla.ac.uk/t4/generic/i/subhead_us.gif) top left no-repeat ;
+color:#fff; }
+
+#subhead a:link {
+	color: #ccc;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:visited {
+	color: #ccc;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:hover {
+	color: #a2b7d8;
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+
+
+
+#bannercontainer { 
+
+background-position: top right;
+/* background-repeat:no-repeat;
+background-color:#4a6b9c; */
+background-image: url(http://www.gla.ac.uk/t4/itservices/i/bannerback.gif);
+background-repeat: repeat-x;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/itservices/i/banner.gif);
+width:200px;
+background-repeat:no-repeat; }
+
+#navigation p.toptail {
+background:#00256b; }
+ 
+#navigation p {
+background-color:#00256b;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #00256b  url(http://www.gla.ac.uk/t4/itservices/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #00256b  url(http://www.gla.ac.uk/t4/itservices/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/itservices/i/lioff.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+
+
+#navigation ul li a {
+display: block;
+text-decoration: none;
+font-weight:normal;
+color: #1b1b1b;
+background: #f4f4f4  url(http://www.gla.ac.uk/t4/itservices/i/lioff.gif) repeat-y;
+padding: 3px 1px 3px 7px;  /* changes to 17px for nested  */
+border-right: 0;
+border-left: 0;
+border-bottom:0;
+border-top: 1px solid #eaeaea;
+}
+
+#navigation  li .currentsection {
+display: block;
+text-decoration: none;
+font-weight:normal;
+color: #1b1b1b;
+background: #f4f4f4  url(http://www.gla.ac.uk/t4/itservices/i/lion.gif) no-repeat;    
+padding: 3px 1px 3px 7px; 
+border: 1px solid #eaeaea; 
+border-right: 0;
+border-left: 0;
+border-bottom:0; 
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+	  
+html>body #navigation li .currentsection {width: auto;}
+
+
+
+
+ 
+
+
+.links ul   { background-color:#EBEDF1;  }
+
+.links h1 {
+	
+	color: #fff;
+	background-color:#8092b5;
+	
+	  }
+	  
+ /* edit requested by drew */
+ 
+h1 {
+font-family: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 1.4em;
+	color: #800;
+	font-weight: bold;	
+}
+
+h2 {	
+	font-family: Tahoma, Verdana, Geneva, Arial, Helvetica,
+sans-serif;
+	font-size: 1.25em;
+	color: #001b4e;
+	font-weight: bold;
+	}
+/*local css for it services edit starts here */
+	
+h3 {
+	font-family: Tahoma, Verdana, Geneva, Arial, Helvetica,
+sans-serif;
+	font-size: 1.25em;
+	color: #800;
+	font-weight: bold;
+	}
+h4 {
+	font-family: Tahoma, Verdana, Geneva, Arial, Helvetica,
+sans-serif;
+	font-size: 1.1em;
+	color: #001b4e;
+	font-weight: bolder;
+	}
+h5 {
+	font-family: Tahoma, Verdana, Geneva, Arial, Helvetica,
+sans-serif;
+	font-size: 1.1em;
+	color: #800;
+	font-weight: bolder;
+	}
+h6 {
+	font-family: Tahoma, Verdana, Geneva, Arial, Helvetica,
+sans-serif;
+	font-size: 1 em;
+	color: #404040;
+	font-weight: bolder;
+}
+TD.sp1 {
+	FONT-WEIGHT: bold; FONT-SIZE: 0.7em; COLOR: #ffffff;
+FONT-FAMILY: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+BACKGROUND-COLOR: #c99191
+}
+TD.sp2 {
+	FONT-SIZE: 0.8em; COLOR: #333333; FONT-FAMILY: Tahoma, Verdana,
+Geneva, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #ddc1c1
+}
+TD.sp3 {
+	FONT-SIZE: 0.8em; COLOR: #333333; FONT-FAMILY: Tahoma, Verdana,
+Geneva, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #e9dbdb
+}
+TD.sp4 {
+	FONT-WEIGHT: bold; FONT-SIZE: 0.7em; COLOR: #404040;
+FONT-FAMILY: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+BACKGROUND-COLOR: #cccccc
+}
+
+
+
+.levelsix  h1  {
+
+color: #fff;
+background-color:#8092b5;
+padding:0;
+margin:0;
+
+
+}
+
+
+.levelsix h1 a:link {
+display: block;
+color: #fff;
+background: #8092b5  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+text-decoration: none;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:142px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:134px; 
+}
+
+
+.levelsix  h1 a:visited {
+display: block;
+color: #fff;
+background: #8092b5  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+text-decoration: none;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+
+width:142px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:134px; 
+
+}
+
+.levelsix  h1 a:hover {
+
+display: block;
+color: #fff;
+background: #000  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+text-decoration: none;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+
+width:142px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:134px; 
+
+}
+
+
+
+
+
+.levelsix p  { 
+background-color:#8092b5; 
+}
+
+
+.links ul.first   {
+
+border-bottom: 1px solid #8092b5;
+}
+	  
+.links ul.first li   {
+border-left: 1px solid #8092b5; 
+border-right: 1px solid #8092b5; 
+
+}
+/*end local edit */
+
+
+/* new edit 20/02/07 */
+
+
+.bluebox {
+font-family: verdana, lucida, arial, helvetica, sans-serif;
+font-size: 1.25em;
+font-weight: bold;
+color: #fff;
+background-color: #00256b;
+display: block;
+text-align: left;
+margin: 5px 0 0 0;
+padding: 2px 0 2px 5px;
+}
+
+.lightbluebox {
+
+  font-family: verdana, lucida, arial, helvetica, sans-serif;
+
+  font-size: 1.25em;
+
+  font-weight: bold;
+
+  color: #fff;
+
+  background-color: #8092b5;
+
+  display: block;
+
+  text-align: left;
+
+  margin: 0px;
+
+  padding: 2px 0 2px 5px;
+
+}
+
+.helpbluebox {
+
+  font-family: verdana, lucida, arial, helvetica, sans-serif;
+
+  font-size: 1.25em;
+
+  font-weight: bold;
+
+  color: #fff;
+
+  background-color: #0066cc;
+
+  display: block;
+
+  text-align: left;
+
+  margin: 0px;
+
+  padding: 2px 0 2px 5px;
+
+}
+
+.brownbox {
+
+  font-family: verdana, lucida, arial, helvetica, sans-serif;
+
+  font-size: 1.25em;
+
+  font-weight: bold;
+
+  color: #fff;
+
+  background-color: #6b3d00;
+
+  display: block;
+
+  text-align: left;
+
+  margin: 0px;
+
+  padding: 2px 0 2px 5px;
+
+}
+
+.newshead {
+  font-family: verdana, lucida, arial, helvetica, sans-serif;
+  font-size: 97%;
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #8092b5;
+  padding-left: 5px;
+  margin-bottom: 0px;
+  padding-bottom: 2px;
+  margin-top: 5px;
+  margin-right: 0px;
+  margin-left: 0px;
+  padding-top: 2px;
+  padding-right: 0px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: none;
+  border-left-style: solid;
+  border-right-color: #666666;
+  border-left-color: #666666;
+  border-bottom-color: #666666;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-top-color: #999999;
+}
+.textblock {
+	font-family: verdana, lucida, arial, helvetica, sans-serif;
+	font-size: 97%;
+	font-style: normal;
+	font-weight: normal;
+	color: #404040;
+	text-align: left;
+	display: block;
+	background-color: #fff;
+	border-top-style: none;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-right-color: #999999;
+	border-bottom-color: #999999;
+	border-left-color: #999999;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 10px;
+	margin-left: 0;
+	padding-top: 2px;
+	padding-right: 5px;
+	padding-bottom: 2px;
+	padding-left: 5px;
+}
+
+.textbox {
+    	font-family: verdana, lucida, arial, helvetica, sans-serif;
+	color: #404040;
+	background-color: #fff;
+	border: 1px solid #000066;
+	width: auto;
+	padding-top: 5px;
+	padding-right: 5px;
+	padding-bottom: 2px;
+	padding-left: 5px;
+	display: inline;
+	margin-top: 10px;
+	margin-right: 5px;
+	margin-bottom: 10px;
+	margin-left: 5px;
+}
+
+
+
+/* end of local edit on 20 02 07 */

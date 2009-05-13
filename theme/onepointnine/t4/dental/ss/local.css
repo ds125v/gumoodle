@@ -1,0 +1,115 @@
+/* for schools/dental  */
+
+
+.splashpic { 
+
+background: #95cddf url(http://www.gla.ac.uk/t4/dental/i/background.gif) repeat;
+
+  }
+  
+#subhead  {  background: #d4e8f7 url(http://www.gla.ac.uk/t4i/generic/subhead_aims.gif) top left no-repeat ;
+color:#666; }
+
+#subhead a:link {
+	color: #666;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:visited {
+	color: #666;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:hover {
+	color: #993333;
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+
+#bannercontainer { 
+
+background-position: top right;
+/* background-repeat:no-repeat;
+background-color:#4a6b9c; */
+background-image: url(http://www.gla.ac.uk/t4/dental/i/bannerback.gif);
+background-repeat: repeat-x;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/dental/i/banner.gif);
+width:480px;  }
+ 
+
+ 
+#container {
+
+background: url(http://www.gla.ac.uk/t4i/generic/navback.gif) repeat-y ;  }
+ 
+
+
+#mainpage {
+background: url(http://www.gla.ac.uk/t4i/generic/navbottom.gif) no-repeat left bottom;
+	
+}
+
+.links ul   { background-color:#d4e8f7;  }
+
+.links h1 {
+	
+	color: #fff;
+	background-color:#78aad0;
+	
+	  }
+	  
+	  h1, h2 { color:#991f00;  }
+	  
+  h3, h4, h5, h6 { color:#547792;  }	 
+  
+
+#navigation p.toptail {
+background:#78aad0; }
+ 
+#navigation p {
+background-color:#78aad0;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #78aad0  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #78aad0  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+/* Added 06/07/2007 for Publication template */
+
+.item  {
+	background-color:#e1e1e1;
+	border-bottom: 15px solid #fff;
+	padding:4px;
+	height:210px;
+}
+  
+.item img  {
+	float:right;
+	border: 1px solid #fff;
+	margin-bottom:4px;
+}
+
+.itemdecription  { 
+	margin-right: 160px;   
+}

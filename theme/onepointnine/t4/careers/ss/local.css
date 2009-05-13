@@ -1,0 +1,93 @@
+/* for /services/careers */
+
+
+#bannercontainer {
+background-image: url(http://www.gla.ac.uk/t4/careers/i/bannerback.gif);
+background-repeat: repeat-x;}
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/careers/i/banner.gif);
+width:200px;
+}
+ 
+
+  
+
+ 
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+
+ /* start headings  */
+
+
+h1, h2, h3, h4, h5, h6 {
+
+color: #800000;
+
+}
+
+
+
+ /* end headings */
+
+
+/* pullquote  */
+
+.pullquote  {
+font-family: times, Georgia, Impact, serif;
+background: #dadada url(http://www.gla.ac.uk/t4/annietest/i/pullquote.gif) no-repeat;
+float: right;
+position:relative;
+padding: 5px 5px 5px 5px;
+margin: 0 0 10px 10px;
+border: 1px solid #666;
+font-weight:normal;
+font-size:1.2em;
+text-indent: 25px;
+width:142px; 
+voice-family: "\"}\""; 
+voice-family:inherit;
+width: 130px;
+}
+
+html>body .pullquote {
+  width: 130px;  }
+
+.pullquote img  { margin-bottom: 5px; }
+
+
+
+
+#navigation p.toptail {
+background:#003c69; }
+ 
+#navigation p {
+background-color:#003c69;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #003c69;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #003c69;
+}
+
+#navigation p a:hover {
+color: #fff;
+background: #121212;
+}

@@ -1,0 +1,42 @@
+/* for equalitydiversity  */
+
+
+
+.splashpic { 
+background: #2a4592 url(http://www.gla.ac.uk/t4/equalitydiversity/i/splashback.gif);
+background-repeat: no-repeat;
+background-position: bottom right;
+  }
+  
+
+span.first  {
+
+background-color: #d9e6fa;
+
+}
+
+
+
+#bannercontainer {
+background:none;
+
+background-position: top right;
+ background-repeat:no-repeat;
+background-color:#4a6b9c; 
+background-image: url(http://www.gla.ac.uk/t4/equalitydiversity/i/bannerback.gif);
+ }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/equalitydiversity/i/banner.gif);
+width:300px;  }
+ 
+
+
+
+	  
+	  h1, h2 { color:#040404;  }
+	  
+  h3, h4, h5, h6 { color:#040404;  }	 
+  
+  span.first  {border:1px solid #ccc; padding:5px; font-weight:bold;  }

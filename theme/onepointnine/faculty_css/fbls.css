@@ -1,0 +1,22 @@
+#bannercontainer { background-image: url(t4/fbls/i/bannerback.gif); }
+#bannerleft { background-image: url(t4/fbls/i/banner.gif); }
+#toprow,
+#subhead {background-image: url(t4/generic/i/fbls/subhead.gif); }
+#left-column .sideblock .header {background-color: #5a266a;}
+body.category-2 #bannercontainer,
+body.category-3 #bannercontainer,
+body.category-38 #bannercontainer,
+body.category-50 #bannercontainer {
+  background-image: url(t4/fblsugradschool/i/bannerback.jpg); }
+body.category-2 #bannerleft,
+body.category-3 #bannerleft,
+body.category-38 #bannerleft,
+body.category-50 #bannerleft {
+  background-image: url(t4/fblsugradschool/i/banner.gif); }
+body.category-10 #bannercontainer { background-image: url(t4/fblsgradschool/i/bannerback.jpg); }
+body.category-10 #bannerleft { background-image: url(t4/fblsgradschool/i/banner.gif); }
+body.category-2 #subhead,
+body.category-3 #subhead,
+body.category-10 #subhead,
+body.category-38 #subhead,
+body.category-50 #subhead { display: block; }

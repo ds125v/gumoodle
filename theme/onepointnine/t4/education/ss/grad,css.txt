@@ -1,0 +1,240 @@
+/* for /faculties/education  */
+
+
+#bannercontainer {
+background-image: url(http://www.gla.ac.uk/t4/education/i/bannerback.gif);
+background-repeat: repeat-x;}
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/education/i/bannergs.gif);
+width:450px;
+}
+
+.splashpic {
+background: #720a01 url(http://www.gla.ac.uk/t4/education/i/splashback.jpg);
+background-position: right top; 
+background-repeat: repeat-y;
+  }
+  
+ 
+
+#subhead  {
+background: url(http://www.gla.ac.uk/t4/generic/i/subhead_us.gif) top left no-repeat #aeaeae ; 
+ }
+ 
+ 
+ 
+ /* below here  */
+ 
+
+
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+
+ /* start headings  */
+
+
+h1 {
+
+color: #663399;
+
+}
+
+h2 {
+
+color: #663399;
+
+}
+
+h3 {
+
+color: #9537ff;
+
+}
+
+h4 {
+
+color: #663399;
+
+}
+
+h5 {
+
+color: #9537ff;
+
+}
+
+h6 {
+
+color: #ff863e;
+
+}
+
+
+ /* end headings */
+
+
+/* pullquote  */
+
+.pullquote  {
+font-family: times, Georgia, Impact, serif;
+background: #dadada url(http://www.gla.ac.uk/t4/annietest/i/pullquote.gif) no-repeat;
+float: right;
+position:relative;
+padding: 5px 5px 5px 5px;
+margin: 0 0 10px 10px;
+border: 1px solid #666;
+font-weight:normal;
+font-size:1.2em;
+text-indent: 25px;
+width:142px; 
+voice-family: "\"}\""; 
+voice-family:inherit;
+width: 130px;
+}
+
+html>body .pullquote {
+  width: 130px;  }
+
+.pullquote img  { margin-bottom: 5px; }
+
+
+
+#subhead  { display: none;  }
+
+
+
+
+/* hooi lings code follows  */
+
+.links ul { 
+	background-color: #ffd781;
+}
+
+.links h1 {
+	color: #fff;
+	background-color:#fe7a4a;
+}
+
+.links ul li a:link {
+	color: #336;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+.links ul li a:visited {
+	color: #336;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+.links ul li a:hover {
+	color: #b864bd;
+
+}
+
+/* _________________________ navigation _________________________ */
+/* __ For the main navigation menu on the left side ____ */
+	  
+#navigation p.toptail {
+	background: #b864bd;
+}	
+ 
+#navigation p a:link {
+	color: #fff;
+	background: #b864bd  url(http://www.gla.ac.uk/t4/education/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:visited {
+	color: #fff;
+	background: #b864bd url(http://www.gla.ac.uk/t4/education/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:hover {
+	color:#fff;
+	background: #b864bd url(http://www.gla.ac.uk/t4/education/i/lioff.gif) repeat-y;
+}
+
+/* ________ Each "li" indicates the level of list item _______________ */
+
+#navigation  li .currentsection {
+	color: #1b1b1b;
+	background: #FFCC33 url(http://www.gla.ac.uk/t4/education/i/lion.gif) no-repeat;    
+}
+
+#navigation ul li a {
+	color: #1b1b1b;
+	background: #f4f4f4 url(http://www.gla.ac.uk/t4/education/i/lioff.gif) repeat-y;
+}
+
+#navigation li ul li a {
+	background: #fff  url(http://www.gla.ac.uk/t4/education/i/lilioff.gif) no-repeat;
+}
+
+#navigation  li ul li .currentsection {
+	background: #FFCC33  url(http://www.gla.ac.uk/t4/education/i/lilion.gif) no-repeat;
+}
+
+#navigation li ul li ul li a {
+	background: #fff url(http://www.gla.ac.uk/t4/education/i/lililioff.gif) no-repeat;
+}
+
+#navigation  li ul li ul li .currentsection {
+	background: #FFCC33 url(http://www.gla.ac.uk/t4/education/i/lililion.gif) no-repeat;
+}
+	
+#navigation li ul li ul li ul li a {
+	background: #fff url(http://www.gla.ac.uk/t4/education/i/lilililioff.gif) no-repeat;
+}
+
+#navigation li ul li ul li ul li .currentsection {
+	background: #FFCC33 url(http://www.gla.ac.uk/t4/education/i/lilililion.gif) no-repeat;
+}
+	
+#navigation li ul li ul li ul li ul li a {
+	background: #fff url(http://www.gla.ac.uk/t4/education/i/lilililioff.gif) no-repeat;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#navigation p.toptail {
+	background: #b864bd;
+}	
+ 
+#navigation p a:link {
+	color: #fff;
+	background: #b864bd  url(../images/lioff.gif) repeat-y;
+}
+
+#navigation p a:visited {
+	color: #fff;
+	background: #b864bd url(../images/lioff.gif) repeat-y;
+}
+
+#navigation p a:hover {
+	color:#fff;
+	background: #ffbd3a url(../images/lioff.gif) repeat-y;
+}

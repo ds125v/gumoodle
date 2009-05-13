@@ -1,0 +1,17 @@
+
+
+
+#bannercontainer {
+background:none;
+
+background-position: top right;
+ background-repeat:no-repeat;
+background-color:#4a6b9c; 
+background-image: url(http://www.gla.ac.uk/t4/archives/i/bannerback_hoff.gif);
+ }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/archives/i/banner_hoff.gif);
+width:257px;  }
+ 

@@ -1,0 +1,63 @@
+/* for /arts */
+
+
+#bannercontainer {
+background-image: url(http://www.gla.ac.uk/t4/arts/i/bannerback.gif);
+background-repeat: repeat-x;}
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/arts/i/banner.gif);
+width:250px;
+}
+ 
+ 
+#subhead  {  display:none;}
+ 
+
+
+.splashpic {
+background-color:#e3986d;
+
+background: #322d43 url(http://www.gla.ac.uk/t4/arts/i/splashback.gif);
+background-repeat: repeat-x;
+background-position:top;
+  }
+  
+
+
+ /* start headings  */
+ 
+
+}
+
+ /* end headings */
+
+
+/* pullquote  */
+
+.pullquote  {
+font-family: times, Georgia, Impact, serif;
+background: #dadada url(http://www.gla.ac.uk/t4/annietest/i/pullquote.gif) no-repeat;
+float: right;
+position:relative;
+padding: 5px 5px 5px 5px;
+margin: 0 0 10px 10px;
+border: 1px solid #666;
+font-weight:normal;
+font-size:1.2em;
+text-indent: 25px;
+width:142px; 
+voice-family: "\"}\""; 
+voice-family:inherit;
+width: 130px;
+}
+
+html>body .pullquote {
+  width: 130px;  }
+
+.pullquote img  { margin-bottom: 5px; }
+
+
+
+
+

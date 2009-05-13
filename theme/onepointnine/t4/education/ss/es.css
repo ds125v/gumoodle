@@ -1,0 +1,132 @@
+/* for /faculties/education_es  */
+
+
+#bannercontainer {
+background-image: url(http://www.gla.ac.uk/t4/education/i/bannerback_es.gif);
+background-repeat: repeat-x;}
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/education/i/banner_es.gif);
+width:320px;
+}
+
+.splashpic {
+background: #720a01 url(http://www.gla.ac.uk/t4/education/i/splashback_es.gif);
+background-position: right top; 
+background-repeat: repeat-x;
+  }
+  
+ 
+
+#subhead  {
+background: url(http://www.gla.ac.uk/t4/generic/i/subhead_edu.gif) top left no-repeat #aeaeae ; 
+ }
+ 
+ 
+ 
+ /* below here  */
+ 
+#navigation p.toptail {
+background:#4b5d7c; }
+ 
+#navigation p {
+background-color:#4b5d7c;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #4b5d7c  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #4b5d7c
+url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+}
+
+ /* above here  */
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+
+ /* start headings  */
+
+
+h1 {
+
+color: #6b2d2b;
+
+}
+
+h2 {
+
+color: #1f2d29;
+
+}
+
+h3 {
+
+color: #6b2d2b;
+
+}
+
+h4 {
+
+color: #404040;
+
+}
+
+h5 {
+
+color: #404040;
+
+}
+
+h6 {
+
+color: #404040;
+
+}
+
+
+ /* end headings */
+
+
+/* pullquote  */
+
+.pullquote  {
+font-family: times, Georgia, Impact, serif;
+background: #dadada url(http://www.gla.ac.uk/t4/annietest/i/pullquote.gif) no-repeat;
+float: right;
+position:relative;
+padding: 5px 5px 5px 5px;
+margin: 0 0 10px 10px;
+border: 1px solid #666;
+font-weight:normal;
+font-size:1.2em;
+text-indent: 25px;
+width:142px; 
+voice-family: "\"}\""; 
+voice-family:inherit;
+width: 130px;
+}
+
+html>body .pullquote {
+  width: 130px;  }
+
+.pullquote img  { margin-bottom: 5px; }
+
+
+
+

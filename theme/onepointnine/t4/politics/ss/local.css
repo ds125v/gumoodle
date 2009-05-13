@@ -1,0 +1,57 @@
+/* for politics */
+
+/* @@@@@@@@@ banners @@@@@@@@@ */
+
+#bannercontainer {
+background:none;
+background-color:#121212; 
+background-image: url(http://www.gla.ac.uk/t4/politics/i/bannerback.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/politics/i/banner.gif);
+width:390px;  }
+
+
+
+
+h5 {
+padding: 4px 5px 4px 4px;
+margin: 4px 0 8px 0;
+background:#e7e7e7;
+border-top: 1px solid #808080;
+border-left: 3px solid #808080;
+border-right: 1px solid #808080;
+border-bottom: 1px solid #808080;
+color: #404040;
+font-size: 1.25em;
+font-weight:bold;
+width: 97%;
+}
+
+
+h3 {
+font-size: 1.25em;
+color: #404040;
+margin: 0 0 8px 0;
+}
+
+
+.textsplash  {
+position:relative;
+padding: 5px;
+border-top: 1px solid #999;
+border-left: 3px solid #999;
+border-right: 1px solid #999;
+border-bottom: 1px solid #999;
+margin: 0 0 10px 0;
+color:#121212;
+background:#f5f5f5;
+font-weight:normal;
+width: 97%;
+}
+
+h1 {
+margin: 0 0 15px 0;
+}

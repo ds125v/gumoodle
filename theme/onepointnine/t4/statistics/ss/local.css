@@ -1,0 +1,23 @@
+/* for statistics  */  
+
+/* @@@@@@@@@ banners @@@@@@@@@ */
+
+#bannercontainer {
+background:none;
+background-color:#121212; 
+background-image: url(http://www.gla.ac.uk/t4/statistics/i/bannerback.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/statistics/i/banner.gif);
+width:150px;  }
+
+
+.splashpic {
+
+
+background: #5c5ea8 url(http://www.gla.ac.uk/t4/statistics/i/splashback_ce.gif);
+background-repeat: repeat-x;
+background-position:top;
+  }

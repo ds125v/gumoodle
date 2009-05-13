@@ -1,0 +1,42 @@
+/* for humanresources  */
+
+/* @@@@@@@@@ banners @@@@@@@@@ */
+
+#bannercontainer {
+background:none;
+background-color:#121212; 
+background-image: url(http://www.gla.ac.uk/t4/humanresources/i/bannerback.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/humanresources/i/banner.gif);
+width:257px;  }
+
+/* @@@@@@@@@ other stuff @@@@@@@@@ */
+
+
+.splashpic {
+background-color:#a59fed;  }
+  
+
+span.first  {
+background-color: #cec9e3;
+}
+
+
+h5  {
+position:relative;
+padding: 3px;
+border: 1px solid #ccc;
+margin: 0 0 10px 0;
+color:#000;
+background:#a59fed;
+font-weight:strong;
+display: inline;
+}
+
+
+
+
+

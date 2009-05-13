@@ -1,0 +1,16 @@
+<table cellpadding="9" cellspacing="0">
+    <tr valign="middle">
+        <td align="right">
+            <?php print_string('configtitle', 'block_side_bar'); ?>:
+        </td>
+        <td align="left">
+            <input type="text" name="title" size="50" value="<?php echo $this->config->title; ?>" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+            <input type="hidden" name="section" value="<?php echo $this->config->section; ?>" />
+            <input type="submit" value="<?php print_string('savechanges'); ?>" />
+        </td>
+    </tr>
+</table>

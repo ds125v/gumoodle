@@ -1,0 +1,45 @@
+/* for schools/dental  */
+
+
+#bannercontainer { 
+
+background-position: top right;
+/* background-repeat:no-repeat;
+background-color:#4a6b9c; */
+background-image: url(http://www.gla.ac.uk/t4/dental/i/bannerback_new.gif);
+background-repeat: repeat-x;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/dental/i/banner_new.gif);
+width:380px;  }
+ 
+
+ 
+
+.splashpic { 
+
+background: #a6d9fc;
+
+  }
+  
+  
+
+/* Added 06/07/2007 for Publication template */
+
+.item  {
+	background-color:#e1e1e1;
+	border-bottom: 15px solid #fff;
+	padding:4px;
+	height:210px;
+}
+  
+.item img  {
+	float:right;
+	border: 1px solid #fff;
+	margin-bottom:4px;
+}
+
+.itemdecription  { 
+	margin-right: 160px;   
+}

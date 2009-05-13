@@ -1,0 +1,220 @@
+/* for ges  */
+
+/* @@@@@@@@@ banners @@@@@@@@@ */
+
+#bannercontainer {
+background:none;
+background-color:#121212; 
+background-image: url(http://www.gla.ac.uk/t4/geographicalearthsciences/i/bannerback.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/geographicalearthsciences/i/banner.gif);
+width:369px;  }
+
+
+/* @@@@@@@@@ other stuff @@@@@@@@@ */
+
+.splashpic { 
+background:  url(http://www.gla.ac.uk/t4/ges/i/splashback.gif) repeat;
+}
+
+
+/* for generic/us  */
+
+/* @@@@@@@@  top row @@@@@@@@*/
+
+#toprow {background-image: url(http://www.gla.ac.uk/t4/generic/i/subhead_us.gif); }
+
+/* @@@@@@@@@ subhead @@@@@@@@@ */
+
+#subhead  {  background: #121212 url(http://www.gla.ac.uk/t4/generic/i/us/subhead.gif) top left no-repeat ;
+color:#ccc;
+display: block; }
+
+#subhead a:link {
+	color: #ccc;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:visited {
+	color: #ccc;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:hover {
+	color: #a2b7d8;
+	text-decoration: none;
+	border-bottom: 0;
+}
+	  
+	  
+/* @@@@@@@@@ left navigation @@@@@@@@@ */	  
+
+#navigation p {
+background-color:#121212; }
+
+#navigation p a:link {
+color: #fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/us/li.gif) repeat-y; }
+
+#navigation p a:visited {
+color: #fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/us/li.gif) repeat-y; }
+
+#navigation p a:hover {
+color: #fff;
+background: #121212    url(http://www.gla.ac.uk/t4/generic/i/us/li.gif) repeat-y; }
+
+#navigation ul li a {
+background: #f4f4f4  url(http://www.gla.ac.uk/t4/generic/i/us/li.gif) repeat-y;
+border-top: 1px solid #a2b7d8; }
+
+#navigation  li .currentsection {
+
+background: #c6c6c6  url(http://www.gla.ac.uk/t4/generic/i/lion.gif) no-repeat;    
+border-top: 1px solid #a2b7d8;
+}
+
+#navigation  li ul li .currentsection {
+
+background: #c6c6c6  url(http://www.gla.ac.uk/t4/generic/i/lilion.gif) no-repeat;    
+border-top: 1px solid #a2b7d8;
+}
+
+#navigation  li ul li ul li .currentsection {
+
+background: #c6c6c6  url(http://www.gla.ac.uk/t4/generic/i/lililion.gif) no-repeat;    
+border-top: 1px solid #a2b7d8;
+}
+	  
+
+#navigation ul li ul li a {
+background: #f4f4f4  url(http://www.gla.ac.uk/t4/generic/i/us/lili.gif) repeat-y;
+border-top: 1px solid #a2b7d8; }
+
+#navigation ul li ul li ul li a {
+background: #f4f4f4  url(http://www.gla.ac.uk/t4/generic/i/us/lilili.gif) repeat-y;
+border-top: 1px solid #a2b7d8; }
+
+/* @@@@@@@@@ right navigation : links @@@@@@@@@ */
+
+.links ul   { background-color:#fff;  }
+
+.links ul li   {
+
+border-bottom: 1px solid #a2b7d8; 
+
+}
+
+
+.links ul li a   {
+display: block;
+text-decoration: none;
+font-weight:normal;
+color: #003c69;
+width:142px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:137px; 
+}
+	  
+html>body .links ul li  a {width: auto;}
+
+.links ul li a:link { 
+color: #003c69; 
+text-decoration: none;
+border: 0; 
+}
+
+.links ul li a:visited { 
+color: #003c69; 
+text-decoration: none;
+border: 0; 
+}
+
+.links ul li a:hover  { 
+color: #121212;  
+text-decoration: none;
+border: 0; }
+
+
+.links h1 {
+color: #fff;
+background-color:#121212;
+text-transform: none;
+border-bottom: 1px solid #fff; 
+}
+	 	  
+
+#navigation p.toptail {
+background: #121212;
+padding: 0px 1px 0px 7px;
+width:160px;
+height:6px;
+overflow: hidden;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px;
+margin-bottom:10px;  }
+
+
+/* @@@@@@@@@ other stuff @@@@@@@@@ */
+
+#facultyarrow {
+color: #003c69; 
+font-family: lucida, arial, helvetica, sans-serif;
+}
+
+.pullquote  {
+color: #fff;
+background: #003c69;
+text-indent: 0;
+}
+
+.pullquote a:link {
+color: #fff;
+text-decoration:underline; 
+border-bottom: 0;
+}
+
+.pullquote a:visited {
+color: #fafafa;
+text-decoration: none; 
+border-bottom: 0;  
+}
+.pullquote a:hover {
+color: #fff;
+text-decoration: none;
+border-bottom: 0;
+}
+
+.textsplash  {
+color: #000;
+background:#a2b7d8;
+}
+
+ul.longlist li a:link { 
+color: #003c69; 
+text-decoration: none;
+}
+ul.longlist li a:visited { 
+color: #003c69; 
+text-decoration: none;
+}
+
+ul.longlist li a:hover  {  
+color: #900; 
+text-decoration: none;
+}ul.longlist li a:link { 
+color: #003c69; 
+text-decoration: none;
+}
+ul.longlist li a:visited { 
+color: #003c69; 
+text-decoration: none;
+}
+
+ul.longlist li a:hover  {  
+color: #900; 
+text-decoration: none;
+}

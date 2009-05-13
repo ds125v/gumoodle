@@ -1,0 +1,255 @@
+/* for generic/lbss  */
+
+/* @@@@@@@@  top row @@@@@@@@*/
+
+#toprow {background-image: url(http://www.gla.ac.uk/t4/generic/i/lbss/subhead.gif); }
+
+
+/* @@@@@@@@@ subhead @@@@@@@@@ */
+
+#subhead  {  background: #121212 url(http://www.gla.ac.uk/t4/generic/i/lbss/subhead.gif) top left no-repeat ;
+color:#ccc;
+display:block; }
+
+#subhead a:link {
+	color: #ccc;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:visited {
+	color: #ccc;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:hover {
+	color: #b4c4cd;
+	text-decoration: none;
+	border-bottom: 0;
+}
+	  
+	  
+/* @@@@@@@@@ left navigation @@@@@@@@@ */	  
+
+#navigation p {
+background-color:#121212; }
+
+#navigation p a:link {
+color: #fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lbss/li.gif) repeat-y; }
+
+#navigation p a:visited {
+color: #fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lbss/li.gif) repeat-y; }
+
+#navigation p a:hover {
+color: #fff;
+background: #121212    url(http://www.gla.ac.uk/t4/generic/i/lbss/li.gif) repeat-y; }
+
+#navigation ul li a {
+background: #f4f4f4  url(http://www.gla.ac.uk/t4/generic/i/lbss/li.gif) repeat-y;
+border-top: 1px solid #b4c4cd; }
+
+#navigation  li .currentsection {
+
+background: #c6c6c6   url(http://www.gla.ac.uk/t4/generic/i/lion.gif) no-repeat;    
+border-top: 1px solid #b4c4cd;
+}
+
+#navigation  li ul li .currentsection {
+
+background: #c6c6c6   url(http://www.gla.ac.uk/t4/generic/i/lilion.gif) no-repeat;    
+border-top: 1px solid #b4c4cd;
+}
+
+#navigation  li ul li ul li .currentsection {
+
+background: #c6c6c6    url(http://www.gla.ac.uk/t4/generic/i/lililion.gif) no-repeat;    
+border-top: 1px solid #b4c4cd;
+}
+	  
+
+#navigation ul li ul li a {
+background: #f4f4f4  url(http://www.gla.ac.uk/t4/generic/i/lbss/lili.gif) repeat-y;
+border-top: 1px solid #b4c4cd; }
+
+#navigation ul li ul li ul li a {
+background: #f4f4f4  url(http://www.gla.ac.uk/t4/generic/i/lbss/lilili.gif) repeat-y;
+border-top: 1px solid #b4c4cd; }
+
+/* @@@@@@@@@ right navigation : links @@@@@@@@@ */
+
+.links ul   { background-color:#fff;  }
+
+.links ul li   {
+
+border-bottom: 1px solid #b4c4cd; 
+
+}
+
+
+.links ul li a   {
+display: block;
+text-decoration: none;
+font-weight:normal;
+color: #305c74;
+width:142px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:137px; 
+}
+	  
+html>body .links ul li  a {width: auto;}
+
+.links ul li a:link { 
+color: #305c74; 
+text-decoration: none;
+border: 0; 
+}
+
+.links ul li a:visited { 
+color: #305c74; 
+text-decoration: none;
+border: 0; 
+}
+
+.links ul li a:hover  { 
+color: #121212;  
+text-decoration: none;
+border: 0; }
+
+
+.links h1 {
+color: #fff;
+background-color:#121212;
+text-transform: none;
+border-bottom: 1px solid #fff; 
+}
+	 	  
+
+#navigation p.toptail {
+background: #121212;
+padding: 0px 1px 0px 7px;
+width:160px;
+height:6px;
+overflow: hidden;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px;
+margin-bottom:10px;  }
+
+
+/* @@@@@@@@@ other stuff @@@@@@@@@ */
+
+#facultyarrow {
+color: #305c74; 
+font-family: lucida, arial, helvetica, sans-serif;
+}
+
+.pullquote  {
+color: #fff;
+background: #305c74;
+text-indent: 0;
+}
+
+.pullquote a:link {
+color: #fff;
+text-decoration:underline; 
+border-bottom: 0;
+}
+
+.pullquote a:visited {
+color: #fafafa;
+text-decoration: none; 
+border-bottom: 0;  
+}
+.pullquote a:hover {
+color: #fff;
+text-decoration: none;
+border-bottom: 0;
+}
+
+.textsplash  {
+color: #000;
+background:#b4c4cd;
+}
+
+
+/*  @@@@@@@@@@@@@@@@  profiles @@@@@@@@@@@@@@@@*/
+
+/* profiles  */
+
+
+.profilecontent {
+background:#d0dae6 url(http://www.gla.ac.uk/t4/generic/i/profileback.gif) repeat-y ;}
+
+.profilesplash  {
+
+color: #fff; 
+background-color:#305c74;
+border-top: 0; 
+border-bottom: 5px solid #fff; 
+border-left: 0; border-right:0; 
+margin-bottom:0;
+position:relative;
+padding: 5px;
+
+}
+
+.profilesplash h1 { color: #fff; }
+.profilesplash h2 { color: #fff; }
+.profilesplash h3 { color: #fff; }
+.profilesplash h4 { color: #fff; }
+.profilesplash h5 { color: #fff; }
+.profilesplash h6 { color: #fff; }
+
+
+.profilesplash a:link { color: #fff; }
+.profilesplash a:visited { color: #fff; }
+.profilesplash a:hover { color: #ccc; }
+
+.links p.textsplash {
+color:  #fff; background-color: #305c74; padding: 5px; margin-bottom: 15px; border: 0; font-weight:bold;
+
+}
+
+.links p.textsplash a:link { color: #fff; }
+.links p.textsplash a:visited { color: #fff; }
+.links p.textsplash a:hover { color: #ccc; }
+
+
+
+.links h2 {color: #121212; }
+
+.links h3 {color: #121212; }
+
+.links h4 {color: #121212; }
+
+.links h5 {color: #121212; }
+
+.links h6 {color: #121212; }
+
+
+.links p.profile_link {
+color:  #000; background-color: #d0dae6; padding: 5px; margin-bottom: 15px; border: 0; font-weight:bold; height: 52px; border: #666 solid 1px;
+
+}
+
+.links p.profile_link img {
+float: right; margin: 0 0 5px 5px; 
+
+}
+
+.profile_link a:link { color: #000; }
+.profile_link a:visited { color: #000; }
+.profile_link a:hover { color: #999; }
+
+.profileleftcol  {
+color: #000; float: left; width:172px; position: relative; padding: 5px;
+}
+
+.profileleftcol h1, h2, h3, h4 ,h5, h6 {color:#000; }
+
+.profileleftcol  ul, dl, {
+position: relative;
+list-style-type: square;
+margin: 0 0 10px 5px;
+padding: 0 0 0 5px;
+}
