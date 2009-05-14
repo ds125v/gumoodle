@@ -15,6 +15,16 @@ $CFG->recaptchaprivatekey = '';
 // LDAP server
 // can't do this at the moment
 
+// Course default settings
+$CFG->format = 'topics';
+$CFG->numsections = 10;
+$CFG->hiddensections = 0; // shown in collapsed form
+$CFG->newsitems = 5;
+$CFG->metacourse = 0;
+
+// Course requests
+$CFG->enablecourserequests = 0;
+
 // Location settings
 $CFG->timezone = 99; // Server's local time
 $CFG->forcetimezone = 99; // Users can choose their own
