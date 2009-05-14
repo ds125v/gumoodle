@@ -2517,6 +2517,10 @@ function print_header ($title='', $heading='', $navigation='', $focus='',
     $meta = $meta."\n".$metapage;
 
     $meta .= "\n".require_js('',1);
+    $fnname = 'require_css';
+        if (function_exists($fnname)) {
+                $meta .= "\n".$fnname();
+                    }
 
 /// Set up some navigation variables
 
