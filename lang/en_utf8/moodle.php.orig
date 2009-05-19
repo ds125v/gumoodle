@@ -678,7 +678,6 @@ $string['format'] = 'Format';
 $string['formathtml'] = 'HTML format';
 $string['formatlams'] = 'LAMS course format';
 $string['formatmarkdown'] = 'Markdown format';
-$string['formatnotopics'] = 'No topic numbers format';
 $string['formatplain'] = 'Plain text format';
 $string['formatscorm'] = 'SCORM format';
 $string['formatsocial'] = 'Social format';

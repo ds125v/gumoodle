@@ -168,6 +168,15 @@ class assignment_upload extends assignment_base {
             echo '<div style="text-align:center">';
             echo '<form enctype="multipart/form-data" method="post" action="upload.php">';
             echo '<fieldset class="invisiblefieldset">';
+
+            // check if there is a text to be confirmed 
+            if (!empty($CFG->assignment_uploadtext)) {
+                print_box(format_text($CFG->assignment_uploadtext),'generalbox highlight');
+                $strreadconfirm = get_string('readconfirm','assignment');
+                echo  "<p><strong>$strreadconfirm</strong>:";
+                echo '<input type="checkbox" name="confirmuploadtext" /></p>';
+            }
+
             echo "<p>$struploadafile ($strmaxsize)</p>";
             echo '<input type="hidden" name="id" value="'.$this->cm->id.'" />';
             echo '<input type="hidden" name="action" value="uploadfile" />';
@@ -568,8 +577,18 @@ class assignment_upload extends assignment_base {
 
         $mode   = optional_param('mode', '', PARAM_ALPHA);
         $offset = optional_param('offset', 0, PARAM_INT);
+        $confirmuploadtext = optional_param('confirmuploadtext', 0, PARAM_BOOL);
 
         $returnurl = 'view.php?id='.$this->cm->id;
+
+        // the confirm has to be checked if there was uploadtext
+        if (!empty($CFG->assignment_uploadtext) and !$confirmuploadtext) {
+            $this->view_header(get_string('upload'));
+            notify(get_string('confirmerror','assignment'));
+            print_continue($returnurl);
+            $this->view_footer(); 
+            die;
+        }
 
         $filecount = $this->count_user_files($USER->id);
         $submission = $this->get_submission($USER->id);
