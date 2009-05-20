@@ -19,8 +19,8 @@
 
     if ($form1 = data_submitted()) {
         $currentcourseshortname = $course_header->course_shortname; //"store_ShortName";
-        $course_header->course_shortname =  stripslashes_safe($form1->shortname);  //"update_ShortName";
-        $course_header->course_fullname =   stripslashes_safe($form1->fullname);   //"update_FullName";
+        $course_header->course_shortname = !empty($form1->shortname) ? stripslashes_safe($form1->shortname) : '';  //"update_ShortName";
+        $course_header->course_fullname  = !empty($form1->fullname) ? stripslashes_safe($form1->fullname) : '';   //"update_FullName";
     /// Roll dates only if the backup course has a start date
     /// (some formats like main page, social..., haven't it and rolling dates
     /// from 0 produces crazy dates. MDL-10125 and we have passed some custom startyear/month/day. MDL-12922
@@ -222,7 +222,7 @@
     //      put $restore->course_id and $restore->deleting (true), create the restore object.
     //    1-Existing course, adding: Select the destination course and launch the check again, then
     //      put $restore->course_id and $restore->deleting (false), create the restore object.
-    // B) Else, if user cannot create courses or he is restoring from within SITEID:
+    // B) Else, if user has 'moodle/site:restore' in only 1 course or cannot create courses or he is restoring from within SITEID:
     //    0-Current course, deleting: Put $restore->course_id and $restore->deleting (true), create the restore object
     //    1-Current course, adding: Put $restore->course_id and $restore->deleting (false), create the restore object
     // C) If the user is a creator:
@@ -234,12 +234,12 @@
     // NOTE: SITEID is prevented as a source for restoring because it's public area and we must encourage admins
     // to avoid using it as a "repository" for courses storage.
 
-    // A) If user has 'moodle/site:restore' in more than one course, cannot create courses and he isn't restoring from SITEID
+    // A) If user has 'moodle/site:restore' in more than one course and cannot create courses and he isn't restoring from SITEID
     if (count($mycourses) > 1 && !$cancreatecourses && $id != SITEID) {
         /// Nothing to do, process continues and C) will show the list of courses
 
-    // B) Else, if the user is a teacher and not a creator or we are restoring from within SITEID
-    } else if (!$cancreatecourses || $id == SITEID) {
+    // B) Else, if user has 'moodle/site:restore' is only 1 course or cannot create courses or he is restoring from within SITEID
+    } else if (count($mycourses) == 1 || !$cancreatecourses || $id == SITEID) {
         $restore->course_id = $id; /// Force restore to current course, disabling pick course from list
     }
 
@@ -284,6 +284,15 @@
         }
         $show_continue_button = true;
         $messages = array();
+
+        //Check and warn if we are restoring over frontpage (SITEID) course. MDL-19163
+        if ($restore->course_id == SITEID) {
+            if ($restore->restoreto == 0) {
+                $messages[] = get_string ('restoretositedeleting');
+            } else if ($restore->restoreto == 1) {
+                $messages[] = get_string ('restoretositeadding');
+            }
+        }
 
         //Check if we've selected any mod's user info and restore->users
         //is set to none. Change it to course and inform.
