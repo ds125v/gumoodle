@@ -1,5 +1,5 @@
 #bannercontainer { background-image: url(t4/education/i/bannerback.gif); }
-#bannerleft { background-image: url(t4/education/i/banner.gif); }
+#bannerleft { background-image: url(t4/education/i/banner.gif); height: 100px; }
 #toprow,
 #subhead {background-image: url(t4/generic/i/education/subhead.gif); }
 #left-column .sideblock .header {background-color: #813c49;}

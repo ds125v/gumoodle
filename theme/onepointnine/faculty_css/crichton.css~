@@ -1,5 +1,5 @@
 #bannercontainer { background-image: url(t4/crichton/i/spannerback_new.gif); }
 #bannerleft { background-image: url(t4/crichton/i/spanner_new.gif); }
 #toprow,
-#subhead {background-image: url(t4/generic/i/arts/subhead.gif); }
+#subhead {background-image: url(t4/generic/i/arts/subhead.gif); display: block; }
 #left-column .sideblock .header {background-color: #693f58;}

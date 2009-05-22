@@ -39,7 +39,6 @@ body.category-22 #bannerleft,
 body.category-27 #bannerleft,
 body.category-68 #bannerleft,
 body.category-89 #bannerleft,
-body.category-105 #bannerleft,
 body.category-20 #bannerleft { width: 530px; }
 
 body.category-26 #subhead,
@@ -53,5 +52,4 @@ body.category-22 #subhead,
 body.category-27 #subhead,
 body.category-68 #subhead,
 body.category-89 #subhead,
-body.category-105 #subhead,
 body.category-20 #subhead { display: block; }

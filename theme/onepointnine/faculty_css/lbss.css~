@@ -1,5 +1,5 @@
-#bannercontainer { background-image: url(t4/lbss/i/bannerback_new.gif); }
-#bannerleft { background-image: url(t4/lbss/i/banner_new.gif); }
+#bannercontainer { background-image: url(t4/lbss/i/bannerback.gif); }
+#bannerleft { background-image: url(t4/lbss/i/banner.gif); }
 #toprow,
 #subhead {background-image: url(t4/generic/i/lbss/subhead.gif); }
 #left-column .sideblock .header {background-color: #305c74;}

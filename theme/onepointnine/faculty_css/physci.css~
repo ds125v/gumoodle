@@ -3,8 +3,8 @@
 #toprow,
 #subhead {background-image: url(t4/generic/i/physicalsciences/subhead.gif); }
 #left-column .sideblock .header {background-color: #666e19;}
-body.category-27 #bannercontainer { background-image: url(t4/chem/i/bannerback.jpg); background-color: black; }
-body.category-27 #bannerleft { background-image: url(t4/chem/i/banner.jpg); }
+body.category-27 #bannercontainer { background-image: url(http://www.chem.gla.ac.uk/css/header1.jpg); }
+body.category-27 #bannerleft { background-image: url(http://www.chem.gla.ac.uk/css/header1t.jpg); }
 body.category-31 #bannercontainer { background-image: url(t4/geographicalearthsciences/i/bannerback.gif); }
 body.category-31 #bannerleft { background-image: url(t4/geographicalearthsciences/i/banner.gif); }
 body.category-42 #bannercontainer { background-image: url(t4/physics/i/bannerback.gif); }
