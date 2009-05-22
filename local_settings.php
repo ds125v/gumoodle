@@ -1,6 +1,6 @@
 <?php
 // manage authentication
-$CFG->auth = 'mnet,ldap';
+$CFG->auth = 'mnet,ldap,guid';
 $CFG->registerauth = 0;
 $CFG->guestloginbutton = 1;
 $CFG->alternateloginurl = '';
@@ -12,8 +12,97 @@ $CFG->verifychangedemail = 1;
 $CFG->recaptchapublickey = '';
 $CFG->recaptchaprivatekey = '';
 
-// LDAP server
-// can't do this at the moment
+// LDAP authentication 
+$CFG->auth_ldap->host_url = 'ldap://130.209.19.51/;ldap://130.209.19.198/';
+$CFG->auth_ldap->version = 2;
+$CFG->auth_ldap->ldapencoding = 'utf-8';
+$CFG->auth_ldap->preventpassindb = 0;
+$CFG->auth_ldap->user_type = 'edir';
+$CFG->auth_ldap->contexts = 'o=gla';
+$CFG->auth_ldap->search_sub = 1;
+$CFG->auth_ldap->opt_deref = 0;
+$CFG->auth_ldap->user_attribute = 'uid';
+$CFG->auth_ldap->memberattribute = '';
+$CFG->auth_ldap->memberattribute_isdn = '';
+$CFG->auth_ldap->objectclass = '';
+$CFG->auth_ldap->forcechangepassword = 0;
+$CFG->auth_ldap->stdchangepassword = 0;
+$CFG->auth_ldap->passtype = 'plaintext';
+$CFG->auth_ldap->changepasswordurl = 'http://moodle.gla.ac.uk/mod/resource/view.php?id=429';
+$CFG->auth_ldap->expiration = 0;
+$CFG->auth_ldap->expiration_warning = 10;
+$CFG->auth_ldap->expireattr = '';
+$CFG->auth_ldap->gracelogins = 0;
+$CFG->auth_ldap->graceattr = '';
+$CFG->auth_ldap->auth_user_create = 0;
+$CFG->auth_ldap->create_context = '';
+$CFG->auth_ldap->creators = '';
+$CFG->auth_ldap->remove_user = 0;
+$CFG->auth_ldap->ntlmsso_enabled = 0;
+$CFG->auth_ldap->ntlmsso_subnet = '';
+$CFG->auth_ldap->field_map_firstname = 'givenName';
+$CFG->auth_ldap->field_updatelocal_firstname = 'oncreate';
+$CFG->auth_ldap->field_updateremote_firstname = 0;
+$CFG->auth_ldap->field_lock_firstname = 'unlocked';
+$CFG->auth_ldap->field_map_lastname = 'sn';
+$CFG->auth_ldap->field_updatelocal_lastname = 'oncreate';
+$CFG->auth_ldap->field_updateremote_lastname = 0;
+$CFG->auth_ldap->field_lock_lastname = 'unlocked';
+$CFG->auth_ldap->field_map_email = 'mail';
+$CFG->auth_ldap->field_updatelocal_email = 'oncreate';
+$CFG->auth_ldap->field_updateremote_email = 0;
+$CFG->auth_ldap->field_lock_email = 'unlocked';
+$CFG->auth_ldap->field_map_city = '';
+$CFG->auth_ldap->field_updatelocal_city = 'oncreate';
+$CFG->auth_ldap->field_updateremote_city = 0;
+$CFG->auth_ldap->field_lock_city = 'unlocked';
+$CFG->auth_ldap->field_map_country = '';
+$CFG->auth_ldap->field_updatelocal_country = 'oncreate';
+$CFG->auth_ldap->field_updateremote_country = 0;
+$CFG->auth_ldap->field_lock_country = 'unlocked';
+$CFG->auth_ldap->field_map_lang = '';
+$CFG->auth_ldap->field_updatelocal_lang = 'oncreate';
+$CFG->auth_ldap->field_updateremote_lang = 0;
+$CFG->auth_ldap->field_lock_lang = 'unlocked';
+$CFG->auth_ldap->field_map_description = 'fullName';
+$CFG->auth_ldap->field_updatelocal_description = 'oncreate';
+$CFG->auth_ldap->field_updateremote_description = 0;
+$CFG->auth_ldap->field_lock_description = 'unlocked';
+$CFG->auth_ldap->field_map_url = '';
+$CFG->auth_ldap->field_updatelocal_url = 'oncreate';
+$CFG->auth_ldap->field_updateremote_url = 0;
+$CFG->auth_ldap->field_lock_url = 'unlocked';
+$CFG->auth_ldap->field_map_idnumber = 'uid';
+$CFG->auth_ldap->field_updatelocal_idnumber = 'oncreate';
+$CFG->auth_ldap->field_updateremote_idnumber = 0;
+$CFG->auth_ldap->field_lock_idnumber = 'unlocked';
+$CFG->auth_ldap->field_map_institution = '';
+$CFG->auth_ldap->field_updatelocal_institution = 'oncreate';
+$CFG->auth_ldap->field_updateremote_institution = 0;
+$CFG->auth_ldap->field_lock_institution = 'unlocked';
+$CFG->auth_ldap->field_map_department = '';
+$CFG->auth_ldap->field_updatelocal_department = 'oncreate';
+$CFG->auth_ldap->field_updateremote_department = 0;
+$CFG->auth_ldap->field_lock_department = 'unlocked';
+$CFG->auth_ldap->field_map_phone1 = '';
+$CFG->auth_ldap->field_updatelocal_phone1 = 'oncreate';
+$CFG->auth_ldap->field_updateremote_phone1 = 0;
+$CFG->auth_ldap->field_lock_phone1 = 'unlocked';
+$CFG->auth_ldap->field_map_phone2 = 'workforceID';
+$CFG->auth_ldap->field_updatelocal_phone2 = 'oncreate';
+$CFG->auth_ldap->field_updateremote_phone2 = 0;
+$CFG->auth_ldap->field_lock_phone2 = 'unlocked';
+$CFG->auth_ldap->field_map_address = '';
+$CFG->auth_ldap->field_updatelocal_address = 'oncreate';
+$CFG->auth_ldap->field_updateremote_address = 0;
+$CFG->auth_ldap->field_lock_adress = 'unlocked';
+
+// A repeat of the above for 'GUID' still to come
+// once contexts are known (for manual users etc.)
+
+// MNET authentication
+$CFG->auth_mnet->rpc_negotiation_timeout = 30;
+$CFG->aith_mnet->auto_add_remote_users = 0;
 
 // Course default settings
 $CFG->format = 'topics';
