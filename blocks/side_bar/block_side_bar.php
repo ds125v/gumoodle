@@ -1,4 +1,4 @@
-<?php // $Id: block_side_bar.php,v 1.8 2006/10/30 19:16:45 jfilip Exp $
+<?php // $Id: block_side_bar.php,v 1.11 2009/05/07 05:52:32 fmarier Exp $
 
 /**
  * Allows for arbitrarily adding resources or activities to extra (non-standard
@@ -16,7 +16,7 @@ class block_side_bar extends block_list {
         global $CFG;
 
         $this->title = get_string('sidebar', 'block_side_bar');
-        $this->version = 2006022800;
+        $this->version = 2008050200;
 
     /// Make sure the global section start value is set.
         if (!isset($CFG->block_side_bar_section_start)) {
@@ -26,7 +26,6 @@ class block_side_bar extends block_list {
 
     function get_content() {
         global $USER, $CFG;
-
         if ($this->content !== NULL) {
             return $this->content;
         }
@@ -55,7 +54,7 @@ class block_side_bar extends block_list {
     /// Create a new section for this block (if necessary).
         if (empty($this->config->section)) {
             $sql = "SELECT MAX(section) as sectionid
-                    FROM `{$CFG->prefix}course_sections`
+                    FROM {$CFG->prefix}course_sections
                     WHERE course='{$this->instance->pageid}'";
             $rec = get_record_sql($sql);
             
@@ -266,6 +265,19 @@ class block_side_bar extends block_list {
             'site-index' => true,
             'course'     => true
         );
+    }
+
+    function after_restore($restore) {
+        global $CFG;
+
+        // correct section_id for new course
+        $sql = "select id from {$CFG->prefix}course_sections ".
+            "where course={$this->instance->pageid} ".
+            "and section={$this->config->section} ";
+        $rec = get_record_sql( $sql );
+        $this->config->section_id = $rec->id;
+        parent::instance_config_commit();
+        return true;
     }
 
 }
