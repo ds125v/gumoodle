@@ -700,9 +700,25 @@ function get_config($plugin=NULL, $name=NULL) {
 
     global $CFG;
 
+    // process plugin to get $CFG data if it exists
+    if (!empty($plugin)) {
+        $parts = explode('/',$plugin);
+        $cfgplug = $parts[0];
+        if (!empty($parts[1])) {
+            $cfgplug = $cfgplug . '_' . $parts[1];
+        }
+        $local = $CFG->$cfgplug;
+    }
+
     if (!empty($name)) { // the user is asking for a specific value
         if (!empty($plugin)) {
-            return get_field('config_plugins', 'value', 'plugin' , $plugin, 'name', $name);
+            // is this defined in $CFG->plugin->name?
+            if (isset($local->$name)) {
+                return $local->name;
+            }
+            else {
+                return get_field('config_plugins', 'value', 'plugin' , $plugin, 'name', $name);
+            }    
         } else {
             return get_field('config', 'value', 'name', $name);
         }
@@ -712,9 +728,12 @@ function get_config($plugin=NULL, $name=NULL) {
     if (!empty($plugin)) {
         if ($configs=get_records('config_plugins', 'plugin', $plugin, '', 'name,value')) {
             $configs = (array)$configs;
-            $localcfg = array();
+            //$localcfg = array();
+            $localcfg = (array)$local;
             foreach ($configs as $config) {
-                $localcfg[$config->name] = $config->value;
+                if (!isset($localcfg[$config->name])) {
+                    $localcfg[$config->name] = $config->value;
+                }     
             }
             return (object)$localcfg;
         } else {
