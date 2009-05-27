@@ -1238,6 +1238,7 @@ $string['publicdirectory1'] = 'Publish the site name only';
 $string['publicdirectory2'] = 'Publish the site name with a link';
 $string['publicdirectorytitle'] = 'See the current list of sites';
 $string['publicsitefileswarning'] = 'Note: files placed here can be accessed by anyone';
+$string['publicsitefileswarning2'] = 'Note: Files placed here can be accessed by anyone who knows (or can guess) the URL. For security reasons, it is recommended that any backup files are deleted immediately after restoring them.';
 $string['question'] = 'Question';
 $string['questionsinthequestionbank'] = 'Questions in the question bank';
 $string['readinginfofrombackup'] = 'Reading info from backup';
@@ -1261,6 +1262,7 @@ for important notifications such as security alerts and new releases of Moodle.<
    picture of the Moodle community as a whole.</p>
 <p>If you choose, you can allow your site name, country and URL to be added to the public list of Moodle Sites.</p>
 <p>All new registrations are verified manually before they are added to the list, but once you are added you can update your registration (and your entry on the public list) at any time by resubmitting this form.</p>';
+$string['registrationinfotitle'] = 'Registration Information';
 $string['registrationno'] = 'No, I do not want to receive email';
 $string['registrationsend'] = 'Send registration information to moodle.org';
 $string['registrationyes'] = 'Yes, please notify me about important issues';
