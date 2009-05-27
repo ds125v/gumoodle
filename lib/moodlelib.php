@@ -708,6 +708,9 @@ function get_config($plugin=NULL, $name=NULL) {
             $cfgplug = $cfgplug . '_' . $parts[1];
         }
         $local = $CFG->$cfgplug;
+        if (empty($local)) {
+            $local = false;
+        }    
     }
 
     if (!empty($name)) { // the user is asking for a specific value
@@ -737,7 +740,7 @@ function get_config($plugin=NULL, $name=NULL) {
             }
             return (object)$localcfg;
         } else {
-            return false;
+            return $local;
         }
     } else {
         // this was originally in setup.php
