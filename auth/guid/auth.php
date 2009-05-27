@@ -120,7 +120,7 @@ class auth_plugin_guid extends auth_plugin_base {
         //
         $key = sesskey();
         if (!empty($this->config->ntlmsso_enabled) && $key === $password) {
-            $cf = get_cache_flags('auth/ldap/ntlmsess');
+            $cf = get_cache_flags('auth/guid/ntlmsess');
             // We only get the cache flag if we retrieve it before
             // it expires (AUTH_NTLMTIMEOUT seconds).
             if (!isset($cf[$key]) || $cf[$key] === '') {
@@ -1871,12 +1871,12 @@ class auth_plugin_guid extends auth_plugin_base {
                 // Shortcut for IE browsers: skip the attempt page at all
                 if(check_browser_version('MSIE')) {
                     $sesskey = sesskey();
-                    redirect($CFG->wwwroot.'/auth/ldap/ntlmsso_magic.php?sesskey='.$sesskey);
+                    redirect($CFG->wwwroot.'/auth/guid/ntlmsso_magic.php?sesskey='.$sesskey);
                 } else {
                     redirect($CFG->httpswwwroot.'/login/index.php?authldap_skipntlmsso=1');
                 }
             } else {
-                redirect($CFG->wwwroot.'/auth/ldap/ntlmsso_attempt.php');
+                redirect($CFG->wwwroot.'/auth/guid/ntlmsso_attempt.php');
             }
         }
  
@@ -1889,7 +1889,7 @@ class auth_plugin_guid extends auth_plugin_base {
         // we don't want to use at all. As we can't get rid of it, just point
         // $SESSION->wantsurl to $CFG->wwwroot (after all, we came from there).
         if (empty($SESSION->wantsurl)
-            && (get_referer() == $CFG->httpswwwroot.'/auth/ldap/ntlmsso_finish.php')) {
+            && (get_referer() == $CFG->httpswwwroot.'/auth/guid/ntlmsso_finish.php')) {
 
             $SESSION->wantsurl = $CFG->wwwroot;
         }
@@ -1900,7 +1900,7 @@ class auth_plugin_guid extends auth_plugin_base {
      * "Integrated Windows Authentication". 
      *
      * If successful, it will set a special "cookie" (not an HTTP cookie!) 
-     * in cache_flags under the "auth/ldap/ntlmsess" "plugin" and return true.
+     * in cache_flags under the "auth/guid/ntlmsess" "plugin" and return true.
      * The "cookie" will be picked up by ntlmsso_finish() to complete the
      * process.
      *
@@ -1924,7 +1924,7 @@ class auth_plugin_guid extends auth_plugin_base {
 
             $username = substr(strrchr($username, '\\'), 1); //strip domain info
             $username = moodle_strtolower($username); //compatibility hack
-            set_cache_flag('auth/ldap/ntlmsess', $sesskey, $username, AUTH_NTLMTIMEOUT);
+            set_cache_flag('auth/guid/ntlmsess', $sesskey, $username, AUTH_NTLMTIMEOUT);
             return true;
         }
         return false;
@@ -1944,7 +1944,7 @@ class auth_plugin_guid extends auth_plugin_base {
         global $CFG, $USER, $SESSION;
 
         $key = sesskey();
-        $cf = get_cache_flags('auth/ldap/ntlmsess');
+        $cf = get_cache_flags('auth/guid/ntlmsess');
         if (!isset($cf[$key]) || $cf[$key] === '') {
             return false;
         }
@@ -1959,7 +1959,7 @@ class auth_plugin_guid extends auth_plugin_base {
 
             // Cleanup the key to prevent reuse...
             // and to allow re-logins with normal credentials
-            unset_cache_flag('auth/ldap/ntlmsess', $key);
+            unset_cache_flag('auth/guid/ntlmsess', $key);
 
             /// Redirection
             if (user_not_fully_set_up($USER)) {
@@ -2082,37 +2082,37 @@ class auth_plugin_guid extends auth_plugin_base {
             {$config->ntlmsso_ie_fastpath = 0; }
 
         // save settings
-        set_config('host_url', $config->host_url, 'auth/ldap');
-        set_config('ldapencoding', $config->ldapencoding, 'auth/ldap');
-        set_config('host_url', $config->host_url, 'auth/ldap');
-        set_config('contexts', $config->contexts, 'auth/ldap');
-        set_config('user_type', $config->user_type, 'auth/ldap');
-        set_config('user_attribute', $config->user_attribute, 'auth/ldap');
-        set_config('search_sub', $config->search_sub, 'auth/ldap');
-        set_config('opt_deref', $config->opt_deref, 'auth/ldap');
-        set_config('preventpassindb', $config->preventpassindb, 'auth/ldap');
-        set_config('bind_dn', $config->bind_dn, 'auth/ldap');
-        set_config('bind_pw', $config->bind_pw, 'auth/ldap');
-        set_config('version', $config->version, 'auth/ldap');
-        set_config('objectclass', trim($config->objectclass), 'auth/ldap');
-        set_config('memberattribute', $config->memberattribute, 'auth/ldap');
-        set_config('memberattribute_isdn', $config->memberattribute_isdn, 'auth/ldap');
-        set_config('creators', $config->creators, 'auth/ldap');
-        set_config('create_context', $config->create_context, 'auth/ldap');
-        set_config('expiration', $config->expiration, 'auth/ldap');
-        set_config('expiration_warning', $config->expiration_warning, 'auth/ldap');
-        set_config('expireattr', $config->expireattr, 'auth/ldap');
-        set_config('gracelogins', $config->gracelogins, 'auth/ldap');
-        set_config('graceattr', $config->graceattr, 'auth/ldap');
-        set_config('auth_user_create', $config->auth_user_create, 'auth/ldap');
-        set_config('forcechangepassword', $config->forcechangepassword, 'auth/ldap');
-        set_config('stdchangepassword', $config->stdchangepassword, 'auth/ldap');
-        set_config('passtype', $config->passtype, 'auth/ldap');
-        set_config('changepasswordurl', $config->changepasswordurl, 'auth/ldap');
-        set_config('removeuser', $config->removeuser, 'auth/ldap');
-        set_config('ntlmsso_enabled', (int)$config->ntlmsso_enabled, 'auth/ldap');
-        set_config('ntlmsso_subnet', $config->ntlmsso_subnet, 'auth/ldap');
-        set_config('ntlmsso_ie_fastpath', (int)$config->ntlmsso_ie_fastpath, 'auth/ldap');
+        set_config('host_url', $config->host_url, 'auth/guid');
+        set_config('ldapencoding', $config->ldapencoding, 'auth/guid');
+        set_config('host_url', $config->host_url, 'auth/guid');
+        set_config('contexts', $config->contexts, 'auth/guid');
+        set_config('user_type', $config->user_type, 'auth/guid');
+        set_config('user_attribute', $config->user_attribute, 'auth/guid');
+        set_config('search_sub', $config->search_sub, 'auth/guid');
+        set_config('opt_deref', $config->opt_deref, 'auth/guid');
+        set_config('preventpassindb', $config->preventpassindb, 'auth/guid');
+        set_config('bind_dn', $config->bind_dn, 'auth/guid');
+        set_config('bind_pw', $config->bind_pw, 'auth/guid');
+        set_config('version', $config->version, 'auth/guid');
+        set_config('objectclass', trim($config->objectclass), 'auth/guid');
+        set_config('memberattribute', $config->memberattribute, 'auth/guid');
+        set_config('memberattribute_isdn', $config->memberattribute_isdn, 'auth/guid');
+        set_config('creators', $config->creators, 'auth/guid');
+        set_config('create_context', $config->create_context, 'auth/guid');
+        set_config('expiration', $config->expiration, 'auth/guid');
+        set_config('expiration_warning', $config->expiration_warning, 'auth/guid');
+        set_config('expireattr', $config->expireattr, 'auth/guid');
+        set_config('gracelogins', $config->gracelogins, 'auth/guid');
+        set_config('graceattr', $config->graceattr, 'auth/guid');
+        set_config('auth_user_create', $config->auth_user_create, 'auth/guid');
+        set_config('forcechangepassword', $config->forcechangepassword, 'auth/guid');
+        set_config('stdchangepassword', $config->stdchangepassword, 'auth/guid');
+        set_config('passtype', $config->passtype, 'auth/guid');
+        set_config('changepasswordurl', $config->changepasswordurl, 'auth/guid');
+        set_config('removeuser', $config->removeuser, 'auth/guid');
+        set_config('ntlmsso_enabled', (int)$config->ntlmsso_enabled, 'auth/guid');
+        set_config('ntlmsso_subnet', $config->ntlmsso_subnet, 'auth/guid');
+        set_config('ntlmsso_ie_fastpath', (int)$config->ntlmsso_ie_fastpath, 'auth/guid');
 
         return true;
     }
