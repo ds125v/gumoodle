@@ -442,3 +442,5 @@ border: none;
 #left-column .sideblock .header .commands,
 #right-column .sideblock .header .commands { background-color: #fff; width: 100%; margin: 0; padding: 3px 0 }
 #subhead {display:none;}
+
+.generalboxcontent { background: white;}
