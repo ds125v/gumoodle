@@ -707,8 +707,10 @@ function get_config($plugin=NULL, $name=NULL) {
         if (!empty($parts[1])) {
             $cfgplug = $cfgplug . '_' . $parts[1];
         }
-        $local = $CFG->$cfgplug;
-        if (empty($local)) {
+        if (!empty($CFG->cfgplug)) {
+            $local = $CFG->$cfgplug;
+        }
+        else {
             $local = false;
         }    
     }
