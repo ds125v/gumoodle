@@ -1,0 +1,31 @@
+<?php
+// Part of block_booking_form - A block that allows  booking to be made through Moodle
+// Niall S F Barr, 2008.
+
+global $USER;
+
+$id = optional_param('id', 0, PARAM_INT);
+$edit = optional_param('edit', 0, PARAM_INT);
+
+$action = optional_param('action', 'config', PARAM_ALPHA);
+$page = page_create_object($this->instance->pagetype, $this->instance->pageid);
+$url = $page->url_get_full(array('instanceid' => $this->instance->id, 'sesskey' => $USER->sesskey, 'blockaction' => 'config', 'action' => ''));
+$tabs = array();
+$tabnames = array('config', 'workshops', 'options', 'fee');
+foreach ($tabnames as $tabname) {
+	$tabs[] = new tabObject($tabname, $url . $tabname, get_string('tab' . $tabname, 'block_booking_form'));
+}
+
+if (!in_array($action, $tabnames)) {
+	$action = 'config';
+}
+
+print_tabs(array($tabs), $action);
+
+echo('<br />');
+include($action."_tab.php");
+
+
+//include("config_tab.php");
+
+?>
