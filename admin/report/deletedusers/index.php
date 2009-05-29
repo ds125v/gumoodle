@@ -26,8 +26,12 @@ $sortorder = optional_param('sort', 'lastname', PARAM_ALPHA);
 $dir = optional_param('dir', 'ASC', PARAM_ALPHA);
 $page = optional_param('page', '0', PARAM_INT);
 $restoreid = optional_param('restore', '0', PARAM_INT);
+$cleanup = optional_param('cleanup', false, PARAM_BOOL);
 
-if($restoreid == 0) {
+if($cleanup) {
+	cleanup();
+}
+elseif($restoreid == 0) {
 	displayDeletedUsers($page, $sortorder, $dir);
 } else {
 	doRestore($restoreid);
@@ -58,6 +62,7 @@ function displayDeletedUsers($page, $sortorder, $dir) {
 
 	$count = count_records('user','deleted',1);
 	echo '<p>'.$count. ' '.get_string('deletedusers', 'report_deletedusers').'</p>';
+    echo '<p><a href="index.php?cleanup=1">'.get_string('cleanuppartialdeleted','report_deletedusers');
 	$startfrom = $page*PAGELENGTH;
 	$delusers = get_records('user','deleted',1, $sortorder.' ASC','*',$startfrom , PAGELENGTH);
 
@@ -99,33 +104,38 @@ function displayDeletedUsers($page, $sortorder, $dir) {
 	} else { // ($CFG->fullnamedisplay == 'language' and $fullnamelanguage == 'lastname firstname')
 	    $fullnamedisplay = "$lastname/$firstname";
 	}
-	$table->head = array ($fullnamedisplay, $username, $email, $city, $country, $lastaccess, "");
-	$table->align = array ("left", "left", "left", "left", "left", "left", "center");
+	$table->head = array ($fullnamedisplay, $username, $email, $city, $country, $lastaccess);
+	$table->align = array ("left", "left", "left", "left", "left", "left");
 	$table->width = "95%";
 	foreach ($delusers as $user) {
-	    if(strpos($user->username,$user->timemodified)===false) {
-	    	$restorename = $user->username;
-	    } else {
-	    	$restorename = '';
-	    }
-	    if ((has_capability('moodle/user:delete', $sitecontext))&&(strlen($restorename)>0)) {
-	        $restorebutton = "<a href=\"index.php?restore=$user->id&amp;\">Restore</a>";
-	    } else {
-	        $restorebutton ="";
-	    }
 	    if ($user->lastaccess) {
 	        $strlastaccess = format_time(time() - $user->lastaccess);
 	    } else {
 	        $strlastaccess = get_string('never');
 	    }
 	    $fullname = fullname($user, true);
-	    $table->data[] = array ("$fullname", $restorename, "$user->email", "$user->city", "$user->country", $strlastaccess, $restorebutton);
+	    $table->data[] = array ("$fullname", $user->username, "$user->email", "$user->city", "$user->country", $strlastaccess);
 	}
 	if (!empty($table)) {
 	    print_paging_bar($count, $page, PAGELENGTH, "index.php?sort=$sortorder&amp;");
 	    print_table($table);
 	    print_paging_bar($count, $page, PAGELENGTH, "index.php?sort=$sortorder&amp;");
 	}
+}
+
+function cleanup() {
+	global $CFG, $sitecontext;
+	if (!has_capability('moodle/user:delete', $sitecontext)) {
+        error('You do not have the required permission.');
+    }
+   	$delusers = get_records('user', 'deleted', 1);
+    foreach($delusers as $user) {
+	    if(strpos($user->username,$user->timemodified)===false) {
+    		echo "Deleting {$user->username}<br/>";
+            delete_user($user);
+        }
+    }
+
 }
 ?>
 
