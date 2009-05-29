@@ -129,13 +129,16 @@ function cleanup() {
         error('You do not have the required permission.');
     }
    	$delusers = get_records('user', 'deleted', 1);
+    $count = 0;
     foreach($delusers as $user) {
 	    if(strpos($user->username,$user->timemodified)===false) {
     		echo "Deleting {$user->username}<br/>";
+            $count++;
             delete_user($user);
         }
     }
-
+    echo '<p>'.$count.' '.get_string('partialcleanedup','report_deletedusers').'</p>';
+    echo '<p><a href="index.php">'.get_string('continue').'</a></p>';
 }
 ?>
 
