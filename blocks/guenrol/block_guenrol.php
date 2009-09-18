@@ -32,7 +32,7 @@ class block_guenrol extends block_base {
         $coursecontext = get_context_instance( CONTEXT_COURSE, $COURSE->id );
 
         // get the list of users from the external database
-        $userlist = get_db_users();
+        $userlist = get_db_users($COURSE);
 
         // get the number of users who have profiles already
         $existing_profile_count = get_authenticated_users( $userlist );
@@ -46,10 +46,11 @@ class block_guenrol extends block_base {
         // get data from ldap server
         get_ldap_data( $userlist );
 
-echo "<pre>"; var_dump( $userlist ); die;
+// echo "<pre>"; var_dump( $userlist ); die;
         $this->content->text = "<p>Course users = ".count($userlist)."</p>";
         $this->content->text .= "<p>Authenticated users = ".$existing_profile_count."</p>";
         $this->content->text .= "<p>Enrolled users = ".$enrolled_in_course_count."</p>";
+        $this->content->text .= "<p><a href=\"{$CFG->wwwroot}/blocks/guenrol/view.php?id={$COURSE->id}\">More....</a></p>";
 
         $this->content->footer = '';
         return $this->content;

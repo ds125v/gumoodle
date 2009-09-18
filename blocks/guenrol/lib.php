@@ -10,8 +10,8 @@
      * Returns a list where the index is the username
      * as we will add stuff to this in due course.
      */
-    function get_db_users() {
-        global $COURSE, $CFG;
+    function get_db_users($course) {
+        global $CFG;
 
         // If $this->enrol_connect() succeeds you MUST remember to call
         // $this->enrol_disconnect() as it is doing some nasty vodoo with $CFG->prefix
@@ -24,7 +24,7 @@
         // get the course code
         $localcoursefield = $CFG->enrol_localcoursefield;
         $remoteuserfield = $CFG->enrol_remoteuserfield;
-        $coursecode = addslashes( $COURSE->$localcoursefield );
+        $coursecode = addslashes( $course->$localcoursefield );
 
         // get all the enrollments for this course code
         $sql = "select {$remoteuserfield} from {$CFG->enrol_dbtable} ";
@@ -63,12 +63,15 @@
 
             // if the user record exists we'll grab it
             if ($user = get_record( 'user','username',$username )) {
-                $userlist[ $username ]->profile = $user;
+                //$userlist[ $username ]->profile = $user;
                 $userlist[ $username ]->profile_exists = true;
+                $userlist[ $username ]->firstname = $user->firstname;
+                $userlist[ $username ]->lastname = $user->lastname;
+                $userlist[ $username ]->email = $user->email;
                 $usercount++;
             }
             else {
-                $userlist[ $username ]->profile = null;
+                //$userlist[ $username ]->profile = null;
                 $userlist[ $username ]->profile_exists = false;
             }
         }
@@ -88,11 +91,20 @@
         // this returns an array of user objects (indexed on userid)
         $users = get_role_users( $role->id, $context, false );
 
+        // anything to do
+        if (empty($users)) {
+            return 0;
+        }
+
         // interate over array and establish if they exist or not
         foreach ($users as $user) {
             $username = $user->username;
-            $userlist[ $username ]->profile = $user;
+            // $userlist[ $username ]->profile = $user;
+            $userlist[ $username ]->firstname = $user->firstname;
+            $userlist[ $username ]->lastname = $user->lastname;
+            $userlist[ $username ]->email = $user->email;
             $userlist[ $username ]->profile_exists = true;
+            $userlist[ $username ]->enrolled = true;
             if (!isset( $userlist[ $username ]->in_db )) {
                 $userlist[ $username ]->in_db = false;
             }
@@ -108,8 +120,26 @@
         $authplugin = get_auth_plugin(GUAUTH);
 
         foreach ($userlist as $username => $userdata) {
+            
+            // if they have a profile then we don't care
+            if ( !empty($userlist[ $username ]->profile_exists) ) {
+                continue;
+            }
+ 
+            // lookup in ldap
             if ($userinfo = $authplugin->get_userinfo( $username )) {
+                $userinfo = (object)$userinfo;
                 $userlist[ $username ]->ldap_userinfo = $userinfo;
+                $userlist[ $username ]->firstname = ucwords(strtolower( $userinfo->firstname ));
+                $userlist[ $username ]->lastname = ucwords(strtolower( $userinfo->lastname ));
+                $userlist[ $username ]->email = $userinfo->email;
+                $userlist[ $username ]->new_in_ldap = true;
+            }
+            else {
+                $userlist[ $username ]->new_in_ldap = false;
+                $userlist[ $username ]->firstname = '';
+                $userlist[ $username ]->lastname = '';
+                $userlist[ $username ]->email = '';
             }
         }
     }
@@ -117,11 +147,12 @@
     /**
      * Convenience feature to build the data array
      */
-    function get_userlist( $context, $role ) {
-        $userlist = get_db_users();
+    function get_userlist( $course, $context, $role ) {
+        $userlist = get_db_users( $course );
         get_authenticated_users( $userlist );
         get_enrolled_users( $userlist, $role, $context );
         get_ldap_data( $userlist );
+// echo "<pre>"; print_r( $userlist ); die;
         return $userlist;
     }
 
