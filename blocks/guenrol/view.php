@@ -28,12 +28,13 @@ $table = new flexible_table('block_guenrol_view');
 $table->define_baseurl($CFG->wwwroot.'/blocks/guenrol/view.php?id='.$course->id );
 
 // define table columns
-$columns = array( 'userid','name','email','enrol' );
+$columns = array( 'userid','name','email','enrol','profile' );
 $headers = array(
     get_string( 'userid','block_guenrol' ),
     get_string( 'name','block_guenrol' ),
     get_string( 'email','block_guenrol' ),
-    get_string( 'enrol','block_guenrol' ) 
+    get_string( 'enrol','block_guenrol' ),
+    get_string( 'profile', 'block_guenrol' )
     );
 $table->define_columns( $columns );
 $table->define_headers( $headers );
@@ -57,13 +58,9 @@ $table->setup();
 // add the data
 foreach ($userlist as $username => $user) {
     $fullname = "{$user->firstname} {$user->lastname}";
-    if ($user->in_db) {
-        $enrol = $tick;
-    }
-    else {
-        $enrol = ' ';
-    }
-    $table->add_data( array( $username, $fullname, $user->email, $enrol  ) );
+    $enrol = ($user->in_db) ? $tick : ' ';
+    $profile = ($user->profile_exists) ? $tick : ' ';
+    $table->add_data( array( $username, $fullname, $user->email, $enrol, $profile  ) );
 }
 
 //

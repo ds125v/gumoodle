@@ -49,9 +49,9 @@ unset($CFG);  // Ignore this line
 
 $CFG->dbtype    = 'mysql';       // mysql or postgres7 (for now)
 $CFG->dbhost    = 'localhost';   // eg localhost or db.isp.com
-$CFG->dbname    = 'dev_2009';      // database name, eg moodle
-$CFG->dbuser    = 'learnadmin';    // your database username
-$CFG->dbpass    = 'lrn@29';    // your database password
+$CFG->dbname    = 'gu2009production';      // database name, eg moodle
+$CFG->dbuser    = 'root';    // your database username
+$CFG->dbpass    = '';    // your database password
 $CFG->prefix    = 'mdl_';        // Prefix to use for all table names
 
 $CFG->dbpersist = false;         // Should database connections be reused?
@@ -67,7 +67,7 @@ $CFG->dbpersist = false;         // Should database connections be reused?
 // is accessible via multiple URLs then choose the most natural one
 // that your students would use.  Do not include a trailing slash
 
-$CFG->wwwroot   = 'http://moodledev.cent.gla.ac.uk/moodle/gu2009';
+$CFG->wwwroot   = 'http://pc88-140.guide.gla.ac.uk/~howard/moodle';
 
 
 //=========================================================================
@@ -80,7 +80,7 @@ $CFG->wwwroot   = 'http://moodledev.cent.gla.ac.uk/moodle/gu2009';
 //    $CFG->dirroot = '/var/www/html/moodle';     // Redhat Linux
 //    $CFG->dirroot = '/home/example/public_html/moodle'; // Cpanel host
 
-$CFG->dirroot   = '/usr/local/apache/htdocs/moodle/gu2009';
+$CFG->dirroot   = '/Users/howard/Sites/moodle';
 
 
 //=========================================================================
@@ -96,7 +96,7 @@ $CFG->dirroot   = '/usr/local/apache/htdocs/moodle/gu2009';
 //
 // - On Windows systems you might specify something like 'c:\moodledata'
 
-$CFG->dataroot  = '/usr/local/data/gu2009';
+$CFG->dataroot  = '/Users/howard/moodledata/git_gu2009production';
 
 
 //=========================================================================
@@ -309,7 +309,7 @@ $CFG->admin = 'admin';
 // $CFG->noemailever = true;
 //
 // Local settings
-require_once( 'local_settings.php' );
+// require_once( 'local_settings.php' );
 
 //
 //
