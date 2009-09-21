@@ -28,6 +28,15 @@ class block_guenrol extends block_base {
         //    return $this->content;
         //}
 
+        // if no course code is defined there's no point
+        $localcoursefield = $CFG->enrol_localcoursefield;
+        $coursecode = addslashes( $COURSE->$localcoursefield );
+        if (empty($coursecode)) {
+            $this->content->text = '<p>No Course Code defined</p>';
+            $this->content->footer = '';
+            return $this->content;
+        }
+
         // get course context
         $coursecontext = get_context_instance( CONTEXT_COURSE, $COURSE->id );
 

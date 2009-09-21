@@ -21,28 +21,38 @@
             return;
         }
 
-        // get the course code
+        // get the course code(s)
         $localcoursefield = $CFG->enrol_localcoursefield;
         $remoteuserfield = $CFG->enrol_remoteuserfield;
-        $coursecode = addslashes( $course->$localcoursefield );
+        $remotecoursefield = $CFG->enrol_remotecoursefield;
+        $rawcode = addslashes( $course->$localcoursefield );
+
+        // code splits on spaces
+        $coursecodes = explode( ' ',$rawcode );
+
+        // prepare array for user data
+        $userlist = array();
 
         // get all the enrollments for this course code
-        $sql = "select {$remoteuserfield} from {$CFG->enrol_dbtable} ";
-        $sql .= "where {$CFG->enrol_remotecoursefield} = '$coursecode' ";
+        foreach ($coursecodes as $coursecode) {
+            $sql = "select {$remoteuserfield},{$remotecoursefield} from {$CFG->enrol_dbtable} ";
+            $sql .= "where {$CFG->enrol_remotecoursefield} = '$coursecode' ";
 
-        if ($rs = $enroldb->Execute( $sql )) {
+            if ($rs = $enroldb->Execute( $sql )) {
 
-            // turn return into an array
-            $userlist = array();
-            while (!$rs->EOF) {
-                $fields = rs_fetch_next_record($rs);
-                $userlist[$fields->$remoteuserfield] = new StdClass;
-                $userlist[$fields->$remoteuserfield]->in_db = true;
+                // turn return into an array
+                while (!$rs->EOF) {
+                    $fields = rs_fetch_next_record($rs);
+                    $username = $fields->$remoteuserfield;
+                    $userlist[$username] = new StdClass;
+                    $userlist[$username]->in_db = true;
+                    $userlist[$username]->coursecode .= $fields->$remotecoursefield . ' ';
+                }
             }
-        }
-        else {
-            error_log( '[block_guenrol] Failed to return data from enrol database' );
-            $userlist = false;
+            else {
+                error_log( '[block_guenrol] Failed to return data from enrol database' );
+                $userlist = false;
+            }
         }
 
         // got the users, so release database
@@ -63,7 +73,7 @@
 
             // if the user record exists we'll grab it
             if ($user = get_record( 'user','username',$username )) {
-                //$userlist[ $username ]->profile = $user;
+                $userlist[ $username ]->userid = $user->id;
                 $userlist[ $username ]->profile_exists = true;
                 $userlist[ $username ]->firstname = $user->firstname;
                 $userlist[ $username ]->lastname = $user->lastname;
@@ -71,7 +81,6 @@
                 $usercount++;
             }
             else {
-                //$userlist[ $username ]->profile = null;
                 $userlist[ $username ]->profile_exists = false;
             }
         }
@@ -133,10 +142,10 @@
                 $userlist[ $username ]->firstname = ucwords(strtolower( $userinfo->firstname ));
                 $userlist[ $username ]->lastname = ucwords(strtolower( $userinfo->lastname ));
                 $userlist[ $username ]->email = $userinfo->email;
-                $userlist[ $username ]->new_in_ldap = true;
+                $userlist[ $username ]->in_ldap = true;
             }
             else {
-                $userlist[ $username ]->new_in_ldap = false;
+                $userlist[ $username ]->in_ldap = false;
                 $userlist[ $username ]->firstname = '';
                 $userlist[ $username ]->lastname = '';
                 $userlist[ $username ]->email = '';
@@ -152,8 +161,41 @@
         get_authenticated_users( $userlist );
         get_enrolled_users( $userlist, $role, $context );
         get_ldap_data( $userlist );
-// echo "<pre>"; print_r( $userlist ); die;
         return $userlist;
+    }
+
+    /*
+     * go through the list and process the users
+     */
+    function process_enrollments( $userlist, $course, $context, $role ) {
+        global $CFG;
+
+        foreach ($userlist as $username => $user) {
+
+            echo "Username $username ";
+
+            // if no profile but in ldap, create a new user
+            if (!$user->profile_exists and !empty($user->in_ldap)) {
+                $newuser = create_user_record( $username,'','guldap' );
+                $authplugin = get_auth_plugin(GUAUTH);
+                $authplugin->update_user_record( $username );                
+                $userid = $newuser->id;
+
+                echo "new profile created. ";
+            }
+            else if ($user->profile_exists) {
+                $userid = $user->userid;
+            }
+
+            // if should be enrolled but are not the enroll
+            if (empty($user->enrolled) and $user->in_db and !empty($userid)) {
+                role_assign($role->id, $userid, 0, $context->id, 0, 0, 0, 'database');
+
+                echo "assigned into course as $role->shortname ";
+            }
+
+            echo "<br />\n";
+        }
     }
 
     /**DB Connect

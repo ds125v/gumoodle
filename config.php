@@ -49,7 +49,7 @@ unset($CFG);  // Ignore this line
 
 $CFG->dbtype    = 'mysql';       // mysql or postgres7 (for now)
 $CFG->dbhost    = 'localhost';   // eg localhost or db.isp.com
-$CFG->dbname    = 'gu2009production';      // database name, eg moodle
+$CFG->dbname    = 'moodle';      // database name, eg moodle
 $CFG->dbuser    = 'root';    // your database username
 $CFG->dbpass    = '';    // your database password
 $CFG->prefix    = 'mdl_';        // Prefix to use for all table names
@@ -67,7 +67,7 @@ $CFG->dbpersist = false;         // Should database connections be reused?
 // is accessible via multiple URLs then choose the most natural one
 // that your students would use.  Do not include a trailing slash
 
-$CFG->wwwroot   = 'http://pc88-140.guide.gla.ac.uk/~howard/moodle';
+$CFG->wwwroot   = 'http://10.0.1.202/~howard/moodle';
 
 
 //=========================================================================
@@ -96,7 +96,7 @@ $CFG->dirroot   = '/Users/howard/Sites/moodle';
 //
 // - On Windows systems you might specify something like 'c:\moodledata'
 
-$CFG->dataroot  = '/Users/howard/moodledata/git_gu2009production';
+$CFG->dataroot  = '/Users/howard/moodledata';
 
 
 //=========================================================================
