@@ -18,6 +18,9 @@ $course = $COURSE;
 // get course context
 $context = get_context_instance( CONTEXT_COURSE, $course->id );
 
+// check capability
+require_capability('block/guenrol:access',$context);
+
 // get the default role for this course 
 $role = get_default_course_role( $course );
 
@@ -93,7 +96,7 @@ else {
     echo "<input type=\"hidden\" name=\"id\" value=\"$id\" />\n";
     echo "<input type=\"hidden\" name=\"sesskey\" value=\"".sesskey()."\" />\n";
     echo "<input type=\"hidden\" name=\"action\" value=\"process\" />\n";
-    echo "<input type=\"submit\" value=\"". get_string('process','block_guenrol')."\" />\n";
+    echo "<center><input type=\"submit\" value=\"". get_string('process','block_guenrol')."\" /></center>\n";
     echo "</form>\n";
     print_box_end();
 

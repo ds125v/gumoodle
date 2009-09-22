@@ -13,7 +13,7 @@ class block_guenrol extends block_base {
      **/
     function init() {
         $this->title = get_string('blockname', 'block_guenrol');
-        $this->version = 2009083100;  // YYYYMMDDXX
+        $this->version = 2009083101;  // YYYYMMDDXX
     }
 
     /**
@@ -24,9 +24,9 @@ class block_guenrol extends block_base {
     function get_content() {
         global $USER, $CFG, $COURSE;
 
-        //if($this->content !== NULL) {
-        //    return $this->content;
-        //}
+        if($this->content !== NULL) {
+            return $this->content;
+        }
 
         // if no course code is defined there's no point
         $localcoursefield = $CFG->enrol_localcoursefield;
@@ -39,6 +39,14 @@ class block_guenrol extends block_base {
 
         // get course context
         $coursecontext = get_context_instance( CONTEXT_COURSE, $COURSE->id );
+
+        // require capability
+        if (!has_capability('block/guenrol:access',$coursecontext)) {
+            $this->content->text = '';
+            $this->content->footer = '';
+            debugging( 'block/guenrol:access capability required' );
+            return $this->content;
+        }
 
         // get the list of users from the external database
         $userlist = get_db_users($COURSE);

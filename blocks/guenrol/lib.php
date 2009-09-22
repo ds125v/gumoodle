@@ -112,6 +112,7 @@
             $userlist[ $username ]->firstname = $user->firstname;
             $userlist[ $username ]->lastname = $user->lastname;
             $userlist[ $username ]->email = $user->email;
+            $userlist[ $username ]->userid = $user->id;
             $userlist[ $username ]->profile_exists = true;
             $userlist[ $username ]->enrolled = true;
             if (!isset( $userlist[ $username ]->in_db )) {
@@ -170,18 +171,26 @@
     function process_enrollments( $userlist, $course, $context, $role ) {
         global $CFG;
 
+        // count the number actually processed
+        $count  = 0;
+
         foreach ($userlist as $username => $user) {
 
-            echo "Username $username ";
+            // if they're enrolled, just forget it
+            if (!empty($user->enrolled)) {
+                continue;
+            }
+
+            echo get_string('username','block_guenrol')." $username ";
 
             // if no profile but in ldap, create a new user
             if (!$user->profile_exists and !empty($user->in_ldap)) {
-                $newuser = create_user_record( $username,'','guldap' );
+                $newuser = create_user_record( $username,'','guid' );
                 $authplugin = get_auth_plugin(GUAUTH);
                 $authplugin->update_user_record( $username );                
                 $userid = $newuser->id;
 
-                echo "new profile created. ";
+                echo get_string('newprofilecreated','block_guenrol').", ";
             }
             else if ($user->profile_exists) {
                 $userid = $user->userid;
@@ -191,11 +200,18 @@
             if (empty($user->enrolled) and $user->in_db and !empty($userid)) {
                 role_assign($role->id, $userid, 0, $context->id, 0, 0, 0, 'database');
 
-                echo "assigned into course as $role->shortname ";
+                echo get_string('assignedcourseas','block_guenrol')." $role->shortname. ";
             }
 
             echo "<br />\n";
+            $count++;
         }
+
+        if (empty($count)) {
+            echo '<p><center>'.get_string( 'nothingtodo','block_guenrol' ).'</center></p>';
+        }
+
+        print_continue( "{$CFG->wwwroot}/blocks/guenrol/view.php?id={$course->id}" );
     }
 
     /**DB Connect
