@@ -118,6 +118,11 @@
             if (!isset( $userlist[ $username ]->in_db )) {
                 $userlist[ $username ]->in_db = false;
             }
+
+            // the only way to get the assignment type is to
+            // dig it out of the mdl_role_assignments table - bleaurgh!
+            $role_assign = get_record( 'role_assignments','roleid',$role->id,'contextid',$context->id,'userid',$user->id );
+            $userlist[ $username ]->enrol_method = $role_assign->enrol;
         }
 
         return count( $users );
@@ -209,6 +214,38 @@
 
         if (empty($count)) {
             echo '<p><center>'.get_string( 'nothingtodo','block_guenrol' ).'</center></p>';
+        }
+
+        print_continue( "{$CFG->wwwroot}/blocks/guenrol/view.php?id={$course->id}" );
+    }
+
+    /*
+     * go through the list and unenroll the users
+     */
+    function process_remove( $userlist, $course, $context, $role ) {
+        global $CFG;
+
+        foreach ($userlist as $username => $user) {
+
+            // ignore users who are in the registry db (in_db)
+            if ($user->in_db) {
+                continue; 
+            }
+
+            echo get_string('username','block_guenrol')." $username ";
+
+            // unenrol from course
+            if ($user->enrol_method != 'database' ) {
+                echo get_string( 'notdatabase','block_guenrol')." ({$user->enrol_method})";
+            }
+            else if (role_unassign( $role->id, $user->userid, 0, $context->id, 'database' )) {
+                echo get_string( 'userremoved','block_guenrol' );
+            }
+            else {
+                echo get_string( 'errorremoving','block_guenrol' );
+            }
+
+            echo "<br />\n";
         }
 
         print_continue( "{$CFG->wwwroot}/blocks/guenrol/view.php?id={$course->id}" );

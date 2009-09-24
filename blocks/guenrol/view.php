@@ -33,7 +33,7 @@ $table = new flexible_table('block_guenrol_view');
 $table->define_baseurl($CFG->wwwroot.'/blocks/guenrol/view.php?id='.$course->id );
 
 // define table columns
-$columns = array( 'userid','name','email','coursecode','enrol','enrolled','profile','ldap' );
+$columns = array( 'userid','name','email','coursecode','enrol','enrolled','profile','ldap','method' );
 $headers = array(
     get_string( 'userid','block_guenrol' ),
     get_string( 'name','block_guenrol' ),
@@ -42,13 +42,14 @@ $headers = array(
     get_string( 'enrol','block_guenrol' ),
     get_string( 'enrolled','block_guenrol' ),
     get_string( 'profile', 'block_guenrol' ),
-    get_string( 'ldap','block_guenrol' )
+    get_string( 'ldap','block_guenrol' ),
+    get_string( 'method','block_guenrol' )
     );
 $table->define_columns( $columns );
 $table->define_headers( $headers );
 
 // table settings
-$table->sortable(true, 'name', SORT_DESC);
+$table->sortable(false, 'name', SORT_DESC);
 $table->collapsible(true);
 $table->initialbars(true);
 $table->pageable(false);
@@ -63,15 +64,32 @@ $table->set_attribute('width', '80%');
 // initialise table
 $table->setup();
 
+// count users that are IN registry (in_db) but ARE NOT enrolled (empty(enrolled))
+// i.e. they need added to the course
+$addcount = 0;
+
+// count this that are NOT registry (!in_db) but ARE enrolled (!empty(enrolled))
+// i.e. they need removed
+$removecount = 0;
+
 // add the data
 foreach ($userlist as $username => $user) {
-    $fullname = "{$user->firstname} {$user->lastname}";
+    if ($user->in_db and empty($user->enrolled)) {
+        $addcount++;
+    }
+    if (!$user->in_db and !empty($user->enrolled)) {
+        $removecount++;
+    }
+    $uname = (!empty($user->userid)) ? "<a href=\"{$CFG->wwwroot}/user/view.php?id={$user->userid}&amp;course={$COURSE->id}\">".
+        "$username</a>" : $username;
+    $fullname = ucwords(strtolower( $user->firstname )) .' '. ucwords(strtolower( $user->lastname ));
     $enrol = ($user->in_db) ? $tick : '-';
     $enrolled = (!empty($user->enrolled)) ? $tick : '-';
     $profile = ($user->profile_exists) ? $tick : '-';
     $ldap = (!empty($user->in_ldap)) ? $tick : '-';
     $coursecode = (!empty($user->coursecode)) ? $user->coursecode : '-';
-    $table->add_data( array( $username, $fullname, $user->email, $coursecode, $enrol, $enrolled, $profile, $ldap  ) );
+    $method = (!empty($user->enrol_method)) ? $user->enrol_method : '-';
+    $table->add_data( array( $uname, $fullname, $user->email, $coursecode, $enrol, $enrolled, $profile, $ldap, $method  ) );
 }
 
 //
@@ -88,21 +106,46 @@ print_header($title, $title, $navigation);
 if (!empty($action) and ($action=='process') and confirm_sesskey()) {
     process_enrollments( $userlist, $course, $context, $role );
 }
+else if (!empty($action) and ($action=='remove') and confirm_sesskey()) {
+    process_remove( $userlist, $course, $context, $role );
+}
 else {
 
     // button to create the users
-    print_box_start();
-    echo "<form action=\"{$CFG->wwwroot}/blocks/guenrol/view.php\" method=\"post\">\n";
-    echo "<input type=\"hidden\" name=\"id\" value=\"$id\" />\n";
-    echo "<input type=\"hidden\" name=\"sesskey\" value=\"".sesskey()."\" />\n";
-    echo "<input type=\"hidden\" name=\"action\" value=\"process\" />\n";
-    echo "<center><input type=\"submit\" value=\"". get_string('process','block_guenrol')."\" /></center>\n";
-    echo "</form>\n";
-    print_box_end();
+    if (!empty($addcount)) {
+        print_box_start();
+        echo "<form action=\"{$CFG->wwwroot}/blocks/guenrol/view.php\" method=\"post\">\n";
+        echo "<input type=\"hidden\" name=\"id\" value=\"$id\" />\n";
+        echo "<input type=\"hidden\" name=\"sesskey\" value=\"".sesskey()."\" />\n";
+        echo "<input type=\"hidden\" name=\"action\" value=\"process\" />\n";
+        echo "<center><input type=\"submit\" value=\"". get_string('process','block_guenrol')." ($addcount)\" /></center>\n";
+        echo "</form>\n";
+        print_box_end();
+    }
 
+    // button to unenroll non registry users
+    if (!empty($removecount)) {
+        print_box_start();
+        echo "<form action=\"{$CFG->wwwroot}/blocks/guenrol/view.php\" method=\"post\">\n";
+        echo "<input type=\"hidden\" name=\"id\" value=\"$id\" />\n";
+        echo "<input type=\"hidden\" name=\"sesskey\" value=\"".sesskey()."\" />\n";
+        echo "<input type=\"hidden\" name=\"action\" value=\"remove\" />\n";
+        echo "<center><input type=\"submit\" value=\"". get_string('remove','block_guenrol')." ($removecount)\" /></center>\n";
+        echo "</form>\n";
+        print_box_end();
+    }
+
+    // if neither button is displayed...
+    if (empty($addcount) and empty($removecount)) {
+        print_box_start();
+        echo "<p><center>".get_string('nothingtodo','block_guenrol')."</center></p>";
+        print_box_end();
+    }
+    
     // table
     $table->print_html();
 }
+
 
 print_footer();
 

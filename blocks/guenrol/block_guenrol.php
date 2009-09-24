@@ -24,9 +24,9 @@ class block_guenrol extends block_base {
     function get_content() {
         global $USER, $CFG, $COURSE;
 
-        if($this->content !== NULL) {
-            return $this->content;
-        }
+//        if($this->content !== NULL) {
+//            return $this->content;
+//        }
 
         // if no course code is defined there's no point
         $localcoursefield = $CFG->enrol_localcoursefield;
@@ -50,6 +50,10 @@ class block_guenrol extends block_base {
 
         // get the list of users from the external database
         $userlist = get_db_users($COURSE);
+     
+        // get count of external db users 
+        // need to do now as the size of $userlist changes
+        $dbuserscount = count( $userlist );
 
         // get the number of users who have profiles already
         $existing_profile_count = get_authenticated_users( $userlist );
@@ -63,11 +67,12 @@ class block_guenrol extends block_base {
         // get data from ldap server
         get_ldap_data( $userlist );
 
-// echo "<pre>"; var_dump( $userlist ); die;
-        $this->content->text = "<p>Course users = ".count($userlist)."</p>";
-        $this->content->text .= "<p>Authenticated users = ".$existing_profile_count."</p>";
-        $this->content->text .= "<p>Enrolled users = ".$enrolled_in_course_count."</p>";
-        $this->content->text .= "<p><a href=\"{$CFG->wwwroot}/blocks/guenrol/view.php?id={$COURSE->id}\">More....</a></p>";
+        // output
+        $this->content->text = "<p><center><img src=\"{$CFG->wwwroot}/blocks/guenrol/images/logo.png\" /></center></p>";
+        $this->content->text .= "<p>".get_string('registryusers','block_guenrol').": <b>$dbuserscount</b></p>";
+        $this->content->text .= "<p>".get_string('moodleusers','block_guenrol').": <b>$existing_profile_count</b></p>";
+        $this->content->text .= "<p>".get_string('enrolledincourse','block_guenrol').": <b>$enrolled_in_course_count</b></p>";
+        $this->content->text .= "<p><center><a href=\"{$CFG->wwwroot}/blocks/guenrol/view.php?id={$COURSE->id}\">More....</a></center></p>";
 
         $this->content->footer = '';
         return $this->content;
