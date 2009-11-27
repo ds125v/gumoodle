@@ -6,6 +6,7 @@
 * @category core
 * @subpackage document_wrappers
 * @author Valery Fremaux [valery.fremaux@club-internet.fr] > 1.8
+* @contributor Tatsuva Shirai 20090530
 * @date 2008/03/31
 * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
 *
@@ -28,8 +29,10 @@ function get_text_for_indexing_odt(&$resource, $directfile = ''){
 
     // just call pdftotext over stdout and capture the output
     if (!empty($CFG->block_search_odt_to_text_cmd)){
-        if (!file_exists("{$moodleroot}{$CFG->block_search_odt_to_text_cmd}")){
-            mtrace('Error with OpenOffice ODT to text converter command : exectuable not found.');
+        // we need to remove any line command options...
+        preg_match("/^\S+/", $CFG->block_search_odt_to_text_cmd, $matches);
+        if (!file_exists("{$moodleroot}{$matches[0]}")){
+            mtrace('Error with OpenOffice ODT to text converter command : executable not found at '.$moodleroot.$CFG->block_search_odt_to_text_cmd);
         } else {
             if ($directfile == ''){
                 $file = escapeshellarg("{$CFG->dataroot}/{$resource->course}/{$resource->reference}");

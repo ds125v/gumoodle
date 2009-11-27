@@ -338,14 +338,21 @@ class moodle_url {
             $this->params($params);
         }
     }
+
     /**
-     * Add an array of params to the params for this page. The added params override existing ones if they
-     * have the same name.
+     * Add an array of params to the params for this page. 
      *
-     * @param array $params
+     * The added params override existing ones if they have the same name.
+     *
+     * @param array $params Defaults to null. If null then return value of param 'name'.
+     * @return array Array of Params for url.
      */
-    function params($params){
-        $this->params = $params + $this->params;
+    function params($params = null) {
+        if (!is_null($params)) {
+            return $this->params = $params + $this->params;
+        } else {
+            return $this->params;
+        }
     }
 
     /**
@@ -762,7 +769,7 @@ function element_to_popup_window ($type=null, $url=null, $name=null, $linkname=n
                 $url = substr($url, strlen($CFG->wwwroot));
             }
             $element = '<a title="'. s(strip_tags($title)) .'" href="'. $CFG->wwwroot . $url .'" '.
-                       "onclick=\"this.target='$name'; return openpopup('$url', '$name', '$options', $fullscreen);\">$linkname</a>";
+                       "$CFG->frametarget onclick=\"this.target='$name'; return openpopup('$url', '$name', '$options', $fullscreen);\">$linkname</a>";
             break;
         default :
             error('Undefined element - can\'t create popup window.');
@@ -2473,6 +2480,21 @@ function print_header ($title='', $heading='', $navigation='', $focus='',
     }
     define('HEADER_PRINTED', 'true');
 
+/// Perform a browser environment check for the flash version.  Should only run once per login session.
+    if (isloggedin() && !empty($CFG->excludeoldflashclients) && empty($SESSION->flashversion)) {
+        // Unfortunately we can't use require_js here and keep it all clean in 1.9 ...
+        // require_js(array('yui_yahoo', 'yui_event', 'yui_connection', $CFG->httpswwwroot."/lib/swfobject/swfobject.js"));
+        $meta .= '<script type="text/javascript"  src="'.$CFG->wwwroot.'/lib/yui/yahoo/yahoo-min.js"></script>';
+        $meta .= '<script type="text/javascript"  src="'.$CFG->wwwroot.'/lib/yui/event/event-min.js"></script>';
+        $meta .= '<script type="text/javascript"  src="'.$CFG->wwwroot.'/lib/yui/connection/connection-min.js"></script>';
+        $meta .= '<script type="text/javascript"  src="'.$CFG->wwwroot.'/lib/swfobject/swfobject.js"></script>';
+        $meta .= 
+           "<script type=\"text/javascript\">\n".
+           "  var flashversion = swfobject.getFlashPlayerVersion();\n".
+           "  YAHOO.util.Connect.asyncRequest('GET','".$CFG->wwwroot."/login/environment.php?sesskey=".sesskey()."&flashversion='+flashversion.major+'.'+flashversion.minor+'.'+flashversion.release);\n".
+           "</script>";
+    }
+
 
 /// Add the required stylesheets
     $stylesheetshtml = '';
@@ -2960,7 +2982,7 @@ function print_footer($course=NULL, $usercourse=NULL, $return=false) {
         } else if ($course === 'home') {   // special case for site home page - please do not remove
             $course = get_site();
             $homelink  = '<div class="sitelink">'.
-               '<a title="Moodle '. $CFG->release .'" href="http://moodle.org/">'.
+               '<a title="Moodle" href="http://moodle.org/">'.
                '<img style="width:100px;height:30px" src="pix/moodlelogo.gif" alt="moodlelogo" /></a></div>';
             $home  = true;
 
@@ -3862,12 +3884,16 @@ function build_navigation($extranavlinks, $cm = null) {
         if (!empty($navlink['type']) && $navlink['type'] == 'activity' && !$last && $hideactivitylink) {
             continue;
         }
-        $navigation .= '<li class="first">';
+        if ($first) {
+            $navigation .= '<li class="first">';
+        } else {
+            $navigation .= '<li>';
+        }
         if (!$first) {
             $navigation .= get_separator();
         }
         if ((!empty($navlink['link'])) && !$last) {
-            $navigation .= "<a onclick=\"this.target='$CFG->framename'\" href=\"{$navlink['link']}\">";
+            $navigation .= "<a $CFG->frametarget onclick=\"this.target='$CFG->framename'\" href=\"{$navlink['link']}\">";
         }
         $navigation .= "{$navlink['name']}";
         if ((!empty($navlink['link'])) && !$last) {
@@ -5375,7 +5401,7 @@ function navmenu($course, $cm=NULL, $targetwindow='self') {
     if ($selectmod and has_capability('coursereport/log:view', $context)) {
         $logstext = get_string('alllogs');
         $logslink = '<li>'."\n".'<a title="'.$logstext.'" '.
-                    $CFG->frametarget.'onclick="this.target=\''.$CFG->framename.'\';"'.' href="'.
+                    $CFG->frametarget.' onclick="this.target=\''.$CFG->framename.'\';"'.' href="'.
                     $CFG->wwwroot.'/course/report/log/index.php?chooselog=1&amp;user=0&amp;date=0&amp;id='.
                        $course->id.'&amp;modid='.$selectmod->id.'">'.
                     '<img class="icon log" src="'.$CFG->pixpath.'/i/log.gif" alt="'.$logstext.'" /></a>'."\n".'</li>';
@@ -5383,7 +5409,7 @@ function navmenu($course, $cm=NULL, $targetwindow='self') {
     }
     if ($backmod) {
         $backtext= get_string('activityprev', 'access');
-        $backmod = '<li><form action="'.$CFG->wwwroot.'/mod/'.$backmod->modname.'/view.php" '.
+        $backmod = '<li><form action="'.$CFG->wwwroot.'/mod/'.$backmod->modname.'/view.php" '.$CFG->frametarget.' '.
                    'onclick="this.target=\''.$CFG->framename.'\';"'.'><fieldset class="invisiblefieldset">'.
                    '<input type="hidden" name="id" value="'.$backmod->id.'" />'.
                    '<button type="submit" title="'.$backtext.'">'.link_arrow_left($backtext, $url='', $accesshide=true).
@@ -5391,7 +5417,7 @@ function navmenu($course, $cm=NULL, $targetwindow='self') {
     }
     if ($nextmod) {
         $nexttext= get_string('activitynext', 'access');
-        $nextmod = '<li><form action="'.$CFG->wwwroot.'/mod/'.$nextmod->modname.'/view.php"  '.
+        $nextmod = '<li><form action="'.$CFG->wwwroot.'/mod/'.$nextmod->modname.'/view.php"  '.$CFG->frametarget.' '.
                    'onclick="this.target=\''.$CFG->framename.'\';"'.'><fieldset class="invisiblefieldset">'.
                    '<input type="hidden" name="id" value="'.$nextmod->id.'" />'.
                    '<button type="submit" title="'.$nexttext.'">'.link_arrow_right($nexttext, $url='', $accesshide=true).
@@ -6400,16 +6426,12 @@ function print_side_block($heading='', $content='', $list=NULL, $icons=NULL, $fo
     //Accessibility: skip block link, with title-text (or $block_id) to differentiate links.
     static $block_id = 0;
     $block_id++;
-    if (empty($heading)) {
-        $skip_text = get_string('skipblock', 'access').' '.$block_id;
-    }
-    else {
-        $skip_text = get_string('skipa', 'access', strip_tags($title));
-    }
+    $skip_text = get_string('skipa', 'access', strip_tags($title));
     $skip_link = '<a href="#sb-'.$block_id.'" class="skip-block">'.$skip_text.'</a>';
     $skip_dest = '<span id="sb-'.$block_id.'" class="skip-block-to"></span>';
 
-    if (! empty($heading)) {
+    $strip_title = strip_tags($title);
+    if (! empty($strip_title)) {
         echo $skip_link;
     }
     //ELSE: a single link on a page "Skip block 4" is too confusing - ignore.
@@ -6638,7 +6660,7 @@ function print_maintenance_message () {
     print_header(strip_tags($SITE->fullname), $SITE->fullname, 'home');
     print_box_start();
     print_heading(get_string('sitemaintenance', 'admin'));
-    @include($CFG->dataroot.'/1/maintenance.html');
+    @include($CFG->dataroot.'/'.SITEID.'/maintenance.html');
     print_box_end();
     print_footer();
 }

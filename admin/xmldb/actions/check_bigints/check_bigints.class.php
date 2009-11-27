@@ -111,7 +111,7 @@ class check_bigints extends XMLDBAction {
             }
             $o.= '    <table class="boxaligncenter" cellpadding="20"><tr><td>';
             $o.= '      <div class="singlebutton">';
-            $o.= '        <form action="index.php?action=check_bigints&amp;confirmed=yes" method="post"><fieldset class="invisiblefieldset">';
+            $o.= '        <form action="index.php?action=check_bigints&amp;sesskey=' . sesskey() . '&amp;confirmed=yes" method="post"><fieldset class="invisiblefieldset">';
             $o.= '          <input type="submit" value="'. $this->str['yes'] .'" /></fieldset></form></div>';
             $o.= '      </td><td>';
             $o.= '      <div class="singlebutton">';
@@ -208,6 +208,10 @@ class check_bigints extends XMLDBAction {
                                 $o.='        </ul>';
                             }
                             $o.='    </li>';
+                        /// Give the script some more time (resetting to current if exists)
+                            if ($currenttl = @ini_get('max_execution_time')) {
+                                @ini_set('max_execution_time',$currenttl);
+                            }
                         }
                         $o.='        </ul>';
                     }

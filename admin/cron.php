@@ -350,7 +350,7 @@
                                                 p.id as prefid 
                                         FROM {$CFG->prefix}user u 
                                              JOIN {$CFG->prefix}user_preferences p ON u.id=p.userid
-                                        WHERE p.name='create_password' AND p.value=1 AND u.email !='' ");
+                                        WHERE p.name='create_password' AND p.value='1' AND u.email !='' ");
 
             foreach ($newusers as $newuserid => $newuser) {
                 $newuser->emailstop = 0; // send email regardless
@@ -481,44 +481,44 @@
 
     // run gradebook import/export/report cron
     if ($gradeimports = get_list_of_plugins('grade/import')) {
-        foreach ($gradeimports as $gradeimport) {           
+        foreach ($gradeimports as $gradeimport) {
             if (file_exists($CFG->dirroot.'/grade/import/'.$gradeimport.'/lib.php')) {
                 require_once($CFG->dirroot.'/grade/import/'.$gradeimport.'/lib.php');
-                $cron_function = 'grade_import_'.$gradeimport.'_cron';                                    
+                $cron_function = 'grade_import_'.$gradeimport.'_cron';
                 if (function_exists($cron_function)) {
                     mtrace("Processing gradebook import function $cron_function ...", '');
-                    $cron_function;  
+                    $cron_function();
                 }
             }
-        }      
+        }
     }
 
     if ($gradeexports = get_list_of_plugins('grade/export')) {
-        foreach ($gradeexports as $gradeexport) {           
+        foreach ($gradeexports as $gradeexport) {
             if (file_exists($CFG->dirroot.'/grade/export/'.$gradeexport.'/lib.php')) {
                 require_once($CFG->dirroot.'/grade/export/'.$gradeexport.'/lib.php');
-                $cron_function = 'grade_export_'.$gradeexport.'_cron';                                    
+                $cron_function = 'grade_export_'.$gradeexport.'_cron';
                 if (function_exists($cron_function)) {
                     mtrace("Processing gradebook export function $cron_function ...", '');
-                    $cron_function;  
+                    $cron_function();
                 }
             }
         }
     }
 
     if ($gradereports = get_list_of_plugins('grade/report')) {
-        foreach ($gradereports as $gradereport) {           
+        foreach ($gradereports as $gradereport) {
             if (file_exists($CFG->dirroot.'/grade/report/'.$gradereport.'/lib.php')) {
                 require_once($CFG->dirroot.'/grade/report/'.$gradereport.'/lib.php');
-                $cron_function = 'grade_report_'.$gradereport.'_cron';                                    
+                $cron_function = 'grade_report_'.$gradereport.'_cron';
                 if (function_exists($cron_function)) {
                     mtrace("Processing gradebook report function $cron_function ...", '');
-                    $cron_function;  
+                    $cron_function();
                 }
             }
         }
     }
-    
+
     // run any customized cronjobs, if any
     // looking for functions in lib/local/cron.php
     if (file_exists($CFG->dirroot.'/local/cron.php')) {

@@ -116,8 +116,10 @@ class moodleform {
         $this->definition();
 
         $this->_form->addElement('hidden', 'sesskey', null); // automatic sesskey protection
+        $this->_form->setType('sesskey', PARAM_RAW);
         $this->_form->setDefault('sesskey', sesskey());
         $this->_form->addElement('hidden', '_qf__'.$this->_formname, null);   // form submission marker
+        $this->_form->setType('_qf__'.$this->_formname, PARAM_RAW);
         $this->_form->setDefault('_qf__'.$this->_formname, 1);
         $this->_form->_setDefaultRuleMessages();
 
@@ -300,20 +302,42 @@ class moodleform {
 
     /**
      * Check that form data is valid.
+     * You should almost always use this, rather than {@see validate_defined_fields}
      *
      * @return bool true if form data valid
      */
     function is_validated() {
-        static $validated = null; // one validation is enough
-        $mform =& $this->_form;
-
         //finalize the form definition before any processing
         if (!$this->_definition_finalized) {
             $this->_definition_finalized = true;
             $this->definition_after_data();
         }
+        return $this->validate_defined_fields();
+    }
 
-        if ($this->no_submit_button_pressed()){
+    /**
+     * Validate the form.
+     *
+     * You almost always want to call {@see is_validated} instead of this
+     * because it calls {@see definition_after_data} first, before validating the form,
+     * which is what you want in 99% of cases.
+     *
+     * This is provided as a separate function for those special cases where
+     * you want the form validated before definition_after_data is called
+     * for example, to selectively add new elements depending on a no_submit_button press,
+     * but only when the form is valid when the no_submit_button is pressed,
+     *
+     * @param boolean $validateonnosubmit optional, defaults to false.  The default behaviour
+     *                is NOT to validate the form when a no submit button has been pressed.
+     *                pass true here to override this behaviour
+     *
+     * @return bool true if form data valid
+     */
+    function validate_defined_fields($validateonnosubmit=false) {
+        static $validated = null; // one validation is enough
+        $mform =& $this->_form;
+
+        if ($this->no_submit_button_pressed() && empty($validateonnosubmit)){
             return false;
         } elseif ($validated === null) {
             $internal_val = $mform->validate();
@@ -550,6 +574,7 @@ class moodleform {
         $mform =& $this->_form;
         $mform->registerNoSubmitButton($addfieldsname);
         $mform->addElement('hidden', $repeathiddenname, $repeats);
+        $mform->setType($repeathiddenname, PARAM_INT);
         //value not to be overridden by submitted value
         $mform->setConstants(array($repeathiddenname=>$repeats));
         $namecloned = array();
@@ -646,6 +671,7 @@ class moodleform {
         }
 
         $mform->addElement('hidden', "checkbox_controller$groupid");
+        $mform->setType("checkbox_controller$groupid", PARAM_INT);
         $mform->setConstants(array("checkbox_controller$groupid" => $new_select_value));
 
         // Locate all checkboxes for this group and set their value, IF the optional param was given
@@ -841,6 +867,7 @@ class MoodleQuickForm extends HTML_QuickForm_DHTMLRulesTableless {
             $this->registerNoSubmitButton('mform_showadvanced');
 
             $this->addElement('hidden', 'mform_showadvanced_last');
+            $this->setType('mform_showadvanced_last', PARAM_INT);
         }
     }
     /**

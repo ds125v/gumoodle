@@ -94,7 +94,7 @@ class check_indexes extends XMLDBAction {
             $o.= '    <p class="centerpara">' . $this->str['confirmcheckindexes'] . '</p>';
             $o.= '    <table class="boxaligncenter" cellpadding="20"><tr><td>';
             $o.= '      <div class="singlebutton">';
-            $o.= '        <form action="index.php?action=check_indexes&amp;confirmed=yes" method="post"><fieldset class="invisiblefieldset">';
+            $o.= '        <form action="index.php?action=check_indexes&amp;sesskey=' . sesskey() . '&amp;confirmed=yes" method="post"><fieldset class="invisiblefieldset">';
             $o.= '          <input type="submit" value="'. $this->str['yes'] .'" /></fieldset></form></div>';
             $o.= '      </td><td>';
             $o.= '      <div class="singlebutton">';
@@ -213,6 +213,10 @@ class check_indexes extends XMLDBAction {
                                 $o.='        </ul>';
                             }
                             $o.='    </li>';
+                        /// Give the script some more time (resetting to current if exists)
+                            if ($currenttl = @ini_get('max_execution_time')) {
+                                @ini_set('max_execution_time',$currenttl);
+                            }
                         }
                         $o.='        </ul>';
                     }

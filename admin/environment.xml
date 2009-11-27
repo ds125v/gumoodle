@@ -80,7 +80,6 @@
         <FEEDBACK>
           <ON_ERROR message="mysql416required" />
         </FEEDBACK>
-        <BYPASS function="bypass_mysql416_reqs" message="mysql416bypassed" />
       </VENDOR>
       <VENDOR name="postgres" version="7.4" />
       <VENDOR name="mssql" version="9.0" />
@@ -140,7 +139,6 @@
         <FEEDBACK>
           <ON_ERROR message="mysql416required" />
         </FEEDBACK>
-        <BYPASS function="bypass_mysql416_reqs" message="mysql416bypassed" />
       </VENDOR>
       <VENDOR name="postgres" version="8.0" />
       <VENDOR name="mssql" version="9.0" />
@@ -218,21 +216,20 @@
         <FEEDBACK>
           <ON_ERROR message="mysql416required" />
         </FEEDBACK>
-        <BYPASS function="bypass_mysql416_reqs" message="mysql416bypassed" />
       </VENDOR>
       <VENDOR name="postgres" version="8.3" />
       <VENDOR name="mssql" version="9.0" />
       <VENDOR name="odbc_mssql" version="9.0" />
       <VENDOR name="mssql_n" version="9.0" />
-      <VENDOR name="oracle" version="10.0" />
+      <VENDOR name="oracle" version="10.2" />
       <VENDOR name="sqlite" version="2.0" />
     </DATABASE>
     <PHP version="5.2.8" level="required">
     </PHP>
     <PHP_EXTENSIONS>
-      <PHP_EXTENSION name="iconv" level="optional">
+      <PHP_EXTENSION name="iconv" level="required">
         <FEEDBACK>
-          <ON_CHECK message="iconvrecommended" />
+          <ON_CHECK message="iconvrequired" />
         </FEEDBACK>
       </PHP_EXTENSION>
       <PHP_EXTENSION name="mbstring" level="optional">
@@ -260,6 +257,11 @@
           <ON_CHECK message="xmlrpcrecommended" />
         </FEEDBACK>
       </PHP_EXTENSION>
+      <PHP_EXTENSION name="soap" level="optional">
+        <FEEDBACK>
+          <ON_CHECK message="soaprecommended" />
+        </FEEDBACK>
+      </PHP_EXTENSION>
       <PHP_EXTENSION name="ctype" level="required">
         <FEEDBACK>
           <ON_ERROR message="ctyperequired" />
@@ -273,6 +275,11 @@
       <PHP_EXTENSION name="gd" level="optional">
         <FEEDBACK>
           <ON_CHECK message="gdrecommended" />
+        </FEEDBACK>
+      </PHP_EXTENSION>
+      <PHP_EXTENSION name="simplexml" level="required">
+        <FEEDBACK>
+          <ON_CHECK message="simplexmlrequired" />
         </FEEDBACK>
       </PHP_EXTENSION>
     </PHP_EXTENSIONS>

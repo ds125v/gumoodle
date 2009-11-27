@@ -6,6 +6,7 @@
 * @category core
 * @subpackage document_wrappers
 * @author Valery Fremaux [valery.fremaux@club-internet.fr] > 1.8
+* @contributor Tatsuva Shirai 20090530
 * @date 2008/03/31
 * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
 *
@@ -85,10 +86,10 @@ function get_text_for_indexing_ppt(&$resource, $directfile = ''){
     // fclose($logppt);
     
     if (!empty($CFG->block_search_limit_index_body)){
-        $indextext = shorten($text, $CFG->block_search_limit_index_body);
+        $indextext = shorten_text($text, $CFG->block_search_limit_index_body);
     }
 
-    $indextext = mb_convert_encoding($indextext, 'UTF8', 'auto');
+    $indextext = mb_convert_encoding($indextext, 'UTF-8', 'auto'); // Shirai 20090530 - MDL19342
     return $indextext;
 }
 ?>

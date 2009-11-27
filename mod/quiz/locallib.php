@@ -235,7 +235,7 @@ function quiz_print_navigation_panel($page, $pages) {
     if ($page > 0) {
         // Print previous link
         $strprev = get_string('previous');
-        echo '&nbsp;<a href="javascript:navigate(' . ($page - 1) . ');" title="'
+        echo '&nbsp;<a class="previous" href="javascript:navigate(' . ($page - 1) . ');" title="'
          . $strprev . '">(' . $strprev . ')</a>&nbsp;';
     }
     for ($i = 0; $i < $pages; $i++) {
@@ -249,7 +249,7 @@ function quiz_print_navigation_panel($page, $pages) {
     if ($page < $pages - 1) {
         // Print next link
         $strnext = get_string('next');
-        echo '&nbsp;<a href="javascript:navigate(' . ($page + 1) . ');" title="'
+        echo '&nbsp;<a class="next" href="javascript:navigate(' . ($page + 1) . ');" title="'
          . $strnext . '">(' . $strnext . ')</a>&nbsp;';
     }
     echo '</div>';
@@ -922,4 +922,14 @@ function quiz_send_notification_emails($course, $quiz, $attempt, $context, $cm) 
     // return the number of successfully sent emails
     return $emailresult['good'];
 }
+
+/**
+ * Checks if browser is safe browser
+ * 
+ * @return true, if browser is safe browser else false
+ */
+function quiz_check_safe_browser() {
+    return strpos($_SERVER['HTTP_USER_AGENT'], "SEB") !== false;
+}
+
 ?>
