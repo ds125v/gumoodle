@@ -1,0 +1,1 @@
+If you are using moodle 1.6.x (or above), you should put these two .html files into /lang/en_utf8/help folder

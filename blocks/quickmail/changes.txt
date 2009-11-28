@@ -1,0 +1,19 @@
+CHANGES
+=======
+
+Version 2.1 (released on Aug 19, 2008)
+----------------------------------------
+(Aug 19, 2008)
+ - Changed the email.html so that it's use the moodle 1.9 has_capability() function and fixed the attachment won't work issue
+ - Some minor changes to the string attachmentoptional so that it would make better sense.
+
+(Sep 18, 2007)
+ - Added some more language packs from the original quickmail and fix some issues in the /lang
+
+(Jul 24, 2007)
+ - Minor fixed the &lt and &gt (arrows) to use $THEME->larrow and $THEME->rarrow (contributed by Cliff Tham)
+
+(Jul 05, 2007)
+ - Fixed for some browser compatibility issues such as Safari. Problem is in selection.js where it reference listbox elements as selectedList.item(i). Safari doesn't support the "item" property and requires use of the "options" property, as in selectedList.options.item(i) or selectedList.options[i]. Thanks for Slobodan Jovcic pointed this out.
+
+Maintained by Wen Hao Chuang (wchuang at sfsu dot edu)

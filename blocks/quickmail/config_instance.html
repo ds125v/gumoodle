@@ -1,0 +1,66 @@
+<?php // $Id: config_instance.html,v 1.4 2006/03/22 20:03:43 michaelpenne Exp $
+
+/**
+ * config_instance.html - prints the configuration form for
+ *      the Quickmail instance settings.
+ *
+ * @author Mark Nielsen
+ * @version $Id: config_instance.html,v 1.4 2006/03/22 20:03:43 michaelpenne Exp $
+ * @package quickmail
+ **/
+    
+    $this->load_course();
+    
+    print_simple_box_start();
+?>
+<table cellpadding="9" cellspacing="0">
+ <tr valign="top">
+     <td align="right">
+         <?php print_string('allowstudents', 'block_quickmail', $this->course->students); ?>:
+     </td>
+     <td>
+         <?php 
+            $options = array();
+            $options[0] = get_string('no');
+            $options[1] = get_string('yes');
+            choose_from_menu($options, 'allowstudents', $this->config->allowstudents, '');
+         ?>
+     </td>
+ </tr>
+ <!--
+<tr valign="top">
+    <td align="right">
+        <?php print_string('groupmode'); ?>:
+    </td>
+    <td>
+        <?php
+        if ($this->course->groupmode or (!$this->course->groupmodeforce)) {
+            $options = array();
+            $options[NOGROUPS] = get_string('groupsnone');
+            $options[SEPARATEGROUPS] = get_string('groupsseparate');
+            $options[VISIBLEGROUPS] = get_string('groupsvisible');
+            choose_from_menu($options, 'groupmode', $this->config->groupmode, '', '', 0, false, $this->course->groupmodeforce);
+            helpbutton('groupmode', get_string('groupmode'));
+            
+            if ($this->course->groupmodeforce) {
+                // if On, then the dropdown is disabled and wont submit,
+                //  which means we loose Quickmails groupmode setting.
+                echo '<input type="hidden" name="groupmode" value="'.$this->config->groupmode.'" />';
+            }
+        }
+        
+        ?>
+    </td>
+</tr> !-->
+<input type="hidden" name="groupmode" value="'.$this->config->groupmode.'" />
+ 
+ 
+ <tr>
+     <td colspan="2" align="center">
+         <input type="submit" value="<?php print_string('savechanges') ?>" />
+     </td>
+ </tr>
+ </table>
+ <?php
+    print_simple_box_end();
+ ?>
