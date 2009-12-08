@@ -1,14 +1,25 @@
 <?php
-require_once($CFG->dirroot.'/mod/feedback/lib.php');
+if(is_file($CFG->dirroot.'/mod/feedback/lib.php')) {
+    require_once($CFG->dirroot.'/mod/feedback/lib.php');
+    define('FEEDBACK_BLOCK_LIB_IS_OK', true);
+}
 class block_feedback extends block_base {
 
     function init() {
         $this->title = get_string('feedback', 'block_feedback');
-        $this->version = 2007072601;
+        $this->version = 2009050701;
     }
 
     function get_content() {
-        global $CFG;
+        global $CFG, $feedback_lib;
+        
+        if(!defined('FEEDBACK_BLOCK_LIB_IS_OK')) {
+            $this->content = New stdClass;
+            $this->content->text = get_string('missing_feedback_module', 'block_feedback');
+            $this->content->footer = '';
+            return $this->content;
+        }
+        
         $courseid = intval($this->instance->pageid);
         if($courseid <= 0) $courseid = SITEID;
         if($this->content !== NULL) {

@@ -1,8 +1,8 @@
-<?php // $Id: analysis_to_excel.php,v 1.5.2.3 2008/07/18 14:54:43 agrabs Exp $
+<?php // $Id: analysis_to_excel.php,v 1.5.2.4 2009/06/13 13:07:15 agrabs Exp $
 /**
 * prints an analysed excel-spreadsheet of the feedback
 *
-* @version $Id: analysis_to_excel.php,v 1.5.2.3 2008/07/18 14:54:43 agrabs Exp $
+* @version $Id: analysis_to_excel.php,v 1.5.2.4 2009/06/13 13:07:15 agrabs Exp $
 * @author Andreas Grabs
 * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
 * @package feedback
@@ -61,11 +61,12 @@
     
     //get the groupid for this module
     //get the groupid
-    if(isset($SESSION->feedback->lstgroupid)) {
-        $mygroupid = $SESSION->feedback->lstgroupid;
-    }else {
-        $mygroupid = false;
-    }
+    // if(isset($SESSION->feedback->lstgroupid)) {
+        // $mygroupid = $SESSION->feedback->lstgroupid;
+    // }else {
+        // $mygroupid = false;
+    // }
+    $mygroupid = groups_get_activity_group($cm);
 
     // Creating a workbook
     $workbook = new EasyWorkbook("-");

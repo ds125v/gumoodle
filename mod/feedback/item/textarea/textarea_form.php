@@ -17,7 +17,7 @@ class feedback_textarea_form extends moodleform {
         $mform->addElement('header', 'general', get_string($this->type, 'feedback'));
         $this->requiredcheck = &$mform->addElement('checkbox', 'required', get_string('required', 'feedback'));
         
-        $this->itemname = &$mform->addElement('text', 'itemname', get_string('item_name', 'feedback'), array('size="40"','maxlength="255"'));
+        $this->itemname = &$mform->addElement('text', 'itemname', get_string('item_name', 'feedback'), array('size="80"','maxlength="255"'));
         
         for($i = 5; $i <= 80; $i++) {
             $numlist[$i] = $i;

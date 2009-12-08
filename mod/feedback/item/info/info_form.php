@@ -14,7 +14,7 @@ class feedback_info_form extends moodleform {
         $mform->addElement('header', 'general', get_string($this->type, 'feedback'));
         $this->requiredcheck = &$mform->addElement('hidden', 'required');
         
-        $this->itemname = &$mform->addElement('text', 'itemname', get_string('item_name', 'feedback'), array('size="40"','maxlength="255"'));
+        $this->itemname = &$mform->addElement('text', 'itemname', get_string('item_name', 'feedback'), array('size="80"','maxlength="255"'));
         
         $options=array();
         $options[1]  = get_string('responsetime', 'feedback');

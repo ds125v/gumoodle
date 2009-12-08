@@ -1,4 +1,4 @@
-<?PHP //   $Id: feedback.php,v 1.8.2.2 2009/01/26 15:16:46 mudrd8mz Exp $
+<?PHP //   $Id: feedback.php,v 1.8.2.3 2009/05/30 16:44:43 agrabs Exp $
 $string['add_item'] = 'Add question to activity';
 $string['add_items'] = 'Add question to activity';
 $string['add_pagebreak'] = 'Add a pagebreak';
@@ -183,6 +183,7 @@ $string['update_item'] = 'Save changes to question';
 $string['use_one_line_for_each_value'] = '<br />Use one line for each answer!';
 $string['use_this_template'] = 'Use this template';
 $string['using_templates'] = 'Use a template';
+$string['url_for_continue_button'] = 'URL for continue-button';
 $string['vertical'] = 'vertical';
 
 ?>

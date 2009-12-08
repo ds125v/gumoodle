@@ -15,11 +15,11 @@ class feedback_textfield_form extends moodleform {
         $mform->addElement('header', 'general', get_string($this->type, 'feedback'));
         $this->requiredcheck = &$mform->addElement('checkbox', 'required', get_string('required', 'feedback'));
         
-        $this->itemname = &$mform->addElement('text', 'itemname', get_string('item_name', 'feedback'), array('size="40"','maxlength="255"'));
+        $this->itemname = &$mform->addElement('text', 'itemname', get_string('item_name', 'feedback'), array('size="80"','maxlength="255"'));
         
     
         $numlist = array();
-        for($i = 5; $i <= 80; $i++) {
+        for($i = 5; $i <= 255; $i++) {
             $numlist[$i] = $i;
         }
         $this->selectwith = &$mform->addElement('select',
@@ -28,7 +28,7 @@ class feedback_textfield_form extends moodleform {
                                             $numlist);
 
         $numlist = array();
-        for($i = 5; $i <= 40; $i++) {
+        for($i = 5; $i <= 255; $i++) {
             $numlist[$i] = $i;
         }
         $this->selectheight = &$mform->addElement('select',

@@ -17,7 +17,7 @@ class feedback_multichoice_form extends moodleform {
         
         $this->requiredcheck = &$mform->addElement('checkbox', 'required', get_string('required', 'feedback'));
         
-        $this->itemname = &$mform->addElement('text', 'itemname', get_string('item_name', 'feedback'), array('size="40"','maxlength="255"'));
+        $this->itemname = &$mform->addElement('text', 'itemname', get_string('item_name', 'feedback'), array('size="80"','maxlength="255"'));
 
         $this->selectadjust = &$mform->addElement('select',
                                             'horizontal', 
@@ -33,7 +33,7 @@ class feedback_multichoice_form extends moodleform {
 
         $mform->addElement('static', 'hint', get_string('multichoice_values', 'feedback'), get_string('use_one_line_for_each_value', 'feedback'));
         
-        $this->values = &$mform->addElement('textarea', 'itemvalues', '', 'wrap="virtual" rows="10" cols="30"');
+        $this->values = &$mform->addElement('textarea', 'itemvalues', '', 'wrap="virtual" rows="10" cols="50"');
 
     }
 }

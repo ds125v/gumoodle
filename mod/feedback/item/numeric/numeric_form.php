@@ -15,7 +15,7 @@ class feedback_numeric_form extends moodleform {
         $mform->addElement('header', 'general', get_string($this->type, 'feedback'));
         $this->requiredcheck = &$mform->addElement('checkbox', 'required', get_string('required', 'feedback'));
         
-        $this->itemname = &$mform->addElement('text', 'itemname', get_string('item_name', 'feedback'), array('size="40"','maxlength="255"'));
+        $this->itemname = &$mform->addElement('text', 'itemname', get_string('item_name', 'feedback'), array('size="80"','maxlength="255"'));
         
         $this->selectfrom = &$mform->addElement('text', 'numericrangefrom', get_string('numeric_range_from', 'feedback'), array('size="10"','maxlength="10"'));
         

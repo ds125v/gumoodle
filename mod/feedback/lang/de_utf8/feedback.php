@@ -1,4 +1,4 @@
-<?PHP // $Id: feedback.php,v 1.2.2.1 2009/03/07 17:11:39 agrabs Exp $ 
+<?PHP // $Id: feedback.php,v 1.2.2.2 2009/05/30 16:44:42 agrabs Exp $ 
       // feedback.php - created with Moodle 2.0 dev (Build: 20081209) (2008120801)
 
 
@@ -7,12 +7,19 @@ $string['add_items'] = 'Elemente hinzufügen';
 $string['add_pagebreak'] = 'Seitenumbruch hinzufügen';
 $string['adjustment'] = 'Ausrichtung';
 $string['after_submit'] = 'Nach dem Einreichen';
+$string['all_old_values_will_be_deleted'] = 'Alle vorherigen Daten werden gelöscht!'; // ORPHANED
+$string['all_old_values_will_be_preserved'] = 'Alle vorherigen Daten bleiben erhalten.'; // ORPHANED
+$string['all_related_values_will_be_deleted'] = 'Alle damit verbundenen Daten werden gelöscht!'; // ORPHANED
 $string['analysis'] = 'Auswertung';
 $string['anonymous'] = 'Anonym';
 $string['anonymous_edit'] = 'Anonym ausfüllen';
 $string['anonymous_entries'] = 'Anonyme Einträge';
 $string['anonymous_user'] = 'Anonymer Benutzer';
 $string['append_new_items'] = 'Neue Elemente anfügen';
+$string['are_you_sure_to_delete_this_entry'] = 'Wollen Sie diesen Eintrag wirklich löschen?'; // ORPHANED
+$string['are_you_sure_to_delete_this_item'] = 'Wollen Sie dieses Element wirklich löschen?'; // ORPHANED
+$string['are_you_sure_to_delete_this_template'] = 'Wollen Sie diese Vorlage wirklich löschen?'; // ORPHANED
+$string['are_you_sure_to_use_this_template'] = 'Wollen Sie diese Vorlage wirklich verwenden?'; // ORPHANED
 $string['autonumbering'] = 'automatische Nummerierung der Fragen';
 $string['average'] = 'Mittelwert';
 $string['bold'] = 'Fett';
@@ -67,6 +74,7 @@ $string['export_to_excel'] = 'Nach Excel exportieren';
 $string['feedback:complete'] = 'Ausfüllen eines Feedbacks';
 $string['feedback:createprivatetemplate'] = 'Erstellen eines kursinternen Templates';
 $string['feedback:createpublictemplate'] = 'Erstellen eines öffentlichten Templates';
+$string['feedback:deletecompleteds'] = 'Antworten löschen'; // ORPHANED
 $string['feedback:deletesubmissions'] = 'Vollständige Einträge löschen';
 $string['feedback:deletetemplate'] = 'Templates löschen';
 $string['feedback:edititems'] = 'Fragen bearbeiten';
@@ -146,6 +154,7 @@ $string['position'] = 'Position';
 $string['preview'] = 'Vorschau';
 $string['previous_page'] = 'Vorherige Seite';
 $string['public'] = 'öffentlich';
+$string['publish_stats_on_students'] = 'Auswertung für Teilnehmer/innen veröffentlichen'; // ORPHANED
 $string['question'] = 'Frage';
 $string['questions'] = 'Fragen';
 $string['radio'] = 'Single Choice - Radiobutton';
@@ -196,16 +205,7 @@ $string['update_item'] = 'Element aktualisieren';
 $string['use_one_line_for_each_value'] = '<br />Benutzen Sie für jeden Wert eine neue Zeile!';
 $string['use_this_template'] = 'Diese Vorlage verwenden';
 $string['using_templates'] = 'Vorlagen verwenden';
+$string['url_for_continue_button'] = 'URL für Weiter-Schaltfläche';
 $string['vertical'] = 'untereinander';
-$string['publish_stats_on_students'] = 'Auswertung für Teilnehmer/innen veröffentlichen'; // ORPHANED
-$string['all_old_values_will_be_deleted'] = 'Alle vorherigen Daten werden gelöscht!'; // ORPHANED
-$string['all_old_values_will_be_preserved'] = 'Alle vorherigen Daten bleiben erhalten.'; // ORPHANED
-$string['all_related_values_will_be_deleted'] = 'Alle damit verbundenen Daten werden gelöscht!'; // ORPHANED
-$string['are_you_sure_to_delete_this_entry'] = 'Wollen Sie diesen Eintrag wirklich löschen?'; // ORPHANED
-$string['are_you_sure_to_delete_this_item'] = 'Wollen Sie dieses Element wirklich löschen?'; // ORPHANED
-$string['are_you_sure_to_delete_this_template'] = 'Wollen Sie diese Vorlage wirklich löschen?'; // ORPHANED
-$string['are_you_sure_to_use_this_template'] = 'Wollen Sie diese Vorlage wirklich verwenden?'; // ORPHANED
-$string['feedback:deletecompleteds'] = 'Antworten löschen'; // ORPHANED
-$string['this_feedback_is_already_submittet'] = 'Dieser Fragebogen wurde bereits ausgef&uuml;llt'; // ORPHANED
 
 ?>

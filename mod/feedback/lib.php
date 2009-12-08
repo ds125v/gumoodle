@@ -1,8 +1,8 @@
-<?php // $Id: lib.php,v 1.7.2.15 2009/04/22 21:30:57 skodak Exp $
+<?php // $Id: lib.php,v 1.7.2.17 2009/06/13 13:07:15 agrabs Exp $
 /**
 * includes the main-part of feedback-functions
 *
-* @version $Id: lib.php,v 1.7.2.15 2009/04/22 21:30:57 skodak Exp $
+* @version $Id: lib.php,v 1.7.2.17 2009/06/13 13:07:15 agrabs Exp $
 * @author Andreas Grabs
 * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
 * @package feedback
@@ -572,18 +572,29 @@ function feedback_check_is_switchrole(){
 
 /** 
  *  get users which have the complete-capability
- *  @param int $cmid
- *  @param mixed $groups single groupid or array of groupids - group(s) user is in
+ *  @param object $cm
+ *  @param int $group single groupid
  *  @return object the userrecords
  */
-function feedback_get_complete_users($cmid, $groups = false) {
-
-    if (!$context = get_context_instance(CONTEXT_MODULE, $cmid)) {
+function feedback_get_complete_users($cm, $group = false) {
+    global $CFG;
+    
+    if (!$context = get_context_instance(CONTEXT_MODULE, $cm->id)) {
             print_error('badcontext');
     }
-    
-    //description of the call below: get_users_by_capability($context, $capability, $fields='', $sort='', $limitfrom='', $limitnum='', $groups='', $exceptions='', $doanything=true)
-    return get_users_by_capability($context, 'mod/feedback:complete', '', 'lastname', '', '', $groups, '', false);
+
+    $fromgroup = '';
+    $wheregroup = '';
+    if($group) {
+        $fromgroup = ', '.$CFG->prefix.'groups_members g';
+        $wheregroup = ' AND g.groupid = '.$group.' AND g.userid = c.userid';
+    }
+    $sql = 'SELECT u.* FROM '.$CFG->prefix.'user u, '.$CFG->prefix.'feedback_completed c'.$fromgroup.'
+              WHERE u.id = c.userid AND c.feedback = '.$cm->instance.'
+              '.$wheregroup.'
+              ORDER BY u.lastname';
+
+    return get_records_sql($sql);
 }
 
 /** 

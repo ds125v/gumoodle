@@ -1,8 +1,8 @@
-<?php // $Id: mod_form.php,v 1.2.2.4 2008/05/15 10:33:08 agrabs Exp $
+<?php // $Id: mod_form.php,v 1.2.2.6 2009/05/30 16:46:43 agrabs Exp $
 /**
 * print the form to add or edit a feedback-instance
 *
-* @version $Id: mod_form.php,v 1.2.2.4 2008/05/15 10:33:08 agrabs Exp $
+* @version $Id: mod_form.php,v 1.2.2.6 2009/05/30 16:46:43 agrabs Exp $
 * @author Andreas Grabs
 * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
 * @package feedback
@@ -78,12 +78,13 @@ class mod_feedback_mod_form extends moodleform_mod {
         
         //-------------------------------------------------------------------------------
         $mform->addElement('header', 'aftersubmithdr', get_string('after_submit', 'feedback'));
-        
-        $mform->addElement('text', 'site_after_submit', get_string('site_after_submit', 'feedback'), array('size'=>'64','maxlength'=>'255'));
-        $mform->setType('site_after_submit', PARAM_TEXT);
 
         $mform->addElement('htmleditor', 'page_after_submit', get_string("page_after_submit", "feedback"), array('rows' => 20));
         $mform->setType('page_after_submit', PARAM_RAW);
+        
+        $mform->addElement('text', 'site_after_submit', get_string('url_for_continue_button', 'feedback'), array('size'=>'64','maxlength'=>'255'));
+        $mform->setType('site_after_submit', PARAM_TEXT);
+        $mform->setHelpButton('site_after_submit', array('url_for_continue', get_string('url_for_continue_button', 'feedback'), 'feedback'));
         //-------------------------------------------------------------------------------
         $features = new stdClass;
         $features->groups = true;

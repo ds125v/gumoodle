@@ -1,8 +1,8 @@
-<?php // $Id: view.php,v 1.6.2.6 2008/11/16 20:46:25 agrabs Exp $
+<?php // $Id: view.php,v 1.6.2.7 2009/08/06 14:33:55 arborrow Exp $
 /**
 * the first page to view the feedback
 *
-* @version $Id: view.php,v 1.6.2.6 2008/11/16 20:46:25 agrabs Exp $
+* @version $Id: view.php,v 1.6.2.7 2009/08/06 14:33:55 arborrow Exp $
 * @author Andreas Grabs
 * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
 * @package feedback
@@ -32,7 +32,7 @@
 
     $capabilities = feedback_load_capabilities($cm->id);
 
-    if($feedback->anonymous == FEEDBACK_ANONYMOUS_YES AND !$capabilities->edititems) {
+    if($feedback->anonymous == FEEDBACK_ANONYMOUS_YES ) {
         $capabilities->complete = true;
     }
     
@@ -159,7 +159,7 @@
     //####### mapcourse-end
 
     //####### completed-start
-    if($capabilities->complete AND !$capabilities->edititems) {
+    if($capabilities->complete) {
         // print_simple_box_start('center', '80%');
         print_box_start('generalbox boxaligncenter boxwidthwide');
         //check, whether the feedback is open (timeopen, timeclose)
