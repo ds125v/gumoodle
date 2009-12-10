@@ -27,6 +27,10 @@ body.category-89 #bannercontainer { background-image: url(t4/sotl/i/bannerback.g
 body.category-89 #bannerleft { background-image: url(t4/sotl/i/banner.gif); }
 body.category-105 #bannercontainer { background-image: url(t4/srs/i/bannerback.gif); }
 body.category-105 #bannerleft { background-image: url(t4/srs/i/banner.gif); }
+body.category-102 #bannercontainer { background-image: url(t4/number/i/bannerback.gif); }
+body.category-102 #bannerleft { background-image: url(t4/number/i/banner.gif); }
+body.category-106 #bannercontainer { background-image: url(t4/smallgroupwork/i/bannerback.gif); }
+body.category-106 #bannerleft { background-image: url(t4/smallgroupwork/i/banner.gif); }
 
 body.category-26 #bannerleft,
 body.category-41 #bannerleft,
@@ -39,7 +43,9 @@ body.category-22 #bannerleft,
 body.category-27 #bannerleft,
 body.category-68 #bannerleft,
 body.category-89 #bannerleft,
+body.category-102 #bannerleft,
 body.category-105 #bannerleft,
+body.category-106 #bannerleft,
 body.category-20 #bannerleft { width: 530px; }
 
 body.category-26 #subhead,
@@ -53,5 +59,7 @@ body.category-22 #subhead,
 body.category-27 #subhead,
 body.category-68 #subhead,
 body.category-89 #subhead,
+body.category-102 #subhead,
 body.category-105 #subhead,
+body.category-106 #subhead,
 body.category-20 #subhead { display: block; }

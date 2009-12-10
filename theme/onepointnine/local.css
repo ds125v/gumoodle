@@ -1,1 +1,66 @@
-faculty_css/education.css
+#bannercontainer { background-image: url(t4/arts/i/bannerback.gif); }
+#bannerleft { background-image: url(t4/arts/i/banner.gif); }
+#toprow,
+#subhead {background-image: url(t4/generic/i/arts/subhead.gif); }
+#left-column .sideblock .header {background-color: #693f58;}
+
+body.category-4 #bannercontainer { background-image: url(t4/americanstudies/i/bannerback.gif); }
+body.category-4 #bannerleft { background-image: url(t4/americanstudies/i/banner.gif); }
+body.category-47 #bannercontainer { background-image: url(t4/archaeology/i/bannerback.gif); }
+body.category-47 #bannerleft { background-image: url(t4/archaeology/i/banner.gif); }
+body.category-72 #bannercontainer { background-image: url(t4/classics/i/bannerback.gif); }
+body.category-72 #bannerleft { background-image: url(t4/classics/i/banner.gif); }
+body.category-55 #bannercontainer { background-image: url(t4/celtic/i/bannerback.gif); }
+body.category-55 #bannerleft { background-image: url(t4/celtic/i/banner.gif); }
+body.category-24 #bannercontainer { background-image: url(t4/ahgs/i/bannerback.gif); }
+body.category-24 #bannerleft { background-image: url(t4/ahgs/i/banner.gif); }
+body.category-25 #bannercontainer { background-image: url(t4/theology/i/bannerback.gif); }
+body.category-25 #bannerleft { background-image: url(t4/theology/i/banner.gif); }
+body.category-30 #bannercontainer { background-image: url(t4/englishlanguage/i/bannerback.gif); }
+body.category-30 #bannerleft { background-image: url(t4/englishlanguage/i/banner.gif); }
+body.category-31 #bannercontainer { background-image: url(t4/scottishliterature/i/bannerback.gif); }
+body.category-31 #bannerleft { background-image: url(t4/scottishliterature/i/banner.gif); }
+body.category-7 #bannercontainer { background-image: url(t4/englishliterature/i/bannerback.gif); }
+body.category-7 #bannerleft { background-image: url(t4/englishliterature/i/banner.gif); }
+body.category-34 #bannercontainer { background-image: url(t4/theatrefilmtv/i/bannerback.gif); }
+body.category-34 #bannerleft { background-image: url(t4/theatrefilmtv/i/banner.gif); }
+body.category-15 #bannercontainer { background-image: url(t4/history/i/bannerback.gif); }
+body.category-15 #bannerleft { background-image: url(t4/history/i/banner.gif); }
+body.category-41 #bannercontainer { background-image: url(t4/music/i/bannerback.gif); }
+body.category-41 #bannerleft { background-image: url(t4/music/i/banner.gif); }
+body.category-85 #bannercontainer { background-image: url(t4/smlc/i/bannerback.gif); }
+body.category-85 #bannerleft { background-image: url(t4/smlc/i/banner.gif); }
+body.category-88 #bannercontainer { background-image: url(t4/french/i/bannerback.gif); }
+body.category-88 #bannerleft { background-image: url(t4/french/i/banner.gif); }
+body.category-89 #bannercontainer { background-image: url(t4/german/i/bannerback.gif); }
+body.category-89 #bannerleft { background-image: url(t4/german/i/banner.gif); }
+body.category-90 #bannercontainer { background-image: url(t4/italian/i/bannerback.gif); }
+body.category-90 #bannerleft { background-image: url(t4/italian/i/banner.gif); }
+body.category-138 #bannercontainer { background-image: url(t4/philosophy/i/bannerback2.gif); }
+body.category-138 #bannerleft { background-image: url(t4/philosophy/i/banner2.gif); }
+body.category-198 #bannercontainer { background-image: url(t4/celticdept/i/bannerback.gif); }
+body.category-198 #bannerleft { background-image: url(t4/celticdept/i/banner.gif); }
+body.category-91 #bannercontainer,
+body.category-92 #bannercontainer { background-image: url(t4/hispanic/i/bannerback.gif); }
+body.category-91 #bannerleft,
+body.category-92 #bannerleft { background-image: url(t4/hispanic/i/banner.gif); }
+
+body.category-4 #subhead,
+body.category-47 #subhead,
+body.category-72 #subhead,
+body.category-55 #subhead,
+body.category-24 #subhead,
+body.category-25 #subhead,
+body.category-30 #subhead,
+body.category-31 #subhead,
+body.category-7 #subhead,
+body.category-34 #subhead,
+body.category-15 #subhead,
+body.category-41 #subhead,
+body.category-85 #subhead,
+body.category-88 #subhead,
+body.category-89 #subhead,
+body.category-90 #subhead,
+body.category-138 #subhead,
+body.category-91 #subhead,
+body.category-92 #subhead {display: block; }
