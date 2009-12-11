@@ -30,7 +30,7 @@ class block_guenrol extends block_base {
 
         // sanity check - if db enrolment isn't set up then bail
         if (empty($CFG->enrol_dbname)) {
-            $this->content->text = "<p>External database enrollment is not configured on this site</p>";
+            $this->content->text = get_string( 'dbnotconfigured','block_guenrol' );
             $this->content->footer = '';
             return $this->content;
         }
@@ -40,6 +40,12 @@ class block_guenrol extends block_base {
 
         // get the list of users from the external database
         $userlist = get_enrolled_users();
+        if ($userlist===false) {
+            $this->content->text = get_string( 'dbconnecterror','block_guenrol' );
+            $this->content->footer = '';
+            return $this->content;
+        }
+
 
         // get the number of users who have profiles already
         $usercheck = get_existing_users( $userlist );
@@ -47,8 +53,8 @@ class block_guenrol extends block_base {
         // get the default role for this course 
         $role = get_default_course_role( $COURSE );
 
-        $this->content->text = "<p>Number of users = ".count($userlist)."</p>";
-        $this->content->text .= "<p>Number of existing users = ".$this->count_existingusers."</p>";
+        $this->content->text = get_string('numberusers','block_guenrol',count($userlist) );
+        $this->content->text .= get_string('numberexistingusers','block_guenrol',$this->count_existingusers );
 
         $this->content->footer = '';
         return $this->content;

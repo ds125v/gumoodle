@@ -12,7 +12,7 @@
         $enroldb = enrol_connect();
         if (!$enroldb) {
             error_log('[ENROL_DB] Could not make a connection');
-            return;
+            return false;
         }
 
         // get the course code
