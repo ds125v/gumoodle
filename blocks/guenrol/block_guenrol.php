@@ -28,6 +28,13 @@ class block_guenrol extends block_base {
             return $this->content;
         }
 
+        // sanity check - if db enrolment isn't set up then bail
+        if (empty($CFG->enrol_dbname)) {
+            $this->content->text = "<p>External database enrollment is not configured on this site</p>";
+            $this->content->footer = '';
+            return $this->content;
+        }
+
         // get course context
         $coursecontext = get_context_instance( CONTEXT_COURSE, $COURSE->id );
 
