@@ -3207,6 +3207,17 @@ function authenticate_user_login($username, $password) {
         }
 
         $auths = $authsenabled;
+
+        // University of Glasgow Hack. 
+        // We no longer allow new accounts to be created with LDAP (only GUID/GULDAP)
+        // ldap is removed from the array and will not be tested for users that
+        // do not exist (However, it *is* permitted for existing users with this 
+        // authentication method. 
+        $i = array_search( 'ldap',$auths );
+        if ($i !== false) {
+            unset( $auths[ $i ] );
+        }
+
         $user = new object();
         $user->id = 0;     // User does not exist
     }
