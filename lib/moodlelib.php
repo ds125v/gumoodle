@@ -3199,6 +3199,27 @@ function authenticate_user_login($username, $password) {
         }
         $auths = array($auth);
 
+        // University of Glasgow Hack.
+        // if the auth method is ldap then do an extra login check 
+        // for guid. If successful we'll update the user's auth
+        // method (to guid) and carry on. This is to force
+        // users with matching usernames/password over to 
+        // DataVault. 
+        if ($auth=='ldap') {
+            $authplugin = get_auth_plugin( 'guid' );
+            if ($authplugin->user_login($username, $password)) {
+
+                // a hit, so change auth to guid for this user
+                $auth = 'guid';
+                $user->auth = 'guid';
+                update_record( 'user',$user );
+                add_to_log(0, 'login', 'ldap2guid', 'index.php', $username, 0, $user->id);
+            }
+            else {
+                add_to_log(0, 'login', 'noguidmatch', 'index.php', $username, 0, $user->id);
+            }
+        }
+
     } else {
         // check if there's a deleted record (cheaply)
         if (get_field('user', 'id', 'username', $username, 'deleted', 1, '')) {
