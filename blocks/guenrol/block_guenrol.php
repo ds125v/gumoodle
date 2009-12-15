@@ -24,15 +24,15 @@ class block_guenrol extends block_base {
     function get_content() {
         global $USER, $CFG, $COURSE;
 
-//        if($this->content !== NULL) {
-//            return $this->content;
-//        }
+        if($this->content !== NULL) {
+            return $this->content;
+        }
 
         // if no course code is defined there's no point
         $localcoursefield = $CFG->enrol_localcoursefield;
         $coursecode = addslashes( $COURSE->$localcoursefield );
         if (empty($coursecode)) {
-            $this->content->text = '<p>No Course Code defined</p>';
+            $this->content->text = get_string('nocoursecode','block_guenrol');
             $this->content->footer = '';
             return $this->content;
         }
@@ -44,13 +44,19 @@ class block_guenrol extends block_base {
         if (!has_capability('block/guenrol:access',$coursecontext)) {
             $this->content->text = '';
             $this->content->footer = '';
-            debugging( 'block/guenrol:access capability required' );
             return $this->content;
         }
 
         // get the list of users from the external database
         $userlist = get_db_users($COURSE);
-     
+
+        // check for db error
+        if ($userlist===false) {
+            $this->content->text = get_string('dberror','block_guenrol');
+            $this->content->footer = '';
+            return $this->content;
+        }
+
         // get count of external db users 
         // need to do now as the size of $userlist changes
         $dbuserscount = count( $userlist );
@@ -69,6 +75,12 @@ class block_guenrol extends block_base {
 
         // output
         $this->content->text = "<p><center><img src=\"{$CFG->wwwroot}/blocks/guenrol/images/logo.png\" /></center></p>";
+
+        // warning if no users
+        if (empty($dbusercount)) {
+            $this->content->text .= get_string('nousers','block_guenrol');
+        }
+     
         $this->content->text .= "<p>".get_string('registryusers','block_guenrol').": <b>$dbuserscount</b></p>";
         $this->content->text .= "<p>".get_string('moodleusers','block_guenrol').": <b>$existing_profile_count</b></p>";
         $this->content->text .= "<p>".get_string('enrolledincourse','block_guenrol').": <b>$enrolled_in_course_count</b></p>";
