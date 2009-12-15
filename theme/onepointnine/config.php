@@ -6,7 +6,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 
-$THEME->sheets = array("standard","local");
+$THEME->sheets = array("standard");
+
+// Another nasty University of Glasgow Hack
+// work out the css from the wwwroot
+$parsed = parse_url( $CFG->wwwroot );
+$host = $parsed['host'];
+$hostparts = explode('.',$host );
+$faculty = $hostparts[0];
+
+$THEME->sheets[] = "faculty_css/$faculty";
 
 /// This variable is an array containing the names of all the 
 /// stylesheet files you want included in this theme, and in what order
