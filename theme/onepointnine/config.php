@@ -9,12 +9,11 @@
 $THEME->sheets = array("standard");
 
 // Another nasty University of Glasgow Hack
-// work out the css from the wwwroot
+// work out the css 'local' file from the wwwroot
 $parsed = parse_url( $CFG->wwwroot );
 $host = $parsed['host'];
 $hostparts = explode('.',$host );
 $faculty = $hostparts[0];
-
 $THEME->sheets[] = "faculty_css/$faculty";
 
 /// This variable is an array containing the names of all the 
