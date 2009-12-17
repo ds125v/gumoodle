@@ -19,16 +19,30 @@ class block_wiforms extends block_list {
      * Get the contents of the block
      */
     function get_content() {
-        global $USER, $CFG;
+        global $USER, $CFG, $COURSE;
 
         if ($this->content != NULL) {
             return $this->content;
         } 
 
+        // set up content
         $this->content = new stdClass;
         $this->content->footer = '';
         $this->content->items = array();
         $this->content->icons = array();
+
+        // course id
+        $id = $COURSE->id;
+
+        // add links to forms
+        $this->content->items[] = "<a href=\"{$CFG->wwwroot}/blocks/wiforms/email.php?id=$id&amp;form=enlargement\">Notice of Enlargement of WIs</a>";
+        $this->content->icons[] = "<img src=\"{$CFG->pixpath}/f/text.gif\" height=\"16\" width=\"16\" alt=\"icon\" />";
+
+        $this->content->items[] = "<a href=\"{$CFG->wwwroot}/blocks/wiforms/email.php?id=$id&amp;form=formation\">Notice of Formation of an Institute</a>";
+        $this->content->icons[] = "<img src=\"{$CFG->pixpath}/f/text.gif\" height=\"16\" width=\"16\" alt=\"icon\" />";
+
+        $this->content->items[] = "<a href=\"{$CFG->wwwroot}/blocks/wiforms/email.php?id=$id&amp;form=suspension\">Notice of Suspension of a WI</a>";
+        $this->content->icons[] = "<img src=\"{$CFG->pixpath}/f/text.gif\" height=\"16\" width=\"16\" alt=\"icon\" />";
 
         return $this->content;
     }
