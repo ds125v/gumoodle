@@ -8,7 +8,7 @@
 require_once('../../config.php');
 require_once("$CFG->libdir/formslib.php");
 
-// get form to display2
+// parameters
 $id = required_param('id',PARAM_INT);
 $formname = required_param('form',PARAM_ALPHA);
 
@@ -29,14 +29,28 @@ $mform = new  $formclass();
 
 // was form cancelled?
 if ($mform->is_cancelled()) {
-    redirect( "{$CFG->wwwroot}/course/view.php?id=$id" );
+    redirect( "{$CFG->wwwroot}/course/view.php?id=$id", get_string('emailcancelled','block_wiforms'),2 );
 }
 
 // was form submitted
 if ($formdata = $mform->get_data()) {
     $html = $mform->format_html( $formdata );
-    echo $html;
-  echo "<pre>"; print_r( $formdata ); die;
+
+    // send as email
+    $mailer = get_mailer();
+    $mailer->From = $CFG->supportemail;
+    $mailer->FromName = $CFG->supportname;
+    $mailer->AddAddress('howardsmiller@googlemail.com');
+    $mailer->AddReplyTo( $CFG->noreplyaddress );
+    $mailer->Subject = 'Test message from WI';
+    $mailer->IsHTML(true);
+    $mailer->Body = $html;
+    if (!$mailer->Send()) {
+        error( 'Failed to send email: '.$mail->ErrorInfo );
+    }
+
+    // back to main course page
+    redirect( "{$CFG->wwwroot}/course/view.php?id=$id", get_string('emailsent','block_wiforms'), 5 );
 }
 
 // display the form
