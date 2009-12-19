@@ -16,6 +16,9 @@ $formname = required_param('form',PARAM_ALPHA);
 require_login($id);
 $context = get_context_instance(CONTEXT_COURSE, $COURSE->id);
 
+// check capability
+require_capability('block/wiforms:access', $context  );
+
 // load correct form
 $filename = "forms/$formname.php";
 if (!file_exists( $filename ) ) { 

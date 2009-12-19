@@ -12,7 +12,7 @@ class block_wiforms extends block_list {
      */
     function init() {
         $this->title = get_string('blockname', 'block_wiforms');
-        $this->version = 2009121700; // YYMMDDXX
+        $this->version = 2009121701; // YYMMDDXX
     }
 
     /*
@@ -37,6 +37,12 @@ class block_wiforms extends block_list {
         $this->content->footer = '';
         $this->content->items = array();
         $this->content->icons = array();
+
+        // check capability
+        $context = get_context_instance(CONTEXT_COURSE, $COURSE->id);
+        if (!has_capability('block/wiforms:access', $context  )) {
+            return $this->content;
+        }
 
         // course id
         $id = $COURSE->id;
