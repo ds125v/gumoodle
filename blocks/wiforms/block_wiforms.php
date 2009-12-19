@@ -16,6 +16,13 @@ class block_wiforms extends block_list {
     }
 
     /*
+     * This has a global config screen
+     */
+    function has_config() {
+        return true;
+    }
+
+    /*
      * Get the contents of the block
      */
     function get_content() {

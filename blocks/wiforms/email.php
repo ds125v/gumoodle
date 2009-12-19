@@ -13,7 +13,7 @@ $id = required_param('id',PARAM_INT);
 $formname = required_param('form',PARAM_ALPHA);
 
 // housekeeping
-require_login();
+require_login($id);
 $context = get_context_instance(CONTEXT_COURSE, $COURSE->id);
 
 // load correct form
@@ -40,9 +40,9 @@ if ($formdata = $mform->get_data()) {
     $mailer = get_mailer();
     $mailer->From = $CFG->supportemail;
     $mailer->FromName = $CFG->supportname;
-    $mailer->AddAddress('howardsmiller@googlemail.com');
+    $mailer->AddAddress( $CFG->block_wiforms_email);
     $mailer->AddReplyTo( $CFG->noreplyaddress );
-    $mailer->Subject = 'Test message from WI';
+    $mailer->Subject = $CFG->block_wiforms_subject;
     $mailer->IsHTML(true);
     $mailer->Body = $html;
     if (!$mailer->Send()) {
