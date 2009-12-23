@@ -31,7 +31,7 @@ class block_wiforms extends block_list {
      */
     function init() {
         $this->title = get_string('blockname', 'block_wiforms');
-        $this->version = 2009121701; // YYMMDDXX
+        $this->version = 2009122300; // YYMMDDXX
     }
 
     /*

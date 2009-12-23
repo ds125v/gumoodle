@@ -40,18 +40,21 @@ class enlargement_form extends moodleform {
         $mform->setType('form',PARAM_ALPHA);
 
         // form elements
+        $mform->addElement('static','wi','',"<h3>National Federation of Women's Institutes" );
         $mform->addElement('static','enlargement','','<h3>Notice of Enlargement of WIs</h3>');
         $mform->addElement('text','federation','Federation',$att);
         $mform->addElement('text','continuing',"'Continuing' WI",$att);
         $mform->addElement('text','terminating',"'Terminating' WI",$att);
         $mform->addElement('text','name','Name of Enlarged WI',$att);
         $mform->addElement('date_selector','dateenlargement','Date of Enlargement');
-        $mform->addElement('text','wia','WIA',$att);
+        $mform->addElement('text','wia','WI Adviser (Mrs/Miss)',$att);
+        $mform->addElement('static','mcs','','<strong>Please ensure that the MCS is up to date with the transfer of members from the terminating WI to the new enlarged WI</strong>');
         $this->add_action_buttons();
     }
 
     function format_html( $data ) {
-        $html = "<h3>Notice of Enlargement of WIs</h3>\n";
+        $html = "<h3>National Federation of Women's Institutes</h3>";
+        $html .= "<h3>Notice of Enlargement of WIs</h3>\n";
         $html .= '<table cellspacing="0" cellpadding="5" >';
         $html .= "<tr><th>Federation:</th><td>{$data->federation}</td></tr>\n";
         $html .= "<tr><th>'Continuing' WI:</th><td>{$data->continuing}</td></tr>\n";
