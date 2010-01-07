@@ -47,7 +47,7 @@ class suspension_form extends moodleform {
         $mform->addElement('text','reason',"Reason for Suspension",$att);
         $mform->addElement('date_selector','datesuspension','Date of Suspension');
         $mform->addElement('text','funds','Funds held (if known)',$att);
-        $mform->addElement('text','advisor','WI Advisor',$att);
+        $mform->addElement('text','advisor','WI Adviser',$att);
         $this->add_action_buttons();
     }
 
@@ -60,7 +60,7 @@ class suspension_form extends moodleform {
         $html .= "<tr><th>Reason for Suspension:</th><td>{$data->reason}</td></tr>\n";
         $html .= "<tr><th>Date of Suspension:</th><td>" . userdate($data->datesuspension, '%A, %e %B %G') . "</td></tr>\n";
         $html .= "<tr><th>Funds held (if known):</th><td>{$data->funds}</td></tr>\n";
-        $html .= "<tr><th>WI Advisor:</th><td>{$data->advisor}</td></tr>\n";
+        $html .= "<tr><th>WI Adviser:</th><td>{$data->advisor}</td></tr>\n";
         $html .= "</table>\n";
 
         return $html;
