@@ -49,7 +49,7 @@ class enlargement_form extends moodleform {
         $mform->addElement('date_selector','dateenlargement','Date of Enlargement');
         $mform->addElement('text','wia','WI Adviser (Mrs/Miss)',$att);
         $mform->addElement('static','mcs','','<strong>Please ensure that the MCS is up to date with the transfer of members from the terminating WI to the new enlarged WI</strong>');
-        $this->add_action_buttons();
+        $this->add_action_buttons(true, 'Send');
     }
 
     function format_html( $data ) {

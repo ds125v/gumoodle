@@ -48,7 +48,7 @@ class suspension_form extends moodleform {
         $mform->addElement('date_selector','datesuspension','Date of Suspension');
         $mform->addElement('text','funds','Funds held (if known)',$att);
         $mform->addElement('text','advisor','WI Adviser',$att);
-        $this->add_action_buttons();
+        $this->add_action_buttons(true, 'Send');
     }
 
     function format_html( $data ) {

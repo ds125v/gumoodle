@@ -41,7 +41,7 @@ class formation_form extends moodleform {
 
         // form elements
         $mform->addElement('static','wi','',"<h3>National Federation of Women's Institutes" );
-        $mform->addElement('static','formation','','<h3>Notice of Formation of an Institute</h3>');
+        $mform->addElement('static','formation','','<h3>Notice of Formation of a WI</h3>');
         $mform->addElement('text','federation','Federation',$att);
         $mform->addElement('text','nameofwi',"Name of WI",$att);
         $mform->addElement('date_selector','dateoffirstmeeting','Date of first meeting');
@@ -50,12 +50,12 @@ class formation_form extends moodleform {
         $mform->addElement('text','secretary','WI Adviser/Federation Secretary (Mrs/Miss)',$att);
         $mform->addElement('text','address1','Address (line 1)',$att);
         $mform->addElement('text','address2','Address (line 2)',$att);
-        $this->add_action_buttons();
+        $this->add_action_buttons(true, 'Send');
     }
 
     function format_html( $data ) {
         $html = "<h3>National Federation of Women's Institutes</h3>";
-        $html .= "<h3>Notice of Formation of an Institute</h3>\n";
+        $html .= "<h3>Notice of Formation of a WI</h3>\n";
         $html .= '<table cellspacing="0" cellpadding="5" >';
         $html .= "<tr><th>Federation:</th><td>{$data->federation}</td></tr>\n";
         $html .= "<tr><th>Name of WI:</th><td>{$data->nameofwi}</td></tr>\n";
