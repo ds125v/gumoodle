@@ -1,3 +1,4 @@
+2010-05-12 : Removed redundant get_object_vars() call (http://tracker.moodle.org/browse/CONTRIB-2056)
 2010-05-07 : Fixed issue with date format not being parsed in some langauges, added fall back in ISO format
 2010-05-04 : Fixed CSS issue where tabs were not displaying correctly in Internet Explorer
 2010-04-23 : Reworked student and tutor submission form to allow resubmission when 'Resubmit until due date' option is enabled

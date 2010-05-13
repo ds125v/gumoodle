@@ -4432,8 +4432,6 @@ function turnitintool_cansubmit($cm,$turnitintool,$user) { // Returns an array o
                                                             'dtstart,dtdue,dtpost,id');
                 }
                 
-                $partsarray=get_object_vars($parts);
-                
                 if (count($parts)>1) {
                 
                     unset($cells);
