@@ -1,6 +1,6 @@
 <?php
 
-require_once( "{$CFG->wwwroot}/question/type/multichoice/questiontype.php" );
+require_once( "{$CFG->dirroot}/question/type/multichoice/questiontype.php" );
 
 class question_taggedmc_qtype extends question_multichoice_qtype {
 
@@ -324,7 +324,7 @@ class question_taggedmc_qtype extends question_multichoice_qtype {
             }
         }
     }
+}
 
 // Register this question type with the question bank.
 question_register_questiontype(new question_taggedmc_qtype());
-}
