@@ -8,5 +8,12 @@ class question_edit_taggedmc_form extends question_edit_multichoice_form {
         return 'taggedmc';
     }
 
+    function definition_inner(&$mform) {
+        parent::definition_inner($mform);
+       
+        $mform->addElement('header', 'mctagshdr', get_string('mctags','qtype_taggedmc') ); 
+        $mform->addElement('htmleditor', 'mctags', get_string('mctags', 'qtype_multichoice'),
+                                array('course' => $this->coursefilesid));
+    }
 
 }
