@@ -26,6 +26,7 @@ class question_taggedmc_qtype extends question_multichoice_qtype {
     }
 
     function save_question_options($question) {
+echo "<pre>"; print_r( $question ); die;
         $result = new stdClass;
         if (!$oldanswers = get_records("question_answers", "question",
                                        $question->id, "id ASC")) {
@@ -102,6 +103,7 @@ class question_taggedmc_qtype extends question_multichoice_qtype {
         $options->correctfeedback = trim($question->correctfeedback);
         $options->partiallycorrectfeedback = trim($question->partiallycorrectfeedback);
         $options->incorrectfeedback = trim($question->incorrectfeedback);
+        $options->tags = trim($question->tag);
         if ($update) {
             if (!update_record("question_taggedmc", $options)) {
                 $result->error = "Could not update quiz taggedmc options! (id=$options->id)";
