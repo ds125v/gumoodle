@@ -327,6 +327,40 @@ class question_taggedmc_qtype extends question_multichoice_qtype {
             }
         }
     }
+
+    // IMPORT EXPORT
+
+    function export_to_xml( $question, $format, $extra=null) {
+        $expout = '';
+        $expout .= "    <single>".$format->get_single($question->options->single)."</single>\n";
+        $expout .= "    <shuffleanswers>".$format->get_single($question->options->shuffleanswers)."</shuffleanswers>\n";
+        $expout .= "    <correctfeedback>".$format->writetext($question->options->correctfeedback, 3)."</correctfeedback>\n";
+        $expout .= "    <partiallycorrectfeedback>".$format->writetext($question->options->partiallycorrectfeedback, 3)."</partiallycorrectfeedback>\n";
+        $expout .= "    <incorrectfeedback>".$format->writetext($question->options->incorrectfeedback, 3)."</incorrectfeedback>\n";
+        $expout .= "    <answernumbering>{$question->options->answernumbering}</answernumbering>\n";
+        $expout .= "    <tags>{$question->options->tags}</tags>\n";
+        foreach($question->options->answers as $answer) {
+            $percent = $answer->fraction * 100;
+            $expout .= "      <answer fraction=\"$percent\">\n";
+            $expout .= $format->writetext( $answer->answer,4,false );
+            $expout .= "      <feedback>\n";
+            $expout .= $format->writetext( $answer->feedback,5,false );
+            $expout .= "      </feedback>\n";
+            $expout .= "    </answer>\n";
+        }
+        return $expout;
+    }
+
+    function import_from_xml( $data, $question, $format, $extra=null ) {
+        $qtype = trim($data['@']['type']);
+        if ($qtype != 'taggedmc') {
+            return false;
+        }
+        $question = $format->import_multichoice( $data );
+        $question->qtype = 'taggedmc';
+        $question->tags = $format->getpath( $data, array('#','tags',0,'#'), '');
+        return $question;
+    }
 }
 
 // Register this question type with the question bank.
