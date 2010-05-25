@@ -17,4 +17,12 @@ class question_edit_taggedmc_form extends question_edit_multichoice_form {
         $mform->setType('tags', PARAM_RAW);
     }
 
+    function set_data($question) {
+        if (isset($question->options)) {
+            $default_values['tags'] = $question->options->tags;
+            $question = (object)((array)$question + $default_values);
+        }
+        parent::set_data($question);
+    }
+
 }

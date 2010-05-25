@@ -26,7 +26,6 @@ class question_taggedmc_qtype extends question_multichoice_qtype {
     }
 
     function save_question_options($question) {
-echo "<pre>"; print_r( $question ); die;
         $result = new stdClass;
         if (!$oldanswers = get_records("question_answers", "question",
                                        $question->id, "id ASC")) {
@@ -103,7 +102,7 @@ echo "<pre>"; print_r( $question ); die;
         $options->correctfeedback = trim($question->correctfeedback);
         $options->partiallycorrectfeedback = trim($question->partiallycorrectfeedback);
         $options->incorrectfeedback = trim($question->incorrectfeedback);
-        $options->tags = trim($question->tag);
+        $options->tags = trim($question->tags);
         if ($update) {
             if (!update_record("question_taggedmc", $options)) {
                 $result->error = "Could not update quiz taggedmc options! (id=$options->id)";
@@ -171,6 +170,7 @@ echo "<pre>"; print_r( $question ); die;
                 fwrite ($bf,full_tag("PARTIALLYCORRECTFEEDBACK",$level+1,false,$multichoice->partiallycorrectfeedback));
                 fwrite ($bf,full_tag("INCORRECTFEEDBACK",$level+1,false,$multichoice->incorrectfeedback));
                 fwrite ($bf,full_tag("ANSWERNUMBERING",$level+1,false,$multichoice->answernumbering));
+                fwrite ($bf,full_tag("TAGS",$level+1,false,$multichoice->tags));
                 $status = fwrite ($bf,end_tag("MULTICHOICE",$level,true));
             }
 
@@ -197,6 +197,7 @@ echo "<pre>"; print_r( $question ); die;
             $multichoice->layout = backup_todb($mul_info['#']['LAYOUT']['0']['#']);
             $multichoice->answers = backup_todb($mul_info['#']['ANSWERS']['0']['#']);
             $multichoice->single = backup_todb($mul_info['#']['SINGLE']['0']['#']);
+            $multichoice->tags = backup_todb($mul_info['#']['TAGS']['0']['#']);
             $multichoice->shuffleanswers = isset($mul_info['#']['SHUFFLEANSWERS']['0']['#'])?backup_todb($mul_info['#']['SHUFFLEANSWERS']['0']['#']):'';
             if (array_key_exists("CORRECTFEEDBACK", $mul_info['#'])) {
                 $multichoice->correctfeedback = backup_todb($mul_info['#']['CORRECTFEEDBACK']['0']['#']);
