@@ -21,6 +21,8 @@ $summary    = optional_param('summary', '', PARAM_RAW);
 $sequence   = optional_param('sequence', '', PARAM_SEQUENCE);
 $visible    = optional_param('visible', 0, PARAM_INT);
 $pageaction = optional_param('action', '', PARAM_ALPHA); // Used to simulate a DELETE command
+$positiontoinsert = optional_param('positiontoinsert', '', PARAM_ALPHA);
+$positiontoinsertid = optional_param('positiontoinsertid', '', PARAM_RAW);
 
 // Authorise the user and verify some incoming data
 if (!$course = get_record('course', 'id', $courseid)) {
@@ -45,7 +47,7 @@ require_login($course->id);
 require_capability('moodle/course:update', $context);
 
 if (!empty($CFG->disablecourseajax)) {
-    errorl_log('Course AJAX not allowed');
+    error_log('Course AJAX not allowed');
     die;
 }
 
@@ -234,7 +236,7 @@ switch($req_method) {
     case 'DELETE':
         switch ($class) {
             case 'block':
-                blocks_execute_action($PAGE, $pageblocks, 'delete', $blockinstance);
+                blocks_execute_action($PAGE, $pageblocks, 'delete', $blockinstance, false, false);
                 break;
 
             case 'resource':

@@ -9,6 +9,11 @@
     $mode = optional_param('mode', '', PARAM_ALPHA); // navigation mode
     $attempt = required_param('attempt', PARAM_INT); // new attempt
 
+    //IE 6 Bug workaround
+    if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 6') !== false && ini_get('zlib.output_compression') == 'On') {
+        ini_set('zlib.output_compression', 'Off');
+    }
+
     if (!empty($id)) {
         if (! $cm = get_coursemodule_from_id('scorm', $id)) {
             error("Course Module ID was incorrect");
@@ -75,9 +80,6 @@
     } else {
         include_once($CFG->dirroot.'/mod/scorm/datamodels/scorm_12.js.php');
     }
-
-    // set the start time of this SCO
-    scorm_insert_track($USER->id,$scorm->id,$scoid,$attempt,'x.start.time',time());
 
 ?>
 

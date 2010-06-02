@@ -71,7 +71,7 @@ class assignment_base {
             error('assignment ID was incorrect');
         }
 
-        $this->assignment->cmidnumber = $this->cm->id;     // compatibility with modedit assignment obj
+        $this->assignment->cmidnumber = $this->cm->idnumber; // compatibility with modedit assignment obj
         $this->assignment->courseid   = $this->course->id; // compatibility with modedit assignment obj
 
         $this->strassignment = get_string('modulename', 'assignment');
@@ -140,7 +140,7 @@ class assignment_base {
                      true, update_module_button($this->cm->id, $this->course->id, $this->strassignment),
                      navmenu($this->course, $this->cm));
 
-        groups_print_activity_menu($this->cm, 'view.php?id=' . $this->cm->id);
+        groups_print_activity_menu($this->cm, $CFG->wwwroot . '/mod/assignment/view.php?id=' . $this->cm->id);
 
         echo '<div class="reportlink">'.$this->submittedlink().'</div>';
         echo '<div class="clearer"></div>';
@@ -1065,7 +1065,7 @@ class assignment_base {
         /// find out current groups mode
         $groupmode = groups_get_activity_groupmode($cm);
         $currentgroup = groups_get_activity_group($cm, true);
-        groups_print_activity_menu($cm, 'submissions.php?id=' . $this->cm->id);
+        groups_print_activity_menu($cm, $CFG->wwwroot . '/mod/assignment/submissions.php?id=' . $this->cm->id);
 
         /// Get all ppl that are allowed to submit assignments
         if ($users = get_users_by_capability($context, 'mod/assignment:submit', 'u.id', '', '', '', $currentgroup, '', false)) {
@@ -1300,7 +1300,7 @@ class assignment_base {
                     }
                 }
 
-				$userlink = '<a href="' . $CFG->wwwroot . '/user/view.php?id=' . $auser->id . '&amp;course=' . $course->id . '">' . fullname($auser) . '</a>';
+		$userlink = '<a href="' . $CFG->wwwroot . '/user/view.php?id=' . $auser->id . '&amp;course=' . $course->id . '">' . fullname($auser, has_capability('moodle/site:viewfullnames', $this->context)) . '</a>';
                 $row = array($picture, $userlink, $grade, $comment, $studentmodified, $teachermodified, $status, $finalgrade);
                 if ($uses_outcomes) {
                     $row[] = $outcomes;

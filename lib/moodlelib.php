@@ -418,16 +418,16 @@ function clean_param($param, $type) {
             return (float)$param;  // Convert to integer
 
         case PARAM_ALPHA:        // Remove everything not a-z
-            return eregi_replace('[^a-zA-Z]', '', $param);
+            return preg_replace('/[^a-zA-Z]/i', '', $param);
 
         case PARAM_ALPHANUM:     // Remove everything not a-zA-Z0-9
-            return eregi_replace('[^A-Za-z0-9]', '', $param);
+            return preg_replace('/[^A-Za-z0-9]/i', '', $param);
 
         case PARAM_ALPHAEXT:     // Remove everything not a-zA-Z/_-
-            return eregi_replace('[^a-zA-Z/_-]', '', $param);
+            return preg_replace('/[^a-zA-Z\/_-]/i', '', $param);
 
         case PARAM_SEQUENCE:     // Remove everything not 0-9,
-            return eregi_replace('[^0-9,]', '', $param);
+            return preg_replace('/[^0-9,]/i', '', $param);
 
         case PARAM_BOOL:         // Convert to 1 or 0
             $tempstr = strtolower($param);
@@ -447,27 +447,25 @@ function clean_param($param, $type) {
             return clean_param(strip_tags($param, '<lang><span>'), PARAM_CLEAN);
 
         case PARAM_SAFEDIR:      // Remove everything not a-zA-Z0-9_-
-            return eregi_replace('[^a-zA-Z0-9_-]', '', $param);
+            return preg_replace('/[^a-zA-Z0-9_-]/i', '', $param);
 
         case PARAM_CLEANFILE:    // allow only safe characters
             return clean_filename($param);
 
         case PARAM_FILE:         // Strip all suspicious characters from filename
-            $param = ereg_replace('[[:cntrl:]]|[<>"`\|\':\\/]', '', $param);
-            $param = ereg_replace('\.\.+', '', $param);
-            if($param == '.') {
+            $param = preg_replace('~[[:cntrl:]]|[&<>"`\|\':\\\\/]~u', '', $param);
+            $param = preg_replace('~\.\.+~', '', $param);
+            if ($param === '.') {
                 $param = '';
             }
             return $param;
 
         case PARAM_PATH:         // Strip all suspicious characters from file path
-            $param = str_replace('\\\'', '\'', $param);
-            $param = str_replace('\\"', '"', $param);
             $param = str_replace('\\', '/', $param);
-            $param = ereg_replace('[[:cntrl:]]|[<>"`\|\':]', '', $param);
-            $param = ereg_replace('\.\.+', '', $param);
-            $param = ereg_replace('//+', '/', $param);
-            return ereg_replace('/(\./)+', '/', $param);
+            $param = preg_replace('~[[:cntrl:]]|[&<>"`\|\':]~u', '', $param);
+            $param = preg_replace('~\.\.+~', '', $param);
+            $param = preg_replace('~//+~', '/', $param);
+            return preg_replace('~/(\./)+~', '/', $param);
 
         case PARAM_HOST:         // allow FQDN or IPv4 dotted quad
             $param = preg_replace('/[^\.\d\w-]/','', $param ); // only allowed chars
@@ -1333,19 +1331,20 @@ function usergetdate($time, $timezone=99) {
     $time += dst_offset_on($time, $strtimezone);
     $time += intval((float)$timezone * HOURSECS);
 
-    $datestring = gmstrftime('%S_%M_%H_%d_%m_%Y_%w_%j_%A_%B', $time);
+    $datestring = gmstrftime('%B_%A_%j_%Y_%m_%w_%d_%H_%M_%S', $time);
 
+    //be careful to ensure the returned array matches that produced by getdate() above
     list(
-        $getdate['seconds'],
-        $getdate['minutes'],
-        $getdate['hours'],
-        $getdate['mday'],
-        $getdate['mon'],
-        $getdate['year'],
-        $getdate['wday'],
-        $getdate['yday'],
+        $getdate['month'],
         $getdate['weekday'],
-        $getdate['month']
+        $getdate['yday'],
+        $getdate['year'],
+        $getdate['mon'],
+        $getdate['wday'],
+        $getdate['mday'],
+        $getdate['hours'],
+        $getdate['minutes'],
+        $getdate['seconds']
     ) = explode('_', $datestring);
 
     return $getdate;
@@ -2513,7 +2512,7 @@ function sync_metacourse($course) {
     // not in the meta coure. That is, get a list of the assignments that need to be made.
     if (!$assignments = get_records_sql("
             SELECT
-                ra.id, ra.roleid, ra.userid
+                ra.id, ra.roleid, ra.userid, ra.hidden
             FROM
                 {$CFG->prefix}role_assignments ra,
                 {$CFG->prefix}context con,
@@ -2574,7 +2573,7 @@ function sync_metacourse($course) {
 
     // Make the assignments.
     foreach ($assignments as $assignment) {
-        $success = role_assign($assignment->roleid, $assignment->userid, 0, $context->id) && $success;
+        $success = role_assign($assignment->roleid, $assignment->userid, 0, $context->id, 0, 0, $assignment->hidden) && $success;
     }
 
     return $success;
@@ -2993,6 +2992,9 @@ function create_user_record($username, $password, $auth='manual') {
     }
     $newuser->confirmed = 1;
     $newuser->lastip = getremoteaddr();
+    if (empty($newuser->lastip)) {
+        $newuser->lastip = '0.0.0.0';
+    }
     $newuser->timemodified = time();
     $newuser->mnethostid = $CFG->mnet_localhost_id;
 
@@ -3162,6 +3164,9 @@ function guest_user() {
         $newuser->confirmed = 1;
         $newuser->lang = $CFG->lang;
         $newuser->lastip = getremoteaddr();
+        if (empty($newuser->lastip)) {
+            $newuser->lastip = '0.0.0.0';
+        }
     }
 
     return $newuser;
@@ -3324,7 +3329,7 @@ function complete_user_login($user) {
     $USER = $user; // this is required because we need to access preferences here!
 
     if (!empty($CFG->regenloginsession)) {
-        // please note this setting may break some auth plugins
+        // please note this setting may break some auth plugins        
         session_regenerate_id();
     }
 
@@ -4260,6 +4265,12 @@ function email_to_user($user, $from, $subject, $messagetext, $messagehtml='', $a
     if (!empty($CFG->noemailever)) {
         // hidden setting for development sites, set in config.php if needed
         return true;
+    }
+
+    if (!empty($CFG->divertallemailsto)) {
+        $subject = "[DIVERTED {$user->email}] $subject";
+        $user = clone($user);
+        $user->email = $CFG->divertallemailsto;
     }
 
     // skip mail to suspended users
@@ -6760,8 +6771,8 @@ function notify_login_failures() {
                 "\n\n".get_string('notifyloginfailuresmessageend','',$CFG->wwwroot)."\n\n";
 
     /// For each destination, send mail
+        mtrace('Emailing admins about '. $count .' failed login attempts');
         foreach ($recip as $admin) {
-            mtrace('Emailing '. $admin->username .' about '. $count .' failed login attempts');
             email_to_user($admin,get_admin(), $subject, $body);
         }
 
@@ -7828,15 +7839,15 @@ function unzip_show_status($list, $removepath, $removepath2) {
             echo "<tr>";
             $item['filename'] = str_replace(cleardoubleslashes($removepath).'/', "", $item['filename']);
             $item['filename'] = str_replace(cleardoubleslashes($removepath2).'/', "", $item['filename']);
-            print_cell("left", s(clean_param($item['filename'], PARAM_PATH)));
+            echo '<td align="left" style="white-space:nowrap ">'.s(clean_param($item['filename'], PARAM_PATH)).'</td>';
             if (! $item['folder']) {
-                print_cell("right", display_size($item['size']));
+                echo '<td align="right" style="white-space:nowrap ">'.display_size($item['size']).'</td>';
             } else {
                 echo "<td>&nbsp;</td>";
             }
             $filedate  = userdate($item['mtime'], get_string("strftimedatetime"));
-            print_cell("right", $filedate);
-            print_cell("right", $item['status']);
+            echo '<td align="right" style="white-space:nowrap ">'.$filedate.'</td>';
+            echo '<td align="right" style="white-space:nowrap ">'.$item['status'].'</td>';
             echo "</tr>";
         }
         echo "</table>";

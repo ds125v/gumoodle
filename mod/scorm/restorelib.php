@@ -49,22 +49,11 @@
             $scorm->reference = backup_todb($info['MOD']['#']['REFERENCE']['0']['#']);
             $scorm->version = backup_todb($info['MOD']['#']['VERSION']['0']['#']);
             $scorm->md5hash = backup_todb($info['MOD']['#']['MD5HASH']['0']['#']);
-            $scorm->maxgrade = backup_todb($info['MOD']['#']['MAXGRADE']['0']['#']);
-            if (!is_int($scorm->maxgrade)) {
-                $scorm->maxgrade = 0;
-            }
-            $scorm->updatefreq = backup_todb($info['MOD']['#']['UPDATEFREQ']['0']['#']);
-            if (!is_int($scorm->updatefreq)) {
-                $scorm->updatefreq = 0;
-            }
-            $scorm->maxattempt = backup_todb($info['MOD']['#']['MAXATTEMPT']['0']['#']);
-            if (!is_int($scorm->maxattempt)) {
-                $scorm->maxattempt = 0;
-            }
-            $scorm->grademethod = backup_todb($info['MOD']['#']['GRADEMETHOD']['0']['#']);
-            if (!is_int($scorm->grademethod)) {
-                $scorm->grademethod = 0;
-            }
+            $scorm->maxgrade = (double)backup_todb($info['MOD']['#']['MAXGRADE']['0']['#']);
+            $scorm->updatefreq = (int)backup_todb($info['MOD']['#']['UPDATEFREQ']['0']['#']);
+            $scorm->maxattempt = (int)backup_todb($info['MOD']['#']['MAXATTEMPT']['0']['#']);
+            $scorm->grademethod = (int)backup_todb($info['MOD']['#']['GRADEMETHOD']['0']['#']);
+            $scorm->whatgrade = (int)backup_todb($info['MOD']['#']['WHATGRADE']['0']['#']);
             if ($restore->backup_version < 2005041500) {
                 $scorm->datadir = substr(backup_todb($info['MOD']['#']['DATADIR']['0']['#']),1);
             } else {
@@ -120,6 +109,9 @@
                 $scorm->height = backup_todb($info['MOD']['#']['HEIGHT']['0']['#']);
                 if ($scorm->height == 0) {
                     $scorm->height = 500;
+                }
+                if (!empty($info['MOD']['#']['OPTIONS']['0']['#'])) {
+                    $scorm->options = backup_todb($info['MOD']['#']['OPTIONS']['0']['#']);
                 }
             }
             $scorm->timemodified = time();
@@ -512,11 +504,14 @@
 
         //Get the discussions array
         $mapinfos = array();
-        
+        //backward compatibility with old backups.
         if (!empty($info['MOD']['#']['SEQ_MAPINFO']['0']['#']['SEQ_MAPINF'])) {
             $mapinfos = $info['MOD']['#']['SEQ_MAPINFO']['0']['#']['SEQ_MAPINF'];
         }
-
+        //correct way of getting data.
+        if (!empty($info['MOD']['#']['SEQ_MAPINFOS']['0']['#']['SEQ_MAPINFO'])) {
+            $mapinfos = $info['MOD']['#']['SEQ_MAPINFOS']['0']['#']['SEQ_MAPINFO'];
+        }
         
         for($i = 0; $i < sizeof($mapinfos); $i++) {
             $map_info = $mapinfos[$i];

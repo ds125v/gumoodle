@@ -1,11 +1,15 @@
 <?php //$Id$
 
+if (!defined('MOODLE_INTERNAL')) {
+    die('Direct access to this script is forbidden.');    ///  It must be included from a Moodle page
+}
+
 require_once $CFG->libdir.'/formslib.php';
 
 class login_change_password_form extends moodleform {
 
     function definition() {
-        global $USER;
+        global $USER, $CFG;
 
         $mform =& $this->_form;
 
@@ -14,6 +18,9 @@ class login_change_password_form extends moodleform {
         // visible elements
         $mform->addElement('static', 'username', get_string('username'), $USER->username);
 
+        if (!empty($CFG->passwordpolicy)){
+            $mform->addElement('static', 'passwordpolicyinfo', '', print_password_policy());
+        }
         $mform->addElement('password', 'password', get_string('oldpassword'));
         $mform->addRule('password', get_string('required'), 'required', null, 'client');
         $mform->setType('password', PARAM_RAW);
