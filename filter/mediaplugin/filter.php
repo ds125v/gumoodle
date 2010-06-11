@@ -42,27 +42,27 @@ function mediaplugin_filter($courseid, $text) {
 
     if ($CFG->filter_mediaplugin_enable_swf) {
         $search = '/<a.*?href="([^<]+\.swf)(\?d=([\d]{1,4}%?)x([\d]{1,4}%?))?"[^>]*>.*?<\/a>/is';
-        $newtext = preg_replace_callback($search, 'mediaplugin_filter_swf_callback', $newtext);
+        $newtext = preg_replace_callback($search, 'mediaplugin_filter_jw_callback', $newtext);
     }
 
     if ($CFG->filter_mediaplugin_enable_flv) {
         $search = '/<a.*?href="([^<]+\.flv)(\?d=([\d]{1,4}%?)x([\d]{1,4}%?))?"[^>]*>.*?<\/a>/is';
-        $newtext = preg_replace_callback($search, 'mediaplugin_filter_flv_callback', $newtext);
+        $newtext = preg_replace_callback($search, 'mediaplugin_filter_jw_callback', $newtext);
     }
 
     if ($CFG->filter_mediaplugin_enable_mov) {
         $search = '/<a.*?href="([^<]+\.mov)(\?d=([\d]{1,4}%?)x([\d]{1,4}%?))?"[^>]*>.*?<\/a>/is';
-        $newtext = preg_replace_callback($search, 'mediaplugin_filter_qt_callback', $newtext);
+        $newtext = preg_replace_callback($search, 'mediaplugin_filter_jw_callback', $newtext);
 
         // MDL-18658
         $search = '/<a.*?href="([^<]+\.mp4)(\?d=([\d]{1,4}%?)x([\d]{1,4}%?))?"[^>]*>.*?<\/a>/is';
         $newtext = preg_replace_callback($search, 'mediaplugin_filter_jw_callback', $newtext);
 
         $search = '/<a.*?href="([^<]+\.m4v)(\?d=([\d]{1,4}%?)x([\d]{1,4}%?))?"[^>]*>.*?<\/a>/is';
-        $newtext = preg_replace_callback($search, 'mediaplugin_filter_qt_callback', $newtext);
+        $newtext = preg_replace_callback($search, 'mediaplugin_filter_jw_callback', $newtext);
 
         $search = '/<a.*?href="([^<]+\.m4a)(\?d=([\d]{1,4}%?)x([\d]{1,4}%?))?"[^>]*>.*?<\/a>/is';
-        $newtext = preg_replace_callback($search, 'mediaplugin_filter_qt_callback', $newtext);
+        $newtext = preg_replace_callback($search, 'mediaplugin_filter_jw_callback', $newtext);
     }
 
     if ($CFG->filter_mediaplugin_enable_wmv) {
@@ -72,7 +72,7 @@ function mediaplugin_filter($courseid, $text) {
 
     if ($CFG->filter_mediaplugin_enable_mpg) {
         $search = '/<a.*?href="([^<]+\.mpe?g)(\?d=([\d]{1,4}%?)x([\d]{1,4}%?))?"[^>]*>.*?<\/a>/is';
-        $newtext = preg_replace_callback($search, 'mediaplugin_filter_qt_callback', $newtext);
+        $newtext = preg_replace_callback($search, 'mediaplugin_filter_jw_callback', $newtext);
     }
 
     if ($CFG->filter_mediaplugin_enable_avi) {
@@ -317,6 +317,8 @@ function mediaplugin_filter_qt_callback($link, $autostart=false) {
 
 function mediaplugin_filter_jw_callback($link, $autostart=false) {
     global $CFG;
+    static $count;
+    $count++;
     $url = $link[1];
     $width  = empty($link[3]) ? '400' : $link[3];
     $height = empty($link[4]) ? '300' : $link[4];
