@@ -56,7 +56,7 @@ function mediaplugin_filter($courseid, $text) {
 
         // MDL-18658
         $search = '/<a.*?href="([^<]+\.mp4)(\?d=([\d]{1,4}%?)x([\d]{1,4}%?))?"[^>]*>.*?<\/a>/is';
-        $newtext = preg_replace_callback($search, 'mediaplugin_filter_qt_callback', $newtext);
+        $newtext = preg_replace_callback($search, 'mediaplugin_filter_jw_callback', $newtext);
 
         $search = '/<a.*?href="([^<]+\.m4v)(\?d=([\d]{1,4}%?)x([\d]{1,4}%?))?"[^>]*>.*?<\/a>/is';
         $newtext = preg_replace_callback($search, 'mediaplugin_filter_qt_callback', $newtext);
@@ -313,6 +313,27 @@ function mediaplugin_filter_qt_callback($link, $autostart=false) {
   </object>
 <!--<![endif]-->
 </object></span>';
+}
+
+function mediaplugin_filter_jw_callback($link, $autostart=false) {
+    global $CFG;
+    $url = $link[1];
+    $width  = empty($link[3]) ? '400' : $link[3];
+    $height = empty($link[4]) ? '300' : $link[4];
+    $autostart = $autostart ? 'true' : 'false';
+    $id = 'filter_swf_'.time().$count; //we need something unique because it might be stored in text cache
+
+    return $link[0].
+'<span id="'.$id.'" class="mediaplugin">
+  <script type="text/javascript" src="'.$CFG->wwwroot.'/filter/mediaplugin/swfobject.js"></script>
+  <script type="text/javascript">
+    var s1 = new SWFObject("'.$CFG->wwwroot.'/filter/mediaplugin/jwplayer.swf","jwplayer","'.$width.'","'.$height.'","9");
+    s1.addParam("allowfullscreen","true");
+    s1.addParam("autostart","'.$autostart.'");
+    s1.addParam("flashvars","file='.$url.'");
+    s1.write("'.$id.'");
+  </script>
+</span>';
 }
 
 ?>
