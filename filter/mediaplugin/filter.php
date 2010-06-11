@@ -137,14 +137,10 @@ function mediaplugin_filter_mp3_callback($link) {
     $url = addslashes_js($link[1]);
 
     return $link[0].
-'<span class="mediaplugin mediaplugin_mp3" id="'.$id.'">('.get_string('mp3audio', 'mediaplugin').')</span>
+'<span class="mediaplugin mediaplugin_mp3" id="'.$id.'">('.get_string('mp3audio', 'mediaplugin').')
 <script type="text/javascript">
-//<![CDATA[
-  var FO = { movie:"'.$CFG->wwwroot.'/filter/mediaplugin/mp3player.swf?src='.$url.'",
-    width:"90", height:"15", majorversion:"6", build:"40", flashvars:"'.$c.'", quality: "high" };
-  UFO.create(FO, "'.$id.'");
-//]]>
-</script>';
+AudioPlayer.embed("'.$id.'", {soundFile: "'.$url.'"});
+</script></span>';
 }
 
 function mediaplugin_filter_swf_callback($link) {
