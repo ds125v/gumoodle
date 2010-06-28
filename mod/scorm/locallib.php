@@ -90,8 +90,9 @@ function scorm_get_hidetoc_array(){
  */
 function scorm_get_updatefreq_array(){
     return array(0 => get_string('never'),
-                 1 => get_string('everyday','scorm'),
-                 2 => get_string('everytime','scorm'));
+                 //1 => get_string('onchanges','scorm'),
+                 2 => get_string('everyday','scorm'),
+                 3 => get_string('everytime','scorm'));
 }
 
 /**
@@ -297,6 +298,7 @@ function scorm_get_scoes($id,$organisation=false) {
 }
 
 function scorm_insert_track($userid,$scormid,$scoid,$attempt,$element,$value) {
+    global $CFG;
     $id = null;
     if ($track = get_record_select('scorm_scoes_track',"userid='$userid' AND scormid='$scormid' AND scoid='$scoid' AND attempt='$attempt' AND element='$element'")) {
         if ($element != 'x.start.time' ) { //don't update x.start.time - keep the original value.
@@ -319,7 +321,7 @@ function scorm_insert_track($userid,$scormid,$scoid,$attempt,$element,$value) {
         (($element == 'cmi.core.lesson_status' || $element == 'cmi.completion_status') && ($track->value == 'completed' || $track->value == 'passed'))) {
         $scorm = get_record('scorm', 'id', $scormid);
         $grademethod = $scorm->grademethod % 10;
-        include_once('lib.php');
+        include_once($CFG->dirroot.'/mod/scorm/lib.php');
         scorm_update_grades($scorm, $userid);
     }
 
@@ -734,14 +736,17 @@ function scorm_view_display ($user, $scorm, $action, $cm, $boxwidth='') {
           </div>
 <?php
 }
-function scorm_simple_play($scorm,$user) {
+function scorm_simple_play($scorm,$user, $context) {
     $result = false;
 
     if ($scorm->updatefreq == UPDATE_EVERYTIME) {
         scorm_parse($scorm);
     }
+    if (has_capability('mod/scorm:viewreport', $context)) { //if this user can view reports, don't skipview so they can see links to reports. 
+        return $result;
+    }
 
-    $scoes = get_records_select('scorm_scoes','scorm='.$scorm->id.' AND launch<>\''.sql_empty().'\'');
+    $scoes = get_records_select('scorm_scoes','scorm='.$scorm->id.' AND launch<>\''.sql_empty().'\'', 'id', 'id');
 
     if ($scoes) {
         if ($scorm->skipview >= 1) {
@@ -757,26 +762,7 @@ function scorm_simple_play($scorm,$user) {
     }
     return $result;
 }
-/*
-function scorm_simple_play($scorm,$user) {
-    $result = false;
-    if ($scoes = get_records_select('scorm_scoes','scorm='.$scorm->id.' AND launch<>""')) {
-        if (count($scoes) == 1) {
-            if ($scorm->skipview >= 1) {
-                $sco = current($scoes);
-                if (scorm_get_tracks($sco->id,$user->id) === false) {
-                    header('Location: player.php?a='.$scorm->id.'&scoid='.$sco->id);
-                    $result = true;
-                } else if ($scorm->skipview == 2) {
-                    header('Location: player.php?a='.$scorm->id.'&scoid='.$sco->id);
-                    $result = true;
-                }
-            }
-        }
-    }
-    return $result;
-}
-*/
+
 function scorm_parse($scorm) {
     global $CFG;
 

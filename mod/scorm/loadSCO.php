@@ -1,6 +1,6 @@
 <?php  // $Id$
     require_once('../../config.php');
-    require_once('locallib.php');
+    require_once($CFG->dirroot.'/mod/scorm/locallib.php');
 
     $id = optional_param('id', '', PARAM_INT);       // Course Module ID, or
     $a = optional_param('a', '', PARAM_INT);         // scorm ID
@@ -176,6 +176,18 @@
                                                     location = "<?php echo $result ?>";
                                                 }
                                             }, 1000);
+            }
+            removelink();
+        }
+        function removelink() {
+            try {
+                if (window.opener.document.getElementById('altpopuplink')) {
+                    window.opener.document.getElementById('altpopuplink').style.display='none';
+                } else {
+                    window.opener.document.all['altpopuplink'].style.display='none';
+                }
+            } catch(error) {
+                // nothing to be done
             }
         }
         //]]>
