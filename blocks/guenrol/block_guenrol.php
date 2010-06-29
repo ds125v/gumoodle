@@ -70,14 +70,11 @@ class block_guenrol extends block_base {
         // get the users who are enrolled in the course
         $enrolled_in_course_count = get_enrolled_users( $userlist, $role, $coursecontext );
 
-        // get data from ldap server
-        get_ldap_data( $userlist );
-
         // output
         $this->content->text = "<p><center><img src=\"{$CFG->wwwroot}/blocks/guenrol/images/logo.png\" /></center></p>";
 
         // warning if no users
-        if (empty($dbusercount)) {
+        if (empty($dbuserscount)) {
             $this->content->text .= get_string('nousers','block_guenrol');
         }
      
