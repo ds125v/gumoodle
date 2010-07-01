@@ -78,9 +78,9 @@ class block_guenrol extends block_base {
             $this->content->text .= get_string('nousers','block_guenrol');
         }
      
-        $this->content->text .= "<p>".get_string('registryusers','block_guenrol').": <b>$dbuserscount</b></p>";
-        $this->content->text .= "<p>".get_string('moodleusers','block_guenrol').": <b>$existing_profile_count</b></p>";
-        $this->content->text .= "<p>".get_string('enrolledincourse','block_guenrol').": <b>$enrolled_in_course_count</b></p>";
+        $this->content->text .= "<p><center>".get_string('registryusers','block_guenrol').": <b>$dbuserscount</center></b></p>";
+        $this->content->text .= "<p><center>".get_string('moodleusers','block_guenrol').": <b>$existing_profile_count</center></b></p>";
+        $this->content->text .= "<p><center>".get_string('enrolledincourse','block_guenrol').": <b>$enrolled_in_course_count</center></b></p>";
         $this->content->text .= "<p><center><a href=\"{$CFG->wwwroot}/blocks/guenrol/view.php?id={$COURSE->id}\">More....</a></center></p>";
 
         $this->content->footer = '';
