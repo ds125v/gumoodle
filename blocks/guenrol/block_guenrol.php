@@ -70,6 +70,14 @@ class block_guenrol extends block_base {
         // get the users who are enrolled in the course
         $enrolled_in_course_count = get_enrolled_users( $userlist, $role, $coursecontext );
 
+        // work out how many accounts need to be added
+        $toaddcount = 0;
+        foreach ($userlist as $item) {
+            if ($item->in_db and empty($item->enrol_method)) {
+                $toaddcount++;
+            }
+        }
+
         // output
         $this->content->text = "<p><center><img src=\"{$CFG->wwwroot}/blocks/guenrol/images/logo.png\" /></center></p>";
 
@@ -81,6 +89,14 @@ class block_guenrol extends block_base {
         $this->content->text .= "<p><center>".get_string('registryusers','block_guenrol').": <b>$dbuserscount</center></b></p>";
         $this->content->text .= "<p><center>".get_string('moodleusers','block_guenrol').": <b>$existing_profile_count</center></b></p>";
         $this->content->text .= "<p><center>".get_string('enrolledincourse','block_guenrol').": <b>$enrolled_in_course_count</center></b></p>";
+        // add button (if required)
+        if (!empty($toaddcount)) {
+            $this->content->text .= "<form action=\"{$CFG->wwwroot}/blocks/guenrol/view.php?id={$COURSE->id}\" method=\"put\">";
+            $this->content->text .= "<submit name=\"process\" value=\"Press to add $toaddcount users\" />";
+            $this->content->text .= "</form>";
+        }
+
+        // more... button
         $this->content->text .= "<p><center><a href=\"{$CFG->wwwroot}/blocks/guenrol/view.php?id={$COURSE->id}\">More....</a></center></p>";
 
         $this->content->footer = '';
