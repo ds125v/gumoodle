@@ -1,5 +1,6 @@
 <?php
 
+$string['addusers'] = 'Enrol $a new users';
 $string['assignedcourseas'] = 'Assigned to course as';
 $string['blockname'] = 'GU Course Enrol';
 $string['coursecode'] = 'Course Code(s)';
@@ -16,6 +17,7 @@ $string['moodleusers'] = 'Users with Moodle Profiles';
 $string['name'] = 'Name';
 $string['newprofilecreated'] = 'New profile created';
 $string['nocoursecode'] = '<p>No course code defined in settings</p>';
+$string['noldap'] = 'No record in LDAP, cannot add!';
 $string['notdatabase'] = 'Not database enrollment, nothing removed ';
 $string['nothingtodo'] = 'Nothing to do - all up to date';
 $string['nousers'] = '<p><strong>Warning: no users recorded in the database. Is the course code in settings correct?</strong></p>';

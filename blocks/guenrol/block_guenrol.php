@@ -13,7 +13,8 @@ class block_guenrol extends block_base {
      **/
     function init() {
         $this->title = get_string('blockname', 'block_guenrol');
-        $this->version = 2009083101;  // YYYYMMDDXX
+        $this->version = 2010070704;  // YYYYMMDDXX
+        $this->cron = 1;
     }
 
     /**
@@ -71,10 +72,13 @@ class block_guenrol extends block_base {
         $enrolled_in_course_count = get_enrolled_users( $userlist, $role, $coursecontext );
 
         // work out how many accounts need to be added
+        // exclude accounts in enrol db but not ldap
         $toaddcount = 0;
         foreach ($userlist as $item) {
             if ($item->in_db and empty($item->enrol_method)) {
-                $toaddcount++;
+                if (!(empty($item->profile_exists) and empty($item->in_ldap))) {
+                    $toaddcount++;
+                }
             }
         }
 
@@ -91,9 +95,8 @@ class block_guenrol extends block_base {
         $this->content->text .= "<p><center>".get_string('enrolledincourse','block_guenrol').": <b>$enrolled_in_course_count</center></b></p>";
         // add button (if required)
         if (!empty($toaddcount)) {
-            $this->content->text .= "<form action=\"{$CFG->wwwroot}/blocks/guenrol/view.php?id={$COURSE->id}\" method=\"put\">";
-            $this->content->text .= "<submit name=\"process\" value=\"Press to add $toaddcount users\" />";
-            $this->content->text .= "</form>";
+            $this->content->text .= "<p><center><a href=\"{$CFG->wwwroot}/blocks/guenrol/view.php?action=process&amp;id={$COURSE->id}&amp;sesskey=".sesskey()."\">";
+            $this->content->text .= get_string('addusers','block_guenrol',$toaddcount)."</a></center></p>";
         }
 
         // more... button
@@ -103,7 +106,64 @@ class block_guenrol extends block_base {
         return $this->content;
     }
 
+    function cron() {
 
+        // in this case we are just going to iterate over all visible
+        // courses with courseid defined
+        mtrace( 'Performing UofG automated enrollments' );
+
+        // we're going to time how long this takes
+        $starttime = microtime();
+        $controltime = time();
+
+        // get courses
+        $courses = get_records_select('course',"idnumber<>'' and visible=1");
+
+        // iterate over courses doing stuff
+        foreach ($courses as $course) {
+
+            // does this course have a timestamp
+            if ($guenrol_time = get_record( 'block_guenrol_time','course',$course->id)) {
+                 $lasttime = $guenrol_time->timestamp;
+
+                 // only run this once a day or if idnumber changes for each course
+                 $nexttime = $lasttime + 84000;
+                 if ((time()<$nexttime) and ($course->idnumber == $guenrol_time->idnumber)) {
+                     continue;
+                 }
+
+                 // write new timestamp
+                 $guenrol_time->timestamp = time();
+                 update_record( 'block_guenrol_time',$guenrol_time );
+            }
+            else {
+          
+                // write new timestamp
+                $guenrol_time = null;
+                $guenrol_time->course = $course->id;
+                $guenrol_time->timestamp = time();
+                $guenrol_time->idnumber = $course->idnumber;
+                insert_record( 'block_guenrol_time',$guenrol_time );
+            }
+
+            $role = get_default_course_role( $course );
+            $context = get_context_instance( CONTEXT_COURSE, $course->id );
+            cron_process( $course, $context, $role );
+
+            // if we've taken more than n seconds then give up for now
+            // we'll get some more on the next cron run 
+            $timesofar = time() - $controltime;
+            if ($timesofar > 300) {
+                mtrace( 'out of time on this run of guenrol' );
+                break;
+            }
+        }
+
+        // how long did it take
+        $endtime = microtime();
+        $elapsedtime = microtime_diff( $starttime, $endtime );
+        mtrace( "Time taken to run guenrol cron = ".$elapsedtime );
+    }
 
 }
 
