@@ -240,7 +240,7 @@
     function cron_process( $course, $context, $role ) {
         global $CFG;
 
-        $localcoursefield = $CFG->localcoursefield;
+        $localcoursefield = $CFG->enrol_localcoursefield;
         mtrace( 'processing course '.$course->shortname.' ('.$course->$localcoursefield.') ' );
         $userlist = get_userlist( $course, $context, $role );
         process_enrollments( $userlist, $course, $context, $role, true );

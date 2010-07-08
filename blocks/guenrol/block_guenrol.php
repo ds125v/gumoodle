@@ -18,6 +18,13 @@ class block_guenrol extends block_base {
     }
 
     /**
+     * we have global settings
+     */
+    function has_config() {
+        return true;
+    }
+
+    /**
      * Gets the contents of the block (course view)
      *
      * @return object An object with an array of items, an array of icons, and a string for the footer
@@ -33,7 +40,7 @@ class block_guenrol extends block_base {
         $localcoursefield = $CFG->enrol_localcoursefield;
         $coursecode = addslashes( $COURSE->$localcoursefield );
         if (empty($coursecode)) {
-            $this->content->text = get_string('nocoursecode','block_guenrol');
+            $this->content->text = get_string('nocoursecode','block_guenrol',$localcoursefield);
             $this->content->footer = '';
             return $this->content;
         }
@@ -113,15 +120,25 @@ class block_guenrol extends block_base {
         // courses with courseid defined
         mtrace( 'Performing UofG automated enrollments' );
 
+        // check config settings
+        if (empty($CFG->block_guenrol_secondsbetweencron)) {
+            set_config('block_guenrol_secondsbetweencron',84000);
+        } 
+        if (empty($CFG->block_guenrol_maxcronseconds)) {
+            set_config('block_guenrol_maxcronseconds',300);
+        }
+
         // field name for matching course codes in course object
-        $localcoursefield = $CFG->localcoursefield;
+        $localcoursefield = $CFG->enrol_localcoursefield;
 
         // we're going to time how long this takes
         $starttime = microtime();
         $controltime = time();
 
-        // get courses
+        // get courses, then randomise to give them a chance of being processed
+        // nb: shuffle stuffs the array index so don't rely on it !!
         $courses = get_records_select('course',"$localcoursefield<>'' and visible=1");
+        shuffle( $courses );
 
         // iterate over courses doing stuff
         foreach ($courses as $course) {
@@ -131,13 +148,14 @@ class block_guenrol extends block_base {
                  $lasttime = $guenrol_time->timestamp;
 
                  // only run this once a day or if idnumber changes for each course
-                 $nexttime = $lasttime + 84000;
+                 $nexttime = $lasttime + $CFG->block_guenrol_secondsbetweencron;
                  if ((time()<$nexttime) and ($course->$localcoursefield == $guenrol_time->idnumber)) {
                      continue;
                  }
 
-                 // write new timestamp
+                 // update timestamp and course codes
                  $guenrol_time->timestamp = time();
+                 $guenrol_time->idnumber = $course->$localcoursefield;
                  update_record( 'block_guenrol_time',$guenrol_time );
             }
             else {
@@ -157,7 +175,7 @@ class block_guenrol extends block_base {
             // if we've taken more than n seconds then give up for now
             // we'll get some more on the next cron run 
             $timesofar = time() - $controltime;
-            if ($timesofar > 300) {
+            if ($timesofar > $CFG->block_guenrol_maxcronseconds) {
                 mtrace( 'out of time on this run of guenrol' );
                 break;
             }
