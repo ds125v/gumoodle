@@ -107,17 +107,21 @@ class block_guenrol extends block_base {
     }
 
     function cron() {
+        global $CFG;
 
         // in this case we are just going to iterate over all visible
         // courses with courseid defined
         mtrace( 'Performing UofG automated enrollments' );
+
+        // field name for matching course codes in course object
+        $localcoursefield = $CFG->localcoursefield;
 
         // we're going to time how long this takes
         $starttime = microtime();
         $controltime = time();
 
         // get courses
-        $courses = get_records_select('course',"idnumber<>'' and visible=1");
+        $courses = get_records_select('course',"$localcoursefield<>'' and visible=1");
 
         // iterate over courses doing stuff
         foreach ($courses as $course) {
@@ -128,7 +132,7 @@ class block_guenrol extends block_base {
 
                  // only run this once a day or if idnumber changes for each course
                  $nexttime = $lasttime + 84000;
-                 if ((time()<$nexttime) and ($course->idnumber == $guenrol_time->idnumber)) {
+                 if ((time()<$nexttime) and ($course->$localcoursefield == $guenrol_time->idnumber)) {
                      continue;
                  }
 
@@ -142,7 +146,7 @@ class block_guenrol extends block_base {
                 $guenrol_time = null;
                 $guenrol_time->course = $course->id;
                 $guenrol_time->timestamp = time();
-                $guenrol_time->idnumber = $course->idnumber;
+                $guenrol_time->idnumber = $course->$localcoursefield;
                 insert_record( 'block_guenrol_time',$guenrol_time );
             }
 

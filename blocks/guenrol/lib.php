@@ -238,7 +238,10 @@
      * another convenience function to process the enrollments for cron
      */
     function cron_process( $course, $context, $role ) {
-        mtrace( 'processing course '.$course->shortname.' ('.$course->idnumber.') ' );
+        global $CFG;
+
+        $localcoursefield = $CFG->localcoursefield;
+        mtrace( 'processing course '.$course->shortname.' ('.$course->$localcoursefield.') ' );
         $userlist = get_userlist( $course, $context, $role );
         process_enrollments( $userlist, $course, $context, $role, true );
     }
