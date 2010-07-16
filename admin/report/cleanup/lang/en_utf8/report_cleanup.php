@@ -7,6 +7,7 @@ $string['confirmbutton'] = 'Click to DELETE files';
 $string['coursefile'] = 'Course/File';
 $string['delete'] = 'Delete $a old files';
 $string['deleted'] = 'Deleted: $a';
+$string['deletefailed'] = 'Failed to delete $a';
 $string['filesize'] = 'File size';
 $string['heading'] = 'Cleanup unused files';
 $string['modified'] = 'Modified date';

@@ -41,7 +41,12 @@ if ($action=='confirmed' and confirm_sesskey()) {
 
     // delete the files
     foreach ($filelist as $path) {
-        echo "<li>".get_string('deleted','report_cleanup',$path)."</li>\n";
+        if (unlink($path)) {
+            echo "<li>".get_string('deleted','report_cleanup',$path)."</li>\n";
+        }
+        else {
+            echo "<li>".get_string('deletefailed','report_cleanup',$path)."</li>\n";
+        }
     }
 
     // close the page
@@ -97,7 +102,6 @@ foreach ($courses as $course) {
             $path = "$backup/$file";
             $modified = filemtime( $path );
             $filesize = filesize( $path );
-            $totalfilesize += $filesize;
 
             // it needs to be older than $age before we care about it
             if ($modified < $oldest) {
@@ -105,6 +109,7 @@ foreach ($courses as $course) {
                 $human_size = display_size( $filesize );
                 $displayfiles .= "<tr class=\"folder\"><td>$file</td><td>$human_modified</td><td align=\"right\">$human_size</td></tr>";
                 $filelist[] = $path;
+                $totalfilesize += $filesize;
             }
         }
     }
