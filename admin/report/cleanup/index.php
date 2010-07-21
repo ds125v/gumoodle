@@ -60,7 +60,7 @@ if ($action=='confirmed' and confirm_sesskey()) {
 // form to select age
 print_box_start();
 echo "<form action=\"{$CFG->wwwroot}/admin/report/cleanup/index.php\" method=\"post\">\n";
-echo "<input type=\"hidden\" name=\"sesskey\" value=\"".sesskey."\" />\n";
+echo "<input type=\"hidden\" name=\"sesskey\" value=\"".sesskey()."\" />\n";
 echo get_string('ageindays','report_cleanup');
 echo "<input type=\"text\" name=\"age\" value=\"$age\" />";
 echo "<input type=\"submit\" value=\"".get_string('update')."\" />\n";

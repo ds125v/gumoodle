@@ -152,6 +152,9 @@ function print_single( $results ) {
         // save the record in case we want to create the user
         $USER->report_guid_ldap = $result;
     }
+    if (!empty($user)) {
+        print_user_picture( $user,1,null,100 );
+    }
     echo "<p><strong>".get_string( 'resultfor','report_guid')." $displayname</strong> $create</p>\n";
     array_prettyprint( $result );
 }
