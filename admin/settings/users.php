@@ -33,6 +33,10 @@ if ($hassiteconfig
     
     $temp->add(new admin_setting_configtext('recaptchapublickey', get_string('recaptchapublickey', 'admin'), get_string('configrecaptchapublickey', 'admin'), '', PARAM_NOTAGS));
     $temp->add(new admin_setting_configtext('recaptchaprivatekey', get_string('recaptchaprivatekey', 'admin'), get_string('configrecaptchaprivatekey', 'admin'), '', PARAM_NOTAGS));
+    // University of Glasgow Hack
+    // add settings to redirect ldap authentication
+    $temp->add(new admin_setting_configtext('guid_novell_url', 'Novell login redirect', 'URL to redirect when Novell login is detected', '', PARAM_NOTAGS));
+    $temp->add(new admin_setting_configtext('guid_novell_message', 'Novell login message', 'Short message to display before redirect when Novell login is detected', '', PARAM_NOTAGS));
     $ADMIN->add('authsettings', $temp);
 
 

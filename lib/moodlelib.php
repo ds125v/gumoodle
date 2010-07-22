@@ -3204,6 +3204,14 @@ function authenticate_user_login($username, $password) {
         }
         $auths = array($auth);
 
+        // University of Glasgow Hack
+        // If auth method is ldap then simply redirect
+        // All we want to do is to tell them they can't log in
+        // with LDAP.
+        if (($auth=='ldap') and !empty($CFG->guid_novell_url)) {
+            redirect( $CFG->guid_novell_url, $CFG->guid_novell_message,2 );
+        }
+
         // University of Glasgow Hack.
         // if the auth method is ldap then do an extra login check 
         // for guid. If successful we'll update the user's auth
