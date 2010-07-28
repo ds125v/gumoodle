@@ -10,8 +10,8 @@ $ldaphost = 'dv-srv1.gla.ac.uk'; // data vault
 $dn = 'o=Gla'; // base dn for search
 
 // get paramters
-$firstname = optional_param( 'firstname','',PARAM_ALPHAEXT );
-$lastname = optional_param( 'lastname','',PARAM_ALPHAEXT );
+$firstname = optional_param( 'firstname','',PARAM_TEXT );
+$lastname = optional_param( 'lastname','',PARAM_TEXT );
 $email = optional_param( 'email','',PARAM_CLEAN );
 $guid = optional_param( 'guid','',PARAM_ALPHANUM );
 $action = optional_param( 'action','',PARAM_ALPHA );
@@ -60,7 +60,8 @@ if ((($action == 'search') or ($action == 'create')) and confirm_sesskey()) {
         admin_externalpage_print_footer();
         die;
     }
-    if (!$result = guid_ldapsearch( $ldaphost, $dn, $filter )) {
+    $result = guid_ldapsearch( $ldaphost, $dn, $filter );
+    if ($result === false) {
         echo "<p><b>LDAP Search failed. Try with debugging on</b></p>\n";
         admin_externalpage_print_footer();
         die;

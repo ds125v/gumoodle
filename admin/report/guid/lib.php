@@ -41,10 +41,18 @@ function guid_ldapsearch( $ldaphost,$ldapdn, $filter ) {
         return false;
     }
 
+    // settings
+    ldap_set_option( $dv,LDAP_OPT_SIZELIMIT, 26 );
+
     // search
-    if (!$search = ldap_search($dv, $ldapdn, $filter)) {
+    if (!$search = @ldap_search($dv, $ldapdn, $filter)) {
         debugging( 'ldap search failed for filter "'.$filter.'" '.ldap_error( $dv ) );
         return false;
+    }
+
+    // check if we got any results
+    if (ldap_count_entries( $dv, $search) < 1) {
+        return array();
     }
 
     // get results
@@ -92,6 +100,23 @@ function print_results( $results ) {
     // only one
 
     global $CFG;
+
+    // check there are some
+    if (empty($results)) {
+        echo "<div class=\"generalbox\">".get_string( 'noresults','report_guid' )."</div>";
+        return;
+    }
+
+    // BODGE: if there are 26 then show 25 and say there are more!!
+    if (count($results)>25) {
+        while( count($results)>25 ) {
+            array_pop( $results );
+        }
+        $more_results = true;
+    }
+    else {
+        $more_results = false;
+    }
     
     // use fancy table thing
     require_once( "{$CFG->libdir}/tablelib.php" );
@@ -125,6 +150,11 @@ function print_results( $results ) {
                 get_string('more','report_guid').'</a>' ) );
         }
         $table->print_html();
+
+        // if results truncated display warning
+        if ($more_results) {
+            echo '<div class="generalbox">'.get_string( 'moreresults','report_guid' ).'</div>';
+        }
     }
     else {
         print_single( $results );
