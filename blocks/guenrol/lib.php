@@ -172,8 +172,9 @@
 
     /*
      * go through the list and process the users
+     * @param $cron boolean are we running from cron job (change messages)
      */
-    function process_enrollments( $userlist, $course, $context, $role ) {
+    function process_enrollments( $userlist, $course, $context, $role, $cron=false ) {
         global $CFG;
 
         // count the number actually processed
@@ -186,7 +187,10 @@
                 continue;
             }
 
-            echo get_string('username','block_guenrol')." $username ";
+            // build info message to display
+            $message = '';
+
+            $message .= get_string('username','block_guenrol')." $username ";
 
             // if no profile but in ldap, create a new user
             if (!$user->profile_exists and !empty($user->in_ldap)) {
@@ -195,28 +199,51 @@
                 $authplugin->update_user_record( $username );                
                 $userid = $newuser->id;
 
-                echo get_string('newprofilecreated','block_guenrol').", ";
+                $message .= get_string('newprofilecreated','block_guenrol').", ";
             }
             else if ($user->profile_exists) {
                 $userid = $user->userid;
             }
 
-            // if should be enrolled but are not the enroll
+            // if no profile and no ldap then warning message
+	    if (!$user->profile_exists and empty($user->in_ldap)) {
+                $message .= get_string( 'noldap','block_guenrol' );
+            }
+
+            // if should be enrolled but are not then enroll
             if (empty($user->enrolled) and $user->in_db and !empty($userid)) {
                 role_assign($role->id, $userid, 0, $context->id, 0, 0, 0, 'database');
 
-                echo get_string('assignedcourseas','block_guenrol')." $role->shortname. ";
+                $message .= get_string('assignedcourseas','block_guenrol')." $role->shortname. ";
             }
 
-            echo "<br />\n";
+            if ($cron) {
+                mtrace( get_string( 'blockname','block_guenrol' ).':'.$message );
+            }
+            else {
+                echo "$message<br />\n";
+            }
             $count++;
         }
 
-        if (empty($count)) {
-            echo '<p><center>'.get_string( 'nothingtodo','block_guenrol' ).'</center></p>';
+        if (!$cron) {
+            if (empty($count)) {
+                echo '<p><center>'.get_string( 'nothingtodo','block_guenrol' ).'</center></p>';
+            }
+            print_continue( "{$CFG->wwwroot}/blocks/guenrol/view.php?id={$course->id}" );
         }
+    }
 
-        print_continue( "{$CFG->wwwroot}/blocks/guenrol/view.php?id={$course->id}" );
+    /**
+     * another convenience function to process the enrollments for cron
+     */
+    function cron_process( $course, $context, $role ) {
+        global $CFG;
+
+        $localcoursefield = $CFG->enrol_localcoursefield;
+        mtrace( 'processing course '.$course->shortname.' ('.$course->$localcoursefield.') ' );
+        $userlist = get_userlist( $course, $context, $role );
+        process_enrollments( $userlist, $course, $context, $role, true );
     }
 
     /*

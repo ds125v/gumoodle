@@ -65,6 +65,7 @@ $table->set_attribute('width', '80%');
 $table->setup();
 
 // count users that are IN registry (in_db) but ARE NOT enrolled (empty(enrolled))
+// BUT exclude broken users - NO profile (empty(profile_exists)) but NO LDAP record (empty(in_ldap))
 // i.e. they need added to the course
 $addcount = 0;
 
@@ -75,7 +76,9 @@ $removecount = 0;
 // add the data
 foreach ($userlist as $username => $user) {
     if ($user->in_db and empty($user->enrolled)) {
-        $addcount++;
+        if (!(empty($user->profile_exists) and empty($user->in_ldap))) {
+            $addcount++;
+        }
     }
     if (!$user->in_db and !empty($user->enrolled)) {
         $removecount++;

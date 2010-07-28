@@ -13,7 +13,15 @@ class block_guenrol extends block_base {
      **/
     function init() {
         $this->title = get_string('blockname', 'block_guenrol');
-        $this->version = 2009083101;  // YYYYMMDDXX
+        $this->version = 2010070704;  // YYYYMMDDXX
+        $this->cron = 1;
+    }
+
+    /**
+     * we have global settings
+     */
+    function has_config() {
+        return true;
     }
 
     /**
@@ -32,7 +40,7 @@ class block_guenrol extends block_base {
         $localcoursefield = $CFG->enrol_localcoursefield;
         $coursecode = addslashes( $COURSE->$localcoursefield );
         if (empty($coursecode)) {
-            $this->content->text = get_string('nocoursecode','block_guenrol');
+            $this->content->text = get_string('nocoursecode','block_guenrol',$localcoursefield);
             $this->content->footer = '';
             return $this->content;
         }
@@ -70,27 +78,114 @@ class block_guenrol extends block_base {
         // get the users who are enrolled in the course
         $enrolled_in_course_count = get_enrolled_users( $userlist, $role, $coursecontext );
 
-        // get data from ldap server
-        get_ldap_data( $userlist );
+        // work out how many accounts need to be added
+        // exclude accounts in enrol db but not ldap
+        $toaddcount = 0;
+        foreach ($userlist as $item) {
+            if ($item->in_db and empty($item->enrol_method)) {
+                if (!(empty($item->profile_exists) and empty($item->in_ldap))) {
+                    $toaddcount++;
+                }
+            }
+        }
 
         // output
         $this->content->text = "<p><center><img src=\"{$CFG->wwwroot}/blocks/guenrol/images/logo.png\" /></center></p>";
 
         // warning if no users
-        if (empty($dbusercount)) {
+        if (empty($dbuserscount)) {
             $this->content->text .= get_string('nousers','block_guenrol');
         }
      
-        $this->content->text .= "<p>".get_string('registryusers','block_guenrol').": <b>$dbuserscount</b></p>";
-        $this->content->text .= "<p>".get_string('moodleusers','block_guenrol').": <b>$existing_profile_count</b></p>";
-        $this->content->text .= "<p>".get_string('enrolledincourse','block_guenrol').": <b>$enrolled_in_course_count</b></p>";
+        $this->content->text .= "<p><center>".get_string('registryusers','block_guenrol').": <b>$dbuserscount</center></b></p>";
+        $this->content->text .= "<p><center>".get_string('moodleusers','block_guenrol').": <b>$existing_profile_count</center></b></p>";
+        $this->content->text .= "<p><center>".get_string('enrolledincourse','block_guenrol').": <b>$enrolled_in_course_count</center></b></p>";
+        // add button (if required)
+        if (!empty($toaddcount)) {
+            $this->content->text .= "<p><center><a href=\"{$CFG->wwwroot}/blocks/guenrol/view.php?action=process&amp;id={$COURSE->id}&amp;sesskey=".sesskey()."\">";
+            $this->content->text .= get_string('addusers','block_guenrol',$toaddcount)."</a></center></p>";
+        }
+
+        // more... button
         $this->content->text .= "<p><center><a href=\"{$CFG->wwwroot}/blocks/guenrol/view.php?id={$COURSE->id}\">More....</a></center></p>";
 
         $this->content->footer = '';
         return $this->content;
     }
 
+    function cron() {
+        global $CFG;
 
+        // in this case we are just going to iterate over all visible
+        // courses with courseid defined
+        mtrace( 'Performing UofG automated enrollments' );
+
+        // check config settings
+        if (empty($CFG->block_guenrol_secondsbetweencron)) {
+            set_config('block_guenrol_secondsbetweencron',84000);
+        } 
+        if (empty($CFG->block_guenrol_maxcronseconds)) {
+            set_config('block_guenrol_maxcronseconds',300);
+        }
+
+        // field name for matching course codes in course object
+        $localcoursefield = $CFG->enrol_localcoursefield;
+
+        // we're going to time how long this takes
+        $starttime = microtime();
+        $controltime = time();
+
+        // get courses, then randomise to give them a chance of being processed
+        // nb: shuffle stuffs the array index so don't rely on it !!
+        $courses = get_records_select('course',"$localcoursefield<>'' and visible=1");
+        shuffle( $courses );
+
+        // iterate over courses doing stuff
+        foreach ($courses as $course) {
+
+            // does this course have a timestamp
+            if ($guenrol_time = get_record( 'block_guenrol_time','course',$course->id)) {
+                 $lasttime = $guenrol_time->timestamp;
+
+                 // only run this once a day or if idnumber changes for each course
+                 $nexttime = $lasttime + $CFG->block_guenrol_secondsbetweencron;
+                 if ((time()<$nexttime) and ($course->$localcoursefield == $guenrol_time->idnumber)) {
+                     continue;
+                 }
+
+                 // update timestamp and course codes
+                 $guenrol_time->timestamp = time();
+                 $guenrol_time->idnumber = $course->$localcoursefield;
+                 update_record( 'block_guenrol_time',$guenrol_time );
+            }
+            else {
+          
+                // write new timestamp
+                $guenrol_time = null;
+                $guenrol_time->course = $course->id;
+                $guenrol_time->timestamp = time();
+                $guenrol_time->idnumber = $course->$localcoursefield;
+                insert_record( 'block_guenrol_time',$guenrol_time );
+            }
+
+            $role = get_default_course_role( $course );
+            $context = get_context_instance( CONTEXT_COURSE, $course->id );
+            cron_process( $course, $context, $role );
+
+            // if we've taken more than n seconds then give up for now
+            // we'll get some more on the next cron run 
+            $timesofar = time() - $controltime;
+            if ($timesofar > $CFG->block_guenrol_maxcronseconds) {
+                mtrace( 'out of time on this run of guenrol' );
+                break;
+            }
+        }
+
+        // how long did it take
+        $endtime = microtime();
+        $elapsedtime = microtime_diff( $starttime, $endtime );
+        mtrace( "Time taken to run guenrol cron = ".$elapsedtime );
+    }
 
 }
 

@@ -38,7 +38,7 @@ $string['configurationcompletesub'] = 'Moodle ניסה לשמור את הגדר�
 $string['continue'] = 'המשך';
 $string['ctyperecommended'] = 'התקנת ההרחבה האופציונלית ctype PHP ממולצת ביותר בכדי לשפר את ביצועי האתר, במיוחד אם האתר תומך בשפות לא-לטניות.';
 $string['ctyperequired'] = 'הרחבת ה-ctype PHP כעת נדרשת ע\"י Moodle, כדי לשפר את ביצועי האתר ולהציע תאימות רב-לשונית.';
-$string['curlrecommended'] = 'התקנת ספריית Curl, האופציונלית, מומלצת ביותר בכדי לאפשר ל-Moodle את פונקציונליות התקשורת';
+$string['curlrecommended'] = 'התקנת ספריית Curl, האופציונלית, מומלצת ביותר בכדי לאפשר ל-Moodle את פונקציונליות Moodle Networking';
 $string['customcheck'] = 'בדיקות אחרות';
 $string['database'] = 'מסד נתונים';
 $string['databasecreationsettingshead'] = 'כעת נותר לך לעצב את הגדרות מסד הנתונים שלך היכן שרוב נתוני Moodle יאוחסנו. מסד נתונים זה ייווצר באופן אוטומטי ע\"י ההתקנה
@@ -98,7 +98,7 @@ $string['databasesettingssub_postgres7'] = '<b>סוג:</b> PostgreSQL<br />
 <b>סיסמה:</b> סיסמת מסד הנתונים שלך<br />
 <b>תחילית הטבלאות:</b> תחילית רשות לכל שמות הטבלאות (אפשרי)';
 $string['databasesettingswillbecreated'] = '<b>הערה: </b> ההתקנה תנסה ליצור את מסד הנתונים אוטומטית אם הוא לא קיים.';
-$string['dataroot'] = 'ספריית הנתנים';
+$string['dataroot'] = 'ספריית הנתונים';
 $string['datarooterror'] = 'ספריית \"נתוני Moodle\" שציינת לא נמצאה או יכלה להיווצר. אנא תקן את נתיב זה או צור את ספרייה זו באופן ידני.';
 $string['datarootpublicerror'] = 'ספריית ה-\'Data Directory\' שציינת ניתנת לגישה ישירות מהרשת. אתה מוכרח להשתמש בספרייה אחרת.';
 $string['dbconnectionerror'] = 'לא הצלחנו להתחבר למסד הנתונים שציינת. אנא בדוק את הגדרות מסד הנתונים שלך.';
@@ -308,4 +308,6 @@ $string['wrongsourcebase'] = 'מקור בסיס URL שגוי';
 $string['wrongzipfilename'] = 'שם קובץ ZIP שגוי.';
 $string['wwwroot'] = 'כתובת האתר';
 $string['wwwrooterror'] = 'כתובת האתר כנראה איננה תקנית - התקנת Moodle זו כנראה איננה שם. הערך כאן אותחל.';
+$string['xmlrpcrecommended'] = 'התקנת הרחבת ה-xmlrpc  נדרשת לצורך פונקציונליות Moodle Networking.';
+$string['ziprequired'] = 'הרחבת The Zip PHP נדרשת ע\"י Moodle, ספריות PclZip  או info-ZIP binaries לא בשימוש יותר.';
 ?>

@@ -363,7 +363,7 @@ class turnitintool_commclass {
         }
         sleep(TII_LATENCY_SLEEP);
         $this->doLogging($vars,$result);
-        return $result;
+        return utf8_decode($result);
         curl_close($ch);
         
     }

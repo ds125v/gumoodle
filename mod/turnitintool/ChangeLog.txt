@@ -1,18 +1,15 @@
+2010-06-03 : Fixed bug with missing course module data on moodle gradebook update
+2010-06-02 : Added support for UTF-8 intepretation of API return data
+2010-05-20 : Fixed Gradebook call using incorrect idnumber (http://tracker.moodle.org/browse/CONTRIB-2073)
 2010-05-12 : Removed redundant get_object_vars() call (http://tracker.moodle.org/browse/CONTRIB-2056)
 2010-05-07 : Fixed issue with date format not being parsed in some langauges, added fall back in ISO format
 2010-05-04 : Fixed CSS issue where tabs were not displaying correctly in Internet Explorer
 2010-04-23 : Reworked student and tutor submission form to allow resubmission when 'Resubmit until due date' option is enabled
 2010-04-23 : Implemented a warning if a tutor grades a submission before due date when 'Resubmit until due date' option is enabled
 2010-04-21 : Removed cron functionality, no longer required due to native locking of assignment details
-
 2010-04-12 : Fixed issue with date format in Class End Date (ced) parameter
-
 2010-04-09 : Fixed issue where the toggle icon was not showing for submissions not yet sent to Turnitin
-
 2010-04-07 : Fixed issue where the src value was not being passed in FCMD1 calls
-
 2010-04-06 : Fixed bug where the turnitin_agreement is required as a config entry, where it actually falls back on a default string
-
 2010-03-26 : Fixed discrepancy in a column title of the Student 'My Submissions' view was 'Paper ID' should have been 'Submitted'
-
 2010-03-26 : Fixed issue where the API error status was not being recorded when a students submission had failed during submission

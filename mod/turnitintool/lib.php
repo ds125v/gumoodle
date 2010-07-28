@@ -115,6 +115,8 @@ function turnitintool_add_instance($turnitintool) {
     $turnitintool->commentmaxsize=800;
     $turnitintool->autosubmission=1;
     $turnitintool->shownonsubmission=1;
+
+    $turnitintool->courseid   = $course->id; // compatibility with modedit assignment obj
     
     $insertid=turnitintool_insert_record("turnitintool", $turnitintool);
     // ]]]]
@@ -220,7 +222,7 @@ function turnitintool_add_instance($turnitintool) {
         $cm=get_coursemodule_from_instance("turnitintool", $insertid, $turnitintool->course);
         $module=turnitintool_get_record('modules','name','turnitintool');
         $params['itemname'] = $turnitintool->name;
-        $params['idnumber'] = $insertid;
+        $params['idnumber'] = $turnitintool->cmidnumber;
         $params['gradetype'] = GRADE_TYPE_VALUE;
             $params['grademax']  = $turnitintool->grade;
         
@@ -507,7 +509,7 @@ function turnitintool_update_instance($turnitintool) {
         $cm=get_coursemodule_from_instance("turnitintool", $turnitintool->id, $turnitintool->course);
         $module=turnitintool_get_record('modules','name','turnitintool');
         $grades['itemname'] = $turnitintool->name;
-        $params['idnumber'] = $turnitintool->id;
+        $params['idnumber'] = $turnitintool->cmidnumber;
         $params['gradetype'] = GRADE_TYPE_VALUE;
             $params['grademax']  = $turnitintool->grade;
         
@@ -539,7 +541,7 @@ function turnitintool_delete_instance($id) {
     $result = true;
     
     // Get the Moodle Turnitintool (Assignment) and Course Object [[[[
-    if (!$turnitintool = turnitintool_get_record("turnitintool", "id", "$id")) {
+    if (!$turnitintool = turnitintool_get_record("turnitintool", "id", $id)) {
         return false;
     }
 
@@ -620,8 +622,6 @@ function turnitintool_delete_instance($id) {
     
     @include_once($CFG->dirroot."/lib/gradelib.php");
     if (function_exists('grade_update')) {
-        $cm=get_coursemodule_from_instance("turnitintool", $turnitintool->id, $turnitintool->course);
-        $params['idnumber'] = $turnitintool->id;
         $params['deleted'] = 1;
         grade_update('mod/turnitintool', $turnitintool->course, 'mod', 'turnitintool', $turnitintool->id, 0, NULL, $params);
     }
@@ -1648,7 +1648,7 @@ function turnitintool_dateselect($fieldname,$selectedarray=NULL) {
         if ($i!=0) {
             $dateselect.='/';
         }
-        $dateselect.=$date[$datekey];
+        $dateselect.=(isset($date[$datekey])) ? $date[$datekey] : '';
         $i++;
     }
     if ($i<2) {
@@ -2611,7 +2611,7 @@ function turnitintool_view_all_submissions($cm,$turnitintool,$orderby='1') {
     $table5=$CFG->prefix.'role_assignments';
     
     // Get role ids for students within this course
-    $studentroles=get_roles_with_capability('moodle/legacy:student', CAP_ALLOW);
+    $studentroles=get_roles_with_capability('mod/turnitintool:submit', CAP_ALLOW);
     // Build the Role ID string for my SQL query
     $roleid='';
     foreach ($studentroles as $studentrole) {
@@ -3779,7 +3779,7 @@ function turnitintool_update_grades($cm,$turnitintool,$post) {
             if (function_exists('grade_update')) {
                 $grades=turnitintool_buildgrades($turnitintool,$user);
                 $cm=get_coursemodule_from_instance("turnitintool", $turnitintool->id, $turnitintool->course);
-                $params['idnumber'] = $turnitintool->id;
+                $params['idnumber'] = $cm->idnumber;
                 grade_update('mod/turnitintool', $turnitintool->course, 'mod', 'turnitintool', $turnitintool->id, 0, $grades, $params);
             }
         
@@ -3958,7 +3958,7 @@ function turnitintool_update_all_report_scores($cm,$turnitintool,$forced,&$loade
                             $cm=get_coursemodule_from_instance("turnitintool", $turnitintool->id, $turnitintool->course);
                             $grades=turnitintool_buildgrades($turnitintool,$user);
                             $grades->userid=$user->id;
-                            $params['idnumber'] = $turnitintool->id;
+                            $params['idnumber'] = $cm->idnumber;
                             grade_update('mod/turnitintool', $turnitintool->course, 'mod', 'turnitintool', $turnitintool->id, 0, $grades, $params);
                         }
                 
@@ -4232,6 +4232,9 @@ function turnitintool_cansubmit($cm,$turnitintool,$user) { // Returns an array o
         $partsavailable=turnitintool_get_records_select('turnitintool_parts', "turnitintoolid=".$turnitintool->id." AND deleted=0 AND dtstart < ".time()."");
     } else {
         $partsavailable=turnitintool_get_records_select('turnitintool_parts', "turnitintoolid=".$turnitintool->id." AND deleted=0 AND dtstart < ".time()." AND dtdue > ".time()."");
+    }
+    if (!$partsavailable) {
+        $partsavailable=array();
     }
     $numpartsavailable=count($partsavailable);
     

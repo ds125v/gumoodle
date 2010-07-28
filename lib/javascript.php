@@ -25,6 +25,8 @@
 <script type="text/javascript" src="<?php echo $CFG->httpswwwroot ?>/lib/cookies.js"></script>
 <script type="text/javascript" src="<?php echo $CFG->httpswwwroot ?>/lib/ufo.js"></script>
 <script type="text/javascript" src="<?php echo $CFG->httpswwwroot ?>/lib/dropdown.js"></script>  
+<!-- bodge for UofG as javascript-mod.php is totally broken. Grrrr -->
+<?php include( "{$CFG->dirroot}/filter//mediaplugin/addjavascript.php" ); ?>
 
 <script type="text/javascript" defer="defer">
 //<![CDATA[
