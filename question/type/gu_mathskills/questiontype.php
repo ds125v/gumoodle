@@ -377,10 +377,9 @@ class question_gu_mathskills_qtype extends default_questiontype {
 
             // Print feedback if feedback is on
             if (($options->feedback || $options->correct_responses) && $checked) {
-                $a->feedback = format_text($answer->feedback, true, $formatoptions, $cmoptions->course);
-            } else {
-                $a->feedback = '';
-            }
+                $ans_feedback = format_text($answer->feedback, true, $formatoptions, $cmoptions->course);
+        	}
+            $a->feedback = ''; // not used in gu_mathskills, all feedback after item.
 
             $anss[] = clone($a);
         }
@@ -403,19 +402,16 @@ class question_gu_mathskills_qtype extends default_questiontype {
         $a->text = $this->number_in_style(sizeof($state->options->order), $question->options->answernumbering).' '.get_string('noneofabove', "qtype_gu_mathskills", "2");
        	if (($options->feedback && $chosen) || $options->correct_responses) {
            	$a->feedbackimg = question_get_feedback_image($fraction, $chosen && $options->feedback);
+            if($fraction==1)
+                $ans_feedback = $question->options->correctfeedback;
+            else
+                $ans_feedback = $question->options->incorrectfeedback;
         }
         $anss[] = clone($a);
 
         $feedback = '';
         if ($options->feedback) {
-            if ($state->raw_grade >= $question->maxgrade/1.01) {
-                $feedback = $question->options->correctfeedback;
-            } else if ($state->raw_grade > 0) {
-                $feedback = $question->options->partiallycorrectfeedback;
-            } else {
-                $feedback = $question->options->incorrectfeedback;
-            }
-            $feedback = format_text($feedback,
+            $feedback = format_text($ans_feedback,
                     $question->questiontextformat,
                     $formatoptions, $cmoptions->course);
         }
