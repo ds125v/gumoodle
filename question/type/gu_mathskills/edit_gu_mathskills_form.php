@@ -41,18 +41,35 @@ class question_edit_gu_mathskills_form extends question_edit_form {
 /*        $mform->addElement('static', 'answersinstruct', get_string('choices', 'qtype_multichoice'), get_string('fillouttwochoices', 'qtype_gu_mathskills'));
         $mform->closeHeaderBefore('answersinstruct');
 */
-        $creategrades = get_grade_options();
+        //$creategrades = get_grade_options();
+        $creategrades = new Object();
+        $creategrades->gradeoptions = array(1 => '100%', 0 => 'None');
+        $creategrades->gradeoptionsfull = array(1 => '100%', 0 => 'None');
+        //echo '<pre>'; print_r($creategrades); echo '</pre>';
         $this->add_per_answer_fields($mform, get_string('choiceno', 'qtype_multichoice', '{no}'),
                 $creategrades->gradeoptionsfull, max(5, QUESTION_NUMANS_START));
 
-        $mform->addElement('header', 'overallfeedbackhdr', get_string('overallfeedback', 'qtype_multichoice'));
+        $mform->addElement('header', 'overallfeedbackhdr', get_string('noneofabovefeedback', 'qtype_gu_mathskills'));
 
-        foreach (array('correctfeedback', 'partiallycorrectfeedback', 'incorrectfeedback') as $feedbackname) {
-            $mform->addElement('htmleditor', $feedbackname, get_string($feedbackname, 'qtype_multichoice'),
+        foreach (array('correctfeedback', 'incorrectfeedback') as $feedbackname) {
+            $mform->addElement('htmleditor', $feedbackname, get_string($feedbackname, 'qtype_gu_mathskills'),
                                 array('course' => $this->coursefilesid));
             $mform->setType($feedbackname, PARAM_RAW);
         }
 
+    }
+
+    function get_per_answer_fields(&$mform, $label, $gradeoptions, &$repeatedoptions, &$answersoption) {
+        $repeated = array();
+        $repeated[] =& $mform->createElement('header', 'answerhdr', $label);
+        $repeated[] =& $mform->createElement('htmleditor', 'answer', get_string('answer', 'quiz'), array('size' => 50));
+        $repeated[] =& $mform->createElement('select', 'fraction', get_string('grade'), $gradeoptions);
+        $repeated[] =& $mform->createElement('htmleditor', 'feedback', get_string('feedback', 'quiz'),
+                                array('course' => $this->coursefilesid));
+        $repeatedoptions['answer']['type'] = PARAM_RAW;
+        $repeatedoptions['fraction']['default'] = 0;
+        $answersoption = 'answers';
+        return $repeated;
     }
 
     function set_data($question) {
