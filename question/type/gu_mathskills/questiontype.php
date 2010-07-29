@@ -1,4 +1,4 @@
-<?php  // $Id$
+<?php
 /**
  * The questiontype class for the GU Maths skills question type.
  * Addapted from the choice question by Niall Barr - n.barr@admin.gla.ac.uk
