@@ -1,4 +1,5 @@
 <?php
+
 require_once('../../config.php');
 require_once('../../course/lib.php');
 require_once('../../backup/lib.php');
@@ -6,13 +7,18 @@ require_once($CFG->libdir.'/blocklib.php');
 require_once($CFG->libdir.'/ajax/ajaxlib.php');
 require_once($CFG->dirroot.'/mod/forum/lib.php');
 include_once('lib/archive_forum.php');
+include_once('lib/archive_wiki.php');
+include_once('lib/archive_book.php');
 include_once('lib/archive_resource.php');
 require_once('lib/lib.php');
 require_once('lib/print_section.php');
+
 $id = optional_param('id', 0, PARAM_INT);
 $archiverole = optional_param('role', -1, PARAM_INT);
 $showAllBlocks = optional_param('allblocks', false, PARAM_BOOL);
 $hideUnarchivedMods = optional_param('hideum', false, PARAM_BOOL);
+$userinfo = optional_param('userinfo', false, PARAM_BOOL);
+$wikihist = optional_param('wikihist', false, PARAM_BOOL);
 if($id>0) {
     if (! ($course = get_record('course', 'id', $id)) ) {
         error('Invalid course id');
@@ -21,12 +27,16 @@ if($id>0) {
     prePrepareTemplatePage($course->id);
     $navlinks[] = array( 'name' => 'Archiving', 'link' => '', 'type' => 'title');
     $navigation = build_navigation($navlinks);
+//    echo '<pre>'.htmlentities(print_r($navigation,1)).'</pre>';
     echo getTemplateHeader($course->fullname, $course->fullname, $navigation, false, true); //$ARCHIVE->originalheader;
+    print_simple_box_start("center");
+
     $context = get_context_instance(CONTEXT_COURSE, $course->id);
     require_login($course);
+    //echo '<pre>'; print_r($USER); echo '</pre>';
     if($archiverole!=-1) {
         if(has_capability('moodle/course:update', $context)) {
-            createArchive($course, $context, $archiverole, $showAllBlocks, $hideUnarchivedMods);
+            createArchive($course, $context, $archiverole, $showAllBlocks, $hideUnarchivedMods, $wikihist, $userinfo);
             //echo '<pre>'; print_r($ARCHIVE); echo '</pre>';
         } else {
             echo "<h1>Sorry, you are not allowed to do this...</h1>";
@@ -36,16 +46,18 @@ if($id>0) {
         echo optionsForm($course);
         echo "<a href='../../course/view.php?id={$course->id}'>Return to course</a>";
     }
+    print_simple_box_end();
     echo getTemplateFooter(true);
 } else { // no course ID
     require_login();
     echo archiveCoursesList();
 }
 
-function createArchive($course, $context, $asRoleID, $showAllBlocks, $hideUnarchivedMods) {
-    global $CFG, $SESSION;
+function createArchive($course, $context, $asRoleID, $showAllBlocks, $hideUnarchivedMods, $wikihist, $userinfo=0) {
+    global $CFG, $SESSION, $USER;
     global $ARCHIVE;
-    $ARCHIVE->tmpDir = makeTempDir($course->id);
+    add_to_log($course->id, 'create_course_archive', 'Archiving course');
+    $ARCHIVE->tmpDir = makeTempDir($course->shortname);
     $ARCHIVE->realwwwroot = $CFG->wwwroot;
     $ARCHIVE->fileroot = $CFG->wwwroot.'/file.php/'.$course->id;
     $CFG->wwwroot = md5(time());
@@ -55,6 +67,8 @@ function createArchive($course, $context, $asRoleID, $showAllBlocks, $hideUnarch
     $ARCHIVE->modulelist=array();
     $ARCHIVE->showAllBlocks = $showAllBlocks;
     $ARCHIVE->hideUnarchivedMods = $hideUnarchivedMods;
+    $ARCHIVE->includeWikiHistory = $wikihist;
+    $ARCHIVE->userinfo = $userinfo;
     $CFG->pixpath = $CFG->wwwroot.'/pix';
     $CFG->modpixpath = $CFG->wwwroot.'/mod';
     //    	echo '<pre>'; print_r($CFG); echo '</pre>';
@@ -63,7 +77,15 @@ function createArchive($course, $context, $asRoleID, $showAllBlocks, $hideUnarch
     $ARCHIVE->blocks = array();
     //NSFB Another global var that will be filled with list of file resources to include.
     $ARCHIVE->files = array();
+
+    if($ARCHIVE->userinfo)
+    {
+    	$courseusers = getUserInfo($context);
+        writeFile('users.txt',$courseusers);
+    }
     //# Should check role properly
+    $wasediting = $USER->editing;
+    $USER->editing = false;
     role_switch($asRoleID, $context);
     prepareTemplatePage($course->id);
     ob_start();
@@ -82,6 +104,7 @@ function createArchive($course, $context, $asRoleID, $showAllBlocks, $hideUnarch
     //fwrite($fp,$out);
     //fclose($fp);
     role_switch($asRoleID, $context);
+    $USER->editing = $wasediting;
     //	echo $out;
     /*
     echo '<h3>Blocks</h3>';
@@ -102,7 +125,9 @@ function createArchive($course, $context, $asRoleID, $showAllBlocks, $hideUnarch
     foreach($ARCHIVE->mods as $mod) {
         //echo '<h3>Module</h3><pre>'; print_r($mod); echo '</pre>';
         if(function_exists('archive_'.$mod['mod']->modname)) {
-            if($mod['mod']->modname !== 'resource') echo "Archiving mod{$mod['mod']->modname}<br/>";
+            if($mod['mod']->modname !== 'resource') {
+            	echo "Archiving mod{$mod['mod']->modname}<br/>";
+            }
             $ok = call_user_func('archive_'.$mod['mod']->modname, $course, $mod['mod'], $mod['url']);
         } else {
             echo "<span style='color: gray;'>mod{$mod['mod']->modname}</span><br/>";
@@ -111,6 +136,7 @@ function createArchive($course, $context, $asRoleID, $showAllBlocks, $hideUnarch
             //echo '</div>';
         }
         flush();
+		set_time_limit(60);
     }
     // Module list pages
     foreach($ARCHIVE->modulelist as $modname=>$data) {
@@ -119,6 +145,7 @@ function createArchive($course, $context, $asRoleID, $showAllBlocks, $hideUnarch
         } else {
             build_default_listpage($modname, $data);
         }
+		set_time_limit(60);
     }
     //echo "<pre>";
     //print_r($ARCHIVE->mods);
@@ -135,8 +162,9 @@ function createArchive($course, $context, $asRoleID, $showAllBlocks, $hideUnarch
             checkdirexists($target);
             copy($source, $target);
         } else {
-            echo "<span style='bgcolor:yellow; color:#cc0000;'>File $source not found.</span><br/>";
+            //echo "<span style='bgcolor:yellow; color:#cc0000;'>File $source not found.</span><br/>";
         }
+		set_time_limit(60);
     }
     if(!isset($_REQUEST['testmode'])) {
         //echo '<p>Done! Going to try zipping now.</p>';
@@ -146,14 +174,14 @@ function createArchive($course, $context, $asRoleID, $showAllBlocks, $hideUnarch
         foreach ($filelist as $file) {
             $files[] = "{$ARCHIVE->tmpDir}/$file";
         }
-        $status = zip_files($files, "{$ARCHIVE->tmpDir}.zip");
+        $status = zip_files(array($ARCHIVE->tmpDir), "{$ARCHIVE->tmpDir}.zip");
         $to_zip_file = $CFG->dataroot.'/'.$course->id.'/backupdata/'.substr($ARCHIVE->tmpDir,strrpos($ARCHIVE->tmpDir,'/')+1).'.zip';
         //echo "<p>Done! Copy {$ARCHIVE->tmpDir}.zip to $to_zip_file now.</p>";
         copy("{$ARCHIVE->tmpDir}.zip", $to_zip_file);
         //unlink("{$ARCHIVE->tmpDir}.zip");
         deltree($ARCHIVE->tmpDir);
         $backupFilesUrl = $ARCHIVE->realwwwroot.'/files/index.php?id='.$course->id.'&wdir=%2Fbackupdata';
-        echo '<p><a href="'.$backupFilesUrl.'">Continue to download static archive '.substr($ARCHIVE->tmpDir,strrpos($ARCHIVE->tmpDir,'/')+1).'.zip</a></p>';
+        echo '<p><a href="'.$backupFilesUrl.'">Continue</a></p>';
     } else {
         echo '<p>Done!</p>';
     }
@@ -175,9 +203,11 @@ function archiveCoursesList() {
     return $out;
 }
 
-function makeTempDir($courseid) {
+function makeTempDir($coursename) {
     global $CFG, $ARCHIVE;
-    $ARCHIVE->tmpDir = $CFG->dataroot.'/temp/static_'.$courseid.'_'.time();
+    $coursename = strtolower(preg_replace('/[^\w]+/','',$coursename));
+    $fmttime = strftime('%Y%m%d_%H%M',time());
+    $ARCHIVE->tmpDir = $CFG->dataroot.'/temp/static_'.$coursename.'_'.$fmttime;
     mkdir($ARCHIVE->tmpDir);
     return $ARCHIVE->tmpDir;
 }
@@ -191,19 +221,24 @@ function optionsForm($course) {
     $out .= '<p>This archiving tool allows you to create a zip file containing a static html version of the course. It
     can only be used by people with editing rights for the course. The static html version only contains forums, files
     and other details that were visible to all students in the course at time the copy was made.</p>';
-    $out .= 'Archive as user type: <select name="role">';
+    $out .= '<table cellpadding="5" style="margin-left:auto;margin-right:auto;width:600px;">';
+    $out .= '<tr><td>Archive as user type: </td><td> <select name="role">';
     foreach($aroles as $k=>$v) {
         $out .= "<option value='$k'";
         if($v=='Student') $out .= ' selected="1"';
         $out .= ">$v</option>";
     }
-    $out .= '</select><br/>';
-    $out .= 'Include placeholders for unarchived blocks <input type="checkbox" name="allblocks" value="1"/><br/>';
-    $out .= 'Completely hide unarchived modules <input type="checkbox" name="hideum" value="1"/><br/>';
-    //$out .= 'Run in test mode (don\'t zip) <input type="checkbox" name="testmode" value="1" checked="1"/><br/>';
-    $out .= '<input type="hidden" name="id" value="'.$course->id.'"/>';
-    $out .= '<input type="submit" value="Create archive"/></form>';
+    $out .= '</select></tr></td>';
+    $out .= '<tr><td>Include placeholders for unarchived blocks </td><td> <input type="checkbox" name="allblocks" value="1"/></td></tr>';
+    $out .= '<tr><td>Completely hide unarchived modules </td><td> <input type="checkbox" name="hideum" value="1"/></td></tr>';
+    $out .= '<tr><td>Include Wiki histories </td><td> <input type="checkbox" name="wikihist" value="1" checked="1"/></td></tr>';
+    $out .= '<tr><td>Include user information and group support </td><td> <input type="checkbox" name="userinfo" value="1"/></td></tr>';
+    //$out .= '<tr>td>Run in test mode (don\'t zip) </td><td> <input type="checkbox" name="testmode" value="1" checked="1"/></td></tr>';
+    $out .= '<tr><td colspan="2"><input type="hidden" name="id" value="'.$course->id.'"/>';
+    $out .= '<input type="submit" value="Create archive"/></td></tr>';
+    $out .= '</table></form>';
     return $out;
 }
+
 ?>
 

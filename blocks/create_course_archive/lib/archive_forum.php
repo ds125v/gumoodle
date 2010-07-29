@@ -13,7 +13,7 @@ function archive_forum($course, $modforum, $relurl) {
     $navlinks = array(array('name' => get_string('forums', 'forum'), 'link' => 'mod/forum/index.html', 'type' => 'title'));
     $navlinks[] = array('name'=>$forum->name, 'link'=>'', 'type'=>'title');
     $navigation = build_archive_navigation($relurl, $navlinks);
-    $out = getTemplateHeader($COURSE->fullname, $forum->name, $navigation);
+    $out = getTemplateHeader($COURSE->fullname, $forum->name, $navigation).standardContentStart();
     //# I may have to create my own derivative of this, fixing links etc.
     //# alternative is to filter it later. (That could be made easier by
     //# changing $CFG->wwwroot to an easy to find value...)
@@ -70,7 +70,7 @@ function archive_forum($course, $modforum, $relurl) {
         }
     }
     $out .= '</tbody></table>';
-    $out .= getTemplateFooter();
+    $out .= standardContentEnd().getTemplateFooter();
     checkAndWriteFile($relurl, $out);
     return true;
 }
@@ -101,14 +101,14 @@ function createDiscussionPage($forum, $disc, $relurl) {
     $navlinks[] = array('name'=>$forum->name, 'link'=>$relurl, 'type'=>'title');
     $navlinks[] = array('name'=>$disc->name, 'link'=>'', 'type'=>'title');
     $navigation = build_archive_navigation($relurl, $navlinks);
-    $page = getTemplateHeader($COURSE->fullname, $forum->name, $navigation, 'mod-forum');
+    $page = getTemplateHeader($COURSE->fullname, $forum->name, $navigation, 'mod-forum').standardContentStart();
     //forum_print_discussion($COURSE, $cm, $forum, $discussion, $post, $displaymode, $canreply, $canrate);
     $posts = forum_get_all_discussion_posts($disc->id, true, true);
     //echo '<pre>'; print_r($posts); echo '</pre>';
     foreach($posts as $p) {
         $page .= displayPost($p);
     }
-    $page .= getTemplateFooter();
+    $page .= standardContentEnd().getTemplateFooter();
     $relurl2 = substr($relurl, 0, strrpos($relurl,'/')).'/discuss_'.$disc->id.'.html';
     checkAndWriteFile($relurl2, $page);
     return true;
@@ -140,7 +140,7 @@ function build_forum_listpage($entries) {
     $navlinks[] = array('name' => $name, 'link' => '', 'type' => 'title');
     $relurl = 'mod/forum/index.html';
     $navigation = build_archive_navigation($relurl, $navlinks);
-    $out = getTemplateHeader($name, $COURSE->fullname, $navigation);
+    $out = getTemplateHeader($name, $COURSE->fullname, $navigation).standardContentStart();
     $week = 0;
     $out .= '<table width="80%"  cellpadding="5" cellspacing="1" class="generaltable boxaligncenter" >';
     $out .= '<tr>
@@ -187,7 +187,7 @@ function build_forum_listpage($entries) {
         }
         $out .= '</table>';
     }
-    $out .= getTemplateFooter();
+    $out .= standardContentEnd().getTemplateFooter();
     checkAndWriteFile($relurl, $out);
 }
 ?>

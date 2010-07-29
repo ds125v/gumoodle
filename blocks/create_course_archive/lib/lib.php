@@ -42,6 +42,16 @@ function checkAndWriteFile($fname, $ftext=false)
 	fclose($fp);
 }
 
+function writeFile($fname, $ftext=false)
+{
+	//# need to check content first (images, CSS, URLs etc, should probably do it here)
+	global $ARCHIVE;
+	checkdirexists($ARCHIVE->tmpDir.'/'.$fname);
+	$fp = fopen($ARCHIVE->tmpDir.'/'.$fname,'w');
+	fwrite($fp, $ftext);
+	fclose($fp);
+}
+
 function prepareArchiveBlock(&$block)
 {
 	$blktype = get_record('block','id',$block->blockid);
@@ -110,12 +120,23 @@ function prePrepareTemplatePage($courseid)
     if (! ($course = get_record('course', 'id', $courseid)) ) {
             error('Invalid course id');
         }
+    $navlinks[] = array( 'name' => '%_nav_links_go_here%', 'link' => '', 'type' => 'title');
+    $archivenav = build_navigation($navlinks);
 
-    $archivenav = array('newnav' => 1, 'navlinks' => '%_nav_links_go_here%');
+    //$archivenav = array('newnav' => 1, 'navlinks' => '%_nav_links_go_here%');
     ob_start();
     print_header('%page_title_goes_here%', '%_fullname_goes_here%', $archivenav, 'title', '', true, '', null);
     $ARCHIVE->originalheader = ob_get_contents();
     ob_end_clean();
+
+    // Need to clean navigation here
+    // Workaround for GU theme requireing proper navigation to create template.
+    $st = substr($ARCHIVE->originalheader, 0, strpos($ARCHIVE->originalheader, '%_nav_links_go_here%'));
+    $startpos = strrpos($st, '<ul');
+    $endpos = strpos($ARCHIVE->originalheader, '</ul>', $startpos);
+    $ARCHIVE->originalheader = substr($ARCHIVE->originalheader,0,$startpos).'%_nav_links_go_here%'.substr($ARCHIVE->originalheader,$endpos+5);
+    // End of nasty cleanup...
+
     ob_start();
     print_footer(NULL, $course);
     $ARCHIVE->originalfooter = ob_get_contents();
@@ -145,8 +166,8 @@ function prepareTemplatePage($courseid)
 	    print_header('%page_title_goes_here%', '%_fullname_goes_here%', $archivenav, 'title', '', true, '', null);
 	    $ARCHIVE->header = ob_get_contents();
 	    ob_end_clean();
-	    ob_start();
 
+	    ob_start();
 	    print_footer(NULL, $course);
 	    $ARCHIVE->footer = ob_get_contents();
 	    ob_end_clean();
@@ -202,6 +223,23 @@ function getTemplateFooter($fordisplay = false)
     }
 }
 
+function standardContentStart()
+{
+	return '<div class="course-content">
+			<table id="layout-table" cellspacing="0" summary="Layout table"><tr><td id="middle-column">
+            <div class="wrap wraplevel1 ">
+			<div class="bt"><div>&nbsp;</div></div>
+			<div class="i1"><div class="i2"><div class="i3">';
+}
+
+function standardContentEnd()
+{
+	return '</div></div></div>
+            <div class="bb"><div>&nbsp;</div></div>
+            </div> </td></tr></table></div>';
+
+}
+
 /*********************************************************************************
 *
 *  Link processing functions - these are a major part of the archiving process
@@ -250,19 +288,19 @@ function processImages($source, $filedepth=-1)
     	if(substr($u,0,strlen($CFG->wwwroot))==$CFG->wwwroot) {
             $localimagelist[] = substr($u,strlen($CFG->wwwroot));
             $source = str_replace($u, $pathstr .'img'.substr($u,strlen($CFG->wwwroot)), $source);
-            //echo '<b>Replaced </b>'.$u.'<b> with </b>'.$pathstr .'img'.substr($u,strlen($CFG->wwwroot)).'<br/>';
+            //echo '<b>1Replaced </b>'.$u.'<b> with </b>'.$pathstr .'img'.substr($u,strlen($CFG->wwwroot)).'<br/>';
         }
         // need to process ones from file.php
     	elseif(substr($u,0,strlen($ARCHIVE->fileroot))==$ARCHIVE->fileroot) {
             $ARCHIVE->files[] = substr($u,strlen($ARCHIVE->fileroot));
             $source = str_replace($u, $pathstr .'files'.substr($u,strlen($ARCHIVE->fileroot)), $source);
-            //echo '<b>Replaced </b>'.$u.'<b> with </b>'.$pathstr .'files'.substr($u,strlen($ARCHIVE->fileroot)).'<br/>';
+            //echo '<b>2Replaced </b>'.$u.'<b> with </b>'.$pathstr .'files'.substr($u,strlen($ARCHIVE->fileroot)).'<br/>';
         }
         //Ones that somehow avoided using the new wwwroot...
     	elseif(substr($u,0,strlen($ARCHIVE->realwwwroot))==$ARCHIVE->realwwwroot) {
             $localimagelist[] = substr($u,strlen($ARCHIVE->realwwwroot));
             $source = str_replace($u, $pathstr .'img'.substr($u,strlen($ARCHIVE->realwwwroot)), $source);
-            //echo '<b>Replaced </b>'.$u.'<b> with </b>'.$pathstr .'img'.substr($u,strlen($CFG->wwwroot)).'<br/>';
+            //echo '<b>3Replaced </b>'.$u.'<b> with </b>'.$pathstr .'img'.substr($u,strlen($CFG->wwwroot)).'<br/>';
         }
         else {
              $remoteimagelist[] = $u;
@@ -270,7 +308,13 @@ function processImages($source, $filedepth=-1)
     }
     foreach($localimagelist as $u) {
         checkdirexists($ARCHIVE->tmpDir."/img".$u);
-       	copy($CFG->dirroot.$u, $ARCHIVE->tmpDir."/img".$u);
+        if(strpos($u, 'filter/tex/pix.php')!==false)
+        {
+        	//echo "copying {$ARCHIVE->realwwwroot}$u<br/>";
+        	copy($ARCHIVE->realwwwroot.$u, $ARCHIVE->tmpDir."/img".$u); // http?
+        }
+        else
+	       	copy($CFG->dirroot.$u, $ARCHIVE->tmpDir."/img".$u);
     }
 /*    echo '<h3>Local images - '.$CFG->wwwroot.'</h3>';
     foreach($localimagelist as $u) {
@@ -428,9 +472,9 @@ function user_picture($user)
         {
             $collectedPics[$user->id] = 'f2.jpg';
         	checkdirexists($ARCHIVE->tmpDir.'/userimg/'.$user->id.'/');
-	       	copy($CFG->dataroot.'/user/0/'.$user->id.'/f2.jpg', $ARCHIVE->tmpDir.'/userimg/'.$user->id.'/f2.jpg');
+			copy($CFG->dataroot.'/user/0/'.$user->id.'/f2.jpg', $ARCHIVE->tmpDir.'/userimg/'.$user->id.'/f2.jpg');
         }
-    	$out .= '<img src="'.$ARCHIVE->root.'/userimg/'.$user->id.'/f2.jpg" alt="'.$alt.'"/>';
+    	$out .= '<img class="userpicture" src="'.$ARCHIVE->root.'/userimg/'.$user->id.'/f2.jpg" alt="'.$alt.'"/>';
     }
     return $out;
 }
@@ -575,6 +619,64 @@ function killJavaScript($nasty)
 		$start = strpos($nice, '<script');
     }
     return $nice;
+}
+
+function getUserInfo($context)
+{
+	global $COURSE;
+    $srchpath = $context->path;
+    // look at user/index.php
+    $roles = get_roles_used_in_context($context, true);
+    $rlookup = array();
+    $userarr = array();
+    foreach($roles as $role)
+    {
+    	$rlookup[$role->id] = $role->name;
+    }
+    while(strlen($srchpath))
+    {
+     	$ccontext = get_record('context', 'path', $srchpath);
+	   	$assignments = get_records('role_assignments', 'contextID', $ccontext->id, '', 'userid, roleid');
+        if($assignments!==false)
+        {
+		    foreach($assignments as $a)
+		    {
+		      	$user = get_record('user', 'id', $a->userid);
+                if($user)
+                {
+	                if(!array_key_exists($user->id, $userarr))
+	                {
+	                	$userarr[$user->id]= $user->username.':'.$rlookup[$a->roleid].':';
+	                }
+                }
+		    }
+        }
+        $srchpath2 = substr($srchpath,0,strrpos($srchpath, '/'));
+        if($srchpath2==$srchpath)
+        	$srchpath='';
+        else
+        	$srchpath = $srchpath2;
+ 	}
+    // now find the user's groups
+    $groups = get_records('groups', 'courseid', $COURSE->id);
+    if($groups!==false)
+    {
+	    foreach($groups as $g)
+	    {
+	    	$groupmembers = get_records('groups_members', 'groupid', $g->id);
+	        foreach($groupmembers as $gm)
+	        {
+	        	$userarr[$gm->userid] .= $g->id.' '.str_replace(',',' ',$g->name).',';
+	        }
+	    }
+    }
+    sort($userarr);
+    $out = '';
+    foreach($userarr as $u)
+    {
+    	$out .= $u."\n";
+    }
+    return $out;
 }
 
 ?>

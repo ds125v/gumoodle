@@ -1,4 +1,4 @@
-<?php  // $Id$
+<?php 
 /**
  * Defines the editing form for the gu_mathskills question type.
  *
