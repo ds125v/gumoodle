@@ -14,7 +14,7 @@ function archive_resource($course, $modresource, $relurl) {
     //$navigation = build_navigation($navlinks);
     if(function_exists('archive_resource_'.$resource->type)) {
         addToModpage('resource', $relurl, $modresource->section, $resource->name, $resource->summary);
-        echo "Archiving resource {$resource->type}<br/>";
+        echo "Archiving resource {$resource->type} : {$resource->name}<br/>";
         call_user_func('archive_resource_'.$resource->type, $resource, $cm, $relurl);
     } else {
         echo "<span style='color:gray;'>resource{$resource->type}</span><br/>";
