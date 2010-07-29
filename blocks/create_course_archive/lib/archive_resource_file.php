@@ -44,6 +44,7 @@ function isEmbedded($resource, &$type=false) {
 }
 
 function getEmbededFileCode($resource, $resourcetype, $fullurl) {
+	global $CFG;
     $out = '';
     if ($resourcetype == "image") {
         $out .= '<div class="resourcecontent resourceimg">';

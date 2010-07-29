@@ -84,7 +84,7 @@ function archive_resource_directory($resource, $cm, $relurl, $subdir='') {
         $navlinks[] = array('name'=>$resource->name, 'link'=>'', 'type'=>'title');
     }
     $navigation = build_archive_navigation($relurl2, $navlinks);
-    $page = getTemplateHeader($resource->name, $COURSE->fullname, $navigation);
+    $page = getTemplateHeader($resource->name, $COURSE->fullname, $navigation).standardContentStart();
     // Code adapted from /mod/resource/type/directory/resource.class.php function display.
     if (trim(strip_tags($resource->summary))) {
         ob_start();
@@ -149,7 +149,7 @@ function archive_resource_directory($resource, $cm, $relurl, $subdir='') {
     }
     //$page .= '<pre>'.print_r($files, 1).'</pre>';
     //#   echo '<pre>'; print_r($ARCHIVE->files); echo '</pre>';
-    $page .= getTemplateFooter();
+    $page .= standardContentEnd().getTemplateFooter();
     $relurl2 = substr($relurl, 0, strrpos($relurl,'/')).$subdir.'/view.html';
     //echo "<h4 style='color: red;'>relurl2 = $relurl2</h4>";
     checkAndWriteFile($relurl2, $page);
@@ -187,9 +187,9 @@ function archive_resource_file($resource, $cm, $relurl, $subdir='') {
         $navlinks = array(array('name' => get_string('resources'), 'link' => 'mod/resource/index.html', 'type' => 'title'));
         $navlinks[] = array('name'=>$resource->name, 'link'=>'', 'type'=>'title');
         $navigation = build_archive_navigation($relurl2, $navlinks);
-        $page = getTemplateHeader($resource->name, $COURSE->fullname, $navigation);
+        $page = getTemplateHeader($resource->name, $COURSE->fullname, $navigation).standardContentStart();
         $page .= getEmbededFileCode($resource, $resourcetype, $tofilestore.$resource->reference);
-        $page .= getTemplateFooter();
+        $page .= standardContentEnd().getTemplateFooter();
         checkAndWriteFile($relurl2, $page);
     }
 }
@@ -209,9 +209,9 @@ function archive_resource_text($resource, $cm, $relurl, $subdir='') {
     $navlinks = array(array('name' => get_string('resources'), 'link' => 'mod/resource/index.html', 'type' => 'title'));
     $navlinks[] = array('name'=>$resource->name, 'link'=>'', 'type'=>'title');
     $navigation = build_archive_navigation($relurl2, $navlinks);
-    $page = getTemplateHeader($resource->name, $COURSE->fullname, $navigation);
+    $page = getTemplateHeader($resource->name, $COURSE->fullname, $navigation).standardContentStart();
     $page .= str_replace("\n", '<br/>', $resource->alltext);
-    $page .= getTemplateFooter();
+    $page .= standardContentEnd().getTemplateFooter();
     checkAndWriteFile($relurl2, $page);
 }
 
@@ -225,10 +225,10 @@ function archive_resource_html($resource, $cm, $relurl, $subdir='') {
     $navlinks = array(array('name' => get_string('resources'), 'link' => 'mod/resource/index.html', 'type' => 'title'));
     $navlinks[] = array('name'=>$resource->name, 'link'=>'', 'type'=>'title');
     $navigation = build_archive_navigation($relurl2, $navlinks);
-    $page = getTemplateHeader($resource->name, $COURSE->fullname);
+    $page = getTemplateHeader($resource->name, $COURSE->fullname).standardContentStart();
     $html = processImages($resource->alltext, 3);
     $page .= $html;
-    $page .= getTemplateFooter();
+    $page .= standardContentEnd().getTemplateFooter();
     checkAndWriteFile($relurl2, $page);
 }
 ?>
