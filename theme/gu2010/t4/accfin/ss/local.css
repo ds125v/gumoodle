@@ -1,0 +1,274 @@
+/* for accfin */
+
+
+
+
+/* Banner */
+
+#bannercontainer { 
+
+background-position: top right;
+background-image: url(http://www.gla.ac.uk/t4/accfin/i/bannerback.gif);
+background-repeat: repeat-x;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/accfin/i/banner.gif);
+width:350px;  }
+
+
+/* End banner */
+
+
+
+/* Sub heading  */
+
+#subhead {
+background: #121212 url(http://www.gla.ac.uk/t4/generic/i/subhead_lbss.gif) top left no-repeat ;
+color:#f4f4f4;
+display:block; }
+
+#subhead a:link {
+	color: #fff;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:visited {
+	color: #f4f4f4;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:hover {
+	color: #bbc6d7;
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+/* End sub heading */
+
+
+
+/* Navigation panel */
+
+#navigation p.toptail {
+background: url(http://www.gla.ac.uk/t4/generic/i/li_lbss.gif) repeat-y #5c7192;
+margin-bottom: 0px;
+border-bottom: 0;
+display:block;
+}
+ 
+#navigation p {
+background-color:#5c7192; }
+
+#navigation p a:link {
+color: #fff;
+background: #5c7192  url(http://www.gla.ac.uk/t4/generic/i/li_lbss.gif) repeat-y; }
+
+#navigation p a:visited {
+color: #fff;
+background: #5c7192  url(http://www.gla.ac.uk/t4/generic/i/li_lbss.gif) repeat-y; }
+
+#navigation p a:hover {
+color: #fff;
+background: #121212    url(http://www.gla.ac.uk/t4/generic/i/li_lbss.gif) repeat-y; }
+
+
+
+#navigation ul li a {
+    background: #ffffff  url(http://www.gla.ac.uk/t4/generic/i/li_lbss.gif) repeat-y;
+}
+
+#navigation ul li a:hover {
+    background: #8092b5  url(http://www.gla.ac.uk/t4/generic/i/li_lbss.gif) repeat-y;
+}
+
+
+
+#navigation li ul li a {
+    background: #ffffff  url(http://www.gla.ac.uk/t4/generic/i/lili_lbss.gif) repeat-y;
+}
+
+#navigation li ul li a: hover {
+    background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lili_lbss.gif) repeat-y;
+}
+
+
+#navigation ul li a[href="."] {
+    color:            #ffffff;
+    font-weight:      bold;
+    background-color: #5c7192;
+	cursor: default;
+}
+
+#navigation ul li a:hover[href="."] {
+    background-color: #5c7192;
+
+}
+
+
+/* End navigation */
+
+
+
+/* Main content */
+
+
+
+.maincontent .publication {
+    margin:       0cm 0cm 0cm 1cm;
+    text-indent: -1cm;
+    /*text-align:   justify;*/
+}
+
+.maincontent .phototour {
+    text-align: center;
+}
+
+.maincontent .phototour img {
+    border: 0px;
+    margin: 0px;
+}
+
+
+
+/* End main content */
+
+
+
+/* Headings (no changes made) */
+
+h1 {
+    font-family: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+    font-size: 1.4em;
+    color: #404040;
+    padding: 0 0 8px 0;
+    margin: 0;
+}
+
+h2 {
+    font-family: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+    font-size: 1.25em;
+    color: #404040;
+    margin: 0;
+    padding: 0 0 5px 0;
+}
+
+h3 {
+    font-family: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+    color: #404040;
+    margin: 0;
+    padding: 0 0 5px 0;
+}
+
+h4 {
+    font-family: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+    color: #404040;
+    margin: 0;
+    padding: 0;
+}
+
+h5 {
+    font-family: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+    color: #404040;
+    margin: 0;
+    padding: 0;
+}
+
+h6 {
+    font-family: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+    color: #404040;
+    margin: 0;
+    padding: 0;
+}
+
+/* End headings */
+
+
+
+/* Pullquote (no changes made) */
+
+.pullquote  {
+    font-family: times, Georgia, Impact, serif;
+    background: #dadada url(http://www.gla.ac.uk/t4/annietest/i/pullquote.gif) no-repeat;
+    float: right;
+    position:relative;
+    padding: 5px 5px 5px 5px;
+    margin: 0 0 10px 10px;
+    border: 1px solid #666;
+    font-weight:normal;
+    font-size:1.2em;
+    text-indent: 25px;
+    width:142px; 
+    voice-family: "\"}\""; 
+    voice-family:inherit;
+    width: 130px;
+}
+
+html>body .pullquote {
+    width: 130px;
+}
+
+.pullquote img {
+    margin-bottom: 5px;
+}
+
+/* End pullquote */
+
+
+
+/* Tables */
+
+table {
+    background-color: #ffffff;
+    width:98%;
+}
+
+table.timetable {
+    background-color: #aaaaff;
+}
+
+th {
+    color:            #003064;
+    background-color: #ede9ef;
+    vertical-align:   top;
+}
+
+td {
+    background-color: #ffffff;
+    vertical-align:   top;
+}
+
+/* End tables */
+
+
+
+/* Quick links */
+
+
+
+.links h1 {
+   
+    background-color: #5c7192;
+}
+
+
+
+/* for meyrick 19 sept 07 */
+
+   .maincontent span.popup {
+        background-color:   #ffffff;
+        border:             1px solid #cccccc;
+        margin:             20px 0px 0px 0px;
+        padding:            3px;
+        position:           absolute;
+        visibility:         hidden;
+        z-index:            1;
+    }
+
+/*
+    Dark blue:   #003064 =   0, 48,100
+    Medium blue: #8092b5 = 128,146,181 
+    Light blue:  #ede9ef = 237,233,239
+*/

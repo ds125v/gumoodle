@@ -1,0 +1,69 @@
+/*  form layout  */
+
+div.row {
+position:relative;
+clear: both;
+padding-top: 5px;
+}
+
+div.row span.label {
+float: left;
+width: 180px;
+text-align: right;
+padding:0 10px 0 0;
+}
+
+div.row span.formw {
+width: 210px;
+text-align: left;
+}
+
+
+
+#contentbox {
+margin: 0 0 5px 0;
+padding: 10px;
+background: #fffff5;
+border: 1px solid #acacac;
+font-size: 1.0em;
+	  }	  
+
+
+
+p.formdetail {
+	margin: 0;
+	padding-top: 5px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	font-size: 0.8em;
+	font-style: normal;
+	color: #333;
+}
+
+
+
+
+
+
+div.row span.col1 {
+  float: left;
+  width: 160px;
+  text-align: right;
+  }
+
+div.row span.col2 {
+  float: right;
+  width: 295px;
+  text-align: left;
+  } 
+  
+div.spacer {
+position:relative;
+  clear: both;
+  }
+
+div.colholder  {
+width: 460px; 
+margin: 0px;
+}

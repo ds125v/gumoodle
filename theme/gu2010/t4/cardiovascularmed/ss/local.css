@@ -1,0 +1,66 @@
+/* for cardiovascularmed */
+
+
+#bannercontainer { 
+
+background-position: top right;
+/* background-repeat:no-repeat;
+background-color:#4a6b9c; */
+background-image: url(http://www.gla.ac.uk/t4/cardiovascularmed/i/bannerback.gif);
+background-repeat: repeat-x;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/cardiovascularmed/i/banner.gif);
+width:390px;  }
+ 
+ 
+
+.splashpic {
+background: #285d94   url(http://www.gla.ac.uk/t4/cardiovascularmed/i/splashback.gif) ;
+background-repeat: no-repeat;
+background-position: top right;
+ }
+
+
+h2, h4, h5, h6 { color:#003164;  }
+
+.textsplash { background-color:#9abcd7; }
+
+.links ul li a:link {color:#000;}
+.links ul li a:visited {color:#000;}
+.links ul li a:hover {color:#0066cc;}
+
+
+
+
+
+#navigation p.toptail {
+background:#214f82; }
+ 
+#navigation p {
+background-color:#214f82;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #214f82  url(http://www.gla.ac.uk/t4/generic/i/med/li.gif) repeat-y;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #214f82  url(http://www.gla.ac.uk/t4/generic/i/med/li.gif) repeat-y;
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/med/li.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}

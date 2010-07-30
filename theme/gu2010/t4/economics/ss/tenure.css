@@ -1,0 +1,34 @@
+/*#bannerleft  {
+    background: url(http://www.gla.ac.uk/t4/economics/i/tenure.gif);
+    width:300px;
+    background-repeat:no-repeat;
+}*/
+
+input.mfin{
+    width:95%;
+    border:0;
+    text-align:center;
+}
+
+#new_line{
+    width:100%;
+    text-align:center;
+    cursor:pointer;
+    background-color:white;
+    color:black;
+}
+
+#new_line:hover{
+    cursor:pointer;
+    background-color:white;
+    color:black;
+    font-weight:bold;
+}
+
+table.new_line td {
+    width:100%;
+    text-align:center;
+    cursor:pointer;
+    background-color:white;
+    color:white;
+}

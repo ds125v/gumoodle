@@ -1,0 +1,270 @@
+/* for switch */
+
+#toprow { background-image: url(http://www.gla.ac.uk/t4/generic/i/subhead_us.gif);  }
+
+#subhead  { display:none; }
+
+
+#bannercontainer { 
+background-position: top right;
+background-color: #003c69; 
+background-image: url(http://www.gla.ac.uk/t4/bigswitch/i/bannerback.gif);
+background-repeat: no-repeat; 
+ }
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/bigswitch/i/banner_people1.gif);
+width:300px;  }
+ 
+
+.splashpic {
+background: #147ed2 url(http://www.gla.ac.uk/t4/about/i/splashback.gif);
+background-repeat: repeat-x;
+background-position: top;
+ }
+
+
+.links ul   { background-color:#eaeaea;
+ }
+
+.links h1 {
+	
+	color: #fff;
+	background-color:#333;
+	
+	  }
+	  
+	  
+.links ul li a:link { 
+color: #333;  
+}
+
+.links ul li a:visited { 
+color: #333;  
+}
+
+.links ul li a:hover  { 
+color: #000;  
+ }
+	  
+#navigation p.tail {
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px;
+margin-bottom:10px;  }
+
+	
+#navigation p.toptail {
+background: #003c69; }
+ 
+#navigation p {
+background: #003c69 ;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background:   url(http://www.gla.ac.uk/t4/generic/i/newarrow.gif) top right no-repeat;
+}
+
+#navigation p a:visited {
+color: #fff;
+background:   url(http://www.gla.ac.uk/t4/generic/i/newarrow.gif) top right no-repeat;
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212    url(http://www.gla.ac.uk/t4/generic/i/newarrow.gif) top right no-repeat;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+/* level one */
+
+#navigation ul li a {
+display: block;
+text-decoration: none;
+font-weight:normal;
+color: #1b1b1b;
+background: #f4f4f4  url(http://www.gla.ac.uk/t4/generic/i/us/li.gif) repeat-y;
+padding: 3px 1px 3px 7px;  /* changes to 17px for nested  */
+border-right: 0;
+border-left: 0;
+border-bottom: 0;
+border-top:  1px solid #a2b7d8;
+}
+
+
+
+
+#navigation  li.locked {
+display: block;
+text-decoration: none;
+font-weight:normal;
+color: #1b1b1b;
+background: #fff  url(http://www.gla.ac.uk/t4/generic/i/lioff_us.gif) no-repeat;    
+ 
+}
+	  
+
+#navigation li.locked  a {
+	  
+display: block;
+text-decoration: none;
+font-weight:normal;
+color: #1b1b1b;
+background:   url(http://www.gla.ac.uk/t4/generic/i/padlock.gif) top right no-repeat;
+padding: 3px 1px 3px 7px;  /* changes to 17px for nested  */
+border-right: 0;
+border-left: 0;
+border-bottom:0;
+border-top: 1px solid #eaeaea;
+}
+
+
+
+ h1, h3 { color:#404040;  }
+	  
+  h2, h4, h5, h6 { color:#404040;  }
+ 
+ 
+ .homepagerightcol h1  { 
+
+color: #fff;
+background-color:#003c69;
+padding:0; }
+
+ .homepagerightcol h1.events  { 
+
+color: #fff;
+background-color:#333; 
+padding:0;
+margin-top:10px;}
+
+
+.homepagerightcol h2 {
+
+background:#c7d4de;
+padding:0;  }
+
+.homepagerightcol h2 a:link {
+
+color: #333;
+display:block;
+padding: 3px 1px 3px 4px; 
+background:#c7d4de; }
+
+.homepagerightcol h2 a:visited {
+color: #333;
+display:block;
+padding: 3px 1px 3px 4px;
+background: #c7d4de;
+}
+
+.homepagerightcol h2 a:hover {
+color: #fff;
+display:block;
+padding: 3px 1px 3px 4px;
+
+background:  #121212;
+}
+
+
+
+
+.homepagerightcol p {
+
+background-color:#fff;
+ }
+
+.homepagerightcol ul {
+ 
+background-color:#fff;
+ }
+
+
+
+.homepagerightcol h1 a:link {
+
+color: #fff;
+display:block;
+padding: 3px 1px 3px 4px; 
+background:   url(http://www.gla.ac.uk/t4/generic/i/newarrow.gif) top right no-repeat;}
+
+.homepagerightcol h1 a:visited {
+color: #fff;
+display:block;
+padding: 3px 1px 3px 4px;
+background:   url(http://www.gla.ac.uk/t4/generic/i/newarrow.gif) top right no-repeat;
+}
+
+.homepagerightcol h1 a:hover {
+color: #fff;
+
+display:block;
+padding: 3px 1px 3px 4px;
+text-decoration: none;
+border-bottom:0;
+background:  #121212 url(http://www.gla.ac.uk/t4/generic/i/newarrow.gif) top right no-repeat;
+}
+
+.homepagerightcol a:link {
+
+color: #141414; }
+
+.homepagerightcol a:visited {
+color: #141414; }
+
+
+.homepagerightcol a:hover {
+color: #fff;
+text-decoration: none;
+border-bottom:0;
+}
+
+
+
+
+.homepageleftcol { float:left; width:172px; position: relative;   }
+
+.homepageleftcol .big { padding: 5px; border: 1px solid #ccc; }
+
+/* captionedphoto  */
+
+.captioned_140px_photo  {
+
+background: #dadada;
+
+
+}
+
+.links ul   { background-color:#fff;  }
+
+.links h1 {
+color: #fff;
+background-color:#121212; }
+	  
+
+.links ul li   {
+
+border-bottom: 1px solid #a2b7d8;  }
+
+
+.captionedphoto img  { margin: 0 0 5px 0; padding:0; float:none;  }
+
+
+.links .captioned_140px_photo  {
+
+background: #dfe9f3;
+
+
+}
+
+

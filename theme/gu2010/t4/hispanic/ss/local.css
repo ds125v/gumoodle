@@ -1,0 +1,22 @@
+/* for hispanic  */
+
+/* @@@@@@@@@ banners @@@@@@@@@ */
+
+#bannercontainer {
+background:none;
+background-color:#121212; 
+background-image: url(http://www.gla.ac.uk/t4/hispanic/i/bannerback.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/hispanic/i/banner.gif);
+width:310px;  }
+
+.splashpic {
+
+
+background: #fe8a82 url(http://www.gla.ac.uk/t4/hispanic/i/splashback.gif);
+background-repeat: repeat-x;
+background-position: top;
+  }

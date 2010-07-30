@@ -1,0 +1,107 @@
+/* for detartments/urbanstudies  */
+
+
+
+  
+
+
+
+#bannercontainer { 
+
+background-position: top right;
+/* background-repeat:no-repeat;
+background-color:#4a6b9c; */
+background-image: url(http://www.gla.ac.uk/t4/urbanstudies/i/bannerback.gif);
+background-repeat: repeat-x;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/urbanstudies/i/banner.gif);
+width:250px;  }
+ 
+
+.splashpic {
+background-color:#ca7229;  }
+
+
+.links ul   { background-color:#e4d4c6;  }
+
+.links h1 {
+	
+	color: #fff;
+	background-color:#ca7229;
+	
+	  }
+	  
+	  
+	   
+#navigation p.toptail {
+background:#99361d; }
+ 
+#navigation p {
+background-color:#99361d;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #99361d  url(http://www.gla.ac.uk/t4/generic/i/lbss/li.gif) repeat-y;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #99361d
+url(http://www.gla.ac.uk/t4/generic/i/lbss/li.gif) repeat-y;
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lbss/li.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+ 	  h1, h2 { color:#1c0c32;  }
+	  
+  h3, h4, h5, h6 { color:#2c1b0c;  }
+ 
+ 
+    /* splashpic */
+   
+   .splashpiccontainercontainer  {
+   margin-right: 0px ;
+   background-color:#fff;
+   
+   }
+   
+   .splashpiccontainer  {
+   margin: 0;
+   border: 1px solid #ccc;
+   padding-bottom:0;
+   }
+   
+   .splashpic { 
+   background-image:url(http://www.gla.ac.uk/t4/urbanstudies/i/splashback.gif); 
+   background-repeat: no-repeat;
+   background-position: right;
+   background-color:#060407;
+   padding:0; 
+   margin:0;
+   border:  5px solid #fff;
+   line-height: 0.1em;  
+   }
+   
+   .splashpic img { 
+   border-top: 0;
+   border-right:  5px solid #fff; 
+   border-bottom: 0;
+   border-left: 0;
+   padding:0; 
+   margin:0; 
+   display:block;
+} 	

@@ -1,0 +1,130 @@
+/* for law  */
+
+
+.splashpic { 
+background-colour: #006699;
+background-repeat: no-repeat;
+background-position: bottom right;
+  }
+  
+
+
+
+  
+#subhead  {  background: #121212 url(http://www.gla.ac.uk/t4/generic/i/lbss/subhead.gif) top left no-repeat ;
+color:#f4f4f4;
+display: block; }
+
+#subhead a:link {
+	color: #fff;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:visited {
+	color: #f4f4f4;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:hover {
+	color: #5c7f92;
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+
+
+
+
+#bannercontainer {
+
+
+background-color:#5e1111; 
+background-image: url(http://www.gla.ac.uk/t4/law/i/bannerback.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+
+background: #fff url(http://www.gla.ac.uk/t4/law/i/banner.gif);
+width:250px;  }
+ 
+
+ 
+ 
+
+ 
+
+
+.links ul   { background-color:#fdfdfd;  }
+
+.links h1 {
+	
+	color: #fff;
+	background-color:#006699;
+	text-transform: none;
+	
+	  }
+	  
+	
+ .maincontent .publication {
+    margin:       0cm 0cm 0cm 1cm;
+    text-indent: -1cm;
+}
+
+/* added for Ernest Metzger 221007 */
+
+#navigation p.toptail {
+background: url(http://www.gla.ac.uk/t4/generic/i/lbss/li.gif) repeat-y #121212;
+margin-bottom: 0px;
+border-bottom: 0;
+display:block;
+}
+ 
+#navigation p {
+background-color:#121212; }
+
+#navigation p a:link {
+color: #fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lbss/li.gif) repeat-y; }
+
+#navigation p a:visited {
+color: #fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lbss/li.gif) repeat-y; }
+
+#navigation p a:hover {
+color: #fff;
+background: #121212    url(http://www.gla.ac.uk/t4/generic/i/lbss/li.gif) repeat-y; }
+
+
+
+#navigation ul li a {
+    background: #ffffff  url(http://www.gla.ac.uk/t4/generic/i/lbss/li.gif) repeat-y;
+}
+
+#navigation ul li a:hover {
+    background: #121212 url(http://www.gla.ac.uk/t4/generic/i/lbss/li.gif) repeat-y;
+}
+
+
+
+#navigation li ul li a {
+    background: #ffffff  url(http://www.gla.ac.uk/t4/generic/i/lili_lbss.gif) repeat-y;
+}
+
+#navigation li ul li a: hover {
+    background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lili_lbss.gif) repeat-y;
+}
+
+
+#navigation ul li a[href="."] {
+    color:            #ffffff;
+    font-weight:      bold;
+    background-color: #121212;
+	cursor: default;
+}
+
+
+#navigation ul li a:hover[href="."] {
+    background-color: #121212;
+
+}
+
+

@@ -1,0 +1,13 @@
+#bannercontainer { background-image: url(t4/college_arts/i/bannerback1.gif); }
+#bannerleft { background-image: url(t4/college_arts/i/banner.gif); }
+#left-column .sideblock .header {background-color: #532e63;}
+
+body.category-2 #bannerleft { background-image: url(t4/school_humanities/i/banner.gif); }
+body.category-10 #bannerleft { background-image: url(t4/school_critical/i/banner.gif); }
+body.category-11 #bannerleft { background-image: url(t4/school_creative/i/banner.gif); }
+body.category-12 #bannerleft { background-image: url(t4/school_smlc/i/banner.gif); }
+
+body.category-2 #subhead,
+body.category-10 #subhead,
+body.category-11 #subhead,
+body.category-12 #subhead {display: block; }

@@ -1,0 +1,99 @@
+/* for maths_new  */
+
+
+.splashpic {
+
+
+background: #7577c0 url(http://www.gla.ac.uk/t4/maths/i/splashback_ce.gif);
+background-repeat: repeat-x;
+background-position:top;
+  }
+  
+#subhead  {  
+display:block; }
+
+
+
+.pullquote  {
+color: #fff;
+background: #205a8d ;
+text-indent: 0;
+}
+
+.pullquote a:link {
+color: #fff;
+text-decoration:underline; 
+border-bottom: 0;
+}
+
+.pullquote a:visited {
+color: #fafafa;
+text-decoration: none; 
+border-bottom: 0;  
+}
+.pullquote a:hover {
+color: #fff;
+text-decoration: none;
+border-bottom: 0;
+}
+
+
+
+ul.right_floated_list_new {
+float:right;
+border:0;
+background: #dfd9e1;
+list-style: none;
+padding: 0;
+margin: 0 0 10px 10px;
+width: 140px;
+}
+
+
+ul.right_floated_list_new li  {
+font-size: 0.9em;
+padding: 0;
+margin: 0;
+border-bottom: 1px solid #eaeaea; }
+
+
+
+
+ul.right_floated_list_new li a  { display: block; padding: 3px 1px 3px 4px; }
+
+ul.right_floated_list_new li a:link { 
+color: #333; 
+text-decoration: none;
+border: 0; 
+}
+
+ul.right_floated_list_new li a:visited { 
+color: #333; 
+text-decoration: none;
+border: 0; 
+}
+
+ul.right_floated_list_new li a:hover  { 
+color: #900;  
+text-decoration: none;
+border: 0; }
+
+
+
+
+
+
+#bannercontainer {
+background:none;
+background-color:#89a4cb; 
+background-image: url(http://www.gla.ac.uk/t4/maths/i/bannerback_blue.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/maths/i/banner_blue.gif);
+width:160px;  }
+ 
+
+

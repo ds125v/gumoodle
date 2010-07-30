@@ -1,0 +1,41 @@
+
+#bannercontainer { background-image: url(t4/college_/i/bannerback.gif); }
+#bannerleft { background-image: url(t4/college_/i/banner.gif); }
+#left-column .sideblock .header {background-color: #005288;}
+
+body.category-3 #bannercontainer { background-image: url(t4/college_arts/i/bannerback1.gif); }
+body.category-3 #bannerleft { background-image: url(t4/college_arts/i/banner.gif); }
+body.category-3 #left-column .sideblock .header {background-color: #532e63;}
+body.category-4 #bannercontainer { background-image: url(t4/college_scieng/i/bannerback1.gif); }
+body.category-4 #bannerleft { background-image: url(t4/college_scieng/i/banner.gif); }
+body.category-4 #left-column .sideblock .header {background-color: #777909;}
+body.category-7 #bannercontainer { background-image: url(t4/college_socsci/i/bannerback1.gif); }
+body.category-7 #bannerleft { background-image: url(t4/college_socsci/i/banner.gif); }
+body.category-7 #left-column .sideblock .header {background-color: #3b6e8f;}
+body.category-13 #bannercontainer { background-image: url(t4/college_mvls/i/bannerback1.gif); }
+body.category-13 #bannerleft { background-image: url(t4/college_mvls/i/banner.gif); }
+body.category-13 #left-column .sideblock .header {background-color: #007c85;}
+
+body.category-2 #bannerleft { background-image: url(t4/school_humanities/i/banner.gif); }
+body.category-10 #bannerleft { background-image: url(t4/school_critical/i/banner.gif); }
+body.category-11 #bannerleft { background-image: url(t4/school_creative/i/banner.gif); }
+body.category-12 #bannerleft { background-image: url(t4/school_smlc/i/banner.gif); }
+
+body.category-5 #bannerleft { background-image: url(t4/school_engineering/i/banner.gif); }
+body.category-6 #bannerleft { background-image: url(t4/school_maths/i/banner.gif); }
+body.category-17 #bannerleft { background-image: url(t4/school_chemistry/i/banner.gif); }
+body.category-18 #bannerleft { background-image: url(t4/school_computing/i/banner.gif); }
+body.category-19 #bannerleft { background-image: url(t4/school_geography/i/banner.gif); }
+body.category-20 #bannerleft { background-image: url(t4/school_physics/i/banner.gif); }
+body.category-21 #bannerleft { background-image: url(t4/school_psychology/i/banner.gif); }
+
+body.category-8 #bannerleft { background-image: url(t4/school_education/i/banner.gif); }
+body.category-9 #bannerleft { background-image: url(t4/school_business/i/banner.gif); }
+body.category-22 #bannerleft { background-image: url(t4/school_inter/i/banner.gif); }
+body.category-23 #bannerleft { background-image: url(t4/school_law/i/banner.gif); }
+body.category-24 #bannerleft { background-image: url(t4/school_social/i/banner.gif); }
+
+body.category-15 #bannerleft { background-image: url(t4/school_medicine/i/banner.gif); }
+body.category-14 #bannerleft { background-image: url(t4/school_lifescience/i/banner.gif); }
+body.category-16 #bannerleft { background-image: url(t4/school_vet/i/banner.gif); }
+

@@ -1,0 +1,22 @@
+/* for services/learningandteaching new  */
+
+
+
+
+
+
+#bannercontainer {
+background:none;
+
+background-position: top right;
+ background-repeat:no-repeat;
+background-color:#4a6b9c; 
+background-image: url(http://www.gla.ac.uk/t4/learningandteaching/i/bannerback_new.gif);
+ }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/learningandteaching/i/banner_new.gif);
+width:400px;  }
+ 
+

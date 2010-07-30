@@ -1,0 +1,17 @@
+/* for /departments/businessschool */
+
+
+#bannercontainer {
+background-image: url(http://www.gla.ac.uk/t4/businessschool/i/bannerback.gif);
+background-repeat: repeat-x;}
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/businessschool/i/banner.gif);
+width:240px;
+}
+ 
+.splashpic {
+background: #ccc   url(http://www.gla.ac.uk/t4/businessschool/i/splashback.gif) ;
+background-repeat: no-repeat;
+background-position: top right;
+ }

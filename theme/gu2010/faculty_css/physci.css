@@ -1,0 +1,7 @@
+#bannercontainer { background-image: url(t4/college_scieng/i/bannerback1.gif); }
+#bannerleft { background-image: url(t4/college_scieng/i/banner.gif); }
+#left-column .sideblock .header {background-color: #777909;}
+
+body.category-27 #bannerleft { background-image: url(t4/school_chemistry/i/banner.gif); }
+body.category-31 #bannerleft { background-image: url(t4/school_geography/i/banner.gif); }
+body.category-42 #bannerleft { background-image: url(t4/school_physics/i/banner.gif); }

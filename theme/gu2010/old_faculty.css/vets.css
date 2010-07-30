@@ -1,0 +1,6 @@
+#bannercontainer { background-image: url(t4/vet/i/bannerback.gif); }
+#bannerleft { background-image: url(t4/vet/i/banner.gif); }
+#toprow,
+#subhead {background-image: url(t4/generic/i/subhead_vetmed.gif); }
+#left-column .sideblock .header {background-color: #8b4a1d;}
+#subhead {display: block;}

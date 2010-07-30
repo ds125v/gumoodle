@@ -1,0 +1,7 @@
+#bannercontainer { background-image: url(t4/college_socsci/i/bannerback1.gif); }
+#bannerleft { background-image: url(t4/college_socsci/i/banner.gif); }
+#left-column .sideblock .header {background-color: #3b6e8f;}
+
+body.category-8 #bannerleft { background-image: url(t4/school_law/i/banner.gif); }
+body.category-231 #bannerleft { background-image: url(t4/school_business/i/banner.gif); }
+body.category-232 #bannerleft { background-image: url(t4/school_social/i/banner.gif); }

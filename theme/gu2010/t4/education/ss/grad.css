@@ -1,0 +1,63 @@
+/* for /faculties/education  */
+
+
+
+#bannercontainer {
+background-image: url(http://www.gla.ac.uk/t4/education/igs/bannerback.gif);
+background-repeat: repeat-x;}
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/education/igs/bannergs.gif);
+width:450px;
+}
+
+
+#subhead  {  
+	display: block;
+	background: #557ac8;
+	color:#fff;
+}
+
+#subhead a:link {
+	color: #fff;
+}
+
+#subhead a:visited {
+	color: #fff;
+}
+
+#subhead a:hover {
+	color: #FFCC33;
+	text-decoration: underline;
+}
+
+#navigation p.toptail {
+	background: #557ac8;
+}	
+ 
+#navigation p a:link {
+	color: #fff;
+	background: #557ac8  url(http://www.gla.ac.uk/t4/education/igs/lioff.gif) repeat-y;
+}
+
+#navigation p a:visited {
+	color: #fff;
+	background: #557ac8 url(http://www.gla.ac.uk/t4/education/igs/lioff.gif) repeat-y;
+}
+
+#navigation p a:hover {
+	color:#fff;
+	background: #557ac8 url(http://www.gla.ac.uk/t4/education/igs/lioff.gif) repeat-y;
+}
+
+.links ul { 
+	background-color: #d4e8f7;
+}
+
+.links h1 {
+	color: #fff; 
+	background-color:#78aad0;
+}
+
+
+

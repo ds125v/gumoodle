@@ -1,0 +1,92 @@
+/* for aeromecheng  */
+
+
+.splashpic { 
+background: #29315a url(http://www.gla.ac.uk/t4/aeromecheng/i/splashback.gif);
+background-repeat: no-repeat;
+background-position: right;
+  }
+  
+
+
+/*
+  
+#subhead  {  background: #dfdfdf url(http://www.gla.ac.uk/t4/aeromecheng/i/subhead_eng.gif) top left no-repeat ;
+color:#666; }
+
+#subhead a:link {
+	color: #666;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:visited {
+	color: #666;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:hover {
+	color: #993333;
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+
+*/
+
+#bannercontainer {
+background:none;
+
+background-image: url(http://www.gla.ac.uk/t4/aeromecheng/i/bannerback.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+
+background:  url(http://www.gla.ac.uk/t4/aeromecheng/i/banner.gif);
+width:600px;  }
+ 
+
+ /*
+ 
+#navigation p.toptail {
+background:#29315a; }
+ 
+#navigation p {
+background-color:#29315a;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #29315a  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #29315a  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+ 
+*/
+
+.links ul   { background-color:#fdfdfd;  }
+
+.links h1 {
+	
+	color: #fff;
+	background-color:#040404;
+	
+	  }
+	  
+	  h1, h3 { color:#040404;  }
+	  
+  h2, h4, h5, h6 { color:#040404;  }	 

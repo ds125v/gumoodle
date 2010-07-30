@@ -1,0 +1,77 @@
+/* for immunology */
+
+
+#bannercontainer { 
+
+background-position: top right;
+/* background-repeat:no-repeat;
+background-color:#4a6b9c; */
+background-image: url(http://www.gla.ac.uk/t4/immunology/i/bannerback.gif);
+background-repeat: repeat-x;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/immunology/i/banner.gif);
+width:390px;  }
+ 
+ 
+
+.splashpic {
+background: #82b8cb   url(http://www.gla.ac.uk/t4/immunology/i/splashback.gif) ;
+background-repeat: no-repeat;
+background-position: top right;
+ }
+ 
+ .splashpic { 
+background: #b2b5be url(http://www.gla.ac.uk/t4/immunology/i/splashback.gif);
+background-repeat: no-repeat;
+background-position: top right;
+  }
+
+
+
+
+.textsplash { background-color:#d6d9df; }
+
+.links h1 {background-color:#4e5360; }
+
+#subhead {background-color:#4e5360; color: #fff;}
+
+#subhead a:link {
+	color: #fff;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:visited {
+	color: #fff;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:hover {
+	color: #a4b7b1;
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+
+#navigation p {
+background-color:#4e5360; }
+
+#navigation p a:link {
+color: #fff;
+background: #4e5360  url(http://www.gla.ac.uk/t4/generic/i/med/li.gif) repeat-y; }
+
+#navigation p a:visited {
+color: #fff;
+background: #4e5360  url(http://www.gla.ac.uk/t4/generic/i/med/li.gif) repeat-y; }
+
+#navigation p a:hover {
+color: #fff;
+background: #121212    url(http://www.gla.ac.uk/t4/generic/i/med/li.gif) repeat-y; }
+
+#navigation ul li a {
+background: #f4f4f4  url(http://www.gla.ac.uk/t4/generic/i/med/li.gif) repeat-y;
+border-top: 1px solid #a4b7b1; }
+
+#navigation p.toptail {
+background: #4e5360;
+ }
+	

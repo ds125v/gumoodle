@@ -1,0 +1,29 @@
+/* for schools/englishlanguage  */
+
+
+.splashpic { 
+
+background: #84a5ce;
+
+  }
+  
+
+
+
+#bannercontainer {
+background:none;
+/*
+background-position: top right;
+ background-repeat:no-repeat;*/
+background-color:#344584; 
+background-image: url(http://www.gla.ac.uk/t4/englishlanguage/i/bannerback.gif);
+background-repeat: repeat-x;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/englishlanguage/i/banner.gif);
+width:350px;  }
+ 
+
+ 
+  

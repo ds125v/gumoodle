@@ -1,0 +1,32 @@
+/* for devmed */
+
+
+#bannercontainer { 
+
+background-position: top right;
+/* background-repeat:no-repeat;
+background-color:#4a6b9c; */
+background-image: url(http://www.gla.ac.uk/t4/devmed/i/bannerback.gif);
+background-repeat: repeat-x;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/devmed/i/banner.gif);
+width:360px;  }
+ 
+ 
+ 
+
+
+
+.splashpic {
+background: #77b0c3   url(http://www.gla.ac.uk/t4/devmed/i/splashback.gif) ;
+background-repeat: repeat-x;
+background-position: top right;
+ }
+
+
+
+
+  
+  

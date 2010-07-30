@@ -1,0 +1,205 @@
+/* for /services/it helpdesk */
+
+.splashpic {
+background-color:#8092b5;  }
+
+  
+
+
+
+#bannercontainer { 
+
+background-position: top right;
+/* background-repeat:no-repeat;
+background-color:#4a6b9c; */
+background-image: url(http://www.gla.ac.uk/t4/itservices/i/bannerback_helpdesk.gif);
+background-repeat: repeat-x;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/itservices/i/banner_helpdesk.gif);
+width:400px;
+background-repeat:no-repeat; }
+
+#navigation p.toptail {
+background:#0066cc; }
+ 
+#navigation p {
+background-color:#0066cc;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #0066cc  url(http://www.gla.ac.uk/t4/itservices/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #0066cc  url(http://www.gla.ac.uk/t4/itservices/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/itservices/i/lioff.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+
+
+#navigation ul li a {
+display: block;
+text-decoration: none;
+font-weight:normal;
+color: #1b1b1b;
+background: #f4f4f4  url(http://www.gla.ac.uk/t4/itservices/i/lioff.gif) repeat-y;
+padding: 3px 1px 3px 7px;  /* changes to 17px for nested  */
+border-right: 0;
+border-left: 0;
+border-bottom:0;
+border-top: 1px solid #eaeaea;
+}
+
+#navigation  li .currentsection {
+display: block;
+text-decoration: none;
+font-weight:normal;
+color: #1b1b1b;
+background: #f4f4f4  url(http://www.gla.ac.uk/t4/itservices/i/lionhelp.gif) no-repeat;    
+padding: 3px 1px 3px 7px; 
+border: 1px solid #eaeaea; 
+border-right: 0;
+border-left: 0;
+border-bottom:0; 
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+	  
+html>body #navigation li .currentsection {width: auto;}
+
+
+
+
+ 
+
+
+.links ul   { background-color:#ebedf1;  }
+
+.links h1 {
+	
+	color: #fff;
+	background-color:#80b3e6;
+	
+	  }
+	  
+ /* edit requested by drew */
+ 
+.h1 {
+font-family: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 1.4em;
+	color: #404040;
+	font-weight: bold;	
+}
+
+.h2 {	
+	font-family: Tahoma, Verdana, Geneva, Arial, Helvetica,
+sans-serif;
+	font-size: 1.25em;
+	color: #404040;
+	font-weight: bold;
+	}
+/*local css for it services edit starts here */
+	
+.h3 {
+	font-family: Tahoma, Verdana, Geneva, Arial, Helvetica,
+sans-serif;
+	font-size: 1.25em;
+	color: #993333;
+	font-weight: bold;
+	}
+.h4 {
+	font-family: Tahoma, Verdana, Geneva, Arial, Helvetica,
+sans-serif;
+	font-size: 1.1em;
+	color: #404040;
+	font-weight: bolder;
+	}
+.h5 {
+	font-family: Tahoma, Verdana, Geneva, Arial, Helvetica,
+sans-serif;
+	font-size: 1.1em;
+	color: #993333;
+	font-weight: bolder;
+	}
+H6 {
+	font-family: Tahoma, Verdana, Geneva, Arial, Helvetica,
+sans-serif;
+	font-size: 1.25 em;
+	color: #000066;
+	font-weight: bolder;
+}
+TD.sp1 {
+	FONT-WEIGHT: bold; FONT-SIZE: 0.7em; COLOR: #ffffff;
+FONT-FAMILY: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+BACKGROUND-COLOR: #c99191
+}
+TD.sp2 {
+	FONT-SIZE: 0.8em; COLOR: #333333; FONT-FAMILY: Tahoma, Verdana,
+Geneva, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #ddc1c1
+}
+TD.sp3 {
+	FONT-SIZE: 0.8em; COLOR: #333333; FONT-FAMILY: Tahoma, Verdana,
+Geneva, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #e9dbdb
+}
+TD.sp4 {
+	FONT-WEIGHT: bold; FONT-SIZE: 0.7em; COLOR: #404040;
+FONT-FAMILY: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+BACKGROUND-COLOR: #cccccc
+}
+.textbox {
+	background-color: #0055cc;
+	margin: 5px;
+	border: 1px solid #000066;
+	width: auto;
+	padding-top: 5px;
+	padding-right: 5px;
+	padding-bottom: 2px;
+	padding-left: 5px;
+	display: inline;
+}	
+.levelsix h1 {
+line-height:120%;
+font-size: 1.1em;	
+position: relative;
+display: block;
+text-decoration: none;
+text-transform:uppercase;
+font-weight: bold;
+color: #fff;
+background-color:#80b3e6;
+padding: 3px 1px 3px 4px;
+border-bottom: 1px solid #eaeaea; 
+width:142px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:137px; 
+}
+
+/*end local edit */
+
+
+.maincontent ul, dl  {
+position: relative;
+list-style-type: square;
+margin: 0 0 10px 10px;
+padding: 0 0 0 10px;
+}
+

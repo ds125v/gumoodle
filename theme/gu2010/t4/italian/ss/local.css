@@ -1,0 +1,21 @@
+/* for italian  */
+
+/* @@@@@@@@@ banners @@@@@@@@@ */
+
+#bannercontainer {
+background:none;
+background-color:#121212; 
+background-image: url(http://www.gla.ac.uk/t4/italian/i/bannerback.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/italian/i/banner.gif);
+width:300px;  }
+.splashpic {
+
+
+background: #5490b8 url(http://www.gla.ac.uk/t4/italian/i/splashback.gif);
+background-repeat: repeat-x;
+background-position: top;
+  }

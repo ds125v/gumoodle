@@ -1,0 +1,88 @@
+/* for detartments/physicalsciences  */
+
+
+
+  
+#subhead  {  background: #000 url(http://www.gla.ac.uk/t4/generic/i/subhead_aims.gif) top left no-repeat ;
+color:#fff; }
+
+#subhead a:link {
+	color: #fff;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:visited {
+	color: #fff;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:hover {
+	color: #993333;
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+
+#bannercontainer { 
+
+background-position: top right;
+/* background-repeat:no-repeat;
+background-color:#4a6b9c; */
+background-image: url(http://www.gla.ac.uk/t4/physicalsciences/i/bannerback.gif);
+background-repeat: repeat-x;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/physicalsciences/i/banner.gif);
+width:400px;  }
+ 
+
+.splashpic {
+background-color:#9a8371;  }
+
+
+.links ul   { background-color:#ccc;  }
+
+.links h1 {
+	
+	color: #fff;
+	background-color:#02024d;
+	
+	  }
+	  
+	  
+	   
+#navigation p.toptail {
+background: #2b0408; }
+ 
+#navigation p {
+background-color: #2b0408;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #2b0408  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #2b0408
+url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+ 	  h1, h2 { color:#02024d;  }
+	  
+  h3, h4, h5, h6 { color:#2b0408;  }
+ 
+ 

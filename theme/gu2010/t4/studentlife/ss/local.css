@@ -1,0 +1,16 @@
+/* for studentlife */
+
+
+
+
+#bannercontainer {
+background-image: url(http://www.gla.ac.uk/t4/studentlife/i/bannerback.gif);
+background-repeat: repeat-x; }
+
+
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/studentlife/i/banner.gif);
+width:240px;  }
+ 

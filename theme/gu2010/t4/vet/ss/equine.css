@@ -1,0 +1,62 @@
+/* for vet equine  */
+
+
+.splashpic { 
+
+background: #086bb5 ;
+
+  }
+  
+
+
+
+
+
+#bannercontainer {
+background:none;
+
+
+background-color:#89a4cb; 
+background-image: url(http://www.gla.ac.uk/t4/vet/i/equinebannerback.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/vet/i/equinebanner.gif);
+width:300px;  }
+ 
+
+ 
+ 
+#navigation p.toptail {
+background:#086bb5; }
+ 
+#navigation p {
+background-color:#086bb5;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #086bb5  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #086bb5  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+ 
+

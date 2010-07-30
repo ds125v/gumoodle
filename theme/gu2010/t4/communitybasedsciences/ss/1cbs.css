@@ -1,0 +1,184 @@
+/* for /faculties/medicine/communitybasedsciences  */
+
+.splashpic {
+background-color:#9cd5db;
+}
+  
+
+#subhead  {
+background: url(http://www.gla.ac.uk/faculties/medicine/img/rst.gif) top left no-repeat #aeaeae ; 
+ }
+
+
+#navigation p {
+	background-color: #72cbd5;
+}
+
+
+#navigation p.toptail {
+	background: #72cbd5;
+}
+
+#navigation p a:link {
+	background-color: #72cbd5;
+	background-image: url(http://www.gla.ac.uk/t4/generic/i/lioff.gif);
+	background-repeat: repeat-y;
+	color: #000000;
+}
+
+#navigation p a:visited {
+	background-color: #72cbd5;
+	background-image: url(http://www.gla.ac.uk/t4/generic/i/lioff.gif);
+	background-repeat: repeat-y;
+	color: #000000;
+}
+
+#navigation p a:hover {
+	display: block;
+	border-bottom: 0;
+	padding: 3px 1px 3px 7px;
+	width:152px;
+	voice-family: "\"}\"";
+	voice-family: inherit;
+	width:152px;
+	background-color: #72cbd5;
+	background-image: url(http://www.gla.ac.uk/t4/generic/i/lioff.gif);
+	background-repeat: repeat-y;
+	color: #FFFFFF;
+}
+
+#navigation ul {
+	list-style: none;
+	width: 160px;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	background-color: #dfecec;
+	border-top-width: 0;
+	border-right-width: 0;
+	border-bottom-width: 1px;
+	border-left-width: 0;
+	border-bottom-style: solid;
+	border-bottom-color: #ffffff;
+}
+
+
+#navigation ul li a {
+	background-color: #F2F7F7;
+	}
+
+#navigation  li .currentsection {
+	background-color:#F2F7F7;
+
+}
+
+
+#navigation ul li a:hover  {
+	color:#404040;
+	background-color: #F8FCFB;  
+	text-decoration: none; 
+}
+
+
+ /* start headings  */
+
+
+h2 {
+
+	background-color: #51B3BD;
+
+}
+
+h3 {
+	
+	color: #404040;
+}
+
+h4 {
+
+	color: #404040;
+
+}
+
+h5 {
+
+	color: #505f81;
+
+}
+
+h6 {
+
+	color: #404040;
+
+}
+
+
+.links h2 {
+line-height:120%;
+font-size: 1.1em;	
+position: relative;
+display: block;
+text-decoration: none;
+text-transform:uppercase;
+font-weight: bold;
+color: #000000;
+background-color:#51b3bd;
+padding: 3px 1px 3px 4px;
+border-bottom: 1px solid #eaeaea; 
+width:137px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:137px; 
+margin:0;
+}
+ /* end headings */
+
+ 
+ 
+.links ul li   {
+	position: relative;
+	display: block;
+	text-decoration: none;
+	font-weight: normal;
+		padding: 3px 1px 3px 4px;
+	width:137px;
+	voice-family: "\"}\"";
+	voice-family: inherit;
+	width:137px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #fff;
+	background-color: #dfecec;
+	border-top-color: #FFFFFF;
+	border-right-color: #FFFFFF;
+	border-bottom-color: #FFFFFF;
+	border-left-color: #FFFFFF;
+}
+
+/* pullquote  */
+
+.pullquote  {
+font-family: times, Georgia, Impact, serif;
+background: #dadada url(http://www.gla.ac.uk/t4/annietest/i/pullquote.gif) no-repeat;
+float: right;
+position:relative;
+padding: 5px 5px 5px 5px;
+margin: 0 0 10px 10px;
+border: 1px solid #666;
+font-weight:normal;
+font-size:1.2em;
+text-indent: 25px;
+width:142px; 
+voice-family: "\"}\""; 
+voice-family:inherit;
+width: 130px;
+}
+
+html>body .pullquote {
+  width: 130px;  }
+
+.pullquote img  { margin-bottom: 5px; }
+
+
+
+#subhead  { display: none;  }

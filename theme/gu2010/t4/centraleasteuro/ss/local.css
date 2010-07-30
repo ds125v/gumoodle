@@ -1,0 +1,22 @@
+/* for centraleasteuro  */
+
+
+/* @@@@@@@@@ banners @@@@@@@@@ */
+
+#bannercontainer {
+background:none;
+background-color:#121212; 
+background-image: url(http://www.gla.ac.uk/t4/centraleasteuro/i/bannerback.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/centraleasteuro/i/banner.gif);
+width:370px;  }
+
+.splashpic {
+background-color:#afc4e8;
+background-image: url(http://www.gla.ac.uk/t4/centraleasteuro/i/splashback.gif);
+background-position:bottom right;
+background-repeat: repeat-x;
+  }

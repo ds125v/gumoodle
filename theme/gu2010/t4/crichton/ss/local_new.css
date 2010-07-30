@@ -1,0 +1,231 @@
+/* for /crichton */
+
+/* @@@@@@@@@ banners @@@@@@@@@ */
+
+#bannercontainer {
+background:none;
+background-color:#121212; 
+background-image: url(http://www.gla.ac.uk/t4/crichton/i/spannerback_new.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/crichton/i/spanner_new.gif);
+width:320px;  }
+
+
+.textsplash  { background-color:#d2d7ef;  }
+
+.splashpic {
+background: #b4bee4   url(http://www.gla.ac.uk/t4/crichton/i/splashback.gif) ;
+background-repeat: repeat-y;
+background-position: top right;
+ }
+
+
+h1  { color:#000;  }
+
+
+.homepagerightcol img {float: right; margin: 0 0 5px 5px; padding:0; }
+
+.homepagerightcol h1  { 
+
+background-color:#003c69;
+
+
+}
+
+.homepagerightcol h1 a:link {
+
+color: #fff;
+background-color:#003c69;
+padding:0;
+
+}
+
+.homepagerightcol h1 a:visited {
+color: #fff;
+background-color:#003c69;
+padding: 0;
+
+}
+
+.homepagerightcol h1 a:hover {
+color: #d2d7ef;
+
+background-color:#003c69;
+padding: 0;
+text-decoration: none;
+border-bottom:0;
+
+}
+
+
+
+.homepagerightcol h2 {
+font-size:1em;
+line-height:120%;  
+background:#d2d7ef;
+padding: 0;
+border: 1px solid #ccc;
+font-weight: bold; }
+
+.homepagerightcol h2 a:link {
+
+color: #333;
+background:#d2d7ef;
+display:block;
+padding: 3px 1px 3px 4px; 
+ }
+
+.homepagerightcol h2 a:visited {
+color: #333;
+background:#d2d7ef;
+display:block;
+padding: 3px 1px 3px 4px;
+
+}
+
+.homepagerightcol h2 a:hover {
+color: #fff;
+background:#d2d7ef;
+display:block;
+padding: 3px 1px 3px 4px;
+background:#666;
+}
+
+
+.homepagerightcol h2.notlink {
+color:#333;
+display:block;
+font-size:1em;
+line-height:120%;  
+background:#e7e7e7;
+padding: 3px 1px 3px 4px; 
+border: 1px solid #ccc;
+font-weight: bold; }
+
+
+
+
+.news p {
+line-height:130%;  
+background-color:#fff;
+padding: 0 5px 3px 5px;
+margin:0 0 5px 0;
+border: 2px solid #ccc;
+border-top: 0; }
+
+
+
+.news a:link {
+
+color: #141414;
+text-decoration: none; 
+border-bottom:0;
+
+}
+
+.news  a:visited {
+color: #141414;
+text-decoration: none;
+border-bottom:0;
+}
+
+.news a:hover {
+color: #fff;
+text-decoration: none;
+border-bottom:0;
+}
+
+.hideindumfries { display:none; }
+
+#navigation p.search {
+display: block;
+color: #fff;
+
+background: #000  url(http://www.gla.ac.uk/t4/generic/i/arts/li.gif) repeat-y;
+text-decoration: none;
+border-bottom: 1px solid #fff;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+#navigation form {
+display: block;
+color: #fff;
+
+background: #ddd   url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+text-decoration: none;
+border: 1px solid #afafaf;
+padding: 3px 1px 3px 7px;
+margin: 0;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+#navigation input.searchbox {
+margin: 0 2px 0 0;
+padding: 0;
+height: 20px;
+width: 145px;
+border: 1px solid #ccc;
+background-color:#fff;
+font-family: verdana, lucida, arial, helvetica, sans-serif;
+font-size: 10px;
+line-height: normal;
+font-weight: normal;
+color: #666666;
+vertical-align: middle; }
+
+#navigation input.go {
+text-align: right ;
+margin: 0;
+padding: 0;
+width: 15px;
+border: 0;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 10px;
+line-height: normal;
+font-weight: normal;
+color: #666666;
+vertical-align: middle;
+}
+
+.newsstoryphoto  { float: left; 
+width:142px;
+
+border:1px solid #cecece;
+padding:5px;
+position:relative;
+min-height:6px;
+  }
+
+.newsstoryphoto  img { margin:0;  }
+
+.newsstory {margin-left: 170px; padding-bottom: 6px; } 
+
+.newsstory h2 a:link {
+
+color: #003c69;
+text-decoration: none; 
+border-bottom:0;
+
+}
+
+.newsstory h2 a:visited {
+color: #003c69;
+text-decoration: none;
+border-bottom:0;
+}
+
+.newsstory h2 a:hover {
+color: #141414;
+text-decoration: none;
+border-bottom:0;
+}

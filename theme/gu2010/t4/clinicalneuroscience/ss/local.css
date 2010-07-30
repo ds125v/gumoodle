@@ -1,0 +1,261 @@
+/* for clinicalneuroscience */
+
+
+#bannercontainer { 
+
+background-position: top right;
+/* background-repeat:no-repeat;
+background-color:#4a6b9c; */
+background-image: url(http://www.gla.ac.uk/t4/clinicalneuroscience/i/bannerback.gif);
+background-repeat: repeat-x;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/clinicalneuroscience/i/banner.gif);
+width:362px;  }
+ 
+ 
+ 
+.splashpic {
+background: #0f7ce3  ;
+background-repeat: no-repeat;
+background-position: top right;
+ }
+ 
+
+
+.links h1 {
+	
+	color: #fff;
+	background-color:#000;
+	
+	  }
+	  
+.links ul li   {
+
+border-bottom: 1px solid #667987; 
+
+}
+
+.links h1 {
+
+border-bottom: 1px solid #667987; 
+
+}
+
+
+ 	  h1, h2 { color:#404040;  }
+ 		
+	  
+  h2, h4, h5, h6 { color:#003164;  }
+  
+  /* changes for Lynne Kelly  */
+  
+  /* for /faculties/medicine/clinical neuroscience  */
+
+.splashpic {
+background-color:#668fcb;
+}
+   
+.textsplash  {
+color: #000000;
+background:#dee3ec;
+}
+
+   
+   
+   
+
+
+#navigation p {
+	background-color: #031c3b;
+}
+
+
+#navigation p.toptail {
+	background: #031c3b;
+}
+
+#navigation p a:link {
+	background-color: #031c3b;
+	
+}
+
+#navigation p a:visited {
+	background-color: #031c3b;
+	
+}
+
+#navigation p a:hover {
+	
+	background-color: #000;
+	
+}
+
+#navigation ul {
+	list-style: none;
+	width: 160px;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	background-color: #eef3fc;
+	border-top-width: 0;
+	border-right-width: 0;
+	border-bottom-width: 1px;
+	border-left-width: 0;
+	border-bottom-style: solid;
+	border-bottom-color: #ffffff;
+}
+
+
+#navigation ul li a {
+	background-color: #eef3fc;
+	}
+
+#navigation  li .currentsection {
+	background-color:#c6c6c6;
+
+}
+
+
+#navigation ul li a:hover  {
+	color:#404040;
+	background-color: #eff5fc;   
+	text-decoration: none;  
+}
+
+
+ /* start headings  */
+
+
+h2 { color: #000;	 }
+
+h3{ color: #000; }
+
+h4 { color: #014585;}
+
+h5 {	color: #000;}
+
+h6 {color: #000;}
+
+
+.links h2 {
+line-height:120%;
+font-size: 1.1em;		
+position: relative;
+display: block;
+text-decoration: none;
+text-transform:uppercase;
+font-weight: bold;
+color: #000000;
+background-color:#566582;
+padding: 3px 1px 3px 4px;
+border-bottom: 1px solid #eaeaea;  
+width:137px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:137px;  
+margin:0;
+}
+
+.links h6 {
+	line-height:120%;
+	font-size: 1.1em;
+	position: relative;
+	display: block;
+	text-decoration: none;
+	text-transform:uppercase;
+	font-weight: bold;
+	color: #ffffff;
+	background-color:#114aa0;
+	padding: 3px 1px 3px 4px;
+	width:137px;
+	voice-family: "\"}\"";
+	voice-family: inherit;
+	width:137px;
+	margin:0;
+	text-align: left;
+}
+ /* end headings */
+
+  
+ .links ul   {
+	list-style: none;
+	line-height:120%;
+	width: 142px;
+	padding: 0;
+	margin:  0 0 10px 0;
+	position: relative;
+	text-align: left;
+	background-color:#e0e5ed;
+	font-size: 1.0em;
+}
+
+.links ul li   {
+	position: relative;
+	display: block;
+	text-decoration: none;
+	font-weight: normal;
+		padding: 3px 1px 3px 4px;
+	width:137px;
+	voice-family: "\"}\"";
+	voice-family: inherit;
+	width:137px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #ffffff;
+	background-color: #e0e5ed;
+	border-top-color: #ffffff;
+	border-right-color: #ffffff;
+	border-bottom-color: #ffffff;
+	border-left-color: #ffffff;
+	background-color:#e0e5ed;
+	color:#000;
+}
+
+.links ul li a:link { 
+color: #000; 
+text-decoration: none;
+border: 0; 
+}
+
+.links ul li a:visited { 
+color: #000; 
+text-decoration: none;
+border: 0; 
+}
+
+.links ul li a:hover  { 
+color: #fe5f08;  
+text-decoration: none;
+border: 0; }
+
+/* pullquote  */
+
+.pullquote  {
+font-family: times, Georgia, Impact, serif;
+background: #dadada url(http://www.gla.ac.uk/t4/annietest/i/pullquote.gif) no-repeat;
+float: right;
+position:relative;
+padding: 5px 5px 5px 5px;
+margin: 0 0 10px 10px;
+border: 1px solid #666;
+font-weight:normal;
+font-size:1.2em;
+text-indent: 25px;
+width:142px;  
+voice-family: "\"}\"";  
+voice-family:inherit;
+width: 130px;
+}
+
+
+
+html>body .pullquote {
+  width: 130px;  }
+
+.pullquote img  { margin-bottom: 5px; }
+
+
+
+

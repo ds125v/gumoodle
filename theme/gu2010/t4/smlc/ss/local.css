@@ -1,0 +1,27 @@
+/* for /schools/smlc  */
+
+
+
+
+  
+
+
+
+#bannercontainer {
+background-image: url(http://www.gla.ac.uk/t4/smlc/i/bannerback.gif);
+background-repeat: repeat-x;
+}
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/smlc/i/banner.gif);
+width: 460px
+}
+ 
+
+.splashpic {
+
+
+background: #b3cdef url(http://www.gla.ac.uk/t4/smlc/i/splashback.gif);
+background-repeat: repeat-x;
+background-position: top;
+  }

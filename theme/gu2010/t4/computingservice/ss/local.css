@@ -1,0 +1,76 @@
+/* for /services/computing  */
+
+
+
+  
+#subhead  {  background: #ccc url(http://www.gla.ac.uk/t4/generic/i/subhead_us.gif) top left no-repeat ;
+color:#666; }
+
+#subhead a:link {
+	color: #666;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:visited {
+	color: #666;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:hover {
+	color: #993333;
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+
+#bannercontainer { 
+
+background-position: top right;
+/* background-repeat:no-repeat;
+background-color:#4a6b9c; */
+background-image: url(http://www.gla.ac.uk/t4/computingservice/i/bannerback.gif);
+background-repeat: repeat-x;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/computingservice/i/banner.gif);
+width:400px;  }
+ 
+
+
+.links ul   { background-color:#d4e8f7;  }
+
+.links h1 {
+	
+	color: #fff;
+	background-color:#78aad0;
+	
+	  }
+	  
+#navigation p.toptail {
+background:#554d38; }
+ 
+#navigation p {
+background-color:554d38;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #554d38  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #554d38  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
