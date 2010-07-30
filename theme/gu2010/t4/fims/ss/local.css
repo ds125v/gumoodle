@@ -1,0 +1,51 @@
+/* for fims  */
+
+
+/* @@@@@@@@@ banners @@@@@@@@@ */
+
+#bannercontainer {
+background:none;
+background-color:#121212; 
+background-image: url(http://www.gla.ac.uk/t4/fims/i/bannerback.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/fims/i/banner.gif);
+width:440px;  }
+
+/* @@@@@@@@@ subhead @@@@@@@@@ */
+
+#subhead  { display:none; }
+
+/* @@@@@@@@@@@  nav  @@@@@@@@@@@@*/
+
+#navigation p.toptail {
+background:#205a8d; }
+ 
+#navigation p {
+background-color:#205a8d205a8d;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #205a8d  url(http://www.gla.ac.uk/t4/generic/i/fims/li.gif) repeat-y;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #205a8d url(http://www.gla.ac.uk/t4/generic/i/fims/li.gif) repeat-y;
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/fims/li.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}

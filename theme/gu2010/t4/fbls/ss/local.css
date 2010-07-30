@@ -1,0 +1,20 @@
+/* for fbls  */
+
+
+/* @@@@@@@@@ banners @@@@@@@@@ */
+
+#bannercontainer {
+background:none;
+background-color:#121212; 
+background-image: url(http://www.gla.ac.uk/t4/fbls/i/bannerback.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/fbls/i/banner.gif);
+width:300px;  }
+
+/* @@@@@@@@@ subhead @@@@@@@@@ */
+
+#subhead  { display:none; }
+

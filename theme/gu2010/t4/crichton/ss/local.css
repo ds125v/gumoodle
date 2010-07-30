@@ -1,0 +1,137 @@
+/* for /crichton */
+
+/* @@@@@@@@@ banners @@@@@@@@@ */
+
+#bannercontainer {
+background:none;
+background-color:#121212; 
+background-image: url(http://www.gla.ac.uk/t4/crichton/i/bannerback.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/crichton/i/banner.gif);
+width:300px;  }
+
+
+
+
+
+
+.news img {float: right; margin: 0 0 5px 5px; padding:0; }
+
+.news h1  { 
+line-height:120%;
+font-size: 1em;	
+position: relative;
+display: block;
+text-decoration: none;
+text-transform: uppercase;
+font-weight: bold;
+color: #fff;
+background-color:#121212;
+padding: 3px 1px 3px 4px; 
+margin-bottom:1px; 
+margin-top:10px; 
+
+}
+
+.news h1 a:link {
+
+color: #fff;
+
+padding:0;
+
+}
+
+.news h1 a:visited {
+color: #fff;
+
+padding: 0;
+
+}
+
+.news h1 a:hover {
+color: #e7e7e7;
+background:  #121212;
+
+padding: 0;
+text-decoration: none;
+border-bottom:0;
+
+}
+
+
+
+.news h2 {
+font-size:1em;
+line-height:120%;  
+background:#e7e7e7;
+padding: 0;
+border: 1px solid #ccc;
+font-weight: bold; }
+
+.news h2 a:link {
+
+color: #333;
+display:block;
+padding: 3px 1px 3px 4px; 
+ }
+
+.news h2 a:visited {
+color: #333;
+display:block;
+padding: 3px 1px 3px 4px;
+
+}
+
+.news h2 a:hover {
+color: #fff;
+display:block;
+padding: 3px 1px 3px 4px;
+background:#666;
+}
+
+
+.news h2.notlink {
+color:#333;
+display:block;
+font-size:1em;
+line-height:120%;  
+background:#e7e7e7;
+padding: 3px 1px 3px 4px; 
+border: 1px solid #ccc;
+font-weight: bold; }
+
+
+
+
+.news p {
+line-height:130%;  
+background-color:#fff;
+padding: 0 5px 3px 5px;
+margin:0 0 5px 0;
+border: 1px solid #ccc;
+border-top: 0; }
+
+
+
+.news a:link {
+
+color: #141414;
+text-decoration: none; 
+border-bottom:0;
+
+}
+
+.news  a:visited {
+color: #141414;
+text-decoration: none;
+border-bottom:0;
+}
+
+.news a:hover {
+color: #fff;
+text-decoration: none;
+border-bottom:0;
+}

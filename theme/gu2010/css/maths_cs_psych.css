@@ -1,0 +1,11 @@
+#bannercontainer { background-image: url(t4/college_scieng/i/bannerback1.gif); }
+#bannerleft { background-image: url(t4/college_scieng/i/banner.gif); }
+#left-column .sideblock .header {background-color: #777909;}
+
+body.category-51 #bannerleft { background-image: url(t4/school_maths/i/banner.gif); }
+body.category-9 #bannerleft { background-image: url(t4/school_psychology/i/banner.gif); }
+body.category-18 #bannerleft { background-image: url(t4/school_computing/i/banner.gif); }
+
+body.category-51 #subhead,
+body.category-9 #subhead,
+body.category-18 #subhead {display: block; }

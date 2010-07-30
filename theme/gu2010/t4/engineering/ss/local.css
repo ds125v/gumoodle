@@ -1,0 +1,200 @@
+ /* for engineering  */
+ 
+ /* @@@@@@@@  top row @@@@@@@@*/
+
+#toprow {background-image: url(http://www.gla.ac.uk/t4/generic/i/engineering/subhead.gif); }
+
+
+.splashpic { 
+background: #5e1111 url(http://www.gla.ac.uk/t4/engineering/i/splashback.gif);
+background-repeat: no-repeat;
+background-position: bottom right;
+  }
+  
+
+
+
+  
+#subhead  {  background: #121212 url(http://www.gla.ac.uk/t4/generic/i/subhead_eng.gif) top left no-repeat ;
+color:#fff;
+display:none; }
+
+#subhead a:link {
+	color: #fff;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:visited {
+	color: #f4f4f4;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:hover {
+	color: #a5b9cd;
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+
+
+#bannercontainer {
+
+
+background-color: #433f6d; 
+background-image: url(http://www.gla.ac.uk/t4/engineering/i/bannerback.gif);
+background-position: top right;
+background-repeat: no-repeat;  }
+
+#bannerleft  {
+
+background: #433f6d url(http://www.gla.ac.uk/t4/engineering/i/banner.gif);
+width:260px;  }
+ 
+
+ 
+ 
+#navigation p.toptail {
+background:#433f6d; }
+ 
+#navigation p {
+background-color:#433f6d;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #433f6d  url(http://www.gla.ac.uk/t4/generic/i/li_eng.gif) repeat-y;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #433f6d url(http://www.gla.ac.uk/t4/generic/i/li_eng.gif) repeat-y;
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/li_eng.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+
+/* start of list  */
+
+#navigation ul li a {
+background: #f4f4f4  url(http://www.gla.ac.uk/t4/generic/i/li_eng.gif) repeat-y;
+border-top: 1px solid #d2d0db; }
+
+#navigation  li .currentsection {
+
+background: #c6c6c6  url(http://www.gla.ac.uk/t4/generic/i/lion.gif) no-repeat;    
+border-top: 1px solid #d2d0db;
+}
+
+#navigation ul li ul li a {
+background: #f4f4f4  url(http://www.gla.ac.uk/t4/generic/i/lili_eng.gif) repeat-y;
+border-top: 1px solid #d2d0db; }
+
+#navigation  li ul li .currentsection {
+
+background: #c6c6c6  url(http://www.gla.ac.uk/t4/generic/i/lilion.gif) no-repeat;    
+border-top: 1px solid #d2d0db;
+}
+
+#navigation ul li ul li ul li a {
+background: #f4f4f4  url(http://www.gla.ac.uk/t4/generic/i/lilili_eng.gif) repeat-y;
+border-top: 1px solid #d2d0db; }
+
+#navigation  li ul li ul li .currentsection {
+background: #c6c6c6  url(http://www.gla.ac.uk/t4/generic/i/lililion.gif) no-repeat;    
+border-top: 1px solid #d2d0db;
+}
+	  
+
+
+
+
+
+/* end of list  */
+ 
+ 
+.links ul   { background-color:#fff;  }
+
+.links ul li   {
+
+border-bottom: 1px solid #d2d0db; 
+
+}
+
+
+.links ul li a   {
+display: block;
+text-decoration: none;
+font-weight:normal;
+color: #205a8d;
+width:142px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:137px; 
+}
+	  
+html>body .links ul li  a {width: auto;}
+
+.links ul li a:link { 
+color: #433f6d; 
+text-decoration: none;
+border: 0; 
+}
+
+.links ul li a:visited { 
+color: #433f6d; 
+text-decoration: none;
+border: 0; 
+}
+
+.links ul li a:hover  { 
+color: #121212;  
+text-decoration: none;
+border: 0; }
+
+	
+
+	  
+	  h1, h3 { color:#5e1111;  }
+	  
+  h2, h4, h5, h6 { color:#433f6d;  }	 
+  
+
+.pullquote  {
+color: #fff;
+background: #433f6d;
+text-indent: 0;
+}
+
+.pullquote a:link {
+color: #dedede;
+text-decoration: none;  
+border-bottom: 0;
+}
+
+.pullquote a:visited {
+color: #dedede;
+text-decoration: none; 
+border-bottom: 0;  
+}
+.pullquote a:hover {
+color: #fff;
+text-decoration: none;
+border-bottom: 0;
+}
+
+.textsplash  {
+
+background:#bbbaca;
+
+}
+
+

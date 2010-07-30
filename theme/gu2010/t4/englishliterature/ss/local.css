@@ -1,0 +1,31 @@
+/* for schools/englishliterature  */
+
+
+.splashpic { 
+
+background: #84a5ce;
+
+  }
+  
+
+
+
+
+
+#bannercontainer {
+background:none;
+/*
+background-position: top right;
+ background-repeat:no-repeat;*/
+background-color:#4a6b9c; 
+background-image: url(http://www.gla.ac.uk/t4/englishliterature/i/bannerback.gif);
+background-repeat: repeat-x;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/englishliterature/i/banner.gif);
+width:350px;  }
+ 
+
+ 
+ 

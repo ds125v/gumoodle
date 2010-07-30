@@ -1,0 +1,139 @@
+/* for services/learningandteaching  */
+
+body {
+background: none;
+background-color:#f4f4f4;
+font-family: "Lucida Grande", verdana, lucida, arial, helvetica, sans-serif;
+color: #404040;
+font-size: 97%;
+margin: 0px;
+padding: 0px;
+text-align: center; 
+}
+
+.splashpic {
+background-color:#e5ce71;  }
+  
+#subhead  {  background: #dfdfdf url(http://www.gla.ac.uk/t4/generic/i/subhead_services.gif) top left no-repeat ;
+color:#666; }
+
+#subhead a:link {
+	color: #666;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:visited {
+	color: #666;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:hover {
+	color: #993333;
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+span.first  {
+
+background-color: #d9e6fa;
+
+}
+
+
+
+#bannercontainer {
+background:none;
+
+background-position: top right;
+ background-repeat:no-repeat;
+background-color:#4a6b9c; 
+background-image: url(http://www.gla.ac.uk/t4/learningandteaching/i/bannerback.gif);
+ }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/learningandteaching/i/banner.gif);
+width:400px;  }
+ 
+#navigation p.toptail {
+background:#5d5e7b; }
+ 
+#navigation p {
+background-color:#5d5e7b;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #5d5e7b  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #5d5e7b  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+
+
+
+ 
+#container {
+
+background: url(http://www.gla.ac.uk/t4/generic/i/navback.gif) repeat-y ;  }
+ 
+
+
+#mainpage {
+background: url(http://www.gla.ac.uk/t4/generic/i/navbottom.gif) no-repeat left bottom;
+	
+}
+
+.links ul   { background-color:#dfdfdf;  }
+
+.links h1 {
+	
+	color: #fff;
+	background-color:#8a8cbf;
+	
+	  }
+	  
+	  h1, h2 { color:#5d5e7b;  }
+	  
+  h3, h4, h5, h6 { color:#968a4b;  }	 
+  
+  span.first  {border:1px solid #ccc; padding:5px; font-weight:bold;  }
+
+
+/* @@@@@@@@@ other stuff @@@@@@@@@ */
+
+.pullquote  {
+color: #b6cdde;
+background: #003c69 url(http://www.gla.ac.uk/t4/generic/i/us/pullquote.gif) no-repeat;
+text-indent: 25px;
+font-weight: bold;
+}
+
+
+.textsplash  {
+color: #404040;
+background:#ece6e6;
+font-weight: bold;
+}
+
+
+p.first  {
+color: #333;
+margin: 0 0 2px 0 ;
+padding: 0 0 2px 2px;
+border-left: 15px solid #b6cdde;
+}

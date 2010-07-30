@@ -1,0 +1,114 @@
+/* for accfin new */
+
+
+
+
+/* Banner */
+
+#bannercontainer { 
+
+background-position: top right;
+background-image: url(http://www.gla.ac.uk/t4/accfin/i/bannerback.gif);
+background-repeat: repeat-x;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/accfin/i/banner.gif);
+width:350px;  }
+
+
+/* End banner */
+
+
+
+/* Sub heading  */
+
+#subhead {
+
+display:block; }
+
+#navigation p {background: #305c74 url(http://www.gla.ac.uk/t4/generic/i/lbss/li.gif) repeat-y; }
+	
+
+#navigation p.toptail {
+background: #666 url(http://www.gla.ac.uk/t4/generic/i/lbss/li.gif) repeat-y;
+padding: 3px 1px 3px 7px;
+width:160px;
+height:auto;
+overflow: hidden;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px;
+margin-bottom:10px;  }
+
+
+
+
+ 
+
+
+/* End navigation */
+
+
+
+/* Main content */
+
+
+
+.maincontent .publication {
+    margin:       0cm 0cm 0cm 1cm;
+    text-indent: -1cm;
+    /*text-align:   justify;*/
+}
+
+.maincontent .phototour {
+    text-align: center;
+}
+
+.maincontent .phototour img {
+    border: 0px;
+    margin: 0px;
+}
+
+.maincontent span.popup {
+    background-color:   #ffffff;
+    border:             1px solid #cccccc;
+    margin:             20px 0px 0px 0px;
+    padding:            3px;
+    position:           absolute;
+    visibility:         hidden;
+}
+
+/* End main content */
+
+
+
+
+
+
+
+
+
+/* Tables */
+
+table {
+    background-color: #ffffff;
+    width:98%;
+}
+
+table.timetable {
+    background-color: #aaaaff;
+}
+
+th {
+    color:            #003064;
+    background-color: #ede9ef;
+    vertical-align:   top;
+}
+
+td {
+    background-color: #ffffff;
+    vertical-align:   top;
+}
+
+/* End tables */

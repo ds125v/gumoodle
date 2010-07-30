@@ -1,0 +1,40 @@
+/* for vet sah  */
+
+
+
+
+
+
+
+
+#bannercontainer {
+
+
+
+background-color:#89a4cb; 
+background-image: url(http://www.gla.ac.uk/t4/vet/i/sahbannerback.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/vet/i/sahbanner.gif);
+width: 260px;  }
+ 
+
+ .rightchildren h1  {color:#fff; background-color:#003c69;}
+ 
+.rightchildren h1 a {color:#fff; background-color:#003c69;}
+
+
+.maincontent h1,  h2, h3 {color:#691500; }
+
+.links  h1 {background-color:#003c69; }
+
+.links ul li   {
+
+border-bottom: 1px solid #9cb3c5; 
+
+}
+ 
+

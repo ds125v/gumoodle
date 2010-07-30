@@ -1,0 +1,31 @@
+/* for services/itservices news  */
+
+
+
+.splashpic {
+background-color:#85a6d7;
+}
+
+
+
+#bannercontainer {
+
+
+background-position: top right;
+ background-repeat:no-repeat;
+background-color:#4a6b9c; 
+background-image: url(http://www.gla.ac.uk/t4/itservices/i/bannerback.gif);
+ }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/itservices/i/banner_news.gif);
+width:350px;  }
+
+.textsplash { background:#d0dae6; }
+ 
+ .splashpic {
+background: #b6b7d3   url(http://www.gla.ac.uk/t4/itservices/i/splashback.gif) ;
+background-repeat: no-repeat;
+background-position: top right;
+ }

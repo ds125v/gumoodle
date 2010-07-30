@@ -1,0 +1,27 @@
+/* for physics */
+
+
+#bannercontainer { 
+
+background-position: top right;
+/* background-repeat:no-repeat;
+background-color:#4a6b9c; */
+background-image: url(http://www.gla.ac.uk/t4/physics/i/bannerback.gif);
+background-repeat: repeat-x;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/physics/i/banner.gif);
+width:250px;  }
+ 
+ 
+
+
+.splashpic {
+background: #afafc6  ;
+ }
+
+
+
+  
+  

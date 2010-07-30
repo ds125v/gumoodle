@@ -1,0 +1,23 @@
+/* for /faculties/medicine/communitybasedsciences  */
+
+#bannercontainer {
+background-image: url(http://www.gla.ac.uk/t4/communitybasedsciences/i/bannerback.gif);
+background-repeat: repeat-x;}
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/communitybasedsciences/i/banner.gif);
+width:360px;
+}
+
+
+
+/* @@@@@@@@@ other stuff @@@@@@@@@ */
+
+h3 { color:#166c7b; }
+ 
+.textsplash  { background-color: #f4f4f4;  }
+
+.splashpic {
+background-color:#7bb2b9;
+}
+  

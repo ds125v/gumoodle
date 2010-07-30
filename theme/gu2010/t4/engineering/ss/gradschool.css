@@ -1,0 +1,28 @@
+/* for engineering gradschool  */
+
+
+
+
+#subhead  {display:block; }
+
+
+#bannerleft  {
+
+background: #433f6d url(http://www.gla.ac.uk/t4/engineering/i/banner_gradschool.gif);
+width: 340px;
+  }
+ 
+
+.splashpic {
+background-color:#fff;
+background-image: url(http://www.gla.ac.uk/t4/engineering/i/splashback_gradschool.jpg);
+background-position: top left;
+background-repeat: no-repeat;  }
+
+.splashpic img { 
+border-right:  0; 
+padding:0; 
+margin:0; 
+display:block;
+} 
+

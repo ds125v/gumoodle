@@ -1,0 +1,1308 @@
+/* T4 Generic Dept SS */
+
+body {
+background: none;
+background-color:#f4f4f4;
+font-family: verdana, lucida, arial, helvetica, sans-serif;
+color: #404040;
+font-size: 96%;
+margin: 0px;
+padding: 0px;
+text-align: center; 
+}
+
+body {word-wrap: break-word;}
+
+
+ #wrapper
+{padding:0; margin:0; text-align:center;
+margin: 0 auto;
+min-width: 780px;
+max-width:1100px;
+width:expression(document.body.clientWidth < 802? "800px": document.body.clientWidth > 1102? "1100px": "100%" );
+}
+
+#headers_container  {
+background-color:#fff;
+width: 90%;
+margin: 0 auto;
+border: 1px solid #ccc;
+border-top: 0;
+padding-bottom: 5px; 
+}
+
+/* top row logotype search etc */
+
+#toprow  {
+font-family: verdana, lucida, arial, helvetica, sans-serif;
+font-size: 0.7em;
+clear: both;
+text-align: right;
+padding: 3px 0px 2px 0px;
+color: #fff;
+background-color:#121212;
+background-image: url(http://www.gla.ac.uk/t4/generic/i/toprowbackblack.gif);
+background-position:left;
+background-repeat: repeat-y;
+border-top: 5px solid #fff;
+border-left: 5px solid #fff;
+border-right: 5px solid #fff;
+border-bottom: 1px solid #fff;
+min-height:10px;  height:auto !important; height: 10px; 
+}
+
+.logotype {
+float:left;
+padding:2px 2px 0 0;
+}
+	
+#toprow a:link {
+color: #fff;
+text-decoration: none;
+border: 0;   
+}
+
+#toprow a:visited {
+color: #fff;
+text-decoration: none;  
+border: 0;
+}
+
+#toprow a:hover {
+color: #993333;
+text-decoration: none; 
+border: 0;  
+}
+
+#toprow form {
+margin: 0 5px 0 0;
+padding: 0px;
+padding-bottom: 2px;
+}
+
+#toprow input.searchbox {
+margin: 0px 2px 0px 0px;
+padding: 0px;
+height: 15px;
+width: 118px;
+border: 1px solid #ccc;
+background-color:#efefef;
+font-family: verdana, lucida, arial, helvetica, sans-serif;
+font-size: 10px;
+line-height: normal;
+font-weight: normal;
+color: #666666;
+vertical-align: middle; }
+
+#toprow input.go {
+margin: 0px;
+padding: 0px;
+width: 15px;
+border: 0px;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 10px;
+line-height: normal;
+font-weight: normal;
+color: #666666;
+vertical-align: middle;
+}
+
+/* images  */
+
+.maincontent table .textsplash 
+{position: static; }
+
+
+.maincontent table img {
+position: static;
+float: none; 
+padding: 0;
+border: 0;
+margin: 0;
+}
+
+.maincontent table ul {
+position: static;
+float: none; 
+padding: 0;
+border: 0;
+margin: 0 0 0 15px;
+}
+
+.maincontent img {
+position: relative;
+float: none; 
+padding: 0;
+border: 1px solid #666;
+margin: 0 0 10px 0 ;
+}
+
+a img { border: 0;
+text-decoration:none;  }
+
+img.right  { 
+float: right; 
+margin:0 0 10px 10px;
+}
+
+img.left  { 
+float: left; 
+margin:0 10px 10px 0;
+}
+
+/* pullquote  */
+
+.pullquote  {
+font-family: Georgia, Imapct, times, serif;
+background: #dadada url(http://www.gla.ac.uk/t4/generic/i/pullquoteback.gif) no-repeat;
+float: right;
+position:relative;
+padding: 5px;
+margin: 0 0 10px 10px;
+border: 1px solid #666;
+font-weight:normal;
+font-size:1.1em;
+text-indent: 25px;
+width:142px; 
+voice-family: "\"}\""; 
+voice-family:inherit;
+width: 130px;
+}
+
+html>body .pullquote {
+  width: 130px;  }
+
+.pullquote img  { margin-bottom: 5px; }
+
+/* captionedphoto  */
+
+.captioned_140px_photo  {
+font-family: Georgia, Imapct, times, serif;
+background: #dadada;
+float: right;
+position:relative;
+padding: 5px;
+margin: 0 0 10px 10px;
+border: 1px solid #666;
+font-weight:normal;
+font-size:1.1em;
+width:156px; 
+voice-family: "\"}\""; 
+voice-family:inherit;
+width: 142px;
+}
+
+html>body .captioned_140px_photo {
+  width: 142px;  }
+
+.captionedphoto img  { margin: 0 0 5px 0; padding:0; float:none;  }
+
+
+.links .captioned_140px_photo  {
+font-family: Georgia, Imapct, times, serif;
+background: #dadada;
+float: right;
+position:relative;
+padding: 5px;
+margin: 0 0 10px 0;
+border: 1px solid #666;
+font-weight:normal;
+font-size:1.1em;
+width:142px; 
+voice-family: "\"}\""; 
+voice-family:inherit;
+width: 130px;
+}
+
+html>body .links .captioned_140px_photo {
+  width: 130px;  }
+
+
+
+
+/* banner  */
+
+#bannercontainercontainer { border:0; }
+
+#bannercontainer { 
+padding:0; 
+margin:0;
+background-position:top right;
+/* background-repeat:no-repeat;
+background-color:#4a6b9c; */
+background-image:url(http://www.gla.ac.uk/t4/generic/i/bannerback.gif);
+background-repeat: no-repeat;
+border-left: 5px solid #fff;
+border-right: 5px solid #fff;
+border-bottom: 1px solid #fff;
+overflow:hidden;
+}
+
+#bannerleft  {
+float:left;
+background: url(http://www.gla.ac.uk/t4/generic/i/banner.gif);
+height:70px;
+width:400px;
+border:0;
+margin:0;
+padding:0;
+overflow:hidden;
+}
+
+#bannerright  {
+text-align: right;
+height:70px;
+border:0;
+margin:0;
+padding:0;
+}
+
+#bannerforprint  { display: none;  }
+
+#subhead  {
+font-family: verdana, lucida, arial, helvetica, sans-serif;
+background: url(http://www.gla.ac.uk/t4/generic/i/subhead_us.gif) top left no-repeat #d4d4d4 ; 
+border: 0;
+border-left: 5px solid #fff;
+border-right: 5px solid #fff;
+margin: 0;
+padding: 2px 5px 4px 7px;
+font-weight:bold;
+color: #4a4a4a;
+font-size: 0.7em;
+text-align: left;
+clear: both; 
+min-height: 15px; height: auto !important; height: 15px;  }
+
+
+
+#subhead a:link {
+color: #333;
+text-decoration: none;  
+border-bottom: 0;
+}
+
+#subhead a:visited {
+color: #333;
+text-decoration: none; 
+border-bottom: 0;  
+}
+#subhead a:hover {
+color: #fff;
+text-decoration: none;
+border-bottom: 0;
+}
+
+#subhead facultyarrow { font-family: verdana,  arial, helvetica, sans-serif; }
+
+
+#container {
+border: 0;
+background: url(http://www.gla.ac.uk/t4/generic/i/navback.gif) repeat-y ;
+width: 90%;
+margin:  0 auto;
+padding: 0;
+text-align: left;
+
+}
+
+/* breadcrumbs  */
+
+#bread  {
+font-family: verdana, lucida, arial, helvetica, sans-serif;
+background: url(http://www.gla.ac.uk/t4/generic/i/bodyback.gif) #f4f4f4;
+padding: 1px 0 4px 12px;
+position: relative;
+text-align: left;
+border: 0;
+font-weight:normal;
+font-size:0.7em;
+color: #666;
+text-align: left;
+text-decoration: none;
+}
+
+#bread a:link {
+color: #666;
+text-decoration:none; 
+border-bottom: 0;
+}
+
+#bread a:visited {
+color: #666;
+text-decoration:none; 
+border-bottom: 0;  
+}
+
+#bread a:hover {
+color: #933;
+text-decoration:none;
+border-bottom: 0;
+}
+
+/* links */
+
+.links {
+font-family: verdana, lucida, arial, helvetica, sans-serif;
+text-align: left; 
+font-size: 0.9em;
+line-height:130%;
+float: right;
+margin: 0;
+padding: 5px 5px 0px 5px;
+border: 1px solid #ccc;
+border-bottom:0;
+width:157px; 
+voice-family: "\"}\""; 
+voice-family:inherit;
+width: 142px;
+overflow:hidden;
+}
+	
+html>body .links {
+width:142px;  }
+  
+.links ul   {
+list-style: none;
+line-height:120%;
+width: 142px;
+padding: 0;
+margin:  0 0 10px 0;
+position: relative;  
+text-align: left;
+background-color:#f4f4f4;
+}
+	  
+.links ul li   {
+position: relative;
+display: block;
+text-decoration: none;
+font-weight: normal;
+color: #404040;
+padding: 3px 1px 3px 4px;
+border-bottom: 1px solid #eaeaea; 
+width:142px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:137px; 
+}
+
+html>body .links ul li {width: auto;}
+
+.links ul li a   {
+display: block;
+text-decoration: none;
+font-weight:normal;
+color: #121212;
+width:142px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:137px; 
+}
+	  
+html>body .links ul li  a {width: auto;}
+
+.links ul li a:link { 
+color: #121212; 
+text-decoration: none;
+border: 0; 
+}
+
+.links ul li a:visited { 
+color: #121212; 
+text-decoration: none;
+border: 0; 
+}
+
+.links ul li a:hover  { 
+color: #003c69;  
+text-decoration: none;
+border: 0; }
+
+
+.links ul.first   {
+list-style: none;
+line-height:120%;
+width: 142px;
+padding: 0;
+margin:  0 0 10px 0;
+position: relative;  
+text-align: left;
+background-color:#f4f4f4;
+border-bottom: 1px solid #000;
+}
+	  
+.links ul.first li   {
+position: relative;
+display: block;
+text-decoration: none;
+font-weight: normal;
+color: #404040;
+padding: 3px 1px 3px 4px;
+border-bottom: 1px solid #eaeaea; 
+border-left: 1px solid #000; 
+border-right: 1px solid #000; 
+width:142px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:135px; 
+}
+
+html>body .links ul.first li {width: auto;}
+
+.links ul.first li a   {
+display: block;
+text-decoration: none;
+font-weight:normal;
+color: #333;
+
+width:142px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:135px; 
+}
+	  
+html>body .links ul.first li  a {width: auto;}
+
+.links ul.first li a:link { 
+color: #336; 
+text-decoration: none;
+
+}
+
+.links ul.first li a:visited { 
+color: #336; 
+text-decoration: none;
+ 
+}
+
+.links ul.first li a:hover  { 
+color: #900;  
+text-decoration: none;
+ }
+
+
+
+
+.links img  {
+border: 1px solid #666;
+margin: 0;
+}
+
+.links p  { font-weight: normal;   }
+
+.links h1 {
+line-height:120%;
+font-size: 1.1em;	
+position: relative;
+display: block;
+text-decoration: none;
+text-transform:uppercase;
+font-weight: bold;
+color: #fff;
+background-color:#000;
+padding: 3px 1px 3px 4px;
+border-bottom: 1px solid #eaeaea; 
+width:142px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:137px; 
+margin:0;
+}
+
+
+
+
+
+/* splashpic */
+
+.splashpiccontainercontainer  {
+margin: 0 0 0 177px;
+background-color:#f4f4f4;
+border: 0;
+padding: 0 0 10px 0;
+}
+
+.splashpiccontainer  {
+margin: 0;
+border: 1px solid #ccc;
+padding-bottom:0;
+}
+
+.splashpic {
+background-image:url(http://www.gla.ac.uk/t4/generic/i/splashback_ie_fix.gif);
+background-position:left;
+background-repeat:no-repeat;
+background-color:#ccc;
+padding:0; 
+margin:0;
+border:  5px solid #fff;
+line-height: 0.1em;  
+}
+
+.splashpic img { 
+border-right: 
+5px solid #fff; 
+padding:0; 
+margin:0; 
+display:block;
+} 	
+
+#mainpage {
+background:url(http://www.gla.ac.uk/t4/generic/i/navbottom.gif) no-repeat left bottom;
+padding: 0;
+font-size: 0.75em;
+line-height:150%;
+border: 0;
+margin:  0;
+}
+
+#mainpage_forbottom {
+clear:right;
+padding: 0;
+border:0;
+background:url(http://www.gla.ac.uk/t4/generic/i/linksback.gif) repeat-y right;
+margin: 0;
+}
+
+.maincontent {
+background-color:#fdfdfd;
+padding: 1px 0 0 0;
+position:relative;
+text-align: left;
+border: 5px solid #fff;
+margin:0 160px 0 177px;
+
+}
+
+
+.maincontent a:link {
+color: #333;
+text-decoration: underline;
+}
+
+.maincontent a:visited {
+color: #333;
+text-decoration: underline;
+}
+
+.maincontent a:hover {
+color: #999;
+text-decoration: underline;
+}
+
+.onecolclear {
+clear:right; 
+height: 10px; 
+margin: 0 0 0 177px; 
+padding:0;
+background:#f4f4f4;
+}
+
+.twocolclear { 
+clear: right; 
+height: 10px; 
+margin: 0 0 0 177px; 
+padding:0; 
+background:url(http://www.gla.ac.uk/t4/generic/i/divclear2colback.gif) no-repeat top right;
+}
+
+/* start of navigation */
+
+#navigation {
+font-family: verdana, lucida, arial, helvetica, sans-serif;
+background-color:#fff;
+padding: 5px;
+margin: 0;
+float: left;
+width: 160px;
+border: 1px solid #ccc;
+border-bottom: 0;
+font-size: 0.7em;
+overflow: hidden;
+}
+
+#navigation p {
+font-size: 1em;	
+position: relative;
+text-decoration: none;
+font-weight: bold;
+color: #fff;
+background-color:#000;
+padding:0;
+margin:0;
+
+}
+
+#navigation p.heading {
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px;  }
+
+
+#navigation p.toptail {
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px;
+margin-bottom:10px;  }
+
+#navigation p a:link {
+display: block;
+color: #fff;
+
+background: #000  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+text-decoration: none;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+#navigation p a:visited {
+display: block;
+color: #fff;
+background: #000  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+text-decoration: none;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+
+
+
+#navigation ul {
+list-style: none;
+width: 160px; 
+margin: 0 ;
+padding: 0;
+border-right: 0;
+border-left: 0;
+border-top:0;
+border-bottom: 1px solid #eaeaea;
+position: relative; 
+}
+	
+html>body #navigation ul { width:160px; }
+
+#navigation li ul { border-bottom: 0;  }
+
+#navigation ul li { position: relative; }
+	
+html>body #navigation ul li {width: auto;}	
+
+#navigation ul li a {
+display: block;
+text-decoration: none;
+font-weight:normal;
+color: #121212;
+background: #f4f4f4  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+padding: 3px 1px 3px 7px;  /* changes to 17px for nested  */
+border-right: 0;
+border-left: 0;
+border-bottom:0;
+border-top: 1px solid #eaeaea;
+}
+
+#navigation ul li a:hover  {
+color:#fff;
+background-color: #121212;  
+text-decoration: none; }
+/* commented backslash hack v2 \*/	
+* html #navigation ul li { float: left; height: 1%; }
+* html #navigation ul li a { height: 1%; }
+/* end hack */
+
+#navigation li ul li a {
+font-weight:normal;
+background: #fff  url(http://www.gla.ac.uk/t4/generic/i/lilioff.gif) no-repeat;
+padding: 3px 1px 3px 15px;  
+}
+
+#navigation li ul li ul li a {
+font-weight: normal;
+background: #fff url(http://www.gla.ac.uk/t4/generic/i/lililioff.gif) no-repeat; 
+padding: 3px 1px 3px 23px;  
+}
+	
+#navigation li ul li ul li ul li a {
+font-weight: normal;
+background: #fff url(http://www.gla.ac.uk/t4/generic/i/lilililioff.gif) no-repeat; 
+padding: 3px 1px 3px 31px;  
+}
+	
+#navigation li ul li ul li ul li ul li a {
+font-weight: normal;
+background: #fff url(http://www.gla.ac.uk/t4/generic/i/lilililioff.gif) no-repeat; 
+padding: 3px 1px 3px 17px; 
+}
+
+#navigation  li .currentsection {
+display: block;
+text-decoration: none;
+font-weight:normal;
+color: #121212;
+background: #f4f4f4  url(http://www.gla.ac.uk/t4/generic/i/lion.gif) no-repeat;    
+padding: 3px 1px 3px 7px; 
+border: 1px solid #eaeaea; 
+border-right: 0;
+border-left: 0;
+border-bottom:0; 
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+	  
+html>body #navigation li .currentsection {width: auto;}
+
+#navigation  li ul li .currentsection {
+font-weight:normal;
+background: #fff  url(http://www.gla.ac.uk/t4/generic/i/lilion.gif) no-repeat;    
+padding: 3px 1px 3px 15px;  
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:144px;
+}
+	  
+html>body #navigation li .currentsection {width: auto;}
+
+#navigation  li ul li ul li .currentsection {
+font-weight:normal;
+background: #fff  url(http://www.gla.ac.uk/t4/generic/i/lililion.gif) no-repeat;    
+padding: 3px 1px 3px 23px;  
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:136px;
+}
+	  
+html>body #navigation  li .currentsection {width: auto;}
+
+#navigation  li ul li ul li ul li .currentsection {
+font-weight:normal;
+background: #fff  url(http://www.gla.ac.uk/t4/generic/i/lilililion.gif) no-repeat;    
+padding: 3px 1px 3px 31px;  
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:126px;
+}
+	  
+html>body #navigation  li .currentsection {width: auto;}
+
+#navigation img { margin-bottom:5px; }
+
+/* end of navigation  */
+
+
+		
+p {
+margin: 0;
+padding: 0 0 10px 0;
+}
+
+
+
+span.first  {
+display:block; 
+color: #404040; 
+border: 1px #cecece solid; 
+background-color: #f4f4f4;
+padding: 4px;
+margin-bottom: 10px;
+font-weight: bold;
+}
+
+
+
+
+table  {
+
+font-size: 100%;
+margin-bottom: 10px;
+width:98%;
+}
+
+.maincontent ul, dl  {
+position: relative;
+list-style-type: square;
+margin: 0 0 10px 10px;
+padding: 0 0 0 10px;
+}
+
+.maincontent li  {
+position:relative;
+margin: 0 0 0 15px;
+padding: 0;
+}
+
+.maincontent table li  {
+position:static;
+margin: 0 0 0 15px;
+padding: 0;
+}
+
+
+
+
+h1 {
+font-family: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+font-size: 1.4em;
+color: #404040;
+margin: 0 0 10px 0;
+padding: 0;
+
+}
+
+h2 {
+font-family: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+font-size: 1.25em;
+color: #404040;
+margin: 0;
+padding: 0 0 10px 0;
+}
+
+h3 {
+font-family: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+font-size: 1.1em;
+color: #404040;
+margin: 0;
+padding: 0 0 5px 0;
+}
+
+h4 {
+font-family: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+font-size: 1.1em;
+color: #404040;
+margin: 0;
+padding: 0;
+}
+
+h5 {
+font-family: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+font-size: 1.1em;
+color: #404040;
+margin: 0;
+padding: 0;
+}
+
+h6 {
+font-family: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+font-size: 1.1em;
+color: #404040;
+margin: 0;
+padding: 0;
+}
+
+
+
+th {
+background-color: #efefef;
+text-align: left;
+}
+
+a:link {
+color: #333;
+text-decoration:  underline; 
+
+}
+
+a:visited {
+color: #333;
+text-decoration: underline;
+}
+
+a:hover {
+color: #999;
+text-decoration: underline;
+}
+
+
+
+
+
+
+	
+.spacer {
+clear: both;
+position: relative;
+}
+
+
+.textsplash  {
+position:relative;
+padding: 5px;
+border: 1px solid #ccc;
+margin: 0 0 10px 0;
+color:#121212;
+background:#f4f4f4;
+font-weight:normal;
+}
+
+.textsplash a:link {
+
+color:#121212;
+text-decoration: underline;
+}
+
+.textsplash a:visited {
+color: #121212;
+text-decoration: underline;
+}
+
+.textsplash a:hover {
+color: #003c69;
+text-decoration: underline;
+}
+
+
+.alertsplash  {
+position:relative;
+padding: 5px;
+border: 1px solid #940000;
+margin: 0 0 10px 0;
+background:#f7e5e5;
+font-weight:normal;
+}
+
+.textsplash img  {
+position:relative;
+float:right;
+margin:0 0 10px 10px;
+}
+
+hr.navtoptail  {
+color:#ccc;
+}
+
+hr {
+color:#ebebeb;
+}
+
+p.reversed{
+padding: 1px 10px 2px 4px;
+border:0px;
+margin: 0 0 5px 0;
+background:#808080;
+color: #ffffff;
+font-size: 1.25em;
+font-weight:bold;
+width: 95%;
+}
+
+/* for homepages  */
+
+.homesplashpiccontainercontainer  {
+margin: 0 160px 0 177px;
+background-color:#f4f4f4;
+border: 0;
+padding: 0 0 10px 0;
+}
+
+.homesplashpiccontainer  {
+margin: 0;
+border: 1px solid #ccc;
+padding-bottom:0;
+}
+
+.homesplashpic {
+background-image:url(http://www.gla.ac.uk/t4/generic/i/splashback_ie_fix.gif);
+background-position:left;
+background-repeat:no-repeat;
+background-color:#ccc;
+padding:0; 
+margin:0;
+border:  5px solid #fff;
+line-height: 0.1em;  
+}
+
+.homesplashpic img { 
+border-top: 0;
+border-right:  5px solid #fff; 
+border-bottom: 0;
+border-left: 0;
+padding:0; 
+margin:0; 
+display:block;
+} 
+
+.homepagerightcol  { margin-left:182px;  }
+
+.homepagerightcol img {float:right; margin: 0 0 5px 5px; padding:0; }
+
+.homepagerightcol h1  { 
+line-height:120%;
+font-size: 1em;	
+position: relative;
+display: block;
+text-decoration: none;
+text-transform: uppercase;
+font-weight: bold;
+color: #fff;
+background-color:#2f2f2f;
+padding: 3px 1px 3px 4px; 
+margin-bottom:1px; 
+
+}
+
+.homepagerightcol h1 a:link {
+
+color: #fff;
+
+padding:0;
+
+}
+
+.homepagerightcol h1 a:visited {
+color: #fff;
+
+padding: 0;
+
+}
+
+.homepagerightcol h1 a:hover {
+color: #fff;
+background:  #121212;
+
+padding: 0;
+text-decoration: none;
+border-bottom:0;
+
+}
+
+
+
+.homepagerightcol h2 {
+font-size:1em;
+line-height:120%;  
+background:#e7e7e7;
+padding: 0;
+border: 1px solid #ccc;
+font-weight: bold; }
+
+.homepagerightcol h2 a:link {
+
+color: #333;
+display:block;
+padding: 3px 1px 3px 4px; 
+ }
+
+.homepagerightcol h2 a:visited {
+color: #333;
+display:block;
+padding: 3px 1px 3px 4px;
+
+}
+
+.homepagerightcol h2 a:hover {
+color: #fff;
+display:block;
+padding: 3px 1px 3px 4px;
+background:#666;
+}
+
+
+.homepagerightcol h2.notlink {
+color:#333;
+display:block;
+font-size:1em;
+line-height:120%;  
+background:#e7e7e7;
+padding: 3px 1px 3px 4px; 
+border: 1px solid #ccc;
+font-weight: bold; }
+
+
+
+
+.homepagerightcol p {
+line-height:130%;  
+background-color:#fff;
+padding: 0 5px 3px 5px;
+margin:0 0 5px 0;
+border: 1px solid #ccc;
+border-top: 0; }
+
+
+
+.homepagerightcol a:link {
+
+color: #141414;
+text-decoration: none; 
+border-bottom:0;
+
+}
+
+.homepagerightcol  a:visited {
+color: #141414;
+text-decoration: none;
+border-bottom:0;
+}
+
+.homepagerightcol a:hover {
+color: #fff;
+text-decoration: none;
+border-bottom:0;
+}
+
+
+.homepageleftcol { float:left; width:172px; position: relative;   }
+
+.homepageleftcol .big { padding: 5px; border: 1px solid #ccc;}
+
+.homepageleftcol  ul, dl  {
+position: relative;
+list-style-type: square;
+margin: 0 0 10px 5px;
+padding: 0 0 0 5px;
+}
+
+.homepageleftcol li  {
+position:relative;
+margin: 0 0 0 5px;
+padding: 0;
+}
+
+/* end of for homepages */
+
+
+ul.longlist li a:link { 
+color: #004884; 
+text-decoration: none;
+}
+ul.longlist li a:visited { 
+color: #004884; 
+text-decoration: none;
+}
+
+ul.longlist li a:hover  {  
+color: #900; 
+text-decoration: none;
+}
+
+
+label.hidelabel
+{
+    display: none;
+}
+
+.redbox {
+
+  font-size: 1.25em;
+  font-weight: bold;
+  color: #ffff00;
+  background-color: #880000;
+  display: block;
+  text-align: left;
+  margin: 0px;
+  padding: 2px 0 2px 5px;
+ 
+}
+
+.textblock {
+	
+	font-size: 97%;
+	font-style: normal;
+	font-weight: normal;
+	color: #404040;
+	text-align: left;
+	display: block;
+	background-color: #fff;
+	border-top-style: none;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-right-color: #999999;
+	border-bottom-color: #999999;
+	border-left-color: #999999;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	margin: 0 0 10px 0;
+	padding: 2px 5px 2px 5px;
+	
+}
+
+ul.right_floated_list {
+	float:right;
+	position:relative;
+	padding: 5px;
+	border: 1px solid #ccc;
+	margin: 0 0 10px 10px;
+	background: #dadada;
+	font-weight: normal;
+	font-size: 0.9em;
+	width: 145px; 
+	voice-family: "\"}\""; 
+	voice-family:inherit;
+	width: 130px;
+}
+
+#footer_container {
+font-family: verdana, lucida, arial, helvetica, sans-serif;
+border: 0;
+font-size: 0.7em;
+font-style: normal;
+font-weight: normal;
+clear: both;
+text-align: right;
+padding: 0 10px 2px 10px;
+color: #5a5a5a;
+width: 90%;
+margin: 0px auto;
+}
+
+#footer1  {
+
+text-align: left;
+padding: 10px 0 4px 5px;
+float: left;
+width: 220px;
+border:0 ;
+}
+
+#footer2  {
+
+margin-left: 230px;
+text-align: right;
+padding-top: 10px;
+padding-bottom: 4px;
+padding-right: 5px;
+border:0; 
+}
+
+#footer2 p {color: #5a5a5a;}
+#footer1 p {color: #5a5a5a;}
+
+
+#footer1 a: link  {color: #5a5a5a; }
+#footer1 a: visited  {color: #5a5a5a; }
+#footer1 a: hover  {color: #336699; }
+
+#footer2 a: link  {color: #5a5a5a; }
+#footer2 a: visited  {color: #5a5a5a; }
+#footer2 a: hover  {color: #336699; }
+

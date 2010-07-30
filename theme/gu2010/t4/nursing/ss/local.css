@@ -1,0 +1,18 @@
+/* for /departments/nursing */
+
+
+#bannercontainer {
+background-image: url(http://www.gla.ac.uk/t4/nursing/i/bannerback.gif);
+background-repeat: repeat-x;}
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/nursing/i/banner.gif);
+width:360px;
+}
+ 
+
+.splashpic { 
+background: #52adb9 url(http://www.gla.ac.uk/t4/nursing/i/splashback.gif);
+background-repeat: no-repeat;
+background-position: top right;
+  }

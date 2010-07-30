@@ -1,0 +1,218 @@
+/* for bigswitch */
+
+
+
+#subhead  {  background: #ccc url(http://www.gla.ac.uk/t4/generic/i/subhead_us.gif) top left no-repeat ;
+color:#666;
+display:none; }
+
+#subhead a:link {
+	color: #666;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:visited {
+	color: #666;
+	text-decoration: none; 
+	border-bottom: 0;  }
+#subhead a:hover {
+	color: #993333;
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+
+#bannercontainer { 
+
+background-position: top right;
+/* background-repeat:no-repeat;
+background-color:#4a6b9c; */
+background-image: url(http://www.gla.ac.uk/t4/about/i/bannerback2.gif);
+background-repeat: repeat-x;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/bigswitch/i/newbanner2.gif);
+width:200px;  }
+ 
+
+.splashpic {
+background: #baaa95 url(http://www.gla.ac.uk/t4/about/i/splashback.gif);
+background-repeat: repeat-x;
+background-position: bottom;
+ }
+
+
+.links ul   { background-color:#e1e1e1;  }
+
+.links h1 {
+	
+	color: #fff;
+	background-color:#acbc57;
+	
+	  }
+	  
+	  
+	   
+/* blues #navigation p.toptail {
+background:#336699; }
+ 
+#navigation p {
+background-color:#336699;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #336699  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #336699
+url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+} */
+
+
+#navigation p.toptail {
+background:#767369; }
+ 
+#navigation p {
+background-color:#767369;
+/* background-image:url(http://www.gla.ac.uk/other/webteam/navparaback.gif); */
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #767369  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #767369  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+/* level one */
+
+#navigation ul li a {
+display: block;
+text-decoration: none;
+font-weight:normal;
+color: #1b1b1b;
+background: #dfd7ca  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+padding: 3px 1px 3px 7px;  /* changes to 17px for nested  */
+border-right: 0;
+border-left: 0;
+border-bottom:0;
+border-top: 1px solid #eaeaea;
+}
+
+
+
+
+
+#navigation  li .currentsection {
+display: block;
+text-decoration: none;
+font-weight:normal;
+color: #1b1b1b;
+background: #dfd7ca  url(http://www.gla.ac.uk/t4/generic/i/lion.gif) no-repeat;    
+padding: 3px 1px 3px 7px; 
+border: 1px solid #fff; 
+border-right: 0;
+border-left: 0;
+border-bottom:0; 
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+	  
+html>body #navigation li .currentsection {width: auto;}
+
+
+/* level two */
+
+#navigation li ul li a {
+font-weight:normal;
+background: #ebe7e1  url(http://www.gla.ac.uk/t4/generic/i/lilioff.gif) no-repeat;
+padding: 3px 1px 3px 15px;  
+border: 1px solid #fff; 
+border-right: 0;
+border-left: 0;
+border-bottom:0;
+}
+
+#navigation  li ul li .currentsection {
+font-weight:normal;
+background: #ebe7e1  url(http://www.gla.ac.uk/t4/generic/i/lilion.gif) no-repeat;    
+padding: 3px 1px 3px 15px;  
+border: 1px solid #fff; 
+border-right: 0;
+border-left: 0;
+border-bottom:0;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:144px;
+}
+	  
+html>body #navigation li .currentsection {width: auto;}
+
+
+	  
+
+
+
+ 	  h1, h3 { 
+	   color:#996;  }
+	  
+  h2, h4, h5, h6 { 
+   color:#333;  }
+ 
+ 
+ .homepagerightcol a:link {
+
+color: #141414;
+text-decoration: none; 
+border-bottom:0;
+
+}
+
+.homepagerightcol  a:visited {
+color: #141414;
+text-decoration: none;
+border-bottom:0;
+}
+
+.homepagerightcol a:hover {
+color: #565656;
+text-decoration: none;
+border-bottom:0;
+
+}
+ 

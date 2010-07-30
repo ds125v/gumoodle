@@ -1,0 +1,40 @@
+/* for detartments/history  */
+
+
+
+
+
+
+#bannercontainer { 
+
+background-position: top right;
+/* background-repeat:no-repeat;
+background-color:#4a6b9c; */
+background-image: url(http://www.gla.ac.uk/t4/history/i/bannerback.gif);
+background-repeat: repeat-x;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/history/i/banner.gif);
+width:270px;  }
+ 
+
+
+.splashpic {
+background-image: url(http://www.gla.ac.uk/t4/history/i/splashback.gif);
+background-color: #b6c3d0;
+background-repeat: no-repeat;
+background-position: top right;
+ }
+
+
+
+	  
+	   
+
+
+ 	  h1, h2 { color:#483f3c;  }
+	  
+  h3, h4, h5, h6 { color:#454a3b;  }
+ 
+ 

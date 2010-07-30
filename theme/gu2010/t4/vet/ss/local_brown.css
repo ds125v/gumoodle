@@ -1,0 +1,106 @@
+/* for vet  */
+
+
+
+
+
+#bannercontainer {
+background:none;
+
+
+background-color:#693500; 
+background-image: url(http://www.gla.ac.uk/t4/vet/i/bannerback_brown.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/vet/i/banner_brown.gif);
+width:300px;  }
+ 
+
+ 
+
+
+
+
+	  
+		 
+  
+  
+  .textsplash {position:relative;padding: 5px;border: 1px solid 
+  #ccc;margin: 0 0 10px
+0;background:#e0e0e0;font-weight:normal;}  
+
+
+/* table lists  */
+
+table.links    { background-color:#ffffff; 
+border: 0;
+float: none;}
+
+.links td ul   { background-color:#ffffff; 
+
+font-family: verdana, lucida, arial, helvetica, sans-serif;
+text-align: left; 
+font-size: 0.9em;
+float: none;
+margin: 0;
+padding: 0;
+border: 1px solid #ccc;
+border-bottom:0;
+width:120px; 
+voice-family: "\"}\""; 
+voice-family:inherit;
+width: 120px;
+overflow:hidden;
+ }
+
+html>body #links td ul { width:120px; }
+
+
+ .links td ul li a   {
+ display: block;
+ text-decoration: none;
+ font-weight:normal;
+ color: #333;
+ voice-family: "\"}\"";
+ voice-family: inherit;
+ 
+ }
+ 	  
+ 
+ .links td ul li a:link { 
+ color: #333; 
+ text-decoration: none;
+ border: 0; 
+ float: none;
+ }
+ 
+ .links td ul li a:visited { 
+ color: #333; 
+ text-decoration: none;
+
+ border: 0; 
+ }
+ 
+ .links td ul li a:hover  { 
+ color: #333;  
+ text-decoration: none;
+  
+ border: 0; }
+
+
+
+
+.links th {
+	
+	color: #333;
+	font-size: 1.1em;
+	border: 0; 
+	padding:0;
+	  }
+	  
+.rightchildren h1 a:link { color: #fff; }
+.rightchildren h1 a:visited { color: #fff; }
+.rightchildren h1 a:hover { color: #fafafa; }

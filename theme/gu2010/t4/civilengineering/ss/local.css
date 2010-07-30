@@ -1,0 +1,78 @@
+/* for civilengineering  */
+
+
+.splashpic { 
+background: #415d84 url(http://www.gla.ac.uk/t4/civilengineering/i/splashback.gif);
+background-repeat: no-repeat;
+background-position: bottom right;
+  }
+  
+
+
+
+  
+
+
+
+
+#bannercontainer {
+background:none;
+
+
+background-color:#415d84; 
+background-image: url(http://www.gla.ac.uk/t4/civilengineering/i/bannerback.gif);
+background-position: top right;
+background-repeat:no-repeat;   }
+
+#bannerleft  {
+
+background: #415d84 url(http://www.gla.ac.uk/t4/civilengineering/i/banner.gif);
+width:335px;  }
+ 
+
+ /* 
+ 
+#navigation p.toptail {
+background:#5e1111; }
+ 
+#navigation p {
+background-color:#5e1111;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #5e1111  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #5e1111  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/lioff.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+ 
+*/
+
+.links ul   { background-color:#fdfdfd;  }
+
+.links h1 {
+	
+	color: #fff;
+	background-color:#5e1111;
+	
+	  }
+	  
+	  h1, h3 { color:#5e1111;  }
+	  
+  h2, h4, h5, h6 { color:#415d84;  }	 

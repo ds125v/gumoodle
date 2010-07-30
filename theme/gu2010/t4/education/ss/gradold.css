@@ -1,0 +1,251 @@
+/* 
+   Stylesheet for the Graduate School for Education, Faculty of Education
+
+   Stylesheet located at http://www.gla.ac.uk/faculties/education/t4/css/educ_faculty.css 
+   Images located at http://www.gla.ac.uk/faculties/education/t4/images/ 
+
+   Created by Hooi Ling Eng
+   Last modified on 27 March 2007
+
+*/
+
+/* _________________________ spash picture _________________________ */
+
+.splashpic {
+	background-image:url(http://www.gla.ac.uk/t4/education/i/splashback.jpg);
+	background-position:top right;
+	background-repeat:no-repeat;
+	background-color:#ccc;
+}
+
+/* _________________________ banner _________________________ */
+
+#bannercontainer { 
+	background: #FFFFFF url(http://www.gla.ac.uk/t4/education/i/bannerback.jpg) no-repeat right top;
+}
+
+#bannerleft  {
+	background: url(http://www.gla.ac.uk/t4/education/i/bannertext.gif) no-repeat left top;
+	width: 450px;
+	height: 70px;
+}
+
+/* _________________________ subhead _________________________ */
+/* __ For the text and bar "Part of Faculty of Education" (under the banner) */
+
+#subhead  {  
+	background: #557ac8;
+	color:#fff;
+}
+
+#subhead a:link {
+	color: #fff;
+}
+
+#subhead a:visited {
+	color: #fff;
+}
+
+#subhead a:hover {
+	color: #FFCC33;
+	text-decoration: underline;
+}
+
+/* _________________________ headings _________________________ */
+
+h1 {
+	font-family : Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color:#663399; 
+	font-size: 1.4em;
+}
+
+h2 {
+	font-family : Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color:#663399; 
+	font-size: 1.3em;
+}
+
+h3 {
+	font-family : Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color:#9537ff; 
+	font-size: 1.2em;
+}
+
+h4 {
+	font-family : Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color:#663399; 
+	font-size: 1.15em;
+}
+
+h5 {
+	font-family : Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color:#9537ff; 
+	font-size: 1.15em;
+}
+
+h6 {
+	font-family : Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif; 
+	color:#ff863e; 
+	font-size: 1.15em;
+}
+
+/* _________________________ navigation _________________________ */
+/* __ For the main navigation menu on the left side ____ */
+	  
+#navigation p.toptail {
+	background: #557ac8;
+}	
+ 
+#navigation p a:link {
+	color: #fff;
+	background: #557ac8  url(http://www.gla.ac.uk/t4/education/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:visited {
+	color: #fff;
+	background: #557ac8 url(http://www.gla.ac.uk/t4/education/i/lioff.gif) repeat-y;
+}
+
+#navigation p a:hover {
+	color:#fff;
+	background: #557ac8 url(http://www.gla.ac.uk/t4/education/i/lioff.gif) repeat-y;
+}
+
+/* ________ Each "li" indicates the level of list item _______________ */
+
+#navigation  li .currentsection {
+	color: #1b1b1b;
+	background: #FFCC33 url(http://www.gla.ac.uk/t4/education/i/lion.gif) no-repeat;    
+}
+
+#navigation ul li a {
+	color: #1b1b1b;
+	background: #f4f4f4 url(http://www.gla.ac.uk/t4/education/i/lioff.gif) repeat-y;
+}
+
+#navigation li ul li a {
+	background: #fff  url(http://www.gla.ac.uk/t4/education/i/lilioff.gif) no-repeat;
+}
+
+#navigation  li ul li .currentsection {
+	background: #FFCC33  url(http://www.gla.ac.uk/t4/education/i/lilion.gif) no-repeat;
+}
+
+#navigation li ul li ul li a {
+	background: #fff url(http://www.gla.ac.uk/t4/education/i/lililioff.gif) no-repeat;
+}
+
+#navigation  li ul li ul li .currentsection {
+	background: #FFCC33 url(http://www.gla.ac.uk/t4/education/i/lililion.gif) no-repeat;
+}
+	
+#navigation li ul li ul li ul li a {
+	background: #fff url(http://www.gla.ac.uk/t4/education/i/lilililioff.gif) no-repeat;
+}
+
+#navigation li ul li ul li ul li .currentsection {
+	background: #FFCC33 url(http://www.gla.ac.uk/t4/education/i/lilililion.gif) no-repeat;
+}
+	
+#navigation li ul li ul li ul li ul li a {
+	background: #fff url(http://www.gla.ac.uk/t4/education/i/lilililioff.gif) no-repeat;
+}
+
+/* _________________________ links _________________________ */
+
+#bread a:link {
+	color: #333;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+#bread a:visited {
+	color: #333;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+#bread a:hover {
+	color: #933;
+	text-decoration: underline;
+	font-weight: normal;
+}
+
+.maincontent a:link {
+	color: #b864bd;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.maincontent a:visited {
+	color: #b864bd;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.maincontent a:hover {
+	color: #ff863e;
+	text-decoration: underline;
+}
+
+#footer_container a:link {
+	color: #333;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+#footer_container a:visited {
+	color: #333;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+#footer_container a:hover {
+	color: #933;
+	text-decoration: underline;
+	font-weight: normal;
+}
+
+a:link {
+	color: #b864bd;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a:visited {
+	color: #b864bd;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a:hover {
+	color: #ff863e;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.links ul { 
+	background-color: #d4e8f7;
+}
+
+.links h1 {
+	color: #fff; 
+	background-color:#78aad0;
+}
+
+.links ul li a:link {
+	color: #336;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+.links ul li a:visited {
+	color: #336;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+.links ul li a:hover {
+	color: #b864bd;
+	text-decoration: underline;
+}

@@ -1,0 +1,22 @@
+/* for german  */
+
+/* @@@@@@@@@ banners @@@@@@@@@ */
+
+#bannercontainer {
+background:none;
+background-color:#121212; 
+background-image: url(http://www.gla.ac.uk/t4/german/i/bannerback.gif);
+background-position: top right;
+background-repeat:no-repeat;  }
+
+#bannerleft  {
+background: url(http://www.gla.ac.uk/t4/german/i/banner.gif);
+width:300px;  }
+
+.splashpic {
+
+
+background: #ffd480 url(http://www.gla.ac.uk/t4/german/i/splashback.gif);
+background-repeat: repeat-x;
+background-position: top;
+  }

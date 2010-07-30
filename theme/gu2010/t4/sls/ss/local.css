@@ -1,0 +1,71 @@
+/* for services/sls  */
+
+
+
+  
+
+
+#bannercontainer { 
+
+background-position: top right;
+/* background-repeat:no-repeat;
+background-color:#4a6b9c; */
+background-image: url(http://www.gla.ac.uk/t4/sls/i/bannerback.gif);
+background-repeat: repeat-x;  }
+
+#bannerleft  {
+
+background: url(http://www.gla.ac.uk/t4/sls/i/banner.gif);
+width:350px;  }
+ 
+
+.splashpic {
+background-color:#9a8371;  }
+
+
+
+.links h1 {
+	
+	color: #fff;
+	background-color:#454a3b;
+	
+	  }
+	  
+	  
+	   
+#navigation p.toptail {
+background:#28467a; }
+ 
+#navigation p {
+background-color:#28467a;
+}
+
+
+#navigation p a:link {
+color: #fff;
+background: #28467a  url(http://www.gla.ac.uk/t4/generic/i/us/li.gif) repeat-y;
+}
+
+#navigation p a:visited {
+color: #fff;
+background: #28467a
+url(http://www.gla.ac.uk/t4/generic/i/us/li.gif) repeat-y;
+}
+
+#navigation p a:hover {
+display: block;
+color:#fff;
+background: #121212  url(http://www.gla.ac.uk/t4/generic/i/us/li.gif) repeat-y;
+border-bottom: 0;
+padding: 3px 1px 3px 7px;
+width:160px;
+voice-family: "\"}\"";
+voice-family: inherit;
+width:152px; 
+}
+
+ 	  h1, h2 { color:#483f3c;  }
+	  
+  h3, h4, h5, h6 { color:#454a3b;  }
+ 
+ 
