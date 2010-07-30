@@ -5,8 +5,14 @@
 /// how Moodle uses this theme.
 ////////////////////////////////////////////////////////////////////////////////
 
+// another UofG bodge
+// get the css file from the short name of the site
 
-$THEME->sheets = array("standard","local");
+$site = get_site();
+$shortname= strtolower($site->shortname);
+$shortname = str_replace( ' ','_', $shortname ); // spaces become underscores
+$THEME->sheets = array("standard","css/$shortname");
+// echo "<pre>"; print_r( $THEME ); die;
 
 /// This variable is an array containing the names of all the 
 /// stylesheet files you want included in this theme, and in what order
