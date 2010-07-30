@@ -2,7 +2,7 @@
 <html<?php echo $direction . '>';
         global $course, $category, $site;
         $departmentlink = '';
-        $moodlename =  strtolower(str_replace(' ', '-', strip_tags(format_string(get_site()->shortname))));
+        $moodlename =  strtolower(str_replace(' ', '_', strip_tags(format_string(get_site()->shortname))));
         if ($navigation && (is_object($course) || is_object($category))) {
 
                 if (is_object($course)) {
@@ -83,17 +83,17 @@ Part of <a href="/"><?php echo $SITE->fullname ?></a>
 Part of the <a href="http://medicine.moodle.gla.ac.uk">College of Medical, Veterinary and Life Sciences</a>
 <?php } else if ($moodlename == "medicine") { ?>
 Part of the <a href="http://medicine.moodle.gla.ac.uk">College of Medical, Veterinary and Life Sciences</a>
-<?php } else if ($moodlename == "ibls") { ?>
+<?php } else if ($moodlename == "life_sciences") { ?>
 Part of the <a href="http://medicine.moodle.gla.ac.uk">College of Medical, Veterinary and Life Sciences</a>
-<?php } else if ($moodlename == "crichton") { ?>
+<?php } else if ($moodlename == "interdisciplinary") { ?>
 Part of the <a href="http://lbss.moodle.gla.ac.uk">College of Social Sciences</a>
 <?php } else if ($moodlename == "education") { ?>
 Part of the <a href="http://lbss.moodle.gla.ac.uk">College of Social Sciences</a>
 <?php } else if ($moodlename == "eng") { ?>
 Part of the <a href="http://eng.moodle.gla.ac.uk">College of Science &amp; Engineering</a>
-<?php } else if ($moodlename == "fims") { ?>
+<?php } else if ($moodlename == "maths_cs_psych") { ?>
 Part of the <a href="http://fims.moodle.gla.ac.uk">College of Science &amp; Engineering</a>
-<?php } else if ($moodlename == "physci") { ?>
+<?php } else if ($moodlename == "geo_phys_chem") { ?>
 Part of the <a href="http://physci.moodle.gla.ac.uk">College of Science &amp; Engineering</a>
 <?php } else { ?>
 Part of the <a href="/"><?php echo $SITE->fullname ?></a>
