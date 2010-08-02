@@ -3,7 +3,7 @@
 body {
 background: none;
 background-color:#f4f4f4;
-font-family: verdana, lucida, arial, helvetica, sans-serif;
+font-family: arial, helvetica, sans-serif;
 color: #404040;
 font-size: 96%;
 margin: 0px;
@@ -31,7 +31,7 @@ padding-bottom: 5px;
 /* top row logotype search etc */
 
 #toprow  {
-font-family: verdana, lucida, arial, helvetica, sans-serif;
+font-family: arial, helvetica, sans-serif;
 font-size: 0.66em;
 clear: both;
 text-align: right;
@@ -253,6 +253,7 @@ border: 5px solid #f4f4f4;
 margin:0 160px 0 177px;
 
 }
+
 tr.section.hidden,
 .sideblock.hidden,
 a.dimmed img {
@@ -444,3 +445,11 @@ border: none;
 #subhead {display:none;}
 
 .generalboxcontent { background: white;}
+
+.sideblock .content {
+    line-height: 1.3em;
+    }
+
+.content {
+    font-family: Georgia, Times New Roman, Serif;
+    }
