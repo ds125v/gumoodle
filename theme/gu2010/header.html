@@ -63,7 +63,7 @@
 <?php if (!isloggedin() or isguestuser()) {  ?> 
 <a href="<?php echo $CFG->httpswwwroot ?>/login/index.php">LOG-IN</a>
 <?php } else {?>
-<a href="<?php echo $CFG->httpswwwroot ?>/login/logout.php">LOG-OUT</a>
+<a href="<?php echo $CFG->httpswwwroot ?>/login/logout.php?sesskey=<?php echo sesskey(); ?>">LOG-OUT</a>
 <?php } ?>
  | <a href="http://www.gla.ac.uk/services/it/helpdesk">IT HELPDESK</a> |  
 <input name="q" id="search"  class="searchbox" value="search university web" onfocus="this.value=''"    type="text" size="13"  /><input name="imagefield" type="image" class="go" alt="go" src="<?php echo $CFG->httpswwwroot ?>/theme/onepointnine/t4/generic/i/searcharrow.gif" />
