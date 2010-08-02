@@ -3,6 +3,7 @@
 class block_remotehtml extends block_base {
 
     var $pasteurl = '';
+    var $delay = 300; // 5 minutes
 
     function init() {
         $this->title = get_string('html', 'block_remotehtml');
@@ -33,6 +34,17 @@ class block_remotehtml extends block_base {
         // is this a remote call
         if (!empty($this->config->remoteurl)) {
 
+            // is there a cached version
+            if (!empty($this->config->cache) and !empty($this->config->cachetime)) {
+                $elapsed = time() - $this->config->cachetime;
+                if ($elapsed < $this->delay) {
+                    $this->content = new stdClass;
+                    $this->content->text = $this->config->cache;
+                    $this->content->footer = '';
+                    return $this->content;
+                }
+            }
+
             // fiddle up include path so to include Zend library
             $include_path = ini_get( 'include_path' );
             $include_path .= ":{$CFG->dirroot}/blocks/remotehtml/zend";
@@ -51,6 +63,12 @@ class block_remotehtml extends block_base {
                 $this->content->footer = '';
                 return $this->content;
             }
+
+            // cache the content for another time
+            $this->config->cache = $data;
+            $this->config->cachetime = time(); 
+            $this->instance_config_commit();
+
             $this->content = new stdClass;
             $this->content->text = $data;
             $this->content->footer ='';
