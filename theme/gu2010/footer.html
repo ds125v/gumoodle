@@ -4,7 +4,9 @@
 
     print_container_start(false, '', 'footer');
     echo $menu;
-    echo $loggedinas;
+    if (!$menu) {
+        echo $loggedinas;
+    }
     echo '<p class="helplink">';
     echo page_doc_link(get_string('moodledocslink'));
     echo '</p>';
