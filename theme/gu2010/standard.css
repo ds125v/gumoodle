@@ -453,3 +453,9 @@ border: none;
 .content {
     font-family: Georgia, Times New Roman, Serif;
     }
+
+.sideblock .header .hide-show-image {
+    background-color: #fff;
+    height: 16px;
+    width: 16px;
+    }
