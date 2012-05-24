@@ -75,6 +75,8 @@ class auth_plugin_guid extends auth_plugin_ldap {
      * @return mixed array with no magic quotes or false on error
      */
     function get_userinfo($username) {
+        global $SESSION;
+
         //$textlib = textlib_get_instance();
         $extusername = textlib::convert($username, 'utf-8', $this->config->ldapencoding);
 
