@@ -61,7 +61,7 @@ if ($mform->is_cancelled()) {
         die;
     }
     // build url for paging
-    $url = new moodle_url( $CFG->wwwroot.'/admin/report/guid/index.php',
+    $url = new moodle_url( $CFG->wwwroot.'/report/guid/index.php',
         array(
             'firstname' => $data->firstname,
             'lastname' => $data->lastname,

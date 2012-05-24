@@ -116,7 +116,7 @@ function print_results( $results, $url ) {
     // basic idea is to print as abbreviated list unless there is 
     // only one
 
-    global $CFG;
+    global $CFG, $DB;
 
     // check there are some
     if (empty($results)) {
@@ -140,7 +140,7 @@ function print_results( $results, $url ) {
         $table = new flexible_table( 'ldap' );
         $table->pageable( true );
         $table->pagesize( $pagesize, count( $results ) );
-        $table->define_baseurl( $url->out_action() );
+        $table->define_baseurl( $url->out(true, array('sesskey'=>sesskey())) );
         $table->define_columns( array('CN','firstname','lastname','email','more') );
         $table->set_attribute('class', 'generaltable generalbox boxaligncenter boxwidthwide');
         $table->define_headers( array(
@@ -167,7 +167,7 @@ function print_results( $results, $url ) {
                 $mail = "<i>$mail</i>";
                 $externalmail = true;
             } 
-            if ($user=get_record('user','username',strtolower($guid))) {
+            if ($user=$DB->get_record('user', array('username'=>strtolower($guid)))) {
                 $username = "<a href=\"{$CFG->wwwroot}/user/view.php?id={$user->id}&amp;course=1\">$guid</a>";
             }
             else {
@@ -178,7 +178,7 @@ function print_results( $results, $url ) {
                 $result['givenname'],
                 $result['sn'],
                 $mail,
-                '<a href="'.$url->out_action().'">'.
+                '<a href="'.$url->out(true, array('sesskey'=>sesskey())).'">'.
                 get_string('more','report_guid').'</a>' ) );
         }
         echo "<div class=\"generalbox\">Number of results = ".count($results)."</div>";
@@ -208,6 +208,8 @@ function getEmail( $result ) {
 }
 
 function print_single( $results ) {
+    global $OUTPUT;
+
     // just print a single result
     global $CFG, $USER, $DB;
 
@@ -237,7 +239,7 @@ function print_single( $results ) {
         $USER->report_guid_ldap = $result;
     }
     if (!empty($user)) {
-        print_user_picture( $user,1,null,100 );
+        echo $OUTPUT->user_picture( $user, array('size'=>100) );
     }
     echo "<p><strong>".get_string( 'resultfor','report_guid')." $displayname</strong> $create ($username)</p>\n";
     array_prettyprint( $result );
@@ -313,7 +315,7 @@ class guidreportupload_form extends moodleform {
         // file upload
         $mform->addElement('header','guidupload',get_string('uploadheader', 'report_guid' ) );
         $mform->addElement('html', '<div>'.get_string('uploadinstructions','report_guid' ).'</div>' );
-        $mform->addElement('file', 'csvfile', get_string('csvfile', 'report_guid' ) );
+        $mform->addElement('filepicker', 'csvfile', get_string('csvfile', 'report_guid' ) );
    
         // action buttons
         $this->add_action_buttons();
