@@ -37,9 +37,9 @@ class auth_plugin_guid extends auth_plugin_ldap {
             return false;
         }
 
-        $textlib = textlib_get_instance();
-        $extusername = $textlib->convert($username, 'utf-8', $this->config->ldapencoding);
-        $extpassword = $textlib->convert($password, 'utf-8', $this->config->ldapencoding);
+        //$textlib = textlib_get_instance();
+        $extusername = textlib::convert($username, 'utf-8', $this->config->ldapencoding);
+        $extpassword = textlib::convert($password, 'utf-8', $this->config->ldapencoding);
 
         $ldapconnection = $this->ldap_connect();
         $ldap_user_dn = $this->ldap_find_userdn($ldapconnection, $extusername);
@@ -75,8 +75,8 @@ class auth_plugin_guid extends auth_plugin_ldap {
      * @return mixed array with no magic quotes or false on error
      */
     function get_userinfo($username) {
-        $textlib = textlib_get_instance();
-        $extusername = $textlib->convert($username, 'utf-8', $this->config->ldapencoding);
+        //$textlib = textlib_get_instance();
+        $extusername = textlib::convert($username, 'utf-8', $this->config->ldapencoding);
 
         $ldapconnection = $this->ldap_connect();
         if(!($user_dn = $this->ldap_find_userdn($ldapconnection, $extusername))) {
@@ -142,9 +142,9 @@ class auth_plugin_guid extends auth_plugin_ldap {
                     continue; // wrong data mapping!
                 }
                 if (is_array($entry[$value])) {
-                    $newval = $textlib->convert($entry[$value][0], $this->config->ldapencoding, 'utf-8');
+                    $newval = textlib::convert($entry[$value][0], $this->config->ldapencoding, 'utf-8');
                 } else {
-                    $newval = $textlib->convert($entry[$value], $this->config->ldapencoding, 'utf-8');
+                    $newval = textlib::convert($entry[$value], $this->config->ldapencoding, 'utf-8');
                 }
                 if (!empty($newval)) { // favour ldap entries that are set
                     $ldapval = $newval;
