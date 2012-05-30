@@ -2055,8 +2055,10 @@ EOD;
         if ($options->env != 'url') {
             $html .= <<<EOD
     <div id="file_info_{$client_id}" class="mdl-left filepicker-filelist" style="position: relative">
-    <div><span class="filepicker-filename">$currentfile</span><span class="dndupload-message"> - $strdndenabled </span></div>
-    <div><div class="dndupload-target">{$strdroptoupload}</div></div>
+    <div class="filepicker-filename">
+        <div class="filepicker-container">$currentfile<span class="dndupload-message"> - $strdndenabled <br/><span class="dndupload-arrow"></span></span></div>
+    </div>
+    <div><div class="dndupload-target">{$strdroptoupload}<br/><span class="dndupload-arrow"></span></div></div>
     </div>
 EOD;
         }
