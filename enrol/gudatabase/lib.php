@@ -163,12 +163,15 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
             $username = $enrolment->UserName; 
             
             // can we find this user
-            if (!$user = $DB->get_record( 'user', array('username'=>$username)) {
-
+            if (!$user = $DB->get_record( 'user', array('username'=>$username))) {
+                $user = create_user_record( $username, '', 'guid' );
             }
+
+            // enroll user into course
+            $this->enrol_user( $instance, $user->id, $defaultrole, 0, 0, ENROL_USER_ACTIVE ); 
         }
 
-echo "<pre>"; print_r( $enrolments ); die;
+        return true;
     }
 
     /**
@@ -211,7 +214,7 @@ echo "<pre>"; print_r( $enrolments ); die;
         // add the users to the course
         $this->enrol_course_users( $course, $instance ); 
 
-        echo "<pre>"; print_r( $course ); die;
+        return TRUE;
     }
 
 }
