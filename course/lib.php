@@ -1728,7 +1728,7 @@ function print_section($course, $section, $mods, $modnamesused, $absolute=false,
             // see the activity itself, or for staff)
             if (!$mod->uservisible) {
                 echo '<div class="availabilityinfo">'.$mod->availableinfo.'</div>';
-            } else if ($canviewhidden && !empty($CFG->enableavailability)) {
+            } else if ($canviewhidden && !empty($CFG->enableavailability) && $mod->visible) {
                 $ci = new condition_info($mod);
                 $fullinfo = $ci->get_full_information();
                 if($fullinfo) {
@@ -2995,6 +2995,8 @@ function move_section($course, $section, $move) {
         }
         $n++;
     }
+    // After moving section, rebuild course cache.
+    rebuild_course_cache($course->id, true);
     return true;
 }
 

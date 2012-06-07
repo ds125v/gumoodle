@@ -366,7 +366,7 @@ class file_storage {
      * Returns all files belonging to given repository
      *
      * @param int $repositoryid
-     * @param string $sort
+     * @param string $sort A fragment of SQL to use for sorting
      */
     public function get_external_files($repositoryid, $sort = 'sortorder, itemid, filepath, filename') {
         global $DB;
@@ -374,8 +374,10 @@ class file_storage {
                   FROM {files} f
              LEFT JOIN {files_reference} r
                        ON f.referencefileid = r.id
-                 WHERE r.repositoryid = ?
-              ORDER BY $sort";
+                 WHERE r.repositoryid = ?";
+        if (!empty($sort)) {
+            $sql .= " ORDER BY {$sort}";
+        }
 
         $result = array();
         $filerecords = $DB->get_records_sql($sql, array($repositoryid));
@@ -392,11 +394,11 @@ class file_storage {
      * @param string $component component
      * @param string $filearea file area
      * @param int $itemid item ID or all files if not specified
-     * @param string $sort sort fields
+     * @param string $sort A fragment of SQL to use for sorting
      * @param bool $includedirs whether or not include directories
      * @return array of stored_files indexed by pathanmehash
      */
-    public function get_area_files($contextid, $component, $filearea, $itemid = false, $sort="sortorder, itemid, filepath, filename", $includedirs = true) {
+    public function get_area_files($contextid, $component, $filearea, $itemid = false, $sort = "sortorder, itemid, filepath, filename", $includedirs = true) {
         global $DB;
 
         $conditions = array('contextid'=>$contextid, 'component'=>$component, 'filearea'=>$filearea);
@@ -414,8 +416,10 @@ class file_storage {
                  WHERE f.contextid = :contextid
                        AND f.component = :component
                        AND f.filearea = :filearea
-                       $itemidsql
-              ORDER BY $sort";
+                       $itemidsql";
+        if (!empty($sort)) {
+            $sql .= " ORDER BY {$sort}";
+        }
 
         $result = array();
         $filerecords = $DB->get_records_sql($sql, $conditions);
@@ -489,7 +493,7 @@ class file_storage {
      * @param int $filepath directory path
      * @param bool $recursive include all subdirectories
      * @param bool $includedirs include files and directories
-     * @param string $sort sort fields
+     * @param string $sort A fragment of SQL to use for sorting
      * @return array of stored_files indexed by pathanmehash
      */
     public function get_directory_files($contextid, $component, $filearea, $itemid, $filepath, $recursive = false, $includedirs = true, $sort = "filepath, filename") {
@@ -498,6 +502,8 @@ class file_storage {
         if (!$directory = $this->get_file($contextid, $component, $filearea, $itemid, $filepath, '.')) {
             return array();
         }
+
+        $orderby = (!empty($sort)) ? " ORDER BY {$sort}" : '';
 
         if ($recursive) {
 
@@ -512,7 +518,7 @@ class file_storage {
                            AND ".$DB->sql_substr("f.filepath", 1, $length)." = :filepath
                            AND f.id <> :dirid
                            $dirs
-                  ORDER BY $sort";
+                           $orderby";
             $params = array('contextid'=>$contextid, 'component'=>$component, 'filearea'=>$filearea, 'itemid'=>$itemid, 'filepath'=>$filepath, 'dirid'=>$directory->get_id());
 
             $files = array();
@@ -542,7 +548,7 @@ class file_storage {
                                AND f.itemid = :itemid AND f.filename = '.'
                                AND ".$DB->sql_substr("f.filepath", 1, $length)." = :filepath
                                AND f.id <> :dirid
-                      ORDER BY $sort";
+                               $orderby";
                 $reqlevel = substr_count($filepath, '/') + 1;
                 $filerecords = $DB->get_records_sql($sql, $params);
                 foreach ($filerecords as $filerecord) {
@@ -559,7 +565,7 @@ class file_storage {
                            ON f.referencefileid = r.id
                      WHERE f.contextid = :contextid AND f.component = :component AND f.filearea = :filearea AND f.itemid = :itemid
                            AND f.filepath = :filepath AND f.filename <> '.'
-                  ORDER BY $sort";
+                           $orderby";
 
             $filerecords = $DB->get_records_sql($sql, $params);
             foreach ($filerecords as $filerecord) {
@@ -1028,7 +1034,7 @@ class file_storage {
 
         $newrecord->timecreated  = $filerecord->timecreated;
         $newrecord->timemodified = $filerecord->timemodified;
-        $newrecord->mimetype     = empty($filerecord->mimetype) ? $this->mimetype($pathname) : $filerecord->mimetype;
+        $newrecord->mimetype     = empty($filerecord->mimetype) ? $this->mimetype($pathname, $filerecord->filename) : $filerecord->mimetype;
         $newrecord->userid       = empty($filerecord->userid) ? null : $filerecord->userid;
         $newrecord->source       = empty($filerecord->source) ? null : $filerecord->source;
         $newrecord->author       = empty($filerecord->author) ? null : $filerecord->author;
@@ -1154,7 +1160,7 @@ class file_storage {
         list($newrecord->contenthash, $newrecord->filesize, $newfile) = $this->add_string_to_pool($content);
         $filepathname = $this->path_from_hash($newrecord->contenthash) . '/' . $newrecord->contenthash;
         // get mimetype by magic bytes
-        $newrecord->mimetype = empty($filerecord->mimetype) ? $this->mimetype($filepathname) : $filerecord->mimetype;
+        $newrecord->mimetype = empty($filerecord->mimetype) ? $this->mimetype($filepathname, $filerecord->filename) : $filerecord->mimetype;
 
         $newrecord->pathnamehash = $this->get_pathname_hash($newrecord->contextid, $newrecord->component, $newrecord->filearea, $newrecord->itemid, $newrecord->filepath, $newrecord->filename);
 
@@ -1260,6 +1266,8 @@ class file_storage {
             $filerecord->timemodified = $now;
         }
 
+        $transaction = $DB->start_delegated_transaction();
+
         // Insert file reference record.
         try {
             $referencerecord = new stdClass;
@@ -1291,6 +1299,8 @@ class file_storage {
         }
 
         $this->create_directory($filerecord->contextid, $filerecord->component, $filerecord->filearea, $filerecord->itemid, $filerecord->filepath, $filerecord->userid);
+
+        $transaction->allow_commit();
 
         // Adding repositoryid and reference to file record to create stored_file instance
         $filerecord->repositoryid = $repositoryid;
@@ -1801,11 +1811,15 @@ class file_storage {
      * If file has a known extension, we return the mimetype based on extension.
      * Otherwise (when possible) we try to get the mimetype from file contents.
      *
-     * @param string $pathname
+     * @param string $pathname full path to the file
+     * @param string $filename correct file name with extension, if omitted will be taken from $path
      * @return string
      */
-    public static function mimetype($pathname) {
-        $type = mimeinfo('type', $pathname);
+    public static function mimetype($pathname, $filename = null) {
+        if (empty($filename)) {
+            $filename = $pathname;
+        }
+        $type = mimeinfo('type', $filename);
         if ($type === 'document/unknown' && class_exists('finfo') && file_exists($pathname)) {
             $finfo = new finfo(FILEINFO_MIME_TYPE);
             $type = mimeinfo_from_type('type', $finfo->file($pathname));

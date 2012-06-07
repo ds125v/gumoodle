@@ -119,6 +119,13 @@ YUI.add('moodle-course-dragdrop', function(Y) {
             drag.get('dragNode').addClass(CSS.COURSECONTENT);
         },
 
+        drag_dropmiss : function(e) {
+            // Missed the target, but we assume the user intended to drop it
+            // on the last last ghost node location, e.drag and e.drop should be
+            // prepared by global_drag_dropmiss parent so simulate drop_hit(e).
+            this.drop_hit(e);
+        },
+
         drop_hit : function(e) {
             var drag = e.drag;
             // Get a reference to our drag node
@@ -172,9 +179,16 @@ YUI.add('moodle-course-dragdrop', function(Y) {
                         lightbox.show();
                     },
                     success: function(tid, response) {
-                        window.setTimeout(function(e) {
-                            lightbox.hide();
-                        }, 250);
+                        // Update section titles, we can't simply swap them as
+                        // they might have custom title
+                        try {
+                            var responsetext = Y.JSON.parse(response.responseText);
+                            if (responsetext.error) {
+                                new M.core.ajaxException(responsetext);
+                            }
+                            M.course.format.process_sections(Y, sectionlist, responsetext, loopstart, loopend);
+                        } catch (e) {}
+
                         // Classic bubble sort algorithm is applied to the section
                         // nodes between original drag node location and the new one.
                         do {
@@ -193,6 +207,11 @@ YUI.add('moodle-course-dragdrop', function(Y) {
                             }
                             loopend = loopend - 1;
                         } while (swapped);
+
+                        // Finally, hide the lightbox
+                        window.setTimeout(function(e) {
+                            lightbox.hide();
+                        }, 250);
                     },
                     failure: function(tid, response) {
                         this.ajax_failure(response);
@@ -307,6 +326,13 @@ YUI.add('moodle-course-dragdrop', function(Y) {
             var drag = e.target;
             drag.get('dragNode').setContent(drag.get('node').get('innerHTML'));
             drag.get('dragNode').all('img.iconsmall').setStyle('vertical-align', 'baseline');
+        },
+
+        drag_dropmiss : function(e) {
+            // Missed the target, but we assume the user intended to drop it
+            // on the last last ghost node location, e.drag and e.drop should be
+            // prepared by global_drag_dropmiss parent so simulate drop_hit(e).
+            this.drop_hit(e);
         },
 
         drop_hit : function(e) {

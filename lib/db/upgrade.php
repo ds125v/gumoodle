@@ -648,5 +648,126 @@ function xmldb_main_upgrade($oldversion) {
         upgrade_main_savepoint(true, 2012052100.00);
     }
 
+    if ($oldversion < 2012052500.03) { // fix invalid course_completion_records MDL-27368
+        //first get all instances of duplicate records
+        $sql = 'SELECT userid, course FROM {course_completions} WHERE (deleted IS NULL OR deleted <> 1) GROUP BY userid, course HAVING (count(id) > 1)';
+        $duplicates = $DB->get_recordset_sql($sql, array());
+
+        foreach ($duplicates as $duplicate) {
+            $pointer = 0;
+            //now get all the records for this user/course
+            $sql = 'userid = ? AND course = ? AND (deleted IS NULL OR deleted <> 1)';
+            $completions = $DB->get_records_select('course_completions', $sql,
+                array($duplicate->userid, $duplicate->course), 'timecompleted DESC, timestarted DESC');
+            $needsupdate = false;
+            $origcompletion = null;
+            foreach ($completions as $completion) {
+                $pointer++;
+                if ($pointer === 1) { //keep 1st record but delete all others.
+                    $origcompletion = $completion;
+                } else {
+                    //we need to keep the "oldest" of all these fields as the valid completion record.
+                    $fieldstocheck = array('timecompleted', 'timestarted', 'timeenrolled');
+                    foreach ($fieldstocheck as $f) {
+                        if ($origcompletion->$f > $completion->$f) {
+                            $origcompletion->$f = $completion->$f;
+                            $needsupdate = true;
+                        }
+                    }
+                    $DB->delete_records('course_completions', array('id'=>$completion->id));
+                }
+            }
+            if ($needsupdate) {
+                $DB->update_record('course_completions', $origcompletion);
+            }
+        }
+
+        // Main savepoint reached
+        upgrade_main_savepoint(true, 2012052500.03);
+    }
+
+    if ($oldversion < 2012052900.00) {
+        // Clean up all duplicate records in the course_completions table in preparation
+        // for adding a new index there.
+        upgrade_course_completion_remove_duplicates(
+            'course_completions',
+            array('userid', 'course'),
+            array('timecompleted', 'timestarted', 'timeenrolled')
+        );
+
+        // Main savepoint reached
+        upgrade_main_savepoint(true, 2012052900.00);
+    }
+
+    if ($oldversion < 2012052900.01) {
+        // Add indexes to prevent new duplicates in the course_completions table.
+        // Define index useridcourse (unique) to be added to course_completions
+        $table = new xmldb_table('course_completions');
+        $index = new xmldb_index('useridcourse', XMLDB_INDEX_UNIQUE, array('userid', 'course'));
+
+        // Conditionally launch add index useridcourse
+        if (!$dbman->index_exists($table, $index)) {
+            $dbman->add_index($table, $index);
+        }
+
+        // Main savepoint reached
+        upgrade_main_savepoint(true, 2012052900.01);
+    }
+
+    if ($oldversion < 2012052900.02) {
+        // Clean up all duplicate records in the course_completion_crit_compl table in preparation
+        // for adding a new index there.
+        upgrade_course_completion_remove_duplicates(
+            'course_completion_crit_compl',
+            array('userid', 'course', 'criteriaid'),
+            array('timecompleted')
+        );
+
+        // Main savepoint reached
+        upgrade_main_savepoint(true, 2012052900.02);
+    }
+
+    if ($oldversion < 2012052900.03) {
+        // Add indexes to prevent new duplicates in the course_completion_crit_compl table.
+        // Define index useridcoursecriteraid (unique) to be added to course_completion_crit_compl
+        $table = new xmldb_table('course_completion_crit_compl');
+        $index = new xmldb_index('useridcoursecriteraid', XMLDB_INDEX_UNIQUE, array('userid', 'course', 'criteriaid'));
+
+        // Conditionally launch add index useridcoursecriteraid
+        if (!$dbman->index_exists($table, $index)) {
+            $dbman->add_index($table, $index);
+        }
+
+        // Main savepoint reached
+        upgrade_main_savepoint(true, 2012052900.03);
+    }
+
+    if ($oldversion < 2012052900.04) {
+        // Clean up all duplicate records in the course_completion_aggr_methd table in preparation
+        // for adding a new index there.
+        upgrade_course_completion_remove_duplicates(
+            'course_completion_aggr_methd',
+            array('course', 'criteriatype')
+        );
+
+        // Main savepoint reached
+        upgrade_main_savepoint(true, 2012052900.04);
+    }
+
+    if ($oldversion < 2012052900.05) {
+        // Add indexes to prevent new duplicates in the course_completion_aggr_methd table.
+        // Define index coursecriteratype (unique) to be added to course_completion_aggr_methd
+        $table = new xmldb_table('course_completion_aggr_methd');
+        $index = new xmldb_index('coursecriteriatype', XMLDB_INDEX_UNIQUE, array('course', 'criteriatype'));
+
+        // Conditionally launch add index coursecriteratype
+        if (!$dbman->index_exists($table, $index)) {
+            $dbman->add_index($table, $index);
+        }
+
+        // Main savepoint reached
+        upgrade_main_savepoint(true, 2012052900.05);
+    }
+
     return true;
 }

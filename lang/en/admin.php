@@ -636,6 +636,7 @@ $string['maturity50'] = 'Alpha';
 $string['maturity100'] = 'Beta';
 $string['maturity150'] = 'Release candidate';
 $string['maturity200'] = 'Stable version';
+$string['maturityallowunstable'] = 'Hint: You may want to run this script with --allow-unstable option';
 $string['maturitycoreinfo'] = 'Your site is currently running unstable "{$a}" development code.';
 $string['maturitycorewarning'] = 'The version of Moodle that you are about to install or upgrade to contains
 unstable "{$a}" development code that is not suitable for use on most production
@@ -753,6 +754,8 @@ $string['pleaserefreshregistration'] = 'Your site has been registered with moodl
 $string['pleaseregister'] = 'Please register your site to remove this button';
 $string['plugin'] = 'Plugin';
 $string['plugins'] = 'Plugins';
+$string['pluginscheck'] = 'Plugin dependencies check';
+$string['pluginscheckfailed'] = 'Dependencies check failed for {$a->pluginslist}';
 $string['pluginschecktodo'] = 'You must solve all the plugin requirements before proceeding to install this Moodle version!';
 $string['pluginsoverview'] = 'Plugins overview';
 $string['profilecategory'] = 'Category';
