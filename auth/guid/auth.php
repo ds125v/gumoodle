@@ -50,6 +50,14 @@ class auth_plugin_guid extends auth_plugin_ldap {
             return false;
         }
 
+        // if we get this far (i.e. have a valid user) and debugmode
+        // is on then we'll just say they are logged in
+        // TESTING ONLY (obviously)
+        if ($this->config->debugmode) {
+            $this->ldap_close();
+            return true;
+        }
+
         // University of Glasgow ugly hack
         // use compare rather than bind to make sure all possible
         // users authenticate.
@@ -71,17 +79,26 @@ class auth_plugin_guid extends auth_plugin_ldap {
      * this information to moodle user-table you should honor syncronization flags
      *
      * @param string $username username
+     * @param string $matricid student matric number
      *
      * @return mixed array with no magic quotes or false on error
      */
-    function get_userinfo($username) {
+    function get_userinfo($username, $matricid='') {
         global $SESSION;
 
         //$textlib = textlib_get_instance();
         $extusername = textlib::convert($username, 'utf-8', $this->config->ldapencoding);
 
+        // find user in ldap
+        // if matricid we bodge this to search in workforceid
         $ldapconnection = $this->ldap_connect();
-        if(!($user_dn = $this->ldap_find_userdn($ldapconnection, $extusername))) {
+        if (!empty($matricid)) {
+            $contexts = explode(';', $this->config->contexts);
+            if (!$user_dn = ldap_find_userdn($ldapconnection, $matricid, $contexts, $this->config->objectclass, 'workforceid', $this->config->search_sub)) {
+                return false;
+            }
+        }
+        else if(!($user_dn = $this->ldap_find_userdn($ldapconnection, $extusername))) {
             return false;
         }
 
@@ -243,6 +260,24 @@ class auth_plugin_guid extends auth_plugin_ldap {
         }
 
         include($CFG->dirroot.'/auth/guid/config.html');
+    }
+
+    /**
+     * Processes and stores configuration data for this authentication plugin.
+     */
+    function process_config($config) {
+        // Set to defaults if undefined
+        if (!isset($config->debugmode)) {
+            $config->debugmode = '';
+        }
+
+        // Save settings
+        set_config('debugmode', $config->debugmode, $this->pluginconfig);
+
+        // do the LDAP settings
+        parent::process_config($config);
+
+        return true;
     }
 
 

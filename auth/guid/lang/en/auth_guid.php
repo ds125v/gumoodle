@@ -23,5 +23,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+$string['auth_debugmode'] = 'Debug mode';
+$string['auth_debugmode_key'] = 'Enable debug mode';
+$string['auth_guid_debugmode'] = 'Authenticate any valid GUID ignoring password. TESTING ONLY. Not for production sites (obviously)';
 $string['auth_guiddescription'] = 'University of Glasgow Data Vault authentication';
 $string['pluginname'] = 'GUID server';

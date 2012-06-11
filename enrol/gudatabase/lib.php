@@ -135,6 +135,75 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
     }
 
     /**
+     * Creates a bare-bones user record
+     * Copied (and modified) from moodlelib.php
+     *
+     * @param string $username New user's username to add to record
+     * @param string $matricid New user's matriculation number
+     * @return stdClass A complete user object
+     */
+    function create_user_record($username, $matricid) {
+        global $CFG, $DB;
+
+        //just in case check text case
+        $username = trim(textlib::strtolower($username));
+
+        // we will be using 'guid' ldap plugin only
+        $authplugin = get_auth_plugin('guid');
+
+        // build up new user object
+        $newuser = new stdClass();
+
+        // get user info from guid auth plugin
+        if ($newinfo = $authplugin->get_userinfo($username, $matricid)) {
+            $newinfo = truncate_userinfo($newinfo);
+            foreach ($newinfo as $key => $value){
+                $newuser->$key = $value;
+            }
+        }
+echo "<pre>"; print_r( $newinfo ); die;
+
+        // check for dodgy email
+        if (!empty($newuser->email)) {
+            if (email_is_not_allowed($newuser->email)) {
+                unset($newuser->email);
+            }
+        }
+
+        // this shouldn't happen, but default city is
+        // always Glasgow
+        if (!isset($newuser->city)) {
+            $newuser->city = 'Glasgow';
+        }
+
+        // fix for MDL-8480
+        // user CFG lang for user if $newuser->lang is empty
+        // or $user->lang is not an installed language
+        if (empty($newuser->lang) || !get_string_manager()->translation_exists($newuser->lang)) {
+            $newuser->lang = $CFG->lang;
+        }
+
+        // basic settings
+        $newuser->auth = 'guid';
+        $newuser->username = $username;
+        $newuser->confirmed = 1;
+        $newuser->lastip = getremoteaddr();
+        $newuser->timecreated = time();
+        $newuser->timemodified = $newuser->timecreated;
+        $newuser->mnethostid = $CFG->mnet_localhost_id;
+
+        $newuser->id = $DB->insert_record('user', $newuser);
+        $user = get_complete_user_data('id', $newuser->id);
+        update_internal_user_password($user, '');
+
+        // fetch full user record for the event, the complete user data contains too much info
+        // and we want to be consistent with other places that trigger this event
+        events_trigger('user_created', $DB->get_record('user', array('id'=>$user->id)));
+
+        return $user;
+    }
+
+    /**
      * Get enrollments for given course
      * and add users
      * @parm object $course 
@@ -161,10 +230,11 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
         // iterate over the enrolments and deal
         foreach ($enrolments as $enrolment) {
             $username = $enrolment->UserName; 
+            $matric_no = $enrolment->matric_no;
             
             // can we find this user
             if (!$user = $DB->get_record( 'user', array('username'=>$username))) {
-                $user = create_user_record( $username, '', 'guid' );
+                $user = $this->create_user_record( $username, $matric_no );
             }
 
             // enroll user into course

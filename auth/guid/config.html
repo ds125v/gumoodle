@@ -94,6 +94,9 @@ if (!isset($config->ntlmsso_ie_fastpath)) {
 if (!isset($config->ntlmsso_type)) {
     $config->ntlmsso_type = 'ntlm';
 }
+if (!isset($config->debugmode)) {
+    $config->debugmode = '';
+}
 
 $yesno = array(get_string('no'), get_string('yes'));
 
@@ -537,6 +540,22 @@ $yesno = array(get_string('no'), get_string('yes'));
     </td>
     <td>
         <?php print_string('auth_ntlmsso_type','auth_ldap') ?>
+    </td>
+</tr>
+<tr>
+    <td colspan="2">
+        <h4><?php print_string('auth_debugmode', 'auth_guid') ?></h4>
+    </td>
+</tr>
+<tr valign="top" class="required">
+    <td align="right">
+        <label for="menudebugmode"><?php print_string('auth_debugmode_key', 'auth_guid') ?></label>
+    </td>
+    <td>
+        <?php echo html_writer::select($yesno, 'debugmode', $config->debugmode, false); ?>
+    </td>
+    <td>
+        <?php print_string('auth_guid_debugmode', 'auth_guid') ?>
     </td>
 </tr>
 <?php
