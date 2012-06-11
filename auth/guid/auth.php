@@ -102,6 +102,9 @@ class auth_plugin_guid extends auth_plugin_ldap {
             return false;
         }
 
+        // TODO: The user_dn tells us a lot about the user (e.g. student)
+        // we should really do something with this. 
+
         $search_attribs = array();
         $attrmap = $this->ldap_attributes();
         foreach ($attrmap as $key => $values) {
@@ -117,8 +120,13 @@ class auth_plugin_guid extends auth_plugin_ldap {
 
         // Ugly University of Glasgow hack
         // add additional fields to search attributes to get
-        // optional emailaddress field
+        // optional emailaddress field and uid
         $search_attribs[] = 'emailaddress';
+
+        // make sure uid is in the list
+        if (!in_array('uid', $search_attribs)) {
+            $search_attribs[] = 'uid';
+        }
 
         if (!$user_info_result = ldap_read($ldapconnection, $user_dn, '(objectClass=*)', $search_attribs)) {
             return false; // error!
@@ -143,6 +151,15 @@ class auth_plugin_guid extends auth_plugin_ldap {
                 $emailaddress = $user_entry[0]['emailaddress'][0];
                 $SESSION->gu_email = ltrim( $emailaddress, '3#' );
             }
+        }
+
+        // get the uid result
+        // this is the proper GUID
+        if (!empty($user_entry[0]['uid'][0])) {
+            $uid = $user_entry[0]['uid'][0];
+        }
+        else {
+            $uid = '';
         }
 
         $result = array();
@@ -196,6 +213,8 @@ class auth_plugin_guid extends auth_plugin_ldap {
         }
 
         $this->ldap_close();
+        $result['dn'] = $user_dn;
+        $result['uid'] = $uid;
         return $result;
     }
 

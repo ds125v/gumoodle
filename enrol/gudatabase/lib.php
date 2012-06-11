@@ -161,7 +161,13 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
                 $newuser->$key = $value;
             }
         }
-echo "<pre>"; print_r( $newinfo ); die;
+ 
+        // from here on in the username will be the uid (if it
+        // exists). This is the definitive GUID
+        if (!empty($newuser->uid)) {
+            $username = $newuser->uid;
+            $newuser->username = $username;
+        }
 
         // check for dodgy email
         if (!empty($newuser->email)) {
@@ -233,8 +239,16 @@ echo "<pre>"; print_r( $newinfo ); die;
             $matric_no = $enrolment->matric_no;
             
             // can we find this user
+            // check against idnumber <=> matric_no if possible
+            // NOTE: the username in enrol database should be correct but some
+            //       are not. The matricno<=>idnumber is definitive however
             if (!$user = $DB->get_record( 'user', array('username'=>$username))) {
-                $user = $this->create_user_record( $username, $matric_no );
+
+                // if we get here, couldn't find with username, so 
+                // let's just have another go with idnumber
+                if (!$user = $DB->get_record( 'user', array('idnumber'=>$matric_no))) {
+                    $user = $this->create_user_record( $username, $matric_no );
+                }
             }
 
             // enroll user into course
@@ -260,7 +274,7 @@ echo "<pre>"; print_r( $newinfo ); die;
 
         // we want all our new courses to have this plugin
         if ($inserted) {
-            $this->add_instance($course);
+            $instanceid = $this->add_instance($course);
         }
         else {
 
@@ -282,7 +296,7 @@ echo "<pre>"; print_r( $newinfo ); die;
         $instance = $DB->get_record('enrol', array('id'=>$instanceid));
 
         // add the users to the course
-        $this->enrol_course_users( $course, $instance ); 
+        $this->enrol_course_users( $course, $instance );
 
         return TRUE;
     }
