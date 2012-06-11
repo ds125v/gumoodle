@@ -27,4 +27,5 @@ $string['auth_debugmode'] = 'Debug mode';
 $string['auth_debugmode_key'] = 'Enable debug mode';
 $string['auth_guid_debugmode'] = 'Authenticate any valid GUID ignoring password. TESTING ONLY. Not for production sites (obviously)';
 $string['auth_guiddescription'] = 'University of Glasgow Data Vault authentication';
+$string['noemail'] = 'Your GUID account does not contain an email address. This prevents you logging in to Moodle. Please contact the IT Services Help Desk to have this corrected';
 $string['pluginname'] = 'GUID server';
