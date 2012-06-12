@@ -86,20 +86,29 @@ class auth_plugin_guid extends auth_plugin_ldap {
     function get_userinfo($username, $matricid='') {
         global $SESSION;
 
-        //$textlib = textlib_get_instance();
+        // because some of the ldap searches are slow
+        // we'll set this high
+        set_time_limit( 2*60 ); // 2 mins
+
+        // make sure username is utf-8
         $extusername = textlib::convert($username, 'utf-8', $this->config->ldapencoding);
 
         // find user in ldap
-        // if matricid we bodge this to search in workforceid
+        // we first attempt to find using the username (fast). If that fails,
+        // we try with the matricid (if supplied). The latter is much slower
+        // but more reliable.
+        // NOTE: using two different ldap_find_userdn() functions here!!
         $ldapconnection = $this->ldap_connect();
-        if (!empty($matricid)) {
-            $contexts = explode(';', $this->config->contexts);
-            if (!$user_dn = ldap_find_userdn($ldapconnection, $matricid, $contexts, $this->config->objectclass, 'workforceid', $this->config->search_sub)) {
+        if(!($user_dn = $this->ldap_find_userdn($ldapconnection, $extusername))) {
+            if (!empty($matricid)) {
+                $contexts = explode(';', $this->config->contexts);
+                if (!$user_dn = ldap_find_userdn($ldapconnection, $matricid, $contexts, $this->config->objectclass, 'workforceid', $this->config->search_sub)) {
+                    return false;
+                }
+            }
+            else {
                 return false;
             }
-        }
-        else if(!($user_dn = $this->ldap_find_userdn($ldapconnection, $extusername))) {
-            return false;
         }
 
         // TODO: The user_dn tells us a lot about the user (e.g. student)
