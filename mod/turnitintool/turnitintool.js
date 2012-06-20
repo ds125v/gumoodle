@@ -163,6 +163,11 @@ function assignmentcheck(turnitintoolid) {
     }
 }
 function setuserchoice() {
+    if ( choiceUserString == '' ) {
+        // Hide everything if there is no cookie
+        togglehideall();
+        return;
+    }
     //alert(document.cookie);
     choiceUserArray=choiceUserString.split('_');
     choiceCountArray=choiceCountString.split('_');
@@ -173,7 +178,7 @@ function setuserchoice() {
     for (i=0;i<choiceUserArray.length;i++) {
         for (n=1;n<=choiceCountArray[i];n++) {
             try {
-                document.getElementById("row_"+choiceUserArray[i]+"_sub_"+n).style.display="table-row";
+                document.getElementById("row_"+choiceUserArray[i]+"_sub_"+n).style.display="";
                 document.getElementById('userblock_'+choiceUserArray[i]).src="pix/minus.gif";
             } catch(err) {
             // Nothing
@@ -185,14 +190,8 @@ function toggleview(userid,count,force) {
     if (force==null) {
         i=1;
         while (blockDisplay1=document.getElementById("row_"+userid+"_sub_"+i)) {
-            if (blockDisplay1.style.display=="table-row") {
-                blockDisplay1.style.display="none";
-                document.getElementById('userblock_'+userid).src="pix/plus.gif";
-                if (i==count) {
-                    removefromchoice(userid,choiceUserString,choiceCountString);
-                }
-            } else {
-                blockDisplay1.style.display="table-row";
+            if (blockDisplay1.style.display=="none") {
+                blockDisplay1.style.display="";
                 document.getElementById('userblock_'+userid).src="pix/minus.gif";
                 if (i==count) {
                     if (choiceUserString=='') {
@@ -202,6 +201,12 @@ function toggleview(userid,count,force) {
                     }
                     choiceUserString += sep+userid;
                     choiceCountString += sep+i;
+                }
+            } else {
+                blockDisplay1.style.display="none";
+                document.getElementById('userblock_'+userid).src="pix/plus.gif";
+                if (i==count) {
+                    removefromchoice(userid,choiceUserString,choiceCountString);
                 }
             }
             i++;
@@ -233,7 +238,7 @@ function toggleview(userid,count,force) {
 function toggleshowall() {
     for (i=0;i<users.length;i++) {
         for (n=1;n<=count[i];n++) {
-            document.getElementById("row_"+users[i]+"_sub_"+n).style.display="table-row";
+            document.getElementById("row_"+users[i]+"_sub_"+n).style.display="";
             document.getElementById('userblock_'+users[i]).src="pix/minus.gif";
         }
     }

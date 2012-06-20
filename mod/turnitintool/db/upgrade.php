@@ -402,6 +402,22 @@ function xmldb_turnitintool_upgrade($oldversion) {
             }
         }
     }
+    
+    if ($result && $oldversion < 2012042701) {
+    	if (is_callable(array($DB,'get_manager'))) {
+            $dbman=$DB->get_manager();
+            $table = new xmldb_table('turnitintool_users');
+            $field = new xmldb_field('turnitin_utp', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, null, null, 0, 'turnitin_uid');
+            if (!$dbman->field_exists($table, $field)) {
+            	$dbman->add_field($table, $field);
+            }
+        } else {
+            $table = new XMLDBTable('turnitintool_users');
+            $field = new XMLDBField('turnitin_utp');
+            $field->setAttributes(XMLDB_TYPE_INTEGER, '10', null, null, null, null, null, 0, 'turnitin_uid');
+            $result = $result && add_field($table, $field);
+        }
+    }
 
     return $result;
 }

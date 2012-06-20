@@ -1,3 +1,8 @@
+2012-04-27 : Fixed assignment start, due and post dates to correctly use server default timezone rather than user default timezone
+2012-04-27 : Fixed issue where invalid HTML was generated after an inbox refresh
+2012-04-27 : Added feature to allow anonymized student name data during API calls
+2012-04-26 : Added upgrade check to configurations screen
+2012-04-26 : Reversed out premature expired class fix, now handled correctly in the API
 2012-03-05 : Fixed an issue where the option "List only students that have made submissions" on Option tab did not work
 2012-03-05 : Added some workarounds for issue where grades were being revealed prematurely (http://tracker.moodle.org/browse/MDL-31487)
 2012-03-05 : Fixed XML parser error where 0% similarity was being displayed as pending

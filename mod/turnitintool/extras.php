@@ -147,12 +147,13 @@
             $loaderbar = new turnitintool_loaderbarclass(count($param_userlinks));
             foreach ($param_userlinks as $userlink) {
                 if ( $tuser = turnitintool_get_record('turnitintool_users','id',$userlink) AND $muser = turnitintool_get_record('user','id',$tuser->userid) ) {
+                    // Get the email address if the user has been deleted
                     if ( empty( $muser->email ) OR strpos( $muser->email, '@' ) === false ) {
                         $split=explode('.',$muser->username);
                         array_pop($split);
                         $muser->email=join('.',$split);
                     }
-                    $tii = new turnitintool_commclass(null,$muser->firstname,$muser->lastname,$muser->email,1,$loaderbar);
+                    $tii = new turnitintool_commclass(null,$muser->firstname,$muser->lastname,$muser->email,$tuser->turnitin_utp,$loaderbar);
                     $tii->createUser($post,get_string('userprocess','turnitintool'));
                     $user = new stdClass();
                     $user->id = $userlink;
@@ -188,6 +189,7 @@
                     $user->email = get_string('notavailableyet','turnitintool');
                 }
                 $user->turnitin_uid = $userdata->turnitin_uid;
+                $user->turnitin_utp = $userdata->turnitin_utp;
                 $user->linkid = $userdata->id;
                 $userarray[]=$user;
             }
@@ -209,6 +211,8 @@
             $cells[1]->data = get_string( 'turnitinid', 'turnitintool' );
             $cells[2]->class = 'header c2';
             $cells[2]->data = get_string( 'usersunlinkrelink', 'turnitintool' );
+            $cells[3]->class = 'header c3';
+            $cells[3]->data = get_string( 'pseudoemailaddress', 'turnitintool' );
 
             $table->rows[0]->cells=$cells;
 
@@ -225,6 +229,8 @@
                 $cells[2]->data .= $user->lastname.', '.$user->firstname;
                 $cells[2]->data .= ( !empty($user->firstname) ) ? '</a>' : '';
                 $cells[2]->data .=' ('.$user->email.')';
+                $cells[3]->class = 'cell c3';
+                $cells[3]->data = ( $user->turnitin_utp == 1 ) ? turnitintool_pseudoemail( $user->email ) : '-';
                 $i++;
                 $table->rows[$i]->class='row r' . (($i%2) ? 0 : 1);
                 $table->rows[$i]->cells=$cells;
@@ -318,6 +324,7 @@
             $data=new object();
             $data->userid=$USER->id;
             $data->turnitin_uid=$tiiuid;
+            $data->turnitin_utp=$tii->utp;
             if ($tiiuser=turnitintool_get_record('turnitintool_users','userid',$USER->id)) {
                 $data->id=$tiiuser->id;
                 turnitintool_update_record('turnitintool_users',$data);

@@ -238,11 +238,7 @@ if (!is_null($param_do) AND $turnitintool->autoupdates==1 AND ($param_do=='allsu
     } else {
         $getuser=NULL;
     }
-    $peruser=false;
-    if (!isset($_SESSION['updatedscores'][$turnitintool->id]) OR $_SESSION['updatedscores'][$turnitintool->id]==0) {
-        $loaderbar = new turnitintool_loaderbarclass(2);
-    }
-    if (turnitintool_update_all_report_scores($cm,$turnitintool,0,$loaderbar)) {
+    if (turnitintool_update_all_report_scores($cm,$turnitintool,0)) {
         turnitintool_redirect($CFG->wwwroot.'/mod/turnitintool/view.php?id='.$cm->id.'&do='.$param_do);
     }
 }

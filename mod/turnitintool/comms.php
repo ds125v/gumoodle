@@ -88,6 +88,15 @@ class turnitintool_commclass {
         $this->apiurl=$CFG->turnitin_apiurl;
         $this->accountid=$CFG->turnitin_account_id;
         $this->uid=$iUid;
+        
+        // Convert the email, firstname and lastname to psuedos for students if the option is set in config
+        // Unless the user is already logged as a tutor then use real details
+        if ( isset( $CFG->turnitin_enablepseudo ) AND $CFG->turnitin_enablepseudo == 1 AND $iUtp == 1 AND !turnitintool_istutor( $iUem ) ) {
+            $iUfn = turnitintool_pseudofirstname();
+            $iUln = turnitintool_pseudolastname( $iUem );
+            $iUem = turnitintool_pseudoemail( $iUem );
+        }
+        
         $this->ufn=$iUfn;
         $this->uln=$iUln;
         $this->uem=$iUem;
@@ -256,10 +265,12 @@ class turnitintool_commclass {
             $output[$objectid]["similarityscore"]=(isset($values['SIMILARITYSCORE']['value']) AND $values['SIMILARITYSCORE']['value']!="-1") ? $values['SIMILARITYSCORE']['value'] : NULL;
 
             $output[$objectid]["overlap"]=(isset($values['OVERLAP']['value']) // this is the Originality Percentage Score
-            AND $values['OVERLAP']['value']!="-1"
-            AND !is_null($output[$objectid]["similarityscore"])) ? $values['OVERLAP']['value'] : NULL;
+                AND $values['OVERLAP']['value']!="-1"
+                AND !is_null($output[$objectid]["similarityscore"])) ? $values['OVERLAP']['value'] : NULL;
 
-            $output[$objectid]["grademark"]=(isset($values['SCORE']['value']) AND $values['SCORE']['value']!="-1") ? $values['SCORE']['value'] : NULL;
+            $output[$objectid]["grademark"]=(isset($values['SCORE']['value'])
+                AND $values['SCORE']['value']!="-1"
+                AND !is_null($values['SCORE']['value'])) ? $values['SCORE']['value'] : NULL;
             $output[$objectid]["anon"]=(isset($values['ANON']['value']) AND $values['ANON']['value']!="-1") ? $values['ANON']['value'] : NULL;
             $output[$objectid]["grademarkstatus"]=(isset($values['GRADEMARKSTATUS']['value']) AND $values['GRADEMARKSTATUS']['value']!="-1") ? $values['GRADEMARKSTATUS']['value'] : NULL;
             $output[$objectid]["date_submitted"]=(isset($values['DATE_SUBMITTED']['value']) AND $values['DATE_SUBMITTED']['value']!="-1") ? $values['DATE_SUBMITTED']['value'] : NULL;
@@ -469,7 +480,7 @@ class turnitintool_commclass {
      */
     function doLogging($vars,$result) {
         global $CFG;
-        if ($CFG->turnitin_enablediagnostic) {
+        if ( $CFG->turnitin_enablediagnostic AND !empty( $vars ) ) {
             $this->result=$result;
             // ###### DELETE SURPLUS LOGS #########
             $numkeeps=10;
@@ -580,9 +591,9 @@ class turnitintool_commclass {
                 'ctl'=>stripslashes($post->ctl),
                 'assignid'=>$post->assignid,
                 'utp'=>2,
-                'dtstart'=>userdate($post->dtstart,'%Y-%m-%d %H:%M:%S',99,false),
-                'dtdue'=>userdate($post->dtdue,'%Y-%m-%d %H:%M:%S',99,false),
-                'dtpost'=>userdate($post->dtpost,'%Y-%m-%d %H:%M:%S',99,false),
+                'dtstart'=>userdate($post->dtstart,'%Y-%m-%d %H:%M:%S',20,false), // Default Moodle Timezone
+                'dtdue'=>userdate($post->dtdue,'%Y-%m-%d %H:%M:%S',20,false), // Default Moodle Timezone
+                'dtpost'=>userdate($post->dtpost,'%Y-%m-%d %H:%M:%S',20,false), // Default Moodle Timezone
                 'fid'=>4,
                 'uid'=>$userid,
                 'uem'=>$this->uem,
@@ -881,6 +892,7 @@ class turnitintool_commclass {
         } else {
             $userid=$this->uid;
         }
+        $ced = isset( $post->ced ) ? $post->ced : null;
         if ( $type == "INSERT" ) {
             $fcmd = 2;
         } else {
@@ -898,7 +910,7 @@ class turnitintool_commclass {
                 'ctl'=>stripslashes($post->ctl),
                 'uid'=>$userid,
                 'uem'=>$this->uem,
-                'ced'=>date('Ymd',strtotime('+12 months')), // extend the class end date to be a year from now,
+                'ced'=>$ced,
                 'ufn'=>$this->ufn,
                 'uln'=>$this->uln
         );
