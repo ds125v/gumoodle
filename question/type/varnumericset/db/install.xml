@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="question/type/varnumericset/db" VERSION="20110606" COMMENT="XMLDB file for Moodle question/type/varnumericset"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="qtype_varnumericset" COMMENT="Options for variable numeric set questions." NEXT="qtype_varnumericset_vars">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="questionid"/>
+        <FIELD NAME="questionid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="Foreign key references question.id." PREVIOUS="id" NEXT="randomseed"/>
+        <FIELD NAME="randomseed" TYPE="text" LENGTH="medium" NOTNULL="true" SEQUENCE="false" COMMENT="Random seed used for generating random numbers." PREVIOUS="questionid" NEXT="requirescinotation"/>
+        <FIELD NAME="requirescinotation" TYPE="int" LENGTH="4" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="randomseed"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" NEXT="questionid"/>
+        <KEY NAME="questionid" TYPE="unique" FIELDS="questionid" PREVIOUS="primary"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="qtype_varnumericset_vars" COMMENT="vars used by this question" PREVIOUS="qtype_varnumericset" NEXT="qtype_varnumericset_variants">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="questionid"/>
+        <FIELD NAME="questionid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" PREVIOUS="id" NEXT="varno"/>
+        <FIELD NAME="varno" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" PREVIOUS="questionid" NEXT="nameorassignment"/>
+        <FIELD NAME="nameorassignment" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" PREVIOUS="varno"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" NEXT="questionid"/>
+        <KEY NAME="questionid" TYPE="foreign" FIELDS="questionid" REFTABLE="question" REFFIELDS="id" PREVIOUS="primary"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="qtype_varnumericset_variants" COMMENT="value of variants of each variable." PREVIOUS="qtype_varnumericset_vars" NEXT="qtype_varnumericset_answers">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="varid"/>
+        <FIELD NAME="varid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="points to variable that these variant values are for" PREVIOUS="id" NEXT="variantno"/>
+        <FIELD NAME="variantno" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="every question has a variant '0' and optionally questions also have a variant 1, 2, etc." PREVIOUS="varid" NEXT="value"/>
+        <FIELD NAME="value" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" COMMENT="value is a number" PREVIOUS="variantno"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" NEXT="varid"/>
+        <KEY NAME="varid" TYPE="foreign" FIELDS="varid" REFTABLE="qtype_varnumericset_vars" REFFIELDS="id" PREVIOUS="primary"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="qtype_varnumericset_answers" COMMENT="Table for extra answer fields needed by varnumericset question type." PREVIOUS="qtype_varnumericset_variants">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="answerid"/>
+        <FIELD NAME="answerid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="id" NEXT="sigfigs"/>
+        <FIELD NAME="sigfigs" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="answerid" NEXT="error"/>
+        <FIELD NAME="error" TYPE="text" LENGTH="medium" NOTNULL="true" SEQUENCE="false" PREVIOUS="sigfigs" NEXT="syserrorpenalty"/>
+        <FIELD NAME="syserrorpenalty" TYPE="number" LENGTH="12" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" DECIMALS="7" PREVIOUS="error" NEXT="checknumerical"/>
+        <FIELD NAME="checknumerical" TYPE="int" LENGTH="4" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="syserrorpenalty" NEXT="checkscinotation"/>
+        <FIELD NAME="checkscinotation" TYPE="int" LENGTH="4" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="checknumerical" NEXT="checkpowerof10"/>
+        <FIELD NAME="checkpowerof10" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="checkscinotation" NEXT="checkrounding"/>
+        <FIELD NAME="checkrounding" TYPE="int" LENGTH="4" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="checkpowerof10"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" NEXT="mdl_qtypevaransw_quesansw_ix"/>
+        <KEY NAME="mdl_qtypevaransw_quesansw_ix" TYPE="foreign-unique" FIELDS="answerid" REFTABLE="question_answers" REFFIELDS="id" PREVIOUS="primary"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>
