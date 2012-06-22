@@ -338,6 +338,21 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
 
             // enroll user into course
             $this->enrol_user( $instance, $user->id, $defaultrole, 0, 0, ENROL_USER_ACTIVE ); 
+
+            // cache enrolment 
+            $courseuser = new stdClass;
+            $courseuser->userid = $user->id;
+            $courseuser->courseid = $course->id;
+            $courseuser->timeupdated = time();
+
+            // insert or update
+            if ($record = $DB->get_record('enrol_gudatabase_users', array('userid'=>$user->id, 'courseid'=>$course->id))) {
+                $courseuser->id = $record->id;
+                $DB->update_record( 'enrol_gudatabase_users', $courseuser );
+            }
+            else {
+                $DB->insert_record( 'enrol_gudatabase_users', $courseuser );
+            }
         }
 
         return true;
