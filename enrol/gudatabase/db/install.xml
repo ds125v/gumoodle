@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="enrol/gudatabase/db" VERSION="20120622" COMMENT="XMLDB file for Moodle enrol/gudatabase"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="enrol_gudatabase_codes" COMMENT="Contains a cache of codes v courses plus some basic code information" NEXT="enrol_gudatabase_cron">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="code"/>
+        <FIELD NAME="code" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false" PREVIOUS="id" NEXT="courseid"/>
+        <FIELD NAME="courseid" TYPE="int" LENGTH="11" NOTNULL="true" SEQUENCE="false" PREVIOUS="code" NEXT="subject"/>
+        <FIELD NAME="subject" TYPE="char" LENGTH="15" NOTNULL="true" SEQUENCE="false" PREVIOUS="courseid" NEXT="coursenumber"/>
+        <FIELD NAME="coursenumber" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="subject" NEXT="coursename"/>
+        <FIELD NAME="coursename" TYPE="char" LENGTH="80" NOTNULL="true" SEQUENCE="false" PREVIOUS="coursenumber" NEXT="subjectname"/>
+        <FIELD NAME="subjectname" TYPE="char" LENGTH="80" NOTNULL="false" SEQUENCE="false" PREVIOUS="coursename" NEXT="subjectnumber"/>
+        <FIELD NAME="subjectnumber" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="subjectname" NEXT="timeadded"/>
+        <FIELD NAME="timeadded" TYPE="int" LENGTH="11" NOTNULL="false" SEQUENCE="false" PREVIOUS="subjectnumber"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" NEXT="courseid"/>
+        <KEY NAME="courseid" TYPE="foreign" FIELDS="courseid" REFTABLE="course" REFFIELDS="id" PREVIOUS="primary"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="enrol_gudatabase_cron" COMMENT="Shows when individual courses where last synced" PREVIOUS="enrol_gudatabase_codes" NEXT="enrol_gudatabase_users">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="courseid"/>
+        <FIELD NAME="courseid" TYPE="int" LENGTH="11" NOTNULL="true" SEQUENCE="false" PREVIOUS="id" NEXT="timestamp"/>
+        <FIELD NAME="timestamp" TYPE="int" LENGTH="11" NOTNULL="true" SEQUENCE="false" PREVIOUS="courseid"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" NEXT="courseid"/>
+        <KEY NAME="courseid" TYPE="foreign" FIELDS="courseid" REFTABLE="course" REFFIELDS="id" PREVIOUS="primary"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="enrol_gudatabase_users" COMMENT="Cache the user enrolment data and the last time it was updated" PREVIOUS="enrol_gudatabase_cron">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="userid"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="id" NEXT="courseid"/>
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="userid" NEXT="timeupdated"/>
+        <FIELD NAME="timeupdated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="courseid"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" NEXT="userid"/>
+        <KEY NAME="userid" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id" PREVIOUS="primary" NEXT="courseid"/>
+        <KEY NAME="courseid" TYPE="foreign" FIELDS="courseid" REFTABLE="course" REFFIELDS="id" PREVIOUS="userid"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>

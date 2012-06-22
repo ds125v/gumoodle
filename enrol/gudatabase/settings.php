@@ -79,4 +79,8 @@ if ($ADMIN->fulltree) {
                      ENROL_EXT_REMOVED_SUSPENDNOROLES => get_string('extremovedsuspendnoroles', 'enrol'));
     $settings->add(new admin_setting_configselect('enrol_gudatabase/unenrolaction', get_string('extremovedaction', 'enrol'), get_string('extremovedaction_help', 'enrol'), ENROL_EXT_REMOVED_UNENROL, $options));
 
+    $settings->add(new admin_setting_heading('enrol_gudatabase_codesheader', get_string('settingsheadercodes', 'enrol_gudatabase'), ''));
+
+    $settings->add(new admin_setting_configtext('enrol_gudatabase/codesenroltable', get_string('codesenroltable', 'enrol_gudatabase'), get_string('codesenroltable_desc', 'enrol_gudatabase'), ''));
+
 }

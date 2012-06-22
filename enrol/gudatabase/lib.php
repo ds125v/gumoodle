@@ -131,7 +131,48 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
             return false;
         }
 
+        $extdb->Close();
         return $enrolments;
+    }
+
+    /**
+     * get course information from
+     * external database
+     * @param string $code course code
+     * @return object course details (false if not found)
+     */
+    protected function external_coursedata( $code ) {
+        global $CFG, $DB;
+
+        // connect to external db 
+        if (!$extdb = $this->db_init()) {
+            mtrace('Error while communicating with external enrolment database');
+            return false;
+        }
+
+        // get connection details
+        $table            = $this->get_config('codesenroltable');
+
+        // if table not defined then we can't do anything
+        if (empty($table)) {
+            return false;
+        }
+
+        // create the sql
+        $sql = "select * from $table where CourseCat='" . $this->db_addslashes($code) . "'";
+
+        // and run the query
+        $data = false;
+        if ($rs = $extdb->Execute($sql)) {
+            if (!$rs->EOF) {
+                $row = $rs->FetchRow();
+                $data = (object)$row;
+            }
+            $rs->Close();
+        }    
+        
+        $extdb->Close();
+        return $data;
     }
 
     /**
@@ -209,6 +250,47 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
         return $user;
     }
 
+    /** 
+     * save codes:
+     * maintain a table of codes versus course
+     * so we can use in cron and reports
+     * NB: we will check it exists here too
+     * @param object $course
+     * @param array $codes list of codes
+     */
+    public function save_codes( $course, $codes ) {
+        global $CFG, $DB;
+
+        // run through codes finding data
+        foreach ($codes as $code) {
+            $coursedata = $this->external_coursedata( $code );
+
+            // it's possible (and ok) that nothing is found
+            if (!empty($coursedata)) {
+
+                // create data record
+                $coursecode = new stdClass;
+                $coursecode->code = $code;
+                $coursecode->courseid = $course->id;
+                $coursecode->subject = $coursedata->Crse_cd_Subject;
+                $coursecode->coursenumber = $coursedata->Crse_cd_nbr;
+                $coursecode->coursename = $coursedata->Crse_name;
+                $coursecode->subjectname = $coursedata->ou_name;
+                $coursecode->subjectnumber = $coursedata->ou_cd;
+                $coursecode->timeadded = time();
+            
+                // is there already a record for this combination
+                if ($record = $DB->get_record( 'enrol_gudatabase_codes', array('code'=>$code, 'courseid'=>$course->id))) {
+                    $coursecode->id = $record->id;
+                    $DB->update_record( 'enrol_gudatabase_codes', $coursecode );
+                }
+                else {
+                    $DB->insert_record( 'enrol_gudatabase_codes', $coursecode );
+                }
+            }
+        }
+    }
+
     /**
      * Get enrollments for given course
      * and add users
@@ -227,8 +309,11 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
         $codes = $this->split_code( $idnumber );
         $codes[] = clean_param( $shortname, PARAM_ALPHANUM );
 
+        // cache the codes against the course
+        $this->save_codes( $course, $codes );
+
         // find the default role 
-        $defaultrole      = $this->get_config('defaultrole');
+        $defaultrole = $this->get_config('defaultrole');
 
         // get the external data for these codes
         $enrolments = $this->external_enrolments( $codes );
