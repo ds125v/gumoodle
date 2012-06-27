@@ -280,6 +280,7 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
                 $coursecode->timeadded = time();
             
                 // is there already a record for this combination
+return;
                 if ($record = $DB->get_record( 'enrol_gudatabase_codes', array('code'=>$code, 'courseid'=>$course->id))) {
                     $coursecode->id = $record->id;
                     $DB->update_record( 'enrol_gudatabase_codes', $coursecode );
