@@ -280,7 +280,6 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
                 $coursecode->timeadded = time();
             
                 // is there already a record for this combination
-return;
                 if ($record = $DB->get_record( 'enrol_gudatabase_codes', array('code'=>$code, 'courseid'=>$course->id))) {
                     $coursecode->id = $record->id;
                     $DB->update_record( 'enrol_gudatabase_codes', $coursecode );
@@ -402,5 +401,17 @@ return;
         return TRUE;
     }
 
+    /**
+     * synchronise enrollments when user logs in
+     * TODO: this needs to actually do something.
+     *
+     * @param object $user user record
+     * @return void
+     */
+    public function sync_user_enrolments($user) {
+        global $CFG, $DB;
+
+        return true;
+    }
 }
 
