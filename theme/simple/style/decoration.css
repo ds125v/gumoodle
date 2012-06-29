@@ -1,0 +1,13 @@
+html {background: #eee;}
+body {background: #ddd; }
+#page {
+background: #ccc;
+padding: 10px;
+}
+header,
+footer {background: #bbb;}
+
+.block {border: thick solid #bbb; border-radius: 20px;}
+
+tbody tr:nth-child(2n),
+thead {background-color: rgb(227,227,227);}
