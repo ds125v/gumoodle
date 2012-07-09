@@ -7,7 +7,7 @@ $THEME->parents_exclude_sheets = array(
 'pagelayout'
 )
 ); 
-$THEME->sheets = array('simple','decoration');
+$THEME->sheets = array('bootstrap','simple','decoration');
 $THEME->layouts = array(
     'base' => array(
         'file' => 'simple.php',

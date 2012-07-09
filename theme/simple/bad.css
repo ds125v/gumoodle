@@ -1,0 +1,13 @@
+/* header row in tbody rather than thead */
+#participants table tbody tr th.header {
+border: thick solid red;
+}
+
+
+/* don't use these */
+br,
+hr,
+font {
+[style=*]
+border: thick solid red;
+}

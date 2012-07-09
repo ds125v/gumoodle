@@ -3,16 +3,16 @@
 $hasheading = ($PAGE->heading);
 $hasnavbar = (empty($PAGE->layout_options['nonavbar']) && $PAGE->has_navbar());
 $hasfooter = (empty($PAGE->layout_options['nofooter']));
-$hassidepre = $PAGE->blocks->region_has_content('side-pre', $OUTPUT);
-$hassidepost = $PAGE->blocks->region_has_content('side-post', $OUTPUT);
+$hasblocks1 = $PAGE->blocks->region_has_content('side-pre', $OUTPUT);
+$hasblocks2 = $PAGE->blocks->region_has_content('side-post', $OUTPUT);
 
 $bodyclasses = array();
-if ($hassidepre && !$hassidepost) {
-    $bodyclasses[] = 'side-pre-only';
-} else if ($hassidepost && !$hassidepre) {
-    $bodyclasses[] = 'side-post-only';
-} else if (!$hassidepost && !$hassidepre) {
-    $bodyclasses[] = 'content-only';
+if ($hasblocks1 && !$hasblocks2) {
+    $bodyclasses[] = 'blocks1-only';
+} else if ($hasblocks2 && !$hasblocks1) {
+    $bodyclasses[] = 'blocks2-only';
+} else if (!$hasblocks1 && !$hasblocks2) {
+    $bodyclasses[] = 'no-blocks';
 }
 $favicon_url = $OUTPUT->pix_url('favicon', 'theme');
 $OUTPUT->doctype(); // throw it away to avoid warning
@@ -21,11 +21,12 @@ $OUTPUT->doctype(); // throw it away to avoid warning
 <html>
 
 <head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
     <title><?php echo $PAGE->title ?></title>
     <link rel="shortcut icon" href="<?php echo $favicon_url ?>" />
     <?php echo $OUTPUT->standard_head_html() ?>
 <!--[if lt IE 9]>
-<script src="../theme/gu23/html5shiv.js"></script>
+<script src="../theme/simple/html5shiv.js"></script>
 <![endif]-->
 </head>
 
@@ -63,7 +64,7 @@ $OUTPUT->doctype(); // throw it away to avoid warning
 	<div id="layout" class="yui3-g">
 
 		<div id="blocks1" class="yui3-u">
-		<?php if ($hassidepre) { ?>
+		<?php if ($hasblocks1) { ?>
 		    <div class="region-content">
 			<?php echo $OUTPUT->blocks_for_region('side-pre') ?>
 		    </div>
@@ -82,7 +83,7 @@ $OUTPUT->doctype(); // throw it away to avoid warning
             </div>
 
 		<div id="blocks2" class="yui3-u">
-		<?php if ($hassidepost) { ?>
+		<?php if ($hasblocks2) { ?>
 		    <div class="region-content">
 			<?php echo $OUTPUT->blocks_for_region('side-post') ?>
 		    </div>
