@@ -221,6 +221,11 @@ class auth_plugin_guid extends auth_plugin_ldap {
             }
         }
 
+        // modify the lastname to have correct case
+        if (!empty($result['lastname'])) {
+            $result['lastname'] = ucfirst(strtolower($result['lastname']));
+        }
+
         $this->ldap_close();
         $result['dn'] = $user_dn;
         $result['uid'] = $uid;
