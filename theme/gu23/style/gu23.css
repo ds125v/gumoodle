@@ -1,0 +1,214 @@
+body {font: Georgia, "Times New Roman", Times, serif;}
+body { width:100%; }
+
+.skip {position: absolute; left: -5000em; top: auto; width: 1px; height: 1px; overflow: hidden;}
+.clear {clear: left;}
+a {text-decoration: none;}
+input, textarea, select, button {font-family: Arial, Helvetica, sans-serif;}
+
+html {background: #5c5940 url(http://www.gla.ac.uk/0t4/generic/images/background/arch1.gif) repeat-x bottom fixed;}
+body {background: url(http://www.gla.ac.uk/0t4/generic/images/background/arch1.jpg) no-repeat 960px bottom fixed;}
+
+header {background-color: #005288; color: #fff; overflow:hidden;}
+header h1 a {color: #fff;}
+header h1 a:hover {color: #e9dedf;}
+footer {color: #333;}
+footer a {color: #004d9c;}
+footer ul { width: 310px;}
+footer ul li a {color: #004d9c;}
+
+#page {margin-left: 20px; padding-right: 20px; padding-bottom: 5em; width:100%;}
+#page-content {margin-top:25px ; padding-bottom: 3em;}
+
+header {padding: 30px 25px 0 25px; background: #005288 url(http://www.gla.ac.uk/0t4/generic/images/pageheader.gif) no-repeat bottom right; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);}
+
+
+#branding #logo {display: none;}
+.headermain {font-size: 0; margin: 0;}
+.headermain  {float: left; width: 172px; height: 54px; display: block; overflow: hidden; text-indent: -5000em; background: url(http://www.gla.ac.uk/0t4/generic/images/logo.gif) no-repeat;}
+
+#head-menu {clear: both; width: 100%;}
+#head-menu h3 {display: none;}
+#head-menu ul {margin: 0; padding: 0; border: none; position: relative; left: 50%; float:left;}
+#head-menu {margin: 0; padding: 0; border: none; position:relative;width:100%;float:left;}
+#head-menu ul li {display: inline; float: left; padding: 0.7em 0; font: 108% Arial, Helvetica, sans-serif; background: #00375c; border:none; right: 50%; position: relative;}
+#head-menu ul li:first-child {border-top-left-radius: 5px;}
+#head-menu ul li:last-child {border-top-right-radius: 5px;}
+#head-menu ul li a {padding: 0 2.55em; color: #fff; border: none; border-left: 1px dotted #4d718a;}
+#head-menu ul li a:hover {text-decoration: underline; color: #96bcd5;}
+#head-menu ul li:first-child a {border-left: none;}
+#head-menu ul li.active {background: #002239; color: #fff;}
+
+header .logininfo {float: right; clear: right; padding-bottom: 2em; padding-top: 15px;}
+
+#siteTools {float: right;}
+#siteTools h3 {display: none;}
+#siteTools ul {margin: 0px;}
+#siteTools ul li,
+header .logininfo {display: inline; margin-left: 1em; padding-left: 1em; font: 100% Arial, Helvetica, sans-serif; border-left: 1px dotted #4d86ac;}
+#siteTools ul li:first-child,
+header .logininfo {border-left: none;}
+#siteTools ul li a,
+header .logininfo a {padding-bottom: 2px; color: #fff; border-bottom: 4px solid transparent;}
+#siteTools ul li a:hover,
+header .logininfo a:hover {border-bottom-color: #3d779c;}
+
+#page-content .breadcrumb {float: left; width: 100%; margin: 0.8em 0 5px 0; padding: 0 0 20px 0; background: url(http://www.gla.ac.uk/0t4/generic/images/breadcrumbs_hr.gif) no-repeat; background-position:left bottom;}
+#page-content .breadcrumb h3 {display: none;}
+#page-content .breadcrumb ul {margin: 0; padding: 0; width:80%, float:left;}
+#page-content .breadcrumb ul li {display: inline; padding-right: 10px; font: 93% Arial, Helvetica, sans-serif; color: #777;}
+#page-content .breadcrumb ul li { background: url(http://www.gla.ac.uk/0t4/generic/images/breadcrumbs_divider.gif) no-repeat right;}
+#page-content .breadcrumb ul li a { color: #444;}
+#page-content .breadcrumb ul li a:hover {text-decoration: underline;}
+#page-content .breadcrumb ul li span.arrow.sep { display: none;}
+#page-content .navbuttion {float: right;}
+
+#page-content {overflow: hidden; background: #fff; border-radius: 6px; box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);}
+#page-content .content-header {margin-bottom: 1.6em; border-top-left-radius: 4px; border-top-right-radius: 4px;}
+#page-content .content-header {color: rgb(255,255,255); background-color: rgb(0,82,136);}
+#page-content .content-header h1 {min-height: 36px; margin: 0; padding: 17px 15px; font: 197% Arial, Helvetica, sans-serif; background: url(http://www.gla.ac.uk/0t4/generic/images/pagecontent_header.png) no-repeat right bottom;}
+
+
+#page-content .extraNav  {margin-top: 20px; margin-left: 15px; margin-right:15px; font-size: 93%; color:#333;}
+#page-content .extraNav a  {color:#333}
+
+
+footer .backToTop {float: left; margin-left: 17px; font: 93% Arial, Helvetica, sans-serif; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; background-color: #939393; background: rgba(0, 0, 0, 0.3) url(http://www.gla.ac.uk/0t4/generic/images/shadow_bottom.png) repeat-x;}
+footer .backToTop a {display: block; padding: 0.7em 1.2em; color: #fff;}
+footer .backToTop a:hover {color: #ccc;}
+footer {color: rgb(51,51,51);font: 93% Arial, Helvetica, sans-serif;text-align: left;}
+
+footer .contact {clear: left; float: left; width: 350px; margin-top: 1.2em; padding-left: 221px; }
+footer .contact .adr {margin: 2.25em 0 0.5em 0;}
+footer .contact .phoneEmail dl,
+footer .contact .phoneEmail dd {display: inline;}
+footer .contact .org {margin-bottom: 0.15em; font: 167% Georgia, "Times New Roman", Times, serif;}
+footer .contact .org em {font-style: italic;}
+footer .contact a:hover {text-decoration: underline;}
+
+footer ul {float: left; width: 340px; margin-top: 2.1em;}
+footer ul li {list-style: none; font: 93% Arial, Helvetica, sans-serif; line-height: 1.8em;}
+footer ul li a:hover {text-decoration: underline;}
+
+footer .logininfo,
+footer .homelink,
+footer .homelink a,
+footer .helplink {margin: 0; padding: 0;}
+footer .helplink {margin-left:-20px;}
+
+
+.block .header h2 {
+margin: 20px 0px 0px 0px; padding-bottom: 4px; font: 131% Arial, Helvetica, sans-serif;}
+.block { border: none; margin: 0;}
+
+
+#blocks1 .region-content { padding: 0 0 0 8px;}
+#blocks2 .region-content { padding: 0 8px 0 0;}
+
+#main .region-content {font-size: 100%; line-height: 1.7em;}
+
+.course-content ul.topics li.section .content { margin: 0;}
+
+
+
+h3.sectionname {
+background: url("http://www.gla.ac.uk/0t4/generic/images/jumplink_header.png") no-repeat scroll right bottom transparent;
+font-size: 200%;
+padding: 0.3em 0.5em;
+margin: 0px;
+font-weight: normal;
+border-bottom: 1px solid rgb(227,227,227);
+}
+.course-content div.content {
+border: 1px solid rgb(227,227,227);
+border-radius: 5px;
+box-shadow: 0px 3px 3px #eee;
+}
+
+.course-content .current { background: none;}
+.course-content .current .content {background: rgb(227,227,227);}
+
+
+.course-content ul.topics li.section .content,
+.course-content ul.weeks li.section .content {margin: 0 20px;}
+
+div.navbar {padding: 0px 20px;}
+
+.course-content ul.topics li.section div.left,
+.course-content ul.weeks li.section div.left {
+text-align: right;
+width: auto;
+margin-left: 3px;
+margin-top: -11px;
+}
+.course-content ul.topics li.section div.right,
+.course-content ul.weeks li.section div.right {
+width: 16px;
+margin: 0px;
+padding-top: 5px;
+padding-right: 1px;
+}
+.course-content ul.topics li.section div.right img.icon,
+.course-content ul.weeks li.section div.right img.icon {
+padding: 0px;
+}
+.section-modchooser {width: 95%}
+.section_add_menus {width: 95%}
+
+li.section .summary {padding-left: 15px;padding-top: 5px; margin-bottom: 0px
+}
+li.section .summary .no-overflow p:last-child {margin-bottom: 0px;}
+
+.block .header .commands {margin-left: 0px;}
+.block .content {padding:0px;}
+
+.mform fieldset {border: none;}
+.mform fieldset div {margin: 0px;}
+.fitem.fitem_feditor {overflow:visible;}
+.felement {margin:0px;}
+.fitemtitle.label {margin:8px;}
+td.picture {padding: 0px;}
+
+h3.sectionname {white-space:nowrap; overflow: hidden; text-overflow: ellipsis;}
+
+.path-mod-forum .forumheaderlist td {border: none;}
+.clearfix {clear: none;}
+
+
+li.activity a:visited,
+li.activity a,
+div.region-content a:visited,
+div.region-content a,
+div.content a:visited,
+div.content a {color: rgb(0,77,156);}
+div.region-content a.nolink,
+div.content a:visited.nolink {color: rgb(0,0,0);}
+
+tbody tr:nth-child(2n),
+thead {background-color: rgb(227,227,227);}
+
+
+table.boxaligncenter td {vertical-align: middle;}
+.initialbar a {padding: 0.7em;}
+
+.initialbar {text-align: center;} 
+
+table#participants {margin: 1em auto;}
+
+.generalbox,
+.mod_introbox,
+.forumpost,
+.path-mod-forum table.forumheaderlist {border: none;}
+.categorybox {padding-left: 1em;}
+.calendartable th,
+.calendartable td {border:none;}
+
+.minicalendar.calendartable th,
+.minicalendar.calendartable td {border:none;padding: 5px;}
+
+#dndupload-status {left:540px;background:#eef; margin: 0px;margin-left:-20%;}
+ 
+.tabtree ul,
+.tabtree ul li,
+.tabtree ul li:hover
+ {border-bottom-color: #004d9c;}

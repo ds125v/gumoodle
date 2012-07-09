@@ -1,0 +1,106 @@
+/* linux, Android, iOS friendly sans-serif font stack
+body {font: sans-serif;}
+*/
+
+/* monospace font stack
+body {font: monospaced;}
+*/
+
+/* alternative serif font stack 
+body {font: serif;}
+*/
+
+
+#page {min-width:960px; max-width: 1150px;  margin:auto; overflow: hidden}
+ 
+#blocks1 {
+    width:200px;
+    margin-left: -200px;
+}
+ 
+#blocks2 {
+    width:200px;
+    margin-right: -200px;
+}
+ 
+#layout {
+    padding: 0px 200px; 
+    overflow: hidden;
+}
+#main {
+    width:100%;
+}
+
+.icon,
+.iconsmall {padding-left: 3px; padding-right: 3px;}
+
+.section .commands,
+.section .editing_highlight img.icon,
+.section .editing_showhide img.icon.hide,
+.section .section-handle {display:none;}
+.section:hover .commands,
+.section:hover .editing_highlight img.icon,
+.section:hover .editing_showhide img.icon.hide,
+.section:hover .section-handle {display:inline;}
+
+#changenumsections {text-align: center;}
+
+.jsenabled .course-content ul.topics li.section div.right img.icon.up,
+.jsenabled .course-content ul.topics li.section div.right img.icon.down,
+.jsenabled .course-content ul.weeks li.section div.right img.icon.up, 
+.jsenabled .course-content ul.weeks li.section div.right img.icon.down {
+display: none;
+}
+
+.block li a { padding: 0px;}
+.block li img.smallicon {display: none;}
+.block li img.icon {display: none;}
+.block_navigation .block_tree .tree_item.branch {background-position: 0% 50%;}
+.block_navigation .block_tree .tree_item { padding-left: 10px;}
+.block_navigation .block_tree li.item_with_icon.contains_branch .tree_item { padding-left: 10px;}
+
+#dndupload-status {width:40%; left:30%; margin:auto; padding:6px; border:1px solid #ddd;text-align:center;background:#eee; position:absolute; z-index:9999;box-shadow:2px 2px 5px 1px #ccc;border-radius:0px 0px 8px 8px;}
+.dndupload-preview {color:#909090;border:1px dashed #909090;}
+.dndupload-progress-outer {width:70px;border:solid black 1px;height:10px;display:inline-block;margin:0;padding:0;overflow:hidden;position:relative;}
+.dndupload-progress-inner {width:0%;height:100%;background-color:green;display:inline-block;margin:0;padding:0;float:left;}
+.dndupload-hidden {display:none;}
+
+li.activity a:visited,
+li.activity a,
+div.region-content a:visited,
+div.region-content a,
+div.content a:visited,
+div.content a {color: blue;}
+div.region-content a.nolink,
+div.content a:visited.nolink {color: black;}
+
+
+li.section.hidden {
+opacity: 0.6;
+}
+li.section.hidden h3.sectionname {
+color: #999;
+}
+li.section.hidden .content {
+background: #ddd;
+}
+li.section.current .content {
+background-color: transparent; border-radius: 5px 5px 0px 0px;
+}
+li.section.current h3.sectionname {
+color: #eee; background-color: #666; border-radius: 5px 5px 0px 0px;
+}
+
+
+a {text-decoration: none;}
+
+.tabtree ul {margin: 0px; padding-bottom: 5px; border-bottom: thin solid black; text-align: center;}
+.tabtree ul li {margin: 0px 0.5em 0px 0px; padding-bottom:5px;} 
+
+.tabtree ul li a {padding: 0px 1em;} 
+.tabtree ul li:hover {
+border-bottom: thick solid black;
+}
+.tabtree ul li.selected {
+border-bottom: thick solid black;
+}
