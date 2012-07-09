@@ -44,6 +44,8 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
      * @return bool
      */
     public function instance_deleteable($instance) {
+        return true;
+
         if (!enrol_is_enabled('gudatabase')) {
             return true;
         }
@@ -176,6 +178,51 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
     }
 
     /**
+     * get course information from
+     * external database by user
+     * @param string $user user object
+     * @return array of objects course details (false if not found)
+     */
+    protected function external_userdata( $user ) {
+        global $CFG, $DB;
+
+        // connect to external db 
+        if (!$extdb = $this->db_init()) {
+            mtrace('Error while communicating with external enrolment database');
+            return false;
+        }
+
+        // get connection details
+        $table = $this->get_config('remoteenroltable');
+
+        // GUIDs can't be trusted in the external database, So...
+        // match on $user->idnumber against (external) matric_no.
+
+        // create the sql. In the event idnumber (matric number)
+        // not specified, just need to go with username (GUID)
+        $sql = "select * from $table where ";
+        if (!empty($user->idnumber)) {
+            $sql .= " UserName = '" . $this->db_addslashes($user->username) . "'"; 
+        }
+        else {
+            $sql .= " matric_no = '" . $this->db_addslashes($user->idnumber) . "'";
+        }
+
+        // and run the query
+        $data = array();
+        if ($rs = $extdb->Execute($sql)) {
+            while (!$rs->EOF) {
+                $row = $rs->FetchRow();
+                $data[] = (object)$row;
+            }
+            $rs->Close();
+        }    
+        
+        $extdb->Close();
+        return $data;
+    }
+
+    /**
      * Creates a bare-bones user record
      * Copied (and modified) from moodlelib.php
      *
@@ -289,6 +336,41 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
                 }
             }
         }
+
+        // now need to check if there are entries for that course
+        // that should be deleted
+        $entries = $DB->get_records( 'enrol_gudatabase_codes', array( 'courseid'=>$course->id ));
+        if (!empty($entries)) {
+            foreach ($entries as $entry) {
+                if (!in_array($entry->code, $codes)) {
+                    $DB->delete_records( 'enrol_gudatabase_codes', array( 'id'=>$entry->id ));
+                }
+            }
+        }
+    }
+
+    /**
+     * cache user enrolment
+     * @param object $course
+     * @param object $user
+     */
+    private function cache_user_enrolment( $course, $user) {
+        global $DB;
+
+        // construct database object
+        $courseuser = new stdClass;
+        $courseuser->userid = $user->id;
+        $courseuser->courseid = $course->id;
+        $courseuser->timeupdated = time();
+
+        // insert or update
+        if ($record = $DB->get_record('enrol_gudatabase_users', array('userid'=>$user->id, 'courseid'=>$course->id))) {
+            $courseuser->id = $record->id;
+            $DB->update_record( 'enrol_gudatabase_users', $courseuser );
+        }
+        else {
+            $DB->insert_record( 'enrol_gudatabase_users', $courseuser );
+        }
     }
 
     /**
@@ -340,22 +422,38 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
             $this->enrol_user( $instance, $user->id, $defaultrole, 0, 0, ENROL_USER_ACTIVE ); 
 
             // cache enrolment 
-            $courseuser = new stdClass;
-            $courseuser->userid = $user->id;
-            $courseuser->courseid = $course->id;
-            $courseuser->timeupdated = time();
-
-            // insert or update
-            if ($record = $DB->get_record('enrol_gudatabase_users', array('userid'=>$user->id, 'courseid'=>$course->id))) {
-                $courseuser->id = $record->id;
-                $DB->update_record( 'enrol_gudatabase_users', $courseuser );
-            }
-            else {
-                $DB->insert_record( 'enrol_gudatabase_users', $courseuser );
-            }
+            $this->cache_user_enrolment( $course, $user );
         }
 
         return true;
+    }
+
+    /**
+     * check if course has instance of this plugin
+     * add if not
+     * @param object $course
+     * @return int instanceid
+     */
+    private function check_instance( $course ) {
+
+        // get all instances in this course
+        $instances = enrol_get_instances( $course->id, TRUE );
+
+        // search for this one
+        $found = FALSE;
+        foreach ($instances as $instance) {
+            if ($instance->enrol == $this->get_name()) {
+                $found = TRUE;
+                $instanceid = $instance->id;
+            }
+        }
+
+        // if we didn't find it then add it
+        if (!$found) {
+            $instanceid = $this->add_instance($course);
+        }
+
+        return $instanceid;
     }
 
     /**
@@ -377,19 +475,7 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
             $instanceid = $this->add_instance($course);
         }
         else {
-
-            // force instance if it doesn't have one
-            $instances = enrol_get_instances( $course->id, TRUE );
-            $found = FALSE;
-            foreach ($instances as $instance) {
-                if ($instance->enrol == $this->get_name()) {
-                    $found = TRUE;
-                    $instanceid = $instance->id;
-                }
-            }
-            if (!$found) {
-                $instanceid = $this->add_instance($course);
-            }
+            $instanceid = $this->check_instance( $course );
         }
 
         // get the instance of the enrolment plugin
@@ -410,6 +496,63 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
      */
     public function sync_user_enrolments($user) {
         global $CFG, $DB;
+
+        // this is just a bodge to kill this for admin users
+        $admins = explode( ',', $CFG->siteadmins );
+        if (in_array($user->id, $admins)) {
+            return true;
+        }
+
+        // get the list of courses for current user
+        $enrolments = $this->external_userdata( $user );
+
+        // if there aren't any then there's nothing to see here
+        if (empty($enrolments)) {
+            return true;
+        }
+
+        // there could be duplicate courses going this way, so we'll 
+        // build an array to filter them out
+        $uniquecourses = array();
+        
+        // go through list of codes and find the courses
+        foreach ($enrolments as $enrolment) {
+        
+            // we need to find the courses in our own table of courses
+            // to allow for multiple codes
+            $codes = $DB->get_records('enrol_gudatabase_codes', array('code'=>$enrolment->courses));
+            if (!empty($codes)) {
+                foreach ($codes as $code) {
+                    $uniquecourses[ $code->courseid ] = $code->courseid;
+                }
+            }
+        }
+
+        // find the default role 
+        $defaultrole = $this->get_config('defaultrole');
+
+        // go through the list of course codes and enrol student
+        if (!empty($uniquecourses)) {
+            foreach ($uniquecourses as $courseid) {
+      
+                // get course object
+                if (!$course = $DB->get_record('course', array('id'=>$courseid))) {
+                    continue;
+                }
+
+                // make sure it has this enrolment plugin
+                $instanceid = $this->check_instance( $course );
+
+                // get the instance of the enrolment plugin
+                $instance = $DB->get_record('enrol', array('id'=>$instanceid));
+
+                // enroll user into course
+                $this->enrol_user( $instance, $user->id, $defaultrole, 0, 0, ENROL_USER_ACTIVE ); 
+
+                // cache enrolment 
+                $this->cache_user_enrolment( $course, $user );
+            }
+        }
 
         return true;
     }
