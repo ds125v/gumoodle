@@ -7,9 +7,9 @@ $hasblocks2 = $PAGE->blocks->region_has_content('side-post', $OUTPUT);
 
 $bodyclasses = array();
 if ($hasblocks1 && !$hasblocks2) {
-    $bodyclasses[] = 'blocks2-only';
-} else if ($hasblocks2 && !$hasblocks1) {
     $bodyclasses[] = 'blocks1-only';
+} else if ($hasblocks2 && !$hasblocks1) {
+    $bodyclasses[] = 'blocks2-only';
 } else if (!$hasblocks1 && !$hasblocks2) {
     $bodyclasses[] = 'no-blocks';
 }
@@ -31,8 +31,7 @@ $favicon_url = $OUTPUT->pix_url('favicon', 'theme');
 
 <div id="page">
             <header>
-		<h1>header goes here</h1>
-                <h1 class="headermain"><?php echo $PAGE->heading ?></h1>
+		<h1 class="headermain">header goes here</h1>
                     <?php echo $OUTPUT->login_info(); ?>
 			<?php echo $PAGE->headingmenu; ?>
 	    </header>

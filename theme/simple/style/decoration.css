@@ -1,13 +1,53 @@
 html {background: #eee;}
-body {background: #ddd; }
+body {background: #fff;
+color: rgb(51,51,51);
+background-image: url("http://twitter.github.com/bootstrap/assets/img/grid-18px-masked.png"); background-repeat: repeat-x; background-position: 0px 40px;}
 #page {
-background: #ccc;
 padding: 10px;
 }
-header,
 footer {background: #bbb;}
+header .headermain {font-size: 54px;}
+.block {background-color: rgb(245,245,245);
+border: 1px solid rgba(0,0,0,0.05);
+border-radius: 4px;
+box-shadow: 0px 1px 1px rgba(0,0,0,0.05) inset;
+}
 
-.block {border: thick solid #bbb; border-radius: 20px;}
+.breadcrumb ul {
+padding: 7px 14px;
+margin: 0px 0px 18px;
+background-color: #fbfbfb;
+background-image: -moz-linear-gradient(top, #ffffff, #f5f5f5);
+background-image: -ms-linear-gradient(top, #ffffff, #f5f5f5);
+background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f5f5f5));
+background-image: -webkit-linear-gradient(top, #ffffff, #f5f5f5);
+background-image: -o-linear-gradient(top, #ffffff, #f5f5f5);
+background-image: linear-gradient(top, #ffffff, #f5f5f5);
+filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0);
+background-repeat: repeat-x;
+border: 1px solid rgb(221,221,221);
+border-radius: 3px 3px 3px 3px;
+box-shadow: 0px 1px 0px rgb(255,255,255) inset;
+}
+.breadcrumb ul li {
+text-shadow: 0px 1px 0px rgb(255,255,255);
+}
+.breadcrumb ul li span.sep {
+padding: 0px 5px;
+color: rgb(153,153,153);
+}
 
-tbody tr:nth-child(2n),
-thead {background-color: rgb(227,227,227);}
+div.navbar {overflow: visible;}
+.breadcrumb {float: none;}
+.block {
+padding-left: 15px;
+padding-right: 15px;
+}
+.block .header .title h2 {
+font-size: 100%;
+font-weight: bold;
+color: rgb(153,153,153);
+text-transform: uppercase;
+padding: 3px 0px;
+}
+
