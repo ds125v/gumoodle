@@ -201,7 +201,7 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
         // create the sql. In the event idnumber (matric number)
         // not specified, just need to go with username (GUID)
         $sql = "select * from $table where ";
-        if (!empty($user->idnumber)) {
+        if (empty($user->idnumber)) {
             $sql .= " UserName = '" . $this->db_addslashes($user->username) . "'"; 
         }
         else {
