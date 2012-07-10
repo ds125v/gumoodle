@@ -796,10 +796,30 @@ input[type="color"],
   line-height: 18px;
   color: #555555;
 }
+/*
+input[type="submit"],
+button#searchform_button,
+.adminsearchform input[type="submit"],
+input#searchforums,
+.wikisearch input[type="submit"],
+#forummenu input {
+margin-bottom: 9px;
+}*/
 
 input,
+input[type="text"],
+input[type="password"],
 textarea {
   width: 210px;
+}
+
+input#id_fullname,
+select#id_category,
+textarea {
+  width: 420px;
+}
+select#id_category {
+  width: 430px;
 }
 
 textarea {
@@ -901,6 +921,14 @@ select {
   width: 220px;
   border: 1px solid #bbb;
 }
+.fdate_selector select,
+.fdate_time_selector select {
+  width: 71px;
+  border: 1px solid #bbb;
+}
+#add_block select,
+.section_add_menus select
+ { width: auto;}
 
 select[multiple],
 select[size] {
@@ -1522,16 +1550,26 @@ table {
 }
 
 #page-report-log-user .generaltable,
+.forumheaderlist,
 .generaltable,
 .table {
   width: 100%;
   margin-bottom: 18px;
 }
 
+.path-mod-forum .forumheaderlist td,
+.calendartable th,
+.calendartable td { border: none;}
+
+.calendartable th,
+.calendartable td,
+.path-mod-forum .forumheaderlist th,
+.path-mod-forum .forumheaderlist td,
 .generaltable th,
 .generaltable td,
 .category_subcategories th,
 .category_subcategories td,
+.userprofile th,
 table.list td,
 .table th,
 .table td {
@@ -1542,14 +1580,17 @@ table.list td,
   border-top: 1px solid #dddddd;
 }
 
+.path-mod-forum .forumheaderlist th,
 #page-report-log-user .generaltable th,
 .generaltable th,
+.userprofile th.label,
 .category_subcategories th,
 table.list td.c0,
 .table th {
   font-weight: bold;
 }
 
+.path-mod-forum .forumheaderlist thead th,
 #page-report-log-user .generaltable thead th,
 .generaltable thead th,
 .category_subcategories thead th,
@@ -1557,8 +1598,14 @@ table.list td.c0,
   vertical-align: bottom;
 }
 
+
+table thead:first-child tr:first-child th,
+table tbody:first-child tr:first-child th,
 table.list tbody:first-child tr:first-child td,
+.userprofile tbody:first-child tr:first-child th,
 .userlist .generaltable tbody:first-child tr:first-child th.header,
+.path-mod-forum .forumheaderlist thead:first-child tr:first-child th,
+.path-mod-forum .forumheaderlist thead:first-child tr:first-child td,
 .generaltable thead:first-child tr:first-child th,
 .generaltable thead:first-child tr:first-child td,
 .category_subcategories thead:first-child tr:first-child th,
@@ -1642,8 +1689,11 @@ table.list tbody:first-child tr:first-child td,
   -moz-border-radius-bottomright: 4px;
 }
 
+.region-content > .indent > .forumpost,
 #page-report-log-user .generaltable tbody tr:nth-child(odd) th.header,
 #page-report-log-user .generaltable tbody tr:nth-child(odd) td,
+.forumheaderlist tbody tr:nth-child(odd) td,
+.forumheaderlist tbody tr:nth-child(odd) th,
 #participants tbody tr:nth-child(even) td,
 #participants tbody tr:nth-child(even) th,
 .table-striped tbody tr:nth-child(odd) td,
@@ -1651,6 +1701,8 @@ table.list tbody:first-child tr:first-child td,
   background-color: #f9f9f9;
 }
 
+.forumheaderlist tbody tr:hover td,
+.forumheaderlist tbody tr:hover th,
 .generaltable tbody tr:hover td,
 .generaltable tbody tr:hover th,
 .category_subcategories tbody tr:hover td,
@@ -2607,6 +2659,9 @@ button.close {
   -webkit-appearance: none;
 }
 
+button,
+input[type="submit"],
+input[type="button"],
 input#id_submitbutton,
 input#id_submitbutton2,
 input#id_cancel,
@@ -2614,7 +2669,7 @@ input#id_cancel,
   display: inline-block;
   *display: inline;
   padding: 4px 10px 4px;
-  margin-bottom: 0;
+  margin-bottom: 9px;
   *margin-left: .3em;
   font-size: 13px;
   line-height: 18px;
@@ -2649,6 +2704,11 @@ input#id_cancel,
           box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+button:active,
+input[type="submit"]:active,
 input#id_submitbutton,
 input#id_submitbutton:hover,
 input#id_submitbutton:active,
@@ -2667,6 +2727,9 @@ input#id_cancel:active,
   *background-color: #d9d9d9;
 }
 
+button:active,
+input[type="button"]:active,
+input[type="submit"]:active,
 input#id_submitbutton:active,
 input#id_submitbutton2:active,
 input#id_cancel:active,
@@ -2679,6 +2742,9 @@ input#id_cancel:active,
   *margin-left: 0;
 }
 
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
 input#id_submitbutton:hover,
 input#id_submitbutton2:hover,
 input#id_cancel:hover,
@@ -2697,6 +2763,9 @@ input#id_cancel:hover,
           transition: background-position 0.1s linear;
 }
 
+button:focus,
+input[type="button"]:focus,
+input[type="submit"]:focus,
 input#id_submitbutton:focus,
 input#id_submitbutton2:focus,
 input#id_cancel:focus,
@@ -2706,6 +2775,9 @@ input#id_cancel:focus,
   outline-offset: -2px;
 }
 
+button:active,
+input[type="button"]:active,
+input[type="submit"]:active,
 input#id_submitbutton:active,
 input#id_submitbutton2:active,
 input#id_cancel:active,
@@ -2745,6 +2817,7 @@ input#id_cancel:active,
   margin-top: 1px;
 }
 
+button#searchform_button,
 .btn-small {
   padding: 5px 9px;
   font-size: 11px;
@@ -2795,6 +2868,9 @@ input#id_cancel:hover,
 input#id_submitbutton,
 input#id_submitbutton2,
 input#id_cancel,
+button,
+input[type="button"],
+input[type="submit"],
 .btn {
   border-color: #ccc;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
@@ -5053,7 +5129,7 @@ a.badge:hover {
   float: left;
 }
 
-.hide {
+.bootstrap.hide {
   display: none;
 }
 

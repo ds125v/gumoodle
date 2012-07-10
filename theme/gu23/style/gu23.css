@@ -97,7 +97,8 @@ footer .helplink {margin: 0; padding: 0;}
 footer .helplink {margin-left:-20px;}
 
 
-.block .header h2 {
+.block .header h2,
+.block_recent_activity h3.main {
 margin: 20px 0px 0px 0px; padding-bottom: 4px; font: 131% Arial, Helvetica, sans-serif;}
 .block { border: none; margin: 0;}
 
@@ -140,32 +141,33 @@ border-radius: 0px 0px 5px 5px;
 margin-top: 0px;
 }
 .coursebox div.info h3.name {
- width: 245%;
+ width: 250%;
+ margin-bottom: 0.5em;
 }
 .coursebox {overflow: hidden;}
 
-.coursebox div.summary p { padding-top: 3.5em;}
+.coursebox div.summary p { padding-top: 4em;}
+
 .coursebox,
 .course-content div.content {
 border: 1px solid rgb(227,227,227);
 border-radius: 5px;
 box-shadow: 0px 3px 3px #eee;
 }
+
 .coursebox {
 width: 95%;
 margin: auto;
 margin-bottom: 5px;
 }
+
 li.section.current .content {
-background-color: transparent; border-radius: 5px 5px 0px 0px;
+background-color: transparent;
 }
+
 li.section.current h3.sectionname {
 color: #eee; background-color: #666; border-radius: 5px 5px 0px 0px;
 }
-
-.course-content .current { background: none;}
-.course-content .current .content {background: rgb(227,227,227);}
-
 
 .course-content ul.topics li.section .content,
 .course-content ul.weeks li.section .content {margin: 0 20px;}
@@ -194,8 +196,9 @@ padding: 0px;
 .section_add_menus {width: 95%}
 
 li.section .summary {padding-left: 15px; margin-bottom: 0px}
-li.section .summary img.iconsmall.edit {padding-top:15px;}
+li.section .summary img.iconsmall.edit {padding:10px 0px;}
 
+li.section .summary .no-overflow p {padding: 4px;}
 li.section .summary .no-overflow p:last-child {margin-bottom: 0px;}
 
 .block .header .commands {margin-left: 0px;}
@@ -229,3 +232,6 @@ table#participants {margin: 1em auto;}
 .category-5 #page-content .content-header {background-color: rgb(119,121,9);}
 .category-6 #page-content .content-header {background-color: rgb(0,124,133);}
 .category-7 #page-content .content-header {background-color: rgb(83,46,99);}
+
+
+input#adminsearchquery {width:110px;}

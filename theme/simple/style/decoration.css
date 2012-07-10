@@ -12,6 +12,15 @@ border: 1px solid rgba(0,0,0,0.05);
 border-radius: 4px;
 box-shadow: 0px 1px 1px rgba(0,0,0,0.05) inset;
 }
+li.section.current {
+background-color: transparent;
+}
+li.section.current .content {
+background-color: rgb(245,245,245);
+border: 1px solid rgba(0,0,0,0.05);
+border-radius: 4px;
+box-shadow: 0px 1px 1px rgba(0,0,0,0.05);
+}
 
 .breadcrumb ul {
 padding: 7px 14px;
@@ -43,11 +52,14 @@ div.navbar {overflow: visible;}
 padding-left: 15px;
 padding-right: 15px;
 }
-.block .header .title h2 {
+.block .header .title h2,
+.block h3.main {
+
 font-size: 100%;
 font-weight: bold;
 color: rgb(153,153,153);
 text-transform: uppercase;
 padding: 3px 0px;
 }
-
+.adminsearchform div {margin: 0 -10px;}
+input#adminsearchquery {width:150px;}
