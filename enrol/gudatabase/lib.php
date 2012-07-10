@@ -201,7 +201,7 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
         // create the sql. In the event idnumber (matric number)
         // not specified, just need to go with username (GUID)
         $sql = "select * from $table where ";
-        if (!empty($user->idnumber)) {
+        if (empty($user->idnumber)) {
             $sql .= " UserName = '" . $this->db_addslashes($user->username) . "'"; 
         }
         else {
@@ -353,14 +353,16 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
      * cache user enrolment
      * @param object $course
      * @param object $user
+     * @param string $code
      */
-    private function cache_user_enrolment( $course, $user) {
+    private function cache_user_enrolment( $course, $user, $code) {
         global $DB;
 
         // construct database object
         $courseuser = new stdClass;
         $courseuser->userid = $user->id;
         $courseuser->courseid = $course->id;
+        $courseuser->code = $code;
         $courseuser->timeupdated = time();
 
         // insert or update
@@ -422,7 +424,7 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
             $this->enrol_user( $instance, $user->id, $defaultrole, 0, 0, ENROL_USER_ACTIVE ); 
 
             // cache enrolment 
-            $this->cache_user_enrolment( $course, $user );
+            $this->cache_user_enrolment( $course, $user, $enrolment->courses );
         }
 
         return true;
@@ -523,7 +525,7 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
             $codes = $DB->get_records('enrol_gudatabase_codes', array('code'=>$enrolment->courses));
             if (!empty($codes)) {
                 foreach ($codes as $code) {
-                    $uniquecourses[ $code->courseid ] = $code->courseid;
+                    $uniquecourses[ $code->courseid ] = $code;
                 }
             }
         }
@@ -533,7 +535,7 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
 
         // go through the list of course codes and enrol student
         if (!empty($uniquecourses)) {
-            foreach ($uniquecourses as $courseid) {
+            foreach ($uniquecourses as $courseid=>$code) {
       
                 // get course object
                 if (!$course = $DB->get_record('course', array('id'=>$courseid))) {
@@ -550,7 +552,7 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
                 $this->enrol_user( $instance, $user->id, $defaultrole, 0, 0, ENROL_USER_ACTIVE ); 
 
                 // cache enrolment 
-                $this->cache_user_enrolment( $course, $user );
+                $this->cache_user_enrolment( $course, $user, $code );
             }
         }
 
