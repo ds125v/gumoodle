@@ -814,12 +814,11 @@ textarea {
 }
 
 input#id_fullname,
-select#id_category,
 textarea {
   width: 420px;
 }
 select#id_category {
-  width: 430px;
+  width: 100%;
 }
 
 textarea {
@@ -922,6 +921,7 @@ select {
   border: 1px solid #bbb;
 }
 .fdate_selector select,
+.form-time select,
 .fdate_time_selector select {
   width: 71px;
   border: 1px solid #bbb;
@@ -1549,6 +1549,9 @@ table {
   border-spacing: 0;
 }
 
+table#explaincaps,
+table#defineroletable,
+table.rolecaps,
 #page-report-log-user .generaltable,
 .forumheaderlist,
 .generaltable,
@@ -1561,6 +1564,12 @@ table {
 .calendartable th,
 .calendartable td { border: none;}
 
+table.generaltable.rolecaps tbody tr.r0 th.cell,
+table.rolecaps td,
+table#defineroletable th,
+table#defineroletable td,
+table#explaincaps th,
+table#explaincaps td,
 .calendartable th,
 .calendartable td,
 .path-mod-forum .forumheaderlist th,
@@ -1599,6 +1608,10 @@ table.list td.c0,
 }
 
 
+table#modules tbody:first-child tr:first-child th,
+table.compatibleblockstable tbody:first-child tr:first-child th,
+table#defineroletable thead:first-child tr:first-child th,
+table#explaincaps thead:first-child tr:first-child th,
 table thead:first-child tr:first-child th,
 table tbody:first-child tr:first-child th,
 table.list tbody:first-child tr:first-child td,
@@ -1690,10 +1703,22 @@ table.list tbody:first-child tr:first-child td,
 }
 
 .region-content > .indent > .forumpost,
+table#modules tbody tr:nth-child(odd) td,
+table.compatibleblockstable tbody tr:nth-child(odd) td,
+table.rolecaps tbody tr:nth-child(odd) td,
+table.rolecaps tbody tr:nth-child(odd) th,
+table#defineroletable tbody tr:nth-child(odd) td,
+table#defineroletable tbody tr:nth-child(odd) th,
+#page-admin-roles-manage .generaltable tbody tr:nth-child(odd) td,
+#page-admin-roles-allow .generaltable tbody tr:nth-child(odd) td,
+#page-admin-grade-edit-letter-index .generaltable tbody tr:nth-child(odd) td,
+#page-admin-grade-edit-scale-index .generaltable tbody tr:nth-child(odd) td,
 #page-report-log-user .generaltable tbody tr:nth-child(odd) th.header,
 #page-report-log-user .generaltable tbody tr:nth-child(odd) td,
 .forumheaderlist tbody tr:nth-child(odd) td,
 .forumheaderlist tbody tr:nth-child(odd) th,
+.generaltable tbody tr:nth-child(odd) td,
+.generaltable tbody tr:nth-child(odd) th,
 #participants tbody tr:nth-child(even) td,
 #participants tbody tr:nth-child(even) th,
 .table-striped tbody tr:nth-child(odd) td,
@@ -2707,6 +2732,7 @@ input#id_cancel,
 button:hover,
 input[type="button"]:hover,
 input[type="submit"]:hover,
+input[disabled],
 button:active,
 input[type="submit"]:active,
 input#id_submitbutton,
@@ -2792,6 +2818,7 @@ input#id_cancel:active,
           box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
+input[disabled],
 .btn.disabled,
 .btn[disabled] {
   cursor: default;
@@ -3302,7 +3329,11 @@ input[type="submit"].btn.btn-mini {
   opacity: 0.75;
   filter: alpha(opacity=75);
 }
-
+#page-admin-roles-assign h2 + .box.generalbox,
+tr.msg-noneinstalled td,
+div.notifysuccess,
+div.notifyproblem,
+.errorbox,
 .alert {
   padding: 8px 35px 8px 14px;
   margin-bottom: 18px;
@@ -3326,12 +3357,16 @@ input[type="submit"].btn.btn-mini {
   line-height: 18px;
 }
 
+div.notifysuccess,
 .alert-success {
   color: #468847;
   background-color: #dff0d8;
   border-color: #d6e9c6;
 }
 
+#page-admin-roles-assign h2 + .box.generalbox,
+div.notifyproblem,
+.errorbox,
 .alert-danger,
 .alert-error {
   color: #b94a48;
@@ -3339,6 +3374,7 @@ input[type="submit"].btn.btn-mini {
   border-color: #eed3d7;
 }
 
+tr.msg-noneinstalled td,
 .alert-info {
   color: #3a87ad;
   background-color: #d9edf7;
@@ -4634,6 +4670,7 @@ input[type="submit"].btn.btn-mini {
   margin-left: 20px;
 }
 
+div.profilepicture a,
 .thumbnail {
   display: block;
   padding: 4px;

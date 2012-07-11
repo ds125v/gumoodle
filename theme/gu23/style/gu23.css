@@ -49,7 +49,7 @@ header .logininfo {display: inline; margin-left: 1em; padding-left: 1em; font: 1
 #siteTools ul li:first-child,
 header .logininfo {border-left: none;}
 #siteTools ul li a,
-header .logininfo a {padding-bottom: 2px; color: #fff; border-bottom: 4px solid transparent;}
+header .logininfo a {padding-bottom: 2px; color: #fff; border-bottom: 4px solid transparent; text-decoration: none;}
 #siteTools ul li a:hover,
 header .logininfo a:hover {border-bottom-color: #3d779c;}
 

@@ -156,6 +156,13 @@ padding-right: 12px;
 padding-left: 12px;
 margin-right: 2px;
 }
+.tabtree ul li a,
+.tabtree ul li a:hover,
+.tabtree ul li a.selected,
+.tabtree ul li a.selected:hover
+{
+text-decoration: none;
+}
 
 div.buttons,
 div.paging {text-align: center;}
@@ -209,23 +216,24 @@ border-bottom: 1px solid #fff;
 .generalbox,
 .mod_introbox,
 .forumpost,
+.path-calendar .maincalendar .eventlist .event,
 .path-mod-forum table.forumheaderlist {border: none;}
 
 h2.main,
 #newdiscussionform div {
 text-align: center;
 }
-h2.main.help {
-padding-right: 10em;
-}
 h2.main.help .helplink a { padding: 3px 4px;}
 
 p.treeitem {margin: 0px;}
 
-form#switchcategory select {width:100%;}
+form#switchcategory select,
+#page-course-editcategory #id_parent select {width:100%;}
 
 .userlist table#participants th {padding: 8px;}
-
+table#explaincaps td.header strong,
+table#defineroletable td.header strong,
+ {margin-left: -2em;}
 div.rolesform {width:220px; margin:auto;}
 
 form.mform label {padding-top: 5px;}
@@ -249,7 +257,33 @@ td.mdl-right label {display: inline;}
 .helplink img {padding: 0px 4px; vertical-align: baseline;}
 .felement.error span.error {position:relative; left: 230px; top: 28px;}
 #fitem_id_fullname span.error {left: 440px;}
-div.felement.error {margin-top: -23px;}
+div.felement.error {margin-top: -21px;}
 .calendartable abbr {border: none;}
-.minicalendar th,
+.minicalendar th {text-align: center;}
 .minicalendar td {text-align: right;}
+.minicalendar td.day { padding: 2px 8px 2px 0px;}
+
+.category_subcategories a {display: block;}
+
+#adminsettings .form-item .form-label .form-shortname {
+overflow: auto;
+}
+.form-defaultinfo,
+.form-description,
+#adminsettings .form-item .form-label .form-shortname {
+color: #999;
+}
+
+#page-admin-roles-assign h2 + .box.generalbox,
+div.notifysuccess,
+div.notifyproblem
+{
+margin-left:auto;
+margin-right:auto;
+width: 25em;
+}
+
+.generaltable[border="1"]
+{
+border: none;
+}

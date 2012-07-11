@@ -1,0 +1,59 @@
+/* header row in tbody rather than thead, okay in vertical tables */
+#participants table tbody tr th.header {
+border: thick solid red;
+}
+
+
+/* don't use these */
+hr,
+font 
+{
+border: thick solid red !important;
+}
+br
+{   content: "A" !important;
+    display: block !important;
+    margin-bottom: 10em !important;
+}
+
+
+#page-calendar-preferences fieldset.hidden /* why is this .hidden? */
+#page-course-editcategory fieldset.hidden /* why is this .hidden? */
+{
+ border: thick solid red;
+}
+
+/* should be in some kind of .alert .warning or .info etc. */
+#page-admin-roles-assign h2 + .box.generalbox, 
+.msg 
+{
+ border: thick solid red;
+}
+
+/* tables that should maybe have an id to target them directly */
+#page-admin-grade-edit-letter-index .generaltable,
+#page-admin-grade-edit-scale-index .generaltable,
+#page-admin-roles-manage .generaltable,
+#page-admin-roles-allow .generaltable,
+{
+ border: thick solid red;
+}
+
+/* positional html, should be in css */
+.boxaligncenter,
+{
+ border: thick solid red;
+}
+
+/* header should be in thead, not tbody */
+table#modules tbody tr th, 
+table.compatibleblockstable tbody tr th {
+border: thick solid red;
+}
+
+/* don't set borders in the HTML */
+[border]
+{
+border: thick solid red;
+}
+
