@@ -16,6 +16,7 @@ $string['noemail'] = '(Cannot create Moodle account - no email)';
 $string['noresults'] = 'No results for this search';
 $string['pluginname'] = 'GUID search';
 $string['resultfor'] = 'LDAP record for user';
+$string['search'] = 'Search';
 $string['uploadfile'] = 'CSV file';
 $string['uploadheader'] = 'Upload csv file';
 $string['uploadinstructions'] = 'Upload a csv file. First column must contain the GUID of the users. Subsequent columns contain the short names of the courses to enrol them in. You can have none up to as many as you like (all must have the same number). Local user accounts will be created';
