@@ -1,7 +1,6 @@
 /* header row in tbody rather than thead, okay in vertical tables */
-#participants table tbody tr th.header {
-border: thick solid red;
-}
+table tbody tr th {border: thick solid green !important; }
+table tbody tr th:first-child {border: none !important;}
 
 
 /* don't use these */
@@ -16,11 +15,14 @@ br
     margin-bottom: 10em !important;
 }
 
-
-#page-calendar-preferences fieldset.hidden /* why is this .hidden? */
-#page-course-editcategory fieldset.hidden /* why is this .hidden? */
+/* why is this .hidden, seem to be used consistently for form footer
+   section containing submit buttons, but also randomly elsewhere
+   Okay, figured it out. It's presentational HTML, these fieldsets 
+   were not to be displayed as black box like others in the default
+   theme were */
+fieldset.hidden
 {
- border: thick solid red;
+ border: thick solid red !important;
 }
 
 /* should be in some kind of .alert .warning or .info etc. */
@@ -40,7 +42,7 @@ br
 }
 
 /* positional html, should be in css */
-.boxaligncenter,
+.boxaligncenter
 {
  border: thick solid red;
 }
@@ -51,9 +53,15 @@ table.compatibleblockstable tbody tr th {
 border: thick solid red;
 }
 
-/* don't set borders in the HTML */
-[border]
+/* don't set borders or style or width in the HTML */
+[style],
+[border],
+[width]
 {
 border: thick solid red;
 }
 
+/* problems that are too widespread to highlight */
+.box,
+.generalbox
+{}

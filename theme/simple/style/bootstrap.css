@@ -766,6 +766,7 @@ textarea {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+
 label {
   display: block;
   margin-bottom: 5px;
@@ -1232,7 +1233,7 @@ select:focus:required:invalid:focus {
           box-shadow: 0 0 6px #f8b9b7;
 }
 
-fieldset.hidden,
+#fgroup_id_buttonar,
 .form-actions {
   padding: 17px 20px 18px;
   margin-top: 18px;
@@ -1242,12 +1243,15 @@ fieldset.hidden,
   *zoom: 1;
 }
 
+#fgroup_id_buttonar:before,
+#fgroup_id_buttonar:after,
 .form-actions:before,
 .form-actions:after {
   display: table;
   content: "";
 }
 
+#fgroup_id_buttonar:after,
 .form-actions:after {
   clear: both;
 }
@@ -1275,10 +1279,14 @@ fieldset.hidden,
   color: #999999;
 }
 
+.form-defaultinfo,
+.form-description,
+#adminsettings .form-item .form-label .form-shortname,
 .help-block,
 .help-inline {
   color: #555555;
 }
+#adminsettings .form-item .form-label .form-shortname {font-size: 80%;}
 
 .help-block {
   display: block;
@@ -1491,30 +1499,44 @@ fieldset.hidden,
   margin-left: 0;
 }
 
+div.fitem,
+div.form-item,
 .control-group {
   margin-bottom: 9px;
 }
 
+legend + div.fitem,
+legend + div.form-item,
 legend + .control-group {
   margin-top: 18px;
   -webkit-margin-top-collapse: separate;
 }
 
+.fcontainer .fitem,
+.settingsform .form-item,
 .form-horizontal .control-group {
   margin-bottom: 18px;
   *zoom: 1;
 }
 
+.fcontainer .fitem:before,
+.fcontainer .fitem:after,
+.settingsform .form-item:before,
+.settingsform .form-item:after,
 .form-horizontal .control-group:before,
 .form-horizontal .control-group:after {
   display: table;
   content: "";
 }
 
+.fcontainer .fitem:after,
+.settingsform .form-item:after,
 .form-horizontal .control-group:after {
   clear: both;
 }
 
+.mform .fcontainer .fitem div.fitemtitle,
+.settingsform .form-label,
 .form-horizontal .control-label {
   float: left;
   width: 140px;
@@ -1522,6 +1544,8 @@ legend + .control-group {
   text-align: right;
 }
 
+.fcontainer .felement,
+.settingsform .form-setting,
 .form-horizontal .controls {
   *display: inline-block;
   *padding-left: 20px;
@@ -1529,15 +1553,20 @@ legend + .control-group {
   *margin-left: 0;
 }
 
+.fcontainer .felement:first-child,
+.settingsform .form-setting:first-child,
 .form-horizontal .controls:first-child {
   *padding-left: 160px;
 }
 
+.settingsform .form-description,
 .form-horizontal .help-block {
   margin-top: 9px;
   margin-bottom: 0;
 }
 
+div#fgroup_id_buttonar,
+.settingsform .form-buttons,
 .form-horizontal .form-actions {
   padding-left: 160px;
 }
@@ -1551,6 +1580,7 @@ table {
 
 table#explaincaps,
 table#defineroletable,
+table#listdirectories,
 table.rolecaps,
 #page-report-log-user .generaltable,
 .forumheaderlist,
@@ -1566,6 +1596,7 @@ table.rolecaps,
 
 table.generaltable.rolecaps tbody tr.r0 th.cell,
 table.rolecaps td,
+table#listdirectories td,
 table#defineroletable th,
 table#defineroletable td,
 table#explaincaps th,
@@ -1609,6 +1640,7 @@ table.list td.c0,
 
 
 table#modules tbody:first-child tr:first-child th,
+table#listdirectories tbody:first-child tr:first-child td,
 table.compatibleblockstable tbody:first-child tr:first-child th,
 table#defineroletable thead:first-child tr:first-child th,
 table#explaincaps thead:first-child tr:first-child th,
@@ -1636,6 +1668,10 @@ table.list tbody:first-child tr:first-child td,
   border-top: 2px solid #dddddd;
 }
 
+table#listdirectories td,
+#page-report-loglive-index .generaltable td,
+#page-admin-report-log-index .generaltable th,
+#page-admin-report-log-index .generaltable td,
 #page-report-log-user .generaltable th,
 #page-report-log-user .generaltable td,
 .category_subcategories th,
@@ -1703,6 +1739,7 @@ table.list tbody:first-child tr:first-child td,
 }
 
 .region-content > .indent > .forumpost,
+table#listdirectories tbody tr:nth-child(odd) td,
 table#modules tbody tr:nth-child(odd) td,
 table.compatibleblockstable tbody tr:nth-child(odd) td,
 table.rolecaps tbody tr:nth-child(odd) td,
@@ -1725,7 +1762,8 @@ table#defineroletable tbody tr:nth-child(odd) th,
 .table-striped tbody tr:nth-child(odd) th {
   background-color: #f9f9f9;
 }
-
+table tbody tr:hover td,
+table tbody tr:hover th,
 .forumheaderlist tbody tr:hover td,
 .forumheaderlist tbody tr:hover th,
 .generaltable tbody tr:hover td,
@@ -3333,6 +3371,8 @@ input[type="submit"].btn.btn-mini {
 tr.msg-noneinstalled td,
 div.notifysuccess,
 div.notifyproblem,
+body.admin div.info,
+div.adminwarning,
 .errorbox,
 .alert {
   padding: 8px 35px 8px 14px;
@@ -3375,6 +3415,7 @@ div.notifyproblem,
 }
 
 tr.msg-noneinstalled td,
+body.admin div.info,
 .alert-info {
   color: #3a87ad;
   background-color: #d9edf7;
@@ -4702,6 +4743,14 @@ a.thumbnail:hover {
   padding: 9px;
 }
 
+span.ok,
+span.statusok,
+span.error,
+span.warn,
+span.statuswarning,
+font[color="green"],
+.form-overridden,
+.redirectmessage,
 .bootstrap.label,
 .badge {
   font-size: 10.998px;
@@ -4714,7 +4763,16 @@ a.thumbnail:hover {
   background-color: #999999;
 }
 
-.label {
+span.ok,
+span.statusok,
+div.felement.error span.error,
+span.error,
+span.warn,
+span.statuswarning,
+font[color="green"],
+.form-overridden,
+.form-overridden,
+.bootstrap.label {
   padding: 1px 4px 2px;
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
@@ -4735,6 +4793,8 @@ a.badge:hover {
   cursor: pointer;
 }
 
+div.felement.error span.error,
+span.error,
 .label-important,
 .badge-important {
   background-color: #b94a48;
@@ -4745,6 +4805,10 @@ a.badge:hover {
   background-color: #953b39;
 }
 
+span.warn,
+#page-admin-report-security-index span.statuswarning,
+span.statuswarning,
+.form-overridden,
 .label-warning,
 .badge-warning {
   background-color: #f89406;
@@ -4755,6 +4819,9 @@ a.badge:hover {
   background-color: #c67605;
 }
 
+span.ok,
+span.statusok,
+font[color="green"],
 .label-success,
 .badge-success {
   background-color: #468847;
@@ -4765,6 +4832,7 @@ a.badge:hover {
   background-color: #356635;
 }
 
+.redirectmessage,
 .label-info,
 .badge-info {
   background-color: #3a87ad;

@@ -228,7 +228,9 @@ h2.main.help .helplink a { padding: 3px 4px;}
 p.treeitem {margin: 0px;}
 
 form#switchcategory select,
-#page-course-editcategory #id_parent select {width:100%;}
+#page-course-editcategory #id_parent select,
+#fitem_id_parent select
+{width:100%;}
 
 .userlist table#participants th {padding: 8px;}
 table#explaincaps td.header strong,
@@ -268,22 +270,41 @@ div.felement.error {margin-top: -21px;}
 #adminsettings .form-item .form-label .form-shortname {
 overflow: auto;
 }
-.form-defaultinfo,
-.form-description,
-#adminsettings .form-item .form-label .form-shortname {
-color: #999;
-}
 
 #page-admin-roles-assign h2 + .box.generalbox,
 div.notifysuccess,
 div.notifyproblem
+div.redirectmessage,
+div.continuebutton,
+div.box.errorbox,
+#page-report-loglive-index div.info,
+body.admin div.info,
+div.adminwarning
 {
 margin-left:auto;
 margin-right:auto;
 width: 25em;
 }
 
+#page-report-loglive-index div.info,
+div.continuebutton,
+div.singlebutton,
+div.checkforupdates
+ {text-align: center;}
+
 .generaltable[border="1"]
 {
 border: none;
 }
+
+.form-overridden {
+display: inline;
+}
+
+#fgroup_id_buttonar fieldset.felement.fgroup
+{ padding; 0px;}
+
+#fgroup_id_buttonar fieldset.felement.fgroup,
+.form-buttons {margin: 0px;}
+
+.form-label label {display: block;}
