@@ -1,0 +1,214 @@
+<?php
+
+/**
+ * gusync cron scrip
+ */
+function local_gusync_cron() {
+    global $CFG;
+    global $DB;
+
+    // get plugin config
+    $config = get_config( 'local_gusync' );
+
+    // attempt to connect to external db
+    if (!$extdb=local_gusync_dbinit($config)) {
+        mtrace( 'gusync: unable to connect to external database' );
+        return false;
+    }
+
+    // get the basics of all visible courses
+    // don't load the whole course records!!
+    $courses = $DB->get_records( 'course', array('visible'=>1), '', 'id' );
+    foreach ($courses as $course) {
+        local_gusync_processcourse( $extdb, $course->id );
+    }
+
+    // done with engines
+    $extdb->Close();
+    return true;
+}
+
+/**
+ * process the enrolments in a given course
+ * @param object $extdb
+ * @param int $id course id
+ */
+function local_gusync_processcourse( $extdb, $id ) {
+    global $CFG;
+    global $DB;
+    global $SITE;
+
+    // site name
+    $sitename = $SITE->shortname;
+
+    // get complete course
+    $course = $DB->get_record( 'course', array('id'=>$id));
+
+    // try to find existing record
+    $coursesql = "select * from moodlecourses where ";
+    $coursesql .= "courseid = $id and site='$sitename' ";
+    $extcourse = local_gusync_query( $extdb, $coursesql, TRUE );
+
+    // update/insert
+    if (empty($extcourse))  {
+        $sql = "insert into moodlecourses ";
+        $sql .= "set site='$sitename', ";
+        $sql .= "courseid=$id, ";
+        $sql .= "shortname='" . addslashes($course->shortname) . "', ";
+        $sql .= "name='" . addslashes($course->fullname) . "', ";
+        $sql .= "startdate={$course->startdate} ";
+    }
+    else {
+        $sql = "update moodlecourses ";
+        $sql .= "set site='$sitename', ";
+        $sql .= "courseid=$id, ";
+        $sql .= "shortname='" . addslashes($course->shortname) . "', ";
+        $sql .= "name='" . addslashes($course->fullname) . "', ";
+        $sql .= "startdate={$course->startdate} ";
+        $sql .= "where id={$extcourse->id}";
+    }
+    local_gusync_query( $extdb, $sql );
+
+    // reload course object with final data
+    $extcourse = local_gusync_query( $extdb, $coursesql, TRUE );
+
+    // get list of enrolments for this course
+    $users = local_gusync_getusers( $course );
+
+    // if no users, nothing to do
+    if (empty($users)) {
+        return false;
+    }
+
+    // loop through users, adding updating enrol table
+    foreach ($users as $guid=>$user) {
+    
+        // try to find existing record
+        $enrolsql = "select * from moodleenrolments ";
+        $enrolsql .= "where guid='$guid' and moodlecoursesid={$extcourse->id} ";
+        $extenrol = local_gusync_query( $extdb, $enrolsql, TRUE );
+
+        // update/insert
+        if (empty($extenrol)) {
+            $sql = "insert into moodleenrolments ";
+            $sql .= "set guid='$guid', ";
+            $sql .= "moodlecoursesid={$extcourse->id}, ";
+            $sql .= "timestart = {$user->timemodified} ";
+        }
+        else {
+            $sql = "update moodleenrolments ";
+            $sql .= "set guid='$guid', ";
+            $sql .= "moodlecoursesid={$extcourse->id}, ";
+            $sql .= "timestart = {$user->timemodified} ";
+            $sql .= "where id={$extenrol->id} ";
+        }
+        local_gusync_query( $extdb, $sql );
+    }
+}
+
+/**
+ * get the users enrolled in the selected course
+ * @param object $course
+ * @return array user objects
+ */
+function local_gusync_getusers( $course ) {
+    global $DB;
+
+    // get active enrolments on this course
+    $instances = enrol_get_instances( $course->id, true );
+
+    // nothing to do?
+    if (empty($instances)) {
+        return false;
+    }
+
+    // get the (guid) users in these instances
+    $users = array();
+    foreach ($instances as $instance) {
+        $sql = "select distinct username, ue.timemodified as timemodified, auth ";
+        $sql .= "from {user} as u join {user_enrolments} as ue on (ue.userid = u.id) ";
+        $sql .= "where enrolid = ? ";
+        $sql .= "and auth = ? ";
+        $enrolments = $DB->get_records_sql( $sql, array($instance->id, 'guid') );
+
+        // any?
+        if (empty($enrolments)) {
+            continue;
+        }
+
+        // add users indexing by username (we don't care how enrolled)
+        foreach ($enrolments as $guid=>$enrolment) {
+            $users[$guid] = $enrolment;
+        }
+    }
+
+    return $users;
+}
+
+/**
+ * Tries to make connection to the external database.
+ *
+ * @return null|ADONewConnection
+ */
+function local_gusync_dbinit($config) {
+    global $CFG;
+
+    require_once($CFG->libdir.'/adodb/adodb.inc.php');
+
+    // Connect to the external database (forcing new connection)
+    $extdb = ADONewConnection('mysqli');
+
+    // the dbtype my contain the new connection URL, so make sure we are not connected yet
+    if (!$extdb->IsConnected()) {
+        $result = $extdb->Connect(
+            $config->dbhost, 
+            $config->dbuser, 
+            $config->dbpass, 
+            $config->dbname, 
+            TRUE
+        );
+        if (!$result) {
+            return null;
+        }
+    }
+
+    $extdb->SetFetchMode(ADODB_FETCH_ASSOC);
+    return $extdb;
+}
+
+/**
+ * Execute sql and return rows from external database
+ * @param object $extdb 
+ * @param string $sql
+ * @param boolean $singlerecord
+ * @return mixes rows or false
+ */
+function local_gusync_query( $extdb, $sql, $singlerecord=FALSE ) {
+
+    // attempt to execute the sql
+    if (!$rs = $extdb->Execute($sql)) {
+        mtrace( 'gusync: failed to execute ' . $sql . " (Error is '" . $extdb->ErrorMsg() . "')" );
+        return false;
+    }
+
+    // return data
+    $results = array();
+    if (!$rs->EOF) {
+        while ($fields = $rs->FetchRow()) {
+            $results[] = (object)$fields;
+        }
+    }
+
+    // check if results obtained
+    if (empty($results)) {
+        return FALSE;
+    }
+
+    // return only the first record if required
+    if ($singlerecord) {
+        return $results[0];
+    }
+
+    return $results;
+}
+
