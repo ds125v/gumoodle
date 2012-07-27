@@ -5,7 +5,6 @@ $hasnavbar = (empty($PAGE->layout_options['nonavbar']) && $PAGE->has_navbar());
 $hasfooter = (empty($PAGE->layout_options['nofooter']));
 $hasblocks1 = $PAGE->blocks->region_has_content('side-pre', $OUTPUT);
 $hasblocks2 = $PAGE->blocks->region_has_content('side-post', $OUTPUT);
-
 $bodyclasses = array();
 if ($hasblocks1 && !$hasblocks2) {
     $bodyclasses[] = 'blocks1-only';
@@ -26,7 +25,7 @@ $OUTPUT->doctype(); // throw it away to avoid warning
     <link rel="shortcut icon" href="<?php echo $favicon_url ?>" />
     <?php echo $OUTPUT->standard_head_html() ?>
 <!--[if lt IE 9]>
-<script src="../theme/simple/html5shiv.js"></script>
+<script src="<?php echo $CFG->wwwroot ?>/theme/simple/html5shiv.js"></script>
 <![endif]-->
 </head>
 
@@ -35,8 +34,8 @@ $OUTPUT->doctype(); // throw it away to avoid warning
 
 <div id="page">
 
-<header>
-  <h1 class="headermain"><?php echo $PAGE->heading ?></h1>
+<header id="page-header">
+  <h1 class="headermain"></h1>
 	<div id="siteTools"> <h3>Site tools</h3> <ul>
 		<li><a href="http://www.gla.ac.uk/subjects/">Subjects A-Z</a></li>
 		<li><a href="http://www.gla.ac.uk/stafflist/">Staff A-Z</a></li>
@@ -46,15 +45,16 @@ $OUTPUT->doctype(); // throw it away to avoid warning
 	<?php echo $PAGE->headingmenu; ?>
 	<div id="head-menu">
 		<ul>
-		<li><a title="Courses" href="#">Courses</a></li>
-		<li><a title="Research" href="#">Research</a></li>
-		<li><a title="About us" href="#">About us</a></li>
-		<li><a title="Student life" href="#">Student life</a></li>
-		<li><a title="Alumni" href="#">Alumni</a></li>
-		<li><a title="Support us" href="#">Support us</a></li>
-		<li><a title="Contact" href="#">Contact</a></li>
+		<li><a title="My Home" href="<?php echo $CFG->wwwroot ?>/my">My Home</a></li>
+		<li><a title="My Profile" href="<?php echo $CFG->wwwroot.'/user/profile.php?id='.$USER->id ?>">My Profile</a></li>
+		<li><a title="All Courses" href="<?php echo $CFG->wwwroot ?>?redirect=0">All Courses</a></li>
+		<li><a title="My Glasgow" href="http://www.gla.ac.uk/students/myglasgow/">MyGlasgow</a></li>
+		<li><a title="Calendar" href="<?php echo $CFG->wwwroot ?>/calendar/view.php?view=month">Calendar</a></li>
+		<li><a title="IT Helpdesk" href="http://www.gla.ac.uk/services/it/helpdesk/">IT Helpdesk</a></li>
+		<li><a title="Logout" href="<?php echo $CFG->wwwroot.'/login/logout.php?sesskey='.sesskey() ?>">Logout</a></li>
 		</ul>
 	</div>
+
 </header>
 
 
@@ -92,7 +92,7 @@ $OUTPUT->doctype(); // throw it away to avoid warning
 	 </div>
 </div>
 
-<footer>
+<footer id="page-footer">
 <div class="backToTop curvyRedraw"><a href="#">Back to top</a></div>
     
  <div class="contact">

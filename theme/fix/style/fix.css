@@ -61,6 +61,10 @@ border: thick solid red;
 border: thick solid red;
 }
 
+tr.row {
+border: thick solid green !important;
+}
+
 /* problems that are too widespread to highlight */
 .box,
 .generalbox

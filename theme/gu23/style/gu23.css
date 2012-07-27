@@ -16,6 +16,16 @@ footer {color: #333;}
 footer a {color: #004d9c;}
 footer ul { width: 310px;}
 footer ul li a {color: #004d9c;}
+#page-footer {text-align: left;}
+#page-footer .logininfo,
+#page-footer .sitelink,
+#page-footer .helplink {
+  margin: 0px;
+}
+#page-footer .homelink a {
+  padding: 0px;
+}
+
 
 #page {margin-left: 20px; padding-right: 20px; padding-bottom: 5em; width:100%;}
 #page-content {margin-top:25px ; padding-bottom: 3em;}
@@ -172,7 +182,10 @@ color: #eee; background-color: #666; border-radius: 5px 5px 0px 0px;
 .course-content ul.topics li.section .content,
 .course-content ul.weeks li.section .content {margin: 0 20px;}
 
-div.navbar {padding: 0px 30px;}
+div.navbar {padding: 0px 10px 3px;}
+.path-my div.navbar, 
+.path-course-view div.navbar {padding: 0px 30px;}
+.path-login div.navbar {padding: 0px 220px;}
 
 .course-content ul.topics li.section div.left,
 .course-content ul.weeks li.section div.left {
@@ -235,3 +248,6 @@ table#participants {margin: 1em auto;}
 
 
 input#adminsearchquery {width:110px;}
+input#searchform_search {width:140px;}
+.navbar {margin-bottom: 0px;}
+.path-backup .mform .fgroup .proceedbutton {float:none;}

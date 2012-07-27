@@ -67,10 +67,21 @@ display: none;
 .block li a { padding: 0px;}
 .block li img.smallicon {display: none;}
 .block li img.icon {display: none;}
-.block_navigation .block_tree .tree_item.branch {background-position: 0% 50%;}
-.block_navigation .block_tree .tree_item { padding-left: 10px;}
-.block_navigation .block_tree li.item_with_icon.contains_branch .tree_item { padding-left: 10px;}
-
+.block_settings .block_tree .tree_item {padding-left: 0px;}
+.block_navigation .block_tree .tree_item {padding-left: 0px;}
+.jsenabled .block_settings .block_tree .collapsed .tree_item.branch { background: none;}
+.jsenabled .block_navigation .block_tree .collapsed .tree_item.branch { background: none;}
+.block_navigation .block_tree .tree_item.branch { background: none;}
+.block_settings .block_tree .tree_item.branch { background: none;}
+.jsenabled .block_navigation .block_tree .tree_item.emptybranch { background: none;}
+ .block_tree .tree_item:before { content: "▼ "; color: gray;}
+.block_tree .collapsed  .tree_item:before { content: "► "; color: gray;}
+.block_tree .collapsed  .tree_item.emptybranch:before { content: "► "; color: #ccc;}
+.block_tree .tree_item.leaf:before,
+.tree_item.navigation_node:before { content: ""; cursor: normal;}
+/*.block_navigation .block_tree li.contains_branch > p.tree_item:before { content: "► "; color: gray;}
+.block_navigation .block_tree li.contains_branch > p.tree_item.emptybranch:before { content: "► "; color: yellow;} */
+.block_tree li.item_with_icon.contains_branch .tree_item { padding-left: 10px;}
 #dndupload-status {width:40%; left:30%; margin:auto; padding:6px; border:1px solid #ddd;text-align:center;background:#eee; position:absolute; z-index:9999;box-shadow:2px 2px 5px 1px #ccc;border-radius:0px 0px 8px 8px;}
 .dndupload-preview {color:#909090;border:1px dashed #909090;}
 .dndupload-progress-outer {width:70px;border:solid black 1px;height:10px;display:inline-block;margin:0;padding:0;overflow:hidden;position:relative;}
@@ -219,7 +230,6 @@ border-bottom: 1px solid #fff;
 .path-calendar .maincalendar .eventlist .event,
 .path-mod-forum table.forumheaderlist {border: none;}
 
-h2.main,
 #newdiscussionform div {
 text-align: center;
 }
@@ -232,44 +242,34 @@ form#switchcategory select,
 #fitem_id_parent select
 {width:100%;}
 
-.userlist table#participants th {padding: 8px;}
+.userlist table#participants th {padding: 8px 4px;}
+
 table#explaincaps td.header strong,
 table#defineroletable td.header strong,
  {margin-left: -2em;}
 div.rolesform {width:220px; margin:auto;}
 
-form.mform label {padding-top: 5px;}
 
 label,
 form.mform .felement label,
 .rememberpass label,
-td.mdl-right label {display: inline;}
-.mform img.req,
-.mform img.iconhelp {float:left;}
-.mform img.req,
-.mform img.iconhelp { width: 0px;} 
+td.mdl-right label {display: inline-block;}
 
 .mform .fstatic  { padding-top: 4px; font-weight:bold; color: #777; }
-.mform div.fdescription.required {text-align: center; padding-top: 15px;}
 .mform .error label {padding-top: 25px;}
 
 #page-mod-forum-discuss .discussioncontrols .discussioncontrol.exporttoportfolio,
 #page-mod-forum-discuss .discussioncontrols .discussioncontrol.displaymode
 { width: 28%;}
-.helplink img {padding: 0px 4px; vertical-align: baseline;}
-.felement.error span.error {position:relative; left: 230px; top: 28px;}
-#fitem_id_fullname span.error {left: 440px;}
-div.felement.error {margin-top: -21px;}
+img.req, img.adv {margin-right: -8px;}
+legend .helplink img,
+h2 .helplink img {padding: 0px 4px; vertical-align: middle;}
 .calendartable abbr {border: none;}
 .minicalendar th {text-align: center;}
 .minicalendar td {text-align: right;}
 .minicalendar td.day { padding: 2px 8px 2px 0px;}
-
 .category_subcategories a {display: block;}
 
-#adminsettings .form-item .form-label .form-shortname {
-overflow: auto;
-}
 
 #page-admin-roles-assign h2 + .box.generalbox,
 div.notifysuccess,
@@ -278,8 +278,10 @@ div.redirectmessage,
 div.continuebutton,
 div.box.errorbox,
 #page-report-loglive-index div.info,
+div#notice,
 body.admin div.info,
-div.adminwarning
+div.adminwarning,
+div.forumnodiscuss
 {
 margin-left:auto;
 margin-right:auto;
@@ -308,3 +310,7 @@ display: inline;
 .form-buttons {margin: 0px;}
 
 .form-label label {display: block;}
+#adminsettings .form-item {margin: 0px 0px 18px;}
+div.navbutton {float:none;}
+
+table.userplan {border: none !important;}
