@@ -136,6 +136,12 @@ function print_results( $results, $url ) {
     // note any external email addresses
     $externalmail = false;
 
+    // add dn into data
+    
+    foreach($results as $dn => $result) {
+        $results[$dn]['dn'] = $dn;
+    }
+
     if (count($results)>1) {
         $table = new flexible_table( 'ldap' );
         $table->pageable( true );
