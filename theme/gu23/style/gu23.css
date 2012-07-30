@@ -19,8 +19,10 @@ footer ul li a {color: #004d9c;}
 #page-footer {text-align: left;}
 #page-footer .logininfo,
 #page-footer .sitelink,
+#page-footer .helplink,
 #page-footer .homelink a {
   padding: 0px;
+  margin: 0px;
 }
 
 
@@ -177,7 +179,8 @@ div.summarytext p { padding-top: 4em;}
 
 
 .coursebox,
-.path-course-view .course-content div.content {
+.path-course-view .course-content ul.topics div.content,
+.path-course-view .course-content ul.weeks div.content {
 border: 1px solid rgb(227,227,227);
 border-radius: 5px;
 box-shadow: 0px 3px 3px #eee;

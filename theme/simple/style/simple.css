@@ -315,6 +315,6 @@ div.navbutton {float:none;}
 
 table.userplan {border: none !important;}
 object#resourceobject {
-  width:100%;
-  min-height: 400px;
+  width:100% !important;
+  min-height: 600px !important;
 }
