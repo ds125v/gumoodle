@@ -19,9 +19,6 @@ footer ul li a {color: #004d9c;}
 #page-footer {text-align: left;}
 #page-footer .logininfo,
 #page-footer .sitelink,
-#page-footer .helplink {
-  margin: 0px;
-}
 #page-footer .homelink a {
   padding: 0px;
 }
@@ -103,7 +100,7 @@ footer ul li a:hover {text-decoration: underline;}
 footer .logininfo,
 footer .homelink,
 footer .homelink a,
-footer .helplink {margin: 0; padding: 0;}
+footer .helplink {margin: 0px; padding: 0px;}
 footer .helplink {margin-left:-20px;}
 
 
@@ -124,7 +121,8 @@ margin: 20px 0px 0px 0px; padding-bottom: 4px; font: 131% Arial, Helvetica, sans
 
 
 .coursebox h3,
-.course-content .single-section .section-navigation .title,
+.course-content .single-section .section-navigation .title, /* MDL-34613 */
+.course-content .section-summary .section-title, /* MDL-34613 */
 h3.sectionname {
 background: url("http://www.gla.ac.uk/0t4/generic/images/jumplink_header.png") no-repeat scroll right bottom transparent;
 font-size: 150%;
@@ -135,7 +133,17 @@ border-bottom: 1px solid rgb(227,227,227);
 text-overflow: ellipsis; overflow:hidden; white-space: nowrap;
 text-align: left;
 }
-.course-content .single-section .section-navigation .title {
+.course-content .section-summary {
+  border: none;
+}
+.course-content .section-summary .summarytext {
+  margin: 0px;
+}
+
+.course-content .single-section .section-navigation {
+  margin-bottom: 0px;
+}
+.course-content .single-section .section-navigation .title { /* MDL-34613 */
 clear: both;
 border-radius: 5px 5px 0px 0px;
 margin: 0px 14px;
@@ -143,7 +151,15 @@ border: 1px solid rgb(227,227,227);
 border-bottom: none;
 }
 
-.course-content .single-section div.content {
+.path-course-view .course-content .single-section .section-navigation {
+  padding: 0px;
+}
+.path-course-view .course-content .single-section .section-navigation .title {
+  margin-left:  20px;
+  margin-right:  20px;
+  min-height: 20px;
+}
+.path-course-view .course-content .single-section div.content {
 border-radius: 0px 0px 5px 5px;
 }
 .course-content .single-section ul.topics li.section, 
@@ -156,10 +172,12 @@ margin-top: 0px;
 }
 .coursebox {overflow: hidden;}
 
-.coursebox div.summary p { padding-top: 4em;}
+.coursebox div.summary p,
+div.summarytext p { padding-top: 4em;}
+
 
 .coursebox,
-.course-content div.content {
+.path-course-view .course-content div.content {
 border: 1px solid rgb(227,227,227);
 border-radius: 5px;
 box-shadow: 0px 3px 3px #eee;
@@ -186,6 +204,7 @@ div.navbar {padding: 0px 10px 3px;}
 .path-my div.navbar, 
 .path-course-view div.navbar {padding: 0px 30px;}
 .path-login div.navbar {padding: 0px 220px;}
+.pagelayout-login div.navbar {padding: 0px 220px;}
 
 .course-content ul.topics li.section div.left,
 .course-content ul.weeks li.section div.left {
@@ -208,11 +227,21 @@ padding: 0px;
 .section-modchooser {width: 95%}
 .section_add_menus {width: 95%}
 
-li.section .summary {padding-left: 15px; margin-bottom: 0px}
-li.section .summary img.iconsmall.edit {padding:10px 0px;}
+li.section .summary,
+li.section .summarytext {padding-left: 15px; margin-bottom: 0px}
+li.section .summary img.iconsmall.edit,
+li.section .summarytext img.iconsmall.edit {
+  padding:10px 0px;
+}
 
-li.section .summary .no-overflow p {padding: 4px;}
-li.section .summary .no-overflow p:last-child {margin-bottom: 0px;}
+li.section .summary .no-overflow p,
+li.section .summarytext .no-overflow p {
+  padding: 4px;
+}
+li.section .summary .no-overflow p:last-child,
+li.section .summarytext .no-overflow p:last-child {
+  margin-bottom: 0px;
+}
 
 .block .header .commands {margin-left: 0px;}
 .block .content {padding:0px;}
@@ -229,9 +258,6 @@ div.content a {color: rgb(0,77,156);}
 div.region-content a.nolink,
 div.content a:visited.nolink {color: rgb(0,0,0);}
 
-
-
-table.boxaligncenter td {vertical-align: middle;}
 
 table#participants {margin: 1em auto;}
 
@@ -251,3 +277,38 @@ input#adminsearchquery {width:110px;}
 input#searchform_search {width:140px;}
 .navbar {margin-bottom: 0px;}
 .path-backup .mform .fgroup .proceedbutton {float:none;}
+#page-report-outline-user .section {border: none; padding: none;}
+
+.helplink a img {
+  display:none;
+}
+.helplink a:before {
+  content: "?";
+  font-size: 8.998px;
+  font-weight: bold;
+  line-height: 12px;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  vertical-align: middle;
+  background-color: #cccccc;
+  padding: 0px 4px 1px;
+  -webkit-border-radius: 9px;
+     -moz-border-radius: 9px;
+          border-radius: 9px;
+}
+.ie8 .helplink a:before {
+  padding: 0px 3px 1px 2px;
+  vertical-align: 15%;
+} 
+.helplink a:hover:before {
+  background-color: #999999;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+.helplink {
+  padding: 0px 5px;
+}
+.mform .fitemtitle label .helplink {
+  padding: 0px;
+}

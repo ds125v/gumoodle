@@ -261,7 +261,6 @@ td.mdl-right label {display: inline-block;}
 #page-mod-forum-discuss .discussioncontrols .discussioncontrol.exporttoportfolio,
 #page-mod-forum-discuss .discussioncontrols .discussioncontrol.displaymode
 { width: 28%;}
-img.req, img.adv {margin-right: -8px;}
 legend .helplink img,
 h2 .helplink img {padding: 0px 4px; vertical-align: middle;}
 .calendartable abbr {border: none;}
@@ -281,6 +280,7 @@ div.box.errorbox,
 div#notice,
 body.admin div.info,
 div.adminwarning,
+div.releasenoteslink,
 div.forumnodiscuss
 {
 margin-left:auto;
@@ -314,3 +314,7 @@ display: inline;
 div.navbutton {float:none;}
 
 table.userplan {border: none !important;}
+object#resourceobject {
+  width:100%;
+  min-height: 400px;
+}

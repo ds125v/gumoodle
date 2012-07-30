@@ -72,6 +72,11 @@ img {
   border: 0;
   -ms-interpolation-mode: bicubic;
 }
+.ie8 img.userpicture {max-width: 100px;} /* dunno what's going on here, but the userpic disappeared on IE 8 */
+
+div.categorylist img {
+  display: none;
+}
 
 #map_canvas img {
   max-width: none;
@@ -803,7 +808,6 @@ td.mdl-right > label { /* file-picker */
 td.mdl-left > input { /* file-picker */
   margin-bottom: 0px;
 }
-
 select,
 textarea,
 input[type="text"],
@@ -840,41 +844,17 @@ input[type="password"],
 textarea {
   width: 210px;
 }
-.mform span.helplink {
-  position:relative;
-  left: 280px;
-  margin-left: -30px; /* shift help icon to right side of input */
-}
   
-.mform .fitem.fitem_feditor span.helplink,
-.fitem.fitem_ffilemanager span.helplink,
-.fitem.fitem_ftextarea span.helplink {
-  left:490px; /* shift help icon to right side of larger input */
-}
-.fitem.fitem_ffilemanager .dndupload-message span.helplink {
-  left: 0px;
-  margin-left: 15px;
-}  
 .felement.ffilemanager {
   margin-top: 5px;
 }
 .felement.ffilemanager .fp-restrictions {
-  text-align: left;
-}
-.felement.ffilemanager .fp-restrictions .dndupload-message {
-  display:block;
-  text-align: right;
-  width: 466px;
 }
 .ie8 .felement.ffilemanager .fp-restrictions .dndupload-message,
 .ie9 .felement.ffilemanager .fp-restrictions .dndupload-message {
   display: none;
 }
 
-.mform fieldset#rolerenaming legend span.helplink {
-  float:left;
-  left:460px; /* shift legend help icon to align with above */
-}
 
 .block input[type="text"],
 .block select {
@@ -890,18 +870,6 @@ input#id_externalurl,
 textarea {
   width: 420px !important;
 }
-label[for="id_fullname"] span.helplink,
-label[for="id_description"] span.helplink,
-label[for="id_address"] span.helplink
- {position:relative; left:490px; margin-left:-30px;} /* shift help icon to right side of input */
-label[for="id_summary_editor"] span.helplink {position:relative; left:490px; margin-left:-30px;} /* shift help icon to right side of input */
-
-select#id_category {
-  width: 690px;
-}
-label[for="id_category"] span.helplink {position:relative; left:750px; margin-left:-30px;} /* shift help icon to right side of input */
-input#id_reset_start_date_enabled {margin-left: 40px;} /* shift enable checkbox to avoid help icon */
-
 textarea {
   height: auto;
 }
@@ -1445,7 +1413,7 @@ select:focus:required:invalid:focus {
 #adminsettings .form-item .form-label .form-shortname {font-size: 80%;}
 #adminsettings .form-item .form-setting .defaultsnext {display: inline-block;}
 
-.mform .fpassword .unmask {display:inline-block; margin-left: 40px;}
+.mform .fpassword .unmask,
 form#adminsettings .form-item .form-setting .form-password .unmask
 {display:inline-block; margin-left: 10px;}
 
@@ -1607,7 +1575,10 @@ form#adminsettings .form-item .form-setting .form-password .unmask
      -moz-border-radius: 14px;
           border-radius: 14px;
 }
-
+form label + input[type="text"], /* if it directly follows it then it's not in a structured form */
+form label + select, /* if it directly follows it then it's not in a structured form */
+form select + input[type="submit"], /* if it directly follows it then it's not in a structured form */
+select.menujump,
 .form-input input[type="password"],
 .adminsearchform input,
 .searchform input,
@@ -1646,6 +1617,10 @@ form#adminsettings .form-item .form-setting .form-password .unmask
   margin-bottom: 0;
   *zoom: 1;
 }
+select.menujump {
+  width: auto;
+}
+
 .forumsearch .invisiblefieldset { width: 70%;}
 
 .form-search .hide,
@@ -1748,7 +1723,7 @@ form#login .form-label,
 }
 
 .mform .fcontainer .fitem div.fitemtitle span.helplink {
-  margin-right: 0px;
+  margin-right: -22px;
 }
 
 form#login .form-label {width: 44%;}
@@ -1918,6 +1893,8 @@ table.list tbody:first-child tr:first-child td,
   border-top: 2px solid #dddddd;
 }
 
+#page-admin-user table thead td,
+#page-admin-user table tbody td,
 table#listdirectories td,
 #page-report-loglive-index .generaltable td,
 #page-admin-report-log-index .generaltable th,
@@ -2023,8 +2000,6 @@ table#defineroletable tbody tr:nth-child(odd) th,
   background-color: #f9f9f9;
 }
 .user-enroller-panel .uep-search-results .users .user:hover,
-table tbody tr:hover td,
-table tbody tr:hover th,
 table.grading-report tbody tr:hover td,
 table.grading-report tbody tr:hover th,
 .forumheaderlist tbody tr:hover td,
@@ -2042,13 +2017,45 @@ table.grading-report tbody tr:hover th,
 table td.cell p:last-child { margin-bottom: 0px; }
 /* tables that aren't tables */
 
+table.groupmanagementtable td {
+padding: 0;
+}
+
+.path-admin .roleassigntable td#buttonscell,
+.path-admin .roleassigntable td#existingcell,
+.path-admin .roleassigntable td#potentialcell,
+.groupmanagementtable td#buttonscell,
+.groupmanagementtable td#existingcell,
+.groupmanagementtable td#potentialcell,
 td#buttonscell,
 td#existingcell,
 td#potentialcell {
   background: none;
   border-top: none;
+  width: auto;
+}
+td#buttonscell {
+  padding-top: 8em;
+  text-align: center;
+  max-width: 16em;
+}
+.groupmanagementtable td#buttonscell input,
+td#buttonscell input {
+  width: 90%;
+  margin-bottom: 9px;
+}
+td#potentialcell {
+  min-width: 250px;
+}
+#userselector_options p {
+    margin: 0px;
+    white-space: nowrap;
 }
 
+.path-admin .roleassigntable #buttonscell #addcontrols {
+margin-top: 0;
+height: auto;
+}
 
 table .span1 {
   float: none;
@@ -2205,6 +2212,7 @@ table .span24 {
   background-image: url("../img/glyphicons-halflings.png");
   background-position: 14px 14px;
   background-repeat: no-repeat;
+  border: thick solid green;
 }
 
 [class^="icon-"]:last-child,
@@ -3017,6 +3025,7 @@ button.close {
   -webkit-appearance: none;
 }
 
+.path-admin .roleassigntable #buttonscell #add, .path-admin .roleassigntable #buttonscell #remove input,
 button,
 input[type="submit"],
 input[type="button"],
@@ -3061,6 +3070,9 @@ input#id_cancel,
           box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
+
+.path-admin .roleassigntable #buttonscell #add, .path-admin .roleassigntable #buttonscell #remove input:hover,
+button,
 button:hover,
 input[type="button"]:hover,
 input[type="submit"]:hover,
@@ -3193,6 +3205,8 @@ button#searchform_button,
   line-height: 14px;
 }
 
+input[id$="_clearbutton"],
+input[id$="_clearbutton"]:hover,
 input.form-submit,
 input.form-submit:hover,
 input#id_submitbutton,
@@ -3217,6 +3231,7 @@ input#id_cancel:hover,
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
+input[id$="_clearbutton"]:active,
 .form-submit:active,
 .btn-primary.active,
 .btn-warning.active,
@@ -3282,6 +3297,7 @@ input#id_submitbutton2:active,
   background-color: #004099 \9;
 }
 
+input[id$="_clearbutton"],
 input#id_cancel,
 .btn-warning {
   background-color: #faa732;
@@ -3299,6 +3315,9 @@ input#id_cancel,
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
 
+input[id$="_clearbutton"],
+input[id$="_clearbutton"]:hover,
+input[id$="_clearbutton"]:active,
 input#id_cancel,
 input#id_cancel:hover,
 input#id_cancel:active,
@@ -3311,12 +3330,18 @@ input#id_cancel:active,
   *background-color: #df8505;
 }
 
+input[id$="_clearbutton"],
+input[id$="_clearbutton"]:active,
 input#id_cancel,
 input#id_cancel:active,
 .btn-warning:active,
 .btn-warning.active {
   background-color: #c67605 \9;
 }
+input[id$="_clearbutton"] {
+  float:right;
+}
+
 
 .btn-danger {
   background-color: #da4f49;
@@ -3683,6 +3708,7 @@ div.forumnodiscuss,
 div#notice p,
 div.noticebox,
 div#helppopupbox,
+div.releasenoteslink,
 .errorbox,
 .alert {
   padding: 8px 35px 8px 14px;
@@ -3733,6 +3759,7 @@ div.box.copyright,
 div#helppopupbox,
 div.redirectmessage,
 body.pagelayout-report div.info,
+div.releasenoteslink,
 .alert-info {
   color: #3a87ad;
   background-color: #d9edf7;
@@ -5671,4 +5698,7 @@ span.editinstructions{
 	border: none;
         margin-bottom: 40px;
         margin-top: 0px;
+}
+.no-overflow {
+  overflow: hidden;
 }
