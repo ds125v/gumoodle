@@ -61,7 +61,9 @@ color: rgb(153,153,153);
 text-transform: uppercase;
 padding: 3px 0px;
 }
+
 .adminsearchform div {margin: 0 -10px;}
-input#adminsearchquery {width:150px;}
+input#adminsearchquery {width:80px;}
+input#searchform_search {margin-left: -10px; width:100px;}
 
 #page-course-category #layout {width:750px;}

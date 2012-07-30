@@ -1,13 +1,13 @@
 <?php
 
 $THEME->name = 'simple';
-$THEME->parents = array('base');
+$THEME->parents = array('bootstrap','base');
 $THEME->parents_exclude_sheets = array(
 'base'=>array(
 'pagelayout'
 )
 ); 
-$THEME->sheets = array('bootstrap','simple','decoration');
+$THEME->sheets = array('simple','decoration');
 $THEME->layouts = array(
     'base' => array(
         'file' => 'simple.php',
