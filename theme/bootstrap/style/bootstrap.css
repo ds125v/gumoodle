@@ -67,12 +67,11 @@ sub {
 }
 
 img {
-  max-width: 100%;
+  /* max-width: 100%; /* seems to make some img disappear in IE8 */
   vertical-align: middle;
   border: 0;
   -ms-interpolation-mode: bicubic;
 }
-.ie8 img.userpicture {max-width: 100px;} /* dunno what's going on here, but the userpic disappeared on IE 8 */
 
 div.categorylist img {
   display: none;
@@ -970,9 +969,14 @@ select {
   width: 220px;
   border: 1px solid #bbb;
 }
-.ie8 select:focus {
-  min-width: 210px;
+.mform select:focus {
+  min-width: 220px;
+  max-width: 430px;
   width: auto;
+}
+.ie8 .mform select:focus {
+  min-width: 210px;
+  max-width: 420px;
 }
 .fduration input, .fduration select, .fduration span,
 .fdate_selector select, .ie8 .fdate_selector select:focus,
@@ -5151,10 +5155,20 @@ font[color="green"],
   color: #ffffff;
 }
 
-.felement.error span.error {position:relative; left: 260px; top: 22px;}
-#fitem_id_fullname span.error {left: 470px;}
-div.felement.error {margin-top: -17px;}
-
+.felement.error span.error {display: inline-block; margin-left: 10px;}
+.felement.error span.error br {display: none;}
+.felement.error select,
+.felement.error input
+{float: left;}
+span#id_error_introeditor\[text\].error {
+float: right;
+}
+.felement.feditor div.error { /* bit of a hack */
+  width: 500px;
+}
+span#id_error_introeditor\[text\].error br {
+  display: none;
+}
 .required label {color: #333333;}
 
 span.ok,
