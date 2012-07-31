@@ -15,18 +15,23 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Report settings
+ * Capabilities
  *
- * @package    report
- * @subpackage guid
+ * @package    report_guid
  * @copyright  2012 Howard Miller
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die;
+defined('MOODLE_INTERNAL') || die();
 
-$ADMIN->add('reports', new admin_externalpage('reportguid', get_string('guid', 'report_guid'), 
-    "$CFG->wwwroot/report/guid/index.php", 'report/guid:view'));
+$capabilities = array(
 
-// no report settings
-$settings = null;
+    'report/guid:view' => array(
+        'riskbitmask' => RISK_CONFIG,
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => array(
+            'manager' => CAP_ALLOW
+        ),
+    )
+);
