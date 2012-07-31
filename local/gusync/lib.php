@@ -25,7 +25,7 @@
 
 // how many seconds can this run for on every
 // cron invocation
-define( 'LOCAL_GUSYNC_MAXTIME', 30 );
+define( 'LOCAL_GUSYNC_MAXTIME', 10 );
 
 /**
  * gusync cron script
