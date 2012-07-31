@@ -31,6 +31,12 @@ if ($hassiteconfig) { // needs condition or error on login page
             'local_gusync', get_string('pluginname', 'local_gusync'));
     $ADMIN->add('localplugins', $settings);
 
+    $average = get_config('local_gusync', 'average');
+    $average = empty($average) ? '-' : $average;
+    $settings->add(new admin_setting_heading('gusync_avaerage', '',
+            get_string('displayaverage', 'local_gusync',
+            $average)));
+
     $settings->add(new admin_setting_configtext(
             'local_gusync/dbhost', get_string('dbhost', 'local_gusync'),
             get_string('configdbhost', 'local_gusync'), '', PARAM_RAW));

@@ -23,6 +23,10 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+// how many seconds can this run for on every
+// cron invocation
+define( 'LOCAL_GUSYNC_MAXTIME', 30 );
+
 /**
  * gusync cron script
  */
@@ -30,8 +34,18 @@ function local_gusync_cron() {
     global $CFG;
     global $DB;
 
+    // get the start time, we'll limit
+    // how long this runs for
+    $starttime = time();
+
     // get plugin config
     $config = get_config( 'local_gusync' );
+  
+    // are we set up?
+    if (empty($config->dbhost)) {
+        mtrace( 'gusync: not configured' );
+        return false;
+    }
 
     // attempt to connect to external db
     if (!$extdb=local_gusync_dbinit($config)) {
@@ -39,12 +53,50 @@ function local_gusync_cron() {
         return false;
     }
 
+    // get the last course index we processed
+    if (empty($config->startcourseindex)) {
+        $startcourseindex = 0;
+    }
+    else {
+        $startcourseindex = $config->startcourseindex;
+    }
+    mtrace( "gusync: starting at course index $startcourseindex" );
+
     // get the basics of all visible courses
     // don't load the whole course records!!
     $courses = $DB->get_records( 'course', array('visible'=>1), '', 'id' );
-    foreach ($courses as $course) {
+
+    // convert courses to simple array
+    $courses = array_values( $courses );
+    $highestindex = count($courses)-1;
+    mtrace( "gusync: highest course index is $highestindex" );
+
+    // process from current index to (potentially) the end
+    for ($i=$startcourseindex; $i<=$highestindex; $i++) {
+        $course = $courses[$i];
         local_gusync_processcourse( $extdb, $course->id );
+        $lastcourseprocessed = $i;
+        
+        // if we've used too much time then bail out
+        $elapsedtime = time() - $starttime;
+        if ($elapsedtime > LOCAL_GUSYNC_MAXTIME) {
+            break;
+        }
     }
+
+    // set new value of index
+    if ($lastcourseprocessed >= $highestindex) {
+        set_config( 'startcourseindex', 0, 'local_gusync' );
+    }
+    else {
+        set_config( 'startcourseindex', $lastcourseprocessed+1, 'local_gusync' );
+    }
+
+    // create very poor average course process
+    $oldaverage = empty($config->average) ? 0 : $config->average;
+    $newaverage = ($oldaverage + $lastcourseprocessed - $startcourseindex)/2;
+    set_config( 'average', $newaverage, 'local_gusync' );  
+    mtrace( 'gusync: completed, processed courses = ' . ($lastcourseprocessed - $startcourseindex) );
 
     // done with engines
     $extdb->Close();
