@@ -156,7 +156,16 @@ function local_gusync_processcourse( $extdb, $id ) {
     }
 
     // loop through users, adding updating enrol table
-    foreach ($users as $guid=>$user) {
+    foreach ($users as $user) {
+        $guid = $user->username;
+
+        // get lastaccess for this user
+        if ($lastaccess = $DB->get_record('user_lastaccess', array('userid'=>$user->id, 'courseid'=>$id))) {
+            $timeaccess = $lastaccess->timeaccess;
+        }
+        else {
+            $timeaccess = 0;
+        }
     
         // try to find existing record
         $enrolsql = "select * from moodleenrolments ";
@@ -168,13 +177,15 @@ function local_gusync_processcourse( $extdb, $id ) {
             $sql = "insert into moodleenrolments ";
             $sql .= "set guid='$guid', ";
             $sql .= "moodlecoursesid={$extcourse->id}, ";
-            $sql .= "timestart = {$user->timemodified} ";
+            $sql .= "timestart = {$user->timemodified}, ";
+            $sql .= "timelastaccess = $timeaccess ";    
         }
         else {
             $sql = "update moodleenrolments ";
             $sql .= "set guid='$guid', ";
             $sql .= "moodlecoursesid={$extcourse->id}, ";
-            $sql .= "timestart = {$user->timemodified} ";
+            $sql .= "timestart = {$user->timemodified}, ";
+            $sql .= "timelastaccess = $timeaccess ";    
             $sql .= "where id={$extenrol->id} ";
         }
         local_gusync_query( $extdb, $sql );
@@ -200,7 +211,7 @@ function local_gusync_getusers( $course ) {
     // get the (guid) users in these instances
     $users = array();
     foreach ($instances as $instance) {
-        $sql = "select distinct username, ue.timemodified as timemodified, auth ";
+        $sql = "select distinct u.id as id, username, ue.timemodified as timemodified, auth ";
         $sql .= "from {user} as u join {user_enrolments} as ue on (ue.userid = u.id) ";
         $sql .= "where enrolid = ? ";
         $sql .= "and auth = ? ";
