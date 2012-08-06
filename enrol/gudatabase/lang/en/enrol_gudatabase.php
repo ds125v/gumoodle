@@ -25,6 +25,8 @@
 
 $string['codesenroltable'] = 'Remote codes table';
 $string['codesenroltable_desc'] = 'Table containing information about course codes';
+$string['gudatabase:manage'] = 'Manage gudatabase plugin';
+$string['gudatabase:unenrol'] = 'Unenrol users from gudatabase';
 $string['pluginname'] = 'UofG Enrolment database';
 $string['pluginname_desc'] = 'You can use an external database (of nearly any kind) to control your enrolments. It is assumed your external database contains at least a field containing a course ID, and a field containing a user ID. These are compared against fields that you choose in the local course and user tables.';
 $string['settingsheadercodes'] = 'Remote codes table';

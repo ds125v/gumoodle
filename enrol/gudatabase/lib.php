@@ -45,13 +45,71 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
      */
     public function instance_deleteable($instance) {
         return true;
+    }
 
-        if (!enrol_is_enabled('gudatabase')) {
-            return true;
+    /**
+     * Does this plugin assign protected roles are can they be manually removed?
+     * @return bool - false means anybody may tweak roles, it does not use itemid and component when assigning roles
+     */
+    public function roles_protected() {
+        return true;
+    }
+
+
+    /**
+     * Does this plugin allow manual unenrolment of a specific user?
+     * Yes, but only if user suspended...
+     *
+     * @param stdClass $instance course enrol instance
+     * @param stdClass $ue record from user_enrolments table
+     *
+     * @return bool - true means user with 'enrol/xxx:unenrol' may unenrol this user, false means nobody may touch this user enrolment
+     */
+    public function allow_unenrol_user(stdClass $instance, stdClass $ue) {
+        return true;
+    }
+
+    /**
+     * Does this plugin allow manual changes in user_enrolments table?
+     *
+     * All plugins allowing this must implement 'enrol/xxx:manage' capability
+     *
+     * @param stdClass $instance course enrol instance
+     * @return bool - true means it is possible to change enrol period and status in user_enrolments table
+     */
+    public function allow_manage(stdClass $instance) {
+        return true;
+    }
+
+    /**
+     * Does this plugin allow manual unenrolment of all users?
+     * All plugins allowing this must implement 'enrol/xxx:unenrol' capability
+     *
+     * @param stdClass $instance course enrol instance
+     * @return bool - true means user with 'enrol/xxx:unenrol' may unenrol others freely, false means nobody may touch user_enrolments
+     */
+    public function allow_unenrol(stdClass $instance) {
+        return true;
+    }
+
+    /**
+     * Gets an array of the user enrolment actions
+     *
+     * @param course_enrolment_manager $manager
+     * @param stdClass $ue A user enrolment object
+     * @return array An array of user_enrolment_actions
+     */
+    public function get_user_enrolment_actions(course_enrolment_manager $manager, $ue) {
+        $actions = array();
+        $context = $manager->get_context();
+        $instance = $ue->enrolmentinstance;
+        $params = $manager->get_moodlepage()->url->params();
+        $params['ue'] = $ue->id;
+        if ($this->allow_unenrol_user($instance, $ue) && has_capability('enrol/gudatabase:unenrol', $context)) {
+            $url = new moodle_url('/enrol/unenroluser.php', $params);
+            $actions[] = new user_enrolment_action(new pix_icon('t/delete', ''), get_string('unenrol', 'enrol'), $url, array('class'=>'unenrollink', 'rel'=>$ue->id));
         }
-        if (!$this->get_config('dbtype') or !$this->get_config('dbhost') or !$this->get_config('remoteenroltable') or !$this->get_config('remotecoursefield') or !$this->get_config('remoteuserfield')) {
-            return true;
-        }
+        return $actions;
     }
 
     /** 
