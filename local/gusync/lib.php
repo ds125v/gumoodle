@@ -150,44 +150,70 @@ function local_gusync_processcourse( $extdb, $id ) {
     // get list of enrolments for this course
     $users = local_gusync_getusers( $course );
 
-    // if no users, nothing to do
-    if (empty($users)) {
-        return false;
-    }
+    // create list of GUIDs for later deletion checking
+    $guids = array();
 
     // loop through users, adding updating enrol table
-    foreach ($users as $user) {
-        $guid = $user->username;
+    if (!empty($users)) {
+        foreach ($users as $user) {
+            $guid = $user->username;
+            $guids[ $guid ] = $guid;
 
-        // get lastaccess for this user
-        if ($lastaccess = $DB->get_record('user_lastaccess', array('userid'=>$user->id, 'courseid'=>$id))) {
-            $timeaccess = $lastaccess->timeaccess;
-        }
-        else {
-            $timeaccess = 0;
-        }
+            // get lastaccess for this user
+            if ($lastaccess = $DB->get_record('user_lastaccess', array('userid'=>$user->id, 'courseid'=>$id))) {
+                $timeaccess = $lastaccess->timeaccess;
+            }
+            else {
+                $timeaccess = 0;
+            }
     
-        // try to find existing record
-        $enrolsql = "select * from moodleenrolments ";
-        $enrolsql .= "where guid='$guid' and moodlecoursesid={$extcourse->id} ";
-        $extenrol = local_gusync_query( $extdb, $enrolsql, TRUE );
+            // try to find existing record
+            $enrolsql = "select * from moodleenrolments ";
+            $enrolsql .= "where guid='$guid' and moodlecoursesid={$extcourse->id} ";
+            $extenrol = local_gusync_query( $extdb, $enrolsql, TRUE );
 
-        // update/insert
-        if (empty($extenrol)) {
-            $sql = "insert into moodleenrolments ";
-            $sql .= "set guid='$guid', ";
-            $sql .= "moodlecoursesid={$extcourse->id}, ";
-            $sql .= "timestart = {$user->timemodified}, ";
-            $sql .= "timelastaccess = $timeaccess ";    
+            // update/insert
+            if (empty($extenrol)) {
+                $sql = "insert into moodleenrolments ";
+                $sql .= "set guid='$guid', ";
+                $sql .= "moodlecoursesid={$extcourse->id}, ";
+                $sql .= "timestart = {$user->timemodified}, ";
+                $sql .= "timelastaccess = $timeaccess ";    
+            }
+            else {
+                $sql = "update moodleenrolments ";
+                $sql .= "set guid='$guid', ";
+                $sql .= "moodlecoursesid={$extcourse->id}, ";
+                $sql .= "timestart = {$user->timemodified}, ";
+                $sql .= "timelastaccess = $timeaccess ";    
+                $sql .= "where id={$extenrol->id} ";
+            }
+            local_gusync_query( $extdb, $sql );
         }
-        else {
-            $sql = "update moodleenrolments ";
-            $sql .= "set guid='$guid', ";
-            $sql .= "moodlecoursesid={$extcourse->id}, ";
-            $sql .= "timestart = {$user->timemodified}, ";
-            $sql .= "timelastaccess = $timeaccess ";    
-            $sql .= "where id={$extenrol->id} ";
-        }
+    }
+
+    // now we need to find any users that are in the external table
+    // but NOT enrolled in the course
+
+    // get complete list
+    $sql = "select id,guid from moodleenrolments where moodlecoursesid={$extcourse->id}";
+    $enrolments = local_gusync_query( $extdb, $sql );
+
+    // run through and find any NOT in the $users list
+    $deleteusers = array();
+    if (!empty($enrolments)) {
+        foreach ($enrolments as $enrolment) {
+            $guid = $enrolment->guid;
+            if (empty($guids[$guid])) {
+                $deleteusers[ $enrolment->id ] = $enrolment->id;
+            }
+        } 
+    }
+
+    // delete sql
+    if (count($deleteusers)>0) {
+        $list = implode(',', $deleteusers);
+        $sql = "delete from moodleenrolments where id in ($list) ";
         local_gusync_query( $extdb, $sql );
     }
 }
