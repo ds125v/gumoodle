@@ -5134,6 +5134,7 @@ span.statusok,
 span.error,
 span.patherror,
 span.warn,
+p.warn,
 div.form-warning,
 span.editinstructions,
 span.statuswarning,
@@ -5177,6 +5178,7 @@ div.felement.error span.error,
 span.error,
 span.patherror,
 span.warn,
+p.warn,
 span.editinstructions,
 span.statuswarning,
 font[color="green"],
@@ -5187,6 +5189,13 @@ font[color="green"],
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
           border-radius: 3px;
+}
+/* table.environmenttable .c2 a {
+  display: block;
+} */
+p.warn {
+  display: inline-block;
+  margin-left: 21px;
 }
 
 .badge {
@@ -5218,6 +5227,7 @@ div.form-warning,
 }
 
 span.warn,
+p.warn,
 span.editinstructions,
 #page-admin-report-security-index span.statuswarning,
 span.statuswarning,
