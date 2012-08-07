@@ -128,6 +128,7 @@ function local_gusync_processcourse( $extdb, $id ) {
     if (empty($extcourse))  {
         $sql = "insert into moodlecourses ";
         $sql .= "set site='$sitename', ";
+        $sql .= "wwwroot={$CFG->wwwroot}, "
         $sql .= "courseid=$id, ";
         $sql .= "shortname='" . addslashes($course->shortname) . "', ";
         $sql .= "name='" . addslashes($course->fullname) . "', ";
@@ -136,6 +137,7 @@ function local_gusync_processcourse( $extdb, $id ) {
     else {
         $sql = "update moodlecourses ";
         $sql .= "set site='$sitename', ";
+        $sql .= "wwwroot={$CFG->wwwroot}, "
         $sql .= "courseid=$id, ";
         $sql .= "shortname='" . addslashes($course->shortname) . "', ";
         $sql .= "name='" . addslashes($course->fullname) . "', ";
