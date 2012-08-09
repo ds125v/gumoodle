@@ -1811,6 +1811,7 @@ div.fitemtitle span.helplink {
 }
 
 form#login .form-label {width: 44%;}
+form#login .rememberpass label {display: inline-block;}
 .mform label{ display:block;}
 
 
