@@ -1,7 +1,6 @@
 body {font: Georgia, "Times New Roman", Times, serif;}
 body { width:100%; }
 
-.skip {position: absolute; left: -5000em; top: auto; width: 1px; height: 1px; overflow: hidden;}
 .clear {clear: left;}
 a {text-decoration: none;}
 input, textarea, select, button {font-family: Arial, Helvetica, sans-serif;}
@@ -16,11 +15,11 @@ footer {color: #333;}
 footer a {color: #004d9c;}
 footer ul { width: 310px;}
 footer ul li a {color: #004d9c;}
-#page-footer {text-align: left;}
-#page-footer .logininfo,
-#page-footer .sitelink,
-#page-footer .helplink,
-#page-footer .homelink a {
+footer {text-align: left;}
+footer .logininfo,
+footer .sitelink,
+footer .helplink,
+footer .homelink a {
   padding: 0px;
   margin: 0px;
 }
@@ -227,8 +226,12 @@ padding-right: 1px;
 .course-content ul.weeks li.section div.right img.icon {
 padding: 0px;
 }
-.section-modchooser {width: 95%}
-.section_add_menus {width: 95%}
+.section-modchooser,
+.section_add_menus {
+  width: auto;
+  margin-bottom: 9px;
+  margin-right: 9px;
+}
 
 li.section .summary,
 li.section .summarytext {padding-left: 15px; margin-bottom: 0px}
@@ -282,36 +285,3 @@ input#searchform_search {width:140px;}
 .path-backup .mform .fgroup .proceedbutton {float:none;}
 #page-report-outline-user .section {border: none; padding: none;}
 
-.helplink a img {
-  display:none;
-}
-.helplink a:before {
-  content: "?";
-  font-size: 8.998px;
-  font-weight: bold;
-  line-height: 12px;
-  color: #ffffff;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  vertical-align: middle;
-  background-color: #cccccc;
-  padding: 0px 4px 1px;
-  -webkit-border-radius: 9px;
-     -moz-border-radius: 9px;
-          border-radius: 9px;
-}
-.ie8 .helplink a:before {
-  padding: 0px 3px 1px 2px;
-  vertical-align: 15%;
-} 
-.helplink a:hover:before {
-  background-color: #999999;
-  color: #ffffff;
-  text-decoration: none;
-  cursor: pointer;
-}
-.helplink {
-  padding: 0px 5px;
-}
-.mform .fitemtitle label .helplink {
-  padding: 0px;
-}
