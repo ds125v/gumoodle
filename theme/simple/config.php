@@ -4,7 +4,7 @@ $THEME->name = 'simple';
 $THEME->parents = array('bootstrap','base');
 $THEME->parents_exclude_sheets = array(
 'base'=>array(
-'pagelayout'
+'pagelayout','core'
 )
 ); 
 $THEME->sheets = array('simple','decoration');

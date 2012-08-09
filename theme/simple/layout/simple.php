@@ -30,7 +30,7 @@ $favicon_url = $OUTPUT->pix_url('favicon', 'theme');
 <?php echo $OUTPUT->standard_top_of_body_html() ?>
 
 <div id="page">
-            <header id="page-header">
+            <header>
 		<h1 class="headermain">header goes here</h1>
                     <?php echo $OUTPUT->login_info(); ?>
 			<?php echo $PAGE->headingmenu; ?>
@@ -59,7 +59,7 @@ $favicon_url = $OUTPUT->pix_url('favicon', 'theme');
 
 	   </div>
     </div>
-<footer id="page-footer"> <h1>footer goes here</h1><?php echo $OUTPUT->standard_footer_html(); ?> </footer> 
+<footer> <h1>footer goes here</h1><?php echo $OUTPUT->standard_footer_html(); ?> </footer> 
 
 </div>
 <?php echo $OUTPUT->standard_end_of_body_html() ?>
