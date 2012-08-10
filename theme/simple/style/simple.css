@@ -86,26 +86,50 @@ body {font: serif;}
   display: none;
 }
 
-.block li a { padding: 0px;}
-.block li img.smallicon {display: none;}
-.block li img.icon {display: none;}
-.block_settings .block_tree .tree_item {padding-left: 0px;}
-.block_navigation .block_tree .tree_item {padding-left: 0px;}
-.jsenabled .block_settings .block_tree .collapsed .tree_item.branch { background: none;}
-.jsenabled .block_navigation .block_tree .collapsed .tree_item.branch { background: none;}
-.block_navigation .block_tree .tree_item.branch { background: none;}
-.block_settings .block_tree .tree_item.branch { background: none;}
-.jsenabled .block_navigation .block_tree .tree_item.emptybranch { background: none;}
- .block_tree .tree_item:before { content: "▼ "; color: gray;}
-.block_tree .collapsed  .tree_item:before { content: "► "; color: gray;}
-.block_tree .collapsed  .tree_item.emptybranch:before { content: "► "; color: #ccc;}
-.block_tree .tree_item.leaf:before,
-.tree_item.navigation_node:before { content: ""; cursor: normal;}
-/*.block_navigation .block_tree li.contains_branch > p.tree_item:before { content: "► "; color: gray;}
-.block_navigation .block_tree li.contains_branch > p.tree_item.emptybranch:before { content: "► "; color: yellow;} */
+.block li a {
+  padding: 0px;
+}
+.block li img.smallicon,
+.block li img.icon {
+  display: none;
+}
+.block_settings .block_tree .tree_item,
+.block_navigation .block_tree .tree_item {
+  padding-left: 0px;
+}
+.jsenabled .block_settings .block_tree .collapsed .tree_item.branch,
+.jsenabled .block_navigation .block_tree .collapsed .tree_item.branch,
+.block_navigation .block_tree .tree_item.branch,
+.block_settings .block_tree .tree_item.branch,
+.jsenabled .block_navigation .block_tree .tree_item.emptybranch {
+  background: none;
+}
+.block_tree .tree_item a:before,
+.block_tree .tree_item span:before {
+  content: "▼ ";
+  color: gray;
+}
+.block_tree .collapsed  .tree_item a:before,
+.block_tree .collapsed  .tree_item span:before {
+  content: "► ";
+  color: gray;
+}
+.block_tree .collapsed  .tree_item.emptybranch a:before,
+.block_tree .collapsed  .tree_item.emptybranch span:before {
+  content: "► ";
+  color: #ccc;
+}
+.block_tree .tree_item.leaf a:before,
+.block_tree .tree_item.leaf span:before,
+.tree_item.navigation_node a:before,
+.tree_item.navigation_node span:before {
+  content: "";
+  cursor: normal;
+}
 .block_tree li.item_with_icon.contains_branch .tree_item {
   padding-left: 10px;
 }
+
 #dndupload-status {
   width: 40%;
   left: 30%;

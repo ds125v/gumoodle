@@ -839,7 +839,7 @@ input[type="color"],
   line-height: 18px;
   color: #555555;
 }
-.felement.fstatic { /* for user image on profile page */
+.felement.fstatic { /* allow to expand for user image on edit profile page */
   height: auto;
   min-height: 18px;
 }
@@ -1411,6 +1411,7 @@ select:focus:required:invalid:focus {
 
 #fgroup_id_buttonar,
 #fitem_id_submitbutton,
+table#form td.submit,
 .form-buttons,
 .form-actions {
   padding: 17px 20px 18px;
@@ -1421,7 +1422,7 @@ select:focus:required:invalid:focus {
   *zoom: 1;
 }
 #fgroup_id_buttonar,
-#fitem_id_submitbutton { /* buttons in bootstrap aren't part of the fitem felement grid, which they are in Moodle */
+#fitem_id_submitbutton { /* buttons in bootstrap aren't part of the fitem felement grid, which they are in Moodle (sometimes!) */
   padding-left: 0px;
 }
 
@@ -1887,6 +1888,7 @@ table#defineroletable,
 table.grading-report,
 table#listdirectories,
 table.rolecaps,
+table#form,
 #page-report-log-user .generaltable,
 .forumheaderlist,
 .generaltable,
