@@ -780,7 +780,6 @@ legend small {
   color: #999999;
 }
 
-.mform .fitem {width:auto;}
 label,
 .backup-restore label.detail-pair-label
 input,
@@ -929,7 +928,7 @@ input[type="color"],
        -o-transition: border linear 0.2s, box-shadow linear 0.2s;
           transition: border linear 0.2s, box-shadow linear 0.2s;
 }
-.mform .fitem .felement.fstatic {
+.mform .fitem .felement.fstatic { /* faking .uneditable-input */
   padding-top: 5px;
   margin-left: 20px;
 }
@@ -1757,7 +1756,6 @@ legend + .control-group {
 .mform .fcontainer {padding-top: 27px;}
 .mform .advancedbutton {float:right; position: relative; top: 27px; margin-bottom: -27px; min-height: 27px;}
 
-.mform .fitem { margin-top: 0px;}
 
 .form-horizontal .control-group {
   margin-bottom: 18px;
@@ -1800,8 +1798,13 @@ form#login .form-label,
   padding-top: 5px;
   text-align: right;
 }
-table#form td {padding: 0px; display:block}
-table#form td label {margin-bottom: 0px;}
+table#form td {
+  padding: 0px;
+  display:block
+}
+table#form td label {
+  margin-bottom: 0px;
+}
 
 
 
@@ -1809,18 +1812,20 @@ div.fitemtitle span.helplink {
   margin-right: -22px; /* shift help icon into middle gutter */
 }
 
-form#login .form-label {width: 44%;}
-form#login .rememberpass label {display: inline-block;}
-.mform label{ display:block;}
+form#login .form-label {
+  width: 44%;
+}
+form#login .rememberpass label {
+  display: inline-block;
+}
+.mform label{
+  display:block;
+}
 
 
 .mform .fitem fieldset.felement {
-width:auto;
-padding-left: 0px;
-}
-.mform fieldset div {
-  margin: 0px;
-  padding: 0px;
+  width:auto;
+  padding-left: 0px;
 }
 
 
