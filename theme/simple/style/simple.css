@@ -21,26 +21,26 @@ body {font: serif;}
 }
  
 #blocks1 {
-  width:200px;
-  margin-left: -200px;
+  width:210px;
+  margin-left: -210px;
 }
  
 #blocks2 {
-  width:200px;
-  margin-right: -200px;
+  width:210px;
+  margin-right: -210px;
 }
  
 #layout {
-  padding: 0px 200px; 
+  padding: 0px 210px; 
   overflow: hidden;
 }
 
 .blocks1-only #layout {
-  padding: 0px 0px 0px 200px;
+  padding: 0px 0px 0px 210px;
 }
 
 .blocks2-only #layout {
-  padding: 0px 200px 0px 0px;
+  padding: 0px 210px 0px 0px;
 }
 
 .no-blocks #layout {
@@ -122,9 +122,11 @@ body {font: serif;}
 .dndupload-progress-inner {width:0%;height:100%;background-color:green;display:inline-block;margin:0;padding:0;float:left;}
 .dndupload-hidden {display:none;}
 
-#main .region-content {
-  padding-left: 10px;
+#blocks1 .region-content {
   padding-right: 10px;
+}
+#blocks2 .region-content {
+  padding-left: 10px;
 }
 li.activity a:visited,
 li.activity a,
