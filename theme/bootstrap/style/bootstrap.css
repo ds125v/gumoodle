@@ -5293,25 +5293,39 @@ input[id^="id_calcmin"],
 input[id^="id_calcmax"] {
   width: 94px;
 }
-div.felement.fstatic hr {display: none;}
-
-
-.felement.error span.error {margin-left: 10px; margin-top: 3px; vertical-align: bottom;}
-.felement.error span.error br,
-.felement.error span.error + br {display: none;}
-.felement.error select,
-.felement.error input
-{float: left;}
-span#id_error_introeditor\[text\].error {
-float: right;
+div.felement.fstatic hr { /* in quiz used to seperate sections, currenty the hacky uneditable instead, should probably fix with nth-child hack */
+  display: none;
 }
+
+.felement.error span.error { /* nudge error text down to align with form inputs */
+  margin-left: 10px;
+  display: inline-block;
+  position: relative;
+  top: 5px;
+}
+
+span#id_error_introeditor\[text\].error br,
+.felement.error span.error br,
+.felement.error span.error + br { /* these brs should be replaced with div or display:block for the span.errors */
+  display: none;
+}
+
+.felement.error select,
+.felement.error input { /* lets the error message flow to right hand side, slightly hacky */
+  float: left;
+}
+
+span#id_error_introeditor\[text\].error {
+  float: right;
+}
+
 .felement.feditor div.error { /* bit of a hack */
   width: 500px;
 }
-span#id_error_introeditor\[text\].error br {
-  display: none;
+
+.required label {
+  color: #333333;
 }
-.required label {color: #333333;}
 
 span.ok,
 span.statusok,
@@ -5822,8 +5836,13 @@ div[id^="progress_pbar"],
 }
 
 img.req,
-img.adv {margin-right: -8px;} /* hanging indentation for asterisk */
-.advancedbutton img.adv { margin-right: 8px;}
+img.adv { /* hanging indentation for asterisk */
+  margin-right: -8px;
+}
+
+.advancedbutton img.adv {
+  margin-right: 8px;
+}
 /*
   below this line you might want to copy into your theme and override to suit your theme
 */
@@ -5831,45 +5850,45 @@ img.adv {margin-right: -8px;} /* hanging indentation for asterisk */
 select.menubui_addblock {
   width: auto;
 }
-.path-mod-workshop .userplan tr.phasetasks ul
-{ padding:0 0 0 1.2em;  margin:0;  }
+.path-mod-workshop .userplan tr.phasetasks ul {
+  padding:0 0 0 1.2em;
+  margin:0;
+}
 
 .path-mod-workshop .userplan tr.phasetasks li,
-.path-mod-workshop .userplan tr.phasetasks li.completed
-{
-background: none;
+.path-mod-workshop .userplan tr.phasetasks li.completed {
+  background: none;
 }
+
 .path-mod-workshop .userplan tr.phasetasks li div.title {display: inline; padding: 0px !important;}
-.path-mod-workshop .userplan tr.phasetasks li:before
-{
-content: "○ ";
-color: gray;
-display: inline;
+.path-mod-workshop .userplan tr.phasetasks li:before {
+  content: "○ ";
+  color: gray;
+  display: inline;
 }
-.path-mod-workshop .userplan tr.phasetasks li.completed:before
-{
-content: "✔ "; /* doesn't seem to show up on IE8/XP from initial install, need to check after Office installed */
-color: green;
-display: inline;
+.path-mod-workshop .userplan tr.phasetasks li.completed:before {
+  content: "✔ "; /* doesn't seem to show up on IE8/XP from initial install, need to check after Office installed */
+  color: green;
+  display: inline;
 }
 
 span.editinstructions{
-	position:relative;
-	top:-2px;
-	left:0px;
-	z-index:100;
-	border: none;
-        margin-bottom: 40px;
-        margin-top: 0px;
+  position:relative;
+  top:-2px;
+  left:0px;
+  z-index:100;
+  border: none;
+  margin-bottom: 40px;
+  margin-top: 0px;
 }
 .no-overflow {
   overflow: hidden;
 }
 .block li hr {
-border: none;
-margin: 5px;
-border-top: 1px solid rgb(229,229,229);
-border-bottom: 1px solid #fff;
+  border: none;
+  margin: 5px;
+  border-top: 1px solid rgb(229,229,229);
+  border-bottom: 1px solid #fff;
 }
 
 .helplink a img {
