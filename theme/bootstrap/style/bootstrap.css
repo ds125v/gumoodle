@@ -526,7 +526,7 @@ h6 {
 .page-header h1 {
   line-height: 1;
 }
-*/
+
 ul,
 ol {
   padding: 0;
@@ -2306,7 +2306,7 @@ table .span24 {
   *margin-right: .3em;
   line-height: 14px;
   vertical-align: text-top;
-  background-image: url("../img/glyphicons-halflings.png");
+  background-image: url([[pix:theme|bootstrap/glyphicons-halflings]]);
   background-position: 14px 14px;
   background-repeat: no-repeat;
   border: thick solid green;
@@ -2318,7 +2318,7 @@ table .span24 {
 }
 
 .icon-white {
-  background-image: url("../img/glyphicons-halflings-white.png");
+  background-image: url([[pix:theme|bootstrap/glyphicons-halflings-white]]);
 }
 
 .icon-glass {
