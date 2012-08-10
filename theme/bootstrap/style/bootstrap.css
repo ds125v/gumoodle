@@ -1004,7 +1004,6 @@ select {
 }
 .mform select:focus {
   min-width: 220px;
-  max-width: 430px;
   width: auto;
 }
 .ie8 .mform select:focus {
