@@ -872,8 +872,8 @@ textarea {
 
 
 .block input[type="text"],
-.block select {
-width: auto;
+.block select { /* themers probably want to override this depending on their block width, see simple.css */
+  width: auto;
 }
 
 #page-admin-registration-register .registration_textfield {
@@ -3013,7 +3013,6 @@ table .span24 {
           border-radius: 4px;
 }
 
-div.forumpost,
 .mod_introbox,
 .backup-section,
 div#intro,
