@@ -5846,9 +5846,6 @@ img.adv { /* hanging indentation for asterisk */
   below this line you might want to copy into your theme and override to suit your theme
 */
   
-select.menubui_addblock {
-  width: auto;
-}
 .path-mod-workshop .userplan tr.phasetasks ul {
   padding:0 0 0 1.2em;
   margin:0;
