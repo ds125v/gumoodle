@@ -1768,8 +1768,8 @@ legend + .control-group {
   *zoom: 1;
 }
 
-.fcontainer .fitem:before,
-.fcontainer .fitem:after,
+form .fitem:before,
+form .fitem:after,
 table#form tr:before,
 table#form tr:after,
 .settingsform .form-item:before,
@@ -1783,7 +1783,7 @@ div.detail-pair:after,
 }
 
 table#form tr:after,
-.fcontainer .fitem:after,
+form .fitem:after,
 .settingsform .form-item:after,
 div.detail-pair:after,
 .form-horizontal .control-group:after {
