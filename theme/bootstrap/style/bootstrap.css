@@ -3823,6 +3823,7 @@ div.redirectmessage,
 div.adminwarning,
 div.forumnodiscuss,
 div#notice p,
+div.performanceinfo.pageinfo,
 div.noticebox,
 div#helppopupbox,
 div.releasenoteslink,
@@ -3879,6 +3880,7 @@ div#helppopupbox,
 div.redirectmessage,
 body.pagelayout-report div.info,
 div.releasenoteslink,
+div.performanceinfo.pageinfo,
 .alert-info {
   color: #3a87ad;
   background-color: #d9edf7;
@@ -5243,7 +5245,7 @@ a.thumbnail:hover {
   padding: 9px;
 }
 
-span.patherror:before {content: "path error ";}
+span.patherror:before {content: "path error ";} /* should be in PHP so can be localised properly */
 
 span.ok,
 span.statusok,
@@ -5252,6 +5254,7 @@ span.patherror,
 span.warn,
 p.warn,
 div.form-warning,
+.performanceinfo.siteinfo span,
 span.editinstructions,
 span.statuswarning,
 font[color="green"],
@@ -5337,6 +5340,7 @@ p.warn,
 span.editinstructions,
 span.statuswarning,
 font[color="green"],
+.performanceinfo.siteinfo span,
 .form-warning,
 .form-overridden,
 .label {
@@ -5408,10 +5412,16 @@ font[color="green"],
   background-color: #356635;
 }
 
+.performanceinfo.siteinfo span,
 .label-info,
 .badge-info {
   background-color: #3a87ad;
 }
+.performanceinfo.siteinfo span {
+  display: inline-block;
+  margin-right: 1em;
+}
+
 
 .label-info[href],
 .badge-info[href] {
@@ -5905,6 +5915,7 @@ span.editinstructions{
      -moz-border-radius: 9px;
           border-radius: 9px;
 }
+
 .ie8 .helplink a:before {
   padding: 0px 3px 1px 2px;
   vertical-align: 15%;

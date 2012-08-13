@@ -7,10 +7,6 @@ body {
   padding: 10px;
 }
 
-footer {
-  background: #bbb;
-}
-
 header .headermain {
   font-size: 54px;
 }
@@ -175,5 +171,16 @@ select.menubui_addblock {
   color: rgb(153,153,153);
   text-transform: uppercase;
   text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5);
+}
+
+footer { /* copied from the bootstrap documentation page */
+  margin-top: 45px;
+  padding: 35px 0px 36px;
+  border-top: 1px solid rgb(229,229,229);
+}
+
+footer p {
+  margin-bottom: 0;
+  color: rgb(85,85,85);
 }
 
