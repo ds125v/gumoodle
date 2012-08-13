@@ -5221,6 +5221,9 @@ tr.discussion td.picture a,
 .forumpost .row .left {width:45px; padding:0px 5px;}
 .forumpost .picture img {margin: 0px;}
 
+div.profilepicture a:hover,
+div.left.picture a:hover,
+tr.discussion td.picture a:hover,
 a.thumbnail:hover {
   border-color: #0088cc;
   -webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
