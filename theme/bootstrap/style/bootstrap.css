@@ -5304,7 +5304,7 @@ div.felement.fstatic hr { /* in quiz used to seperate sections, currenty the hac
   margin-left: 10px;
   display: inline-block;
   position: relative;
-  top: 5px;
+  top: 3px;
 }
 
 span#id_error_introeditor\[text\].error br,
