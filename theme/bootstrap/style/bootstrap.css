@@ -932,6 +932,7 @@ input[type="color"],
 .mform .fitem .felement.fstatic { /* faking .uneditable-input */
   padding-top: 5px;
   margin-left: 20px;
+  font-weight: normal;
 }
 .fstaticitem .felement.fstatic {
   margin-top: 0px;
