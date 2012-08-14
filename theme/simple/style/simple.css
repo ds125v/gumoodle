@@ -183,11 +183,15 @@ border-left-width: 1px;
 border-radius: 3px 0px 0px 3px;
 }
 
-.initialbar {text-align: right;} 
+div.initialbar { /* bit of a hack because the title isn't targettable by css */
+  text-align: left;
+  width: 43em;
+  margin: 0px auto;
+}
 
 div.initialbar a,
 div.initialbar strong {
-padding: 0.6em;
+padding: 0.4em;
 text-decoration: none;
 line-height:38px;
 border-width: 1px 1px 1px 0px;
@@ -217,12 +221,6 @@ td.picture {padding: 0px;}
 h3.sectionname {white-space:nowrap; overflow: hidden; text-overflow: ellipsis;}
 .breadcrumb {float: none;}
 
-.block li hr {
-border: none;
-margin: 5px;
-border-top: 1px solid rgb(229,229,229);
-border-bottom: 1px solid #fff;
-}
 .clearfix {clear: none;}
 .generalbox,
 .mod_introbox,
@@ -237,10 +235,6 @@ h2.main.help .helplink a { padding: 3px 4px;}
 
 p.treeitem {margin: 0px;}
 
-form#switchcategory select,
-#page-course-editcategory #id_parent select,
-#fitem_id_parent select
-{width:100%;}
 
 .userlist table#participants th {padding: 8px 4px;}
 
@@ -314,7 +308,6 @@ display: inline;
 div.navbutton {float:none;}
 
 table.userplan {border: none !important;}
-object#resourceobject {
-  width:100% !important;
-  min-height: 600px !important;
-}
+
+
+.single-section .section-navigation .mdl-align {clear: both;}

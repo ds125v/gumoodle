@@ -2,4 +2,9 @@
 
 $THEME->name = 'bootstrap';
 $THEME->parents = array('base');
-$THEME->sheets = array('bootstrap');
+$THEME->parents_exclude_sheets = array( 
+'base'=>array( 
+'core' 
+) 
+);
+$THEME->sheets = array('bootstrap','core');
