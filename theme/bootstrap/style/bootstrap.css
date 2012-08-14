@@ -746,6 +746,7 @@ fieldset {
 
 #adminsettings h3.main,
 .backup-section h2.header,
+.backup-restore .backup-section .backup-sub-section h3.subheader,
 legend {
   display: block;
   width: 100%;
@@ -757,6 +758,16 @@ legend {
   border: 0;
   border-bottom: 1px solid #e5e5e5;
 }
+.backup-restore .backup-section .backup-sub-section h3.subheader {
+  background: transparent;
+  text-align: left;
+}
+.backup-restore .backup-section .backup-sub-section {
+  margin: 0;
+  border: 0;
+  background: none;
+}
+
 .mform legend {
   margin-bottom: 0px;
 }
@@ -843,7 +854,8 @@ input[type="color"],
   height: auto;
   min-height: 18px;
 }
-
+ 
+#page-question-type-pmatch .fstatic, /* horrible hack! */
 .fcontainer div.fitem:nth-child(4) .fstatic { /* some password help text that isn't marked up well */
   border: none;
 }
@@ -853,9 +865,21 @@ input[type="password"],
 textarea {
   width: 210px;
 }
-.felement.fstatic { /*not just width for long values, and help text incorrectly marked up */
+
+.backup-restore .detail-pair-value,
+.felement.fstatic { /* use min-width to allow for long values and help text incorrectly marked up */
   min-width: 210px;
 }
+.backup-restore .detail-pair-value > span.sub-detail  { 
+  display: block;
+  margin-top: 0.5em;
+  font-style: normal;
+  color: #999;
+  margin-left: 0;
+  font-size: 0.8em;
+}
+
+
 .felement.fstatic a img.userpicture {
   padding: 0px 73px;
 }
@@ -914,6 +938,7 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .felement.fstatic,
+.backup-restore .detail-pair-value, /* partially overwritten by next rule */
 .uneditable-input {
   background-color: #ffffff;
   border: 1px solid #cccccc;
@@ -928,6 +953,13 @@ input[type="color"],
       -ms-transition: border linear 0.2s, box-shadow linear 0.2s;
        -o-transition: border linear 0.2s, box-shadow linear 0.2s;
           transition: border linear 0.2s, box-shadow linear 0.2s;
+}
+.backup-restore .bcs-new-course .detail-pair-value,
+.backup-restore .bcs-current-course .detail-pair-value,
+.backup-restore .bcs-existing-course .detail-pair-value { /* can't target first page so undo above on second page*/
+  border: none;
+  background: none;
+  box-shadow: none;
 }
 .mform .fitem .felement.fstatic { /* faking .uneditable-input */
   padding-top: 5px;
@@ -1089,6 +1121,7 @@ input[type="checkbox"]:focus {
 
 .form-checkbox,
 .fcheckbox,
+.fradio,
 div.felement.fcheckbox,
 .mform fieldset .unmask,
 .fduration span,
@@ -1105,6 +1138,7 @@ form#adminsettings .form-item .form-setting .form-password .unmask,
 .form-checkbox input[type="checkbox"] ,
 .fcheckbox input[type="checkbox"] ,
 .form-multicheckbox input[type="checkbox"] ,
+.fradio input[type="radio"],
 .radio input[type="radio"],
 .unmask input[type="checkbox"],
 .fdate_time_selector span > input[type="checkbox"],
@@ -1117,6 +1151,7 @@ form#adminsettings .form-item .form-setting .form-password .unmask,
 
 
 .fcheckbox,
+.fradio,
 div.felement.fcheckbox,
 .form-checkbox,
 .form-multicheckbox,
@@ -1474,6 +1509,7 @@ table#form td.submit,
 .formsettingheading,
 #adminsettings .form-item .form-label .form-shortname,
 .fcontainer div.fitem:nth-child(4) .fstatic, /* horrible hack! */
+#page-question-type-pmatch .fstatic, /* horrible hack! */
 .help-block,
 .help-inline {
   color: #555555;
@@ -1845,6 +1881,9 @@ form#login .rememberpass label {
   width: auto;
 }
 
+.backup-restore .detail-pair-value span + span {
+  display: inline;
+}
 .backup-restore .detail-pair-value {
   margin-left: 20px;
 }
@@ -1861,6 +1900,7 @@ form#login .rememberpass label {
   margin-bottom: 0px;
   white-space: normal;
 }
+#page-question-type-pmatch .fstatic, /* horrible hack! */
 .fcontainer div.fitem:nth-child(4) .fstatic { /* horrible hack! */
   margin-top: -9px;
   margin-bottom: 0px;
@@ -1997,6 +2037,8 @@ table#listdirectories td,
 .environmenttable td,
 .category_subcategories th,
 .category_subcategories td,
+.rcs-results th,
+.rcs-results td,
 .table-condensed th,
 .table-condensed td {
   padding: 4px 5px;
@@ -2063,6 +2105,8 @@ border: none;
 padding: 0px;
 background: none;
 }
+table#participants tbody tr:nth-child(odd) th, /* header row in tbody */
+table#participants tbody tr:nth-child(odd) td, /* header row in tbody */
 .user-enroller-panel .uep-search-results .users .user:nth-child(even) {
   background: white;
 }
@@ -2089,6 +2133,7 @@ table#defineroletable tbody tr:nth-child(odd) th,
 .forumheaderlist tbody tr:nth-child(odd) th,
 .generaltable tbody tr:nth-child(odd) td,
 .generaltable tbody tr:nth-child(odd) th,
+table#participants tbody tr:nth-child(even) td, /* header row in tbody */
 .table-striped tbody tr:nth-child(odd) td,
 .table-striped tbody tr:nth-child(odd) th {
   background-color: #f9f9f9;
@@ -2108,48 +2153,7 @@ table.grading-report tbody tr:hover th,
 }
 
 table td.cell p:last-child { margin-bottom: 0px; }
-/* tables that aren't tables */
 
-#page-mod-forumsearch table#form, /* should be switched to use a standard forms format */
-table.groupmanagementtable td {
-padding: 0;
-}
-
-.path-admin .roleassigntable td#buttonscell,
-.path-admin .roleassigntable td#existingcell,
-.path-admin .roleassigntable td#potentialcell,
-.groupmanagementtable td#buttonscell,
-.groupmanagementtable td#existingcell,
-.groupmanagementtable td#potentialcell,
-td#buttonscell,
-td#existingcell,
-td#potentialcell {
-  background: none;
-  border-top: none;
-  width: auto;
-}
-td#buttonscell {
-  padding-top: 8em;
-  text-align: center;
-  max-width: 16em;
-}
-.groupmanagementtable td#buttonscell input,
-td#buttonscell input {
-  width: 90%;
-  margin-bottom: 9px;
-}
-td#potentialcell {
-  min-width: 250px;
-}
-#userselector_options p {
-    margin: 0px;
-    white-space: nowrap;
-}
-
-.path-admin .roleassigntable #buttonscell #addcontrols {
-margin-top: 0;
-height: auto;
-}
 
 table .span1 {
   float: none;
@@ -5270,6 +5274,7 @@ font[color="green"],
   vertical-align: baseline;
   background-color: #999999;
 }
+
 
 p.warn {
   display: inline-block;

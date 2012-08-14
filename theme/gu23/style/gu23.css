@@ -298,7 +298,11 @@ table#participants {margin: 1em auto;}
 .categorybox {padding-left: 1em;}
 
 
-#dndupload-status {left:540px;background:#eef; margin: 0px;margin-left:-20%;}
+#dndupload-status {
+  width: 400px;
+  background: #eef;
+  margin: auto;
+}
  
 
 .category-4 #page-content .content-header {background-color: rgb(59,110,143);}
