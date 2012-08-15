@@ -2105,8 +2105,6 @@ border: none;
 padding: 0px;
 background: none;
 }
-table#participants tbody tr:nth-child(odd) th, /* header row in tbody */
-table#participants tbody tr:nth-child(odd) td, /* header row in tbody */
 .user-enroller-panel .uep-search-results .users .user:nth-child(even) {
   background: white;
 }
@@ -2133,7 +2131,6 @@ table#defineroletable tbody tr:nth-child(odd) th,
 .forumheaderlist tbody tr:nth-child(odd) th,
 .generaltable tbody tr:nth-child(odd) td,
 .generaltable tbody tr:nth-child(odd) th,
-table#participants tbody tr:nth-child(even) td, /* header row in tbody */
 .table-striped tbody tr:nth-child(odd) td,
 .table-striped tbody tr:nth-child(odd) th {
   background-color: #f9f9f9;
