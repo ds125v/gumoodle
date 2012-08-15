@@ -13,102 +13,175 @@ body {font: serif;}
 
 
 
-#page {min-width:960px; max-width: 1150px;  margin:auto; overflow: hidden}
+#page {
+  min-width:960px;
+  max-width: 1150px;
+  margin:auto;
+  overflow: hidden
+}
  
 #blocks1 {
-    width:200px;
-    margin-left: -200px;
+  width:210px;
+  margin-left: -210px;
 }
  
 #blocks2 {
-    width:200px;
-    margin-right: -200px;
+  width:210px;
+  margin-right: -210px;
 }
  
 #layout {
-    padding: 0px 200px; 
-    overflow: hidden;
+  padding: 0px 210px; 
+  overflow: hidden;
 }
+
 .blocks1-only #layout {
-padding: 0px 0px 0px 200px;
+  padding: 0px 0px 0px 210px;
 }
+
 .blocks2-only #layout {
-padding: 0px 200px 0px 0px;
+  padding: 0px 210px 0px 0px;
 }
+
 .no-blocks #layout {
-padding: 0px;
+  padding: 0px;
 }
+
 #main {
-    width:100%;
+  width:100%;
 }
-#main .region-content {font-size: 100%; line-height: 1.7em;}
+
+#main .region-content {
+  font-size: 100%;
+  line-height: 1.7em;
+}
 
 .icon,
-.iconsmall {padding-left: 3px; padding-right: 3px;}
+.iconsmall {
+  padding-left: 3px;
+  padding-right: 3px;
+}
 
 .section .commands,
 .section .editing_highlight img.icon,
 .section .editing_showhide img.icon.hide,
-.section .section-handle {visibility:hidden;}
+.section .section-handle {
+  visibility:hidden;
+}
 .section:hover .commands,
 .section:hover .editing_highlight img.icon,
 .section:hover .editing_showhide img.icon.hide,
-.section:hover .section-handle {visibility:visible;}
+.section:hover .section-handle {
+  visibility:visible;
+}
 
-#changenumsections {text-align: center;}
+#changenumsections {
+  text-align: center;
+}
 
 .jsenabled .course-content ul.topics li.section div.right img.icon.up,
 .jsenabled .course-content ul.topics li.section div.right img.icon.down,
 .jsenabled .course-content ul.weeks li.section div.right img.icon.up, 
 .jsenabled .course-content ul.weeks li.section div.right img.icon.down {
-display: none;
+  display: none;
 }
 
-.block li a { padding: 0px;}
-.block li img.smallicon {display: none;}
-.block li img.icon {display: none;}
-.block_settings .block_tree .tree_item {padding-left: 0px;}
-.block_navigation .block_tree .tree_item {padding-left: 0px;}
-.jsenabled .block_settings .block_tree .collapsed .tree_item.branch { background: none;}
-.jsenabled .block_navigation .block_tree .collapsed .tree_item.branch { background: none;}
-.block_navigation .block_tree .tree_item.branch { background: none;}
-.block_settings .block_tree .tree_item.branch { background: none;}
-.jsenabled .block_navigation .block_tree .tree_item.emptybranch { background: none;}
- .block_tree .tree_item:before { content: "▼ "; color: gray;}
-.block_tree .collapsed  .tree_item:before { content: "► "; color: gray;}
-.block_tree .collapsed  .tree_item.emptybranch:before { content: "► "; color: #ccc;}
-.block_tree .tree_item.leaf:before,
-.tree_item.navigation_node:before { content: ""; cursor: normal;}
-/*.block_navigation .block_tree li.contains_branch > p.tree_item:before { content: "► "; color: gray;}
-.block_navigation .block_tree li.contains_branch > p.tree_item.emptybranch:before { content: "► "; color: yellow;} */
-.block_tree li.item_with_icon.contains_branch .tree_item { padding-left: 10px;}
-#dndupload-status {width:40%; left:30%; margin:auto; padding:6px; border:1px solid #ddd;text-align:center;background:#eee; position:absolute; z-index:9999;box-shadow:2px 2px 5px 1px #ccc;border-radius:0px 0px 8px 8px;}
+.block li a {
+  padding: 0px;
+}
+.block li img.smallicon,
+.block li img.icon {
+  display: none;
+}
+.block_settings .block_tree .tree_item,
+.block_navigation .block_tree .tree_item {
+  padding-left: 0px;
+}
+.jsenabled .block_settings .block_tree .collapsed .tree_item.branch,
+.jsenabled .block_navigation .block_tree .collapsed .tree_item.branch,
+.block_navigation .block_tree .tree_item.branch,
+.block_settings .block_tree .tree_item.branch,
+.jsenabled .block_navigation .block_tree .tree_item.emptybranch {
+  background: none;
+}
+.block_tree .tree_item a:before,
+.block_tree .tree_item span:before {
+  content: "▼ ";
+  color: gray;
+}
+.block_tree .collapsed  .tree_item a:before,
+.block_tree .collapsed  .tree_item span:before {
+  content: "► ";
+  color: gray;
+}
+.block_tree .collapsed  .tree_item.emptybranch a:before,
+.block_tree .collapsed  .tree_item.emptybranch span:before {
+  content: "► ";
+  color: #ccc;
+}
+.block_tree .tree_item.leaf a:before,
+.block_tree .tree_item.leaf span:before,
+.tree_item.navigation_node a:before,
+.tree_item.navigation_node span:before {
+  content: "";
+  cursor: normal;
+}
+.block_tree li.item_with_icon.contains_branch .tree_item {
+  padding-left: 10px;
+}
+
+#dndupload-status {
+  width: 40%;
+  left: 30%;
+  margin: auto;
+  padding: 6px;
+  border:1px solid #ddd;
+  text-align:center;background:#eee;
+  position:absolute;
+  z-index:9999;box-shadow:2px 2px 5px 1px #ccc;
+  border-radius:0px 0px 8px 8px;
+}
 .dndupload-preview {color:#909090;border:1px dashed #909090;}
 .dndupload-progress-outer {width:70px;border:solid black 1px;height:10px;display:inline-block;margin:0;padding:0;overflow:hidden;position:relative;}
 .dndupload-progress-inner {width:0%;height:100%;background-color:green;display:inline-block;margin:0;padding:0;float:left;}
 .dndupload-hidden {display:none;}
 
-.region-content {padding-left: 10px; padding-right: 10px;}
+#blocks1 .region-content {
+  padding-right: 10px;
+}
+#blocks2 .region-content {
+  padding-left: 10px;
+}
 li.activity a:visited,
 li.activity a,
 div.region-content a:visited,
 div.region-content a,
 div.content a:visited,
 div.content a,
-.breadcrumb a {color: rgb(0,136,204);}
+.breadcrumb a {
+  color: rgb(0,136,204);
+}
 div.region-content a.nolink,
-div.content a:visited.nolink {color: rgb(51,51,51);}
+div.content a:visited.nolink {
+  color: rgb(51,51,51);
+}
 
-ul.section { padding: 4px 0px; }
+ul.section {
+  padding: 4px 0px;
+}
 
-.course-content .section li.activity {padding: 2px;}
+.course-content .section li.activity {
+  padding: 2px;
+}
 
 li.section .content {
-padding: 5px;
+  padding: 5px;
 }
-li.section .content h2 { margin-top: 0px;}
+li.section .content h2 {
+  margin-top: 0px;
+}
 li.section.hidden {
-opacity: 0.6;
+  opacity: 0.6;
 }
 li.section.hidden h3.sectionname {
 color: #999;
@@ -123,11 +196,11 @@ background-color: transparent;
 a {text-decoration: none;}
 
 .tabtree {
-border-bottom: 1px solid #ddd;
-padding-left: 50px;
+  border-bottom: 1px solid #ddd;
+  padding-left: 50px;
 }
 .tabtree ul.tabrow0 {
-margin: 0px;
+  margin: 0px;
 }
 .tabtree:after,
 .tabtree:before,
@@ -142,41 +215,42 @@ margin: 0px;
 }
 
 .tabtree ul li {
-display:block;
-float:left;
-margin-bottom: -1px;
+  display:block;
+  float:left;
+  margin-bottom: -1px;
 }
 .tabtree ul li.selected a, 
 .tabtree ul li.selected a:hover {
-color: #555;
-background-color: #fff;
-border-color: #ddd;
-border-bottom-color: transparent;
+  color: #555;
+  background-color: #fff;
+  border-color: #ddd;
+  border-bottom-color: transparent;
 }
 .tabtree ul li a:hover {
-border-color: #eee #eee #ddd;
-background-color: #eee;
+  border-color: #eee #eee #ddd;
+  background-color: #eee;
 }
 .tabtree ul li a {
-display: block;
-padding-top: 8px;
-padding-bottom: 8px;
-border: 1px solid transparent;
-border-radius: 4px 4px 0px 0px;
-padding-right: 12px;
-padding-left: 12px;
-margin-right: 2px;
+  display: block;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border: 1px solid transparent;
+  border-radius: 4px 4px 0px 0px;
+  padding-right: 12px;
+  padding-left: 12px;
+  margin-right: 2px;
 }
 .tabtree ul li a,
 .tabtree ul li a:hover,
 .tabtree ul li a.selected,
-.tabtree ul li a.selected:hover
-{
-text-decoration: none;
+.tabtree ul li a.selected:hover {
+  text-decoration: none;
 }
 
 div.buttons,
-div.paging {text-align: center;}
+div.paging {
+  text-align: center;
+}
 
 div.paging:first-child a {
 border-left-width: 1px;
@@ -218,50 +292,89 @@ border-radius: 3px 0px 0px 3px;}
 .fitemtitle.label {margin:8px;}
 td.picture {padding: 0px;}
 
-h3.sectionname {white-space:nowrap; overflow: hidden; text-overflow: ellipsis;}
-.breadcrumb {float: none;}
+h3.sectionname {
+  white-space:nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.breadcrumb {
+  float: none;
+}
 
-.clearfix {clear: none;}
+.clearfix {
+  clear: none;
+}
 .generalbox,
 .mod_introbox,
 .forumpost,
 .path-calendar .maincalendar .eventlist .event,
-.path-mod-forum table.forumheaderlist {border: none;}
+.path-mod-forum table.forumheaderlist {
+  border: none;
+}
 
 #newdiscussionform div {
-text-align: center;
+  text-align: center;
 }
-h2.main.help .helplink a { padding: 3px 4px;}
+h2.main.help .helplink a {
+  padding: 3px 4px;
+}
 
 p.treeitem {margin: 0px;}
 
 
-.userlist table#participants th {padding: 8px 4px;}
+.userlist table#participants th {
+  padding: 8px 4px;
+}
 
 table#explaincaps td.header strong,
-table#defineroletable td.header strong,
- {margin-left: -2em;}
-div.rolesform {width:220px; margin:auto;}
+table#defineroletable td.header strong {
+  margin-left: -2em;
+}
+div.rolesform {
+  width:220px;
+  margin:auto;
+}
 
 
 label,
 form.mform .felement label,
 .rememberpass label,
-td.mdl-right label {display: inline-block;}
+td.mdl-right label {
+  display: inline-block;
+}
 
-.mform .fstatic  { padding-top: 4px; font-weight:bold; color: #777; }
-.mform .error label {padding-top: 25px;}
+.mform .fstatic  {
+  padding-top: 4px;
+  font-weight:bold;
+  color: #777;
+}
+.mform .error label {
+  padding-top: 25px;
+}
 
 #page-mod-forum-discuss .discussioncontrols .discussioncontrol.exporttoportfolio,
-#page-mod-forum-discuss .discussioncontrols .discussioncontrol.displaymode
-{ width: 28%;}
+#page-mod-forum-discuss .discussioncontrols .discussioncontrol.displaymode {
+  width: 28%;
+}
 legend .helplink img,
-h2 .helplink img {padding: 0px 4px; vertical-align: middle;}
-.calendartable abbr {border: none;}
-.minicalendar th {text-align: center;}
-.minicalendar td {text-align: right;}
-.minicalendar td.day { padding: 2px 8px 2px 0px;}
-.category_subcategories a {display: block;}
+h2 .helplink img {
+  padding: 0px 4px;
+  vertical-align: middle;
+}
+.calendartable abbr {
+  border: none;
+}
+.minicalendar th {
+  text-align: center;
+}
+.minicalendar td {
+  text-align: right;
+}
+.minicalendar td.day {
+  padding: 2px 8px 2px 0px;
+}
+
+.category_subcategories a {
+  display: block;
+}
 
 
 #page-admin-roles-assign h2 + .box.generalbox,
@@ -275,33 +388,28 @@ div#notice,
 body.admin div.info,
 div.adminwarning,
 div.releasenoteslink,
-div.forumnodiscuss
-{
-margin-left:auto;
-margin-right:auto;
-width: 25em;
+div.forumnodiscuss {
+  margin-left:auto;
+  margin-right:auto;
+  width: 25em;
 }
 
 #page-report-loglive-index div.info,
 div.continuebutton,
 div.singlebutton,
-div.checkforupdates
- {text-align: center;}
+div.checkforupdates {
+  text-align: center;
+}
 
-.generaltable[border="1"]
-{
-border: none;
+.generaltable[border="1"] {
+  border: none;
 }
 
 .form-overridden {
-display: inline;
+  display: inline;
 }
 
-#fgroup_id_buttonar fieldset.felement.fgroup
-{ padding; 0px;}
 
-#fgroup_id_buttonar fieldset.felement.fgroup,
-.form-buttons {margin: 0px;}
 
 .form-label label {display: block;}
 #adminsettings .form-item {margin: 0px 0px 18px;}
@@ -311,3 +419,25 @@ table.userplan {border: none !important;}
 
 
 .single-section .section-navigation .mdl-align {clear: both;}
+
+div.forumpost { /* copied from .well in bootstrap.css */
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #eee;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+footer .helplink {
+  padding: 0;
+}
+footer .helplink a:before {
+  content: none;
+} 
