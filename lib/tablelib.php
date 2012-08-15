@@ -1050,6 +1050,7 @@ class flexible_table {
     function print_headers() {
         global $CFG, $OUTPUT;
 
+        echo html_writer::start_tag('thead');
         echo html_writer::start_tag('tr');
         foreach ($this->columns as $column => $index) {
 
@@ -1120,6 +1121,7 @@ class flexible_table {
         }
 
         echo html_writer::end_tag('tr');
+        echo html_writer::end_tag('thead');
     }
 
     /**
