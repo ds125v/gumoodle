@@ -28,6 +28,32 @@ footer .homelink a {
 #page {margin-left: 20px; padding-right: 20px; padding-bottom: 5em; width:100%;}
 #page-content {margin-top:25px ; padding-bottom: 3em;}
 
+#blocks1 {
+  width: 200px;
+  margin-left: -200px;
+}
+ 
+#blocks2 {
+  width: 200px;
+  margin-right: -200px;
+}
+ 
+#layout {
+  padding: 0px 200px; 
+  overflow: hidden;
+}
+
+.blocks1-only #layout {
+  padding: 0px 8px 0px 200px;
+}
+
+.blocks2-only #layout {
+  padding: 0px 200px 0px 8px;
+}
+.no-blocks #layout {
+  padding: 0px 8px;
+}
+
 header {padding: 30px 25px 0 25px; background: #005288 url(http://www.gla.ac.uk/0t4/generic/images/pageheader.gif) no-repeat bottom right; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);}
 
 
@@ -202,9 +228,11 @@ color: #eee; background-color: #666; border-radius: 5px 5px 0px 0px;
 .course-content ul.topics li.section .content,
 .course-content ul.weeks li.section .content {margin: 0 20px;}
 
-div.navbar {padding: 0px 10px 3px;}
+div.navbar {padding: 0px 0px 3px;}
 .path-my div.navbar, 
-.path-course-view div.navbar {padding: 0px 30px;}
+div.sitetopic,
+#page-site-index .headingblock,
+.path-course-view div.navbar {padding: 0px 20px;}
 .path-login div.navbar {padding: 0px 220px;}
 .pagelayout-login div.navbar {padding: 0px 220px;}
 
@@ -270,7 +298,11 @@ table#participants {margin: 1em auto;}
 .categorybox {padding-left: 1em;}
 
 
-#dndupload-status {left:540px;background:#eef; margin: 0px;margin-left:-20%;}
+#dndupload-status {
+  width: 400px;
+  background: #eef;
+  margin: auto;
+}
  
 
 .category-4 #page-content .content-header {background-color: rgb(59,110,143);}

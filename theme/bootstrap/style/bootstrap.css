@@ -526,7 +526,7 @@ h6 {
 .page-header h1 {
   line-height: 1;
 }
-*/
+
 ul,
 ol {
   padding: 0;
@@ -737,6 +737,7 @@ td.cell form { /* some tables have a form in each cell, extra padding not needed
 }
 
 .mform fieldset,
+#adminsettings fieldset, /* overrides admin css */
 fieldset {
   padding: 0;
   margin: 0;
@@ -745,6 +746,7 @@ fieldset {
 
 #adminsettings h3.main,
 .backup-section h2.header,
+.backup-restore .backup-section .backup-sub-section h3.subheader,
 legend {
   display: block;
   width: 100%;
@@ -756,6 +758,16 @@ legend {
   border: 0;
   border-bottom: 1px solid #e5e5e5;
 }
+.backup-restore .backup-section .backup-sub-section h3.subheader {
+  background: transparent;
+  text-align: left;
+}
+.backup-restore .backup-section .backup-sub-section {
+  margin: 0;
+  border: 0;
+  background: none;
+}
+
 .mform legend {
   margin-bottom: 0px;
 }
@@ -780,7 +792,6 @@ legend small {
   color: #999999;
 }
 
-.mform .fitem {width:auto;}
 label,
 .backup-restore label.detail-pair-label
 input,
@@ -839,11 +850,12 @@ input[type="color"],
   line-height: 18px;
   color: #555555;
 }
-.felement.fstatic { /* for user image on profile page */
+.felement.fstatic { /* allow to expand for user image on edit profile page */
   height: auto;
   min-height: 18px;
 }
-
+ 
+#page-question-type-pmatch .fstatic, /* horrible hack! */
 .fcontainer div.fitem:nth-child(4) .fstatic { /* some password help text that isn't marked up well */
   border: none;
 }
@@ -853,9 +865,21 @@ input[type="password"],
 textarea {
   width: 210px;
 }
-.felement.fstatic { /*not just width for long values, and help text incorrectly marked up */
+
+.backup-restore .detail-pair-value,
+.felement.fstatic { /* use min-width to allow for long values and help text incorrectly marked up */
   min-width: 210px;
 }
+.backup-restore .detail-pair-value > span.sub-detail  { 
+  display: block;
+  margin-top: 0.5em;
+  font-style: normal;
+  color: #999;
+  margin-left: 0;
+  font-size: 0.8em;
+}
+
+
 .felement.fstatic a img.userpicture {
   padding: 0px 73px;
 }
@@ -872,8 +896,8 @@ textarea {
 
 
 .block input[type="text"],
-.block select {
-width: auto;
+.block select { /* themers probably want to override this depending on their block width, see simple.css */
+  width: auto;
 }
 
 #page-admin-registration-register .registration_textfield {
@@ -914,6 +938,7 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .felement.fstatic,
+.backup-restore .detail-pair-value, /* partially overwritten by next rule */
 .uneditable-input {
   background-color: #ffffff;
   border: 1px solid #cccccc;
@@ -929,9 +954,17 @@ input[type="color"],
        -o-transition: border linear 0.2s, box-shadow linear 0.2s;
           transition: border linear 0.2s, box-shadow linear 0.2s;
 }
-.mform .fitem .felement.fstatic {
+.backup-restore .bcs-new-course .detail-pair-value,
+.backup-restore .bcs-current-course .detail-pair-value,
+.backup-restore .bcs-existing-course .detail-pair-value { /* can't target first page so undo above on second page*/
+  border: none;
+  background: none;
+  box-shadow: none;
+}
+.mform .fitem .felement.fstatic { /* faking .uneditable-input */
   padding-top: 5px;
   margin-left: 20px;
+  font-weight: normal;
 }
 .fstaticitem .felement.fstatic {
   margin-top: 0px;
@@ -1004,7 +1037,6 @@ select {
 }
 .mform select:focus {
   min-width: 220px;
-  max-width: 430px;
   width: auto;
 }
 .ie8 .mform select:focus {
@@ -1089,6 +1121,7 @@ input[type="checkbox"]:focus {
 
 .form-checkbox,
 .fcheckbox,
+.fradio,
 div.felement.fcheckbox,
 .mform fieldset .unmask,
 .fduration span,
@@ -1105,6 +1138,7 @@ form#adminsettings .form-item .form-setting .form-password .unmask,
 .form-checkbox input[type="checkbox"] ,
 .fcheckbox input[type="checkbox"] ,
 .form-multicheckbox input[type="checkbox"] ,
+.fradio input[type="radio"],
 .radio input[type="radio"],
 .unmask input[type="checkbox"],
 .fdate_time_selector span > input[type="checkbox"],
@@ -1117,6 +1151,7 @@ form#adminsettings .form-item .form-setting .form-password .unmask,
 
 
 .fcheckbox,
+.fradio,
 div.felement.fcheckbox,
 .form-checkbox,
 .form-multicheckbox,
@@ -1410,8 +1445,9 @@ select:focus:required:invalid:focus {
           box-shadow: 0 0 6px #f8b9b7;
 }
 
-#fgroup_id_buttonar fieldset,
+#fgroup_id_buttonar,
 #fitem_id_submitbutton,
+table#form td.submit,
 .form-buttons,
 .form-actions {
   padding: 17px 20px 18px;
@@ -1421,11 +1457,15 @@ select:focus:required:invalid:focus {
   border-top: 1px solid #e5e5e5;
   *zoom: 1;
 }
-#fitem_id_submitbutton {
+#fgroup_id_buttonar,
+#fitem_id_submitbutton { /* buttons in bootstrap aren't part of the fitem felement grid, which they are in Moodle (sometimes!) */
   padding-left: 0px;
 }
 
-.mform div.fdescription.required {text-align: left; margin-left: 200px;}
+.mform div.fdescription.required {
+  text-align: left;
+  margin-left: 200px;
+}
 
 #fgroup_id_buttonar:before,
 #fgroup_id_buttonar:after,
@@ -1469,6 +1509,7 @@ select:focus:required:invalid:focus {
 .formsettingheading,
 #adminsettings .form-item .form-label .form-shortname,
 .fcontainer div.fitem:nth-child(4) .fstatic, /* horrible hack! */
+#page-question-type-pmatch .fstatic, /* horrible hack! */
 .help-block,
 .help-inline {
   color: #555555;
@@ -1758,15 +1799,14 @@ legend + .control-group {
 .mform .fcontainer {padding-top: 27px;}
 .mform .advancedbutton {float:right; position: relative; top: 27px; margin-bottom: -27px; min-height: 27px;}
 
-.mform .fitem { margin-top: 0px;}
 
 .form-horizontal .control-group {
   margin-bottom: 18px;
   *zoom: 1;
 }
 
-.fcontainer .fitem:before,
-.fcontainer .fitem:after,
+form .fitem:before,
+form .fitem:after,
 table#form tr:before,
 table#form tr:after,
 .settingsform .form-item:before,
@@ -1780,7 +1820,7 @@ div.detail-pair:after,
 }
 
 table#form tr:after,
-.fcontainer .fitem:after,
+form .fitem:after,
 .settingsform .form-item:after,
 div.detail-pair:after,
 .form-horizontal .control-group:after {
@@ -1801,8 +1841,13 @@ form#login .form-label,
   padding-top: 5px;
   text-align: right;
 }
-table#form td {padding: 0px; display:block}
-table#form td label {margin-bottom: 0px;}
+table#form td {
+  padding: 0px;
+  display:block
+}
+table#form td label {
+  margin-bottom: 0px;
+}
 
 
 
@@ -1810,24 +1855,14 @@ div.fitemtitle span.helplink {
   margin-right: -22px; /* shift help icon into middle gutter */
 }
 
-form#login .form-label {width: 44%;}
-form#login .rememberpass label {display: inline-block;}
-.mform label{ display:block;}
-
-
-.mform .fitem fieldset.felement {
-width:auto;
-padding-left: 0px;
+form#login .form-label {
+  width: 44%;
 }
-.mform fieldset div {
-  margin: 0px;
-  padding: 0px;
+form#login .rememberpass label {
+  display: inline-block;
 }
-
-
-#adminsettings fieldset { /* balances with submit button */
-  margin: 0px;
-  padding: 0px;
+.mform label{
+  display:block;
 }
 
 .mform .fitem fieldset.felement,
@@ -1845,6 +1880,10 @@ padding-left: 0px;
   *margin-left: 0;
   width: auto;
 }
+
+.backup-restore .detail-pair-value span + span {
+  display: inline;
+}
 .backup-restore .detail-pair-value {
   margin-left: 20px;
 }
@@ -1861,6 +1900,7 @@ padding-left: 0px;
   margin-bottom: 0px;
   white-space: normal;
 }
+#page-question-type-pmatch .fstatic, /* horrible hack! */
 .fcontainer div.fitem:nth-child(4) .fstatic { /* horrible hack! */
   margin-top: -9px;
   margin-bottom: 0px;
@@ -1872,14 +1912,10 @@ padding-left: 0px;
 
 table#form td.submit,
 .settingsform .form-buttons,
-#fgroup_id_buttonar fieldset,
+#group_id_buttonar,
 .form-horizontal .form-actions {
   padding-left: 200px;
 }
-#fgroup_id_buttonar fieldset { /*no matching fitemtitle */
-margin-left: 0px;
-}
-#fgroup_id_buttonar .fitemtitle {width: 0px;}
 
 table {
   max-width: 100%;
@@ -1893,6 +1929,7 @@ table#defineroletable,
 table.grading-report,
 table#listdirectories,
 table.rolecaps,
+table#form,
 #page-report-log-user .generaltable,
 .forumheaderlist,
 .generaltable,
@@ -2000,6 +2037,8 @@ table#listdirectories td,
 .environmenttable td,
 .category_subcategories th,
 .category_subcategories td,
+.rcs-results th,
+.rcs-results td,
 .table-condensed th,
 .table-condensed td {
   padding: 4px 5px;
@@ -2066,6 +2105,8 @@ border: none;
 padding: 0px;
 background: none;
 }
+table#participants tbody tr:nth-child(odd) th, /* header row in tbody */
+table#participants tbody tr:nth-child(odd) td, /* header row in tbody */
 .user-enroller-panel .uep-search-results .users .user:nth-child(even) {
   background: white;
 }
@@ -2092,6 +2133,7 @@ table#defineroletable tbody tr:nth-child(odd) th,
 .forumheaderlist tbody tr:nth-child(odd) th,
 .generaltable tbody tr:nth-child(odd) td,
 .generaltable tbody tr:nth-child(odd) th,
+table#participants tbody tr:nth-child(even) td, /* header row in tbody */
 .table-striped tbody tr:nth-child(odd) td,
 .table-striped tbody tr:nth-child(odd) th {
   background-color: #f9f9f9;
@@ -2111,48 +2153,7 @@ table.grading-report tbody tr:hover th,
 }
 
 table td.cell p:last-child { margin-bottom: 0px; }
-/* tables that aren't tables */
 
-#page-mod-forumsearch table#form, /* should be switched to use a standard forms format */
-table.groupmanagementtable td {
-padding: 0;
-}
-
-.path-admin .roleassigntable td#buttonscell,
-.path-admin .roleassigntable td#existingcell,
-.path-admin .roleassigntable td#potentialcell,
-.groupmanagementtable td#buttonscell,
-.groupmanagementtable td#existingcell,
-.groupmanagementtable td#potentialcell,
-td#buttonscell,
-td#existingcell,
-td#potentialcell {
-  background: none;
-  border-top: none;
-  width: auto;
-}
-td#buttonscell {
-  padding-top: 8em;
-  text-align: center;
-  max-width: 16em;
-}
-.groupmanagementtable td#buttonscell input,
-td#buttonscell input {
-  width: 90%;
-  margin-bottom: 9px;
-}
-td#potentialcell {
-  min-width: 250px;
-}
-#userselector_options p {
-    margin: 0px;
-    white-space: nowrap;
-}
-
-.path-admin .roleassigntable #buttonscell #addcontrols {
-margin-top: 0;
-height: auto;
-}
 
 table .span1 {
   float: none;
@@ -2306,7 +2307,7 @@ table .span24 {
   *margin-right: .3em;
   line-height: 14px;
   vertical-align: text-top;
-  background-image: url("../img/glyphicons-halflings.png");
+  background-image: url([[pix:theme|bootstrap/glyphicons-halflings]]);
   background-position: 14px 14px;
   background-repeat: no-repeat;
   border: thick solid green;
@@ -2318,7 +2319,7 @@ table .span24 {
 }
 
 .icon-white {
-  background-image: url("../img/glyphicons-halflings-white.png");
+  background-image: url([[pix:theme|bootstrap/glyphicons-halflings-white]]);
 }
 
 .icon-glass {
@@ -3013,7 +3014,6 @@ table .span24 {
           border-radius: 4px;
 }
 
-div.forumpost,
 .mod_introbox,
 .backup-section,
 div#intro,
@@ -3827,6 +3827,7 @@ div.redirectmessage,
 div.adminwarning,
 div.forumnodiscuss,
 div#notice p,
+div.performanceinfo.pageinfo,
 div.noticebox,
 div#helppopupbox,
 div.releasenoteslink,
@@ -3883,6 +3884,7 @@ div#helppopupbox,
 div.redirectmessage,
 body.pagelayout-report div.info,
 div.releasenoteslink,
+div.performanceinfo.pageinfo,
 .alert-info {
   color: #3a87ad;
   background-color: #d9edf7;
@@ -5226,6 +5228,9 @@ tr.discussion td.picture a,
 .forumpost .row .left {width:45px; padding:0px 5px;}
 .forumpost .picture img {margin: 0px;}
 
+div.profilepicture a:hover,
+div.left.picture a:hover,
+tr.discussion td.picture a:hover,
 a.thumbnail:hover {
   border-color: #0088cc;
   -webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
@@ -5244,7 +5249,7 @@ a.thumbnail:hover {
   padding: 9px;
 }
 
-span.patherror:before {content: "path error ";}
+span.patherror:before {content: "path error ";} /* should be in PHP so can be localised properly */
 
 span.ok,
 span.statusok,
@@ -5253,11 +5258,12 @@ span.patherror,
 span.warn,
 p.warn,
 div.form-warning,
+.performanceinfo.siteinfo span,
 span.editinstructions,
 span.statuswarning,
 font[color="green"],
 .form-overridden,
-.label,
+span.label, /* to avoid clash with Moodle's li.activity.label, .file-picker td.label & .userprofile th.label */
 .badge {
   font-size: 10.998px;
   font-weight: bold;
@@ -5269,19 +5275,12 @@ font[color="green"],
   background-color: #999999;
 }
 
+
 p.warn {
   display: inline-block;
   margin-left: 21px;
 }
 
-.file-picker td.label,
-.userprofile th.label { 
-  font-size: 100%;
-  line-height: 18px;
-  color: #333;
-  background: none;
-  text-shadow: none;
-}
 .mform .error
 {
   color: #ffffff;
@@ -5294,25 +5293,39 @@ input[id^="id_calcmin"],
 input[id^="id_calcmax"] {
   width: 94px;
 }
-div.felement.fstatic hr {display: none;}
-
-
-.felement.error span.error {margin-left: 10px; margin-top: 3px; vertical-align: bottom;}
-.felement.error span.error br,
-.felement.error span.error + br {display: none;}
-.felement.error select,
-.felement.error input
-{float: left;}
-span#id_error_introeditor\[text\].error {
-float: right;
+div.felement.fstatic hr { /* in quiz used to seperate sections, currenty the hacky uneditable instead, should probably fix with nth-child hack */
+  display: none;
 }
+
+.felement.error span.error { /* nudge error text down to align with form inputs */
+  margin-left: 10px;
+  display: inline-block;
+  position: relative;
+  top: 3px;
+}
+
+span#id_error_introeditor\[text\].error br,
+.felement.error span.error br,
+.felement.error span.error + br { /* these brs should be replaced with div or display:block for the span.errors */
+  display: none;
+}
+
+.felement.error select,
+.felement.error input { /* lets the error message flow to right hand side, slightly hacky */
+  float: left;
+}
+
+span#id_error_introeditor\[text\].error {
+  float: right;
+}
+
 .felement.feditor div.error { /* bit of a hack */
   width: 500px;
 }
-span#id_error_introeditor\[text\].error br {
-  display: none;
+
+.required label {
+  color: #333333;
 }
-.required label {color: #333333;}
 
 span.ok,
 span.statusok,
@@ -5324,18 +5337,14 @@ p.warn,
 span.editinstructions,
 span.statuswarning,
 font[color="green"],
+.performanceinfo.siteinfo span,
 .form-warning,
 .form-overridden,
-.label {
+span.label {/* to avoid clash with Moodle's li.activity.label, .file-picker td.label & .userprofile th.label */
   padding: 1px 4px 2px;
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
           border-radius: 3px;
-}
-
-.userprofile th.label {
-  padding: 8px;
-  border-radius: none;
 }
 
 .badge {
@@ -5395,10 +5404,16 @@ font[color="green"],
   background-color: #356635;
 }
 
+.performanceinfo.siteinfo span,
 .label-info,
 .badge-info {
   background-color: #3a87ad;
 }
+.performanceinfo.siteinfo span {
+  display: inline-block;
+  margin-right: 1em;
+}
+
 
 .label-info[href],
 .badge-info[href] {
@@ -5823,54 +5838,56 @@ div[id^="progress_pbar"],
 }
 
 img.req,
-img.adv {margin-right: -8px;} /* hanging indentation for asterisk */
-.advancedbutton img.adv { margin-right: 8px;}
+img.adv { /* hanging indentation for asterisk */
+  margin-right: -8px;
+}
+
+.advancedbutton img.adv {
+  margin-right: 8px;
+}
 /*
   below this line you might want to copy into your theme and override to suit your theme
 */
   
-select.menubui_addblock {
-  width: auto;
+.path-mod-workshop .userplan tr.phasetasks ul {
+  padding:0 0 0 1.2em;
+  margin:0;
 }
-.path-mod-workshop .userplan tr.phasetasks ul
-{ padding:0 0 0 1.2em;  margin:0;  }
 
 .path-mod-workshop .userplan tr.phasetasks li,
-.path-mod-workshop .userplan tr.phasetasks li.completed
-{
-background: none;
+.path-mod-workshop .userplan tr.phasetasks li.completed {
+  background: none;
 }
+
 .path-mod-workshop .userplan tr.phasetasks li div.title {display: inline; padding: 0px !important;}
-.path-mod-workshop .userplan tr.phasetasks li:before
-{
-content: "○ ";
-color: gray;
-display: inline;
+.path-mod-workshop .userplan tr.phasetasks li:before {
+  content: "○ ";
+  color: gray;
+  display: inline;
 }
-.path-mod-workshop .userplan tr.phasetasks li.completed:before
-{
-content: "✔ "; /* doesn't seem to show up on IE8/XP from initial install, need to check after Office installed */
-color: green;
-display: inline;
+.path-mod-workshop .userplan tr.phasetasks li.completed:before {
+  content: "✔ "; /* doesn't seem to show up on IE8/XP from initial install, need to check after Office installed */
+  color: green;
+  display: inline;
 }
 
 span.editinstructions{
-	position:relative;
-	top:-2px;
-	left:0px;
-	z-index:100;
-	border: none;
-        margin-bottom: 40px;
-        margin-top: 0px;
+  position:relative;
+  top:-2px;
+  left:0px;
+  z-index:100;
+  border: none;
+  margin-bottom: 40px;
+  margin-top: 0px;
 }
 .no-overflow {
   overflow: hidden;
 }
 .block li hr {
-border: none;
-margin: 5px;
-border-top: 1px solid rgb(229,229,229);
-border-bottom: 1px solid #fff;
+  border: none;
+  margin: 5px;
+  border-top: 1px solid rgb(229,229,229);
+  border-bottom: 1px solid #fff;
 }
 
 .helplink a img {
@@ -5890,6 +5907,7 @@ border-bottom: 1px solid #fff;
      -moz-border-radius: 9px;
           border-radius: 9px;
 }
+
 .ie8 .helplink a:before {
   padding: 0px 3px 1px 2px;
   vertical-align: 15%;
