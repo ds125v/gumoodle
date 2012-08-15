@@ -5263,7 +5263,7 @@ span.editinstructions,
 span.statuswarning,
 font[color="green"],
 .form-overridden,
-.label,
+span.label, /* to avoid clash with Moodle's li.activity.label, .file-picker td.label & .userprofile th.label */
 .badge {
   font-size: 10.998px;
   font-weight: bold;
@@ -5281,14 +5281,6 @@ p.warn {
   margin-left: 21px;
 }
 
-.file-picker td.label,
-.userprofile th.label { 
-  font-size: 100%;
-  line-height: 18px;
-  color: #333;
-  background: none;
-  text-shadow: none;
-}
 .mform .error
 {
   color: #ffffff;
@@ -5348,16 +5340,11 @@ font[color="green"],
 .performanceinfo.siteinfo span,
 .form-warning,
 .form-overridden,
-.label {
+span.label {/* to avoid clash with Moodle's li.activity.label, .file-picker td.label & .userprofile th.label */
   padding: 1px 4px 2px;
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
           border-radius: 3px;
-}
-
-.userprofile th.label {
-  padding: 8px;
-  border-radius: none;
 }
 
 .badge {
