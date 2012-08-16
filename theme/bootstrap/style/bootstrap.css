@@ -1457,6 +1457,18 @@ table#form td.submit,
   border-top: 1px solid #e5e5e5;
   *zoom: 1;
 }
+#adminsettings .form-buttons,
+.settingsform .form-buttons {
+  margin: 0px;
+}
+
+table#form td.submit,
+#adminsettings .form-buttons,
+.settingsform .form-buttons,
+#group_id_buttonar,
+.form-horizontal .form-actions {
+  padding-left: 200px;
+}
 #fgroup_id_buttonar,
 #fitem_id_submitbutton { /* buttons in bootstrap aren't part of the fitem felement grid, which they are in Moodle (sometimes!) */
   padding-left: 0px;
@@ -1908,14 +1920,6 @@ form#login .rememberpass label {
   margin-left: 200px;
 }
 
-.settingsform .form-buttons {margin: 0px;}
-
-table#form td.submit,
-.settingsform .form-buttons,
-#group_id_buttonar,
-.form-horizontal .form-actions {
-  padding-left: 200px;
-}
 
 table {
   max-width: 100%;
