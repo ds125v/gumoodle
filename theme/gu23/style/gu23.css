@@ -303,13 +303,6 @@ table#participants {margin: 1em auto;}
   background: #eef;
   margin: auto;
 }
- 
-
-.category-4 #page-content .content-header {background-color: rgb(59,110,143);}
-.category-5 #page-content .content-header {background-color: rgb(119,121,9);}
-.category-6 #page-content .content-header {background-color: rgb(0,124,133);}
-.category-7 #page-content .content-header {background-color: rgb(83,46,99);}
-
 
 input#adminsearchquery {width:110px;}
 input#searchform_search {width:140px;}
