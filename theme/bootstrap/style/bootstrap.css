@@ -552,6 +552,7 @@ li {
   line-height: 18px;
 }
 
+.form-multicheckbox ul,
 ul.unstyled,
 ol.unstyled {
   margin-left: 0;
@@ -1186,6 +1187,7 @@ div.felement.fcheckbox,
 }
 
 #adminsettings .form-item .form-label .form-shortname {
+  display: block;
   overflow: hidden;
   text-overflow: clip;
 }
@@ -1553,11 +1555,9 @@ span.cap-name,
   color: #555555;
 }
 span.cap-name,
+.form-defaultinfo,
 #adminsettings .form-item .form-label .form-shortname {
   font-size: 80%;
-}
-#adminsettings .form-item .form-setting .defaultsnext {
-  display: inline-block;
 }
 
 .mform .fpassword .unmask,
@@ -1569,6 +1569,7 @@ form#adminsettings .form-item .form-setting .form-password .unmask,
   position:relative;
   top: 3px;
 }
+
 li input[type="checkbox"] + label {
   position: relative;
   top: 2px;
@@ -1579,17 +1580,12 @@ li input[type="checkbox"] + label {
   margin-bottom: 9px;
 }
 
-.form-defaultinfo,
 .help-inline {
   display: inline-block;
   *display: inline;
   padding-left: 5px;
   vertical-align: middle;
   *zoom: 1;
-}
-
-.form-checkbox + .form-defaultinfo {
-  vertical-align: 3px;
 }
 
 .input-prepend,
@@ -1936,7 +1932,6 @@ form#login .rememberpass label {
   *padding-left: 200px;
 }
 
-.settingsform .form-description p,
 .formsettingheading,
 .form-horizontal .help-block {
   margin-top: 9px;
@@ -1998,6 +1993,8 @@ table#explaincaps td,
 .generaltable td,
 .category_subcategories th,
 .category_subcategories td,
+.editcourse th,
+.editcourse td,
 .userprofile th,
 table.list td,
 .table th,

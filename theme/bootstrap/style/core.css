@@ -1,6 +1,6 @@
 /* stuff savlaged from core.css, rest was deleted, probably more to go */
 
-td, th {border: none;} /* apparently YUI adds a border, lets take it away again */
+td, th {border: none; padding: 0;} /* apparently YUI adds a border & padding, lets take it away again */
 
 .dir-ltr,
 .mdl-left,
