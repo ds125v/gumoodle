@@ -324,28 +324,11 @@ p.treeitem {margin: 0px;}
   padding: 8px 4px;
 }
 
-table#explaincaps td.header strong,
-table#defineroletable td.header strong {
-  margin-left: -2em;
-}
 div.rolesform {
   width:220px;
   margin:auto;
 }
 
-
-label,
-form.mform .felement label,
-.rememberpass label,
-td.mdl-right label {
-  display: inline-block;
-}
-
-.mform .fstatic  {
-  padding-top: 4px;
-  font-weight:bold;
-  color: #777;
-}
 .mform .error label {
   padding-top: 25px;
 }
@@ -409,14 +392,13 @@ div.checkforupdates {
   display: inline;
 }
 
+div.navbutton {
+  float:none;
+}
 
-
-.form-label label {display: block;}
-#adminsettings .form-item {margin: 0px 0px 18px;}
-div.navbutton {float:none;}
-
-table.userplan {border: none !important;}
-
+table.userplan {
+  border: none !important;
+}
 
 .single-section .section-navigation .mdl-align {clear: both;}
 

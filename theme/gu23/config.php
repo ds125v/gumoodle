@@ -4,7 +4,7 @@ $THEME->name = 'gu23';
 $THEME->parents = array('simple','bootstrap','base');
 $THEME->parents_exclude_sheets = array(
 'base'=>array(
-'pagelayout', 'core'
+'pagelayout', 'admin', 'core'
 ),
 'simple'=>array(
 'decoration'

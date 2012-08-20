@@ -552,6 +552,7 @@ li {
   line-height: 18px;
 }
 
+.form-multicheckbox ul,
 ul.unstyled,
 ol.unstyled {
   margin-left: 0;
@@ -810,9 +811,8 @@ textarea {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-
 label {
-  display: block;
+  display: inline-block;
   margin-bottom: 5px;
 }
 
@@ -840,6 +840,7 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .backup-restore .detail-pair-value,
+#page-admin-roles-define div.mform .topfields .felement,
 .felement.fstatic,
 .uneditable-input {
   display: inline-block;
@@ -850,6 +851,7 @@ input[type="color"],
   line-height: 18px;
   color: #555555;
 }
+#page-admin-roles-define div.mform .topfields .felement,
 .felement.fstatic { /* allow to expand for user image on edit profile page */
   height: auto;
   min-height: 18px;
@@ -867,6 +869,7 @@ textarea {
 }
 
 .backup-restore .detail-pair-value,
+#page-admin-roles-define div.mform .topfields .felement,
 .felement.fstatic { /* use min-width to allow for long values and help text incorrectly marked up */
   min-width: 210px;
 }
@@ -938,6 +941,7 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .felement.fstatic,
+#page-admin-roles-define div.mform .topfields .felement,
 .backup-restore .detail-pair-value, /* partially overwritten by next rule */
 .uneditable-input {
   background-color: #ffffff;
@@ -961,11 +965,14 @@ input[type="color"],
   background: none;
   box-shadow: none;
 }
+
+#page-admin-roles-define div.mform .topfields .felement,
 .mform .fitem .felement.fstatic { /* faking .uneditable-input */
   padding-top: 5px;
   margin-left: 20px;
   font-weight: normal;
 }
+#page-admin-roles-define div.mform .topfields .felement,
 .fstaticitem .felement.fstatic {
   margin-top: 0px;
 }
@@ -1123,6 +1130,10 @@ input[type="checkbox"]:focus {
 .fcheckbox,
 .fradio,
 div.felement.fcheckbox,
+#defineroletable td.inherit label,
+#defineroletable td.allow label,
+#defineroletable td.prevent label,
+#defineroletable td.prohibit label,
 .mform fieldset .unmask,
 .fduration span,
 .fgroup span,
@@ -1135,9 +1146,17 @@ form#adminsettings .form-item .form-setting .form-password .unmask,
   padding-left: 18px;
 }
 
-.form-checkbox input[type="checkbox"] ,
-.fcheckbox input[type="checkbox"] ,
-.form-multicheckbox input[type="checkbox"] ,
+#defineroletable td.inherit label input[type="checkbox"],
+#defineroletable td.inherit label input[type="radio"],
+#defineroletable td.allow label input[type="checkbox"],
+#defineroletable td.allow label input[type="radio"],
+#defineroletable td.prevent label input[type="checkbox"],
+#defineroletable td.prevent label input[type="radio"],
+#defineroletable td.prohibit label input[type="checkbox"],
+#defineroletable td.prohibit label input[type="radio"],
+.form-checkbox input[type="checkbox"],
+.fcheckbox input[type="checkbox"],
+.form-multicheckbox input[type="checkbox"],
 .fradio input[type="radio"],
 .radio input[type="radio"],
 .unmask input[type="checkbox"],
@@ -1160,7 +1179,15 @@ div.felement.fcheckbox,
   padding-top: 5px;
 }
 
+
+.path-admin .rolecap span.cap-name {
+  float: right;
+  display: inline;
+  padding: 0;
+}
+
 #adminsettings .form-item .form-label .form-shortname {
+  display: block;
   overflow: hidden;
   text-overflow: clip;
 }
@@ -1457,6 +1484,18 @@ table#form td.submit,
   border-top: 1px solid #e5e5e5;
   *zoom: 1;
 }
+#adminsettings .form-buttons,
+.settingsform .form-buttons {
+  margin: 0px;
+}
+
+table#form td.submit,
+#adminsettings .form-buttons,
+.settingsform .form-buttons,
+#group_id_buttonar,
+.form-horizontal .form-actions {
+  padding-left: 200px;
+}
 #fgroup_id_buttonar,
 #fitem_id_submitbutton { /* buttons in bootstrap aren't part of the fitem felement grid, which they are in Moodle (sometimes!) */
   padding-left: 0px;
@@ -1507,6 +1546,7 @@ table#form td.submit,
 .form-defaultinfo,
 .form-description,
 .formsettingheading,
+span.cap-name,
 #adminsettings .form-item .form-label .form-shortname,
 .fcontainer div.fitem:nth-child(4) .fstatic, /* horrible hack! */
 #page-question-type-pmatch .fstatic, /* horrible hack! */
@@ -1514,8 +1554,15 @@ table#form td.submit,
 .help-inline {
   color: #555555;
 }
-#adminsettings .form-item .form-label .form-shortname {font-size: 80%;}
-#adminsettings .form-item .form-setting .defaultsnext {display: inline-block;}
+
+.form-description p:last-child {
+  margin-bottom: 0;
+}
+span.cap-name,
+.form-defaultinfo,
+#adminsettings .form-item .form-label .form-shortname {
+  font-size: 80%;
+}
 
 .mform .fpassword .unmask,
 form#adminsettings .form-item .form-setting .form-password .unmask,
@@ -1526,27 +1573,18 @@ form#adminsettings .form-item .form-setting .form-password .unmask,
   position:relative;
   top: 3px;
 }
-li input[type="checkbox"] + label {
-  position: relative;
-  top: 2px;
-}
 
 .help-block {
   display: block;
   margin-bottom: 9px;
 }
 
-.form-defaultinfo,
 .help-inline {
   display: inline-block;
   *display: inline;
   padding-left: 5px;
   vertical-align: middle;
   *zoom: 1;
-}
-
-.form-checkbox + .form-defaultinfo {
-  vertical-align: 3px;
 }
 
 .input-prepend,
@@ -1850,7 +1888,6 @@ table#form td label {
 }
 
 
-
 div.fitemtitle span.helplink {
   margin-right: -22px; /* shift help icon into middle gutter */
 }
@@ -1861,8 +1898,10 @@ form#login .form-label {
 form#login .rememberpass label {
   display: inline-block;
 }
-.mform label{
-  display:block;
+
+.form-label label,
+.mform .fitemtitle label{
+  display: block;
 }
 
 .mform .fitem fieldset.felement,
@@ -1893,7 +1932,6 @@ form#login .rememberpass label {
   *padding-left: 200px;
 }
 
-.settingsform .form-description p,
 .formsettingheading,
 .form-horizontal .help-block {
   margin-top: 9px;
@@ -1908,14 +1946,6 @@ form#login .rememberpass label {
   margin-left: 200px;
 }
 
-.settingsform .form-buttons {margin: 0px;}
-
-table#form td.submit,
-.settingsform .form-buttons,
-#group_id_buttonar,
-.form-horizontal .form-actions {
-  padding-left: 200px;
-}
 
 table {
   max-width: 100%;
@@ -1963,6 +1993,8 @@ table#explaincaps td,
 .generaltable td,
 .category_subcategories th,
 .category_subcategories td,
+.editcourse th,
+.editcourse td,
 .userprofile th,
 table.list td,
 .table th,
@@ -1997,15 +2029,12 @@ table thead th,
 
 table.userenrolment thead:first-child tr:first-child th,
 table.grading-report thead:first-child tr:first-child th,
-table#modules tbody:first-child tr:first-child th,
-table.compatibleblockstable tbody:first-child tr:first-child th,
 table#defineroletable thead:first-child tr:first-child th,
 table#explaincaps thead:first-child tr:first-child th,
 table thead:first-child tr:first-child th,
 table tbody:first-child tr:first-child th,
 table.list tbody:first-child tr:first-child td,
 .userprofile tbody:first-child tr:first-child th,
-.userlist .generaltable tbody:first-child tr:first-child th.header,
 .path-mod-forum .forumheaderlist thead:first-child tr:first-child th,
 .path-mod-forum .forumheaderlist thead:first-child tr:first-child td,
 .generaltable thead:first-child tr:first-child th,
@@ -2144,6 +2173,7 @@ table.grading-report tbody tr:hover th,
 .generaltable tbody tr:hover th,
 .category_subcategories tbody tr:hover td,
 .category_subcategories tbody tr:hover th,
+table#modules tbody tr:hover td,
 .table tbody tr:hover td,
 .table tbody tr:hover th {
   background-color: #f5f5f5;
@@ -5246,8 +5276,8 @@ a.thumbnail:hover {
   padding: 9px;
 }
 
-span.patherror:before {content: "path error ";} /* should be in PHP so can be localised properly */
 
+.capdefault span.note,
 span.ok,
 span.statusok,
 span.error,
@@ -5260,6 +5290,7 @@ span.editinstructions,
 span.statuswarning,
 font[color="green"],
 .form-overridden,
+tr.rolecap td.risk a,
 span.label, /* to avoid clash with Moodle's li.activity.label, .file-picker td.label & .userprofile th.label */
 .badge {
   font-size: 10.998px;
@@ -5272,14 +5303,17 @@ span.label, /* to avoid clash with Moodle's li.activity.label, .file-picker td.l
   background-color: #999999;
 }
 
+tr.rolecap td img {
+  display: none;
+}
+
 
 p.warn {
   display: inline-block;
   margin-left: 21px;
 }
 
-.mform .error
-{
+.mform .error {
   color: #ffffff;
 }
 input[id$="_conditiongrademin"],
@@ -5324,6 +5358,7 @@ span#id_error_introeditor\[text\].error {
   color: #333333;
 }
 
+.capdefault span.note,
 span.ok,
 span.statusok,
 div.felement.error span.error,
@@ -5337,6 +5372,7 @@ font[color="green"],
 .performanceinfo.siteinfo span,
 .form-warning,
 .form-overridden,
+tr.rolecap td.risk a,
 span.label {/* to avoid clash with Moodle's li.activity.label, .file-picker td.label & .userprofile th.label */
   padding: 1px 4px 2px;
   -webkit-border-radius: 3px;
@@ -5351,16 +5387,42 @@ span.label {/* to avoid clash with Moodle's li.activity.label, .file-picker td.l
           border-radius: 9px;
 }
 
+tr.rolecap td.risk a:hover,
 a.label:hover,
 a.badge:hover {
   color: #ffffff;
   text-decoration: none;
   cursor: pointer;
 }
+tr.rolecap td.risk.spam a:before {
+  content: "spam";
+}
+tr.rolecap td.risk.managetrust a:before {
+  content: "trust";
+}
+tr.rolecap td.risk.xss a:before {
+  content: "xss";
+}
+tr.rolecap td.risk.dataloss a:before {
+  content: "dataloss";
+}
+tr.rolecap td.risk.personal a:before {
+  content: "personal";
+}
+tr.rolecap td.risk.config a:before {
+  content: "config";
+}
+table#defineroletable tr.rolecap td {
+  padding: 8px 2px;
+}
+span.patherror:before {
+  content: "path error "; /* should be in PHP so can be localised properly */
+}
 
 div.felement.error span.error,
 span.error,
 span.patherror,
+tr.rolecap td.risk.xss a,
 div.form-warning,
 .label-important,
 .badge-important {
@@ -5377,6 +5439,7 @@ p.warn,
 span.editinstructions,
 #page-admin-report-security-index span.statuswarning,
 span.statuswarning,
+tr.rolecap td.risk.spam a,
 .form-overridden,
 .label-warning,
 .badge-warning {
@@ -5391,6 +5454,7 @@ span.statuswarning,
 span.ok,
 span.statusok,
 font[color="green"],
+tr.rolecap td.risk.config a, /* not sure about risks being green, but the icon is */
 .label-success,
 .badge-success {
   background-color: #468847;
@@ -5402,6 +5466,7 @@ font[color="green"],
 }
 
 .performanceinfo.siteinfo span,
+tr.rolecap td.risk.personal a,
 .label-info,
 .badge-info {
   background-color: #3a87ad;
@@ -5417,6 +5482,7 @@ font[color="green"],
   background-color: #2d6987;
 }
 
+tr.rolecap td.risk.dataloss a,
 .label-inverse,
 .badge-inverse {
   background-color: #333333;
