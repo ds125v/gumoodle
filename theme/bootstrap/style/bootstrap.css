@@ -1570,11 +1570,6 @@ form#adminsettings .form-item .form-setting .form-password .unmask,
   top: 3px;
 }
 
-li input[type="checkbox"] + label {
-  position: relative;
-  top: 2px;
-}
-
 .help-block {
   display: block;
   margin-bottom: 9px;

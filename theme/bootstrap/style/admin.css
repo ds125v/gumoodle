@@ -188,3 +188,7 @@
 #page-admin-mnet-peers .box.deletedhosts {margin-bottom:1em;font-size:80%;}
 #page-admin-mnet-peers .mform .certdetails {background-color:white;}
 #page-admin-mnet-peers .mform .deletedhostinfo {background-color:#ffd3d9;border 2px solid #eeaaaa;padding:4px;margin-bottom:5px;}
+
+.form-multicheckbox ul {
+  margin-bottom: 0;
+}
