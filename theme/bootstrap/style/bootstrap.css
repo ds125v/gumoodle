@@ -810,9 +810,8 @@ textarea {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-
 label {
-  display: block;
+  display: inline-block;
   margin-bottom: 5px;
 }
 
@@ -840,6 +839,7 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .backup-restore .detail-pair-value,
+#page-admin-roles-define .topfields .felement,
 .felement.fstatic,
 .uneditable-input {
   display: inline-block;
@@ -850,6 +850,7 @@ input[type="color"],
   line-height: 18px;
   color: #555555;
 }
+#page-admin-roles-define .topfields .felement,
 .felement.fstatic { /* allow to expand for user image on edit profile page */
   height: auto;
   min-height: 18px;
@@ -867,6 +868,7 @@ textarea {
 }
 
 .backup-restore .detail-pair-value,
+#page-admin-roles-define .topfields .felement,
 .felement.fstatic { /* use min-width to allow for long values and help text incorrectly marked up */
   min-width: 210px;
 }
@@ -938,6 +940,7 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .felement.fstatic,
+#page-admin-roles-define .topfields .felement,
 .backup-restore .detail-pair-value, /* partially overwritten by next rule */
 .uneditable-input {
   background-color: #ffffff;
@@ -961,11 +964,14 @@ input[type="color"],
   background: none;
   box-shadow: none;
 }
+
+#page-admin-roles-define .topfields .felement,
 .mform .fitem .felement.fstatic { /* faking .uneditable-input */
   padding-top: 5px;
   margin-left: 20px;
   font-weight: normal;
 }
+#page-admin-roles-define .topfields .felement,
 .fstaticitem .felement.fstatic {
   margin-top: 0px;
 }
@@ -1158,6 +1164,14 @@ div.felement.fcheckbox,
 .controls > .radio:first-child,
 .controls > .checkbox:first-child {
   padding-top: 5px;
+}
+
+
+.path-admin .rolecap .note,
+.path-admin .rolecap span.cap-name {
+  float: right;
+  display: inline !important;
+  padding: 0;
 }
 
 #adminsettings .form-item .form-label .form-shortname {
@@ -1519,6 +1533,7 @@ table#form td.submit,
 .form-defaultinfo,
 .form-description,
 .formsettingheading,
+span.cap-name,
 #adminsettings .form-item .form-label .form-shortname,
 .fcontainer div.fitem:nth-child(4) .fstatic, /* horrible hack! */
 #page-question-type-pmatch .fstatic, /* horrible hack! */
@@ -1526,6 +1541,7 @@ table#form td.submit,
 .help-inline {
   color: #555555;
 }
+span.cap-name,
 #adminsettings .form-item .form-label .form-shortname {font-size: 80%;}
 #adminsettings .form-item .form-setting .defaultsnext {display: inline-block;}
 
@@ -1862,7 +1878,6 @@ table#form td label {
 }
 
 
-
 div.fitemtitle span.helplink {
   margin-right: -22px; /* shift help icon into middle gutter */
 }
@@ -1873,7 +1888,8 @@ form#login .form-label {
 form#login .rememberpass label {
   display: inline-block;
 }
-.mform label{
+
+.mform .fitemtitle label{
   display:block;
 }
 
@@ -5262,6 +5278,7 @@ span.editinstructions,
 span.statuswarning,
 font[color="green"],
 .form-overridden,
+tr.rolecap td.risk a,
 span.label, /* to avoid clash with Moodle's li.activity.label, .file-picker td.label & .userprofile th.label */
 .badge {
   font-size: 10.998px;
@@ -5272,6 +5289,10 @@ span.label, /* to avoid clash with Moodle's li.activity.label, .file-picker td.l
   white-space: nowrap;
   vertical-align: baseline;
   background-color: #999999;
+}
+
+tr.rolecap td img {
+  display: none;
 }
 
 
@@ -5339,6 +5360,7 @@ font[color="green"],
 .performanceinfo.siteinfo span,
 .form-warning,
 .form-overridden,
+tr.rolecap td.risk a,
 span.label {/* to avoid clash with Moodle's li.activity.label, .file-picker td.label & .userprofile th.label */
   padding: 1px 4px 2px;
   -webkit-border-radius: 3px;
@@ -5353,16 +5375,39 @@ span.label {/* to avoid clash with Moodle's li.activity.label, .file-picker td.l
           border-radius: 9px;
 }
 
+tr.rolecap td.risk a:hover,
 a.label:hover,
 a.badge:hover {
   color: #ffffff;
   text-decoration: none;
   cursor: pointer;
 }
+tr.rolecap td.risk.spam a:before {
+  content: "spam";
+}
+tr.rolecap td.risk.managetrust a:before {
+  content: "trust";
+}
+tr.rolecap td.risk.xss a:before {
+  content: "xss";
+}
+tr.rolecap td.risk.dataloss a:before {
+  content: "dataloss";
+}
+tr.rolecap td.risk.personal a:before {
+  content: "personal";
+}
+tr.rolecap td.risk.config a:before {
+  content: "config";
+}
+table#defineroletable tr.rolecap td.risk {
+  padding: 8px 2px;
+}
 
 div.felement.error span.error,
 span.error,
 span.patherror,
+tr.rolecap td.risk.xss a,
 div.form-warning,
 .label-important,
 .badge-important {
@@ -5379,6 +5424,7 @@ p.warn,
 span.editinstructions,
 #page-admin-report-security-index span.statuswarning,
 span.statuswarning,
+tr.rolecap td.risk.spam a,
 .form-overridden,
 .label-warning,
 .badge-warning {
@@ -5393,6 +5439,7 @@ span.statuswarning,
 span.ok,
 span.statusok,
 font[color="green"],
+tr.rolecap td.risk.config a, /* not sure about risks being green, but the icon is */
 .label-success,
 .badge-success {
   background-color: #468847;
@@ -5404,6 +5451,7 @@ font[color="green"],
 }
 
 .performanceinfo.siteinfo span,
+tr.rolecap td.risk.personal a,
 .label-info,
 .badge-info {
   background-color: #3a87ad;
