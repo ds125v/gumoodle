@@ -839,7 +839,7 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .backup-restore .detail-pair-value,
-#page-admin-roles-define .topfields .felement,
+#page-admin-roles-define div.mform .topfields .felement,
 .felement.fstatic,
 .uneditable-input {
   display: inline-block;
@@ -850,7 +850,7 @@ input[type="color"],
   line-height: 18px;
   color: #555555;
 }
-#page-admin-roles-define .topfields .felement,
+#page-admin-roles-define div.mform .topfields .felement,
 .felement.fstatic { /* allow to expand for user image on edit profile page */
   height: auto;
   min-height: 18px;
@@ -868,7 +868,7 @@ textarea {
 }
 
 .backup-restore .detail-pair-value,
-#page-admin-roles-define .topfields .felement,
+#page-admin-roles-define div.mform .topfields .felement,
 .felement.fstatic { /* use min-width to allow for long values and help text incorrectly marked up */
   min-width: 210px;
 }
@@ -940,7 +940,7 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .felement.fstatic,
-#page-admin-roles-define .topfields .felement,
+#page-admin-roles-define div.mform .topfields .felement,
 .backup-restore .detail-pair-value, /* partially overwritten by next rule */
 .uneditable-input {
   background-color: #ffffff;
@@ -965,13 +965,13 @@ input[type="color"],
   box-shadow: none;
 }
 
-#page-admin-roles-define .topfields .felement,
+#page-admin-roles-define div.mform .topfields .felement,
 .mform .fitem .felement.fstatic { /* faking .uneditable-input */
   padding-top: 5px;
   margin-left: 20px;
   font-weight: normal;
 }
-#page-admin-roles-define .topfields .felement,
+#page-admin-roles-define div.mform .topfields .felement,
 .fstaticitem .felement.fstatic {
   margin-top: 0px;
 }
@@ -1129,6 +1129,10 @@ input[type="checkbox"]:focus {
 .fcheckbox,
 .fradio,
 div.felement.fcheckbox,
+#defineroletable td.inherit label,
+#defineroletable td.allow label,
+#defineroletable td.prevent label,
+#defineroletable td.prohibit label,
 .mform fieldset .unmask,
 .fduration span,
 .fgroup span,
@@ -1141,9 +1145,17 @@ form#adminsettings .form-item .form-setting .form-password .unmask,
   padding-left: 18px;
 }
 
-.form-checkbox input[type="checkbox"] ,
-.fcheckbox input[type="checkbox"] ,
-.form-multicheckbox input[type="checkbox"] ,
+#defineroletable td.inherit label input[type="checkbox"],
+#defineroletable td.inherit label input[type="radio"],
+#defineroletable td.allow label input[type="checkbox"],
+#defineroletable td.allow label input[type="radio"],
+#defineroletable td.prevent label input[type="checkbox"],
+#defineroletable td.prevent label input[type="radio"],
+#defineroletable td.prohibit label input[type="checkbox"],
+#defineroletable td.prohibit label input[type="radio"],
+.form-checkbox input[type="checkbox"],
+.fcheckbox input[type="checkbox"],
+.form-multicheckbox input[type="checkbox"],
 .fradio input[type="radio"],
 .radio input[type="radio"],
 .unmask input[type="checkbox"],
@@ -1167,10 +1179,9 @@ div.felement.fcheckbox,
 }
 
 
-.path-admin .rolecap .note,
 .path-admin .rolecap span.cap-name {
   float: right;
-  display: inline !important;
+  display: inline;
   padding: 0;
 }
 
@@ -1542,8 +1553,12 @@ span.cap-name,
   color: #555555;
 }
 span.cap-name,
-#adminsettings .form-item .form-label .form-shortname {font-size: 80%;}
-#adminsettings .form-item .form-setting .defaultsnext {display: inline-block;}
+#adminsettings .form-item .form-label .form-shortname {
+  font-size: 80%;
+}
+#adminsettings .form-item .form-setting .defaultsnext {
+  display: inline-block;
+}
 
 .mform .fpassword .unmask,
 form#adminsettings .form-item .form-setting .form-password .unmask,
@@ -5264,8 +5279,8 @@ a.thumbnail:hover {
   padding: 9px;
 }
 
-span.patherror:before {content: "path error ";} /* should be in PHP so can be localised properly */
 
+.capdefault span.note,
 span.ok,
 span.statusok,
 span.error,
@@ -5301,8 +5316,7 @@ p.warn {
   margin-left: 21px;
 }
 
-.mform .error
-{
+.mform .error {
   color: #ffffff;
 }
 input[id$="_conditiongrademin"],
@@ -5347,6 +5361,7 @@ span#id_error_introeditor\[text\].error {
   color: #333333;
 }
 
+.capdefault span.note,
 span.ok,
 span.statusok,
 div.felement.error span.error,
@@ -5400,8 +5415,11 @@ tr.rolecap td.risk.personal a:before {
 tr.rolecap td.risk.config a:before {
   content: "config";
 }
-table#defineroletable tr.rolecap td.risk {
+table#defineroletable tr.rolecap td {
   padding: 8px 2px;
+}
+span.patherror:before {
+  content: "path error "; /* should be in PHP so can be localised properly */
 }
 
 div.felement.error span.error,
@@ -5467,6 +5485,7 @@ tr.rolecap td.risk.personal a,
   background-color: #2d6987;
 }
 
+tr.rolecap td.risk.dataloss a,
 .label-inverse,
 .badge-inverse {
   background-color: #333333;
