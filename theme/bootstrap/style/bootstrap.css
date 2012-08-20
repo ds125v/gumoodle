@@ -1895,6 +1895,7 @@ form#login .rememberpass label {
   display: inline-block;
 }
 
+.form-label label,
 .mform .fitemtitle label{
   display:block;
 }

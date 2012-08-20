@@ -392,14 +392,13 @@ div.checkforupdates {
   display: inline;
 }
 
+div.navbutton {
+  float:none;
+}
 
-
-.form-label label {display: block;}
-#adminsettings .form-item {margin: 0px 0px 18px;}
-div.navbutton {float:none;}
-
-table.userplan {border: none !important;}
-
+table.userplan {
+  border: none !important;
+}
 
 .single-section .section-navigation .mdl-align {clear: both;}
 
