@@ -1554,6 +1554,10 @@ span.cap-name,
 .help-inline {
   color: #555555;
 }
+
+.form-description p:last-child {
+  margin-bottom: 0;
+}
 span.cap-name,
 .form-defaultinfo,
 #adminsettings .form-item .form-label .form-shortname {
@@ -1897,7 +1901,7 @@ form#login .rememberpass label {
 
 .form-label label,
 .mform .fitemtitle label{
-  display:block;
+  display: block;
 }
 
 .mform .fitem fieldset.felement,
