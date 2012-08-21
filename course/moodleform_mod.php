@@ -508,11 +508,11 @@ abstract class moodleform_mod extends moodleform {
 
             $grouparray = array();
             $grouparray[] =& $mform->createElement('select','conditiongradeitemid','',$gradeoptions);
-            $grouparray[] =& $mform->createElement('static', '', '',' '.get_string('grade_atleast','condition').' ');
+            $grouparray[] =& $mform->createElement('static', '', '',' <label>'.get_string('grade_atleast','condition').' ');
             $grouparray[] =& $mform->createElement('text', 'conditiongrademin','',array('size'=>3));
-            $grouparray[] =& $mform->createElement('static', '', '','% '.get_string('grade_upto','condition').' ');
+            $grouparray[] =& $mform->createElement('static', '', '','%</label> <label>'.get_string('grade_upto','condition').' ');
             $grouparray[] =& $mform->createElement('text', 'conditiongrademax','',array('size'=>3));
-            $grouparray[] =& $mform->createElement('static', '', '','%');
+            $grouparray[] =& $mform->createElement('static', '', '','%</label>');
             $group = $mform->createElement('group','conditiongradegroup',
                 get_string('gradecondition', 'condition'),$grouparray);
 
