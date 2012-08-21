@@ -89,10 +89,12 @@ body {font: serif;}
 .block li a {
   padding: 0px;
 }
-.block li img.smallicon,
+.block li img.smallicon.navicon,
+.block li .tree_item.leaf img.smallicon,
 .block li img.icon {
   display: none;
 }
+
 .block_settings .block_tree .tree_item,
 .block_navigation .block_tree .tree_item {
   padding-left: 0px;
