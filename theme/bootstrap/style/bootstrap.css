@@ -6542,31 +6542,6 @@ img.adv { /* hanging indentation for asterisk */
 .advancedbutton img.adv {
   margin-right: 8px;
 }
-/*
-  below this line you might want to copy into your theme and override to suit your theme
-*/
-  
-.path-mod-workshop .userplan tr.phasetasks ul {
-  padding:0 0 0 1.2em;
-  margin:0;
-}
-
-.path-mod-workshop .userplan tr.phasetasks li,
-.path-mod-workshop .userplan tr.phasetasks li.completed {
-  background: none;
-}
-
-.path-mod-workshop .userplan tr.phasetasks li div.title {display: inline; padding: 0px !important;}
-.path-mod-workshop .userplan tr.phasetasks li:before {
-  content: "○ ";
-  color: gray;
-  display: inline;
-}
-.path-mod-workshop .userplan tr.phasetasks li.completed:before {
-  content: "✔ "; /* doesn't seem to show up on IE8/XP from initial install, need to check after Office installed */
-  color: green;
-  display: inline;
-}
 
 span.editinstructions{
   position:relative;
