@@ -322,7 +322,7 @@ function print_enrolments( $enrolments, $name ) {
             echo "<h3>Enrolments on <a href=\"$sitelink\">$newsite</a> Moodle:</h3>";
             $oldsite = $newsite;
         }
-        $courselink = $enrolment->wwwroot . '/course/view.php?=' . $enrolment->courseid;
+        $courselink = $enrolment->wwwroot . '/course/view.php?id=' . $enrolment->courseid;
         if (empty($enrolment->timelastaccess)) {
             $lasttime = get_string('never');
         }
