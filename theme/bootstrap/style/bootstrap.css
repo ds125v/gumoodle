@@ -1191,8 +1191,8 @@ select {
 }
 .ie8 .mform select:focus {
   min-width: 210px;
-  max-width: 420px;
 }
+
 .fduration input, .fduration select, .fduration span,
 .fdate_selector select, .fdate_selector select:focus,
 #fgroup_id_firstaccess_grp select, #fgroup_id_firstaccess_grp select:focus,
