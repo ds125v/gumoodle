@@ -253,7 +253,7 @@ function print_single( $results ) {
     // check for entries in enrollments
     $enrolments = get_all_enrolments( $username );
     if (!empty($enrolments)) {
-        print_enrolments( $enrolments, $username );
+        print_enrolments( $enrolments, $displayname );
     }
 }
 
@@ -304,11 +304,11 @@ function get_all_enrolments( $guid ) {
 /**
  * print enrolments 
  */
-function print_enrolments( $enrolments, $guid ) {
+function print_enrolments( $enrolments, $name ) {
     global $OUTPUT;
 
     echo $OUTPUT->box_start();
-    echo $OUTPUT->heading(get_string('enrolments', 'report_guid', $guid));
+    echo $OUTPUT->heading(get_string('enrolments', 'report_guid', $name));
 
     // old site to see when site changes
     $oldsite = '';
@@ -327,7 +327,7 @@ function print_enrolments( $enrolments, $guid ) {
             $lasttime = get_string('never');
         }
         else {
-            $lasttime = date( 'd/M/y at H:i', $enrolment->timelastaccess );
+            $lasttime = date( 'd/M/y H:i', $enrolment->timelastaccess );
         }
         echo "<a href=\"$courselink\">{$enrolment->name}</a> <i>(accessed $lasttime)</i><br />";
     }
