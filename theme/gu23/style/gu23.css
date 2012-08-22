@@ -28,6 +28,32 @@ footer .homelink a {
 #page {margin-left: 20px; padding-right: 20px; padding-bottom: 5em; width:100%;}
 #page-content {margin-top:25px ; padding-bottom: 3em;}
 
+#blocks1 {
+  width: 200px;
+  margin-left: -200px;
+}
+ 
+#blocks2 {
+  width: 200px;
+  margin-right: -200px;
+}
+ 
+#layout {
+  padding: 0px 200px; 
+  overflow: hidden;
+}
+
+.blocks1-only #layout {
+  padding: 0px 8px 0px 200px;
+}
+
+.blocks2-only #layout {
+  padding: 0px 200px 0px 8px;
+}
+.no-blocks #layout {
+  padding: 0px 8px;
+}
+
 header {padding: 30px 25px 0 25px; background: #005288 url(http://www.gla.ac.uk/0t4/generic/images/pageheader.gif) no-repeat bottom right; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);}
 
 
@@ -174,37 +200,48 @@ margin-top: 0px;
 .coursebox {overflow: hidden;}
 
 .coursebox div.summary p,
-div.summarytext p { padding-top: 4em;}
+div.summarytext p {
+  padding-top: 4em;
+}
 
 
 .coursebox,
 .path-course-view .course-content ul.topics div.content,
 .path-course-view .course-content ul.weeks div.content {
-border: 1px solid rgb(227,227,227);
-border-radius: 5px;
-box-shadow: 0px 3px 3px #eee;
+  border: 1px solid rgb(227,227,227);
+  border-radius: 5px;
+  box-shadow: 0px 3px 3px #eee;
 }
 
 .coursebox {
-width: 95%;
-margin: auto;
-margin-bottom: 5px;
+  width: 95%;
+  margin: auto;
+  margin-bottom: 5px;
 }
 
 li.section.current .content {
-background-color: transparent;
+  background-color: transparent;
 }
 
 li.section.current h3.sectionname {
-color: #eee; background-color: #666; border-radius: 5px 5px 0px 0px;
+  color: #eee;
+  background-color: #666;
+  border-radius: 5px 5px 0px 0px;
+  font-weight: bold;
 }
 
 .course-content ul.topics li.section .content,
-.course-content ul.weeks li.section .content {margin: 0 20px;}
+.course-content ul.weeks li.section .content {
+  margin: 0 20px;
+}
 
-div.navbar {padding: 0px 10px 3px;}
+div.navbar {
+  padding: 0px 0px 3px;
+}
 .path-my div.navbar, 
-.path-course-view div.navbar {padding: 0px 30px;}
+div.sitetopic,
+#page-site-index .headingblock,
+.path-course-view div.navbar {padding: 0px 20px;}
 .path-login div.navbar {padding: 0px 220px;}
 .pagelayout-login div.navbar {padding: 0px 220px;}
 
@@ -270,14 +307,11 @@ table#participants {margin: 1em auto;}
 .categorybox {padding-left: 1em;}
 
 
-#dndupload-status {left:540px;background:#eef; margin: 0px;margin-left:-20%;}
- 
-
-.category-4 #page-content .content-header {background-color: rgb(59,110,143);}
-.category-5 #page-content .content-header {background-color: rgb(119,121,9);}
-.category-6 #page-content .content-header {background-color: rgb(0,124,133);}
-.category-7 #page-content .content-header {background-color: rgb(83,46,99);}
-
+#dndupload-status {
+  width: 400px;
+  background: #eef;
+  margin: auto;
+}
 
 input#adminsearchquery {width:110px;}
 input#searchform_search {width:140px;}

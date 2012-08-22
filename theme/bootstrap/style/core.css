@@ -1,6 +1,6 @@
 /* stuff savlaged from core.css, rest was deleted, probably more to go */
 
-td, th {border: none;} /* apparently YUI adds a border, lets take it away again */
+td, th {border: none; padding: 0;} /* apparently YUI adds a border & padding, lets take it away again */
 
 .dir-ltr,
 .mdl-left,
@@ -178,18 +178,68 @@ input#id_externalurl {direction:ltr;}
 .blog_entry .tags {margin-top: 15px;}
 
 /** tables that aren't tables */
-table.controls td,
-.userlist table.controls td.right,
-.userlist table.controls td.left,
-table.contros th {
-  padding: 0px;
-}
 table.controls td.c2 {
   text-align: center;
 }
 table.controls select {
   width: auto;
   margin-left: 4px;
+}
+table.controls td,
+.userlist table.controls td.right,
+.userlist table.controls td.left,
+table.contros th,
+#page-mod-forumsearch table#form, /* should be switched to use a standard forms format */
+table.groupmanagementtable td {
+padding: 0;
+}
+
+.path-admin .roleassigntable td#buttonscell,
+.path-admin .roleassigntable td#existingcell,
+.path-admin .roleassigntable td#potentialcell,
+table.groupmanagementtable tbody tr td,
+table.groupmanagementtable tbody tr:first-child td,
+table.groupmanagementtable tbody tr:hover td,
+table.groupmanagementtable tbody td#buttonscell,
+table.groupmanagementtable tbody td#existingcell,
+table.groupmanagementtable tbody td#potentialcell,
+td#buttonscell,
+td#existingcell,
+td#potentialcell {
+  background: none;
+  border-top: none;
+  width: auto;
+}
+td#buttonscell {
+  padding-top: 8em;
+  text-align: center;
+  max-width: 16em;
+}
+.groupmanagementtable td#buttonscell input,
+td#buttonscell input {
+  width: 90%;
+  margin-bottom: 9px;
+}
+td#potentialcell {
+  min-width: 250px;
+}
+#userselector_options p {
+    margin: 0px;
+    white-space: nowrap;
+}
+input#addselect_searchtext { /* try to keep clear button on same level */
+  width: auto;
+}
+tbody.empty {
+  display: none;
+}
+.groupinfobox {
+  border: none;
+}
+
+.path-admin .roleassigntable #buttonscell #addcontrols {
+margin-top: 0;
+height: auto;
 }
 
 /**
@@ -379,14 +429,10 @@ body.tag .managelink {padding: 5px;}
  */
 .path-backup .mform .grouped_settings.section_level {clear:both;}
 .path-backup .mform .grouped_settings {clear:both;overflow:hidden;}
-.path-backup .mform .grouped_settings.section_level .include_setting {width:50%;margin:0;float:left;clear:left;font-weight:bold;}
-.path-backup .mform .grouped_settings.section_level .normal_setting {width:50%;margin:0;margin-left:50%;}
-.path-backup .mform .grouped_settings.activity_level .include_setting label {font-weight:normal;}
 .path-backup .notification.dependencies_enforced {text-align:center;color:#A00;font-weight:bold;}
 .path-backup .backup_progress {text-align:center;}
 .path-backup .backup_progress span.backup_stage {color:#999;}
 .path-backup .backup_progress .backup_stage.backup_stage_current {font-weight:bold;color:inherit;}
-.path-backup .backup_progress .backup_stage.backup_stage_next {}
 .path-backup .backup_progress span.backup_stage.backup_stage_complete {color:inherit;}
 #page-backup-restore .filealiasesfailures {background-color:#ffd3d9}
 #page-backup-restore .filealiasesfailures .aliaseslist {width:90%;margin:0.8em auto;background-color:white;border:1px dotted #666;}
@@ -466,20 +512,15 @@ body.tag .managelink {padding: 5px;}
 /**
  * Backup
  */
-.backup-restore .backup-section {clear:both;border:1px solid #ddd;background-color:#f6f6f6;margin-bottom:1em;}
-.backup-restore .backup-section > h2.header {padding:5px 6px;margin:0;border-bottom:1px solid #ddd;}
 .backup-restore .backup-section .noticebox {margin:1em auto;width:60%;text-align:center;}
-.backup-restore .backup-section .backup-sub-section {margin:0 25px;background-color:#f9f9f9;border:1px solid #f3f3f3;margin-bottom:1em;}
-.backup-restore .backup-section .backup-sub-section h3 {text-align:right;border-bottom:1px solid #DDD;padding:5px 86% 5px 6px;margin:0;background-color:#e9e9e9;}
 .backup-restore .activitytable {width:60%;min-width:500px;}
 .backup-restore .activitytable .modulename {width:100px;}
 .backup-restore .activitytable .moduleincluded {width:50px;}
 .backup-restore .activitytable .userinfoincluded {width:50px;}
-.backup-restore .detail-pair-value > .sub-detail {display:block;color:#1580B6;margin-left:2em;font-size:90%;font-style: italic;}
 .backup-restore > .singlebutton {text-align:right;}
-.path-backup .mform .fgroup .proceedbutton {float:right;margin-right:1%;}
-
-.restore-course-search .rcs-results {width:70%;min-width:400px;border:1px solid #ddd;margin:5px 0;}
+.path-backup .mform .fgroup .proceedbutton {float:right;}
+.restore-course-search .rcs-results {width:70%;min-width:400px;margin:5px 0;}
+.restore-course-search .rcs-results table {margin-top: -8px;}
 .restore-course-search .rcs-results table .no-overflow {max-width:600px;}
 .restore-course-search .rcs-results .paging {text-align:left;margin:0;background-color:#eee;padding:3px;}
 
