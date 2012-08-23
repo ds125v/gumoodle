@@ -23,6 +23,11 @@ echo $OUTPUT->header();
 
 echo $OUTPUT->heading(get_string('heading', 'report_guid'));
 
+// link to upload script
+echo $OUTPUT->box_start();
+echo "<a href=\"{$CFG->wwwroot}/report/guid/upload.php\">".get_string('uploadguid','report_guid')."</a>";
+echo $OUTPUT->box_end();
+
 // check we have ldap
 if (!function_exists( 'ldap_connect' )) {
     error( 'ldap drivers are not loaded' );
@@ -72,11 +77,6 @@ if ($mform->is_cancelled()) {
         ));
     print_results( $result, $url ); 
 }
-
-// link to upload script
-echo "<div class=\"generalbox\">";
-echo "<a href=\"{$CFG->wwwroot}/report/guid/upload.php\">".get_string('uploadguid','report_guid')."</a>";
-echo "</div>\n";
 
 echo $OUTPUT->footer();
 

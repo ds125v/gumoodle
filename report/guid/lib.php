@@ -253,7 +253,7 @@ function print_single( $results ) {
     // check for entries in enrollments
     $enrolments = get_all_enrolments( $username );
     if (!empty($enrolments)) {
-        print_enrolments( $enrolments, $displayname );
+        print_enrolments( $enrolments, $fullname, $username );
     }
 }
 
@@ -304,7 +304,7 @@ function get_all_enrolments( $guid ) {
 /**
  * print enrolments 
  */
-function print_enrolments( $enrolments, $name ) {
+function print_enrolments( $enrolments, $name, $guid ) {
     global $OUTPUT;
 
     echo $OUTPUT->box_start();
@@ -320,6 +320,8 @@ function print_enrolments( $enrolments, $name ) {
             $sitelink = $enrolment->wwwroot;
             echo "<p>&nbsp;</p>";
             echo "<h3>Enrolments on <a href=\"$sitelink\">$newsite</a> Moodle:</h3>";
+            $profilelink = $enrolment->wwwroot . '/user/view.php?id=' . $guid;
+            echo "<b><a href=\"$profilelink\">Jump to $name's profile</a></b><br />";
             $oldsite = $newsite;
         }
         $courselink = $enrolment->wwwroot . '/course/view.php?id=' . $enrolment->courseid;
