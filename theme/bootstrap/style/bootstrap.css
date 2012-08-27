@@ -5425,12 +5425,12 @@ span.error,
 span.patherror,
 tr.rolecap td.risk.xss a,
 div.form-warning,
-.label-important,
+span.label-important,
 .badge-important {
   background-color: #b94a48;
 }
 
-.label-important[href],
+span.label-important[href],
 .badge-important[href] {
   background-color: #953b39;
 }
@@ -5442,12 +5442,12 @@ span.editinstructions,
 span.statuswarning,
 tr.rolecap td.risk.spam a,
 .form-overridden,
-.label-warning,
+span.label-warning,
 .badge-warning {
   background-color: #f89406;
 }
 
-.label-warning[href],
+span.label-warning[href],
 .badge-warning[href] {
   background-color: #c67605;
 }
@@ -5456,12 +5456,12 @@ span.ok,
 span.statusok,
 font[color="green"],
 tr.rolecap td.risk.config a, /* not sure about risks being green, but the icon is */
-.label-success,
+span.label-success,
 .badge-success {
   background-color: #468847;
 }
 
-.label-success[href],
+span.label-success[href],
 .badge-success[href] {
   background-color: #356635;
 }
@@ -5478,18 +5478,18 @@ tr.rolecap td.risk.personal a,
 }
 
 
-.label-info[href],
+span.label-info[href],
 .badge-info[href] {
   background-color: #2d6987;
 }
 
 tr.rolecap td.risk.dataloss a,
-.label-inverse,
+span.label-inverse,
 .badge-inverse {
   background-color: #333333;
 }
 
-.label-inverse[href],
+span.label-inverse[href],
 .badge-inverse[href] {
   background-color: #1a1a1a;
 }

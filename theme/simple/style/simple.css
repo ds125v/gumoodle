@@ -428,4 +428,5 @@ footer .helplink a:before {
 span#completionprogressid.completionprogress {
   text-align: right;
   display: block;
+  float: none;
 }
