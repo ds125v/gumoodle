@@ -25,7 +25,7 @@ $OUTPUT->doctype(); // throw it away to avoid warning
     <link rel="shortcut icon" href="<?php echo $favicon_url ?>" />
     <?php echo $OUTPUT->standard_head_html() ?>
 <!--[if lt IE 9]>
-<script src="<?php echo $CFG->wwwroot ?>/theme/simple/html5shiv.js"></script>
+<script src="<?php echo new moodle_url("/theme/simple/html5shiv.js")?>"></script>
 <![endif]-->
 </head>
 

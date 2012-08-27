@@ -94,17 +94,4 @@ class MoodleQuickForm_group extends HTML_QuickForm_group{
         }
     }
 
-    /**
-     * Sets the grouped elements and hides label
-     *
-     * @param array $elements
-     */
-    function setElements($elements){
-        parent::setElements($elements);
-        foreach ($this->_elements as $element){
-            if (method_exists($element, 'setHiddenLabel')){
-                $element->setHiddenLabel(true);
-            }
-        }
-    }
 }

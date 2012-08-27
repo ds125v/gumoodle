@@ -5,8 +5,8 @@ body { width:100%; }
 a {text-decoration: none;}
 input, textarea, select, button {font-family: Arial, Helvetica, sans-serif;}
 
-html {background: #5c5940 url(http://www.gla.ac.uk/0t4/generic/images/background/arch1.gif) repeat-x bottom fixed;}
-body {background: url(http://www.gla.ac.uk/0t4/generic/images/background/arch1.jpg) no-repeat 960px bottom fixed;}
+html {background: #5c5940 url([[pix:theme|arch1]]) repeat-x bottom fixed;}
+body {background: url([[pix:theme|arch2]]) no-repeat 960px bottom fixed;}
 
 header {background-color: #005288; color: #fff; overflow:hidden;}
 header h1 a {color: #fff;}
