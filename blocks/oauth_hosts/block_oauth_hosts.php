@@ -54,7 +54,7 @@ class block_oauth_hosts extends block_list {
     }
 
     function applicable_formats() {
-        return array('site-index' => true, 'course-view' => true, 'course-view-social' => false, 'mod' => false);
+        return array('all' => true);
     }
 
     function instance_allow_config() {
