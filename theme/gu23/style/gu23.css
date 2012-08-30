@@ -162,11 +162,9 @@ header .logininfo a:hover {border-bottom-color: #3d779c;}
 #page-content .breadcrumb {float: left; width: 100%; margin: 0.8em 0 5px 0; padding: 0 0 20px 0; background: url([[pix:theme|breadcrumbs_hr]]) no-repeat; background-position:left bottom;}
 #page-content .breadcrumb h3 {display: none;}
 #page-content .breadcrumb ul {margin: 0; padding: 0; width:80%, float:left;}
-#page-content .breadcrumb ul li {display: inline; padding-right: 10px; font: 93% Arial, Helvetica, sans-serif; color: #777;}
-#page-content .breadcrumb ul li { background: url([[pix:theme|breadcrumbs_divider]]) no-repeat right;}
+#page-content .breadcrumb ul li {display: inline; font: 93% Arial, Helvetica, sans-serif; color: #777;}
 #page-content .breadcrumb ul li a { color: #444;}
 #page-content .breadcrumb ul li a:hover {text-decoration: underline;}
-#page-content .breadcrumb ul li span.arrow.sep { display: none;}
 #page-content .navbuttion {float: right;}
 
 #page-content {overflow: hidden; background: #fff; border-radius: 6px; box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);}
