@@ -110,7 +110,7 @@ footer .homelink a {
 
 header {
   padding: 30px 25px 0 25px;
-  background: #005288 url(http://www.gla.ac.uk/0t4/generic/images/pageheader.gif) no-repeat bottom right;
+  background: #005288 url([[pix:theme|pageheader]]) no-repeat bottom right;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);
@@ -130,7 +130,7 @@ header {
   display: block;
   overflow: hidden;
   text-indent: -5000em;
-  background: url(http://www.gla.ac.uk/0t4/generic/images/logo.gif) no-repeat;
+  background: url([[pix:theme|logo]]) no-repeat;
 }
 
 #head-menu {clear: both; width: 100%;}
@@ -159,11 +159,11 @@ header .logininfo a {padding-bottom: 2px; color: #fff; border-bottom: 4px solid 
 #siteTools ul li a:hover,
 header .logininfo a:hover {border-bottom-color: #3d779c;}
 
-#page-content .breadcrumb {float: left; width: 100%; margin: 0.8em 0 5px 0; padding: 0 0 20px 0; background: url(http://www.gla.ac.uk/0t4/generic/images/breadcrumbs_hr.gif) no-repeat; background-position:left bottom;}
+#page-content .breadcrumb {float: left; width: 100%; margin: 0.8em 0 5px 0; padding: 0 0 20px 0; background: url([[pix:theme|breadcrumbs_hr]]) no-repeat; background-position:left bottom;}
 #page-content .breadcrumb h3 {display: none;}
 #page-content .breadcrumb ul {margin: 0; padding: 0; width:80%, float:left;}
 #page-content .breadcrumb ul li {display: inline; padding-right: 10px; font: 93% Arial, Helvetica, sans-serif; color: #777;}
-#page-content .breadcrumb ul li { background: url(http://www.gla.ac.uk/0t4/generic/images/breadcrumbs_divider.gif) no-repeat right;}
+#page-content .breadcrumb ul li { background: url([[pix:theme|breadcrumbs_divider]]) no-repeat right;}
 #page-content .breadcrumb ul li a { color: #444;}
 #page-content .breadcrumb ul li a:hover {text-decoration: underline;}
 #page-content .breadcrumb ul li span.arrow.sep { display: none;}
@@ -172,14 +172,14 @@ header .logininfo a:hover {border-bottom-color: #3d779c;}
 #page-content {overflow: hidden; background: #fff; border-radius: 6px; box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);}
 #page-content .content-header {margin-bottom: 1.6em; border-top-left-radius: 4px; border-top-right-radius: 4px;}
 #page-content .content-header {color: rgb(255,255,255); background-color: rgb(0,82,136);}
-#page-content .content-header h1 {min-height: 36px; margin: 0; padding: 17px 15px; font: 230% Arial, Helvetica, sans-serif; background: url(http://www.gla.ac.uk/0t4/generic/images/pagecontent_header.png) no-repeat right bottom; text-overflow: ellipsis; overflow:hidden; white-space: nowrap;}
+#page-content .content-header h1 {min-height: 36px; margin: 0; padding: 17px 15px; font: 230% Arial, Helvetica, sans-serif; background: url([[pix:theme|pagecontent_header]]) no-repeat right bottom; text-overflow: ellipsis; overflow:hidden; white-space: nowrap;}
 
 
 #page-content .extraNav  {margin-top: 20px; margin-left: 15px; margin-right:15px; font-size: 93%; color:#333;}
 #page-content .extraNav a  {color:#333}
 
 
-footer .backToTop {float: left; margin-left: 17px; font: 93% Arial, Helvetica, sans-serif; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; background-color: #939393; background: rgba(0, 0, 0, 0.3) url(http://www.gla.ac.uk/0t4/generic/images/shadow_bottom.png) repeat-x;}
+footer .backToTop {float: left; margin-left: 17px; font: 93% Arial, Helvetica, sans-serif; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; background-color: #939393; background: rgba(0, 0, 0, 0.3) url([[pix:theme|shadow_bottom]]) repeat-x;}
 footer .backToTop a {display: block; padding: 0.7em 1.2em; color: #fff;}
 footer .backToTop a:hover {color: #ccc;}
 footer {color: rgb(51,51,51);font: 93% Arial, Helvetica, sans-serif;text-align: left;}
@@ -223,7 +223,7 @@ margin: 20px 0px 0px 0px; padding-bottom: 4px; font: 131% Arial, Helvetica, sans
 .course-content .single-section .section-navigation .title, /* MDL-34613 */
 .course-content .section-summary .section-title, /* MDL-34613 */
 h3.sectionname {
-background: url("http://www.gla.ac.uk/0t4/generic/images/jumplink_header.png") no-repeat scroll right bottom transparent;
+background: url([[pix:theme|jumplink_header]]) no-repeat scroll right bottom transparent;
 font-size: 150%;
 padding: 0.3em 0em 0.3em 0.5em;
 margin: 0px;
