@@ -8,6 +8,7 @@ $THEME->parents_exclude_sheets = array(
 )
 ); 
 $THEME->sheets = array('gu23');
+$THEME->rendererfactory = 'theme_overridden_renderer_factory';
 $THEME->layouts = array(
     'base' => array(
         'file' => 'gu23.php',

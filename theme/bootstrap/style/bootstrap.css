@@ -2332,7 +2332,7 @@ table .span24 {
   width: 1884px;
   margin-left: 0;
 }
-.course-category_tree .course_info a, 
+.course_category_tree .course_info a, 
 span.helplink a,
 a.icon.editing_edit,
 a.icon.editing_hide,
@@ -2361,7 +2361,7 @@ span.editing_move {
   cursor: move;
 }
 
-.course-category_tree .course_info a img,
+.course_category_tree .course_info a img,
 span.helplink a img,
 a img.iconsmall.edit,
 a.icon.editing_edit img,
@@ -2760,7 +2760,7 @@ span.helplink a,
   background-position: -96px -96px;
 }
 
-.course-category_tree .course_info a, 
+.course_category_tree .course_info a, 
 .icon-info-sign {
   background-position: -120px -96px;
 }

@@ -17,10 +17,8 @@
 .course-content .single-section { margin-top: 1em; }
 .course-content .single-section .section-navigation { display: block; padding: 0.5em; margin-bottom: -0.5em; }
 .course-content .single-section .section-navigation .title { font-weight: bold; font-size: 108%; }
-.course-content .single-section .section-navigation .mdl-left { font-weight: normal; float: left; margin-right: 1em; }
-.course-content .single-section .section-navigation .mdl-left .larrow { margin-right: 0.1em; }
-.course-content .single-section .section-navigation .mdl-right { font-weight: normal; float: right; margin-left: 1em; }
-.course-content .single-section .section-navigation .mdl-right .rarrow { margin-left: 0.1em; }
+.course-content .single-section .section-navigation .mdl-left { font-weight: normal; float: left; margin-left: 20px; }
+.course-content .single-section .section-navigation .mdl-right { font-weight: normal; float: right; margin-right: 20px; }
 .course-content .single-section .section-navigation .mdl-bottom { margin-top: 0; }
 
 #page-site-index .subscribelink {text-align:right;}
@@ -100,6 +98,7 @@
 }
 .course_category_tree .category .course_info {
   display: inline-block;
+  padding: 0 3em;
 }
 .jsenabled .course_category_tree .controls {
   visibility: visible;
