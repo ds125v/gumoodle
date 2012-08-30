@@ -1973,8 +1973,9 @@ table#form,
 .calendartable th,
 .calendartable td,
 .path-mod-workshop .grading-report,
-.path-mod-workshop table.grading-report td
- {border: none;}
+.path-mod-workshop table.grading-report td {
+  border: none;i
+}
 
 .path-mod-workshop table.grading-report th,
 .path-mod-workshop table.grading-report td,
@@ -1982,6 +1983,8 @@ table.generaltable.rolecaps tbody tr.r0 th.cell,
 table.rolecaps td,
 table#listdirectories td,
 table#defineroletable th,
+table#permissions th,
+table#permissions td,
 table#defineroletable td,
 table.userenrolment td,
 table#explaincaps th,
@@ -2032,6 +2035,7 @@ table.userenrolment thead:first-child tr:first-child th,
 table.grading-report thead:first-child tr:first-child th,
 table#defineroletable thead:first-child tr:first-child th,
 table#explaincaps thead:first-child tr:first-child th,
+table#permissions thead:first-child tr:first-child th,
 table thead:first-child tr:first-child th,
 table tbody:first-child tr:first-child th,
 table.list tbody:first-child tr:first-child td,
@@ -2175,6 +2179,8 @@ table.grading-report tbody tr:hover th,
 .category_subcategories tbody tr:hover td,
 .category_subcategories tbody tr:hover th,
 table#modules tbody tr:hover td,
+table#permissions tbody tr.rolecap:hover td,
+table#permissions tbody tr.rolecap:hover th,
 .table tbody tr:hover td,
 .table tbody tr:hover th {
   background-color: #f5f5f5;
@@ -2327,6 +2333,17 @@ table .span24 {
   margin-left: 0;
 }
 
+span.helplink a,
+a.icon.editing_edit,
+a.icon.editing_hide,
+a.icon.editing_show,
+a.icon.editing_delete,
+a.icon.editing_roles,
+a.icon.editing_move,
+li.section div.content div.summary > a, 
+span.editing_move,
+span.section-handle,
+a.editing_showhide,
 [class^="icon-"],
 [class*=" icon-"] {
   display: inline-block;
@@ -2335,10 +2352,34 @@ table .span24 {
   *margin-right: .3em;
   line-height: 14px;
   vertical-align: text-top;
-  background-image: url([[pix:theme|bootstrap/glyphicons-halflings]]);
+  background-image: url([[pix:theme|glyphicons-halflings]]);
   background-position: 14px 14px;
   background-repeat: no-repeat;
-  border: thick solid green;
+}
+
+span.editing_move {
+  cursor: move;
+}
+
+span.helplink a img,
+a img.iconsmall.edit,
+a.icon.editing_edit img,
+a.icon.editing_move img,
+a.icon.editing_hide img,
+a.icon.editing_show img,
+a.icon.editing_delete img,
+a.icon.editing_roles img,
+span.section-handle img,
+span.editing_move img,
+a.editing_showhide img {
+  display: none;
+}
+span.helplink a {
+  opacity: 0.5;
+}
+.fitem:hover span.helplink a, 
+span.helplink:hover a {
+  opacity: 1;
 }
 
 [class^="icon-"]:last-child,
@@ -2346,8 +2387,30 @@ table .span24 {
   *margin-left: 0;
 }
 
+#changenumsections,
+span.commands a:hover {
+  text-decoration: none;
+}
+
 .icon-white {
-  background-image: url([[pix:theme|bootstrap/glyphicons-halflings-white]]);
+  background-image: url([[pix:theme|glyphicons-halflings-white]]);
+}
+
+.icon- {
+  background: none; /* for a space the size of an icon */
+}
+
+.icon-duplicate:before { /* text alternative */
+  content: "x2";
+  color: #000;
+  text-size: 18px;
+  line-height: 14px;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.icon-not-assigned {
+  background: red; /* for testing purposes */
 }
 
 .icon-glass {
@@ -2378,6 +2441,7 @@ table .span24 {
   background-position: -144px 0;
 }
 
+a.icon.editing_roles,
 .icon-user {
   background-position: -168px 0;
 }
@@ -2402,6 +2466,7 @@ table .span24 {
   background-position: -288px 0;
 }
 
+a.icon.editing_delete,
 .icon-remove {
   background-position: -312px 0;
 }
@@ -2605,7 +2670,8 @@ table .span24 {
 .icon-tint {
   background-position: -72px -72px;
 }
-
+a.icon.editing_edit,
+li.section div.content div.summary > a, 
 .icon-edit {
   background-position: -96px -72px;
 }
@@ -2618,6 +2684,8 @@ table .span24 {
   background-position: -144px -72px;
 }
 
+span.editing_move,
+span.section-handle,
 .icon-move {
   background-position: -168px -72px;
 }
@@ -2686,6 +2754,7 @@ table .span24 {
   background-position: -72px -96px;
 }
 
+span.helplink a,
 .icon-question-sign {
   background-position: -96px -96px;
 }
@@ -2766,10 +2835,14 @@ table .span24 {
   background-position: -72px -120px;
 }
 
+a.icon.editing_hide,
+li.section:hover a.editing_showhide,
 .icon-eye-open {
   background-position: -96px -120px;
 }
 
+a.icon.editing_show,
+li.section.hidden:hover a.editing_showhide,
 .icon-eye-close {
   background-position: -120px -120px;
 }
@@ -2822,6 +2895,7 @@ table .span24 {
   background-position: -408px -120px;
 }
 
+a.icon.editing_move,
 .icon-resize-vertical {
   background-position: -432px -119px;
 }
@@ -5882,7 +5956,7 @@ div[id^="progress_pbar"],
   float: left;
 }
 
-.bootstrap.hide {
+.bootstrap.hide { /* otherwise hides "hide" icons */
   display: none;
 }
 
@@ -5890,7 +5964,7 @@ div[id^="progress_pbar"],
   display: block;
 }
 
-.invisible {
+.bootstrap.invisible { /* otherwise hides hidden blocks */
   visibility: hidden;
 }
 /*
@@ -5953,39 +6027,51 @@ span.editinstructions{
   border-top: 1px solid rgb(229,229,229);
   border-bottom: 1px solid #fff;
 }
-
-.helplink a img {
-  display:none;
-}
-.helplink a:before {
-  content: "?";
-  font-size: 8.998px;
-  font-weight: bold;
-  line-height: 12px;
-  color: #ffffff;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  vertical-align: middle;
-  background-color: #cccccc;
-  padding: 0px 4px 1px;
-  -webkit-border-radius: 9px;
-     -moz-border-radius: 9px;
-          border-radius: 9px;
+.block_settings .block_tree .tree_item {
+    padding-left: 0;
 }
 
-.ie8 .helplink a:before {
-  padding: 0px 3px 1px 2px;
-  vertical-align: 15%;
-} 
-.helplink a:hover:before {
-  background-color: #999999;
-  color: #ffffff;
-  text-decoration: none;
-  cursor: pointer;
+.block_tree .tree_item a:before,
+.block_tree .tree_item span:before {
+  content: "▼ ";
 }
-.helplink {
-  padding: 0px 5px;
+.block_tree .collapsed  .tree_item a:before,
+.block_tree .collapsed  .tree_item span:before {
+  content: "► ";
 }
-.mform .fitemtitle label .helplink {
-  padding: 0px;
+.block_tree .collapsed  .tree_item.emptybranch a:before,
+.block_tree .collapsed  .tree_item.emptybranch span:before {
+  content: "► ";
+  color: #ccc;
+}
+.block_tree .tree_item.leaf a:before,
+.block_tree .tree_item.leaf span:before,
+.tree_item.navigation_node a:before,
+.tree_item.navigation_node span:before {
+  content: "";
+  cursor: normal;
+}
+.block_tree li.item_with_icon.contains_branch .tree_item {
+  padding-left: 10px;
 }
 
+.block li img.smallicon.navicon,
+.block li .tree_item.leaf img.smallicon,
+.block li img.icon {
+  display: none;
+}
+
+.block_settings .block_tree .tree_item,
+.block_navigation .block_tree .tree_item {
+  padding-left: 0px;
+}
+.jsenabled .block_settings .block_tree .collapsed .tree_item.branch,
+.jsenabled .block_navigation .block_tree .collapsed .tree_item.branch,
+.block_navigation .block_tree .tree_item.branch,
+.block_settings .block_tree .tree_item.branch,
+.jsenabled .block_navigation .block_tree .tree_item.emptybranch {
+  background: none;
+}
+.block.list_block .unlist > li > .column {
+  display: block;
+}

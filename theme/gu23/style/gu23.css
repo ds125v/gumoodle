@@ -1,32 +1,86 @@
-body {font: Georgia, "Times New Roman", Times, serif;}
-body { width:100%; }
+body {
+  font: Georgia, "Times New Roman", Times, serif;
+}
+body {
+  width:100%;
+}
 
-.clear {clear: left;}
-a {text-decoration: none;}
-input, textarea, select, button {font-family: Arial, Helvetica, sans-serif;}
+.clear {
+  clear: left;
+}
+a {
+  text-decoration: none;
+}
+input, textarea, select, button {
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-html {background: #5c5940 url([[pix:theme|arch1]]) repeat-x bottom fixed;}
-body {background: url([[pix:theme|arch2]]) no-repeat 960px bottom fixed;}
+html {
+  background: #5c5940 url([[pix:theme|arch1]]) repeat-x bottom fixed;
+}
+body {
+  background: url([[pix:theme|arch2]]) no-repeat 960px bottom fixed;
+}
+body.moodledev-cent-gla-ac-uk--moodle2 {
+  background: rgb(207,212,216);
+}
+body.category-5 #page-content .content-header {
+  background-color: rgb(0,124,133);
+}
+body.category-2 #page-content .content-header {
+  background-color: rgb(83,46,99);
+}
+body.category-3 #page-content .content-header {
+  background-color: rgb(119,121,9);
+}
+body.category-4 #page-content .content-header {
+  background-color: rgb(59,110,143);
+}
 
-header {background-color: #005288; color: #fff; overflow:hidden;}
-header h1 a {color: #fff;}
-header h1 a:hover {color: #e9dedf;}
-footer {color: #333;}
-footer a {color: #004d9c;}
-footer ul { width: 310px;}
-footer ul li a {color: #004d9c;}
-footer {text-align: left;}
+header {
+  background-color: #005288;
+  color: #fff;
+  overflow:hidden;
+}
+header h1 a {
+  color: #fff;
+}
+header h1 a:hover {
+  color: #e9dedf;
+}
+footer {
+  color: #333;
+}
+footer a {
+  color: #004d9c;
+}
+footer ul {
+  width: 310px;
+}
+footer ul li a {
+  color: #004d9c;
+}
+footer {
+  text-align: left;
+}
 footer .logininfo,
 footer .sitelink,
 footer .helplink,
 footer .homelink a {
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
 }
 
 
-#page {margin-left: 20px; padding-right: 20px; padding-bottom: 5em; width:100%;}
-#page-content {margin-top:25px ; padding-bottom: 3em;}
+#page {
+  margin-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 5em;
+  width: 100%;
+}
+#page-content {
+  margin-top: 25px;
+  padding-bottom: 3em;}
 
 #blocks1 {
   width: 200px;
@@ -54,12 +108,30 @@ footer .homelink a {
   padding: 0px 8px;
 }
 
-header {padding: 30px 25px 0 25px; background: #005288 url(http://www.gla.ac.uk/0t4/generic/images/pageheader.gif) no-repeat bottom right; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);}
+header {
+  padding: 30px 25px 0 25px;
+  background: #005288 url(http://www.gla.ac.uk/0t4/generic/images/pageheader.gif) no-repeat bottom right;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);
+}
 
-
-#branding #logo {display: none;}
-.headermain {font-size: 0; margin: 0;}
-.headermain  {float: left; width: 172px; height: 54px; display: block; overflow: hidden; text-indent: -5000em; background: url(http://www.gla.ac.uk/0t4/generic/images/logo.gif) no-repeat;}
+#branding #logo {
+  display: none;
+}
+.headermain {
+  font-size: 0;
+  margin: 0;
+}
+.headermain  {
+  float: left;
+  width: 172px;
+  height: 54px;
+  display: block;
+  overflow: hidden;
+  text-indent: -5000em;
+  background: url(http://www.gla.ac.uk/0t4/generic/images/logo.gif) no-repeat;
+}
 
 #head-menu {clear: both; width: 100%;}
 #head-menu h3 {display: none;}
@@ -289,9 +361,6 @@ li.section .summarytext .no-overflow p:last-child {
 .block .header .commands {margin-left: 0px;}
 .block .content {padding:0px;}
 
-
-
-
 li.activity a:visited,
 li.activity a,
 div.region-content a:visited,
@@ -300,7 +369,6 @@ div.content a:visited,
 div.content a {color: rgb(0,77,156);}
 div.region-content a.nolink,
 div.content a:visited.nolink {color: rgb(0,0,0);}
-
 
 table#participants {margin: 1em auto;}
 
@@ -313,9 +381,20 @@ table#participants {margin: 1em auto;}
   margin: auto;
 }
 
-input#adminsearchquery {width:110px;}
-input#searchform_search {width:140px;}
-.navbar {margin-bottom: 0px;}
-.path-backup .mform .fgroup .proceedbutton {float:none;}
-#page-report-outline-user .section {border: none; padding: none;}
+input#adminsearchquery {
+  width:110px;
+}
+input#searchform_search {
+  width:140px;
+}
+.navbar {
+  margin-bottom: 0px;
+}
+.path-backup .mform .fgroup .proceedbutton {
+  float:none;
+}
+#page-report-outline-user .section {
+  border: none;
+  padding: none;
+}
 

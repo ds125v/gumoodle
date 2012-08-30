@@ -1,12 +1,9 @@
 <?php
 
 $THEME->name = 'gu23';
-$THEME->parents = array('simple','bootstrap','base');
+$THEME->parents = array('bootstrap');
 $THEME->parents_exclude_sheets = array(
-'base'=>array(
-'pagelayout', 'admin', 'core'
-),
-'simple'=>array(
+'bootstrap'=>array(
 'decoration'
 )
 ); 
