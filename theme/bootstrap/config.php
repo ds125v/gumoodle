@@ -1,6 +1,7 @@
 <?php
 
 $THEME->name = 'bootstrap';
+$THEME->parents = array();
 $THEME->sheets = array(
     'core',         /** Must come second: General styles **/
     'admin',

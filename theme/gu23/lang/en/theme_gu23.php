@@ -26,4 +26,4 @@
 $string['pluginname'] = 'GU23';
 $string['region-side-post'] = 'Right';
 $string['region-side-pre'] = 'Left';
-$string['choosereadme'] = 'Glasgow University theme for 2.3, see also category themes for Colleges';
+$string['choosereadme'] = 'Glasgow University theme for 2.3';

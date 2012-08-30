@@ -99,11 +99,8 @@
   padding-left: 30px;
 }
 .course_category_tree .category .course_info {
-  position: absolute;
-  right: 0;
-  top: 0;}
-.course_category_tree .category .course_info a,
-.course_category_tree .category .course_info div {float:left;width:16px;height:16px;}
+  display: inline-block;
+}
 .jsenabled .course_category_tree .controls {
   visibility: visible;
 }
