@@ -1,3 +1,4 @@
+// need to fix the things affected by .rows, which include forum, turnitin, probably others
 
 
 .bootstrap.row {
@@ -17,44 +18,27 @@
 
 
 
+
+.forumsearch button,
 input[type="text"], /* hopefully other rules catch everything in vertical forms */
 input[type="submit"], /* hopefully other rules catch everything in vertical forms */
-select, /* hopefully other rules catch everything in vertical forms */
 .form-input input[type="password"],
 .searchform button,
-table#form select,
-.forumsearch button,
-.form-search input,
-.form-inline input,
-.form-horizontal input,
 .mform input,
-.settingsform input,
-.form-search textarea,
-.form-inline textarea,
-.form-horizontal textarea,
+.settingsform input {
+  .form-horizontal input
+}
+
 .mform textarea,
-.settingsform textarea,
-.form-search select,
-.form-inline select,
-.form-horizontal select,
+.settingsform textarea {
+  .form-horizontal textarea
+}
+
+table#form select,
+select, /* hopefully other rules catch everything in vertical forms */
 .mform select,
-.settingsform select,
-.form-search .help-inline,
-.form-inline .help-inline,
-.form-horizontal .help-inline,
-.form-search .uneditable-input,
-.form-inline .uneditable-input,
-.form-horizontal .uneditable-input,
-.form-search .input-prepend,
-.form-inline .input-prepend,
-.form-horizontal .input-prepend,
-.form-search .input-append,
-.form-inline .input-append,
-.form-horizontal .input-append {
-  display: inline-block;
-  *display: inline;
-  margin-bottom: 0;
-  *zoom: 1;
+.settingsform select {
+  .form-horizontal select
 }
 
 table#form tr {
@@ -66,10 +50,8 @@ table#form tr {
 }
 
 legend + div.form-item,
-h2.header + div.detail-pair,
-legend + .control-group {
-  margin-top: 18px;
-  -webkit-margin-top-collapse: separate;
+h2.header + div.detail-pair {
+  legend + .control-group
 }
 
 /* working around webkit bug with margins below legends, bootstrap already
@@ -84,7 +66,6 @@ table#form td {
 table#form td label {
   margin-bottom: 0px;
 }
-
 
 div.fitemtitle span.helplink {
   margin-right: -22px; /* shift help icon into middle gutter */

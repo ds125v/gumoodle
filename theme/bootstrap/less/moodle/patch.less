@@ -35,18 +35,15 @@ div.detail-pair {
   .control-group
 }
 
-div.profilepicture a,
-div.left.picture a,
-tr.discussion td.picture a {
-  .thumbnail
-}
-
-.forumpost .row .left {
-  width: 45px;
-  padding: 0 5px;
-}
 .forumpost .picture img {
   margin: 0px;
+}
+.forumpost .row {
+  margin-left: 0 !important;
+}
+.forumpost .row:before,
+.forumpost .row:after {
+  content: none;
 }
 
 div.profilepicture a,
@@ -60,6 +57,7 @@ tr.rolecap td.risk a {
 tr.rolecap td img {
   display: none;
 }
+
 .capdefault span.note,
 span.ok,
 span.pathok,
@@ -126,19 +124,18 @@ p.warn {
   margin-left: 21px;
 }
 div[id^="bar_pbar"] { // doesn't work because styles attached to tag
-  .progress 
+  .progress !important
 }
 div[id^="progress_pbar"] {
-  .progress .bar
+  .progress .bar !important
 }
 div[id^="progress_pbar"] {
-  .progress-striped .bar
+  .progress-striped .bar !important
 }
 
 div[id^="progress_pbar"] {
-  .progress.active .bar
+  .progress.active .bar !important
 }
-
 .form-defaultinfo,
 .form-description,
 .formsettingheading,
@@ -146,7 +143,8 @@ span.cap-name,
 #adminsettings .form-item .form-label .form-shortname,
 .fcontainer div.fitem:nth-child(4) .fstatic, // horrible hack!
 #page-question-type-pmatch .fstatic { // horrible hack!
-  .help-inline
+  .help-inline;
+  padding-left: 0
 }
 .forumsearch input[type="text"],
 .searchform input[type="text"],
@@ -253,8 +251,16 @@ div#helppopupbox {
 a.skip-block,
 a.skip,
 .accesshide {
-  .hide-text
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+//  .hide-text // this seems to only hide the 'text', not the container 
 }
+
 span.hide,
 div.hide {
   display:none;
@@ -266,16 +272,9 @@ div.hide {
   margin:0;
 }
 
-a.skip-block:focus,
-a.skip-block:active,
-a.skip:focus,
-a.skip:active {position: static;display: block;}
-.skip-block-to {display: block;height: 1px;overflow: hidden;}
-
-
 
 .form-checkbox,
-.fcheckbox,
+.fcheckbox span,
 .fradio,
 div.felement.fcheckbox,
 #defineroletable td.inherit label,
@@ -308,7 +307,9 @@ form#adminsettings .form-item .form-setting .form-password .unmask,
 .fdate_time_selector span > input[type="checkbox"],
 .fgroup span > input[type="checkbox"],
 .fduration span > input[type="checkbox"] { 
-  .checkbox input[type="checkbox"]
+// copied from .checkbox input[type="checkbox"] 
+  float: left;
+  margin-left: -18px;
 }
 
 
@@ -777,6 +778,12 @@ form#adminsettings .form-item .form-setting .form-password .unmask,
   margin-left: 5px;
   position:relative;
   top: 3px;
+}
+.fitem_fdate_selector span input[type="checkbox"] {
+  float: left;
+}
+.fitem_fdate_selector span label {
+  display: inline-block;
 }
 
 .felement.fstatic a img.userpicture {
@@ -1410,22 +1417,15 @@ span#completionprogressid.completionprogress {
   display: block;
   float: none;
 }
-body {
-  background-image: url("http://twitter.github.com/bootstrap/assets/img/grid-18px-masked.png");
-  background-repeat: repeat-x;
-}
-
-#page {
-  padding: 10px;
-}
 
 header .headermain {
-  font-size: 54px;
+  h1
 }
 
 li.section.current {
   background-color: transparent;
 }
+
 li.section.current .content {
   background-color: rgb(245,245,245);
   border: 1px solid rgba(0,0,0,0.05);
@@ -1441,12 +1441,12 @@ li.section.current .content {
 footer { // copied from the bootstrap documentation page
   margin-top: 45px;
   padding: 35px 0px 36px;
-  border-top: 1px solid rgb(229,229,229);
+  border-top: 1px solid @grayLighter;
 }
 
 footer p {
   margin-bottom: 0;
-  color: rgb(85,85,85);
+  color: @gray;
 }
 .user-enroller-panel .uep-search-results .user .count {
 border: none;
@@ -1458,6 +1458,6 @@ background: none;
 }
 
 .block.invisible {
+  .dimmed;
   visibility: visible;
-  .dimmed
 }

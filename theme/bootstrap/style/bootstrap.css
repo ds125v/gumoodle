@@ -8551,30 +8551,15 @@ table#form tr,
 div.detail-pair {
   margin-bottom: 10px;
 }
-div.profilepicture a,
-div.left.picture a,
-tr.discussion td.picture a {
-  display: block;
-  padding: 4px;
-  line-height: 20px;
-  border: 1px solid #ddd;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.055);
-  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.055);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.055);
-  -webkit-transition: all .2s ease-in-out;
-  -moz-transition: all .2s ease-in-out;
-  -o-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out;
-}
-.forumpost .row .left {
-  width: 45px;
-  padding: 0 5px;
-}
 .forumpost .picture img {
   margin: 0px;
+}
+.forumpost .row {
+  margin-left: 0 !important;
+}
+.forumpost .row:before,
+.forumpost .row:after {
+  content: none;
 }
 tr.rolecap td img {
   display: none;
@@ -8653,25 +8638,6 @@ p.warn {
   display: inline-block;
   margin-left: 21px;
 }
-div[id^="bar_pbar"] {
-  overflow: hidden;
-  height: 20px;
-  margin-bottom: 20px;
-  background-color: #f7f7f7;
-  background-image: -moz-linear-gradient(top,#f5f5f5,#f9f9f9);
-  background-image: -webkit-gradient(linear,0 0,0 100%,from(#f5f5f5),to(#f9f9f9));
-  background-image: -webkit-linear-gradient(top,#f5f5f5,#f9f9f9);
-  background-image: -o-linear-gradient(top,#f5f5f5,#f9f9f9);
-  background-image: linear-gradient(to bottom,#f5f5f5,#f9f9f9);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#fff9f9f9', GradientType=0);
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-}
 .form-defaultinfo,
 .form-description,
 .formsettingheading,
@@ -8685,6 +8651,7 @@ span.cap-name,
   *zoom: 1;
   vertical-align: middle;
   padding-left: 5px;
+  padding-left: 0;
 }
 .forumsearch input[type="text"],
 .searchform input[type="text"],
@@ -8833,11 +8800,13 @@ div.performanceinfo.pageinfo {
 a.skip-block,
 a.skip,
 .accesshide {
-  font: 0/0 a;
-  color: transparent;
-  text-shadow: none;
-  background-color: transparent;
-  border: 0;
+  position: absolute !important;
+  clip: rect(1px,1px,1px,1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
 }
 span.hide,
 div.hide {
@@ -8849,20 +8818,8 @@ div.hide {
   padding: 0;
   margin: 0;
 }
-a.skip-block:focus,
-a.skip-block:active,
-a.skip:focus,
-a.skip:active {
-  position: static;
-  display: block;
-}
-.skip-block-to {
-  display: block;
-  height: 1px;
-  overflow: hidden;
-}
 .form-checkbox,
-.fcheckbox,
+.fcheckbox span,
 .fradio,
 div.felement.fcheckbox,
 #defineroletable td.inherit label,
@@ -8877,6 +8834,26 @@ form#adminsettings .form-item .form-setting .form-password .unmask,
 .form-multicheckbox li {
   min-height: 18px;
   padding-left: 18px;
+}
+#defineroletable td.inherit label input[type="checkbox"],
+#defineroletable td.inherit label input[type="radio"],
+#defineroletable td.allow label input[type="checkbox"],
+#defineroletable td.allow label input[type="radio"],
+#defineroletable td.prevent label input[type="checkbox"],
+#defineroletable td.prevent label input[type="radio"],
+#defineroletable td.prohibit label input[type="checkbox"],
+#defineroletable td.prohibit label input[type="radio"],
+.form-checkbox input[type="checkbox"],
+.fcheckbox input[type="checkbox"],
+.form-multicheckbox input[type="checkbox"],
+.fradio input[type="radio"],
+.radio input[type="radio"],
+.unmask input[type="checkbox"],
+.fdate_time_selector span > input[type="checkbox"],
+.fgroup span > input[type="checkbox"],
+.fduration span > input[type="checkbox"] {
+  float: left;
+  margin-left: -18px;
 }
 #fgroup_id_buttonar,
 #fitem_id_submitbutton,
@@ -9865,6 +9842,12 @@ form#adminsettings .form-item .form-setting .form-password .unmask,
   position: relative;
   top: 3px;
 }
+.fitem_fdate_selector span input[type="checkbox"] {
+  float: left;
+}
+.fitem_fdate_selector span label {
+  display: inline-block;
+}
 .felement.fstatic a img.userpicture {
   padding: 0px 73px;
 }
@@ -10415,15 +10398,20 @@ span#completionprogressid.completionprogress {
   display: block;
   float: none;
 }
-body {
-  background-image: url("http://twitter.github.com/bootstrap/assets/img/grid-18px-masked.png");
-  background-repeat: repeat-x;
-}
-#page {
-  padding: 10px;
-}
 header .headermain {
-  font-size: 54px;
+  margin: 10px 0;
+  font-family: inherit;
+  font-weight: bold;
+  line-height: 1;
+  color: inherit;
+  text-rendering: optimizelegibility;
+  font-size: 36px;
+  line-height: 40px;
+}
+header .headermain small {
+  font-weight: normal;
+  line-height: 1;
+  color: #999;
 }
 li.section.current {
   background-color: transparent;
@@ -10440,11 +10428,11 @@ li.section.current .content {
 footer {
   margin-top: 45px;
   padding: 35px 0px 36px;
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid #eee;
 }
 footer p {
   margin-bottom: 0;
-  color: #555555;
+  color: #555;
 }
 .user-enroller-panel .uep-search-results .user .count {
   border: none;
@@ -10480,6 +10468,9 @@ footer p {
 .block_settings .block_tree,
 .block_navigation .block_tree {
   margin: 0;
+}
+.block .content {
+  padding: 0 15px;
 }
 .block_navigation .content,
 .block_settings .content {
@@ -10526,7 +10517,7 @@ input#adminsearchquery {
   width: 78px;
 }
 input#searchform_search {
-  width: 124px;
+  width: 105px;
 }
 select.menubui_addblock {
   width: 100%;
