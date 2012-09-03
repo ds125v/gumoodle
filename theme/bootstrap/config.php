@@ -2,23 +2,8 @@
 
 $THEME->name = 'bootstrap';
 $THEME->parents = array();
-$THEME->sheets = array(
-    'core',         /** Must come second: General styles **/
-    'admin',
-    'blocks',
-    'calendar',
-    'course',
-    'dock',
-    'grade',
-    'message',
-    'question',
-    'user',
-    'filemanager',
-    'bootstrap',
-    'simple',
-    'decoration'
-);
-$THEME->editor_sheets = array('bootstrap');
+$THEME->sheets = array( 'bootstrap',);
+$THEME->editor_sheets = array('bootstrap'); // slim this down?
 $THEME->rendererfactory = 'theme_overridden_renderer_factory';
 $THEME->layouts = array(
     'base' => array(

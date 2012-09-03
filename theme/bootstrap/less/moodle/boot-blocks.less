@@ -1,0 +1,96 @@
+
+.block {
+  .well
+}
+.block { 
+  padding: 8px 0; // remove the well padding
+}
+.block_settings .block_tree,
+.block_navigation .block_tree {
+  margin: 0;
+}
+.block_navigation .content,
+.block_settings .content {
+  padding: 0;
+}
+.block .header .title h2,
+.block h3.main {
+ .nav-header
+}
+.block .header .title .commands,
+.block_adminblock .content,
+.block .footer,
+.block .block_tree li > p > a,
+.block .block_tree li > p > span {
+  display: block;
+  padding: 3px 15px;
+}
+.block .block_tree li > p >  a:hover {
+  text-decoration: none;
+  background-color: @grayLighter;
+}
+
+.block .header .title h2 {
+  margin: 0;
+}
+.block_tree > li > p > a,
+.block_tree > li > p > span,
+.block_tree .nav-header {
+// copied from .nav-list > li > a,
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+.block_tree li p.active_tree_node a,
+.block_tree li p.active_tree_node a:hover {
+// copied from .nav-list > .active > a,
+  color: @white;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+  background-color: @linkColor;
+}
+input#adminsearchquery {
+  width:78px;
+}
+input#searchform_search {
+  width:124px;
+}
+select.menubui_addblock {
+  width:100%;
+}
+
+.block li p a i { // hide nav icons
+  display: none;
+}
+.block_settings .block_tree li ul,
+.block_settings .block_tree li.depth_2 ul,
+.block_navigation .block_tree li ul,
+.block_navigation .block_tree li.depth_2 ul { // remove the indent and put it into the leaf nodes
+  padding-left: 0;
+}
+.block_settings ul.block_tree.list li ul li a,
+.block_settings ul.block_tree.list li ul li span,
+.block_navigation ul.block_tree.list li ul li ul li a,
+.block_navigation ul.block_tree.list li ul li ul li span {
+  padding-left: 33px;
+}
+.block_settings ul.block_tree.list li ul li ul li a,
+.block_settings ul.block_tree.list li ul li ul li span,
+.block_navigation ul.block_tree.list li ul li ul li ul li a,
+.block_navigation ul.block_tree.list li ul li ul li ul li span {
+  padding-left: 49.5px;
+}
+.block_settings ul.block_tree.list li ul li ul li ul li a,
+.block_settings ul.block_tree.list li ul li ul li ul li span,
+.block_navigation ul.block_tree.list li ul li ul li ul li ul li a,
+.block_navigation ul.block_tree.list li ul li ul li ul li ul li span {
+  padding-left: 66px;
+}
+.block_settings ul.block_tree.list li ul li ul li ul li ul li a,
+.block_settings ul.block_tree.list li ul li ul li ul li ul li span,
+.block_navigation ul.block_tree.list li ul li ul li ul li ul li ul li a,
+.block_navigation ul.block_tree.list li ul li ul li ul li ul li ul li span {
+  padding-left: 83.5px;
+}
+.block_navigation ul.block_tree.list li ul li ul li ul li ul li ul li ul li a,
+.block_navigation ul.block_tree.list li ul li ul li ul li ul li ul li ul li span {
+  padding-left: 99px;
+}

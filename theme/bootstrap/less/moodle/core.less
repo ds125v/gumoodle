@@ -3,15 +3,20 @@
 td, th {border: none; padding: 0;} /* apparently YUI adds a border & padding, lets take it away again */
 
 .dir-ltr,
-.mdl-left,
-.dir-rtl .mdl-right {text-align: left;}
-.dir-rtl,
-.mdl-right,
-.dir-rtl .mdl-left {text-align: right;}
+.mdl-left {
+  text-align: left;
+}
+.mdl-right {
+  text-align: right;
+}
+
 #add,
 #remove,
 .centerpara,
-.mdl-align {text-align: center;}
+.mdl-align {
+  text-align: center;
+}
+
 a.dimmed,
 a.dimmed:visited,
 a.dimmed_text,
@@ -31,19 +36,20 @@ a.dimmed_text:visited,
     -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
     filter: alpha(opacity=50);
 }
-.unlist,
-.unlist li,
-.inline-list,
-.inline-list li,
-.block .list,
-.block .list li,
-.sitetopic .section li.activity,
-.course-content .section li.activity,
-.tabtree li {list-style: none;margin:0;padding:0;}
+.unlist ol,
+.unlist ul,
+.inline-list ul,
+.inline-list ol,
+.block .list ul,
+.sitetopic .section ul,
+.course-content .section ul
+.tabtree ul {
+  .unstyled
+}
 
-.course-content .current {background:#E3E3E3;}
-
-.inline-list li {display: inline;}
+.inline-list li {
+  display: inline;
+}
 .notifytiny {font-size:0.7em;}
 .notifytiny li,
 .notifytiny td {font-size:100%;}
@@ -60,12 +66,6 @@ a.autolink.glossary:hover {cursor: help;}
 .yui-overlay .yui-widget-bd {background-color:#FFEE69;border:1px solid #A6982B;border-top-color: #D4C237;color:#000000;left:0;padding:2px 5px;position:relative;top:0;z-index:1;}
 .clearer {background:transparent;border-width:0;clear:both;display:block;height:1px;margin:0;padding:0;}
 .clearfix:after {clear: both;content: ".";display: block;height: 0;min-width: 0;visibility: hidden;}
-.bold,
-.warning,
-.errorbox .title,
-.pagingbar .title,
-.pagingbar .thispage,
-.headingblock {font-weight: bold;}
 img.resize {height: 1em;width: 1em;}
 .block img.resize,
 .breadcrumb img.resize {height: 0.9em;width: 0.8em;}
@@ -83,40 +83,11 @@ img.iconkbhelp {height:17px;width:49px;}
 .boxwidthwide {width: 80%;}
 #maincontent {display: block;height: 1px;overflow: hidden;}
 img.uihint {cursor: help;}
-.helplink img {height: 17px;vertical-align: middle;width: 17px;}
 img.emoticon {vertical-align: middle;width: 15px;height: 15px;}
 form.popupform,
 form.popupform div {display: inline;}
 .arrow_button input {overflow:hidden;}
 
-/** The 1-pixel padding is there to avoid phantom scroll bars on OS X (FF, Safari and Chrome)**/
-.no-overflow {overflow:auto;padding-bottom:1px;}
-.pagelayout-report .no-overflow {overflow:visible;}
-.no-overflow > .generaltable {margin-bottom:0;}
-
-/**
- * Accessibility features
- */
-/*Accessibility: text 'seen' by screen readers but not visual users. */
-.accesshide {position:absolute;left:-10000px;font-weight:normal;font-size:1em;}
-.dir-rtl .accesshide {top:-30000px;left:auto;}
-span.hide,
-div.hide {display:none;}
-.invisiblefieldset {display:inline;border-width:0;padding:0;margin:0;}
-/*Accessibility: Skip block link, for keyboard-only users. */
-a.skip-block,
-a.skip {position: absolute;top: -1000em;font-size: 0.85em;text-decoration:none;}
-a.skip-block:focus,
-a.skip-block:active,
-a.skip:focus,
-a.skip:active {position: static;display: block;}
-.skip-block-to {display: block;height: 1px;overflow: hidden;}
-
-/**
- * Header
- */
-.headermain {float:left;margin:15px;font-size:2.3em;}
-.headermenu {float:right;margin:10px;font-size:0.8em;text-align:right;}
 
 /**
  * Navbar
@@ -139,14 +110,6 @@ a.skip:active {position: static;display: block;}
 .tabtree ul li.here ul {position:absolute;top:100%;width:100%;}
 .tabtree ul li.here .empty {display:none;}
 
-/**
- * Mforms
- */
-.mform fieldset .advancedbutton {text-align:right;}
-.mform label .req,
-.mform label .adv {cursor: help;}
-.mform .ftags label.accesshide {display: block;position: static;}
-.mform .ftags select {margin-bottom: 0.7em;min-width: 22em;}
 
 input#id_externalurl {direction:ltr;}
 
@@ -219,8 +182,8 @@ tbody.empty {
 }
 
 .path-admin .roleassigntable #buttonscell #addcontrols {
-margin-top: 0;
-height: auto;
+  margin-top: 0;
+  height: auto;
 }
 
 /**
@@ -418,10 +381,6 @@ body.tag .managelink {padding: 5px;}
 #page-backup-restore .filealiasesfailures {background-color:#ffd3d9}
 #page-backup-restore .filealiasesfailures .aliaseslist {width:90%;margin:0.8em auto;background-color:white;border:1px dotted #666;}
 
-/**
- * Web Service
- */
-#webservice-doc-generator td {text-align: left;border: 0px solid black;}
 
 /** Help Content (pop-up) */
 #helppopupbox {z-index: 10000 !important;}

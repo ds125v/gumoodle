@@ -50,6 +50,9 @@ header h1 a:hover {
 }
 footer {
   color: #333;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 footer a {
   color: #004d9c;
@@ -74,8 +77,7 @@ footer .homelink a {
 
 #page {
   margin-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 5em;
+  padding: 0 20px 5em 0;
   width: 100%;
 }
 #page-content {
@@ -179,10 +181,23 @@ header .logininfo a:hover {border-bottom-color: #3d779c;}
 
 footer .backToTop {float: left; margin-left: 17px; font: 93% Arial, Helvetica, sans-serif; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; background-color: #939393; background: rgba(0, 0, 0, 0.3) url([[pix:theme|shadow_bottom]]) repeat-x;}
 footer .backToTop a {display: block; padding: 0.7em 1.2em; color: #fff;}
-footer .backToTop a:hover {color: #ccc;}
-footer {color: rgb(51,51,51);font: 93% Arial, Helvetica, sans-serif;text-align: left;}
+footer .backToTop a:hover {
+  color: #ccc;
+  text-decoration: none;
+}
+footer {
+  color: rgb(51,51,51);
+  font: 93% Arial, Helvetica, sans-serif;
+  text-align: left;
+}
 
-footer .contact {clear: left; float: left; width: 350px; margin-top: 1.2em; padding-left: 221px; }
+footer .contact {
+  clear: left;
+  float: left;
+  width: 350px;
+  margin-top: 1.2em;
+  padding-left: 221px;
+}
 footer .contact .adr {margin: 2.25em 0 0.5em 0;}
 footer .contact .phoneEmail dl,
 footer .contact .phoneEmail dd {display: inline;}
@@ -198,7 +213,7 @@ footer .logininfo,
 footer .homelink,
 footer .homelink a,
 footer .helplink {margin: 0px; padding: 0px;}
-footer .helplink {margin-left:-20px;}
+footer .helplink {margin-left: -18px;}
 
 
 .block .header h2,
@@ -221,15 +236,25 @@ margin: 20px 0px 0px 0px; padding-bottom: 4px; font: 131% Arial, Helvetica, sans
 .course-content .single-section .section-navigation .title, /* MDL-34613 */
 .course-content .section-summary .section-title, /* MDL-34613 */
 h3.sectionname {
-background: url([[pix:theme|jumplink_header]]) no-repeat scroll right bottom transparent;
-font-size: 150%;
-padding: 0.3em 0em 0.3em 0.5em;
-margin: 0px;
-font-weight: normal;
-border-bottom: 1px solid rgb(227,227,227);
-text-overflow: ellipsis; overflow:hidden; white-space: nowrap;
-text-align: left;
+  background: url([[pix:theme|jumplink_header]]) no-repeat scroll right bottom transparent;
+  font-size: 150%;
+  line-height: 27px;
+  padding: 0.3em 0em 0.3em 0.5em;
+  margin: 0px;
+  font-weight: normal;
+  border-bottom: 1px solid rgb(227,227,227);
+  text-overflow: ellipsis;
+  overflow:hidden;
+  white-space: nowrap;
+  text-align: left;
 }
+li.section.current h3.sectionname {
+  color: #eee;
+  background-color: #666;
+  border-radius: 5px 5px 0px 0px;
+  font-weight: bold;
+}
+
 .course-content .section-summary {
   border: none;
 }
@@ -282,22 +307,15 @@ div.summarytext p {
   border-radius: 5px;
   box-shadow: 0px 3px 3px #eee;
 }
+.path-course-view .course-content .single-section ul.topics div.content,
+.path-course-view .course-content .single-section ul.weeks div.content {
+  border-radius: 0 0 5px 5px;
+}
 
 .coursebox {
   width: 95%;
   margin: auto;
   margin-bottom: 5px;
-}
-
-li.section.current .content {
-  background-color: transparent;
-}
-
-li.section.current h3.sectionname {
-  color: #eee;
-  background-color: #666;
-  border-radius: 5px 5px 0px 0px;
-  font-weight: bold;
 }
 
 .course-content ul.topics li.section .content,
@@ -311,9 +329,13 @@ div.navbar {
 .path-my div.navbar, 
 div.sitetopic,
 #page-site-index .headingblock,
-.path-course-view div.navbar {padding: 0px 20px;}
-.path-login div.navbar {padding: 0px 220px;}
-.pagelayout-login div.navbar {padding: 0px 220px;}
+.path-course-view div.navbar {
+  padding: 0px 20px;
+}
+.path-login div.navbar,
+.pagelayout-login div.navbar {
+  padding: 0px 220px;
+}
 
 .course-content ul.topics li.section div.left,
 .course-content ul.weeks li.section div.left {
@@ -329,10 +351,6 @@ margin: 0px;
 padding-top: 5px;
 padding-right: 1px;
 }
-.course-content ul.topics li.section div.right img.icon,
-.course-content ul.weeks li.section div.right img.icon {
-padding: 0px;
-}
 .section-modchooser,
 .section_add_menus {
   width: auto;
@@ -341,10 +359,9 @@ padding: 0px;
 }
 
 li.section .summary,
-li.section .summarytext {padding-left: 15px; margin-bottom: 0px}
-li.section .summary img.iconsmall.edit,
-li.section .summarytext img.iconsmall.edit {
-  padding:10px 0px;
+li.section .summarytext {
+  padding-left: 15px;
+  margin-bottom: 0px
 }
 
 li.section .summary .no-overflow p,
@@ -356,19 +373,12 @@ li.section .summarytext .no-overflow p:last-child {
   margin-bottom: 0px;
 }
 
-.block .header .commands {margin-left: 0px;}
-.block .content {padding:0px;}
-
-li.activity a:visited,
-li.activity a,
-div.region-content a:visited,
-div.region-content a,
-div.content a:visited,
-div.content a {color: rgb(0,77,156);}
-div.region-content a.nolink,
-div.content a:visited.nolink {color: rgb(0,0,0);}
-
-table#participants {margin: 1em auto;}
+.block .header .commands {
+  margin-left: 0px;
+}
+.block .content {
+  padding:0px;
+}
 
 .categorybox {padding-left: 1em;}
 
@@ -380,10 +390,10 @@ table#participants {margin: 1em auto;}
 }
 
 input#adminsearchquery {
-  width:110px;
+  width:100px;
 }
 input#searchform_search {
-  width:140px;
+  width:120px;
 }
 .navbar {
   margin-bottom: 0px;

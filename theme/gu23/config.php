@@ -4,7 +4,7 @@ $THEME->name = 'gu23';
 $THEME->parents = array('bootstrap');
 $THEME->parents_exclude_sheets = array(
 'bootstrap'=>array(
-'decoration'
+'boot-blocks','boot-breadcrumb'
 )
 ); 
 $THEME->sheets = array('gu23');

@@ -1,0 +1,115 @@
+
+
+.bootstrap.row {
+  margin-left: -20px;
+  *zoom: 1;
+}
+
+.bootstrap.row:before,
+.bootstrap.row:after {
+  display: table;
+  content: "";
+}
+
+.bootstrap.row:after {
+  clear: both;
+}
+
+
+
+input[type="text"], /* hopefully other rules catch everything in vertical forms */
+input[type="submit"], /* hopefully other rules catch everything in vertical forms */
+select, /* hopefully other rules catch everything in vertical forms */
+.form-input input[type="password"],
+.searchform button,
+table#form select,
+.forumsearch button,
+.form-search input,
+.form-inline input,
+.form-horizontal input,
+.mform input,
+.settingsform input,
+.form-search textarea,
+.form-inline textarea,
+.form-horizontal textarea,
+.mform textarea,
+.settingsform textarea,
+.form-search select,
+.form-inline select,
+.form-horizontal select,
+.mform select,
+.settingsform select,
+.form-search .help-inline,
+.form-inline .help-inline,
+.form-horizontal .help-inline,
+.form-search .uneditable-input,
+.form-inline .uneditable-input,
+.form-horizontal .uneditable-input,
+.form-search .input-prepend,
+.form-inline .input-prepend,
+.form-horizontal .input-prepend,
+.form-search .input-append,
+.form-inline .input-append,
+.form-horizontal .input-append {
+  display: inline-block;
+  *display: inline;
+  margin-bottom: 0;
+  *zoom: 1;
+}
+
+table#form tr {
+  display: block;
+}
+
+#adminsettings .form-item {
+  margin-top: 0px;
+}
+
+legend + div.form-item,
+h2.header + div.detail-pair,
+legend + .control-group {
+  margin-top: 18px;
+  -webkit-margin-top-collapse: separate;
+}
+
+/* working around webkit bug with margins below legends, bootstrap already
+   has it's own workaround (above) but it seems to clash with something in Moodle */
+.mform .fcontainer {padding-top: 27px;}
+.mform .advancedbutton {float:right; position: relative; top: 27px; margin-bottom: -27px; min-height: 27px;}
+
+table#form td {
+  padding: 0px;
+  display:block
+}
+table#form td label {
+  margin-bottom: 0px;
+}
+
+
+div.fitemtitle span.helplink {
+  margin-right: -22px; /* shift help icon into middle gutter */
+}
+
+form#login .form-label {
+  width: 44%;
+}
+form#login .rememberpass label {
+  display: inline-block;
+}
+
+.form-label label,
+.mform .fitemtitle label{
+  display: block;
+}
+
+
+.backup-restore .detail-pair-value span + span {
+  display: inline;
+}
+.backup-restore .detail-pair-value {
+  margin-left: 20px;
+}
+
+
+
+
