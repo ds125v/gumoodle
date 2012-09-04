@@ -3317,6 +3317,9 @@ a.ygtvspacer:hover {
   opacity: 0.5;
   filter: alpha(opacity=50);
 }
+div#dock {
+  display: none;
+}
 .questionbank h2 {
   margin-top: 0;
 }
