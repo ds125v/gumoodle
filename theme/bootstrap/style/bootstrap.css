@@ -9534,6 +9534,13 @@ input#id_cancel .caret {
 .user-enroller-panel .uep-search-results .user .options .enrol .badge {
   top: 0;
 }
+[class^="icon-"] {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
 span.editing_move {
   cursor: move;
 }
@@ -9567,6 +9574,11 @@ a.editing_showhide {
   background-position: 14px 14px;
   background-repeat: no-repeat;
   margin-top: 1px;
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
   background-image: url([[pix:theme|glyphicons-halflings]]);
   color: #000;
   font-weight: bold;

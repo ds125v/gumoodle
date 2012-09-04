@@ -2,75 +2,76 @@
 /* renderers to align Moodle's HTML with that expected by Bootstrap */
 
 class theme_bootstrap_core_renderer extends core_renderer {
-     
-	
-protected function icon($name) {
-        return '<i class="icon-'.$name.'"></i>';
-}
-protected function moodle_icon($name) {
+
+
+    protected function icon($name, $text=null) {
+        if (!$text) {$text = $name;}
+        return "<i class=\"icon-$name\">$text</i>";
+    }
+    protected function moodle_icon($name) {
         $icons = array(
-        'docs' => 'question-sign',
-        'book' => 'book',
-        'chapter' => 'file',
-        'spacer' => 'spacer',
-        'generate' => 'gift',
-        'add' => 'plus',
-        't/hide' => 'eye-open',
-        'i/hide' => 'eye-open',
-        't/show' => 'eye-close',
-        'i/show' => 'eye-close',
-        't/add' => 'plus',
-        't/right' => 'arrow-right',
-        't/left' => 'arrow-left',
-        't/up' => 'arrow-up',
-        't/down' => 'arrow-down',
-        't/edit' => 'edit',
-        't/editstring' => 'tag',
-        't/copy' => 'duplicate',
-        't/delete' => 'remove',
-        'i/edit' => 'pencil',
-        'i/settings' => 'list-alt',
-        'i/grades' => 'grades',
-        'i/group' => 'user',
-        //'t/groupn' => '?',
-        //'t/groupv' => '?',
-        't/switch_plus' => 'plus-sign',
-        't/switch_minus' => 'minus-sign',
-        'i/filter' => 'filter',
-        't/move' => 'resize-vertical',
-        'i/move_2d' => 'move',
-        'i/backup' => 'cog',
-        'i/restore' => 'cog',
-        'i/return' => 'repeat',
-        'i/roles' => 'user',
-        'i/user' => 'user',
-        'i/users' => 'user',
-        'i/publish' => 'publish',
-        'i/navigationitem' => 'chevron-right' );
+                'docs' => 'question-sign',
+                'book' => 'book',
+                'chapter' => 'file',
+                'spacer' => 'spacer',
+                'generate' => 'gift',
+                'add' => 'plus',
+                't/hide' => 'eye-open',
+                'i/hide' => 'eye-open',
+                't/show' => 'eye-close',
+                'i/show' => 'eye-close',
+                't/add' => 'plus',
+                't/right' => 'arrow-right',
+                't/left' => 'arrow-left',
+                't/up' => 'arrow-up',
+                't/down' => 'arrow-down',
+                't/edit' => 'edit',
+                't/editstring' => 'tag',
+                't/copy' => 'duplicate',
+                't/delete' => 'remove',
+                'i/edit' => 'pencil',
+                'i/settings' => 'list-alt',
+                'i/grades' => 'grades',
+                'i/group' => 'user',
+                //'t/groupn' => '?',
+                //'t/groupv' => '?',
+                't/switch_plus' => 'plus-sign',
+                't/switch_minus' => 'minus-sign',
+                'i/filter' => 'filter',
+                't/move' => 'resize-vertical',
+                'i/move_2d' => 'move',
+                'i/backup' => 'cog',
+                'i/restore' => 'cog',
+                'i/return' => 'repeat',
+                'i/roles' => 'user',
+                'i/user' => 'user',
+                'i/users' => 'user',
+                'i/publish' => 'publish',
+                'i/navigationitem' => 'chevron-right' );
         return $this->icon($icons[$name]);
-}
-protected function img($src, $alt='', $class='') {
+    }
+    protected function img($src, $alt='', $class='') {
         $src = "src=\"$src\" ";
         if ($alt) { $alt = "alt=\"$alt\" ";}
         if ($class) { $class = "class=\"$class\"";}
         return "<img $src$alt$class>";
-}
-public function icon_help() {
+    }
+    public function icon_help() {
         return $this->icon('question-sign');
-} 
-//TODO public function help_icon($identifier, $component = 'moodle', $linktext = '') {
+    } 
+    //TODO public function help_icon($identifier, $component = 'moodle', $linktext = '') {
 
-protected function a($href, $text, $title='') {
+    protected function a($href, $text, $title='') {
         $href = " href=\"$href\" ";
         if ($title) { $title = "title=\"$title\" ";}
         return "<a $href$title>$text</a>";
-}
-protected function div($class, $text) {
+    }
+    protected function div($class, $text) {
         if ($class) { $class = " class=\"$class\" ";}
         return "<div$class>$text</div>";
-}
+    }
 
-protected function ul($items) {
+    protected function ul($items) {
         $lis = array();
         foreach ($items as $key => $string) {
             $lis[] = "<li>$string</li>";
@@ -82,54 +83,107 @@ protected function ul($items) {
         $attributes = $icon->attributes;
         $attributes['src'] = $this->pix_url($icon->pix, $icon->component);
         $iconset = array(
-        'docs' => 'question-sign',
-        'book' => 'book',
-        'chapter' => 'file',
-        'spacer' => 'spacer',
-        'generate' => 'gift',
-        'add' => 'plus',
-        't/hide' => 'eye-open',
-        'i/hide' => 'eye-open',
-        't/show' => 'eye-close',
-        'i/show' => 'eye-close',
-        't/add' => 'plus',
-        't/right' => 'arrow-right',
-        't/left' => 'arrow-left',
-        't/up' => 'arrow-up',
-        't/down' => 'arrow-down',
-        't/edit' => 'edit',
-        't/editstring' => 'tag',
-        't/copy' => 'duplicate',
-        't/delete' => 'remove',
-        'i/edit' => 'pencil',
-        'i/settings' => 'list-alt',
-        'i/grades' => 'grades',
-        'i/group' => 'user',
-        //'t/groupn' => '?',
-        //'t/groupv' => '?',
-        't/switch_plus' => 'plus-sign',
-        't/switch_minus' => 'minus-sign',
-        'i/filter' => 'filter',
-        't/move' => 'resize-vertical',
-        'i/move_2d' => 'move',
-        'i/backup' => 'cog',
-        'i/restore' => 'cog',
-        'i/return' => 'repeat',
-        'i/roles' => 'user',
-        'i/user' => 'user',
-        'i/users' => 'user',
-        'i/publish' => 'publish',
-        'i/navigationitem' => 'chevron-right' );
-        
-        
+                'docs' => 'question-sign',
+                'book' => 'book',
+                'chapter' => 'file',
+                'spacer' => 'spacer',
+                'generate' => 'gift',
+                'add' => 'plus',
+                't/hide' => 'eye-open',
+                'i/hide' => 'eye-open',
+                't/show' => 'eye-close',
+                'i/show' => 'eye-close',
+                't/add' => 'plus',
+                't/right' => 'arrow-right',
+                't/left' => 'arrow-left',
+                't/up' => 'arrow-up',
+                't/down' => 'arrow-down',
+                't/edit' => 'edit',
+                't/editstring' => 'tag',
+                't/copy' => 'duplicate',
+                't/delete' => 'remove',
+                'i/edit' => 'pencil',
+                'i/settings' => 'list-alt',
+                'i/grades' => 'grades',
+                'i/group' => 'user',
+                //'t/groupn' => '?',
+                //'t/groupv' => '?',
+                't/switch_plus' => 'plus-sign',
+                't/switch_minus' => 'minus-sign',
+                'i/filter' => 'filter',
+                't/move' => 'resize-vertical',
+                'i/move_2d' => 'move',
+                'i/backup' => 'cog',
+                'i/restore' => 'cog',
+                'i/return' => 'repeat',
+                'i/roles' => 'user',
+                'i/user' => 'user',
+                'i/users' => 'user',
+                'i/publish' => 'publish',
+                'i/navigationitem' => 'chevron-right' );
+
+
         if (isset($iconset[$icon->pix])) {
             return $this->icon($iconset[$icon->pix]);
         } else {
             //return parent::render_pix_icon($icon);
             return '<i class="icon-not-assigned" data-debug-icon="'.$icon->pix.'"></i>';
         }
-        
-        
+
+
+    }
+    protected function render_custom_menu(custom_menu $menu) {
+        if (!$menu->has_children()) {
+            return '';
+        }
+        $content  = '<div class="navbar navbar-fixed-top">';
+        $content .= '<div class="navbar-inner">';
+        $content .= '<div class="container">';
+        $content .= '<ul class="nav">';
+
+        foreach ($menu->get_children() as $item) {
+            $content .= $this->render_custom_menu_item($item);
+        }
+        $content .= '</ul></div></div><div>'; 
+        return $content;
+    }
+
+    protected function render_custom_menu_item(custom_menu_item $menunode) {
+        // Required to ensure we get unique trackable id's
+        static $submenucount = 0;
+
+        if ($menunode->has_children()) {
+            $content = '<li class="dropdown">';
+            // If the child has menus render it as a sub menu
+            $submenucount++;
+            if ($menunode->get_url() !== null) {
+                $url = $menunode->get_url();
+            } else {
+                $url = '#cm_submenu_'.$submenucount;
+            }
+
+            //$content .= html_writer::link($url, $menunode->get_text(), array('title'=>,));
+            $content .= '<a href="'.$url.'" class="dropdown-toggle" data-toggle="dropdown">';
+            $content .= $menunode->get_title();
+            $content .= '<b class="caret"></b></a>';
+            $content .= '<ul class="dropdown-menu">';
+            foreach ($menunode->get_children() as $menunode) {
+                $content .= $this->render_custom_menu_item($menunode);
+            }
+            $content .= '</ul>';
+        } else {
+            $content = '<li>';
+            // The node doesn't have children so produce a final menuitem
+
+            if ($menunode->get_url() !== null) {
+                $url = $menunode->get_url();
+            } else {
+                $url = '#';
+            }
+            $content .= html_writer::link($url, $menunode->get_text(), array('title'=>$menunode->get_title()));
+        }
+        $content .= '<li>';
+        return $content;
     }
     public function block_controls($controls) {
         if (empty($controls)) {
@@ -141,17 +195,17 @@ protected function ul($items) {
         }
         return $this->div('commands', implode($controlshtml));
     }
-    
+
     public function list_block_contents($icons, $items) {
         return $this->ul($items);
     }
 
     public function doc_link($path, $text = '') {
         $url = new moodle_url(get_docs_url($path));
-	if ($text == '') {
-              $linktext = $this->icon_help();
+        if ($text == '') {
+            $linktext = $this->icon_help();
         } else {
-              $linktext = $this->icon_help().' '.$text; }
+            $linktext = $this->icon_help().' '.$text; }
         return $this->a($url, $linktext);
     }
 
@@ -214,10 +268,10 @@ protected function ul($items) {
     }
     protected function render_single_button(single_button $button) {
         $attributes = array('type'     => 'submit',
-                            'class'    => 'btn',
-                            'value'    => $button->label,
-                            'disabled' => $button->disabled ? 'disabled' : null,
-                            'title'    => $button->tooltip);
+                'class'    => 'btn',
+                'value'    => $button->label,
+                'disabled' => $button->disabled ? 'disabled' : null,
+                'title'    => $button->tooltip);
 
         if ($button->actions) {
             $id = html_writer::random_id('single_button');
@@ -252,9 +306,9 @@ protected function ul($items) {
             $url = '#'; // there has to be always some action
         }
         $attributes = array('method' => $button->method,
-                            'class' => 'form-inline',
-                            'action' => $url,
-                            'id'     => $button->formid);
+                'class' => 'form-inline',
+                'action' => $url,
+                'id'     => $button->formid);
         $output = html_writer::tag('form', $output, $attributes);
 
         // and finally one more wrapper with class
@@ -314,14 +368,14 @@ protected function ul($items) {
             $url = $select->url->out_omit_querystring();     // url without params, the anchor part not allowed
         }
         $formattributes = array('method' => $select->method,
-                                'class' => 'form-inline',
-                                'action' => $url,
-                                'id'     => $select->formid);
+                'class' => 'form-inline',
+                'action' => $url,
+                'id'     => $select->formid);
         $output = html_writer::tag('form', $output, $formattributes);
 
         // and finally one more wrapper with class
         return html_writer::tag('div', $output, array('class' => $select->class));
     }
     protected function init_block_hider_js(block_contents $bc) { }
- 		
+
 }

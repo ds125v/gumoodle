@@ -71,11 +71,9 @@ $favicon_url = $OUTPUT->pix_url('favicon', 'theme');
 
 
 
-            <div class="navbar">
+    <div class="container">
                 <div class="breadcrumb"><?php echo $OUTPUT->navbar() ?></div>
                 <div class="navbutton"> <?php echo $PAGE->button ?></div>
-            </div>
-    <div class="container">
 
 	<h1><?php echo $PAGE->heading ?></h1>
 
@@ -91,7 +89,6 @@ $favicon_url = $OUTPUT->pix_url('favicon', 'theme');
 		<?php } ?>
 
 	   </div>
-    </div>
 <footer>
 <p class="pull-right"><a href="#">Back to top</a>
 <p class="helplink"><?php echo page_doc_link(get_string('moodledocslink')) ?></p>
@@ -101,6 +98,7 @@ echo $OUTPUT->home_link();
 echo $OUTPUT->standard_footer_html();
 ?>
 </footer> 
+</div>
 
 </div>
 <?php echo $OUTPUT->standard_end_of_body_html() ?>
