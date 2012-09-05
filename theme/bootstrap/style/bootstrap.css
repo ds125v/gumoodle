@@ -270,6 +270,7 @@ td#buttonscell {
   padding-top: 8em;
   text-align: center;
   max-width: 16em;
+  min-width: 6em;
 }
 .groupmanagementtable td#buttonscell input,
 td#buttonscell input {
@@ -281,7 +282,9 @@ td#potentialcell {
 }
 #userselector_options p {
   margin: 0px;
-  white-space: nowrap;
+}
+#userselector_options label {
+  display: inline;
 }
 input#addselect_searchtext {
   width: auto;
@@ -295,51 +298,6 @@ tbody.empty {
 .path-admin .roleassigntable #buttonscell #addcontrols {
   margin-top: 0;
   height: auto;
-}
-#page-group-index #groupeditform {
-  text-align: center;
-}
-#doc-contents h1 {
-  margin: 1em 0 0 0;
-}
-#doc-contents ul {
-  margin: 0;
-  padding: 0;
-  width: 90%;
-}
-#doc-contents ul li {
-  list-style-type: none;
-}
-.groupmanagementtable td {
-  vertical-align: top;
-}
-.groupmanagementtable #existingcell,
-.groupmanagementtable #potentialcell {
-  width: 42%;
-}
-.groupmanagementtable #buttonscell {
-  width: 16%;
-}
-.groupmanagementtable #buttonscell input {
-  width: 80%;
-}
-.groupmanagementtable #removeselect_wrapper,
-.groupmanagementtable #addselect_wrapper {
-  width: 100%;
-}
-.groupmanagementtable #removeselect_wrapper label,
-.groupmanagementtable #addselect_wrapper label {
-  font-weight: normal;
-}
-.dir-rtl .groupmanagementtable p {
-  text-align: right;
-}
-#group-usersummary {
-  width: 14em;
-}
-.groupselector {
-  margin-top: 3px;
-  margin-bottom: 3px;
 }
 .loginbox {
   margin: 15px;

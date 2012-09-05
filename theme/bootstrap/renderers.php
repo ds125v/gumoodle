@@ -59,7 +59,6 @@ class theme_bootstrap_core_renderer extends core_renderer {
     public function icon_help() {
         return $this->icon('question-sign');
     } 
-    //TODO public function help_icon($identifier, $component = 'moodle', $linktext = '') {
 
     protected function a($href, $text, $title='') {
         $href = " href=\"$href\" ";
@@ -70,6 +69,10 @@ class theme_bootstrap_core_renderer extends core_renderer {
         if ($class) { $class = " class=\"$class\" ";}
         return "<div$class>$text</div>";
     }
+    protected function span($class, $text) {
+        if ($class) { $class = " class=\"$class\" ";}
+        return "<div$class>$text</div>";
+    }
 
     protected function ul($items) {
         $lis = array();
@@ -77,6 +80,59 @@ class theme_bootstrap_core_renderer extends core_renderer {
             $lis[] = "<li>$string</li>";
         }
         return '<ul class="unstyled">'.implode($lis).'</ul>';
+    }
+    public function action_icon($url, pix_icon $pixicon, component_action $action = null, array $attributes = null, $linktext=false) {
+        if (!($url instanceof moodle_url)) {
+            $url = new moodle_url($url);
+        }
+        $attributes = (array)$attributes;
+
+        if (empty($attributes['class'])) {
+            // let ppl override the class via $options
+            $attributes['class'] = 'action-icon';
+        }
+
+        $icon = $this->render($pixicon);
+
+        if ($linktext) {
+            $text = $pixicon->attributes['alt'];
+        } else {
+            $text = '';
+        }
+
+        return $this->action_link($url, $text.$icon, $action, $attributes);
+    }
+    public function home_link() {
+        global $CFG, $SITE;
+        $text = '';
+        $url = '';
+        $linktext = 'Moodle';
+        $target = '';
+
+        if ($this->page->pagetype == 'site-index') {
+            $class = "sitelink";
+            $text = 'made with ';
+            $url = 'http://moodle.org/';
+        } else if (!empty($CFG->target_release) &&
+                $CFG->target_release != $CFG->release) {
+            // Special case for during install/upgrade.
+            $class = "sitelink";
+            $text = 'help with ';
+            $url = 'http://docs.moodle.org/en/Administrator_documentation';
+            $target = 'target="_blank"';
+        } else if ($this->page->course->id == $SITE->id ||
+                strpos($this->page->pagetype, 'course-view') === 0) {
+            $class = "homelink";
+            $linktext = get_string('home');
+            $url = $CFG->wwwroot;
+            return '<div class="homelink"><a href="' . $CFG->wwwroot . '/">' .
+                get_string('home') . '</a></div>';
+        } else {
+            $class = "homelink";
+            $linktext = format_string($this->page->course->shortname, true, array('context' => $this->page->context));
+            $url = $CFG->wwwroot . '/course/view.php?id=' . $this->page->course->id;
+        }
+        return "<div class=\"$class\">$text<a href=\"$url\"$target>$linktext</a></div>";
     }
 
     protected function render_pix_icon(pix_icon $icon) {

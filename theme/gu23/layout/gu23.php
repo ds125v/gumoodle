@@ -35,7 +35,7 @@ $OUTPUT->doctype(); // throw it away to avoid warning
 <div id="page">
 
 <header>
-  <h1 class="headermain"></h1>
+    <h1 class="hide-text"><a title="Go to University homepage" href="http://www.gla.ac.uk/">University of Glasgow</a></h1>
 	<div id="siteTools"> <h3>Site tools</h3> <ul>
 		<li><a href="http://www.gla.ac.uk/subjects/">Subjects A-Z</a></li>
 		<li><a href="http://www.gla.ac.uk/stafflist/">Staff A-Z</a></li>
