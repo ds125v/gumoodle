@@ -4,11 +4,11 @@
 class theme_bootstrap_core_renderer extends core_renderer {
 
 
-    protected function icon($name, $text=null) {
+    protected static function icon($name, $text=null) {
         if (!$text) {$text = $name;}
-        return "<i class=\"icon-$name\">$text</i>";
+        return "<i class=icon-$name>$text</i>";
     }
-    protected function moodle_icon($name) {
+    protected static function moodle_icon($name) {
         $icons = array(
                 'docs' => 'question-sign',
                 'book' => 'book',
@@ -48,38 +48,28 @@ class theme_bootstrap_core_renderer extends core_renderer {
                 'i/users' => 'user',
                 'i/publish' => 'publish',
                 'i/navigationitem' => 'chevron-right' );
-        return $this->icon($icons[$name]);
-    }
-    protected function img($src, $alt='', $class='') {
-        $src = "src=\"$src\" ";
-        if ($alt) { $alt = "alt=\"$alt\" ";}
-        if ($class) { $class = "class=\"$class\"";}
-        return "<img $src$alt$class>";
+        return self::icon($icons[$name]);
     }
     public function icon_help() {
-        return $this->icon('question-sign');
+        return self::icon('question-sign');
     } 
 
-    protected function a($href, $text, $title='') {
-        $href = " href=\"$href\" ";
-        if ($title) { $title = "title=\"$title\" ";}
-        return "<a $href$title>$text</a>";
+    protected static function a($attributes, $content) {
+        return html_writer::tag('a', $content, $attributes);
     }
-    protected function div($class, $text) {
-        if ($class) { $class = " class=\"$class\" ";}
-        return "<div$class>$text</div>";
+    protected static function div($attributes, $content) {
+        return html_writer::tag('div', $content, $attributes);
     }
-    protected function span($class, $text) {
-        if ($class) { $class = " class=\"$class\" ";}
-        return "<div$class>$text</div>";
+    protected static function span($attributes, $content) {
+        return html_writer::tag('span', $content, $attributes);
     }
 
-    protected function ul($items) {
+    protected static function ul($items) {
         $lis = array();
         foreach ($items as $key => $string) {
             $lis[] = "<li>$string</li>";
         }
-        return '<ul class="unstyled">'.implode($lis).'</ul>';
+        return '<ul class=unstyled>'.implode($lis).'</ul>';
     }
     public function action_icon($url, pix_icon $pixicon, component_action $action = null, array $attributes = null, $linktext=false) {
         if (!($url instanceof moodle_url)) {
@@ -105,39 +95,33 @@ class theme_bootstrap_core_renderer extends core_renderer {
     public function home_link() {
         global $CFG, $SITE;
         $text = '';
-        $url = '';
         $linktext = 'Moodle';
-        $target = '';
 
         if ($this->page->pagetype == 'site-index') {
-            $class = "sitelink";
+            $div_attributes['class'] = "sitelink";
             $text = 'made with ';
-            $url = 'http://moodle.org/';
+            $a_attributes['href'] = 'http://moodle.org/';
         } else if (!empty($CFG->target_release) &&
                 $CFG->target_release != $CFG->release) {
             // Special case for during install/upgrade.
-            $class = "sitelink";
+            $div_attributes['class'] = "sitelink";
             $text = 'help with ';
-            $url = 'http://docs.moodle.org/en/Administrator_documentation';
-            $target = 'target="_blank"';
+            $a_attributes['href'] = 'http://docs.moodle.org/en/Administrator_documentation';
+            $a_attributes['target'] = '_blank';
         } else if ($this->page->course->id == $SITE->id ||
                 strpos($this->page->pagetype, 'course-view') === 0) {
-            $class = "homelink";
+            $div_attributes['class'] = "homelink";
             $linktext = get_string('home');
-            $url = $CFG->wwwroot;
-            return '<div class="homelink"><a href="' . $CFG->wwwroot . '/">' .
-                get_string('home') . '</a></div>';
+            $a_attributes['href'] = $CFG->wwwroot . '/';
         } else {
-            $class = "homelink";
+            $div_attributes['class'] = "homelink";
             $linktext = format_string($this->page->course->shortname, true, array('context' => $this->page->context));
-            $url = $CFG->wwwroot . '/course/view.php?id=' . $this->page->course->id;
+            $a_attributes['href'] = $CFG->wwwroot . '/course/view.php?id=' . $this->page->course->id;
         }
-        return "<div class=\"$class\">$text<a href=\"$url\"$target>$linktext</a></div>";
+        return self::div($div_attributes, $text . self::a($a_attributes, $linktext));
     }
 
     protected function render_pix_icon(pix_icon $icon) {
-        $attributes = $icon->attributes;
-        $attributes['src'] = $this->pix_url($icon->pix, $icon->component);
         $iconset = array(
                 'docs' => 'question-sign',
                 'book' => 'book',
@@ -178,12 +162,11 @@ class theme_bootstrap_core_renderer extends core_renderer {
                 'i/publish' => 'publish',
                 'i/navigationitem' => 'chevron-right' );
 
-
         if (isset($iconset[$icon->pix])) {
-            return $this->icon($iconset[$icon->pix]);
+            return self::icon($iconset[$icon->pix]);
         } else {
             //return parent::render_pix_icon($icon);
-            return '<i class="icon-not-assigned" data-debug-icon="'.$icon->pix.'"></i>';
+            return '<i class=icon-not-assigned data-debug-icon="'.$icon->pix.'"></i>';
         }
 
 
@@ -192,10 +175,10 @@ class theme_bootstrap_core_renderer extends core_renderer {
         if (!$menu->has_children()) {
             return '';
         }
-        $content  = '<div class="navbar navbar-fixed-top">';
-        $content .= '<div class="navbar-inner">';
-        $content .= '<div class="container">';
-        $content .= '<ul class="nav">';
+        $content  = '<div class="navbar navbar-fixed-top">' .
+        '<div class=navbar-inner>' .
+        '<div class=container>' .
+        '<ul class=nav>';
 
         foreach ($menu->get_children() as $item) {
             $content .= $this->render_custom_menu_item($item);
@@ -209,7 +192,7 @@ class theme_bootstrap_core_renderer extends core_renderer {
         static $submenucount = 0;
 
         if ($menunode->has_children()) {
-            $content = '<li class="dropdown">';
+            $content = '<li class=dropdown>';
             // If the child has menus render it as a sub menu
             $submenucount++;
             if ($menunode->get_url() !== null) {
@@ -219,10 +202,10 @@ class theme_bootstrap_core_renderer extends core_renderer {
             }
 
             //$content .= html_writer::link($url, $menunode->get_text(), array('title'=>,));
-            $content .= '<a href="'.$url.'" class="dropdown-toggle" data-toggle="dropdown">';
+            $content .= '<a href="'.$url.'" class=dropdown-toggle data-toggle=dropdown>';
             $content .= $menunode->get_title();
-            $content .= '<b class="caret"></b></a>';
-            $content .= '<ul class="dropdown-menu">';
+            $content .= '<b class=caret></b></a>';
+            $content .= '<ul class=dropdown-menu>';
             foreach ($menunode->get_children() as $menunode) {
                 $content .= $this->render_custom_menu_item($menunode);
             }
@@ -247,34 +230,35 @@ class theme_bootstrap_core_renderer extends core_renderer {
         }
         $controlshtml = array();
         foreach ($controls as $control) {
-            $controlshtml[] = $this->a($control['url'], $this->moodle_icon($control['icon']),$control['caption']);
+            $controlshtml[] = self::a(array('href'=>$control['url'], 'title'=>$control['caption']), self::moodle_icon($control['icon']));
         }
-        return $this->div('commands', implode($controlshtml));
+        return self::div(array('class'=>'commands'), implode($controlshtml));
     }
 
     public function list_block_contents($icons, $items) {
-        return $this->ul($items);
+        return self::ul($items);
     }
 
     public function doc_link($path, $text = '') {
-        $url = new moodle_url(get_docs_url($path));
+        $attributes['href'] = new moodle_url(get_docs_url($path));
         if ($text == '') {
             $linktext = $this->icon_help();
         } else {
             $linktext = $this->icon_help().' '.$text; }
-        return $this->a($url, $linktext);
+        return self::a($attributes, $linktext);
     }
 
     public function spacer(array $attributes = null, $br = false) {
-        return $this->icon('spacer');
+        return self::icon('spacer');
         // don't output br's or attributes
     }
     public function error_text($message) {
         if (empty($message)) { return ''; }
-        return $this->span('label label-error', $message);
+        return self::span(array('class'=>'label label-error'), $message);
     }
     public function notification($message, $classes = 'notifyproblem') {
-        return $this->div("alert ".$classes, clean_text($message));
+        // TODO rewrite recognized classnames to bootstrap alert equivalent 
+        return self::div(array('class'=>'alert '.$classes), clean_text($message));
     }
     protected function render_paging_bar(paging_bar $pagingbar) {
         $output = '<div class="pagination pagination-centered"><ul>';
@@ -286,14 +270,13 @@ class theme_bootstrap_core_renderer extends core_renderer {
                 $output .= "<li>$pagingbar->previouslink</li>";
             }
             if (!empty($pagingbar->firstlink)) {
-                $output .= $this->li('disabled', $pagingbar->firstlink);
+                $output .= self::li(array('class'=>'disabled'), $pagingbar->firstlink);
             }
-
             foreach ($pagingbar->pagelinks as $link) {
                 $output .= "<li>$link</li>";
             }
             if (!empty($pagingbar->lastlink)) {
-                $output .= $this->li('disabled', $pagingbar->lastlink);
+                $output .= self::li(array('class'=>'disabled'), $pagingbar->lastlink);
             }
             if (!empty($pagingbar->nextlink)) {
                 $output .= "<li>$pagingbar->nextlink</li>";
@@ -305,9 +288,10 @@ class theme_bootstrap_core_renderer extends core_renderer {
         $items = $this->page->navbar->get_items();
         $htmlblocks = array();
         //$divider = '<span class="divider">'.get_separator().'</span>';
-        $divider = '<span class="divider">/</span>';
-        $navbarcontent = '<ul class="breadcrumb">';
+        $divider = self::span(array('class'=>'divider'), '/');
+        $navbarcontent = '<ul class=breadcrumb>';
         $itemcount = count($items);
+        $lis = array();
         for ($i=1;$i <= $itemcount;$i++) {
             $item = $items[$i-1];
             $item->hideicon = true;
@@ -367,15 +351,13 @@ class theme_bootstrap_core_renderer extends core_renderer {
                 'id'     => $button->formid);
         $output = html_writer::tag('form', $output, $attributes);
 
-        // and finally one more wrapper with class
-        return html_writer::tag('div', $output, array('class' => $button->class));
+        return self::div(array('class' => $button->class), $output);
     }
     protected function render_single_select(single_select $select) {
         $select = clone($select);
         if (empty($select->formid)) {
             $select->formid = html_writer::random_id('single_select_f');
         }
-
         $output = '';
         $params = $select->url->params();
         if ($select->method === 'post') {
@@ -430,7 +412,7 @@ class theme_bootstrap_core_renderer extends core_renderer {
         $output = html_writer::tag('form', $output, $formattributes);
 
         // and finally one more wrapper with class
-        return html_writer::tag('div', $output, array('class' => $select->class));
+        return self::div(array('class' => $select->class), $output);
     }
     protected function init_block_hider_js(block_contents $bc) { }
 

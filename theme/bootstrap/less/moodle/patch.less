@@ -31,6 +31,7 @@ div.forumpost,
 table#form tr,
 #adminsettings .form-item,
 .settingsform .form-item,
+.loginform,
 div.detail-pair {
   .control-group
 }
@@ -72,8 +73,12 @@ span.editinstructions,
 span.statuswarning,
 font[color="green"],
 .form-overridden,
+.sitelink a,
 tr.rolecap td.risk a {
   .label
+}
+.sitelink a {
+    background-color: orange;
 }
 li.activity.label,
 .file-picker td.label,
@@ -343,8 +348,18 @@ table#form td.submit,
 #adminsettings .adminsettings .form-setting,
 .backup-restore .detail-pair-value,
 .path-backup .mform .fitem fieldset.felement,
+.loginpanel .form-input,
+.loginpanel h2,
+.loginpanel .desc,
+.loginpanel .loginerrors,
+div.rememberpass,
+div.forgetpass,
+form#guestlogin,
 #page-mod-forum-search .c1 {
   .form-horizontal .controls;
+}
+.loginbox {
+    padding-left: 200px;
 }
 .formsettingheading {
   .form-horizontal .help-block
@@ -522,14 +537,10 @@ span.commands a:hover {
 }
 
 [class^="icon-"] {
-  background-image: url([[pix:theme|glyphicons-halflings]]);
   color: #000;
   font-weight: bold;
   font-style: normal;
   text-align: center;
-}
-.icon-white {
-  background-image: url([[pix:theme|glyphicons-halflings-white]]);
 }
 
 .icon- {
@@ -1160,15 +1171,9 @@ div.region-content a.nolink,
 div.content a:visited.nolink {
   color: rgb(51,51,51);
 }
-
-ul.section {
-  padding: 4px 0px;
-}
-
 .course-content .section li.activity {
   padding: 2px;
 }
-
 li.section .content {
   padding: 5px;
 }
@@ -1465,3 +1470,67 @@ background: none;
   .dimmed;
   visibility: visible;
 }
+// need to fix the things affected by .rows, which include forum, turnitin, probably others
+
+.forumsearch button,
+.form-input input[type="password"],
+.searchform button,
+.mform input,
+.settingsform input {
+  .form-horizontal input
+}
+
+.mform textarea,
+.settingsform textarea {
+  .form-horizontal textarea
+}
+
+table#form select,
+.mform select,
+.settingsform select {
+  .form-horizontal select
+}
+
+table#form tr {
+  display: block;
+}
+table#form td {
+  padding: 0px;
+  display:block
+}
+table#form td label {
+  margin-bottom: 0px;
+}
+
+#adminsettings .form-item {
+  margin-top: 0px;
+}
+
+legend + div.form-item,
+h2.header + div.detail-pair {
+  legend + .control-group
+}
+
+/* working around webkit bug with margins below legends, bootstrap already
+   has it's own workaround (above) but it seems to clash with something in Moodle */
+.mform .fcontainer {padding-top: 27px;}
+.mform .advancedbutton {float:right; position: relative; top: 27px; margin-bottom: -27px; min-height: 27px;}
+
+div.fitemtitle span.helplink {
+  margin-right: -22px; /* shift help icon into middle gutter */
+}
+
+form#login .rememberpass label {
+  display: inline-block;
+}
+
+.backup-restore .detail-pair-value span + span {
+  display: inline;
+}
+.backup-restore .detail-pair-value {
+  margin-left: 20px;
+}
+
+
+
+

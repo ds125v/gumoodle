@@ -16,24 +16,20 @@ th {
 .mdl-align {
   text-align: center;
 }
-a.dimmed,
-a.dimmed:visited,
-a.dimmed_text,
-a.dimmed_text:visited,
-.dimmed_text,
-.dimmed_text a,
-.dimmed_text a:visited,
-.usersuspended,
-.usersuspended a,
-.usersuspended a:visited,
-.dimmed_category,
-.dimmed_category a {
-  color: #AAA;
-}
 .activity.label .dimmed_text {
   opacity: 0.5;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
   filter: alpha(opacity=50);
+}
+.unlist ol,
+.unlist ul,
+.inline-list ul,
+.inline-list ol,
+.sitetopic .section ul,
+ul.section,
+.tabtree ul {
+  margin-left: 0;
+  list-style: none;
 }
 .inline-list li {
   display: inline;
@@ -92,54 +88,6 @@ a.autolink.glossary:hover {
   margin: 0;
   padding: 0;
 }
-.clearfix:after {
-  clear: both;
-  content: ".";
-  display: block;
-  height: 0;
-  min-width: 0;
-  visibility: hidden;
-}
-img.resize {
-  height: 1em;
-  width: 1em;
-}
-.block img.resize,
-.breadcrumb img.resize {
-  height: 0.9em;
-  width: 0.8em;
-}
-img.icon {
-  height: 16px;
-  vertical-align: middle;
-  width: 16px;
-  padding-right: 4px;
-}
-img.iconsmall {
-  height: 11px;
-  margin-right: 1px;
-  vertical-align: middle;
-  width: 11px;
-}
-img.iconhelp {
-  height: 17px;
-  margin-right: 4px;
-  vertical-align: middle;
-  width: 17px;
-}
-img.icontoggle {
-  height: 17px;
-  vertical-align: middle;
-  width: 50px;
-}
-img.iconkbhelp {
-  height: 17px;
-  width: 49px;
-}
-.categorybox .category {
-  font-size: 1.2em;
-  font-weight: bold;
-}
 .boxaligncenter {
   margin-left: auto;
   margin-right: auto;
@@ -180,30 +128,6 @@ form.popupform div {
 }
 .arrow_button input {
   overflow: hidden;
-}
-.navbar {
-  clear: both;
-  overflow: hidden;
-}
-.breadcrumb {
-  float: left;
-}
-.navbutton {
-  text-align: right;
-}
-.breadcrumb ul {
-  padding: 0;
-  margin: 0;
-  text-indent: 0;
-  list-style: none;
-}
-.navbutton {
-  float: right;
-}
-.breadcrumb li,
-.navbutton div,
-.navbutton form {
-  display: inline;
 }
 .tabtree {
   position: relative;
@@ -299,84 +223,6 @@ tbody.empty {
   margin-top: 0;
   height: auto;
 }
-.loginbox {
-  margin: 15px;
-  overflow: visible;
-}
-.loginbox.twocolumns {
-  margin: 15px;
-}
-.loginbox h2,
-.loginbox .subcontent {
-  margin: 5px;
-  padding: 10px;
-  text-align: center;
-}
-.loginbox .loginpanel .desc {
-  margin: 0;
-  padding: 0;
-  margin-bottom: 5px;
-}
-.loginbox .signuppanel .subcontent {
-  text-align: left;
-}
-.loginbox .loginsub {
-  margin-left: 0;
-  margin-right: 0;
-}
-.loginbox .guestsub,
-.loginbox .forgotsub,
-.loginbox .potentialidps {
-  margin: 5px 12%;
-}
-.loginbox .potentialidps .potentialidplist {
-  margin-left: 40%;
-}
-.loginbox .potentialidps .potentialidplist div {
-  text-align: left;
-}
-.loginbox .loginform {
-  margin-top: 1em;
-  text-align: left;
-}
-.loginbox .loginform .form-label {
-  float: left;
-  text-align: right;
-  width: 44%;
-  direction: rtl;
-  white-space: nowrap;
-}
-.dir-rtl .loginbox .loginform .form-label {
-  float: left;
-  text-align: right;
-  width: 44%;
-  direction: ltr;
-  white-space: nowrap;
-}
-.loginbox .loginform .form-input {
-  float: right;
-  width: 55%;
-}
-.loginbox .loginform .form-input input {
-  width: 6em;
-}
-.loginbox .signupform {
-  margin-top: 1em;
-  text-align: center;
-}
-.loginbox.twocolumns .loginpanel {
-  float: left;
-  width: 49.5%;
-  border-right: 1px solid;
-  margin-bottom: -2000px;
-  padding-bottom: 2000px;
-}
-.loginbox.twocolumns .signuppanel {
-  float: right;
-  width: 50%;
-  margin-bottom: -2000px;
-  padding-bottom: 2000px;
-}
 .notepost {
   margin-bottom: 1em;
 }
@@ -390,21 +236,6 @@ tbody.empty {
 }
 .notesgroup {
   margin-left: 20px;
-}
-.path-my .coursebox .overview .name {
-  margin-left: 20px;
-}
-.path-my .coursebox .overview .info {
-  margin-left: 25px;
-}
-.path-my .coursebox .overview .details {
-  margin-left: 25px;
-}
-.path-my .coursebox .overview {
-  margin-bottom: 10px;
-}
-.path-my .coursebox .info {
-  float: none;
 }
 #help_icon_tooltip div.bd {
   width: 35em;
@@ -780,40 +611,6 @@ body.tag .managelink {
 .tag_cloud .s0 {
   font-size: 0.8em;
 }
-.path-backup .mform .grouped_settings.section_level {
-  clear: both;
-}
-.path-backup .mform .grouped_settings {
-  clear: both;
-  overflow: hidden;
-}
-.path-backup .notification.dependencies_enforced {
-  text-align: center;
-  color: #A00;
-  font-weight: bold;
-}
-.path-backup .backup_progress {
-  text-align: center;
-}
-.path-backup .backup_progress span.backup_stage {
-  color: #999;
-}
-.path-backup .backup_progress .backup_stage.backup_stage_current {
-  font-weight: bold;
-  color: inherit;
-}
-.path-backup .backup_progress span.backup_stage.backup_stage_complete {
-  color: inherit;
-}
-#page-backup-restore .filealiasesfailures {
-  background-color: #ffd3d9;
-}
-#page-backup-restore .filealiasesfailures .aliaseslist {
-  width: 90%;
-  margin: 0.8em auto;
-  background-color: white;
-  border: 1px dotted #666;
-}
 #helppopupbox {
   z-index: 10000 !important;
 }
@@ -904,9 +701,6 @@ body.tag .managelink {
 .smartselect.compactmenu .smartselect_submenuitem:hover > .smartselect_menuitem_label {
   font-weight: bold;
 }
-#page-admin-registration-register .registration_textfield {
-  width: 300px;
-}
 .userenrolment td {
   padding: 0;
   height: 41px;
@@ -990,6 +784,40 @@ body.tag .managelink {
 #page-enrol-users .enrol_user_buttons .enrolusersbutton div,
 #page-enrol-users .enrol_user_buttons .enrolusersbutton form {
   display: inline;
+}
+.path-backup .mform .grouped_settings.section_level {
+  clear: both;
+}
+.path-backup .mform .grouped_settings {
+  clear: both;
+  overflow: hidden;
+}
+.path-backup .notification.dependencies_enforced {
+  text-align: center;
+  color: #A00;
+  font-weight: bold;
+}
+.path-backup .backup_progress {
+  text-align: center;
+}
+.path-backup .backup_progress span.backup_stage {
+  color: #999;
+}
+.path-backup .backup_progress .backup_stage.backup_stage_current {
+  font-weight: bold;
+  color: inherit;
+}
+.path-backup .backup_progress span.backup_stage.backup_stage_complete {
+  color: inherit;
+}
+#page-backup-restore .filealiasesfailures {
+  background-color: #ffd3d9;
+}
+#page-backup-restore .filealiasesfailures .aliaseslist {
+  width: 90%;
+  margin: 0.8em auto;
+  background-color: white;
+  border: 1px dotted #666;
 }
 .backup-restore .backup-section .noticebox {
   margin: 1em auto;
@@ -1132,22 +960,6 @@ audio.mediaplugin_html5audio {
 .core_media_preview.pagelayout-embedded .mediaplugin {
   margin: 0;
 }
-.path-rating .ratingtable th.rating {
-  width: 100%;
-}
-.path-rating .ratingtable td.rating,
-.path-rating .ratingtable td.time {
-  white-space: nowrap;
-  text-align: center;
-}
-.course-content ul.weeks .content .summary ul,
-.course-content ul.topics .content .summary ul {
-  list-style: disc outside none;
-}
-.course-content ul.weeks .content .summary ol,
-.course-content ul.topics .content .summary ol {
-  list-style: decimal outside none;
-}
 .chooserdialoguebody,
 .choosertitle {
   display: none;
@@ -1266,12 +1078,6 @@ audio.mediaplugin_html5audio {
   max-height: 550px;
   line-height: 2em;
 }
-.dir-rtl.jsenabled .choosercontainer #chooseform .instruction,
-.dir-rtl.jsenabled .choosercontainer #chooseform .typesummary {
-  left: 0px;
-  right: 18.5em;
-  border-right: 1px solid grey;
-}
 .jsenabled .choosercontainer #chooseform .instruction,
 .choosercontainer #chooseform .selected .typesummary {
   display: block;
@@ -1282,38 +1088,66 @@ audio.mediaplugin_html5audio {
   -webkit-box-shadow: 0px 0px 10px 0px #CCCCCC;
   -moz-box-shadow: 0px 0px 10px 0px #CCCCCC;
 }
-.phpinfo .center {
-  text-align: center;
+.phpinfo table {
+  width: 100%;
+  margin-bottom: 20px;
 }
-.phpinfo .center table {
-  margin-left: auto;
-  margin-right: auto;
+.phpinfo table th,
+.phpinfo table td {
+  padding: 8px;
+  line-height: 20px;
   text-align: left;
-  border-collapse: collapse;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
 }
-.phpinfo .center th {
-  text-align: center;
+.phpinfo table th {
+  font-weight: bold;
 }
-.phpinfo .e,
-.phpinfo .v,
-.phpinfo .h {
-  border: 1px solid #000000;
-  font-size: 0.8em;
-  vertical-align: baseline;
-  color: #000000;
-  background-color: #cccccc;
+.phpinfo table thead th {
+  vertical-align: bottom;
+}
+.phpinfo table caption + thead tr:first-child th,
+.phpinfo table caption + thead tr:first-child td,
+.phpinfo table colgroup + thead tr:first-child th,
+.phpinfo table colgroup + thead tr:first-child td,
+.phpinfo table thead:first-child tr:first-child th,
+.phpinfo table thead:first-child tr:first-child td {
+  border-top: 0;
+}
+.phpinfo table tbody + tbody {
+  border-top: 2px solid #ddd;
+}
+.phpinfo table tbody tr.success td {
+  background-color: #dff0d8;
+}
+.phpinfo table tbody tr.error td {
+  background-color: #f2dede;
+}
+.phpinfo table tbody tr.info td {
+  background-color: #d9edf7;
+}
+.phpinfo .v {
+  background-color: #ccc;
 }
 .phpinfo .e {
-  background-color: #ccccff;
+  background-color: #ccf;
   font-weight: bold;
 }
 .phpinfo .h {
-  background-color: #9999cc;
+  background-color: #99c;
   font-weight: bold;
 }
-div.felement.fstatic .smallicon:after {
-  content: "hello";
-  border: thick solid purple;
+.phpinfo tr:nth-child(odd) .e {
+  background-color: #c6c6f9;
+}
+.phpinfo tr:nth-child(odd) .v {
+  background-color: #c6c6c6;
+}
+.phpinfo tr:hover .e {
+  background-color: #c2c2f5;
+}
+.phpinfo tr:hover .v {
+  background-color: #c2c2c2;
 }
 div.resourcecontent {
   width: 100%;
@@ -5393,7 +5227,7 @@ table .span24 {
   *margin-right: .3em;
   line-height: 14px;
   vertical-align: text-top;
-  background-image: url("../img/glyphicons-halflings.png");
+  background-image: url("[[pix:theme|glyphicons-halflings]]");
   background-position: 14px 14px;
   background-repeat: no-repeat;
   margin-top: 1px;
@@ -5405,7 +5239,7 @@ table .span24 {
 .dropdown-menu > li > a:hover > [class*=" icon-"],
 .dropdown-menu > .active > a > [class^="icon-"],
 .dropdown-menu > .active > a > [class*=" icon-"] {
-  background-image: url("../img/glyphicons-halflings-white.png");
+  background-image: url("[[pix:theme|glyphicons-halflings-white]]");
 }
 .icon-glass {
   background-position: 0 0;
@@ -8509,6 +8343,7 @@ div.forumpost blockquote,
 table#form tr,
 #adminsettings .form-item,
 .settingsform .form-item,
+.loginform,
 div.detail-pair {
   margin-bottom: 10px;
 }
@@ -8539,6 +8374,7 @@ span.editinstructions,
 span.statuswarning,
 font[color="green"],
 .form-overridden,
+.sitelink a,
 tr.rolecap td.risk a {
   font-size: 11.844px;
   font-weight: bold;
@@ -8552,6 +8388,9 @@ tr.rolecap td.risk a {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+}
+.sitelink a {
+  background-color: orange;
 }
 li.activity.label,
 .file-picker td.label,
@@ -8859,6 +8698,13 @@ table#form td.submit,
 #adminsettings .adminsettings .form-setting,
 .backup-restore .detail-pair-value,
 .path-backup .mform .fitem fieldset.felement,
+.loginpanel .form-input,
+.loginpanel h2,
+.loginpanel .desc,
+.loginpanel .loginerrors,
+div.rememberpass,
+div.forgetpass,
+form#guestlogin,
 #page-mod-forum-search .c1 {
   *display: inline-block;
   *padding-left: 20px;
@@ -8872,8 +8718,18 @@ table#form td.submit,
 #adminsettings .adminsettings .form-setting:first-child,
 .backup-restore .detail-pair-value:first-child,
 .path-backup .mform .fitem fieldset.felement:first-child,
+.loginpanel .form-input:first-child,
+.loginpanel h2:first-child,
+.loginpanel .desc:first-child,
+.loginpanel .loginerrors:first-child,
+div.rememberpass:first-child,
+div.forgetpass:first-child,
+form#guestlogin:first-child,
 #page-mod-forum-search .c1:first-child {
   *padding-left: 180px;
+}
+.loginbox {
+  padding-left: 200px;
 }
 .formsettingheading {
   margin-top: 10px;
@@ -9528,7 +9384,7 @@ a.editing_showhide {
   *margin-right: .3em;
   line-height: 14px;
   vertical-align: text-top;
-  background-image: url("../img/glyphicons-halflings.png");
+  background-image: url("[[pix:theme|glyphicons-halflings]]");
   background-position: 14px 14px;
   background-repeat: no-repeat;
   margin-top: 1px;
@@ -9537,7 +9393,6 @@ a.editing_showhide {
   text-shadow: none;
   background-color: transparent;
   border: 0;
-  background-image: url([[pix:theme|glyphicons-halflings]]);
   color: #000;
   font-weight: bold;
   font-style: normal;
@@ -9555,14 +9410,10 @@ span.commands a:hover {
   text-decoration: none;
 }
 [class^="icon-"] {
-  background-image: url([[pix:theme|glyphicons-halflings]]);
   color: #000;
   font-weight: bold;
   font-style: normal;
   text-align: center;
-}
-.icon-white {
-  background-image: url([[pix:theme|glyphicons-halflings-white]]);
 }
 .icon- {
   background: none;
@@ -10155,9 +10006,6 @@ div.region-content a.nolink,
 div.content a:visited.nolink {
   color: #333333;
 }
-ul.section {
-  padding: 4px 0px;
-}
 .course-content .section li.activity {
   padding: 2px;
 }
@@ -10417,6 +10265,69 @@ footer p {
 }
 .block.invisible {
   visibility: visible;
+}
+.forumsearch button,
+.form-input input[type="password"],
+.searchform button,
+.mform input,
+.settingsform input {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+.mform textarea,
+.settingsform textarea {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+table#form select,
+.mform select,
+.settingsform select {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+table#form tr {
+  display: block;
+}
+table#form td {
+  padding: 0px;
+  display: block;
+}
+table#form td label {
+  margin-bottom: 0px;
+}
+#adminsettings .form-item {
+  margin-top: 0px;
+}
+.mform .fcontainer {
+  padding-top: 27px;
+}
+.mform .advancedbutton {
+  float: right;
+  position: relative;
+  top: 27px;
+  margin-bottom: -27px;
+  min-height: 27px;
+}
+div.fitemtitle span.helplink {
+  margin-right: -22px;
+}
+form#login .rememberpass label {
+  display: inline-block;
+}
+.backup-restore .detail-pair-value span + span {
+  display: inline;
+}
+.backup-restore .detail-pair-value {
+  margin-left: 20px;
 }
 .block {
   min-height: 20px;

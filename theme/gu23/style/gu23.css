@@ -1,136 +1,131 @@
 body {
-  font: Georgia, "Times New Roman", Times, serif;
+    font: Georgia, "Times New Roman", Times, serif;
 }
 body {
-  width:100%;
+    width:100%;
 }
-
 .clear {
-  clear: left;
+    clear: left;
 }
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 input, textarea, select, button {
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
-
 html {
-  background: #5c5940 url([[pix:theme|arch1]]) repeat-x bottom fixed;
+    background: #5c5940 url([[pix:theme|arch1]]) repeat-x bottom fixed;
 }
 body {
-  background: url([[pix:theme|arch2]]) no-repeat 960px bottom fixed;
+    background: url([[pix:theme|arch2]]) no-repeat 960px bottom fixed;
 }
 body.moodledev-cent-gla-ac-uk--moodle2 {
-  background: rgb(207,212,216);
+    background: rgb(207,212,216);
 }
 body.category-5 #page-content .content-header {
-  background-color: rgb(0,124,133);
+    background-color: rgb(0,124,133);
 }
 body.category-2 #page-content .content-header {
-  background-color: rgb(83,46,99);
+    background-color: rgb(83,46,99);
 }
 body.category-3 #page-content .content-header {
-  background-color: rgb(119,121,9);
+    background-color: rgb(119,121,9);
 }
 body.category-4 #page-content .content-header {
-  background-color: rgb(59,110,143);
+    background-color: rgb(59,110,143);
 }
-
 header {
-  background-color: #005288;
-  color: #fff;
-  overflow:hidden;
+    background-color: #005288;
+    color: #fff;
+    overflow:hidden;
 }
 header h1 a {
-  color: #fff;
+    color: #fff;
 }
 header h1 a:hover {
-  color: #e9dedf;
+    color: #e9dedf;
 }
 footer {
-  color: #333;
-  margin: 0;
-  padding: 0;
-  border: none;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: none;
 }
 footer a {
-  color: #004d9c;
+    color: #004d9c;
 }
 footer ul {
-  width: 310px;
+    width: 310px;
 }
 footer ul li a {
-  color: #004d9c;
+    color: #004d9c;
 }
 footer {
-  text-align: left;
+    text-align: left;
 }
 footer .logininfo,
 footer .sitelink,
 footer .helplink,
 footer .homelink a {
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
 }
-
-
 #page {
-  margin-left: 20px;
-  padding: 0 20px 5em 0;
-  width: 100%;
+    margin-left: 20px;
+    padding: 0 20px 5em 0;
+    width: 100%;
 }
 #page-content {
-  margin-top: 25px;
-  padding-bottom: 3em;}
-
+    margin-top: 25px;
+    padding-bottom: 3em;
+}
 #blocks1 {
-  width: 200px;
-  margin-left: -200px;
+    width: 200px;
+    margin-left: -200px;
 }
- 
+
 #blocks2 {
-  width: 200px;
-  margin-right: -200px;
+    width: 200px;
+    margin-right: -200px;
 }
- 
+
 #layout {
-  padding: 0px 200px; 
-  overflow: hidden;
+    padding: 0px 200px; 
+    overflow: hidden;
 }
 
 .blocks1-only #layout {
-  padding: 0px 8px 0px 200px;
+    padding: 0px 8px 0px 200px;
 }
 
 .blocks2-only #layout {
-  padding: 0px 200px 0px 8px;
+    padding: 0px 200px 0px 8px;
 }
 .no-blocks #layout {
-  padding: 0px 8px;
+    padding: 0px 8px;
 }
 
 header {
-  padding: 20px 25px 0;
-  background: #005288 url([[pix:theme|pageheader]]) no-repeat bottom right;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);
+    padding: 20px 25px 0;
+    background: #005288 url([[pix:theme|pageheader]]) no-repeat bottom right;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);
 }
 
 #branding #logo {
-  display: none;
+    display: none;
 }
 .headermain {
-  font-size: 0;
-  margin: 0;
+    font-size: 0;
+    margin: 0;
 }
 header h1 a {
-  float: left;
-  width: 172px;
-  height: 54px;
-  display: block;
-  background: url([[pix:theme|logo]]) no-repeat;
+    float: left;
+    width: 172px;
+    height: 54px;
+    display: block;
+    background: url([[pix:theme|logo]]) no-repeat;
 }
 
 #head-menu {clear: both; width: 100%;}
@@ -159,13 +154,11 @@ header .logininfo a {padding-bottom: 2px; color: #fff; border-bottom: 4px solid 
 #siteTools ul li a:hover,
 header .logininfo a:hover {border-bottom-color: #3d779c;}
 
-#page-content .breadcrumb {float: left; width: 100%; margin: 0.8em 0 5px 0; padding: 0 0 20px 0; background: url([[pix:theme|breadcrumbs_hr]]) no-repeat; background-position:left bottom;}
+#page-content div.breadcrumb {float: left; width: 100%; margin: 0.8em 0 5px 0; padding: 0 0 20px 0; background: url([[pix:theme|breadcrumbs_hr]]) no-repeat; background-position:left bottom;}
 #page-content .breadcrumb h3 {display: none;}
-#page-content .breadcrumb ul {margin: 0; padding: 0; width:80%, float:left;}
-#page-content .breadcrumb ul li {display: inline; font: 93% Arial, Helvetica, sans-serif; color: #777;}
+#page-content .breadcrumb ul {margin: 0; padding: 0; width:80%; float:left; background-color: white;}
 #page-content .breadcrumb ul li a { color: #444;}
 #page-content .breadcrumb ul li a:hover {text-decoration: underline;}
-#page-content .navbuttion {float: right;}
 
 #page-content {overflow: hidden; background: #fff; border-radius: 6px; box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);}
 #page-content .content-header {margin-bottom: 1.6em; border-top-left-radius: 4px; border-top-right-radius: 4px;}
@@ -180,21 +173,21 @@ header .logininfo a:hover {border-bottom-color: #3d779c;}
 footer .backToTop {float: left; margin-left: 17px; font: 93% Arial, Helvetica, sans-serif; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; background-color: #939393; background: rgba(0, 0, 0, 0.3) url([[pix:theme|shadow_bottom]]) repeat-x;}
 footer .backToTop a {display: block; padding: 0.7em 1.2em; color: #fff;}
 footer .backToTop a:hover {
-  color: #ccc;
-  text-decoration: none;
+    color: #ccc;
+    text-decoration: none;
 }
 footer {
-  color: rgb(51,51,51);
-  font: 93% Arial, Helvetica, sans-serif;
-  text-align: left;
+    color: rgb(51,51,51);
+    font: 93% Arial, Helvetica, sans-serif;
+    text-align: left;
 }
 
 footer .contact {
-  clear: left;
-  float: left;
-  width: 350px;
-  margin-top: 1.2em;
-  padding-left: 221px;
+    clear: left;
+    float: left;
+    width: 350px;
+    margin-top: 1.2em;
+    padding-left: 221px;
 }
 footer .contact .adr {margin: 2.25em 0 0.5em 0;}
 footer .contact .phoneEmail dl,
@@ -223,184 +216,179 @@ margin: 20px 0px 0px 0px; padding-bottom: 4px; font: 131% Arial, Helvetica, sans
 #blocks1 .region-content { padding: 0 0 0 8px;}
 #blocks2 .region-content { padding: 0 8px 0 0;}
 
-
 .course-content ul.topics li.section .content,
-.course-content ul.weeks li.section .content
- { margin: 0px; padding:0px;}
-
-
+.course-content ul.weeks li.section .content {
+    margin: 0px;
+    padding:0px;
+}
 
 .coursebox h3,
 .course-content .single-section .section-navigation .title, /* MDL-34613 */
 .course-content .section-summary .section-title, /* MDL-34613 */
 h3.sectionname {
-  background: url([[pix:theme|jumplink_header]]) no-repeat scroll right bottom transparent;
-  font-size: 150%;
-  line-height: 27px;
-  padding: 0.3em 0em 0.3em 0.5em;
-  margin: 0px;
-  font-weight: normal;
-  border-bottom: 1px solid rgb(227,227,227);
-  text-overflow: ellipsis;
-  overflow:hidden;
-  white-space: nowrap;
-  text-align: left;
+    background: url([[pix:theme|jumplink_header]]) no-repeat scroll right bottom transparent;
+    font-size: 150%;
+    line-height: 27px;
+    padding: 0.3em 0em 0.3em 0.5em;
+    margin: 0px;
+    font-weight: normal;
+    border-bottom: 1px solid rgb(227,227,227);
+    text-overflow: ellipsis;
+    overflow:hidden;
+    white-space: nowrap;
+    text-align: left;
 }
 li.section.current h3.sectionname {
-  color: #eee;
-  background-color: #666;
-  border-radius: 5px 5px 0px 0px;
-  font-weight: bold;
+    color: #eee;
+    background-color: #666;
+    border-radius: 5px 5px 0px 0px;
+    font-weight: bold;
 }
 
 .course-content .section-summary {
-  border: none;
+    border: none;
 }
 .course-content .section-summary .summarytext {
-  margin: 0px;
+    margin: 0px;
 }
-
 .course-content .single-section .section-navigation {
-  margin-bottom: 0px;
+    margin-bottom: 0px;
 }
 .course-content .single-section .section-navigation .title { /* MDL-34613 */
-clear: both;
-border-radius: 5px 5px 0px 0px;
-margin: 0px 14px;
-border: 1px solid rgb(227,227,227);
-border-bottom: none;
+    clear: both;
+    border-radius: 5px 5px 0px 0px;
+    margin: 0px 14px;
+    border: 1px solid rgb(227,227,227);
+    border-bottom: none;
 }
-
 .path-course-view .course-content .single-section .section-navigation {
-  padding: 0px;
+    padding: 0px;
 }
 .path-course-view .course-content .single-section .section-navigation .title {
-  margin-left:  20px;
-  margin-right:  20px;
-  min-height: 20px;
+    margin-left:  20px;
+    margin-right:  20px;
+    min-height: 20px;
 }
 .path-course-view .course-content .single-section div.content {
-border-radius: 0px 0px 5px 5px;
+    border-radius: 0px 0px 5px 5px;
 }
 .course-content .single-section ul.topics li.section, 
 .course-content .single-section ul.weeks li.section {
-margin-top: 0px;
+    margin-top: 0px;
 }
 .coursebox div.info h3.name {
- width: 250%;
- margin-bottom: 0.5em;
+    width: 250%;
+    margin-bottom: 0.5em;
 }
 .coursebox {overflow: hidden;}
 
 .coursebox div.summary p,
 div.summarytext p {
-  padding-top: 4em;
+    padding-top: 4em;
 }
-
 
 .coursebox,
 .path-course-view .course-content ul.topics div.content,
 .path-course-view .course-content ul.weeks div.content {
-  border: 1px solid rgb(227,227,227);
-  border-radius: 5px;
-  box-shadow: 0px 3px 3px #eee;
+    border: 1px solid rgb(227,227,227);
+    border-radius: 5px;
+    box-shadow: 0px 3px 3px #eee;
 }
 .path-course-view .course-content .single-section ul.topics div.content,
 .path-course-view .course-content .single-section ul.weeks div.content {
-  border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
 }
 
 .coursebox {
-  width: 95%;
-  margin: auto;
-  margin-bottom: 5px;
+    width: 95%;
+    margin: auto;
+    margin-bottom: 5px;
 }
 
 .course-content ul.topics li.section .content,
 .course-content ul.weeks li.section .content {
-  margin: 0 20px;
+    margin: 0 20px;
 }
 
 div.navbar {
-  padding: 0px 0px 3px;
+    padding: 0px 0px 3px;
 }
 .path-my div.navbar, 
 div.sitetopic,
 #page-site-index .headingblock,
 .path-course-view div.navbar {
-  padding: 0px 20px;
+    padding: 0px 20px;
 }
 .path-login div.navbar,
 .pagelayout-login div.navbar {
-  padding: 0px 220px;
+    padding: 0px 220px;
 }
 
 .course-content ul.topics li.section div.left,
 .course-content ul.weeks li.section div.left {
-text-align: right;
-width: auto;
-margin-left: 3px;
-margin-top: -11px;
+    text-align: right;
+    width: auto;
+    margin-left: 3px;
+    margin-top: -11px;
 }
 .course-content ul.topics li.section div.right,
 .course-content ul.weeks li.section div.right {
-width: 16px;
-margin: 0px;
-padding-top: 5px;
-padding-right: 1px;
+    width: 16px;
+    margin: 0px;
+    padding-top: 5px;
+    padding-right: 1px;
 }
 .section-modchooser,
 .section_add_menus {
-  width: auto;
-  margin-bottom: 9px;
-  margin-right: 9px;
+    width: auto;
+    margin-bottom: 9px;
+    margin-right: 9px;
 }
 
 li.section .summary,
 li.section .summarytext {
-  padding-left: 15px;
-  margin-bottom: 0px
+    padding-left: 15px;
+    margin-bottom: 0px
 }
 
 li.section .summary .no-overflow p,
 li.section .summarytext .no-overflow p {
-  padding: 4px;
+    padding: 4px;
 }
 li.section .summary .no-overflow p:last-child,
 li.section .summarytext .no-overflow p:last-child {
-  margin-bottom: 0px;
+    margin-bottom: 0px;
 }
 
 .block .header .commands {
-  margin-left: 0px;
+    margin-left: 0px;
 }
 .block .content {
-  padding:0px;
+    padding:0px;
 }
 
 .categorybox {padding-left: 1em;}
 
 
 #dndupload-status {
-  width: 400px;
-  background: #eef;
-  margin: auto;
+    width: 400px;
+    background: #eef;
+    margin: auto;
 }
-
 input#adminsearchquery {
-  width:100px;
+    width:100px;
 }
 input#searchform_search {
-  width:120px;
+    width:120px;
 }
 .navbar {
-  margin-bottom: 0px;
+    margin-bottom: 0px;
 }
 .path-backup .mform .fgroup .proceedbutton {
-  float:none;
+    float:none;
 }
 #page-report-outline-user .section {
-  border: none;
-  padding: none;
+    border: none;
+    padding: none;
 }
 
