@@ -52,9 +52,6 @@ div.left.picture a,
 tr.discussion td.picture a {
   a.thumbnail
 }
-tr.rolecap td.risk a {
-  a.label
-}
 tr.rolecap td img {
   display: none;
 }
@@ -76,6 +73,12 @@ font[color="green"],
 .sitelink a,
 tr.rolecap td.risk a {
   .label
+}
+p.warn {
+  white-space: normal;
+}
+tr.rolecap td.risk a {
+  a.label
 }
 .sitelink a {
     background-color: orange;
@@ -123,24 +126,40 @@ tr.rolecap td.risk.dataloss a {
   .label-inverse
 }
 
-
 p.warn {
   display: inline-block;
   margin-left: 21px;
 }
-div[id^="bar_pbar"] { // doesn't work because styles attached to tag
-  .progress !important
+div[id^="bar_pbar"] { // needs to be !important because styles attached to tag
+  .progress() !important;
+  border: none !important;
 }
 div[id^="progress_pbar"] {
-  .progress .bar !important
-}
-div[id^="progress_pbar"] {
-  .progress-striped .bar !important
-}
+ //copied as import doesn't seem to be working
+ // !important to ovverride styles on tag
+        width: 0%;
+        height: 100% !important;
+        padding: 0 !important;
+        border: none !important;
+        color: @white !important;
+        float: left;
+        font-size: 12px;
+        text-align: center;
+        text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+        #gradient > .vertical(#149bdf, #0480be) !important;
+        .box-shadow(inset 0 -1px 0 rgba(0,0,0,.15));
+        .box-sizing(border-box);
+        .transition(width .6s ease);
+        #gradient > .striped(#149bdf) !important;
+        .background-size(40px 40px) !important;
+        -webkit-animation: progress-bar-stripes 2s linear infinite;
+        -moz-animation: progress-bar-stripes 2s linear infinite;
+        -ms-animation: progress-bar-stripes 2s linear infinite;
+        -o-animation: progress-bar-stripes 2s linear infinite;
+        animation: progress-bar-stripes 2s linear infinite;
+}  
 
-div[id^="progress_pbar"] {
-  .progress.active .bar !important
-}
+
 .form-defaultinfo,
 .form-description,
 .formsettingheading,
@@ -295,6 +314,10 @@ form#adminsettings .form-item .form-setting .form-password .unmask,
   .checkbox 
 }
 
+input[type="checkbox"] + label { // labels just sitting after a checkbox
+    display: inline-block;
+}
+
 #defineroletable td.inherit label input[type="checkbox"],
 #defineroletable td.inherit label input[type="radio"],
 #defineroletable td.allow label input[type="checkbox"],
@@ -329,12 +352,14 @@ input[type="checkbox"] + label + input[type="checkbox"],
 input[type="checkbox"] + input[type="checkbox"] {
   .checkbox.inline + .checkbox.inline
 }
+
 #fgroup_id_buttonar,
 #fitem_id_submitbutton,
 table#form td.submit,
 .form-buttons {
   .form-actions 
 }
+
 table#form td.submit,
 #adminsettings .form-buttons,
 .settingsform .form-buttons,
@@ -512,6 +537,9 @@ a.icon.editing_delete img,
 a.icon.editing_roles img,
 span.section-handle img,
 span.editing_move img,
+a.assignrolelink img,
+a.unassignrolelink img,
+.userinforow .groups .group a img,
 a.editing_showhide img {
   display: none;
 }
@@ -520,6 +548,9 @@ span.helplink a,
 a.icon,
 span.section-handle,
 span.editing_move,
+a.assignrolelink,
+a.unassignrolelink,
+.userinforow .groups .group a,
 a.editing_showhide {
   [class^="icon-"] 
 }
@@ -564,6 +595,8 @@ span.commands a:hover {
 a.icon.editing_roles {
   .icon-user
 }
+.userinforow .groups .group a,
+a.unassignrolelink,
 a.icon.editing_delete {
   .icon-remove
 }
@@ -574,6 +607,9 @@ li.section div.content div.summary > a {
 span.editing_move,
 span.section-handle {
   .icon-move
+}
+a.assignrolelink {
+    .icon-plus
 }
 span.helplink a {
   .icon-question-sign
@@ -1410,7 +1446,7 @@ div.checkforupdates {
 }
 
 div.navbutton {
-  float:none;
+  float:right;
 }
 
 table.userplan {

@@ -3,7 +3,7 @@
 $THEME->name = 'bootstrap';
 $THEME->parents = array();
 $THEME->sheets = array( 'bootstrap',);
-$THEME->editor_sheets = array('bootstrap'); // slim this down?
+$THEME->editor_sheets = array('editor');
 $THEME->rendererfactory = 'theme_overridden_renderer_factory';
 $THEME->layouts = array(
     'base' => array(

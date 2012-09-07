@@ -35,15 +35,15 @@ $OUTPUT->doctype(); // throw it away to avoid warning
 <div id="page">
 
 <header>
-    <h1 class="hide-text"><a title="Go to University homepage" href="http://www.gla.ac.uk/">University of Glasgow</a></h1>
-	<div id="siteTools"> <h3>Site tools</h3> <ul>
-		<li><a href="http://www.gla.ac.uk/subjects/">Subjects A-Z</a></li>
-		<li><a href="http://www.gla.ac.uk/stafflist/">Staff A-Z</a></li>
-		<li><a href="http://www.gla.ac.uk/academic/">Academic units A-Z</a></li>
+    <h1><a href=http://www.gla.ac.uk/ class=hide-text title="Go to University homepage" >University of Glasgow</a></h1>
+	<div id=siteTools> <h3>Site tools</h3> <ul>
+		<li><a href=http://www.gla.ac.uk/subjects/>Subjects A-Z</a></li>
+		<li><a href=http://www.gla.ac.uk/stafflist/>Staff A-Z</a></li>
+		<li><a href=http://www.gla.ac.uk/academic/>Academic units A-Z</a></li>
 	</ul> </div>
     <?php echo $OUTPUT->login_info(); ?>
 	<?php echo $PAGE->headingmenu; ?>
-	<div id="head-menu">
+	<div id=head-menu>
 		<ul>
 		<li><a title="My Home" href="<?php echo $CFG->wwwroot ?>/my">My Home</a></li>
 		<li><a title="My Profile" href="<?php echo $CFG->wwwroot.'/user/profile.php?id='.$USER->id ?>">My Profile</a></li>
