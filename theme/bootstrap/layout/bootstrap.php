@@ -57,13 +57,13 @@ $favicon_url = $OUTPUT->pix_url('favicon', 'theme');
                 </ul>
               </li>
             </ul>
-            <form class="navbar-form pull-right">
               <?php echo $OUTPUT->login_info() ?> 
               <!--
+            <form class="navbar-form pull-right">
               <input class="span2" type="text" placeholder="username">
               <input class="span2" type="password" placeholder="password">
-              <button type="submit" class="btn">Sign in</button> -->
-            </form>
+              <button type="submit" class="btn">Sign in</button>
+            </form> -->
           </div><!--/.nav-collapse -->
         </div>
       </div>

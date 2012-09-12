@@ -24,23 +24,16 @@ div.forumpost,
   background: none;
   box-shadow: none;
 }
-#fgroup_id_buttonar { // what about :before and :after???
-  .form-actions 
-}
-.mform .fitem,
-table#form tr,
-#adminsettings .form-item,
-.settingsform .form-item,
-.loginform,
-div.detail-pair {
-  .control-group
-}
 
+img.userpicture,
 .forumpost .picture img {
-  margin: 0px;
+  .thumbnail;
 }
 .forumpost .row {
   margin-left: 0 !important;
+}
+.forumpost .row .left{
+    width: auto;
 }
 .forumpost .row:before,
 .forumpost .row:after {
@@ -89,7 +82,8 @@ li.activity.label,
   background: inherit;
   color: inherit;
   border: inherit;
-  padding: inherit;
+  padding: 4px 8px;
+  text-align: right;
 }
 div.felement.error span.error,
 span.error,
@@ -126,10 +120,6 @@ tr.rolecap td.risk.dataloss a {
   .label-inverse
 }
 
-p.warn {
-  display: inline-block;
-  margin-left: 21px;
-}
 div[id^="bar_pbar"] { // needs to be !important because styles attached to tag
   .progress() !important;
   border: none !important;
@@ -168,6 +158,7 @@ span.cap-name,
 .fcontainer div.fitem:nth-child(4) .fstatic, // horrible hack!
 #page-question-type-pmatch .fstatic { // horrible hack!
   .help-inline;
+  width: auto;
   padding-left: 0
 }
 .forumsearch input[type="text"],
@@ -180,8 +171,13 @@ span.cap-name,
 .searchform button { // square off the end so button can join on to field
   .input-prepend.input-append .btn
 }
+
+.loginform,
+#adminsettings .form-item,
+.settingsform .form-item,
 form .fitem,
 table#form tr,
+.fp-content-center form tr,
 .settingsform .form-item,
 div.detail-pair { 
   .form-horizontal .control-group
@@ -314,6 +310,7 @@ form#adminsettings .form-item .form-setting .form-password .unmask,
   .checkbox 
 }
 
+.fp-content-center td.mdl-right label, // labels in tables in file-picker
 input[type="checkbox"] + label { // labels just sitting after a checkbox
     display: inline-block;
 }
@@ -363,6 +360,7 @@ table#form td.submit,
 table#form td.submit,
 #adminsettings .form-buttons,
 .settingsform .form-buttons,
+.fp-content-center form + div,
 #group_id_buttonar {
   .form-horizontal .form-actions;
 }
@@ -380,6 +378,7 @@ table#form td.submit,
 div.rememberpass,
 div.forgetpass,
 form#guestlogin,
+.fp-content-center form tr td,
 #page-mod-forum-search .c1 {
   .form-horizontal .controls;
 }
@@ -404,8 +403,9 @@ form#guestlogin,
 .backup-restore .backup-section .backup-sub-section h3.subheader {
   legend 
 }
+.fp-content-center td.mdl-right,
 .backup-restore label.detail-pair-label {
-  .control-label
+  .form-horizontal .control-label
 }
 table#explaincaps,
 table#defineroletable,
@@ -416,6 +416,7 @@ table.userenrolment,
 table#form,
 #page-report-log-user .generaltable,
 .forumheaderlist,
+.userprofilebox table.list,
 .generaltable {
   .table
 }
@@ -538,6 +539,7 @@ a.icon.editing_roles img,
 span.section-handle img,
 span.editing_move img,
 a.assignrolelink img,
+a.editing_highlight img,
 a.unassignrolelink img,
 .userinforow .groups .group a img,
 a.editing_showhide img {
@@ -550,7 +552,9 @@ span.section-handle,
 span.editing_move,
 a.assignrolelink,
 a.unassignrolelink,
+li.section div.content div.summary > a,
 .userinforow .groups .group a,
+a.editing_highlight,
 a.editing_showhide {
   [class^="icon-"] 
 }
@@ -588,9 +592,14 @@ span.commands a:hover {
   text-size: 18px;
   vertical-align: middle;
 }
-
 .icon-not-assigned {
   background: red; // for testing purposes
+}
+li.section:hover a.editing_highlight {
+    .icon-star
+}
+li.section.current:hover a.editing_highlight {
+    .icon-star-empty
 }
 a.icon.editing_roles {
   .icon-user
@@ -721,9 +730,6 @@ select#id_delay1_timeunit, select#mid_delay1_timeunit:hover,
 select#id_delay2_timeunit, select#mid_delay2_timeunit:hover {
   width: 146px;
 }
-.felement  select + span { // some tickboxes
-  display: inline-block;
-}
 input#id_timelimit_number,
 input#id_graceperiod_number,
 input#id_delay1_number,
@@ -833,10 +839,20 @@ form#adminsettings .form-item .form-setting .form-password .unmask,
 .fitem_fdate_selector span input[type="checkbox"] {
   float: left;
 }
+form#login .rememberpass label,
+.felement  select + span,  // some tickboxes
 .fitem_fdate_selector span label {
   display: inline-block;
 }
 
+.logininfo {
+    .pull-right;
+    .navbar-inverse;
+    .navbar-text;
+}
+.logininfo a {
+    .navbar-inverse .navbar-link
+}
 .felement.fstatic a img.userpicture {
   padding: 0px 73px;
 }
@@ -1062,14 +1078,9 @@ span.editinstructions{
   cursor: normal;
 }
 .block_tree li.item_with_icon.contains_branch .tree_item {
-  padding-left: 10px;
+  padding-left: 15px;
 }
 
-.block li img.smallicon.navicon,
-.block li .tree_item.leaf img.smallicon,
-.block li img.icon {
-  display: none;
-}
 
 .block_settings .block_tree .tree_item,
 .block_navigation .block_tree .tree_item {
@@ -1081,9 +1092,6 @@ span.editinstructions{
 .block_settings .block_tree .tree_item.branch,
 .jsenabled .block_navigation .block_tree .tree_item.emptybranch {
   background: none;
-}
-.block.list_block .unlist > li > .column {
-  display: block;
 }
 
 #page {
@@ -1326,9 +1334,6 @@ div.initialbar strong:first-child {
 .mform fieldset {
   border: none;
 }
-.mform fieldset div {
-  margin: 0px;
-}
 .fitem.fitem_feditor {
   overflow:visible;
 }
@@ -1556,9 +1561,6 @@ div.fitemtitle span.helplink {
   margin-right: -22px; /* shift help icon into middle gutter */
 }
 
-form#login .rememberpass label {
-  display: inline-block;
-}
 
 .backup-restore .detail-pair-value span + span {
   display: inline;
@@ -1567,6 +1569,21 @@ form#login .rememberpass label {
   margin-left: 20px;
 }
 
-
+.navbar .brand {
+    padding-right: 0;
+    padding-left: 0;
+    margin-left: 20px;
+    float: right;
+    font-weight: bold;
+    color: #000;
+    text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    transition: all .2s linear;
+}
+.navbar .brand:hover {
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.4);
+}
 
 

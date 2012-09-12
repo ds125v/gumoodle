@@ -2222,12 +2222,20 @@ class paging_bar implements renderable {
      * This method validates the arguments set up for the paging bar and then
      * produces fragments of HTML to assist display later on.
      *
+     * Return a maximum number of links. If there's too many then skip some but
+     * always output the first and last. If the current link is near the start
+     * or end then skip links at the opposite end. If current link is in the middle
+     * then drop links from both sides and center output on current link.
+     *
+     * Skipped links are signalled by having a value in firstlink and/or lastlink.
+     *
      * @param renderer_base $output
      * @param moodle_page $page
      * @param string $target
      * @throws coding_exception
      */
     public function prepare(renderer_base $output, moodle_page $page, $target) {
+        if ($this->maxdisplay < 5) {$this->maxdisplay = 5;}
         if (!isset($this->totalcount) || is_null($this->totalcount)) {
             throw new coding_exception('paging_bar requires a totalcount value.');
         }
@@ -2240,54 +2248,49 @@ class paging_bar implements renderable {
         if (empty($this->baseurl)) {
             throw new coding_exception('paging_bar requires a baseurl value.');
         }
-
-        if ($this->totalcount > $this->perpage) {
-            $pagenum = $this->page - 1;
-
-            if ($this->page > 0) {
-                $this->previouslink = html_writer::link(new moodle_url($this->baseurl, array($this->pagevar=>$pagenum)), get_string('previous'), array('class'=>'previous'));
+        $multiple_pages = $this->totalcount > $this->perpage;
+        if ($multiple_pages) {
+            // Note: page 0 is displayed to users as page 1 and so on.
+            if ($this->page != 0) {
+                $this->previouslink = html_writer::link(new moodle_url($this->baseurl, array($this->pagevar=>$this->page-1)), get_string('previous'), array('class'=>'previous'));
             }
-
             if ($this->perpage > 0) {
-                $lastpage = ceil($this->totalcount / $this->perpage);
+                $lastpage = floor($this->totalcount / $this->perpage);
             } else {
-                $lastpage = 1;
+                $lastpage = 0;
             }
-
-            if ($this->page > 15) {
-                $startpage = $this->page - 10;
-
+            if ($this->page != $lastpage) {
+                $this->nextlink = html_writer::link(new moodle_url($this->baseurl, array($this->pagevar=>$this->page+1)), get_string('next'), array('class'=>'next'));
+            }
+            $start = 0;
+            $stop = $lastpage;
+            if ($lastpage + 1 > $this->maxdisplay) { // too much to display, need to truncate
                 $this->firstlink = html_writer::link(new moodle_url($this->baseurl, array($this->pagevar=>0)), '1', array('class'=>'first'));
-            } else {
-                $startpage = 0;
-            }
-
-            $currpage = $startpage;
-            $displaycount = $displaypage = 0;
-
-            while ($displaycount < $this->maxdisplay and $currpage < $lastpage) {
-                $displaypage = $currpage + 1;
-
-                if ($this->page == $currpage) {
-                    $this->pagelinks[] = $displaypage;
-                } else {
-                    $pagelink = html_writer::link(new moodle_url($this->baseurl, array($this->pagevar=>$currpage)), $displaypage);
-                    $this->pagelinks[] = $pagelink;
+                $this->lastlink = html_writer::link(new moodle_url($this->baseurl, array($this->pagevar=>$lastpage)), $lastpage + 1, array('class'=>'last'));
+                $start_margin = floor($this->maxdisplay / 2);
+                $end_margin = $lastpage - ceil($this->maxdisplay / 2);
+                $near_to_start = $this->page < $start_margin;
+                $near_to_end = $this->page > $end_margin;
+                if ($near_to_start) {
+                    $this->firstlink = '';
+                    $stop = $this->maxdisplay - 3;
+                } else if ($near_to_end) {
+                    $this->lastlink = '';
+                    $start = $lastpage - $this->maxdisplay + 3;
+                } else { // truncate both sides, centered on current page
+                    $before_current = ceil(($this->maxdisplay - 5) / 2) ;
+                    $start = $this->page - $before_current;
+                    $stop = $start + $this->maxdisplay - 5;
                 }
 
-                $displaycount++;
-                $currpage++;
             }
-
-            if ($currpage < $lastpage) {
-                $lastpageactual = $lastpage - 1;
-                $this->lastlink = html_writer::link(new moodle_url($this->baseurl, array($this->pagevar=>$lastpageactual)), $lastpage, array('class'=>'last'));
-            }
-
-            $pagenum = $this->page + 1;
-
-            if ($pagenum != $displaypage) {
-                $this->nextlink = html_writer::link(new moodle_url($this->baseurl, array($this->pagevar=>$pagenum)), get_string('next'), array('class'=>'next'));
+            for ($i = $start; $i <= $stop; $i++) {
+                if ($this->page == $i) {
+                    $this->pagelinks[] = $i + 1;
+                } else {
+                    $pagelink = html_writer::link(new moodle_url($this->baseurl, array($this->pagevar=>$i)), $i+1);
+                    $this->pagelinks[] = $pagelink;
+                }
             }
         }
     }

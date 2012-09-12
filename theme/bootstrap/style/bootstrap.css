@@ -31,6 +31,13 @@ ul.section,
   margin-left: 0;
   list-style: none;
 }
+div.summary {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+ul.section {
+  margin-left: 20px;
+}
 .inline-list li {
   display: inline;
 }
@@ -1662,44 +1669,6 @@ span.editinstructions {
   margin-left: auto;
   margin-right: auto;
 }
-.filemanager,
-.file-picker {
-  font-size: 11px;
-  color: #555555;
-  letter-spacing: .2px;
-}
-.filemanager a,
-.file-picker a {
-  color: #555555;
-}
-.filemanager a:hover,
-.file-picker a:hover {
-  color: #555555;
-  text-decoration: none;
-}
-.filemanager select,
-.filemanager input,
-.filemanager button,
-.filemanager textarea,
-.file-picker select,
-.file-picker input,
-.file-picker button,
-.file-picker textarea {
-  color: #555555;
-  letter-spacing: .2px;
-}
-.filemanager input[type="text"],
-.file-picker input[type="text"] {
-  border: 1px solid #BBBBBB;
-  width: 265px;
-  height: 18px;
-  padding: 1px 6px;
-}
-.filemanager select,
-.file-picker select {
-  height: 22px;
-  padding: 2px 1px;
-}
 .fp-content-center {
   height: 100%;
   width: 100%;
@@ -2289,16 +2258,8 @@ a.ygtvspacer:hover {
   width: 15px;
   height: 15px;
 }
-.file-picker .fp-upload-form {
-  height: 100%;
-  width: 100%;
-  display: table;
-}
 .file-picker .fp-upload-form table {
-  margin: 0 auto;
-}
-.file-picker .fp-upload-btn {
-  margin: 2em;
+  margin: 0 0;
 }
 .file-picker.fp-dlg {
   text-align: center;
@@ -8552,32 +8513,6 @@ div.forumpost blockquote,
   background: none;
   box-shadow: none;
 }
-#fgroup_id_buttonar {
-  padding: 19px 20px 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  background-color: #f5f5f5;
-  border-top: 1px solid #e5e5e5;
-  *zoom: 1;
-  clear: none;
-}
-#fgroup_id_buttonar:before,
-#fgroup_id_buttonar:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-#fgroup_id_buttonar:after {
-  clear: both;
-}
-.mform .fitem,
-table#form tr,
-#adminsettings .form-item,
-.settingsform .form-item,
-.loginform,
-div.detail-pair {
-  margin-bottom: 10px;
-}
 .forumpost .picture img {
   margin: 0px;
 }
@@ -8818,10 +8753,6 @@ li.activity.label,
   display: inline-block;
   margin-right: 1em;
 }
-p.warn {
-  display: inline-block;
-  margin-left: 21px;
-}
 div[id^="bar_pbar"] {
   overflow: hidden !important;
   height: 20px !important;
@@ -8921,18 +8852,30 @@ span.cap-name,
 .adminsearchform input[type="text"]:focus {
   z-index: 2;
 }
+.loginform,
+#adminsettings .form-item,
+.settingsform .form-item,
 form .fitem,
 table#form tr,
+.fp-content-center form tr,
 .settingsform .form-item,
 div.detail-pair {
   margin-bottom: 20px;
   *zoom: 1;
   clear: none;
 }
+.loginform:before,
+.loginform:after,
+#adminsettings .form-item:before,
+#adminsettings .form-item:after,
+.settingsform .form-item:before,
+.settingsform .form-item:after,
 form .fitem:before,
 form .fitem:after,
 table#form tr:before,
 table#form tr:after,
+.fp-content-center form tr:before,
+.fp-content-center form tr:after,
 .settingsform .form-item:before,
 .settingsform .form-item:after,
 div.detail-pair:before,
@@ -8941,8 +8884,12 @@ div.detail-pair:after {
   content: "";
   line-height: 0;
 }
+.loginform:after,
+#adminsettings .form-item:after,
+.settingsform .form-item:after,
 form .fitem:after,
 table#form tr:after,
+.fp-content-center form tr:after,
 .settingsform .form-item:after,
 div.detail-pair:after {
   clear: both;
@@ -9083,6 +9030,7 @@ form#adminsettings .form-item .form-setting .form-password .unmask,
   min-height: 18px;
   padding-left: 18px;
 }
+.fp-content-center td.mdl-right label,
 input[type="checkbox"] + label {
   display: inline-block;
 }
@@ -9139,6 +9087,7 @@ table#form td.submit:after,
 table#form td.submit,
 #adminsettings .form-buttons,
 .settingsform .form-buttons,
+.fp-content-center form + div,
 #group_id_buttonar {
   padding-left: 180px;
 }
@@ -9156,6 +9105,7 @@ table#form td.submit,
 div.rememberpass,
 div.forgetpass,
 form#guestlogin,
+.fp-content-center form tr td,
 #page-mod-forum-search .c1 {
   *display: inline-block;
   *padding-left: 20px;
@@ -9176,6 +9126,7 @@ form#guestlogin,
 div.rememberpass:first-child,
 div.forgetpass:first-child,
 form#guestlogin:first-child,
+.fp-content-center form tr td:first-child,
 #page-mod-forum-search .c1:first-child {
   *padding-left: 180px;
 }
@@ -9227,6 +9178,13 @@ form#guestlogin:first-child,
 .backup-restore .backup-section .backup-sub-section h3.subheader small {
   font-size: 15px;
   color: #999;
+}
+.fp-content-center td.mdl-right,
+.backup-restore label.detail-pair-label {
+  float: left;
+  width: 160px;
+  padding-top: 5px;
+  text-align: right;
 }
 table#explaincaps,
 table#defineroletable,
@@ -10120,6 +10078,7 @@ a.icon.editing_roles img,
 span.section-handle img,
 span.editing_move img,
 a.assignrolelink img,
+a.editing_highlight img,
 a.unassignrolelink img,
 .userinforow .groups .group a img,
 a.editing_showhide img {
@@ -10132,7 +10091,9 @@ span.section-handle,
 span.editing_move,
 a.assignrolelink,
 a.unassignrolelink,
+li.section div.content div.summary > a,
 .userinforow .groups .group a,
+a.editing_highlight,
 a.editing_showhide {
   display: inline-block;
   width: 14px;
@@ -10186,6 +10147,12 @@ span.commands a:hover {
 }
 .icon-not-assigned {
   background: red;
+}
+li.section:hover a.editing_highlight {
+  background-position: -120px 0;
+}
+li.section.current:hover a.editing_highlight {
+  background-position: -144px 0;
 }
 a.icon.editing_roles {
   background-position: -168px 0;
@@ -10330,9 +10297,6 @@ select#id_delay2_timeunit,
 select#mid_delay2_timeunit:hover {
   width: 146px;
 }
-.felement  select + span {
-  display: inline-block;
-}
 input#id_timelimit_number,
 input#id_graceperiod_number,
 input#id_delay1_number,
@@ -10430,8 +10394,141 @@ form#adminsettings .form-item .form-setting .form-password .unmask,
 .fitem_fdate_selector span input[type="checkbox"] {
   float: left;
 }
+form#login .rememberpass label,
+.felement  select + span,
 .fitem_fdate_selector span label {
   display: inline-block;
+}
+.logininfo {
+  float: right;
+  color: #999;
+  margin-bottom: 0;
+  line-height: 40px;
+}
+.logininfo .navbar-inner {
+  background-color: #1b1b1b;
+  background-image: -moz-linear-gradient(top,#222222,#111111);
+  background-image: -webkit-gradient(linear,0 0,0 100%,from(#222222),to(#111111));
+  background-image: -webkit-linear-gradient(top,#222222,#111111);
+  background-image: -o-linear-gradient(top,#222222,#111111);
+  background-image: linear-gradient(to bottom,#222222,#111111);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0);
+  border-color: #252525;
+}
+.logininfo .brand,
+.logininfo .nav > li > a {
+  color: #999;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+}
+.logininfo .brand:hover,
+.logininfo .nav > li > a:hover {
+  color: #fff;
+}
+.logininfo .nav > li > a:focus,
+.logininfo .nav > li > a:hover {
+  background-color: transparent;
+  color: #fff;
+}
+.logininfo .nav .active > a,
+.logininfo .nav .active > a:hover,
+.logininfo .nav .active > a:focus {
+  color: #fff;
+  background-color: #111111;
+}
+.logininfo .navbar-link {
+  color: #999;
+}
+.logininfo .navbar-link:hover {
+  color: #fff;
+}
+.logininfo .divider-vertical {
+  border-left-color: #111111;
+  border-right-color: #222222;
+}
+.logininfo .nav li.dropdown.open > .dropdown-toggle,
+.logininfo .nav li.dropdown.active > .dropdown-toggle,
+.logininfo .nav li.dropdown.open.active > .dropdown-toggle {
+  background-color: #111111;
+  color: #fff;
+}
+.logininfo .nav li.dropdown > .dropdown-toggle .caret {
+  border-top-color: #999;
+  border-bottom-color: #999;
+}
+.logininfo .nav li.dropdown.open > .dropdown-toggle .caret,
+.logininfo .nav li.dropdown.active > .dropdown-toggle .caret,
+.logininfo .nav li.dropdown.open.active > .dropdown-toggle .caret {
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+}
+.logininfo .navbar-search .search-query {
+  color: #fff;
+  background-color: #515151;
+  border-color: #111111;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) 0 1px 0 rgba(255,255,255,0.15);
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) 0 1px 0 rgba(255,255,255,0.15);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) 0 1px 0 rgba(255,255,255,0.15);
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+.logininfo .navbar-search .search-query:-moz-placeholder {
+  color: #ccc;
+}
+.logininfo .navbar-search .search-query:-ms-input-placeholder {
+  color: #ccc;
+}
+.logininfo .navbar-search .search-query::-webkit-input-placeholder {
+  color: #ccc;
+}
+.logininfo .navbar-search .search-query:focus,
+.logininfo .navbar-search .search-query.focused {
+  padding: 5px 15px;
+  color: #333;
+  text-shadow: 0 1px 0 #fff;
+  background-color: #fff;
+  border: 0;
+  -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.15) X;
+  -moz-box-shadow: 0 0 3px rgba(0,0,0,0.15) X;
+  box-shadow: 0 0 3px rgba(0,0,0,0.15) X;
+  outline: 0;
+}
+.logininfo .btn-navbar {
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+  background-color: #0e0e0e;
+  background-image: -moz-linear-gradient(top,#151515,#040404);
+  background-image: -webkit-gradient(linear,0 0,0 100%,from(#151515),to(#040404));
+  background-image: -webkit-linear-gradient(top,#151515,#040404);
+  background-image: -o-linear-gradient(top,#151515,#040404);
+  background-image: linear-gradient(to bottom,#151515,#040404);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff151515', endColorstr='#ff040404', GradientType=0);
+  border-color: #040404 #040404 #000000;
+  border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  *background-color: #040404;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+.logininfo .btn-navbar:hover,
+.logininfo .btn-navbar:active,
+.logininfo .btn-navbar.active,
+.logininfo .btn-navbar.disabled,
+.logininfo .btn-navbar[disabled] {
+  color: #fff;
+  background-color: #040404;
+  *background-color: #000000;
+}
+.logininfo .btn-navbar:active,
+.logininfo .btn-navbar.active {
+  background-color: #000000 \9;
+}
+.logininfo a {
+  color: #999;
+}
+.logininfo a:hover {
+  color: #fff;
 }
 .felement.fstatic a img.userpicture {
   padding: 0px 73px;
@@ -11097,14 +11194,27 @@ table#form td label {
 div.fitemtitle span.helplink {
   margin-right: -22px;
 }
-form#login .rememberpass label {
-  display: inline-block;
-}
 .backup-restore .detail-pair-value span + span {
   display: inline;
 }
 .backup-restore .detail-pair-value {
   margin-left: 20px;
+}
+.navbar .brand {
+  padding-right: 0;
+  padding-left: 0;
+  margin-left: 20px;
+  float: right;
+  font-weight: bold;
+  color: #000;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.1), 0 0 30px rgba(255,255,255,0.125);
+  -webkit-transition: all .2s linear;
+  -moz-transition: all .2s linear;
+  transition: all .2s linear;
+}
+.navbar .brand:hover {
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.1), 0 0 30px rgba(255,255,255,0.4);
 }
 .block {
   min-height: 20px;

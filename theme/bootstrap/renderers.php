@@ -217,7 +217,7 @@ class theme_bootstrap_core_renderer extends core_renderer {
     }
     public function error_text($message) {
         if (empty($message)) { return ''; }
-        return self::span(array('class'=>'label label-error'), $message);
+        return self::span(array('class'=>'label label-warning'), $message);
     }
     public function notification($message, $classes = 'notifyproblem') {
         // TODO rewrite recognized classnames to bootstrap alert equivalent 
@@ -226,25 +226,36 @@ class theme_bootstrap_core_renderer extends core_renderer {
         return self::div(array('class'=>'alert '.$classes), clean_text($message));
     }
     protected function render_paging_bar(paging_bar $pagingbar) {
+        // a lot of the html logic for truncating the display 
+        // is actually hard-coded in the paging_bar->prepare method
         $output = '<div class="pagination pagination-centered"><ul>';
+        $pagingbar->maxdisplay = 11;
         $pagingbar = clone($pagingbar);
         $pagingbar->prepare($this, $this->page, $this->target);
-
-        if ($pagingbar->totalcount > $pagingbar->perpage) {
+        $show_pagingbar = ($pagingbar->totalcount > $pagingbar->perpage);
+        if ($show_pagingbar) {
             if (!empty($pagingbar->previouslink)) {
                 $output .= "<li>$pagingbar->previouslink</li>";
+            } else {
+                $output .= '<li class=disabled><span>'.get_string('previous').'</span></li>';
             }
             if (!empty($pagingbar->firstlink)) {
-                $output .= self::li(array('class'=>'disabled'), $pagingbar->firstlink);
+                $output .= "<li>$pagingbar->firstlink</li><li class=disabled><span>…</span></li>";
             }
             foreach ($pagingbar->pagelinks as $link) {
-                $output .= "<li>$link</li>";
+                if (!strpos($link,'href')) { 
+                    $output .= "<li class=active><span>$link</span></li>";
+                } else {
+                    $output .= "<li>$link</li>";
+                }
             }
             if (!empty($pagingbar->lastlink)) {
-                $output .= self::li(array('class'=>'disabled'), $pagingbar->lastlink);
+                $output .= "<li class=disabled><span>…</span><li>$pagingbar->lastlink</li>";
             }
             if (!empty($pagingbar->nextlink)) {
                 $output .= "<li>$pagingbar->nextlink</li>";
+            } else {
+                $output .= '<li class=disabled><span>'.get_string('next').'</span></li>';
             }
         }
         return $output."</ul></div>";
