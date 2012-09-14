@@ -610,7 +610,7 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
                 $this->enrol_user( $instance, $user->id, $defaultrole, 0, 0, ENROL_USER_ACTIVE ); 
 
                 // cache enrolment 
-                $this->cache_user_enrolment( $course, $user, $code );
+                $this->cache_user_enrolment( $course, $user, $code->code );
             }
         }
 
