@@ -19,7 +19,7 @@ function boh_checkOAuthRequest($frombrowser = true) {
     } catch (Exception $e) {
         if ($frombrowser) {
             $message = get_string('oauth_error', 'block_oauth_hosts') . ' (' . $e->getMessage() . ')';
-            error($message);
+            print_error($message);
         } else {
             echo '<error>' . $e->getMessage() . '</error>';
         }
@@ -30,7 +30,8 @@ function boh_checkOAuthRequest($frombrowser = true) {
 class boh_OAuthDataStore {
 
     function lookup_consumer($consumer_key) {
-        $server = get_record('block_oauth_peerserver', 'peer_consumerkey', $consumer_key);
+        global $DB;
+        $server = $DB->get_record('block_oauth_peerserver', array('peer_consumerkey'=>$consumer_key));
         if ($server) {
             return new OAuthConsumer($server->peer_consumerkey, $server->secret);
         } else {
@@ -44,7 +45,8 @@ class boh_OAuthDataStore {
 
     function lookup_nonce($consumer, $token, $nonce, $timestamp) {
         //echo "lookup_nonce - $consumer, $token, $nonce, $timestamp<br/>";
-        $dbnonce = get_record('block_oauth_nonce', 'nonce', $nonce, 'sentfrom', $consumer->key);
+        global $DB;
+        $dbnonce = $DB->get_record('block_oauth_nonce', array('nonce'=>$nonce, 'sentfrom'=>$consumer->key));
         if ($dbnonce) {
             return true;
         } else {
@@ -53,10 +55,10 @@ class boh_OAuthDataStore {
             $newnonce->nonce = $nonce;
             $newnonce->sentfrom = $consumer->key;
             $newnonce->used = time();
-            insert_record('block_oauth_nonce', $newnonce);
+            $DB->insert_record('block_oauth_nonce', $newnonce);
             // clean out expired ones, really should be in s cron job rather than here
             $lim = time() - 24 * 3600;
-            delete_records_select('block_oauth_nonce', "used < '$lim'");
+            $DB->delete_records_select('block_oauth_nonce', "used < '$lim'");
             return false;
         }
         // implement me

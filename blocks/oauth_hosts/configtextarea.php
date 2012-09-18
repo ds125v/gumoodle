@@ -2,7 +2,7 @@
 
 class oauth_setting_configtextarea extends admin_setting_configtextarea {
 
-    function output_html($data, $query = '') {
+ /*   function output_html($data, $query = '') {
         $out = '<div class="form-item clearfix" id="admin-' . $this->name . '"><div class="form-label">';
         $out .= '<label for = "id_s__' . $this->name . '"><span class="form-shortname">' . $this->name . '</span></label></div>';
         $out .= '<div class="form-setting"><div class="form-textarea"><textarea name="' . $this->name . '" cols="90" rows="10" wrap="off" id="id_s__' . $this->name . '">';
@@ -11,6 +11,19 @@ class oauth_setting_configtextarea extends admin_setting_configtextarea {
         $out .= '<div class="form-defaultinfo">Default: ' . $this->defaultsetting . '</div></div>';
         $out .= '<div class="form-description"><p>' . $this->description . '</p></div></div>';
         return $out;
+    }        ~*/
+
+   public function output_html($data, $query='') {
+        $default = $this->get_defaultsetting();
+
+        $defaultinfo = $default;
+        if (!is_null($default) and $default !== '') {
+            $defaultinfo = "\n".$default;
+        }
+
+        return format_admin_setting($this, $this->visiblename,
+        '<div class="form-textarea" ><textarea rows="10" cols="90" id="'. $this->get_id() .'" name="'. $this->get_full_name() .'" wrap="off">'. s($data) .'</textarea></div>',
+        $this->description, true, '', $defaultinfo, $query);
     }
 
     function config_read($name) {
