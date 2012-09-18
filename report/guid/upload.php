@@ -47,15 +47,16 @@ if ($mform->is_cancelled()) {
     // iterate over lines in csv
     $cir->init();
     while ($line = $cir->next()) {
-        // get the id and courses, first is guid
-        $courses = array();
+        // get the guid from first column
         foreach ($line as $key => $item) {
             $item = trim( $item,'" ' );
             if ($key==0) {
                 $guid = $item;
             }
             else {
-                $courses[] = $item;
+
+                // don't care about rest of line
+                continue;
             }
         }
 
@@ -90,22 +91,6 @@ if ($mform->is_cancelled()) {
         }
         else {
             echo "User already exists in Moodle</br>";
-        }
-
-        // enrol user on courses
-        if (!empty( $courses )) {
-            foreach ($courses as $coursename) {
-            
-                // check if shortname exists
-                if (!$course = $DB->get_record('course', array('shortname'=>$coursename))) {
-                    echo "Course '$coursename' was not found<br />";
-                    continue; 
-                }
-
-                // find default role and assign
-                enrol_into_course( $course, $user, 'manual' );
-                echo ".....Enrolled into course '{$course->fullname}'<br />";
-            }
         }
     }
 } else {

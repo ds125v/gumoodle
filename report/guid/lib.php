@@ -410,7 +410,7 @@ class guidreportupload_form extends moodleform {
         $mform->addElement('filepicker', 'csvfile', get_string('csvfile', 'report_guid' ) );
    
         // action buttons
-        $this->add_action_buttons();
+        $this->add_action_buttons(TRUE, get_string('submitfile', 'report_guid'));
     }
 
 }
