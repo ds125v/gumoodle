@@ -48,7 +48,7 @@ $mform->display();
 
 // link to upload script
 echo $OUTPUT->box_start();
-echo "<p><span class=\"label label-info\"><a href=\"{$CFG->wwwroot}/report/guid/upload.php\">".get_string('uploadguid','report_guid')."</a></span></p>";
+echo "<p><a href=\"{$CFG->wwwroot}/report/guid/upload.php\">".get_string('uploadguid','report_guid')."</a></p>";
 echo $OUTPUT->box_end();
 
 if ($mform->is_cancelled()) {

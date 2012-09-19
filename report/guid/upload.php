@@ -77,7 +77,7 @@ if ($mform->is_cancelled()) {
         }
 
         // notify...
-        echo "<p><span class=\"label\">'$guid'</span> ";
+        echo "<p><strong>'$guid'</strong> ";
 
         // try to find or make an account
         if (!$user = $DB->get_record( 'user', array('username'=>strtolower($guid)) )) {
@@ -85,14 +85,14 @@ if ($mform->is_cancelled()) {
             // need to find them in ldap
             $result = guid_ldapsearch( $ldaphost, $dn, "uid=$guid" );
             if (empty($result)) {
-                echo "<span class=\"label label-important\">Error - Unable to find user in LDAP></span> ";
+                echo "<span class=\"label label-warning\">Error - Unable to find user in LDAP></span> ";
                 $errorcount++;
                 continue;
             }
 
             // sanity check
             if (count($result)>1) {
-                echo "<span class=\"label label-important\">Error - Unexpected multiple results</span>";
+                echo "<span class=\"label label-warning\">Error - Unexpected multiple results</span>";
                 $errorcount++;
                 continue;
             }
@@ -101,12 +101,12 @@ if ($mform->is_cancelled()) {
             $result = array_shift( $result );
             $user = createUserFromLdap( $result );
             $link = new moodle_url( '/user/view.php', array('id'=>$user->id) );
-            echo "<span class=\"label label-success\">account created for <a href=\"$link\">" . fullname($user) . "</a></span>";
+            echo "<span class=\"label label-success\">account created</span> for <a href=\"$link\">" . fullname($user) . "</a>";
             $createdcount++;
         }
         else {
             $link = new moodle_url( '/user/view.php', array('id'=>$user->id) );
-            echo "<span class=\"label label-warning\">account not created, already exists for <a href=\"$link\">" . fullname($user) . "</a></span>";
+            echo "<span class=\"label label-warning\">account not created, already exists</span> for <a href=\"$link\">" . fullname($user) . "</a>";
             $existscount++;
         }
 
