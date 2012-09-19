@@ -23,11 +23,6 @@ echo $OUTPUT->header();
 
 echo $OUTPUT->heading(get_string('heading', 'report_guid'));
 
-// link to upload script
-echo $OUTPUT->box_start();
-echo "<a href=\"{$CFG->wwwroot}/report/guid/upload.php\">".get_string('uploadguid','report_guid')."</a>";
-echo $OUTPUT->box_end();
-
 // check we have ldap
 if (!function_exists( 'ldap_connect' )) {
     error( 'ldap drivers are not loaded' );
@@ -44,20 +39,29 @@ if (($action == 'create') and confirm_sesskey()) {
     }
 }
 
+// url for errors and stuff
+$linkback = new moodle_url( '/report/guid/index.php' );
+
 // form 
 $mform = new guidreport_form(null,null,'get');
 $mform->display();
+
+// link to upload script
+echo $OUTPUT->box_start();
+echo "<p><span class=\"label label-info\"><a href=\"{$CFG->wwwroot}/report/guid/upload.php\">".get_string('uploadguid','report_guid')."</a></span></p>";
+echo $OUTPUT->box_end();
+
 if ($mform->is_cancelled()) {
     redirect( "index.php" );
 } else if ($data = $mform->get_data()) {
     if (!$filter = build_filter( $data->firstname, $data->lastname, $data->guid, $data->email )) {
-        notice( "Error building filter. Please refine your search and try again." );
+        notice( "Error building filter. Please refine your search and try again.", $linkback );
         echo $OUTPUT->footer();
         die;
     }
     $result = guid_ldapsearch( $ldaphost, $dn, $filter );
     if (is_string( $result )) {
-        notice( "Error returned by search (possibily too many results). Please refine your search and try again. Error was '$result'" );
+        notice( "Error returned by search (possibily too many results). Please refine your search and try again. Error was '$result'", $linkback );
         die;
     }
     if ($result === false) {

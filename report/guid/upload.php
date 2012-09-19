@@ -51,6 +51,8 @@ if ($mform->is_cancelled()) {
 
     // count created
     $createdcount = 0;
+    $errorcount = 0;
+    $existscount = 0;
 
     // iterate over lines in csv
     $cir->init();
@@ -74,7 +76,7 @@ if ($mform->is_cancelled()) {
         }
 
         // notify...
-        echo "<p class=\"uploadguidline\"><strong>'$guid'</strong> ";
+        echo "<p><span class=\"label\">'$guid'</span> ";
 
         // try to find or make an account
         if (!$user = $DB->get_record( 'user', array('username'=>strtolower($guid)) )) {
@@ -82,13 +84,15 @@ if ($mform->is_cancelled()) {
             // need to find them in ldap
             $result = guid_ldapsearch( $ldaphost, $dn, "uid=$guid" );
             if (empty($result)) {
-                echo "Error - Unable to find user in LDAP ";
+                echo "<span class=\"label label-important\">Error - Unable to find user in LDAP></span> ";
+                $errorcount++;
                 continue;
             }
 
             // sanity check
             if (count($result)>1) {
-                echo "Error - Unexpected multiple results";
+                echo "<span class=\"label label-important\">Error - Unexpected multiple results</span>";
+                $errorcount++;
                 continue;
             }
 
@@ -96,17 +100,22 @@ if ($mform->is_cancelled()) {
             $result = array_shift( $result );
             $user = createUserFromLdap( $result );
             $link = new moodle_url( '/user/view.php', array('id'=>$user->id) );
-            echo "account created for <a href=\"$link\">" . fullname($user) . "</a>";
+            echo "<span class=\"label label-success\">account created for <a href=\"$link\">" . fullname($user) . "</a></span>";
             $createdcount++;
         }
         else {
             $link = new moodle_url( '/user/view.php', array('id'=>$user->id) );
-            echo "account not created, already exists for <a href=\"$link\">" . fullname($user) . "</a>";
+            echo "<span class=\"label label-warning\">account not created, already exists for <a href=\"$link\">" . fullname($user) . "</a></span>";
+            $existscount++;
         }
 
         echo "</p>";
     }
-    echo "<p><strong>$createdcount new accounts created</strong></p>";
+    echo "<ul class=\"label\">";
+    echo "<li><strong>$createdcount new accounts created</strong></li>";
+    echo "<li><strong>$existscount accounts already existed</strong></li>";
+    echo "<li><strong>$errorcount lines caused an error</strong></li>";
+    echo "</ul>";
 } else {
     $mform->display();
 }

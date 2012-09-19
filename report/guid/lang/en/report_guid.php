@@ -2,17 +2,17 @@
 
 $string['create'] = '(Create an account for this user)';
 $string['csvfile'] = 'CSV File';
-$string['email'] = 'Email address:';
+$string['email'] = 'Email address';
 $string['emptycsv'] = 'CSV file is empty';
 $string['enrolments'] = 'Enrolments for {$a}';
 $string['externalmail'] = 'Emails in italics are non UofG addresses';
-$string['firstname'] = 'First name:';
+$string['firstname'] = 'First name';
 $string['guid'] = 'GUID Search';
 $string['guid:view'] = 'View GUID form';
-$string['guidform'] = 'GUID:';
+$string['guidform'] = 'GUID';
 $string['heading'] = 'GUID Search';
 $string['instructions'] = 'Enter whatever you know about the user. Use a * for wildcards (e.g. Mc*). Data Vault will be searched for matches.';
-$string['lastname'] = 'Last name:';
+$string['lastname'] = 'Last name';
 $string['more'] = 'more...';
 $string['moreresults'] = 'There are more results (not shown). Please give more specific search criteria';
 $string['noemail'] = '(Cannot create Moodle account - no email)';
