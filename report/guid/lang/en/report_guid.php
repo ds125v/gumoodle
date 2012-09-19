@@ -3,6 +3,7 @@
 $string['create'] = '(Create an account for this user)';
 $string['csvfile'] = 'CSV File';
 $string['email'] = 'Email address:';
+$string['emptycsv'] = 'CSV file is empty';
 $string['enrolments'] = 'Enrolments for {$a}';
 $string['externalmail'] = 'Emails in italics are non UofG addresses';
 $string['firstname'] = 'First name:';

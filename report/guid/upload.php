@@ -41,8 +41,16 @@ if ($mform->is_cancelled()) {
         die;
     }
 
-    // notify line count
-    echo "<div class=\"generalbox\">Number of lines in CSV file = $count</div>";
+    // notify line count or error
+    if ($count>0) {
+        echo "<p><strong>Number of lines in CSV file = $count</strong></p>";
+    }
+    else {
+        echo $OUTPUT->notification( get_string('emptycsv', 'report_guid') );
+    }
+
+    // count created
+    $createdcount = 0;
 
     // iterate over lines in csv
     $cir->init();
@@ -66,7 +74,7 @@ if ($mform->is_cancelled()) {
         }
 
         // notify...
-        echo "<hr />User (GUID) <strong>$guid</strong>:<br />";
+        echo "<p class=\"uploadguidline\"><strong>'$guid'</strong> ";
 
         // try to find or make an account
         if (!$user = $DB->get_record( 'user', array('username'=>strtolower($guid)) )) {
@@ -74,25 +82,31 @@ if ($mform->is_cancelled()) {
             // need to find them in ldap
             $result = guid_ldapsearch( $ldaphost, $dn, "uid=$guid" );
             if (empty($result)) {
-                echo "Unable to find user in LDAP<br />";
+                echo "Error - Unable to find user in LDAP ";
                 continue;
             }
 
             // sanity check
             if (count($result)>1) {
-                echo "Unexpected multiple results<br />";
+                echo "Error - Unexpected multiple results";
                 continue;
             }
 
             // create account
             $result = array_shift( $result );
             $user = createUserFromLdap( $result );
-            echo "Account created for {$user->firstname} {$user->lastname}<br />";
+            $link = new moodle_url( 'user/profile.php', array('id'=>$user->id) );
+            echo "account created for <a href=\"$link\">" . fullname($user) . "</a>";
+            $createdcount++;
         }
         else {
-            echo "User already exists in Moodle</br>";
+            $link = new moodle_url( 'user/profile.php', array('id'=>$user->id) );
+            echo "account not created, already exists for <a href=\"$link\">" . fullname($user) . "</a>";
         }
+
+        echo "</p>";
     }
+    echo "<p><strong>$createdcount new accounts created</strong></p>";
 } else {
     $mform->display();
 }
