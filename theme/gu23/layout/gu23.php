@@ -111,8 +111,8 @@ The University of Glasgow is a registered Scottish charity: registration number 
 
 
 <ul>
-    <li class="helplink"><?php echo page_doc_link(get_string('moodledocslink')) ?></li>
     <li><?php echo $OUTPUT->login_info() ?></li>
+    <li class="helplink"><?php echo page_doc_link(get_string('moodledocslink')) ?></li>
     <li><?php echo $OUTPUT->home_link() ?></li>
     <li><a href="http://www.gla.ac.uk/about/accessibility/">Accessibility</a></li>
     <li><a href="http://www.gla.ac.uk/legal/disclaimer/">Disclaimer</a></li>

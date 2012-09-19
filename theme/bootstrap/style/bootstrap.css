@@ -1271,11 +1271,10 @@ audio.mediaplugin_html5audio {
 div.resourcecontent {
   width: 100%;
 }
-#contentframe,
 #resourceobject {
   min-width: 100%;
   max-width: 100%;
-  min-height: 200px;
+  min-height: 600px;
 }
 .section_add_menus {
   text-align: right;
@@ -10322,13 +10321,13 @@ form#login .rememberpass label,
 .fitem_fdate_selector span label {
   display: inline-block;
 }
-.logininfo {
+header.navbar .logininfo {
   float: right;
   color: #999;
   margin-bottom: 0;
   line-height: 40px;
 }
-.logininfo .navbar-inner {
+header.navbar .logininfo .navbar-inner {
   background-color: #1b1b1b;
   background-image: -moz-linear-gradient(top,#222222,#111111);
   background-image: -webkit-gradient(linear,0 0,0 100%,from(#222222),to(#111111));
@@ -10339,53 +10338,53 @@ form#login .rememberpass label,
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0);
   border-color: #252525;
 }
-.logininfo .brand,
-.logininfo .nav > li > a {
+header.navbar .logininfo .brand,
+header.navbar .logininfo .nav > li > a {
   color: #999;
   text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
 }
-.logininfo .brand:hover,
-.logininfo .nav > li > a:hover {
+header.navbar .logininfo .brand:hover,
+header.navbar .logininfo .nav > li > a:hover {
   color: #fff;
 }
-.logininfo .nav > li > a:focus,
-.logininfo .nav > li > a:hover {
+header.navbar .logininfo .nav > li > a:focus,
+header.navbar .logininfo .nav > li > a:hover {
   background-color: transparent;
   color: #fff;
 }
-.logininfo .nav .active > a,
-.logininfo .nav .active > a:hover,
-.logininfo .nav .active > a:focus {
+header.navbar .logininfo .nav .active > a,
+header.navbar .logininfo .nav .active > a:hover,
+header.navbar .logininfo .nav .active > a:focus {
   color: #fff;
   background-color: #111111;
 }
-.logininfo .navbar-link {
+header.navbar .logininfo .navbar-link {
   color: #999;
 }
-.logininfo .navbar-link:hover {
+header.navbar .logininfo .navbar-link:hover {
   color: #fff;
 }
-.logininfo .divider-vertical {
+header.navbar .logininfo .divider-vertical {
   border-left-color: #111111;
   border-right-color: #222222;
 }
-.logininfo .nav li.dropdown.open > .dropdown-toggle,
-.logininfo .nav li.dropdown.active > .dropdown-toggle,
-.logininfo .nav li.dropdown.open.active > .dropdown-toggle {
+header.navbar .logininfo .nav li.dropdown.open > .dropdown-toggle,
+header.navbar .logininfo .nav li.dropdown.active > .dropdown-toggle,
+header.navbar .logininfo .nav li.dropdown.open.active > .dropdown-toggle {
   background-color: #111111;
   color: #fff;
 }
-.logininfo .nav li.dropdown > .dropdown-toggle .caret {
+header.navbar .logininfo .nav li.dropdown > .dropdown-toggle .caret {
   border-top-color: #999;
   border-bottom-color: #999;
 }
-.logininfo .nav li.dropdown.open > .dropdown-toggle .caret,
-.logininfo .nav li.dropdown.active > .dropdown-toggle .caret,
-.logininfo .nav li.dropdown.open.active > .dropdown-toggle .caret {
+header.navbar .logininfo .nav li.dropdown.open > .dropdown-toggle .caret,
+header.navbar .logininfo .nav li.dropdown.active > .dropdown-toggle .caret,
+header.navbar .logininfo .nav li.dropdown.open.active > .dropdown-toggle .caret {
   border-top-color: #fff;
   border-bottom-color: #fff;
 }
-.logininfo .navbar-search .search-query {
+header.navbar .logininfo .navbar-search .search-query {
   color: #fff;
   background-color: #515151;
   border-color: #111111;
@@ -10397,17 +10396,17 @@ form#login .rememberpass label,
   -o-transition: none;
   transition: none;
 }
-.logininfo .navbar-search .search-query:-moz-placeholder {
+header.navbar .logininfo .navbar-search .search-query:-moz-placeholder {
   color: #ccc;
 }
-.logininfo .navbar-search .search-query:-ms-input-placeholder {
+header.navbar .logininfo .navbar-search .search-query:-ms-input-placeholder {
   color: #ccc;
 }
-.logininfo .navbar-search .search-query::-webkit-input-placeholder {
+header.navbar .logininfo .navbar-search .search-query::-webkit-input-placeholder {
   color: #ccc;
 }
-.logininfo .navbar-search .search-query:focus,
-.logininfo .navbar-search .search-query.focused {
+header.navbar .logininfo .navbar-search .search-query:focus,
+header.navbar .logininfo .navbar-search .search-query.focused {
   padding: 5px 15px;
   color: #333;
   text-shadow: 0 1px 0 #fff;
@@ -10418,7 +10417,7 @@ form#login .rememberpass label,
   box-shadow: 0 0 3px rgba(0,0,0,0.15) X;
   outline: 0;
 }
-.logininfo .btn-navbar {
+header.navbar .logininfo .btn-navbar {
   color: #fff;
   text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
   background-color: #0e0e0e;
@@ -10434,23 +10433,23 @@ form#login .rememberpass label,
   *background-color: #040404;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
-.logininfo .btn-navbar:hover,
-.logininfo .btn-navbar:active,
-.logininfo .btn-navbar.active,
-.logininfo .btn-navbar.disabled,
-.logininfo .btn-navbar[disabled] {
+header.navbar .logininfo .btn-navbar:hover,
+header.navbar .logininfo .btn-navbar:active,
+header.navbar .logininfo .btn-navbar.active,
+header.navbar .logininfo .btn-navbar.disabled,
+header.navbar .logininfo .btn-navbar[disabled] {
   color: #fff;
   background-color: #040404;
   *background-color: #000000;
 }
-.logininfo .btn-navbar:active,
-.logininfo .btn-navbar.active {
+header.navbar .logininfo .btn-navbar:active,
+header.navbar .logininfo .btn-navbar.active {
   background-color: #000000 \9;
 }
-.logininfo a {
+header.navbar .logininfo a {
   color: #999;
 }
-.logininfo a:hover {
+header.navbar .logininfo a:hover {
   color: #fff;
 }
 .felement.fstatic a img.userpicture {
