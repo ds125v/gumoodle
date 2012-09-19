@@ -249,6 +249,92 @@ function print_single( $results ) {
     }
     echo "<p><strong>".get_string( 'resultfor','report_guid')." $displayname</strong> $create ($username)</p>\n";
     array_prettyprint( $result );
+
+    // check for entries in enrollments
+    $enrolments = get_all_enrolments( $username );
+    if (!empty($enrolments)) {
+        print_enrolments( $enrolments, $fullname, $username );
+    }
+}
+
+/**
+ * go and find enrollments across all Moodles
+ * from external enrollment tables
+ */
+function get_all_enrolments( $guid ) {
+    global $CFG;
+
+    // get plugin config for local_gusync
+    $config = get_config( 'local_gusync' );
+
+    // is that plugin configured?
+    if (empty($config->dbhost)) {
+        return false;
+    }
+
+    // just use local_gusync's library functions
+    if (file_exists($CFG->dirroot . '/local/gusync/lib.php')) {
+        require_once($CFG->dirroot . '/local/gusync/lib.php');
+    }
+    else {
+        return false;
+    }
+
+    // attempt to connect to external db
+    if (!$extdb=local_gusync_dbinit($config)) {
+        return false;
+    }
+
+    // sql to find user enrolments
+    $sql = "select * from moodleenrolments join moodlecourses ";
+    $sql .= "on (moodleenrolments.moodlecoursesid = moodlecourses.id) ";
+    $sql .= "where guid='" . addslashes( $guid ) . "' ";
+    $sql .= "order by site, timelastaccess desc ";
+    $enrolments = local_gusync_query( $extdb, $sql );
+
+    $extdb->Close();
+    if (count($enrolments)==0) {
+        return false;
+    }
+    else {
+        return $enrolments;
+    }
+}
+
+/**
+ * print enrolments 
+ */
+function print_enrolments( $enrolments, $name, $guid ) {
+    global $OUTPUT;
+
+    echo $OUTPUT->box_start();
+    echo $OUTPUT->heading(get_string('enrolments', 'report_guid', $name));
+
+    // old site to see when site changes
+    $oldsite = '';
+
+    // run through enrolments
+    foreach ($enrolments as $enrolment) {
+        $newsite = $enrolment->site;
+        if ($newsite != $oldsite) {
+            $sitelink = $enrolment->wwwroot;
+            echo "<p>&nbsp;</p>";
+            echo "<h3>Enrolments on <a href=\"$sitelink\">$newsite</a> Moodle:</h3>";
+            $profilelink = $enrolment->wwwroot . '/user/view.php?id=' . $guid;
+            //echo "<b><a href=\"$profilelink\">Jump to $name's profile</a></b><br />";
+            $oldsite = $newsite;
+        }
+        $courselink = $enrolment->wwwroot . '/course/view.php?id=' . $enrolment->courseid;
+        if (empty($enrolment->timelastaccess)) {
+            $lasttime = get_string('never');
+        }
+        else {
+            $lasttime = date( 'd/M/y H:i', $enrolment->timelastaccess );
+        }
+        echo "<a href=\"$courselink\">{$enrolment->name}</a> <i>(accessed $lasttime)</i><br />";
+    }
+   
+    echo $OUTPUT->box_end();
 }
 
 function array_prettyprint( $rows ) {
@@ -298,7 +384,6 @@ class guidreport_form extends moodleform {
         $mform =& $this->_form;
 
         // main part
-        $mform->addElement('header','guidheader', get_string( 'heading', 'report_guid' ) );
         $mform->addElement('html', '<div>'.get_string('instructions', 'report_guid' ) );
         $mform->addElement('text', 'firstname', get_string('firstname', 'report_guid' ) );
         $mform->addElement('text', 'lastname', get_string('lastname', 'report_guid' ) );
@@ -324,7 +409,7 @@ class guidreportupload_form extends moodleform {
         $mform->addElement('filepicker', 'csvfile', get_string('csvfile', 'report_guid' ) );
    
         // action buttons
-        $this->add_action_buttons();
+        $this->add_action_buttons(TRUE, get_string('submitfile', 'report_guid'));
     }
 
 }

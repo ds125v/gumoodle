@@ -27,6 +27,10 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+// how many seconds can this run for on every
+// cron invocation
+define( 'ENROL_GUDATABASE_MAXTIME', 120 );
+
 // we inherit from vanilla database plugin
 require_once( $CFG->dirroot . '/enrol/database/lib.php' );
 
@@ -378,7 +382,10 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
                 $coursecode->code = $code;
                 $coursecode->courseid = $course->id;
                 $coursecode->subject = $coursedata->Crse_cd_Subject;
-                $coursecode->coursenumber = $coursedata->Crse_cd_nbr;
+
+                // COCK UP: these codes can contain letters at the end
+                // but we'll just strip them off for now
+                $coursecode->coursenumber = clean_param($coursedata->Crse_cd_nbr, PARAM_INT);
                 $coursecode->coursename = $coursedata->Crse_name;
                 $coursecode->subjectname = $coursedata->ou_name;
                 $coursecode->subjectnumber = $coursedata->ou_cd;
@@ -610,11 +617,84 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
                 $this->enrol_user( $instance, $user->id, $defaultrole, 0, 0, ENROL_USER_ACTIVE ); 
 
                 // cache enrolment 
-                $this->cache_user_enrolment( $course, $user, $code );
+                $this->cache_user_enrolment( $course, $user, $code->code );
             }
         }
 
         return true;
+    }
+
+    /**
+     * cron service to update course enrolments
+     */
+    function cron() {
+        global $CFG;
+        global $DB;
+
+        // get the start time, we'll limit
+        // how long this runs for
+        $starttime = time();
+
+        // get plugin config
+        $config = get_config( 'enrol_gudatabase' );
+
+        // are we set up?
+        if (empty($config->dbhost)) {
+            mtrace( 'enrol_gudatabase: not configured' );
+            return false;
+        }
+
+        // get the last course index we processed
+        if (empty($config->startcourseindex)) {
+            $startcourseindex = 0;
+        }
+        else {
+            $startcourseindex = $config->startcourseindex;
+        }
+        mtrace( "enrol_gudatabase: starting at course index $startcourseindex" );
+
+        // get the basics of all visible courses
+        // don't load the whole course records!!
+        $courses = $DB->get_records( 'course', array('visible'=>1), '', 'id' );
+
+        // convert courses to simple array
+        $courses = array_values( $courses );
+        $highestindex = count($courses)-1;
+        mtrace( "enrol_gudatabase: highest course index is $highestindex" );
+
+        // process from current index to (potentially) the end
+        for ($i=$startcourseindex; $i<=$highestindex; $i++) {
+            $course = $DB->get_record('course', array('id'=>$courses[$i]->id));
+
+            // avoid site and front page
+            if ($course->id > 1) {
+                mtrace( "enrol_gudatbase: updating enrolments for course '{$course->fullname}'" );
+                $this->course_updated(FALSE, $course, NULL);
+            }
+            $lastcourseprocessed = $i;
+
+            // if we've used too much time then bail out
+            $elapsedtime = time() - $starttime;
+            if ($elapsedtime > ENROL_GUDATABASE_MAXTIME) {
+                break;
+            }
+        }
+
+        // set new value of index
+        if ($lastcourseprocessed >= $highestindex) {
+            $nextcoursetoprocess = 0;
+        }
+        else {
+            $nextcoursetoprocess = $lastcourseprocessed+1;
+        }
+        set_config( 'startcourseindex', $nextcoursetoprocess, 'enrol_gudatabase' );
+        mtrace( "enrol_gudatabase: next course index to process is $nextcoursetoprocess" );
+
+        // create very poor average course process
+        $oldaverage = empty($config->average) ? 0 : $config->average;
+        $newaverage = ($oldaverage + $lastcourseprocessed - $startcourseindex)/2;
+        set_config( 'average', $newaverage, 'enrol_gudatabase' );
+        mtrace( 'enrol_gudatabase: completed, processed courses = ' . ($lastcourseprocessed - $startcourseindex) );
     }
 }
 

@@ -25,6 +25,7 @@
 
 $string['codesenroltable'] = 'Remote codes table';
 $string['codesenroltable_desc'] = 'Table containing information about course codes';
+$string['displayaverage'] = 'Approx mean courses process each cron = {$a}';
 $string['gudatabase:manage'] = 'Manage gudatabase plugin';
 $string['gudatabase:unenrol'] = 'Unenrol users from gudatabase';
 $string['pluginname'] = 'UofG Enrolment database';

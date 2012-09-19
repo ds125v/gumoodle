@@ -36,26 +36,38 @@ if ($mform->is_cancelled()) {
     
     // check for errors
     if ($cir->get_error()) {
-        notice( 'Error reading CSV file - ' . $cir->get_error() );
+        $link = new moodle_url( '/report/guid/upload.php' );
+        notice( 'Error reading CSV file - ' . $cir->get_error(), $link );
         print_footer();
         die;
     }
 
-    // notify line count
-    echo "<div class=\"generalbox\">Number of lines in CSV file = $count</div>";
+    // notify line count or error
+    if ($count>0) {
+        echo "<p><strong>Number of lines in CSV file = $count</strong></p>";
+    }
+    else {
+        echo $OUTPUT->notification( get_string('emptycsv', 'report_guid') );
+    }
+
+    // count created
+    $createdcount = 0;
+    $errorcount = 0;
+    $existscount = 0;
 
     // iterate over lines in csv
     $cir->init();
     while ($line = $cir->next()) {
-        // get the id and courses, first is guid
-        $courses = array();
+        // get the guid from first column
         foreach ($line as $key => $item) {
             $item = trim( $item,'" ' );
             if ($key==0) {
                 $guid = $item;
             }
             else {
-                $courses[] = $item;
+
+                // don't care about rest of line
+                continue;
             }
         }
 
@@ -65,7 +77,7 @@ if ($mform->is_cancelled()) {
         }
 
         // notify...
-        echo "<hr />User (GUID) <strong>$guid</strong>:<br />";
+        echo "<p><strong>'$guid'</strong> ";
 
         // try to find or make an account
         if (!$user = $DB->get_record( 'user', array('username'=>strtolower($guid)) )) {
@@ -73,41 +85,38 @@ if ($mform->is_cancelled()) {
             // need to find them in ldap
             $result = guid_ldapsearch( $ldaphost, $dn, "uid=$guid" );
             if (empty($result)) {
-                echo "Unable to find user in LDAP<br />";
+                echo "<span class=\"label label-warning\">Error - Unable to find user in LDAP></span> ";
+                $errorcount++;
                 continue;
             }
 
             // sanity check
             if (count($result)>1) {
-                echo "Unexpected multiple results<br />";
+                echo "<span class=\"label label-warning\">Error - Unexpected multiple results</span>";
+                $errorcount++;
                 continue;
             }
 
             // create account
             $result = array_shift( $result );
             $user = createUserFromLdap( $result );
-            echo "Account created for {$user->firstname} {$user->lastname}<br />";
+            $link = new moodle_url( '/user/view.php', array('id'=>$user->id) );
+            echo "<span class=\"label label-success\">account created</span> for <a href=\"$link\">" . fullname($user) . "</a>";
+            $createdcount++;
         }
         else {
-            echo "User already exists in Moodle</br>";
+            $link = new moodle_url( '/user/view.php', array('id'=>$user->id) );
+            echo "<span class=\"label label-warning\">account not created, already exists</span> for <a href=\"$link\">" . fullname($user) . "</a>";
+            $existscount++;
         }
 
-        // enrol user on courses
-        if (!empty( $courses )) {
-            foreach ($courses as $coursename) {
-            
-                // check if shortname exists
-                if (!$course = $DB->get_record('course', array('shortname'=>$coursename))) {
-                    echo "Course '$coursename' was not found<br />";
-                    continue; 
-                }
-
-                // find default role and assign
-                enrol_into_course( $course, $user, 'manual' );
-                echo ".....Enrolled into course '{$course->fullname}'<br />";
-            }
-        }
+        echo "</p>";
     }
+    echo "<ul class=\"label\">";
+    echo "<li><strong>$createdcount new accounts created</strong></li>";
+    echo "<li><strong>$existscount accounts already existed</strong></li>";
+    echo "<li><strong>$errorcount lines caused an error</strong></li>";
+    echo "</ul>";
 } else {
     $mform->display();
 }

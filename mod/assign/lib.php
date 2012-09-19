@@ -212,8 +212,9 @@ function assign_print_overview($courses, &$htmlarray) {
     // Do assignment_base::isopen() here without loading the whole thing for speed
     foreach ($assignments as $key => $assignment) {
         $time = time();
-        $isopen = $assignment->allowsubmissionsfromdate <= $time;
+        $isopen = false;
         if ($assignment->duedate) {
+            $isopen = $assignment->allowsubmissionsfromdate <= $time;
             if ($assignment->preventlatesubmissions) {
                 $isopen = ($isopen && $time <= $assignment->duedate);
             }

@@ -43,6 +43,7 @@ $systemcontext = get_context_instance(CONTEXT_SYSTEM);
 $PAGE->set_url('/course/index.php');
 $PAGE->set_context($systemcontext);
 $PAGE->set_pagelayout('admin');
+$PAGE->set_other_editing_capability('moodle/category:manage');
 
 if (can_edit_in_category()) {
     if ($categoryedit !== -1) {
