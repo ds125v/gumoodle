@@ -27,6 +27,7 @@ th {
 .inline-list ol,
 .sitetopic .section ul,
 ul.section,
+.block ul.list,
 .tabtree ul {
   margin-left: 0;
   list-style: none;
@@ -1270,10 +1271,11 @@ audio.mediaplugin_html5audio {
 div.resourcecontent {
   width: 100%;
 }
+#contentframe,
 #resourceobject {
   min-width: 100%;
   max-width: 100%;
-  min-height: 600px;
+  min-height: 200px;
 }
 .section_add_menus {
   text-align: right;
@@ -2909,11 +2911,6 @@ a.ygtvspacer:hover {
   border-spacing: 2px;
   padding: 2px;
   width: 100%;
-}
-.block .content h3.eventskey {
-  margin-top: 0.5em;
-  margin-bottom: 0;
-  margin-left: 0.5em;
 }
 .allcoursegrades {
   width: 100%;
@@ -8030,44 +8027,64 @@ a.badge:hover {
   text-decoration: none;
   cursor: pointer;
 }
-.label-important,
+.label-important {
+  background-color: #b94a48;
+}
 .badge-important {
   background-color: #b94a48;
 }
-.label-important[href],
-.badge-important[href] {
+a.label-important[href] {
   background-color: #953b39;
 }
-.label-warning,
+a.badge-important[href] {
+  background-color: #953b39;
+}
+.label-warning {
+  background-color: #f89406;
+}
 .badge-warning {
   background-color: #f89406;
 }
-.label-warning[href],
-.badge-warning[href] {
+a.label-warning[href] {
   background-color: #c67605;
 }
-.label-success,
+a.badge-warning[href] {
+  background-color: #c67605;
+}
+.label-success {
+  background-color: #468847;
+}
 .badge-success {
   background-color: #468847;
 }
-.label-success[href],
-.badge-success[href] {
+a.label-success[href] {
   background-color: #356635;
 }
-.label-info,
+a.badge-success[href] {
+  background-color: #356635;
+}
+.label-info {
+  background-color: #3a87ad;
+}
 .badge-info {
   background-color: #3a87ad;
 }
-.label-info[href],
-.badge-info[href] {
+a.label-info[href] {
   background-color: #2d6987;
 }
-.label-inverse,
+a.badge-info[href] {
+  background-color: #2d6987;
+}
+.label-inverse {
+  background-color: #333;
+}
 .badge-inverse {
   background-color: #333;
 }
-.label-inverse[href],
-.badge-inverse[href] {
+a.label-inverse[href] {
+  background-color: #1a1a1a;
+}
+a.badge-inverse[href] {
   background-color: #1a1a1a;
 }
 .btn .label,
@@ -8513,11 +8530,28 @@ div.forumpost blockquote,
   background: none;
   box-shadow: none;
 }
+img.userpicture,
 .forumpost .picture img {
-  margin: 0px;
+  display: block;
+  padding: 4px;
+  line-height: 20px;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.055) X;
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.055) X;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.055) X;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
 }
 .forumpost .row {
   margin-left: 0 !important;
+}
+.forumpost .row .left {
+  width: auto;
 }
 .forumpost .row:before,
 .forumpost .row:after {
@@ -8555,186 +8589,6 @@ tr.rolecap td.risk a {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
-.capdefault span.note-important,
-span.ok-important,
-span.pathok-important,
-span.statusok-important,
-span.error-important,
-span.patherror-important,
-span.warn-important,
-p.warn-important,
-div.form-warning-important,
-.performanceinfo.siteinfo span-important,
-span.editinstructions-important,
-span.statuswarning-important,
-font[color="green"]-important,
-.form-overridden-important,
-.sitelink a-important,
-tr.rolecap td.risk a-important {
-  background-color: #b94a48;
-}
-.capdefault span.note-important[href],
-span.ok-important[href],
-span.pathok-important[href],
-span.statusok-important[href],
-span.error-important[href],
-span.patherror-important[href],
-span.warn-important[href],
-p.warn-important[href],
-div.form-warning-important[href],
-.performanceinfo.siteinfo span-important[href],
-span.editinstructions-important[href],
-span.statuswarning-important[href],
-font[color="green"]-important[href],
-.form-overridden-important[href],
-.sitelink a-important[href],
-tr.rolecap td.risk a-important[href] {
-  background-color: #953b39;
-}
-.capdefault span.note-warning,
-span.ok-warning,
-span.pathok-warning,
-span.statusok-warning,
-span.error-warning,
-span.patherror-warning,
-span.warn-warning,
-p.warn-warning,
-div.form-warning-warning,
-.performanceinfo.siteinfo span-warning,
-span.editinstructions-warning,
-span.statuswarning-warning,
-font[color="green"]-warning,
-.form-overridden-warning,
-.sitelink a-warning,
-tr.rolecap td.risk a-warning {
-  background-color: #f89406;
-}
-.capdefault span.note-warning[href],
-span.ok-warning[href],
-span.pathok-warning[href],
-span.statusok-warning[href],
-span.error-warning[href],
-span.patherror-warning[href],
-span.warn-warning[href],
-p.warn-warning[href],
-div.form-warning-warning[href],
-.performanceinfo.siteinfo span-warning[href],
-span.editinstructions-warning[href],
-span.statuswarning-warning[href],
-font[color="green"]-warning[href],
-.form-overridden-warning[href],
-.sitelink a-warning[href],
-tr.rolecap td.risk a-warning[href] {
-  background-color: #c67605;
-}
-.capdefault span.note-success,
-span.ok-success,
-span.pathok-success,
-span.statusok-success,
-span.error-success,
-span.patherror-success,
-span.warn-success,
-p.warn-success,
-div.form-warning-success,
-.performanceinfo.siteinfo span-success,
-span.editinstructions-success,
-span.statuswarning-success,
-font[color="green"]-success,
-.form-overridden-success,
-.sitelink a-success,
-tr.rolecap td.risk a-success {
-  background-color: #468847;
-}
-.capdefault span.note-success[href],
-span.ok-success[href],
-span.pathok-success[href],
-span.statusok-success[href],
-span.error-success[href],
-span.patherror-success[href],
-span.warn-success[href],
-p.warn-success[href],
-div.form-warning-success[href],
-.performanceinfo.siteinfo span-success[href],
-span.editinstructions-success[href],
-span.statuswarning-success[href],
-font[color="green"]-success[href],
-.form-overridden-success[href],
-.sitelink a-success[href],
-tr.rolecap td.risk a-success[href] {
-  background-color: #356635;
-}
-.capdefault span.note-info,
-span.ok-info,
-span.pathok-info,
-span.statusok-info,
-span.error-info,
-span.patherror-info,
-span.warn-info,
-p.warn-info,
-div.form-warning-info,
-.performanceinfo.siteinfo span-info,
-span.editinstructions-info,
-span.statuswarning-info,
-font[color="green"]-info,
-.form-overridden-info,
-.sitelink a-info,
-tr.rolecap td.risk a-info {
-  background-color: #3a87ad;
-}
-.capdefault span.note-info[href],
-span.ok-info[href],
-span.pathok-info[href],
-span.statusok-info[href],
-span.error-info[href],
-span.patherror-info[href],
-span.warn-info[href],
-p.warn-info[href],
-div.form-warning-info[href],
-.performanceinfo.siteinfo span-info[href],
-span.editinstructions-info[href],
-span.statuswarning-info[href],
-font[color="green"]-info[href],
-.form-overridden-info[href],
-.sitelink a-info[href],
-tr.rolecap td.risk a-info[href] {
-  background-color: #2d6987;
-}
-.capdefault span.note-inverse,
-span.ok-inverse,
-span.pathok-inverse,
-span.statusok-inverse,
-span.error-inverse,
-span.patherror-inverse,
-span.warn-inverse,
-p.warn-inverse,
-div.form-warning-inverse,
-.performanceinfo.siteinfo span-inverse,
-span.editinstructions-inverse,
-span.statuswarning-inverse,
-font[color="green"]-inverse,
-.form-overridden-inverse,
-.sitelink a-inverse,
-tr.rolecap td.risk a-inverse {
-  background-color: #333;
-}
-.capdefault span.note-inverse[href],
-span.ok-inverse[href],
-span.pathok-inverse[href],
-span.statusok-inverse[href],
-span.error-inverse[href],
-span.patherror-inverse[href],
-span.warn-inverse[href],
-p.warn-inverse[href],
-div.form-warning-inverse[href],
-.performanceinfo.siteinfo span-inverse[href],
-span.editinstructions-inverse[href],
-span.statuswarning-inverse[href],
-font[color="green"]-inverse[href],
-.form-overridden-inverse[href],
-.sitelink a-inverse[href],
-tr.rolecap td.risk a-inverse[href] {
-  background-color: #1a1a1a;
-}
 p.warn {
   white-space: normal;
 }
@@ -8747,11 +8601,42 @@ li.activity.label,
   background: inherit;
   color: inherit;
   border: inherit;
-  padding: inherit;
+  padding: 4px 8px;
+  text-align: right;
+}
+div.felement.error span.error,
+span.error,
+span.patherror,
+tr.rolecap td.risk.xss a,
+div.form-warning {
+  background-color: #b94a48;
+}
+span.warn,
+p.warn,
+span.editinstructions,
+#page-admin-report-security-index span.statuswarning,
+span.statuswarning,
+tr.rolecap td.risk.spam a,
+.form-overridden {
+  background-color: #f89406;
+}
+span.ok,
+span.pathok,
+span.statusok,
+font[color="green"],
+tr.rolecap td.risk.config a {
+  background-color: #468847;
+}
+.performanceinfo.siteinfo span,
+tr.rolecap td.risk.personal a {
+  background-color: #3a87ad;
 }
 .performanceinfo.siteinfo span {
   display: inline-block;
   margin-right: 1em;
+}
+tr.rolecap td.risk.dataloss a {
+  background-color: #333;
 }
 div[id^="bar_pbar"] {
   overflow: hidden !important;
@@ -8830,6 +8715,7 @@ span.cap-name,
   *zoom: 1;
   vertical-align: middle;
   padding-left: 5px;
+  width: auto;
   padding-left: 0;
 }
 .forumsearch input[type="text"],
@@ -9030,6 +8916,7 @@ form#adminsettings .form-item .form-setting .form-password .unmask,
   min-height: 18px;
   padding-left: 18px;
 }
+fieldset.felement.fgroup label,
 .fp-content-center td.mdl-right label,
 input[type="checkbox"] + label {
   display: inline-block;
@@ -9195,6 +9082,7 @@ table.userenrolment,
 table#form,
 #page-report-log-user .generaltable,
 .forumheaderlist,
+.userprofilebox table.list,
 .generaltable {
   width: 100%;
   margin-bottom: 20px;
@@ -9217,6 +9105,8 @@ table#form td,
 #page-report-log-user .generaltable td,
 .forumheaderlist th,
 .forumheaderlist td,
+.userprofilebox table.list th,
+.userprofilebox table.list td,
 .generaltable th,
 .generaltable td {
   padding: 8px;
@@ -9234,6 +9124,7 @@ table.userenrolment th,
 table#form th,
 #page-report-log-user .generaltable th,
 .forumheaderlist th,
+.userprofilebox table.list th,
 .generaltable th {
   font-weight: bold;
 }
@@ -9246,6 +9137,7 @@ table.userenrolment thead th,
 table#form thead th,
 #page-report-log-user .generaltable thead th,
 .forumheaderlist thead th,
+.userprofilebox table.list thead th,
 .generaltable thead th {
   vertical-align: bottom;
 }
@@ -9303,6 +9195,12 @@ table#form thead:first-child tr:first-child td,
 .forumheaderlist colgroup + thead tr:first-child td,
 .forumheaderlist thead:first-child tr:first-child th,
 .forumheaderlist thead:first-child tr:first-child td,
+.userprofilebox table.list caption + thead tr:first-child th,
+.userprofilebox table.list caption + thead tr:first-child td,
+.userprofilebox table.list colgroup + thead tr:first-child th,
+.userprofilebox table.list colgroup + thead tr:first-child td,
+.userprofilebox table.list thead:first-child tr:first-child th,
+.userprofilebox table.list thead:first-child tr:first-child td,
 .generaltable caption + thead tr:first-child th,
 .generaltable caption + thead tr:first-child td,
 .generaltable colgroup + thead tr:first-child th,
@@ -9320,6 +9218,7 @@ table.userenrolment tbody + tbody,
 table#form tbody + tbody,
 #page-report-log-user .generaltable tbody + tbody,
 .forumheaderlist tbody + tbody,
+.userprofilebox table.list tbody + tbody,
 .generaltable tbody + tbody {
   border-top: 2px solid #ddd;
 }
@@ -9332,6 +9231,7 @@ table.userenrolment .span1,
 table#form .span1,
 #page-report-log-user .generaltable .span1,
 .forumheaderlist .span1,
+.userprofilebox table.list .span1,
 .generaltable .span1 {
   float: none;
   width: 44px;
@@ -9346,6 +9246,7 @@ table.userenrolment .span2,
 table#form .span2,
 #page-report-log-user .generaltable .span2,
 .forumheaderlist .span2,
+.userprofilebox table.list .span2,
 .generaltable .span2 {
   float: none;
   width: 124px;
@@ -9360,6 +9261,7 @@ table.userenrolment .span3,
 table#form .span3,
 #page-report-log-user .generaltable .span3,
 .forumheaderlist .span3,
+.userprofilebox table.list .span3,
 .generaltable .span3 {
   float: none;
   width: 204px;
@@ -9374,6 +9276,7 @@ table.userenrolment .span4,
 table#form .span4,
 #page-report-log-user .generaltable .span4,
 .forumheaderlist .span4,
+.userprofilebox table.list .span4,
 .generaltable .span4 {
   float: none;
   width: 284px;
@@ -9388,6 +9291,7 @@ table.userenrolment .span5,
 table#form .span5,
 #page-report-log-user .generaltable .span5,
 .forumheaderlist .span5,
+.userprofilebox table.list .span5,
 .generaltable .span5 {
   float: none;
   width: 364px;
@@ -9402,6 +9306,7 @@ table.userenrolment .span6,
 table#form .span6,
 #page-report-log-user .generaltable .span6,
 .forumheaderlist .span6,
+.userprofilebox table.list .span6,
 .generaltable .span6 {
   float: none;
   width: 444px;
@@ -9416,6 +9321,7 @@ table.userenrolment .span7,
 table#form .span7,
 #page-report-log-user .generaltable .span7,
 .forumheaderlist .span7,
+.userprofilebox table.list .span7,
 .generaltable .span7 {
   float: none;
   width: 524px;
@@ -9430,6 +9336,7 @@ table.userenrolment .span8,
 table#form .span8,
 #page-report-log-user .generaltable .span8,
 .forumheaderlist .span8,
+.userprofilebox table.list .span8,
 .generaltable .span8 {
   float: none;
   width: 604px;
@@ -9444,6 +9351,7 @@ table.userenrolment .span9,
 table#form .span9,
 #page-report-log-user .generaltable .span9,
 .forumheaderlist .span9,
+.userprofilebox table.list .span9,
 .generaltable .span9 {
   float: none;
   width: 684px;
@@ -9458,6 +9366,7 @@ table.userenrolment .span10,
 table#form .span10,
 #page-report-log-user .generaltable .span10,
 .forumheaderlist .span10,
+.userprofilebox table.list .span10,
 .generaltable .span10 {
   float: none;
   width: 764px;
@@ -9472,6 +9381,7 @@ table.userenrolment .span11,
 table#form .span11,
 #page-report-log-user .generaltable .span11,
 .forumheaderlist .span11,
+.userprofilebox table.list .span11,
 .generaltable .span11 {
   float: none;
   width: 844px;
@@ -9486,6 +9396,7 @@ table.userenrolment .span12,
 table#form .span12,
 #page-report-log-user .generaltable .span12,
 .forumheaderlist .span12,
+.userprofilebox table.list .span12,
 .generaltable .span12 {
   float: none;
   width: 924px;
@@ -9500,6 +9411,7 @@ table.userenrolment .span13,
 table#form .span13,
 #page-report-log-user .generaltable .span13,
 .forumheaderlist .span13,
+.userprofilebox table.list .span13,
 .generaltable .span13 {
   float: none;
   width: 1004px;
@@ -9514,6 +9426,7 @@ table.userenrolment .span14,
 table#form .span14,
 #page-report-log-user .generaltable .span14,
 .forumheaderlist .span14,
+.userprofilebox table.list .span14,
 .generaltable .span14 {
   float: none;
   width: 1084px;
@@ -9528,6 +9441,7 @@ table.userenrolment .span15,
 table#form .span15,
 #page-report-log-user .generaltable .span15,
 .forumheaderlist .span15,
+.userprofilebox table.list .span15,
 .generaltable .span15 {
   float: none;
   width: 1164px;
@@ -9542,6 +9456,7 @@ table.userenrolment .span16,
 table#form .span16,
 #page-report-log-user .generaltable .span16,
 .forumheaderlist .span16,
+.userprofilebox table.list .span16,
 .generaltable .span16 {
   float: none;
   width: 1244px;
@@ -9556,6 +9471,7 @@ table.userenrolment .span17,
 table#form .span17,
 #page-report-log-user .generaltable .span17,
 .forumheaderlist .span17,
+.userprofilebox table.list .span17,
 .generaltable .span17 {
   float: none;
   width: 1324px;
@@ -9570,6 +9486,7 @@ table.userenrolment .span18,
 table#form .span18,
 #page-report-log-user .generaltable .span18,
 .forumheaderlist .span18,
+.userprofilebox table.list .span18,
 .generaltable .span18 {
   float: none;
   width: 1404px;
@@ -9584,6 +9501,7 @@ table.userenrolment .span19,
 table#form .span19,
 #page-report-log-user .generaltable .span19,
 .forumheaderlist .span19,
+.userprofilebox table.list .span19,
 .generaltable .span19 {
   float: none;
   width: 1484px;
@@ -9598,6 +9516,7 @@ table.userenrolment .span20,
 table#form .span20,
 #page-report-log-user .generaltable .span20,
 .forumheaderlist .span20,
+.userprofilebox table.list .span20,
 .generaltable .span20 {
   float: none;
   width: 1564px;
@@ -9612,6 +9531,7 @@ table.userenrolment .span21,
 table#form .span21,
 #page-report-log-user .generaltable .span21,
 .forumheaderlist .span21,
+.userprofilebox table.list .span21,
 .generaltable .span21 {
   float: none;
   width: 1644px;
@@ -9626,6 +9546,7 @@ table.userenrolment .span22,
 table#form .span22,
 #page-report-log-user .generaltable .span22,
 .forumheaderlist .span22,
+.userprofilebox table.list .span22,
 .generaltable .span22 {
   float: none;
   width: 1724px;
@@ -9640,6 +9561,7 @@ table.userenrolment .span23,
 table#form .span23,
 #page-report-log-user .generaltable .span23,
 .forumheaderlist .span23,
+.userprofilebox table.list .span23,
 .generaltable .span23 {
   float: none;
   width: 1804px;
@@ -9654,6 +9576,7 @@ table.userenrolment .span24,
 table#form .span24,
 #page-report-log-user .generaltable .span24,
 .forumheaderlist .span24,
+.userprofilebox table.list .span24,
 .generaltable .span24 {
   float: none;
   width: 1884px;
@@ -10736,12 +10659,7 @@ span.editinstructions {
   cursor: normal;
 }
 .block_tree li.item_with_icon.contains_branch .tree_item {
-  padding-left: 10px;
-}
-.block li img.smallicon.navicon,
-.block li .tree_item.leaf img.smallicon,
-.block li img.icon {
-  display: none;
+  padding-left: 15px;
 }
 .block_settings .block_tree .tree_item,
 .block_navigation .block_tree .tree_item {
@@ -10753,9 +10671,6 @@ span.editinstructions {
 .block_settings .block_tree .tree_item.branch,
 .jsenabled .block_navigation .block_tree .tree_item.emptybranch {
   background: none;
-}
-.block.list_block .unlist > li > .column {
-  display: block;
 }
 #page {
   min-width: 960px;
@@ -10944,39 +10859,44 @@ div.paging:first-child a {
   border-radius: 3px 0px 0px 3px;
 }
 div.initialbar {
-  text-align: left;
-  width: 43em;
+  height: 40px;
+  margin: 20px 0;
+  text-align: right;
   margin: 0px auto;
 }
 div.initialbar a,
 div.initialbar strong {
-  padding: 0.4em;
-  text-decoration: none;
   line-height: 38px;
-  border-width: 1px 1px 1px 0px;
-  border-style: solid;
-  border-color: #dddddd;
-}
-div.initialbar strong {
-  color: #999999;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-left-width: 0;
+  padding: 4px 6px;
+  line-height: 24px;
 }
 div.initialbar strong,
 div.initialbar a:hover {
-  background: #f5f5f5;
+  background-color: #f5f5f5;
 }
-div.initialbar a:last-child {
-  border-radius: 0px 3px 3px 0px;
+div.initialbar strong {
+  color: #999;
+  cursor: default;
 }
 div.initialbar a:first-child,
 div.initialbar strong:first-child {
   border-left-width: 1px;
-  border-radius: 3px 0px 0px 3px;
+  -webkit-border-radius: 3px 0 0 3px;
+  -moz-border-radius: 3px 0 0 3px;
+  border-radius: 3px 0 0 3px;
+}
+div.initialbar a:last-child,
+div.initialbar strong:last-child {
+  -webkit-border-radius: 0 3px 3px 0;
+  -moz-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
 }
 .mform fieldset {
   border: none;
-}
-.mform fieldset div {
-  margin: 0px;
 }
 .fitem.fitem_feditor {
   overflow: visible;
@@ -11215,6 +11135,241 @@ div.fitemtitle span.helplink {
 .navbar .brand:hover {
   text-decoration: none;
   text-shadow: 0 1px 0 rgba(255,255,255,0.1), 0 0 30px rgba(255,255,255,0.4);
+}
+#turnitintool_style #uploadtableid,
+#turnitintool_style #submissionTableId {
+  width: 100%;
+  margin-bottom: 20px;
+}
+#turnitintool_style #uploadtableid th,
+#turnitintool_style #uploadtableid td,
+#turnitintool_style #submissionTableId th,
+#turnitintool_style #submissionTableId td {
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
+}
+#turnitintool_style #uploadtableid th,
+#turnitintool_style #submissionTableId th {
+  font-weight: bold;
+}
+#turnitintool_style #uploadtableid thead th,
+#turnitintool_style #submissionTableId thead th {
+  vertical-align: bottom;
+}
+#turnitintool_style #uploadtableid caption + thead tr:first-child th,
+#turnitintool_style #uploadtableid caption + thead tr:first-child td,
+#turnitintool_style #uploadtableid colgroup + thead tr:first-child th,
+#turnitintool_style #uploadtableid colgroup + thead tr:first-child td,
+#turnitintool_style #uploadtableid thead:first-child tr:first-child th,
+#turnitintool_style #uploadtableid thead:first-child tr:first-child td,
+#turnitintool_style #submissionTableId caption + thead tr:first-child th,
+#turnitintool_style #submissionTableId caption + thead tr:first-child td,
+#turnitintool_style #submissionTableId colgroup + thead tr:first-child th,
+#turnitintool_style #submissionTableId colgroup + thead tr:first-child td,
+#turnitintool_style #submissionTableId thead:first-child tr:first-child th,
+#turnitintool_style #submissionTableId thead:first-child tr:first-child td {
+  border-top: 0;
+}
+#turnitintool_style #uploadtableid tbody + tbody,
+#turnitintool_style #submissionTableId tbody + tbody {
+  border-top: 2px solid #ddd;
+}
+#turnitintool_style #uploadtableid .span1,
+#turnitintool_style #submissionTableId .span1 {
+  float: none;
+  width: 44px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span2,
+#turnitintool_style #submissionTableId .span2 {
+  float: none;
+  width: 124px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span3,
+#turnitintool_style #submissionTableId .span3 {
+  float: none;
+  width: 204px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span4,
+#turnitintool_style #submissionTableId .span4 {
+  float: none;
+  width: 284px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span5,
+#turnitintool_style #submissionTableId .span5 {
+  float: none;
+  width: 364px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span6,
+#turnitintool_style #submissionTableId .span6 {
+  float: none;
+  width: 444px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span7,
+#turnitintool_style #submissionTableId .span7 {
+  float: none;
+  width: 524px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span8,
+#turnitintool_style #submissionTableId .span8 {
+  float: none;
+  width: 604px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span9,
+#turnitintool_style #submissionTableId .span9 {
+  float: none;
+  width: 684px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span10,
+#turnitintool_style #submissionTableId .span10 {
+  float: none;
+  width: 764px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span11,
+#turnitintool_style #submissionTableId .span11 {
+  float: none;
+  width: 844px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span12,
+#turnitintool_style #submissionTableId .span12 {
+  float: none;
+  width: 924px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span13,
+#turnitintool_style #submissionTableId .span13 {
+  float: none;
+  width: 1004px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span14,
+#turnitintool_style #submissionTableId .span14 {
+  float: none;
+  width: 1084px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span15,
+#turnitintool_style #submissionTableId .span15 {
+  float: none;
+  width: 1164px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span16,
+#turnitintool_style #submissionTableId .span16 {
+  float: none;
+  width: 1244px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span17,
+#turnitintool_style #submissionTableId .span17 {
+  float: none;
+  width: 1324px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span18,
+#turnitintool_style #submissionTableId .span18 {
+  float: none;
+  width: 1404px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span19,
+#turnitintool_style #submissionTableId .span19 {
+  float: none;
+  width: 1484px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span20,
+#turnitintool_style #submissionTableId .span20 {
+  float: none;
+  width: 1564px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span21,
+#turnitintool_style #submissionTableId .span21 {
+  float: none;
+  width: 1644px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span22,
+#turnitintool_style #submissionTableId .span22 {
+  float: none;
+  width: 1724px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span23,
+#turnitintool_style #submissionTableId .span23 {
+  float: none;
+  width: 1804px;
+  margin-left: 0;
+}
+#turnitintool_style #uploadtableid .span24,
+#turnitintool_style #submissionTableId .span24 {
+  float: none;
+  width: 1884px;
+  margin-left: 0;
+}
+#turnitintool_style .uploadtableid td {
+  border-top: none;
+}
+#turnitintool_style .uploadtableid td.cell.c0,
+#turnitintool_style .uploadtable td.cell.c0 {
+  width: 200px !important;
+  background: transparent !important;
+  padding-right: 20px;
+  font-weight: bold;
+  text-align: right;
+}
+#turnitintool_style select {
+  width: 220px !important;
+}
+#turnitintool_style #submissionTableId {
+  line-height: inherit !important;
+}
+#turnitintool_style #submissionTableId td.header {
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
+  font-weight: bold;
+  border-top: 0 !important;
+}
+#turnitintool_style #submissionTableId td {
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
+  border-top: 0 !important;
+}
+#turnitintool_style .row {
+  margin-left: 0;
+  width: 100%;
+  position: relative;
+}
+#turnitintool_style .row:before,
+#turnitintool_style .row:after {
+  content: none;
+}
+#turnitintool_style .submissionTableId tr td,
+#turnitintool_style .submissionTableId tr td.header,
+#turnitintool_style .submissionTable tr td {
+  background: transparent !important;
+  border-right: 0 !important;
+  border-left: 0 !important;
 }
 .block {
   min-height: 20px;

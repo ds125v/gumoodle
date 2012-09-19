@@ -310,6 +310,7 @@ form#adminsettings .form-item .form-setting .form-password .unmask,
   .checkbox 
 }
 
+fieldset.felement.fgroup label, // labels round completion targets
 .fp-content-center td.mdl-right label, // labels in tables in file-picker
 input[type="checkbox"] + label { // labels just sitting after a checkbox
     display: inline-block;
@@ -1302,35 +1303,49 @@ div.paging:first-child a {
 }
 
 div.initialbar { // bit of a hack because the title isn't targettable by css
-  text-align: left;
-  width: 43em;
+  .pagination;
+  text-align: right;
   margin: 0px auto;
 }
-
 div.initialbar a,
 div.initialbar strong {
-  padding: 0.4em;
+  // copied (with minor edits) from
+  // pagination.less
+  // .pagination ul > li > a,
+  // .pagination ul > li > span 
+  line-height: (@baseLineHeight * 2) - 2;
   text-decoration: none;
-  line-height:38px;
-  border-width: 1px 1px 1px 0px;
-  border-style: solid;
-  border-color: rgb(221,221,221);
-}
-div.initialbar strong {
-  color: rgb(153,153,153);
+  background-color: @paginationBackground;
+  border: 1px solid @paginationBorder;
+  border-left-width: 0;
+  // reducing sizes to fit 26 letters
+  padding: 4px 6px;
+  line-height: 24px;
 }
 div.initialbar strong,
 div.initialbar a:hover {
-  background: rgb(245,245,245);
+  background-color: #f5f5f5;
 }
-div.initialbar a:last-child {
-  border-radius: 0px 3px 3px 0px;
+div.initialbar strong {
+//.pagination ul > .active > a,
+//.pagination ul > .active > span {
+  color: @grayLight;
+  cursor: default;
 }
 div.initialbar a:first-child,
 div.initialbar strong:first-child {
+//.pagination ul > li:first-child > a,
+//.pagination ul > li:first-child > span {
   border-left-width: 1px;
-  border-radius: 3px 0px 0px 3px;
+  .border-radius(3px 0 0 3px);
 }
+div.initialbar a:last-child,
+div.initialbar strong:last-child {
+//.pagination ul > li:last-child > a,
+//.pagination ul > li:last-child > span {
+  .border-radius(0 3px 3px 0);
+}
+
 .mform fieldset {
   border: none;
 }
@@ -1587,3 +1602,53 @@ div.fitemtitle span.helplink {
 }
 
 
+// turnitin fixes
+
+#turnitintool_style #uploadtableid,
+#turnitintool_style #submissionTableId {
+    .table
+}
+
+#turnitintool_style .uploadtableid td {
+    border-top: none;
+}
+#turnitintool_style .uploadtableid td.cell.c0,
+#turnitintool_style .uploadtable td.cell.c0 {
+    width: 200px !important;
+    background: transparent !important;
+    padding-right: 20px;
+    font-weight: bold;
+    text-align: right;
+}
+
+#turnitintool_style select  {
+    width: 220px !important;
+}
+
+#turnitintool_style #submissionTableId  {
+    line-height: inherit !important;
+}
+#turnitintool_style #submissionTableId td.header {
+    .table th;
+    border-top: 0 !important;
+}
+#turnitintool_style #submissionTableId td {
+    .table td;
+    border-top: 0 !important;
+}
+#turnitintool_style .row {
+    margin-left: 0;
+    width: 100%;
+    position: relative;
+}
+#turnitintool_style .row:before, 
+#turnitintool_style .row:after {
+    content: none;
+}
+#turnitintool_style .submissionTableId tr td,
+#turnitintool_style .submissionTableId tr td.header,
+#turnitintool_style .submissionTable tr td {
+    background: transparent !important;
+    border-right: 0 !important;
+    border-left: 0 !important;
+}
