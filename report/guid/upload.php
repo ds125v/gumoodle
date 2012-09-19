@@ -36,7 +36,8 @@ if ($mform->is_cancelled()) {
     
     // check for errors
     if ($cir->get_error()) {
-        notice( 'Error reading CSV file - ' . $cir->get_error() );
+        $link = new moodle_url( '/report/guid/upload.php' );
+        notice( 'Error reading CSV file - ' . $cir->get_error(), $link );
         print_footer();
         die;
     }
