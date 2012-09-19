@@ -95,12 +95,12 @@ if ($mform->is_cancelled()) {
             // create account
             $result = array_shift( $result );
             $user = createUserFromLdap( $result );
-            $link = new moodle_url( 'user/profile.php', array('id'=>$user->id) );
+            $link = new moodle_url( '/user/view.php', array('id'=>$user->id) );
             echo "account created for <a href=\"$link\">" . fullname($user) . "</a>";
             $createdcount++;
         }
         else {
-            $link = new moodle_url( 'user/profile.php', array('id'=>$user->id) );
+            $link = new moodle_url( '/user/view.php', array('id'=>$user->id) );
             echo "account not created, already exists for <a href=\"$link\">" . fullname($user) . "</a>";
         }
 

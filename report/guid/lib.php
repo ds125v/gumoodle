@@ -321,7 +321,7 @@ function print_enrolments( $enrolments, $name, $guid ) {
             echo "<p>&nbsp;</p>";
             echo "<h3>Enrolments on <a href=\"$sitelink\">$newsite</a> Moodle:</h3>";
             $profilelink = $enrolment->wwwroot . '/user/view.php?id=' . $guid;
-            echo "<b><a href=\"$profilelink\">Jump to $name's profile</a></b><br />";
+            //echo "<b><a href=\"$profilelink\">Jump to $name's profile</a></b><br />";
             $oldsite = $newsite;
         }
         $courselink = $enrolment->wwwroot . '/course/view.php?id=' . $enrolment->courseid;
