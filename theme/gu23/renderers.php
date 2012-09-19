@@ -217,7 +217,7 @@ class theme_gu23_core_renderer extends core_renderer {
     }
     public function error_text($message) {
         if (empty($message)) { return ''; }
-        return self::span(array('class'=>'label label-error'), $message);
+        return self::span(array('class'=>'label label-important'), $message);
     }
     public function notification($message, $classes = 'notifyproblem') {
         // TODO rewrite recognized classnames to bootstrap alert equivalent 
@@ -226,29 +226,81 @@ class theme_gu23_core_renderer extends core_renderer {
         return self::div(array('class'=>'alert '.$classes), clean_text($message));
     }
     protected function render_paging_bar(paging_bar $pagingbar) {
-        $output = '<div class="pagination pagination-centered"><ul>';
+        // this is more complicated than it needs to be, see MDL-35367 
+        $pagingbar->maxdisplay = 11; // odd number for symmetry
         $pagingbar = clone($pagingbar);
         $pagingbar->prepare($this, $this->page, $this->target);
+        $show_pagingbar = ($pagingbar->totalcount > $pagingbar->perpage);
+        if ($show_pagingbar) {
+            $baseurl = $pagingbar->baseurl;
+            $pagevar = $pagingbar->pagevar;
+            $maxdisplay = max($pagingbar->maxdisplay, 5);
+            $page = $pagingbar->page;
 
-        if ($pagingbar->totalcount > $pagingbar->perpage) {
-            if (!empty($pagingbar->previouslink)) {
-                $output .= "<li>$pagingbar->previouslink</li>";
+            $output = '<div class="pagination pagination-centered"><ul>';
+
+            // Note: page 0 is displayed to users as page 1 and so on.
+            if ($pagingbar->perpage > 0) {
+                $lastpage = floor($pagingbar->totalcount / $pagingbar->perpage);
+            } else {
+                $lastpage = 0;
             }
-            if (!empty($pagingbar->firstlink)) {
-                $output .= self::li(array('class'=>'disabled'), $pagingbar->firstlink);
+            if ($page != 0) {
+                $previouslink = html_writer::link(new moodle_url($baseurl, array($pagevar=>$page-1)), get_string('previous'));
+                $output .= "<li>$previouslink</li>";
+            } else {
+                $output .= '<li class=disabled><span>'.get_string('previous').'</span></li>';
             }
-            foreach ($pagingbar->pagelinks as $link) {
+
+            $start = 0;
+            $stop = $lastpage;
+            $truncate = $lastpage + 1 > $maxdisplay ;
+            $start_margin = floor($maxdisplay / 2);
+            $end_margin = $lastpage - ceil($maxdisplay / 2);
+            $near_to_start = $page < $start_margin;
+            $near_to_end = $page > $end_margin;
+            if ($truncate && $near_to_start) {
+                $stop = $maxdisplay - 3;
+            } else if ($truncate && $near_to_end) {
+                $start = $lastpage - $maxdisplay + 3;
+            } else if ($truncate) { // truncate both sides, centered on current page
+                $before_current = ceil(($maxdisplay - 5) / 2) ;
+                $start = $page - $before_current;
+                $stop = $start + $maxdisplay - 5;
+            }
+
+            if ($truncate && !$near_to_start) {
+                $link = html_writer::link(new moodle_url($baseurl, array($pagevar=>'0')), '1');
+                $output .= "<li>$link</li>" . "<li class=disabled><span>…</span></li>";
+            }
+
+            for ($i = $start; $i <= $stop; $i++) {
+                if ($page == $i) {
+                    $pagename = $page + 1;
+                    $output .= "<li class=active><span>$pagename</span></li>";
+                } else {
+                    $link = html_writer::link(new moodle_url($baseurl, array($pagevar=>$i)), $i+1);
+                    $output .= "<li>$link</li>";
+                }
+            }
+
+            if ($truncate && !$near_to_end) {
+                $output .= "<li class=disabled><span>…</span>";
+                $link = html_writer::link(new moodle_url($baseurl, array($pagevar=>$lastpage)), $lastpage + 1);
                 $output .= "<li>$link</li>";
             }
-            if (!empty($pagingbar->lastlink)) {
-                $output .= self::li(array('class'=>'disabled'), $pagingbar->lastlink);
+
+            if ($page != $lastpage) {
+                $nextlink = html_writer::link(new moodle_url($baseurl, array($pagevar=>$page+1)), get_string('next'));
+                $output .= "<li>$nextlink</li>";
+            } else {
+                $output .= '<li class=disabled><span>'.get_string('next').'</span></li>';
             }
-            if (!empty($pagingbar->nextlink)) {
-                $output .= "<li>$pagingbar->nextlink</li>";
-            }
+
+            return $output."</ul></div>";
         }
-        return $output."</ul></div>";
     }
+
     public function navbar() {
         $items = $this->page->navbar->get_items();
         $htmlblocks = array();
@@ -1272,7 +1324,7 @@ class theme_gu23_core_admin_renderer extends core_admin_renderer {
 
                 // Format error or warning line
                 if ($errorline || $warningline) {
-                    $messagetype = $errorline? 'error':'warning';
+                    $messagetype = $errorline? 'important':'warning';
                 } else {
                     $messagetype = 'success';
                 }
