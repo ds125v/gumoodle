@@ -685,8 +685,7 @@ class theme_gu23_core_admin_renderer extends core_admin_renderer {
                          'and <a href="http://docs.moodle.org/dev/Credits">many other contributors</a>.</p>'.
                          '<p><a href="http://docs.moodle.org/dev/License">GNU Public License</a><p>';
         //////////////////////////////////////////////////////////////////////////////////////////////////
-        return "hello";
-        //return html_writer::tag('div', $copyrighttext, array('class'=>'alert alert-info copyright'));
+        return html_writer::tag('div', $copyrighttext, array('class'=>'alert alert-info copyright'));
     }
 
     /**
@@ -743,7 +742,7 @@ class theme_gu23_core_admin_renderer extends core_admin_renderer {
 
 
     function upgrade_reload($url) {
-        return '<div><a class=btn href="' . $url. '">' . self::icon('refresh', '') . ' ' . get_string('reload') . '</a></div>';
+        return '<div><a class=btn href="' . $url. '"><i class=icon-refresh></i> ' . get_string('reload') . '</a></div>';
     }
 
     /**
