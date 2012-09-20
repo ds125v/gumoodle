@@ -1,16 +1,8 @@
 <?php
-
 $THEME->name = 'gu23';
-$THEME->parents = array('simple','bootstrap','base');
-$THEME->parents_exclude_sheets = array(
-'base'=>array(
-'pagelayout', 'admin', 'core'
-),
-'simple'=>array(
-'decoration'
-)
-); 
+$THEME->parents = array();
 $THEME->sheets = array('gu23');
+$THEME->rendererfactory = 'theme_overridden_renderer_factory';
 $THEME->layouts = array(
     'base' => array(
         'file' => 'gu23.php',

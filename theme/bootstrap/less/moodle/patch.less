@@ -1,0 +1,1654 @@
+// copying styles from bootstrap
+
+.breadcrumb ul li span.sep {
+  .breadcrumb .divider
+}
+
+.mod_introbox,
+.backup-section,
+div#intro,
+div.forumpost,
+#page-mod-quiz-edit div.quizpage .pagecontent {
+  .well
+}
+
+.backup-restore .detail-pair-value,
+#page-admin-roles-define div.mform .topfields .felement,
+.felement.fstatic {
+  .uneditable-input 
+}
+.backup-restore .bcs-new-course .detail-pair-value,
+.backup-restore .bcs-current-course .detail-pair-value,
+.backup-restore .bcs-existing-course .detail-pair-value { // can't target first page so undo some of .uneditable-input on second page
+  border: none;
+  background: none;
+  box-shadow: none;
+}
+
+img.userpicture,
+.forumpost .picture img {
+  .thumbnail;
+}
+.forumpost .row {
+  margin-left: 0 !important;
+}
+.forumpost .row .left{
+    width: auto;
+}
+.forumpost .row:before,
+.forumpost .row:after {
+  content: none;
+}
+
+div.profilepicture a,
+div.left.picture a,
+tr.discussion td.picture a {
+  a.thumbnail
+}
+tr.rolecap td img {
+  display: none;
+}
+
+.capdefault span.note,
+span.ok,
+span.pathok,
+span.statusok,
+span.error,
+span.patherror,
+span.warn,
+p.warn,
+div.form-warning,
+.performanceinfo.siteinfo span,
+span.editinstructions,
+span.statuswarning,
+font[color="green"],
+.form-overridden,
+.sitelink a,
+tr.rolecap td.risk a {
+  .label
+}
+p.warn {
+  white-space: normal;
+}
+tr.rolecap td.risk a {
+  a.label
+}
+.sitelink a {
+    background-color: orange;
+}
+li.activity.label,
+.file-picker td.label,
+.userprofile th.label {
+  background: inherit;
+  color: inherit;
+  border: inherit;
+  padding: 4px 8px;
+  text-align: right;
+}
+div.felement.error span.error,
+span.error,
+span.patherror,
+tr.rolecap td.risk.xss a,
+div.form-warning {
+  .label-important
+}
+span.warn,
+p.warn,
+span.editinstructions,
+#page-admin-report-security-index span.statuswarning,
+span.statuswarning,
+tr.rolecap td.risk.spam a,
+.form-overridden {
+  .label-warning
+}
+span.ok,
+span.pathok,
+span.statusok,
+font[color="green"],
+tr.rolecap td.risk.config a {
+  .label-success
+}
+.performanceinfo.siteinfo span,
+tr.rolecap td.risk.personal a {
+  .label-info
+}
+.performanceinfo.siteinfo span {
+  display: inline-block;
+  margin-right: 1em;
+}
+tr.rolecap td.risk.dataloss a {
+  .label-inverse
+}
+
+div[id^="bar_pbar"] { // needs to be !important because styles attached to tag
+  .progress() !important;
+  border: none !important;
+}
+div[id^="progress_pbar"] {
+ //copied as import doesn't seem to be working
+ // !important to ovverride styles on tag
+        width: 0%;
+        height: 100% !important;
+        padding: 0 !important;
+        border: none !important;
+        color: @white !important;
+        float: left;
+        font-size: 12px;
+        text-align: center;
+        text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+        #gradient > .vertical(#149bdf, #0480be) !important;
+        .box-shadow(inset 0 -1px 0 rgba(0,0,0,.15));
+        .box-sizing(border-box);
+        .transition(width .6s ease);
+        #gradient > .striped(#149bdf) !important;
+        .background-size(40px 40px) !important;
+        -webkit-animation: progress-bar-stripes 2s linear infinite;
+        -moz-animation: progress-bar-stripes 2s linear infinite;
+        -ms-animation: progress-bar-stripes 2s linear infinite;
+        -o-animation: progress-bar-stripes 2s linear infinite;
+        animation: progress-bar-stripes 2s linear infinite;
+}  
+
+
+.form-defaultinfo,
+.form-description,
+.formsettingheading,
+span.cap-name,
+#adminsettings .form-item .form-label .form-shortname,
+.fcontainer div.fitem:nth-child(4) .fstatic, // horrible hack!
+#page-question-type-pmatch .fstatic { // horrible hack!
+  .help-inline;
+  width: auto;
+  padding-left: 0
+}
+.forumsearch input[type="text"],
+.searchform input[type="text"],
+.adminsearchform input[type="text"] { // square off the end so button can join on
+  .input-append input
+}
+.forumsearch input[type="submit"],
+.adminsearchform input[type="submit"],
+.searchform button { // square off the end so button can join on to field
+  .input-prepend.input-append .btn
+}
+
+.loginform,
+#adminsettings .form-item,
+.settingsform .form-item,
+form .fitem,
+table#form tr,
+.fp-content-center form tr,
+.settingsform .form-item,
+div.detail-pair { 
+  .form-horizontal .control-group
+}
+.mform .fitem div.fitemtitle,
+.path-backup .mform .grouped_settings .fitem .fitemtitle,
+.backup-restore .detail-pair-label,
+form#login .form-label,
+#adminsettings .settingsform .form-label,
+#adminsettings .adminsettings .form-label,
+#page-mod-forum-search td.c0,
+.backup-restore .detail-pair-label {
+  .form-horizontal .control-label;
+}
+a#closehelpbox img {display:none;}
+a#closehelpbox:after {content: "×";}
+a#closehelpbox {
+  .close
+
+} 
+
+.user-enroller-panel .uep-header .close {
+  top:4px;
+  right:4px;
+}
+
+tr.msg-noneinstalled td,
+tr.msg-noneinstalled th {
+ .table tbody tr.info td
+}
+
+#page-admin-roles-assign h2 + .box.generalbox,
+div.notifysuccess,
+div.notifyproblem,
+body.admin div.info,
+div.box.copyright,
+body.pagelayout-report div.info,
+div.redirectmessage,
+div.adminwarning,
+div.forumnodiscuss,
+div#notice p,
+div.performanceinfo.pageinfo,
+div.noticebox,
+div#helppopupbox,
+div.releasenoteslink,
+.errorbox {
+  .alert
+}
+a#closehelpbox {
+  .alert .close 
+}
+
+div.notifysuccess {
+  .alert-success
+}
+
+#page-admin-roles-assign h2 + .box.generalbox,
+div.notifyproblem,
+.errorbox {
+  .alert-error
+}
+
+body.admin div.info,
+div.box.copyright,
+div#helppopupbox,
+div.redirectmessage,
+body.pagelayout-report div.info,
+div.releasenoteslink,
+div.performanceinfo.pageinfo {
+  .alert-info
+}
+.user-enroller-panel,
+div#helppopupbox {
+  .popover-inner
+  // width: different
+  // background: transparent?
+}
+
+.user-enroller-panel,
+.user-enroller-panel .uep-wrap {
+  margin: 0px;
+  border: none;
+} 
+.ie8 .user-enroller-panel .uep-wrap { // ugly fake-shadow for IE8
+ margin-top: -5px;
+ margin-left: -5px;
+ border: 1px solid #999999;
+} 
+
+// need to check out what's going on with these access things, apparently can slow down iPads etc.
+a.skip-block,
+a.skip,
+.accesshide {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+//  .hide-text // this seems to only hide the 'text', not the container 
+}
+
+span.hide,
+div.hide {
+  display:none;
+}
+.invisiblefieldset {
+  display: inline;
+  border-width: 0;
+  padding: 0;
+  margin:0;
+}
+
+
+.form-checkbox,
+.fcheckbox span,
+.fradio,
+div.felement.fcheckbox,
+#defineroletable td.inherit label,
+#defineroletable td.allow label,
+#defineroletable td.prevent label,
+#defineroletable td.prohibit label,
+.mform fieldset .unmask,
+.fduration span,
+.fgroup span,
+.fdate_time_selector span,
+form#adminsettings .form-item .form-setting .form-password .unmask,
+.form-multicheckbox li { // containers for checkboxes
+  .checkbox 
+}
+
+fieldset.felement.fgroup label, // labels round completion targets
+.fp-content-center td.mdl-right label, // labels in tables in file-picker
+input[type="checkbox"] + label { // labels just sitting after a checkbox
+    display: inline-block;
+}
+
+#defineroletable td.inherit label input[type="checkbox"],
+#defineroletable td.inherit label input[type="radio"],
+#defineroletable td.allow label input[type="checkbox"],
+#defineroletable td.allow label input[type="radio"],
+#defineroletable td.prevent label input[type="checkbox"],
+#defineroletable td.prevent label input[type="radio"],
+#defineroletable td.prohibit label input[type="checkbox"],
+#defineroletable td.prohibit label input[type="radio"],
+.form-checkbox input[type="checkbox"],
+.fcheckbox input[type="checkbox"],
+.form-multicheckbox input[type="checkbox"],
+.fradio input[type="radio"],
+.radio input[type="radio"],
+.unmask input[type="checkbox"],
+.fdate_time_selector span > input[type="checkbox"],
+.fgroup span > input[type="checkbox"],
+.fduration span > input[type="checkbox"] { 
+// copied from .checkbox input[type="checkbox"] 
+  float: left;
+  margin-left: -18px;
+}
+
+
+.fcheckbox,
+.fradio,
+div.felement.fcheckbox,
+.form-checkbox,
+.form-multicheckbox {
+  .controls > .checkbox
+}
+input[type="checkbox"] + label + input[type="checkbox"],
+input[type="checkbox"] + input[type="checkbox"] {
+  .checkbox.inline + .checkbox.inline
+}
+
+#fgroup_id_buttonar,
+#fitem_id_submitbutton,
+table#form td.submit,
+.form-buttons {
+  .form-actions 
+}
+
+table#form td.submit,
+#adminsettings .form-buttons,
+.settingsform .form-buttons,
+.fp-content-center form + div,
+#group_id_buttonar {
+  .form-horizontal .form-actions;
+}
+.mform .fitem fieldset.felement,
+.mform .fitem .felement,
+#adminsettings .form-item .form-description,
+#adminsettings .settingsform .form-setting,
+#adminsettings .adminsettings .form-setting,
+.backup-restore .detail-pair-value,
+.path-backup .mform .fitem fieldset.felement,
+.loginpanel .form-input,
+.loginpanel h2,
+.loginpanel .desc,
+.loginpanel .loginerrors,
+div.rememberpass,
+div.forgetpass,
+form#guestlogin,
+.fp-content-center form tr td,
+#page-mod-forum-search .c1 {
+  .form-horizontal .controls;
+}
+.loginbox {
+    padding-left: 200px;
+}
+.formsettingheading {
+  .form-horizontal .help-block
+}
+
+.forumpost .topic .subject {
+  h4
+}
+.forumpost .topic .author {
+  h4 small
+}
+.form-multicheckbox ul {
+  ul.unstyled
+}
+#adminsettings h3.main,
+.backup-section h2.header,
+.backup-restore .backup-section .backup-sub-section h3.subheader {
+  legend 
+}
+.fp-content-center td.mdl-right,
+.backup-restore label.detail-pair-label {
+  .form-horizontal .control-label
+}
+table#explaincaps,
+table#defineroletable,
+table.grading-report,
+table#listdirectories,
+table.rolecaps,
+table.userenrolment,
+table#form,
+#page-report-log-user .generaltable,
+.forumheaderlist,
+.userprofilebox table.list,
+.generaltable {
+  .table
+}
+.path-mod-forum .forumheaderlist td,
+.calendartable th,
+.calendartable td,
+.path-mod-workshop .grading-report,
+.path-mod-workshop table.grading-report td {
+  border: none;
+}
+#page-admin-user table thead td,
+#page-admin-user table tbody td,
+table#listdirectories td,
+#page-report-loglive-index .generaltable td,
+#page-admin-report-log-index .generaltable th,
+#page-admin-report-log-index .generaltable td,
+#page-report-log-user .generaltable th,
+#page-report-log-user .generaltable td,
+.environmenttable th,
+.environmenttable td,
+.category_subcategories th,
+.category_subcategories td,
+.rcs-results th,
+.rcs-results td {
+  .table-condensed td
+}
+.user-enroller-panel .uep-search-results .users .user:nth-child(odd),
+table#listdirectories tbody tr:nth-child(odd) td,
+table#modules tbody tr:nth-child(odd) td,
+table.userenrolment tbody tr:nth-child(odd) td,
+table.compatibleblockstable tbody tr:nth-child(odd) td,
+table.grading-report tbody tr:nth-child(odd) td,
+table.grading-report tbody tr:nth-child(odd) th,
+table.list tbody tr:nth-child(odd) td,
+table.list tbody tr:nth-child(odd) th,
+table.rolecaps tbody tr:nth-child(odd) td,
+table.rolecaps tbody tr:nth-child(odd) th,
+table#defineroletable tbody tr:nth-child(odd) td,
+table#defineroletable tbody tr:nth-child(odd) th,
+#page-admin-roles-manage .generaltable tbody tr:nth-child(odd) td,
+#page-admin-roles-allow .generaltable tbody tr:nth-child(odd) td,
+#page-admin-grade-edit-letter-index .generaltable tbody tr:nth-child(odd) td,
+#page-admin-grade-edit-scale-index .generaltable tbody tr:nth-child(odd) td,
+#page-report-log-user .generaltable tbody tr:nth-child(odd) th.header,
+#page-report-log-user .generaltable tbody tr:nth-child(odd) td,
+.forumheaderlist tbody tr:nth-child(odd) td,
+.forumheaderlist tbody tr:nth-child(odd) th,
+.generaltable tbody tr:nth-child(odd) td,
+.generaltable tbody tr:nth-child(odd) th,
+.table-striped tbody tr:nth-child(odd) td,
+.table-striped tbody tr:nth-child(odd) th {
+  background-color: #f9f9f9;
+}
+.user-enroller-panel .uep-search-results .users .user:hover,
+table.grading-report tbody tr:hover td,
+table.grading-report tbody tr:hover th,
+.forumheaderlist tbody tr:hover td,
+.forumheaderlist tbody tr:hover th,
+.generaltable tbody tr:hover td,
+.generaltable tbody tr:hover th,
+.category_subcategories tbody tr:hover td,
+.category_subcategories tbody tr:hover th,
+table#modules tbody tr:hover td,
+table#permissions tbody tr.rolecap:hover td,
+table#permissions tbody tr.rolecap:hover th,
+.table tbody tr:hover td,
+.table tbody tr:hover th {
+  background-color: #f5f5f5;
+}
+
+.path-admin .roleassigntable #buttonscell #add, .path-admin .roleassigntable #buttonscell #remove input,
+button,
+input.form-submit,
+input[type="submit"],
+input#id_submitbutton,
+input#id_submitbutton2,
+input#id_cancel {
+  .btn
+}
+
+input.form-submit,
+input#id_submitbutton,
+input#id_submitbutton2,
+td.submit input {
+  .btn-primary
+}
+input[id$="_clearbutton"]:active,
+td.submit input:active {
+  .btn-info.active
+}
+input[id$="_clearbutton"],
+input#id_cancel {
+  .btn-warning
+}
+.user-enroller-panel .uep-search-results .user .options .enrol {
+  .btn-mini
+}
+
+
+
+// icons 
+
+[class^="icon-"] {
+  .hide-text
+}
+
+span.editing_move {
+  cursor: move;
+}
+
+.course_category_tree .course_info a img,
+span.helplink a img,
+a img.iconsmall.edit,
+a.icon.editing_edit img,
+a.icon.editing_move img,
+a.icon.editing_hide img,
+a.icon.editing_show img,
+a.icon.editing_delete img,
+a.icon.editing_roles img,
+span.section-handle img,
+span.editing_move img,
+a.assignrolelink img,
+a.editing_highlight img,
+a.unassignrolelink img,
+.userinforow .groups .group a img,
+a.editing_showhide img {
+  display: none;
+}
+.course_category_tree .course_info a,
+span.helplink a,
+a.icon,
+span.section-handle,
+span.editing_move,
+a.assignrolelink,
+a.unassignrolelink,
+li.section div.content div.summary > a,
+.userinforow .groups .group a,
+a.editing_highlight,
+a.editing_showhide {
+  [class^="icon-"] 
+}
+span.helplink a {
+  opacity: 0.5;
+}
+.fitem:hover span.helplink a, 
+span.helplink:hover a {
+  opacity: 1;
+}
+
+#changenumsections,
+span.commands a:hover {
+  text-decoration: none;
+}
+
+[class^="icon-"] {
+  color: #000;
+  font-weight: bold;
+  font-style: normal;
+  text-align: center;
+}
+
+.icon- {
+  background: none; // for a space the size of an icon 
+}
+
+.icon-duplicate:before { // text alternative 
+  content: "2";
+  text-size: 18px;
+  vertical-align: baseline;
+}
+.icon-grades:before { // text alternative 
+  content: "A";
+  text-size: 18px;
+  vertical-align: middle;
+}
+.icon-not-assigned {
+  background: red; // for testing purposes
+}
+li.section:hover a.editing_highlight {
+    .icon-star
+}
+li.section.current:hover a.editing_highlight {
+    .icon-star-empty
+}
+a.icon.editing_roles {
+  .icon-user
+}
+.userinforow .groups .group a,
+a.unassignrolelink,
+a.icon.editing_delete {
+  .icon-remove
+}
+a.icon.editing_edit,
+li.section div.content div.summary > a {
+  .icon-edit
+}
+span.editing_move,
+span.section-handle {
+  .icon-move
+}
+a.assignrolelink {
+    .icon-plus
+}
+span.helplink a {
+  .icon-question-sign
+}
+.course_category_tree .course_info a {
+  .icon-info-sign
+}
+a.icon.editing_hide,
+li.section:hover a.editing_showhide {
+  .icon-eye-open
+}
+
+a.icon.editing_show,
+li.section.hidden:hover a.editing_showhide {
+  .icon-eye-close
+}
+a.icon.editing_move {
+  .icon-resize-vertical
+}
+
+// overrides
+td.cell form { // some tables have a form in each cell, extra padding not needed  
+  margin: 0;
+}
+
+#page-calendar-preferences h2.main,
+#adminsettings h2 {
+  margin-bottom: 27px;
+}
+h2.main {
+  margin-left: 0px;
+  text-align: center;
+}
+td.mdl-right > label,  // file-picker 
+td.mdl-left > input { // file-picker 
+  margin-bottom: 0px;
+}
+
+#page-admin-roles-define div.mform .topfields .felement,
+.felement.fstatic { // allow to expand for user image on edit profile page
+  height: auto;
+  min-height: 18px;
+}
+ 
+#page-question-type-pmatch .fstatic, // horrible hack! 
+.fcontainer div.fitem:nth-child(4) .fstatic { // some password help text that isn't marked up well
+  border: none;
+}
+.backup-restore .detail-pair-value,
+#page-admin-roles-define div.mform .topfields .felement,
+.felement.fstatic { // use min-width to allow for long values and help text incorrectly marked up
+  min-width: 210px;
+}
+.backup-restore .detail-pair-value > span.sub-detail  { 
+  display: block;
+  margin-top: 0.5em;
+  font-style: normal;
+  color: #999;
+  margin-left: 0;
+  font-size: 0.8em;
+}
+#page-admin-roles-define div.mform .topfields .felement,
+.mform .fitem .felement.fstatic { // faking .uneditable-input
+  padding-top: 5px;
+  margin-left: 20px;
+  font-weight: normal;
+}
+#page-admin-roles-define div.mform .topfields .felement,
+.fstaticitem .felement.fstatic {
+  margin-top: 0px;
+}
+input[type="password"],
+input[type="text"] { // overrulling a YUI rule, and compensating for a bootstrap width bug
+  width: 206px;
+}
+
+
+.mform select:focus {
+  min-width: 220px;
+  width: auto;
+}
+.ie8 .mform select:focus {
+  min-width: 210px;
+  max-width: 420px;
+}
+.fduration input, .fduration select, .fduration span,
+.fdate_selector select, .fdate_selector select:focus,
+#fgroup_id_firstaccess_grp select, #fgroup_id_firstaccess_grp select:focus,
+#fgroup_id_lastaccess_grp select, #fgroup_id_lastaccess_grp select:focus,
+#fgroup_id_timemodified_grp select, #fgroup_id_timemodified_grp select:focus,
+#fgroup_id_enableopengroup select, #fgroup_id_enableopengroup select:focus,
+#fgroup_id_enableclosegroup select, #fgroup_id_enableclosegroup select:focus,
+select.menufrommonth, select.menufrommonth:hover, 
+select.menufromyear, select.menufromyear:hover, 
+select.menufromhour, select.menufromhour:hover, 
+select.menufromminute, select.menufromminute:hover, 
+select.menutomonth, select.menutomonth:hover, 
+select.menutoyear, select.menutoyear:hover, 
+select.menutohour, select.menutohour:hover, 
+select.menutominute, select.menutominute:hover, 
+.form-time select, .form-time select:focus,
+.fdate_time_selector select, .fdate_time_selector select:focus {
+  min-width: 60px;
+  width: 71px;
+}
+select#id_timelimit_timeunit, select#mid_timelimit_timeunit:hover, 
+select#id_graceperiod_timeunit, select#mid_delay1_timeunit:hover, 
+select#id_delay1_timeunit, select#mid_delay1_timeunit:hover, 
+select#id_delay2_timeunit, select#mid_delay2_timeunit:hover {
+  width: 146px;
+}
+input#id_timelimit_number,
+input#id_graceperiod_number,
+input#id_delay1_number,
+input#id_delay2_number { 
+  width: 61px;
+  text-align: right;
+}
+
+table#form td.submit {
+  text-align: left;
+}
+
+table#form select + label.accesshide + select, // this seems to be inconsistent, not sure what's going on
+select + label.accesshide + input {
+  margin-left: 3px;
+}
+
+table#form select.menufromday,
+table#form select.menutoday {
+  width: 54px;
+}
+
+select + label.accesshide + select[id$="_hour"],
+table#form select + label + select.menufromhour,
+table#form select + label + select.menutohour {
+  margin-left: 61px; // space between date and time
+}
+.fduration span {
+  border: none;
+}
+#fgroup_id_firstaccess_grp span,
+#fgroup_id_lastaccess_grp span,
+#fgroup_id_timemodified_grp span {
+  display: inline-block;
+  width: 73px;
+}
+
+select#id_country_op,
+select#id_courserole_rl
+{
+  margin-right: 3px;
+}
+#adminsettings .form-buttons,
+.settingsform .form-buttons {
+  margin: 0px;
+}
+
+#fgroup_id_buttonar,
+#fitem_id_submitbutton { // buttons in bootstrap aren't part of the fitem felement grid, which they are in Moodle (sometimes!)
+  padding-left: 0px;
+}
+
+.mform div.fdescription.required {
+  text-align: left;
+  margin-left: 200px;
+}
+
+// additions
+div.categorylist img {
+  display: none;
+}
+.backup-restore .backup-section .backup-sub-section h3.subheader {
+  background: transparent;
+  text-align: left;
+}
+.backup-restore .backup-section .backup-sub-section {
+  margin: 0;
+  border: 0;
+  background: none;
+}
+.path-admin .rolecap span.cap-name {
+  float: right;
+  display: inline;
+  padding: 0;
+}
+
+#adminsettings .form-item .form-label .form-shortname {
+  display: block;
+  overflow: hidden;
+  text-overflow: clip;
+}
+#page-question-type-pmatch .fstatic, // horrible hack!
+.fcontainer div.fitem:nth-child(4) .fstatic { // horrible hack!
+  margin-top: -9px;
+  margin-bottom: 0px;
+  white-space: normal;
+  margin-left: 200px;
+}
+.form-description p:last-child {
+  margin-bottom: 0;
+}
+span.cap-name,
+.form-defaultinfo,
+#adminsettings .form-item .form-label .form-shortname {
+  font-size: 80%;
+}
+
+.mform .fpassword .unmask,
+form#adminsettings .form-item .form-setting .form-password .unmask,
+.fdate_time_selector span,
+.fduration span {
+  display:inline-block;
+  margin-left: 5px;
+  position:relative;
+  top: 3px;
+}
+.fitem_fdate_selector span input[type="checkbox"] {
+  float: left;
+}
+form#login .rememberpass label,
+.felement  select + span,  // some tickboxes
+.fitem_fdate_selector span label {
+  display: inline-block;
+}
+
+header.navbar .logininfo {
+    .pull-right;
+    .navbar-inverse;
+    .navbar-text;
+}
+header.navbar .logininfo a {
+    .navbar-inverse .navbar-link
+}
+.felement.fstatic a img.userpicture {
+  padding: 0px 73px;
+}
+  
+.felement.ffilemanager {
+  margin-top: 5px;
+}
+.felement.ffilemanager .fp-restrictions {
+}
+.ie8 .felement.ffilemanager .fp-restrictions .dndupload-message,
+.ie9 .felement.ffilemanager .fp-restrictions .dndupload-message {
+  display: none;
+}
+
+
+.block input[type="text"],
+.block select { // themers probably want to override this depending on their block width, see simple.css 
+  width: auto;
+}
+
+#page-admin-registration-register .registration_textfield {
+  width: 210px !important;
+}
+select#id_category,
+form#switchcategory select,
+#page-course-editcategory #id_parent select,
+#fitem_id_parent select {
+  width: 100%;
+}
+
+input#id_fullname,
+input#id_name,
+input#id_externalurl,
+input#id_setting_root_filename,
+textarea {
+  width: 420px !important;
+}
+select.menujump {
+  width: auto;
+}
+
+.forumsearch .invisiblefieldset { width: 70%;}
+
+table td.cell p:last-child { margin-bottom: 0px; }
+#page-mod-quiz-edit div.quizpage .pagecontent .pagestatus,
+#page-mod-quiz-edit div.quizpagedelete img {
+  background-color: transparent;
+}
+
+.path-mod-resource .resourcecontent object a { // MDL-34730
+  margin-top: 2em;
+  margin-bottom: 2em;
+  display: inline-block;
+}
+.path-mod-resource .resourcecontent {
+  margin-bottom: 8px;
+}
+
+div.forumpost {
+  margin-left: 40px;
+}
+.forumpost .row .left {
+  margin-left: -76px;
+}
+.forumpost .row .topic {
+  margin-left: 0px;
+  margin-bottom: 9px;
+}
+
+input[id$="_clearbutton"] {
+  float:right;
+}
+.backup-restore .backup-section .noticebox {
+  text-align: left;
+}
+
+.alert-heading {
+  color: inherit;
+}
+
+
+.path-mod-forum .forumheaderlist td {vertical-align:middle;} // because of the use of user images 
+input[id$="_conditiongrademin"],
+input[id$="_conditiongrademax"] {
+  width: auto;
+}
+input[id^="id_calcmin"],
+input[id^="id_calcmax"] {
+  width: 94px;
+}
+div.felement.fstatic hr { // in quiz used to seperate sections, currenty the hacky uneditable instead, should probably fix with nth-child hack
+  display: none;
+}
+
+.felement.error span.error { // nudge error text down to align with form inputs
+  margin-left: 10px;
+  display: inline-block;
+  position: relative;
+  top: 3px;
+}
+
+span#id_error_introeditor\[text\].error br,
+.felement.error span.error br,
+.felement.error span.error + br { // these brs should be replaced with div or display:block for the span.errors
+  display: none;
+}
+
+.felement.error select,
+.felement.error input { // lets the error message flow to right hand side, slightly hacky
+  float: left;
+}
+
+span#id_error_introeditor\[text\].error {
+  float: right;
+}
+
+.felement.feditor div.error { // bit of a hack
+  width: 500px;
+}
+
+tr.rolecap td.risk.spam a:before {
+  content: "spam";
+}
+tr.rolecap td.risk.managetrust a:before {
+  content: "trust";
+}
+tr.rolecap td.risk.xss a:before {
+  content: "xss";
+}
+tr.rolecap td.risk.dataloss a:before {
+  content: "dataloss";
+}
+tr.rolecap td.risk.personal a:before {
+  content: "personal";
+}
+tr.rolecap td.risk.config a:before {
+  content: "config";
+}
+table#defineroletable tr.rolecap td {
+  padding: 8px 2px;
+}
+span.patherror:before {
+  content: "path error "; // should be in PHP so can be localised properly
+}
+span.pathok:before {
+  content: "path ok "; // should be in PHP so can be localised properly
+}
+.ie .filemanager-toolbar {
+  white-space: nowrap; // IE8 fix
+}
+
+img.req,
+img.adv { // hanging indentation for asterisk
+  margin-right: -8px;
+}
+
+.advancedbutton img.adv {
+  margin-right: 8px;
+}
+  
+.path-mod-workshop .userplan tr.phasetasks ul {
+  padding:0 0 0 1.2em;
+  margin:0;
+}
+
+.path-mod-workshop .userplan tr.phasetasks li,
+.path-mod-workshop .userplan tr.phasetasks li.completed {
+  background: none;
+}
+
+.path-mod-workshop .userplan tr.phasetasks li div.title {display: inline; padding: 0px !important;}
+.path-mod-workshop .userplan tr.phasetasks li:before {
+  content: "○ ";
+  color: gray;
+  display: inline;
+}
+.path-mod-workshop .userplan tr.phasetasks li.completed:before {
+  content: "✔ "; // doesn't seem to show up on IE8/XP from initial install, need to check after Office installed
+  color: green;
+  display: inline;
+}
+
+span.editinstructions{
+  position:relative;
+  top:-2px;
+  left:0px;
+  z-index:100;
+  border: none;
+  margin-bottom: 40px;
+  margin-top: 0px;
+}
+.no-overflow {
+  overflow: hidden;
+}
+.block li hr {
+  border: none;
+  margin: 5px;
+  border-top: 1px solid rgb(229,229,229);
+  border-bottom: 1px solid #fff;
+}
+.block_settings .block_tree .tree_item {
+    padding-left: 0;
+}
+
+.block_tree .tree_item a:before,
+.block_tree .tree_item span:before {
+  content: "▼ ";
+}
+.block_tree .collapsed  .tree_item a:before,
+.block_tree .collapsed  .tree_item span:before {
+  content: "► ";
+}
+.block_tree .collapsed  .tree_item.emptybranch a:before,
+.block_tree .collapsed  .tree_item.emptybranch span:before {
+  content: "► ";
+  color: #ccc;
+}
+.block_tree .tree_item.leaf a:before,
+.block_tree .tree_item.leaf span:before,
+.tree_item.navigation_node a:before,
+.tree_item.navigation_node span:before {
+  content: "";
+  cursor: normal;
+}
+.block_tree li.item_with_icon.contains_branch .tree_item {
+  padding-left: 15px;
+}
+
+
+.block_settings .block_tree .tree_item,
+.block_navigation .block_tree .tree_item {
+  padding-left: 0px;
+}
+.jsenabled .block_settings .block_tree .collapsed .tree_item.branch,
+.jsenabled .block_navigation .block_tree .collapsed .tree_item.branch,
+.block_navigation .block_tree .tree_item.branch,
+.block_settings .block_tree .tree_item.branch,
+.jsenabled .block_navigation .block_tree .tree_item.emptybranch {
+  background: none;
+}
+
+#page {
+  min-width: 960px;
+  max-width: 1150px;
+  margin:auto;
+  overflow: hidden
+}
+ 
+#blocks1 {
+  width: 210px;
+  margin-left: -210px;
+}
+ 
+#blocks2 {
+  width: 210px;
+  margin-right: -210px;
+}
+ 
+#layout {
+  padding: 0px 210px; 
+  overflow: hidden;
+}
+
+.blocks1-only #layout {
+  padding: 0px 0px 0px 210px;
+}
+
+.blocks2-only #layout {
+  padding: 0px 210px 0px 0px;
+}
+
+.no-blocks #layout {
+  padding: 0px;
+}
+
+#main {
+  width:100%;
+}
+
+#main .region-content {
+  font-size: 100%;
+  line-height: 1.7em;
+}
+
+.section .commands,
+.section .editing_highlight img.icon,
+.section .editing_showhide img.icon.hide,
+.section .section-handle {
+  visibility:hidden;
+}
+
+.section:hover .commands,
+.section:hover .editing_highlight img.icon,
+.section:hover .editing_showhide img.icon.hide,
+.section:hover .section-handle {
+  visibility:visible;
+}
+
+#changenumsections {
+  text-align: center;
+}
+
+.jsenabled .course-content ul.topics li.section div.right img.icon.up,
+.jsenabled .course-content ul.topics li.section div.right img.icon.down,
+.jsenabled .course-content ul.weeks li.section div.right img.icon.up, 
+.jsenabled .course-content ul.weeks li.section div.right img.icon.down {
+  display: none;
+}
+
+.block li a {
+  padding: 0px;
+}
+
+
+#dndupload-status {
+  width: 40%;
+  left: 30%;
+  margin: auto;
+  padding: 6px;
+  border:1px solid #ddd;
+  text-align:center;background:#eee;
+  position:absolute;
+  z-index:9999;box-shadow:2px 2px 5px 1px #ccc;
+  border-radius:0px 0px 8px 8px;
+}
+.dndupload-preview {
+  color: #909090;
+  border: 1px dashed #909090;
+}
+.dndupload-progress-outer {
+  width:70px;
+  border: solid black 1px;
+  height:10px;
+  display:inline-block;
+  margin:0;
+  padding:0;
+  overflow:hidden;
+  position:relative;
+}
+.dndupload-progress-inner {
+  width: 0%;
+  height: 100%;
+  background-color: green;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  float: left;
+}
+.dndupload-hidden {
+  display:none;
+}
+
+#blocks1 .region-content {
+  padding-right: 10px;
+}
+#blocks2 .region-content {
+  padding-left: 10px;
+}
+div.region-content a.nolink,
+div.content a:visited.nolink {
+  color: rgb(51,51,51);
+}
+.course-content .section li.activity {
+  padding: 2px;
+}
+li.section .content {
+  padding: 5px;
+}
+li.section .content h2 {
+  margin-top: 0px;
+}
+li.section.hidden {
+  opacity: 0.5;
+}
+li.section.hidden h3.sectionname {
+  .dimmed
+}
+li.section.hidden .content {
+  background: #ddd;
+}
+li.section.current {
+  background-color: transparent;
+}
+
+a {text-decoration: none;}
+
+.tabtree {
+  border-bottom: 1px solid #ddd;
+  padding-left: 50px;
+}
+.tabtree ul.tabrow0 {
+  margin: 0px;
+}
+.tabtree:after,
+.tabtree:before,
+.tabtree ul.tabrow0:before,
+.tabtree ul.tabrow0:after {
+  display: table;
+  content: "";
+}
+.tabtree:after,
+.tabtree ul.tabrow0:after {
+  clear: both;
+}
+
+.tabtree ul li {
+  display:block;
+  float:left;
+  margin-bottom: -1px;
+}
+.tabtree ul li.selected a, 
+.tabtree ul li.selected a:hover {
+  color: #555;
+  background-color: #fff;
+  border-color: #ddd;
+  border-bottom-color: transparent;
+}
+.tabtree ul li a:hover {
+  border-color: #eee #eee #ddd;
+  background-color: #eee;
+}
+.tabtree ul li a {
+  display: block;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border: 1px solid transparent;
+  border-radius: 4px 4px 0px 0px;
+  padding-right: 12px;
+  padding-left: 12px;
+  margin-right: 2px;
+}
+.tabtree ul li a,
+.tabtree ul li a:hover,
+.tabtree ul li a.selected,
+.tabtree ul li a.selected:hover {
+  text-decoration: none;
+}
+
+div.buttons,
+div.paging {
+  text-align: center;
+}
+
+div.paging:first-child a {
+  border-left-width: 1px;
+  border-radius: 3px 0px 0px 3px;
+}
+
+div.initialbar { // bit of a hack because the title isn't targettable by css
+  .pagination;
+  text-align: right;
+  margin: 0px auto;
+}
+div.initialbar a,
+div.initialbar strong {
+  // copied (with minor edits) from
+  // pagination.less
+  // .pagination ul > li > a,
+  // .pagination ul > li > span 
+  line-height: (@baseLineHeight * 2) - 2;
+  text-decoration: none;
+  background-color: @paginationBackground;
+  border: 1px solid @paginationBorder;
+  border-left-width: 0;
+  // reducing sizes to fit 26 letters
+  padding: 4px 6px;
+  line-height: 24px;
+}
+div.initialbar strong,
+div.initialbar a:hover {
+  background-color: #f5f5f5;
+}
+div.initialbar strong {
+//.pagination ul > .active > a,
+//.pagination ul > .active > span {
+  color: @grayLight;
+  cursor: default;
+}
+div.initialbar a:first-child,
+div.initialbar strong:first-child {
+//.pagination ul > li:first-child > a,
+//.pagination ul > li:first-child > span {
+  border-left-width: 1px;
+  .border-radius(3px 0 0 3px);
+}
+div.initialbar a:last-child,
+div.initialbar strong:last-child {
+//.pagination ul > li:last-child > a,
+//.pagination ul > li:last-child > span {
+  .border-radius(0 3px 3px 0);
+}
+
+.mform fieldset {
+  border: none;
+}
+.fitem.fitem_feditor {
+  overflow:visible;
+}
+.felement {
+  margin:0px;
+}
+.fitemtitle.label {
+  margin:8px;
+}
+
+td.picture {
+  padding: 0px;
+}
+
+h3.sectionname { // limit the width
+  white-space:nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.breadcrumb {
+  float: none;
+}
+
+.clearfix {
+  clear: none;
+}
+.generalbox,
+.mod_introbox,
+.forumpost,
+.path-calendar .maincalendar .eventlist .event,
+.path-mod-forum table.forumheaderlist {
+  border: none;
+}
+
+#newdiscussionform div {
+  text-align: center;
+}
+h2.main.help .helplink a {
+  padding: 3px 4px;
+}
+
+p.treeitem {margin: 0px;}
+
+
+.userlist table#participants th {
+  padding: 8px 4px;
+}
+
+div.rolesform {
+  width: 220px;
+  margin: auto;
+}
+
+.mform .error label {
+  padding-top: 25px;
+}
+
+#page-mod-forum-discuss .discussioncontrols .discussioncontrol.exporttoportfolio,
+#page-mod-forum-discuss .discussioncontrols .discussioncontrol.displaymode {
+  width: 28%;
+}
+legend .helplink img,
+h2 .helplink img {
+  padding: 0px 4px;
+  vertical-align: middle;
+}
+.calendartable abbr {
+  border: none;
+}
+.minicalendar th {
+  text-align: center;
+}
+.minicalendar td {
+  text-align: right;
+}
+.minicalendar td.day {
+  padding: 2px 8px 2px 0px;
+}
+
+.category_subcategories a {
+  display: block;
+}
+
+/* just let them take up as much space as they want
+#page-admin-roles-assign h2 + .box.generalbox,
+div.notifysuccess,
+div.notifyproblem
+div.redirectmessage,
+div.continuebutton,
+div.box.errorbox,
+#page-report-loglive-index div.info,
+div#notice,
+body.admin div.info,
+div.adminwarning,
+div.releasenoteslink,
+div.forumnodiscuss {
+  margin-left:auto;
+  margin-right:auto;
+  width: 25em;
+} */
+
+#page-report-loglive-index div.info,
+div.continuebutton,
+div.singlebutton,
+div.checkforupdates {
+  text-align: center;
+}
+
+.generaltable[border="1"] {
+  border: none;
+}
+
+.form-overridden {
+  display: inline;
+}
+
+div.navbutton {
+  float:right;
+}
+
+table.userplan {
+  border: none !important;
+}
+
+.single-section .section-navigation .mdl-align {
+  clear: both;
+}
+
+span#completionprogressid.completionprogress {
+  text-align: right;
+  display: block;
+  float: none;
+}
+
+header .headermain {
+  h1
+}
+
+li.section.current {
+  background-color: transparent;
+}
+
+li.section.current .content {
+  background-color: rgb(245,245,245);
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 4px;
+  box-shadow: 0px 1px 1px rgba(0,0,0,0.05);
+}
+
+#page-course-category #layout {
+  width: 750px;
+}
+
+
+footer { // copied from the bootstrap documentation page
+  margin-top: 45px;
+  padding: 35px 0px 36px;
+  border-top: 1px solid @grayLighter;
+}
+
+footer p {
+  margin-bottom: 0;
+  color: @gray;
+}
+.user-enroller-panel .uep-search-results .user .count {
+border: none;
+padding: 0px;
+background: none;
+}
+.user-enroller-panel .uep-search-results .users .user:nth-child(even) {
+  background: white;
+}
+
+.block.invisible {
+  .dimmed;
+  visibility: visible;
+}
+// need to fix the things affected by .rows, which include forum, turnitin, probably others
+
+.forumsearch button,
+.form-input input[type="password"],
+.searchform button,
+.mform input,
+.settingsform input {
+  .form-horizontal input
+}
+
+.mform textarea,
+.settingsform textarea {
+  .form-horizontal textarea
+}
+
+table#form select,
+.mform select,
+.settingsform select {
+  .form-horizontal select
+}
+
+table#form tr {
+  display: block;
+}
+table#form td {
+  padding: 0px;
+  display:block
+}
+table#form td label {
+  margin-bottom: 0px;
+}
+
+#adminsettings .form-item {
+  margin-top: 0px;
+}
+
+legend + div.form-item,
+h2.header + div.detail-pair {
+  legend + .control-group
+}
+
+/* working around webkit bug with margins below legends, bootstrap already
+   has it's own workaround (above) but it seems to clash with something in Moodle */
+.mform .fcontainer {padding-top: 27px;}
+.mform .advancedbutton {float:right; position: relative; top: 27px; margin-bottom: -27px; min-height: 27px;}
+
+div.fitemtitle span.helplink {
+  margin-right: -22px; /* shift help icon into middle gutter */
+}
+
+
+.backup-restore .detail-pair-value span + span {
+  display: inline;
+}
+.backup-restore .detail-pair-value {
+  margin-left: 20px;
+}
+
+.navbar .brand {
+    padding-right: 0;
+    padding-left: 0;
+    margin-left: 20px;
+    float: right;
+    font-weight: bold;
+    color: #000;
+    text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    transition: all .2s linear;
+}
+.navbar .brand:hover {
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.4);
+}
+
+
+// turnitin fixes
+
+#turnitintool_style #uploadtableid,
+#turnitintool_style #submissionTableId {
+    .table
+}
+
+#turnitintool_style .uploadtableid td {
+    border-top: none;
+}
+#turnitintool_style .uploadtableid td.cell.c0,
+#turnitintool_style .uploadtable td.cell.c0 {
+    width: 200px !important;
+    background: transparent !important;
+    padding-right: 20px;
+    font-weight: bold;
+    text-align: right;
+}
+
+#turnitintool_style select  {
+    width: 220px !important;
+}
+
+#turnitintool_style #submissionTableId  {
+    line-height: inherit !important;
+}
+#turnitintool_style #submissionTableId td.header {
+    .table th;
+    border-top: 0 !important;
+}
+#turnitintool_style #submissionTableId td {
+    .table td;
+    border-top: 0 !important;
+}
+#turnitintool_style .row {
+    margin-left: 0;
+    width: 100%;
+    position: relative;
+}
+#turnitintool_style .row:before, 
+#turnitintool_style .row:after {
+    content: none;
+}
+#turnitintool_style .submissionTableId tr td,
+#turnitintool_style .submissionTableId tr td.header,
+#turnitintool_style .submissionTable tr td {
+    background: transparent !important;
+    border-right: 0 !important;
+    border-left: 0 !important;
+}

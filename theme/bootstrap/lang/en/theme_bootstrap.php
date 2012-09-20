@@ -26,4 +26,4 @@
 $string['pluginname'] = 'Bootstrap';
 $string['region-side-post'] = 'Right';
 $string['region-side-pre'] = 'Left';
-$string['choosereadme'] = 'Base theme + hacked Bootstrap.css and core.css';
+$string['choosereadme'] = 'Bootstrap for Moodle';
