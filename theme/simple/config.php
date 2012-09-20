@@ -1,6 +1,7 @@
 <?php
 
 $THEME->name = 'simple';
+$THEME->doctype = 'html5';
 $THEME->parents = array('bootstrap','base');
 $THEME->parents_exclude_sheets = array(
 'base'=>array(
@@ -98,3 +99,5 @@ $THEME->layouts = array(
         'defaultregion' => 'side-pre',
     )
 );
+$THEME->rendererfactory = 'theme_overridden_renderer_factory';
+

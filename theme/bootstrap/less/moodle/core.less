@@ -1,0 +1,587 @@
+// stuff savlaged from core.css, rest was deleted, probably more to go 
+
+td, th {border: none; padding: 0;} // apparently YUI adds a border & padding, lets take it away again
+
+.dir-ltr,
+.mdl-left {
+  text-align: left;
+}
+.mdl-right {
+  text-align: right;
+}
+
+#add,
+#remove,
+.centerpara,
+.mdl-align {
+  text-align: center;
+}
+
+a.dimmed,
+a.dimmed:visited,
+a.dimmed_text,
+a.dimmed_text:visited,
+.dimmed_text,
+.dimmed_text a,
+.dimmed_text a:visited,
+.usersuspended,
+.usersuspended a,
+.usersuspended a:visited,
+.dimmed_category,
+.dimmed_category a {
+    .dimmed
+}
+.activity.label .dimmed_text { //TODO opacity mixin
+    opacity: 0.5;
+    -ms-filter:~"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+}
+.unlist ol,
+.unlist ul,
+.inline-list ul,
+.inline-list ol,
+.sitetopic .section ul,
+ul.section,
+.block ul.list,
+.tabtree ul {
+  ul.unstyled
+}
+div.summary {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+ul.section {
+    margin-left: 20px;
+}
+
+.inline-list li {
+  display: inline;
+}
+.notifytiny {font-size:0.7em;}
+.notifytiny li,
+.notifytiny td {font-size:100%;}
+.reportlink {text-align:right;}
+a.autolink.glossary:hover {cursor: help;}
+.collapsibleregioncaption {white-space: nowrap;}
+.collapsibleregioncaption img {vertical-align: middle;}
+.jsenabled .hiddenifjs {display: none;}
+.visibleifjs {display: none;}
+.jsenabled .visibleifjs {display: inline;}
+.jsenabled .collapsibleregion {overflow:hidden;}
+.jsenabled .collapsed .collapsibleregioninner {visibility: hidden;}
+.yui-overlay .yui-widget-bd {background-color:#FFEE69;border:1px solid #A6982B;border-top-color: #D4C237;color:#000000;left:0;padding:2px 5px;position:relative;top:0;z-index:1;}
+.clearer {background:transparent;border-width:0;clear:both;display:block;height:1px;margin:0;padding:0;}
+.boxaligncenter {margin-left:auto;margin-right:auto;}
+.boxalignright {margin-left:auto;margin-right:0;}
+.boxalignleft {margin-left:0;margin-right:auto;}
+.boxwidthnarrow {width: 30%;}
+.boxwidthnormal {width: 50%;}
+.boxwidthwide {width: 80%;}
+#maincontent {display: block;height: 1px;overflow: hidden;}
+img.uihint {cursor: help;}
+img.emoticon {vertical-align: middle;width: 15px;height: 15px;}
+form.popupform,
+form.popupform div {display: inline;}
+.arrow_button input {overflow:hidden;}
+
+// Tabs
+.tabtree {position:relative;margin-bottom:3.5em;}
+.tabtree li {display:inline;}
+.tabtree ul {margin:5px;}
+.tabtree ul li.here ul {position:absolute;top:100%;width:100%;}
+.tabtree ul li.here .empty {display:none;}
+
+
+input#id_externalurl {direction:ltr;}
+
+
+// Blogs
+.addbloglink {text-align: center;}
+.blog_entry .audience {text-align: right;}
+.blog_entry .tags {margin-top: 15px;}
+
+/** tables that aren't tables */
+table.controls td.c2 {
+  text-align: center;
+}
+table.controls select {
+  width: auto;
+  margin-left: 4px;
+}
+table.controls td,
+.userlist table.controls td.right,
+.userlist table.controls td.left,
+table.contros th,
+#page-mod-forumsearch table#form, /* should be switched to use a standard forms format */
+table.groupmanagementtable td {
+  padding: 0;
+}
+
+.path-admin .roleassigntable td#buttonscell,
+.path-admin .roleassigntable td#existingcell,
+.path-admin .roleassigntable td#potentialcell,
+table.groupmanagementtable tbody tr td,
+table.groupmanagementtable tbody tr:first-child td,
+table.groupmanagementtable tbody tr:hover td,
+table.groupmanagementtable tbody td#buttonscell,
+table.groupmanagementtable tbody td#existingcell,
+table.groupmanagementtable tbody td#potentialcell,
+td#buttonscell,
+td#existingcell,
+td#potentialcell {
+  background: none;
+  border-top: none;
+  width: auto;
+}
+td#buttonscell {
+  padding-top: 8em; // vertically centre buttons
+  text-align: center;
+  max-width: 16em;
+  min-width: 6em; // don't let them get squashed
+}
+.groupmanagementtable td#buttonscell input,
+td#buttonscell input {
+  width: 90%;
+  margin-bottom: 9px;
+}
+td#potentialcell {
+  min-width: 250px;
+}
+#userselector_options p {
+    margin: 0px;
+}
+#userselector_options label {
+  display: inline;
+}
+input#addselect_searchtext { /* try to keep clear button on same level */
+  width: auto;
+}
+tbody.empty {
+  display: none;
+}
+.groupinfobox {
+  border: none;
+}
+
+.path-admin .roleassigntable #buttonscell #addcontrols {
+  margin-top: 0;
+  height: auto;
+}
+
+
+// Notes
+.notepost {margin-bottom: 1em;}
+.notepost .userpicture {float: left;margin-right: 5px;}
+.notepost .content,
+.notepost .footer {clear: both;}
+.notesgroup {margin-left:20px;}
+
+// Help
+#help_icon_tooltip div.bd {width: 35em;}
+#help hr {border: none;height: 1px;background: #ccc;}
+#help .center {text-align: center;}
+#help .moreinfo {text-align: right;}
+#help .indent {margin-left: 40px;}
+#help .indent-big {margin-left: 160px;margin-right: 160px;}
+#help #emoticons{text-align: center;clear:both;width: 300px;margin-right: auto;margin-left:auto;}
+#help #emoticons ul{list-style-type: none;}
+#help #emoticons li{margin-bottom: 3px;width: 120px;border-left: 3px solid gray;padding-left: 7px;float: left;}
+
+// Comments
+.comment-ctrl {font-size: 12px;display: none;margin:0;padding:0;}
+.comment-ctrl h5 {margin:0;padding: 5px;}
+.comment-area {max-width: 400px;padding: 5px;}
+.comment-area textarea {width:100%;overflow:auto;}
+.comment-area .fd {text-align:right;}
+.comment-meta span {color:gray;}
+.comment-list {font-size: 11px;overflow:auto;list-style:none;padding:0;margin:0;}
+.comment-list li {margin: 2px;list-style:none;margin-bottom:5px;clear:both;}
+.comment-list li.first {display:none}
+.comment-paging{text-align:center;}
+.comment-paging .pageno{padding:2px;}
+.comment-paging .curpage{border:1px solid #CCC;}
+.comment-userpicture {width: 20px;float:left;}
+.comment-content {margin-left: 22px;}
+.comment-content div {margin:0;padding:0;}
+.comment-content p {padding:0;margin:0 18px 0 0;}
+.comment-delete {float:right;text-align:right;}
+.comment-delete-confirm {background: #eee; padding: 2px; width: 5em;text-align:center;}
+.comment-container {float:left;margin: 4px;}
+.comment-report-selectall{display:none}
+.comment-link {display:none}
+.jsenabled .comment-link {display:block}
+.jsenabled .showcommentsnonjs{display:none}
+.jsenabled .comment-report-selectall{display:inline}
+
+// Completion progress report
+.completion-expired {background:#FFDDDD;}
+.completion-expected {font-size:0.75em;}
+.completion-sortchoice,
+.completion-identifyfield {font-size:0.75em;vertical-align:bottom;}
+.completion-progresscell {text-align:right;}
+.completion-expired .completion-expected {font-weight:bold;}
+
+// Tags
+#page-tag-coursetags_edit .coursetag_edit_centered {position: relative;width: 600px;margin: 20px auto;}
+#page-tag-coursetags_edit .coursetag_edit_row {clear:both;}
+#page-tag-coursetags_edit .coursetag_edit_row .coursetag_edit_left {float:left;width:50%;text-align:right;}
+#page-tag-coursetags_edit .coursetag_edit_row .coursetag_edit_right {margin-left:50%;}
+#page-tag-coursetags_edit .coursetag_edit_input3 {display: none;}
+#page-tag-coursetags_more .coursetag_more_large {font-size: 120%;}
+#page-tag-coursetags_more .coursetag_more_small {font-size: 80%;}
+#page-tag-coursetags_more .coursetag_more_link {font-size: 80%;}
+#tag-description,
+#tag-blogs {width:100%;}
+#tag-management-box {margin-bottom:10px;line-height:20px;}
+#tag-user-table {padding:3px;clear: both;width:100%;}
+#tag-user-table:after {content:".";display:block;clear:both;visibility:hidden;height:0;overflow:hidden;}
+img.user-image {height:100px;width:100px;}
+#small-tag-cloud-box {width:300px;margin:0 auto;}
+#big-tag-cloud-box {width:600px;margin:0 auto;float:none;}
+ul#tag-cloud-list {list-style:none;padding:5px;margin:0;}
+ul#tag-cloud-list li {margin:0;display:inline;list-style-type:none;}
+#tag-search-box {text-align:center;margin:10px auto;}
+#tag-search-results-container {padding:0;width:100%;}
+#tag-search-results {padding:0;margin: 15px 20% 0 20%;float:left;width:60%;display:block;}
+#tag-search-results li {width:30%;float:left;padding-left:1%;text-align:left;line-height:20px;padding-right:1%;list-style:none;}
+span.flagged-tag,
+span.flagged-tag a {color:#FF0000;}
+table#tag-management-list {text-align:left;width:100%;}
+table#tag-management-list td,
+table#tag-management-list th {vertical-align: middle;text-align: left;padding: 4px;}
+.tag-management-form {text-align:center;}
+#relatedtags-autocomplete-container {margin-left:auto;margin-right:auto;min-height:4.6em;width:100%;}
+#relatedtags-autocomplete {position:relative;display:block;width:60%;margin-left:auto;margin-right:auto;}
+#relatedtags-autocomplete .yui-ac-content {position:absolute;width:420px;left:20%;border:1px solid #404040;background:#fff;overflow:hidden;z-index:9050;}
+#relatedtags-autocomplete .ysearchquery {position:absolute;right:10px;color:#808080;z-index:10;}
+#relatedtags-autocomplete .yui-ac-shadow {position:absolute;margin:.3em;width:100%;background:#a0a0a0;z-index:9049;}
+#relatedtags-autocomplete ul {padding:0;width:100%;margin:0;list-style-type:none;}
+#relatedtags-autocomplete li {padding:0 5px;cursor:default;white-space:nowrap;}
+#relatedtags-autocomplete li.yui-ac-highlight{background:#FFFFCC;}
+h2.tag-heading,
+div#tag-description,
+div#tag-blogs,
+body.tag .managelink {padding: 5px;}
+.tag_cloud .s20 {font-size: 1.5em;font-weight: bold;}
+.tag_cloud .s19 {font-size: 1.5em;}
+.tag_cloud .s18 {font-size: 1.4em;font-weight: bold;}
+.tag_cloud .s17 {font-size: 1.4em;}
+.tag_cloud .s16 {font-size: 1.3em;font-weight: bold;}
+.tag_cloud .s15 {font-size: 1.3em;}
+.tag_cloud .s14 {font-size: 1.2em;font-weight: bold;}
+.tag_cloud .s13 {font-size: 1.2em;}
+.tag_cloud .s12,
+.tag_cloud .s11 {font-size: 1.1em;font-weight: bold;}
+.tag_cloud .s10,
+.tag_cloud .s9 {font-size: 1.1em;}
+.tag_cloud .s8,
+.tag_cloud .s7 {font-size: 1em;font-weight: bold;}
+.tag_cloud .s6,
+.tag_cloud .s5 {font-size: 1em;}
+.tag_cloud .s4,
+.tag_cloud .s3 {font-size: 0.9em;font-weight: bold;}
+.tag_cloud .s2,
+.tag_cloud .s1 {font-size: 0.9em;}
+.tag_cloud .s0 {font-size: 0.8em;}
+
+
+// Help Content (pop-up) 
+#helppopupbox {z-index: 10000 !important;}
+#helppopupbox .yui3-widget-hd {float:right;}
+#helppopupbox .helpheading {font-size: 1em;}
+#helppopupbox .spinner {margin:1em;}
+
+
+// Smart Select Element
+.smartselect {position:absolute;}
+.smartselect .smartselect_mask {background-color:#fff;}
+.smartselect ul  {padding: 0;margin: 0;}
+.smartselect ul li {list-style: none;}
+.smartselect .smartselect_menu {margin-right:5px;}
+.safari .smartselect .smartselect_menu {margin-left:2px;}
+.smartselect .smartselect_menu,
+.smartselect .smartselect_submenu {border:1px solid #000;background-color:#FFF;display: none;}
+.smartselect .smartselect_menu.visible,
+.smartselect .smartselect_submenu.visible {display:block;}
+.smartselect .smartselect_menu_content ul li {position:relative;padding:2px 5px;}
+.smartselect .smartselect_menu_content ul li a {color:#333;text-decoration:none;}
+.smartselect .smartselect_menu_content ul li a.selectable {color:inherit;}
+.smartselect .smartselect_submenuitem {background-image:url([[pix:moodle|t/collapsed]]);background-repeat: no-repeat;background-position:100%;}
+/** Spanning mode */
+.smartselect.spanningmenu .smartselect_submenu {position:absolute;top:-1px;left:100%;}
+.smartselect.spanningmenu .smartselect_submenu a {white-space: nowrap;padding-right:16px;}
+.smartselect.spanningmenu .smartselect_menu_content ul li a.selectable:hover {text-decoration:underline;}
+/** Compact mode */
+.smartselect.compactmenu .smartselect_submenu {position:relative;margin:2px -3px; margin-left: 10px;display:none;border-width:0;z-index: 1010;}
+.smartselect.compactmenu .smartselect_submenu.visible {display:block;}
+.smartselect.compactmenu .smartselect_menu {z-index: 1000;overflow:hidden;}
+.smartselect.compactmenu .smartselect_submenu .smartselect_submenu {z-index: 1020;}
+.smartselect.compactmenu .smartselect_submenuitem:hover > .smartselect_menuitem_label {font-weight:bold;}
+
+// Enrol
+.userenrolment td {padding:0;height:41px;}
+.userenrolment .subfield {margin-right:5px;}
+.userenrolment .col_userdetails .subfield_picture {float:left;}
+.userenrolment .col_lastseen {width:150px;}
+.userenrolment .col_role {width:262px;}
+.userenrolment .col_role .roles {margin-right:30px;}
+.userenrolment .col_role .role {float:left;padding:3px;margin:3px;}
+.userenrolment .col_role .role a {margin-left:3px;cursor:pointer;}
+.userenrolment .col_role .addrole {float:right;width:18px;margin:3px;height:18px;text-align:center;}
+.userenrolment .col_role .addrole a img {vertical-align:bottom;}
+.userenrolment .hasAllRoles .col_role .addrole {display:none;}
+.userenrolment .col_group .groups {margin-right:30px;}
+.userenrolment .col_group .group {float:left;padding:3px;margin:3px;white-space:nowrap;}
+.userenrolment .col_group .group a {margin-left:3px;cursor:pointer;}
+.userenrolment .col_group .addgroup {float:right;width:18px;margin:3px;height:18px;text-align:center;}
+.userenrolment .col_group .addgroup a img {vertical-align:bottom;}
+.userenrolment .col_enrol .enrolment {float:left;padding:3px;margin:3px;}
+.userenrolment .col_enrol .enrolment a {float:right;margin-left:3px;}
+#page-enrol-users .enrol_user_buttons {float:right;}
+#page-enrol-users .enrol_user_buttons .enrolusersbutton {margin-left:1em;display:inline;}
+#page-enrol-users .enrol_user_buttons .enrolusersbutton div,
+#page-enrol-users .enrol_user_buttons .enrolusersbutton form {display:inline;}
+
+
+// Backup and Restore CSS
+.path-backup .mform .grouped_settings.section_level {clear:both;}
+.path-backup .mform .grouped_settings {clear:both;overflow:hidden;}
+.path-backup .notification.dependencies_enforced {text-align:center;color:#A00;font-weight:bold;}
+.path-backup .backup_progress {text-align:center;}
+.path-backup .backup_progress span.backup_stage {color:#999;}
+.path-backup .backup_progress .backup_stage.backup_stage_current {font-weight:bold;color:inherit;}
+.path-backup .backup_progress span.backup_stage.backup_stage_complete {color:inherit;}
+#page-backup-restore .filealiasesfailures {background-color:#ffd3d9}
+#page-backup-restore .filealiasesfailures .aliaseslist {width:90%;margin:0.8em auto;background-color:white;border:1px dotted #666;}
+
+.backup-restore .backup-section .noticebox {margin:1em auto;width:60%;text-align:center;}
+.backup-restore .activitytable {width:60%;min-width:500px;}
+.backup-restore .activitytable .modulename {width:100px;}
+.backup-restore .activitytable .moduleincluded {width:50px;}
+.backup-restore .activitytable .userinfoincluded {width:50px;}
+.backup-restore > .singlebutton {text-align:right;}
+.path-backup .mform .fgroup .proceedbutton {float:right;}
+.restore-course-search .rcs-results {width:70%;min-width:400px;margin:5px 0;}
+.restore-course-search .rcs-results table {margin-top: -8px;}
+.restore-course-search .rcs-results table .no-overflow {max-width:600px;}
+.restore-course-search .rcs-results .paging {text-align:left;margin:0;background-color:#eee;padding:3px;}
+
+.restore-course-category .rcs-results {width:70%;min-width:400px;border:1px solid #ddd;margin:5px 0;}
+.restore-course-category .rcs-results table .no-overflow {max-width:600px;}
+.restore-course-category .rcs-results .paging {text-align:left;margin:0;background-color:#eee;padding:3px;}
+
+.corelightbox {background-color:#CCC;position:absolute;top:0;left:0;width:100%;height:100%;text-align:center;}
+.corelightbox img {position:fixed;top:50%;}
+
+.mod-indent-1 {margin-left:20px;}
+.mod-indent-2 {margin-left:40px;}
+.mod-indent-3 {margin-left:60px;}
+.mod-indent-4 {margin-left:80px;}
+.mod-indent-5 {margin-left:100px;}
+.mod-indent-6 {margin-left:120px;}
+.mod-indent-7 {margin-left:140px;}
+.mod-indent-8 {margin-left:160px;}
+.mod-indent-9 {margin-left:180px;}
+.mod-indent-10 {margin-left:200px;}
+.mod-indent-11 {margin-left:220px;}
+.mod-indent-12 {margin-left:240px;}
+.mod-indent-13 {margin-left:260px;}
+.mod-indent-14 {margin-left:280px;}
+.mod-indent-15,
+.mod-indent-huge {margin-left:300px;}
+
+// Audio player size in 'block' mode (can only change width, height is hardcoded in JS)
+.resourcecontent .mediaplugin_mp3 object {height:25px; width: 600px}
+.resourcecontent audio.mediaplugin_html5audio {width: 600px}
+
+// Large resource images should avoid hidden overflow/
+.resourceimage {max-width: 100%;}
+
+// Audio player size in 'inline' mode (can only change width, as above) 
+.mediaplugin_mp3 object {height:15px;width:300px}
+audio.mediaplugin_html5audio {width: 300px}
+
+// TinyMCE moodle media preview frame should not have padding
+.core_media_preview.pagelayout-embedded #content {padding:0;}
+.core_media_preview.pagelayout-embedded #maincontent {height:0;}
+.core_media_preview.pagelayout-embedded .mediaplugin {margin:0;}
+
+/**
+ * Chooser Dialogue
+ *
+ * This CSS belong to the chooser dialogue which should work both with, and
+ * without javascript enabled
+ */
+/* Hide the dialog and it's title */
+.chooserdialoguebody,
+.choosertitle {
+    display:none;
+}
+
+.moodle-dialogue-base .moodle-dialogue {
+    background: none!important;
+    border: 0 none!important;
+}
+
+.chooserdialogue .moodle-dialogue-wrap {
+    height: auto;
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC!important;
+    border-radius:10px;
+    box-shadow: 5px 5px 20px 0px #666666;
+    -webkit-box-shadow: 5px 5px 20px 0px #666666;
+    -moz-box-shadow: 5px 5px 20px 0px #666666;
+}
+
+.chooserdialogue .moodle-dialogue-hd {
+    font-size:12px!important;
+    font-weight: normal!important;
+    letter-spacing: 1px;
+    color:#333333!important;
+    text-align: center!important;
+    text-shadow: 1px 1px 1px #FFFFFF;
+    padding:5px 5px 5px 5px;
+    border-radius: 10px 10px 0px 0px;
+    border-bottom: 1px solid #BBBBBB!important;
+    background: #CCCCCC!important;
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#CCCCCC))!important;
+    background: -moz-linear-gradient(top,  #FFFFFF,  #CCCCCC)!important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#CCCCCC')!important;
+    filter: dropshadow(color=#FFFFFF, offx=1, offy=1);
+}
+
+.chooserdialogue .moodle-dialogue-bd {
+    font-size: 12px;
+    color: #555555;
+    overflow: auto;
+    padding: 0px;
+    background: #F2F2F2;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* Center the submit buttons within the area */
+.choosercontainer #chooseform .submitbuttons {
+    margin: 0.7em 0;
+    text-align: center;
+}
+
+.choosercontainer #chooseform .submitbuttons input {
+    min-width: 100px;
+    margin: 0px 0.5em;
+}
+
+/* Various settings for the options area */
+.choosercontainer #chooseform .options {
+    position: relative;
+    border-bottom: 1px solid #BBBBBB;
+}
+
+/* Only set these options if we're showing the js container */
+.jsenabled .choosercontainer #chooseform .alloptions {
+    max-height: 550px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-width: 20.3em;
+    box-shadow: inset 0px 0px 30px 0px #CCCCCC;
+    -webkit-box-shadow: inset 0px 0px 30px 0px #CCCCCC;
+    -moz-box-shadow: inset 0px 0px 30px 0px #CCCCCC;
+}
+
+/* Settings for option rows and option subtypes */
+.choosercontainer #chooseform .moduletypetitle,
+.choosercontainer #chooseform .option,
+.choosercontainer #chooseform .nonoption {
+    margin-bottom: 0;
+    padding: 0 1.6em 0 1.6em;
+}
+
+.choosercontainer #chooseform .moduletypetitle {
+    text-transform: uppercase;
+    padding-top: 1.2em;
+    padding-bottom: 0.4em;
+}
+
+.choosercontainer #chooseform .option .typename,
+.choosercontainer #chooseform .option span.modicon img.icon,
+.choosercontainer #chooseform .nonoption .typename,
+.choosercontainer #chooseform .nonoption span.modicon img.icon {
+    padding: 0 0 0 0.5em;
+}
+
+.choosercontainer #chooseform .option input[type=radio],
+.choosercontainer #chooseform .option span.typename,
+.choosercontainer #chooseform .option span.modicon {
+    vertical-align: middle;
+}
+
+.choosercontainer #chooseform .option label {
+    display: block;
+    padding: 0.3em 0 0.1em 0;
+    border-bottom: 1px solid #FFFFFF;
+}
+
+.choosercontainer #chooseform .nonoption {
+    padding-left: 2.7em;
+    padding-top: 0.3em;
+    padding-bottom: 0.1em;
+}
+
+.choosercontainer #chooseform .subtype {
+    margin-bottom: 0;
+    padding: 0 1.6em 0 3.2em;
+}
+
+.choosercontainer #chooseform .subtype .typename {
+    margin: 0 0 0 0.2em;
+}
+
+/* The instruction/help area */
+.jsenabled .choosercontainer #chooseform .instruction,
+.jsenabled .choosercontainer #chooseform .typesummary {
+    display: none;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 20.3em;
+    margin: 0;
+    padding: 1.6em;
+    background-color: #FFFFFF;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 550px;
+    line-height: 2em;
+}
+
+
+/* Selected option settings */
+.jsenabled .choosercontainer #chooseform .instruction,
+.choosercontainer #chooseform .selected .typesummary {
+    display: block;
+}
+
+.choosercontainer #chooseform .selected {
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px 0px #CCCCCC;
+    -webkit-box-shadow: 0px 0px 10px 0px #CCCCCC;
+    -moz-box-shadow: 0px 0px 10px 0px #CCCCCC;
+}
+
+.phpinfo table  {.table}
+.phpinfo .v {background-color: #ccc;}
+.phpinfo .e {background-color: #ccf;font-weight: bold;}
+.phpinfo .h {background-color: #99c;font-weight: bold;}
+.phpinfo tr:nth-child(odd) .e { background-color: #c6c6f9;}
+.phpinfo tr:nth-child(odd) .v { background-color: #c6c6c6;}
+.phpinfo tr:hover .e { background-color: #c2c2f5;}
+.phpinfo tr:hover .v { background-color: #c2c2c2;}
+// compensate for some broken javascript since #page-header not used MDL-TODO 
+div.resourcecontent { 
+  width: 100%;
+}
+#resourceobject {
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 600px;
+}
