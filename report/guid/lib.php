@@ -255,6 +255,13 @@ function print_single( $results ) {
     if (!empty($enrolments)) {
         print_enrolments( $enrolments, $fullname, $username );
     }
+
+    // find mycampus enrolment data
+    $gudatabase = enrol_get_plugin('gudatabase');
+    $courses = $gudatabase->get_user_courses( $username );
+    if (!empty($courses)) {
+        print_mycampus($courses, $username);
+    }
 }
 
 /**
@@ -334,6 +341,43 @@ function print_enrolments( $enrolments, $name, $guid ) {
         echo "<a href=\"$courselink\">{$enrolment->name}</a> <i>(accessed $lasttime)</i><br />";
     }
    
+    echo $OUTPUT->box_end();
+}
+
+/**
+ * print MyCampus data
+ */
+function print_mycampus($courses, $guid) {
+    global $OUTPUT;
+
+    // normalise
+    $guid = strtolower( $guid );
+
+    // title
+    echo $OUTPUT->box_start();
+    echo $OUTPUT->heading(get_string('mycampus', 'report_guid'));
+
+    // did we pick up any guid mismatches
+    $mismatch = FALSE;
+
+    // run through the courses
+    foreach ($courses as $course) {
+        echo "<p><strong>{$course->courses}</strong> ";
+        echo "'{$course->name}' in '{$course->ou}' ";
+
+        // check for username discrepancy
+        if ($course->UserName != $guid) {
+            echo "as <span class=\"label label-warning\">{$course->UserName}</span> ";
+            $mismatch = TRUE;
+        }
+        echo "</p>";
+    }
+
+    //mismatch?
+    if ($mismatch) {
+        echo "<p><span class=\"label label-warning\">GUID does not match in data</span></p>";
+    }
+
     echo $OUTPUT->box_end();
 }
 

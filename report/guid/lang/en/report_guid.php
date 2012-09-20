@@ -15,6 +15,7 @@ $string['instructions'] = 'Enter whatever you know about the user. Use a * for w
 $string['lastname'] = 'Last name';
 $string['more'] = 'more...';
 $string['moreresults'] = 'There are more results (not shown). Please give more specific search criteria';
+$string['mycampus'] = 'MyCampus enrolments';
 $string['noemail'] = '(Cannot create Moodle account - no email)';
 $string['noresults'] = 'No results for this search';
 $string['pluginname'] = 'GUID search';
