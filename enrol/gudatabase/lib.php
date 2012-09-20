@@ -285,6 +285,51 @@ class enrol_gudatabase_plugin extends enrol_database_plugin {
     }
 
     /**
+     * utility function to get user's list of (external) courses
+     * in form suitable for report
+     * @param string $guid user's GUID
+     * @return array list of courses
+     */
+    public function get_user_courses( $guid ) {
+
+        // if it looks like a student guid then make the matric no
+        // which is more reliable
+        $guid = strtolower( $guid );
+        if (preg_match('/^\d+[a-z]$/', $guid)) {
+            $matric = substr( $guid, 0, -1 );
+        }
+        else {
+            $matric = '';
+        }
+
+        // make a fake user object
+        $user = new stdClass();
+        $user->username = $guid;
+        $user->idnumber = $matric;
+
+        // get the courses
+        if (!$courses = $this->external_userdata( $user )) {
+            return FALSE;
+        }
+      
+        // add the courses information
+        foreach ($courses as $course) {
+            $code = $course->courses;
+            if ($coursedata = $this->external_coursedata( $code )) {
+                $course->name = $coursedata->Crse_name;
+                $course->ou = $coursedata->ou_name;
+            }
+            else {
+                $course->name = '-';
+                $course->ou = '-';
+            }
+        }
+
+        return $courses;
+    }
+   
+
+    /**
      * Creates a bare-bones user record
      * Copied (and modified) from moodlelib.php
      *
