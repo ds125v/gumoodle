@@ -8588,8 +8588,11 @@ tr.rolecap td.risk a {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
-p.warn {
-  white-space: normal;
+.sitelink a,
+tr.rolecap td.risk a {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
 }
 .sitelink a {
   background-color: orange;
@@ -8601,6 +8604,9 @@ li.activity.label,
   color: inherit;
   border: inherit;
   padding: 4px 8px;
+}
+.file-picker td.label,
+.userprofile th.label {
   text-align: right;
 }
 div.felement.error span.error,

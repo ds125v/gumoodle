@@ -8588,8 +8588,11 @@ tr.rolecap td.risk a {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
-p.warn {
-  white-space: normal;
+.sitelink a,
+tr.rolecap td.risk a {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
 }
 .sitelink a {
   background-color: orange;
@@ -8601,6 +8604,9 @@ li.activity.label,
   color: inherit;
   border: inherit;
   padding: 4px 8px;
+}
+.file-picker td.label,
+.userprofile th.label {
   text-align: right;
 }
 div.felement.error span.error,
@@ -11814,15 +11820,18 @@ li.section.current h3.sectionname {
 .course-content .single-section ul.weeks li.section {
   margin-top: 0px;
 }
+.coursebox {
+  width: 95%;
+  margin: auto;
+  margin-bottom: 5px;
+  overflow: hidden;
+}
 .coursebox div.info h3.name {
   width: 250%;
   margin-bottom: 0.5em;
 }
-.coursebox {
-  overflow: hidden;
-}
 .coursebox div.summary p,
-div.summarytext p {
+.coursebox div.summarytext p {
   padding-top: 4em;
 }
 .coursebox,
@@ -11831,11 +11840,6 @@ div.summarytext p {
   border: 1px solid #e3e3e3;
   border-radius: 5px;
   box-shadow: 0 3px 3px #eee;
-}
-.coursebox {
-  width: 95%;
-  margin: auto;
-  margin-bottom: 5px;
 }
 .course-content ul.topics li.section .content,
 .course-content ul.weeks li.section .content {
