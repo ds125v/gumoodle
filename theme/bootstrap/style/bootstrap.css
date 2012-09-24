@@ -10915,6 +10915,49 @@ div.glossarydisplay .entrybox a,
 div.glossarydisplay .entrybox b {
   font: 13px Arial;
 }
+div.glossarydisplay .entrybox span.accesshide + b a,
+div.glossarydisplay .entrybox span.accesshide + a {
+  border-left-width: 1px;
+  -webkit-border-radius: 3px 0 0 3px;
+  -moz-border-radius: 3px 0 0 3px;
+  border-radius: 3px 0 0 3px;
+  display: inline-block;
+  margin-top: 1em;
+  min-height: 16px;
+}
+div.glossarydisplay .entrybox span.accesshide + b + a,
+div.glossarydisplay .entrybox span.accesshide + a + b a {
+  -webkit-border-radius: 0 3px 3px 0;
+  -moz-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
+  display: inline-block;
+  margin-top: 1em;
+  min-height: 16px;
+}
+div.glossarydisplay .entrybox span.accesshide + a + b,
+div.glossarydisplay .entrybox span.accesshide + b {
+  border: 0;
+  padding: 0;
+}
+div.glossarydisplay div.entrybox table tbody tr td b {
+  margin: 10px 0;
+  font-family: inherit;
+  font-weight: bold;
+  line-height: 1;
+  color: inherit;
+  text-rendering: optimizelegibility;
+  font-size: 24px;
+  line-height: 40px;
+  color: black;
+  background: none;
+  border: none;
+  font-family: Arial, sans;
+}
+div.glossarydisplay div.entrybox table tbody tr td b small {
+  font-weight: normal;
+  line-height: 1;
+  color: #999;
+}
 div.glossaryexplain {
   padding-bottom: 10px;
 }
