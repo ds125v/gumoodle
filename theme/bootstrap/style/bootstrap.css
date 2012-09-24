@@ -199,7 +199,7 @@ td#potentialcell {
   width: auto;
 }
 td#buttonscell {
-  padding-top: 8em;
+  padding-top: 4em;
   text-align: center;
   max-width: 16em;
   min-width: 6em;
@@ -229,7 +229,7 @@ tbody.empty {
 }
 .path-admin .roleassigntable #buttonscell #addcontrols {
   margin-top: 0;
-  height: auto;
+  height: 8em;
 }
 .notepost {
   margin-bottom: 1em;
@@ -3673,9 +3673,6 @@ table.message .searchresults td {
 #page-admin-qbehaviours #qbehaviours form {
   display: inline;
 }
-#page-admin-qbehaviours #qbehaviours img.spacer {
-  width: 16px;
-}
 #page-admin-qtypes .disabled {
   color: gray;
 }
@@ -3692,9 +3689,6 @@ table.message .searchresults td {
 #page-admin-qtypes #qtypes div,
 #page-admin-qtypes #qtypes form {
   display: inline;
-}
-#page-admin-qtypes #qtypes img.spacer {
-  width: 16px;
 }
 .path-admin-roles .buttons .singlebutton,
 #page-admin-course-index .buttons .singlebutton,
@@ -3789,44 +3783,6 @@ table.message .searchresults td {
   border-width: 1px;
   border-style: solid;
 }
-.path-admin .roleassigntable #existingcell,
-.path-admin .roleassigntable #potentialcell {
-  width: 42%;
-}
-.path-admin .roleassigntable #existingcell label,
-.path-admin .roleassigntable #potentialcell label {
-  font-weight: bold;
-}
-.path-admin .roleassigntable #buttonscell {
-  width: 16%;
-}
-.path-admin .roleassigntable #buttonscell #add,
-.path-admin .roleassigntable #buttonscell #remove {
-  width: 100%;
-  margin: 0.3em 0;
-  padding: 0.5em 0;
-}
-.path-admin .roleassigntable #buttonscell p {
-  margin: 0.3em 0;
-}
-.path-admin .roleassigntable #buttonscell #assignoptions {
-  font-size: 0.75em;
-}
-.path-admin .roleassigntable #buttonscell #assignoptions .collapsibleregioncaption {
-  font-weight: bold;
-}
-.path-admin .roleassigntable #buttonscell #addcontrols {
-  margin-top: 3em;
-  height: 13em;
-}
-.path-admin .roleassigntable #removeselect_wrapper,
-.path-admin .roleassigntable #addselect_wrapper {
-  width: 100%;
-}
-.path-admin .roleassigntable #removeselect_wrapper label,
-.path-admin .roleassigntable #addselect_wrapper label {
-  font-weight: normal;
-}
 .path-admin table.rolecap tr.rolecap th {
   font-weight: normal;
 }
@@ -3898,15 +3854,6 @@ table.message .searchresults td {
   border: 1px solid #000;
   margin-left: 301px;
   border-top-width: 0;
-}
-.dir-rtl #adminsettings .form-item  .form-setting,
-.dir-rtl #adminsettings .form-item  .form-label,
-.dir-rtl #adminsettings .form-item .form-description {
-  float: right;
-  text-align: right;
-}
-.dir-rtl.path-admin .roleassigntable p {
-  text-align: right;
 }
 #page-admin-index #notice .checkforupdates {
   text-align: center;
@@ -10146,6 +10093,7 @@ table#permissions tbody tr.rolecap:hover th,
 }
 .path-admin .roleassigntable #buttonscell #add,
 .path-admin .roleassigntable #buttonscell #remove input,
+input[id$="_clearbutton"],
 button,
 input.form-submit,
 input[type="submit"],
@@ -10200,6 +10148,11 @@ input#id_cancel {
 .path-admin .roleassigntable #buttonscell #remove input.active,
 .path-admin .roleassigntable #buttonscell #remove input.disabled,
 .path-admin .roleassigntable #buttonscell #remove input[disabled],
+input[id$="_clearbutton"]:hover,
+input[id$="_clearbutton"]:active,
+input[id$="_clearbutton"].active,
+input[id$="_clearbutton"].disabled,
+input[id$="_clearbutton"][disabled],
 button:hover,
 button:active,
 button.active,
@@ -10238,6 +10191,8 @@ input#id_cancel[disabled] {
 .path-admin .roleassigntable #buttonscell #add.active,
 .path-admin .roleassigntable #buttonscell #remove input:active,
 .path-admin .roleassigntable #buttonscell #remove input.active,
+input[id$="_clearbutton"]:active,
+input[id$="_clearbutton"].active,
 button:active,
 button.active,
 input.form-submit:active,
@@ -10254,6 +10209,7 @@ input#id_cancel.active {
 }
 .path-admin .roleassigntable #buttonscell #add:first-child,
 .path-admin .roleassigntable #buttonscell #remove input:first-child,
+input[id$="_clearbutton"]:first-child,
 button:first-child,
 input.form-submit:first-child,
 input[type="submit"]:first-child,
@@ -10264,6 +10220,7 @@ input#id_cancel:first-child {
 }
 .path-admin .roleassigntable #buttonscell #add:hover,
 .path-admin .roleassigntable #buttonscell #remove input:hover,
+input[id$="_clearbutton"]:hover,
 button:hover,
 input.form-submit:hover,
 input[type="submit"]:hover,
@@ -10282,6 +10239,7 @@ input#id_cancel:hover {
 }
 .path-admin .roleassigntable #buttonscell #add:focus,
 .path-admin .roleassigntable #buttonscell #remove input:focus,
+input[id$="_clearbutton"]:focus,
 button:focus,
 input.form-submit:focus,
 input[type="submit"]:focus,
@@ -10296,6 +10254,8 @@ input#id_cancel:focus {
 .path-admin .roleassigntable #buttonscell #add:active,
 .path-admin .roleassigntable #buttonscell #remove input.active,
 .path-admin .roleassigntable #buttonscell #remove input:active,
+input[id$="_clearbutton"].active,
+input[id$="_clearbutton"]:active,
 button.active,
 button:active,
 input.form-submit.active,
@@ -10320,6 +10280,8 @@ input#id_cancel:active {
 .path-admin .roleassigntable #buttonscell #add[disabled],
 .path-admin .roleassigntable #buttonscell #remove input.disabled,
 .path-admin .roleassigntable #buttonscell #remove input[disabled],
+input[id$="_clearbutton"].disabled,
+input[id$="_clearbutton"][disabled],
 button.disabled,
 button[disabled],
 input.form-submit.disabled,
@@ -10345,6 +10307,8 @@ input#id_cancel[disabled] {
 .path-admin .roleassigntable #buttonscell #add .badge,
 .path-admin .roleassigntable #buttonscell #remove input .label,
 .path-admin .roleassigntable #buttonscell #remove input .badge,
+input[id$="_clearbutton"] .label,
+input[id$="_clearbutton"] .badge,
 button .label,
 button .badge,
 input.form-submit .label,
