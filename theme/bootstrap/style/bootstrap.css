@@ -8556,6 +8556,16 @@ img.userpicture,
 .forumpost .row:after {
   content: none;
 }
+div.profilepicture {
+  float: left;
+  margin-right: 20px;
+}
+div.userprofile .description {
+  margin-bottom: 20px;
+}
+div.descriptionbox {
+  overflow: hidden;
+}
 tr.rolecap td img {
   display: none;
 }
@@ -8588,8 +8598,11 @@ tr.rolecap td.risk a {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
-p.warn {
-  white-space: normal;
+.sitelink a,
+tr.rolecap td.risk a {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
 }
 .sitelink a {
   background-color: orange;
@@ -8601,6 +8614,9 @@ li.activity.label,
   color: inherit;
   border: inherit;
   padding: 4px 8px;
+}
+.file-picker td.label,
+.userprofile table.list tr th.label {
   text-align: right;
 }
 div.felement.error span.error,
@@ -10032,10 +10048,6 @@ a.editing_showhide {
   text-shadow: none;
   background-color: transparent;
   border: 0;
-  color: #000;
-  font-weight: bold;
-  font-style: normal;
-  text-align: center;
 }
 span.helplink a {
   opacity: 0.5;
@@ -10048,24 +10060,12 @@ span.helplink:hover a {
 span.commands a:hover {
   text-decoration: none;
 }
-[class^="icon-"] {
-  color: #000;
-  font-weight: bold;
-  font-style: normal;
-  text-align: center;
-}
 .icon- {
   background: none;
 }
-.icon-duplicate:before {
-  content: "2";
-  text-size: 18px;
-  vertical-align: baseline;
-}
-.icon-grades:before {
-  content: "A";
-  text-size: 18px;
-  vertical-align: middle;
+.icon-copy {
+  background-image: url([[pix:theme|icon-copy]]);
+  background-position: 0 0;
 }
 .icon-not-assigned {
   background: red;
@@ -10485,9 +10485,6 @@ textarea {
 select.menujump {
   width: auto;
 }
-.forumsearch .invisiblefieldset {
-  width: 70%;
-}
 table td.cell p:last-child {
   margin-bottom: 0px;
 }
@@ -10849,20 +10846,21 @@ a {
 .tabtree ul li a.selected:hover {
   text-decoration: none;
 }
-div.buttons,
-div.paging {
+div.buttons {
   text-align: center;
 }
-div.paging:first-child a {
-  border-left-width: 1px;
-  border-radius: 3px 0px 0px 3px;
-}
+div.entrybox,
 div.initialbar {
   height: 40px;
   margin: 20px 0;
   text-align: right;
   margin: 0px auto;
 }
+div.entrybox {
+  text-align: center;
+}
+div.entrybox a,
+div.entrybox b,
 div.initialbar a,
 div.initialbar strong {
   line-height: 38px;
@@ -10873,14 +10871,19 @@ div.initialbar strong {
   padding: 4px 6px;
   line-height: 24px;
 }
+div.entrybox b,
+div.entrybox a:hover,
 div.initialbar strong,
 div.initialbar a:hover {
   background-color: #f5f5f5;
 }
+div.entrybox b,
 div.initialbar strong {
   color: #999;
   cursor: default;
 }
+div.entrybox br+a,
+div.entrybox br+b,
 div.initialbar a:first-child,
 div.initialbar strong:first-child {
   border-left-width: 1px;
@@ -10888,11 +10891,32 @@ div.initialbar strong:first-child {
   -moz-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
 }
+div.entrybox a:nth-child(30),
+div.entrybox b:nth-child(30),
 div.initialbar a:last-child,
 div.initialbar strong:last-child {
   -webkit-border-radius: 0 3px 3px 0;
   -moz-border-radius: 0 3px 3px 0;
   border-radius: 0 3px 3px 0;
+}
+div.glossarydisplay .entrybox {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+div.glossarydisplay .entrybox .glossaryexplain,
+div.glossarydisplay .entrybox .box.generalbox.boxaligncenter.boxwidthwide {
+  font: 13px Arial;
+  color: #333;
+}
+div.glossarydisplay .entrybox a,
+div.glossarydisplay .entrybox b {
+  font: 13px Arial;
+}
+div.glossaryexplain {
+  padding-bottom: 10px;
 }
 .mform fieldset {
   border: none;
