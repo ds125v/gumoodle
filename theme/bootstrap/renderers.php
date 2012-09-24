@@ -817,7 +817,7 @@ class theme_bootstrap_core_admin_renderer extends core_admin_renderer {
                 if ($this->page->theme->resolve_image_location('icon', $plugin->type . '_' . $plugin->name)) {
                     $icon = $this->output->pix_icon('icon', '', $plugin->type . '_' . $plugin->name, array('class' => 'smallicon pluginicon'));
                 } else {
-                    $icon = this::icon_spacer();
+                    //$icon = this::icon_spacer();
                 }
                 $displayname  = $icon . ' ' . $plugin->displayname;
                 $displayname = new html_table_cell($displayname);
