@@ -1355,8 +1355,8 @@ class theme_gu23_core_admin_renderer extends core_admin_renderer {
         }
 
         //put errors first in
-        $servertable->data = array_merge($serverdata['error'], $serverdata['warning'], $serverdata['success']);
-        $othertable->data = array_merge($otherdata['error'], $otherdata['warning'], $otherdata['success']);
+        $servertable->data = array_merge($serverdata['important'], $serverdata['warning'], $serverdata['success']);
+        $othertable->data = array_merge($otherdata['important'], $otherdata['warning'], $otherdata['success']);
 
         // Print table
         $output = '';
