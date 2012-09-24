@@ -45,6 +45,16 @@ div.left.picture a,
 tr.discussion td.picture a {
   a.thumbnail
 }
+div.profilepicture {
+    float: left;
+    margin-right: 20px;
+}
+div.userprofile .description {
+    margin-bottom: 20px;
+}
+div.descriptionbox {
+    overflow: hidden;
+}
 tr.rolecap td img {
   display: none;
 }
@@ -85,7 +95,7 @@ li.activity.label,
   padding: 4px 8px;
 }
 .file-picker td.label,
-.userprofile th.label {
+.userprofile table.list tr th.label {
   text-align: right;
 }
 div.felement.error span.error,
@@ -575,26 +585,13 @@ span.commands a:hover {
   text-decoration: none;
 }
 
-[class^="icon-"] {
-  color: #000;
-  font-weight: bold;
-  font-style: normal;
-  text-align: center;
-}
-
 .icon- {
   background: none; // for a space the size of an icon 
 }
 
-.icon-duplicate:before { // text alternative 
-  content: "2";
-  text-size: 18px;
-  vertical-align: baseline;
-}
-.icon-grades:before { // text alternative 
-  content: "A";
-  text-size: 18px;
-  vertical-align: middle;
+.icon-copy { // text alternative 
+   background-image: url(~"[[pix:theme|icon-copy]]");
+   background-position: 0 0;
 }
 .icon-not-assigned {
   background: red; // for testing purposes
@@ -898,7 +895,6 @@ select.menujump {
   width: auto;
 }
 
-.forumsearch .invisiblefieldset { width: 70%;}
 
 table td.cell p:last-child { margin-bottom: 0px; }
 #page-mod-quiz-edit div.quizpage .pagecontent .pagestatus,
@@ -1295,21 +1291,22 @@ a {text-decoration: none;}
   text-decoration: none;
 }
 
-div.buttons,
-div.paging {
+div.buttons {
   text-align: center;
 }
 
-div.paging:first-child a {
-  border-left-width: 1px;
-  border-radius: 3px 0px 0px 3px;
-}
 
+div.entrybox,
 div.initialbar { // bit of a hack because the title isn't targettable by css
   .pagination;
   text-align: right;
   margin: 0px auto;
 }
+div.entrybox {
+    text-align: center;
+}
+div.entrybox a,
+div.entrybox b,
 div.initialbar a,
 div.initialbar strong {
   // copied (with minor edits) from
@@ -1325,16 +1322,21 @@ div.initialbar strong {
   padding: 4px 6px;
   line-height: 24px;
 }
+div.entrybox b,
+div.entrybox a:hover,
 div.initialbar strong,
 div.initialbar a:hover {
   background-color: #f5f5f5;
 }
+div.entrybox b,
 div.initialbar strong {
 //.pagination ul > .active > a,
 //.pagination ul > .active > span {
   color: @grayLight;
   cursor: default;
 }
+div.entrybox br+a, // hack to target first link
+div.entrybox br+b, // hack to target first link
 div.initialbar a:first-child,
 div.initialbar strong:first-child {
 //.pagination ul > li:first-child > a,
@@ -1342,11 +1344,29 @@ div.initialbar strong:first-child {
   border-left-width: 1px;
   .border-radius(3px 0 0 3px);
 }
+div.entrybox a:nth-child(30), // hack to target last link
+div.entrybox b:nth-child(30), // hack to target last link
 div.initialbar a:last-child,
 div.initialbar strong:last-child {
 //.pagination ul > li:last-child > a,
 //.pagination ul > li:last-child > span {
   .border-radius(0 3px 3px 0);
+}
+div.glossarydisplay .entrybox { // very hacky due to limited HTML
+    .hide-text; // first we hide the | text by making it tiny and invisible
+    .glossaryexplain,
+    .box.generalbox.boxaligncenter.boxwidthwide { // then we bring back the text we want
+        font: 13px Arial;
+        color: #333;
+    }
+    a,
+    b {
+        font: 13px Arial;
+    }
+
+}
+div.glossaryexplain {
+    padding-bottom: 10px;
 }
 
 .mform fieldset {

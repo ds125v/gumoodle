@@ -4,6 +4,7 @@
 class theme_gu23_core_renderer extends core_renderer {
 
     static $icons_ignore = array(
+            'icon' => '?',      // all the module icons have this name
             't/groups' => '?',
             't/groupn' => '?',
             't/groupv' => '?' );
@@ -28,7 +29,7 @@ class theme_gu23_core_renderer extends core_renderer {
             't/editstring' => 'tag',
             't/delete' => 'remove',
             'i/edit' => 'pencil',
-            't/copy' => 'copy',
+            't/copy' => 'copy', // created png from font awesome
             'i/settings' => 'list-alt',
             'i/grades' => 'grades',
             'i/group' => 'user',
@@ -133,8 +134,8 @@ class theme_gu23_core_renderer extends core_renderer {
         } else if (isset(self::$icons[$icon->pix])) {
             return self::icon(self::$icons[$icon->pix]);
         } else {
-            //return parent::render_pix_icon($icon);
-            return '<i class=icon-not-assigned data-debug-icon="'.$icon->pix.'"></i>';
+            return parent::render_pix_icon($icon);
+            //return '<i class=icon-not-assigned data-debug-icon="'.$icon->pix.'"></i>';
         }
 
 

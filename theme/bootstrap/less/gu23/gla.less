@@ -1,8 +1,4 @@
-@serif: Georgia, "Times New Roman", Times, serif;
-@sans: Arial, Helvetica, sans-serif;
-
 body {
-    font-family: @serif;
     width:100%;
 }
 .clear {
@@ -15,10 +11,6 @@ a {
         color: #004D9C;
         text-decoration: underline;
     }
-}
-h1, h2, h3, h4, h5, h6,
-input, textarea, select, button {
-    font-family: @sans;
 }
 html {
     background: #5c5940 url([[pix:theme|arch1]]) repeat-x bottom fixed;
@@ -140,7 +132,7 @@ header {
             display: inline;
             float: left;
             padding: 0.7em 0;
-            font: 108% @sans;
+            font: 108%;
             background: #00375c;
             border: none;
             right: 50%;
@@ -177,7 +169,7 @@ header .logininfo {float: right; clear: right; padding-bottom: 2em; padding-top:
 #siteTools h3 {display: none;}
 #siteTools ul {margin: 0px;}
 #siteTools ul li,
-header .logininfo {display: inline; margin-left: 1em; padding-left: 1em; font: 100% @sans; border-left: 1px dotted #4d86ac;}
+header .logininfo {display: inline; margin-left: 1em; padding-left: 1em; font-size: 100% ; border-left: 1px dotted #4d86ac;}
 #siteTools ul li:first-child,
 header .logininfo {border-left: none;}
 #siteTools ul li a,
@@ -200,7 +192,7 @@ header .logininfo a:hover {border-bottom-color: #3d779c;}
     min-height: 36px;
     margin: 0;
     padding: 17px 15px;
-    font: 200% @sans-serif;
+    font-size: 200%;
     font-weight: normal;
     background: url([[pix:theme|pagecontent_header]]) no-repeat right bottom;
     text-overflow: ellipsis;
@@ -215,16 +207,16 @@ header .logininfo a:hover {border-bottom-color: #3d779c;}
 
 footer {
     color:#333333;
-    font:93% @sans;
-    text-align:left;
+    font-size: 93%;
+    text-align: left;
     .logininfo, .homelink, .homelink a {
-        margin:0px;
-        padding:0px;
+        margin: 0;
+        padding: 0;
     }
     .backToTop {
         float: left;
         margin-left: 17px;
-        font: 93% @sans;
+        font-size: 93%;
         border-bottom-left-radius:5px;
         border-bottom-right-radius: 5px;
         background-color: #939393;
@@ -270,7 +262,7 @@ footer {
         margin-top: 2.1em;
         li {
             list-style: none;
-            font: 93% @sans;
+            font-size: 93%;
             line-height: 1.8em;
             a:hover {
                 text-decoration: underline;
@@ -288,10 +280,11 @@ footer {
 .block .header h2,
 .block h3.eventskey,
 .block_recent_activity h3.main {
-      margin: 20px 0 0 0;
-        padding-bottom: 4px;
-          font: 120% @sans;
-      }
+    margin: 20px 0 0 0;
+    padding-bottom: 4px;
+    font-size: 1.2em;
+    line-height: 1.4em;
+}
 .block {
       border: none;
       margin: 0;
