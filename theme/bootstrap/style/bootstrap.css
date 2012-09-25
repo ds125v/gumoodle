@@ -10064,13 +10064,11 @@ a.editing_showhide {
   border: 0;
 }
 span.helplink a {
-  opacity: 0.005;
-  filter: alpha(opacity=0.5);
+  opacity: 0.5;
 }
 .fitem:hover span.helplink a,
 span.helplink:hover a {
-  opacity: 0.01;
-  filter: alpha(opacity=1);
+  opacity: 1;
 }
 #changenumsections,
 span.commands a:hover {
@@ -10805,8 +10803,7 @@ li.section .content h2 {
   margin-top: 0px;
 }
 li.section.hidden {
-  opacity: 0.005;
-  filter: alpha(opacity=0.5);
+  opacity: 0.5;
 }
 li.section.hidden .content {
   background: #ddd;
