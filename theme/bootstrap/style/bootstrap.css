@@ -10032,6 +10032,7 @@ a.editing_highlight img,
 a.unassignrolelink img,
 .userinforow .groups .group a img,
 li.item_with_icon p a img,
+p.hasicon a img,
 a.editing_showhide img {
   display: none;
 }
