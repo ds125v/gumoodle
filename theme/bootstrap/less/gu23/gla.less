@@ -1,5 +1,5 @@
 body {
-    width:100%;
+    width: 100%;
 }
 .clear {
     clear: left;
@@ -12,13 +12,7 @@ a {
         text-decoration: underline;
     }
 }
-html {
-    background: #5c5940 url([[pix:theme|arch1]]) repeat-x bottom fixed;
-}
 body {
-    background: url([[pix:theme|arch2]]) no-repeat 960px bottom fixed;
-}
-body.moodledev-cent-gla-ac-uk--moodle2 {
     background: rgb(207,212,216);
 }
 body.category-5 #page-content .content-header {
@@ -36,7 +30,7 @@ body.category-4 #page-content .content-header {
 header {
     background-color:#005288;
     color:#ffffff;
-    overflow:hidden;
+    overflow: hidden;
     h1 a {
         color:#ffffff;
         &:hover {
@@ -88,11 +82,10 @@ footer {
 
 header {
     padding: 20px 25px 0;
-    background: #005288 url([[pix:theme|pageheader]]) no-repeat bottom right;
-    background: -moz-linear-gradient(-45deg, rgba(0,82,136,1) 0%, rgba(0,82,136,1) 72%, rgba(0,60,100,1) 100%);
+    background: #005288 url(~"[[pix:theme|pageheader]]") no-repeat bottom right;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);
+    .box-shadow(3px 3px 5px rgba(0,0,0,.15));
     h1 a {
         float: left;
         width: 172px;
@@ -184,7 +177,12 @@ header .logininfo a:hover {border-bottom-color: #3d779c;}
 #page-content .breadcrumb ul li a { color: #444;}
 #page-content .breadcrumb ul li a:hover {text-decoration: underline;}
 
-#page-content {overflow: hidden; background: #fff; border-radius: 6px; box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);}
+#page-content {
+  .box-shadow(3px 3px 5px rgba(0,0,0,.15));
+  overflow: hidden;
+  background: #fff;
+  border-radius: 6px;
+  }
 #page-content .content-header {margin-bottom: 1.6em; border-top-left-radius: 4px; border-top-right-radius: 4px;}
 #page-content .content-header {color: rgb(255,255,255); background-color: rgb(0,82,136);}
 #page-content .content-header h1 {
@@ -387,7 +385,7 @@ li.section.current h3.sectionname {
 .path-course-view .course-content ul.weeks div.content {
     border: 1px solid rgb(227,227,227);
     border-radius: 5px;
-    box-shadow: 0 3px 3px #eee;
+    .box-shadow(0 3px 3px #eee);
 }
 
 

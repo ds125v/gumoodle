@@ -199,7 +199,7 @@ td#potentialcell {
   width: auto;
 }
 td#buttonscell {
-  padding-top: 8em;
+  padding-top: 4em;
   text-align: center;
   max-width: 16em;
   min-width: 6em;
@@ -221,15 +221,12 @@ td#potentialcell {
 input#addselect_searchtext {
   width: auto;
 }
-tbody.empty {
-  display: none;
-}
 .groupinfobox {
   border: none;
 }
 .path-admin .roleassigntable #buttonscell #addcontrols {
   margin-top: 0;
-  height: auto;
+  height: 8em;
 }
 .notepost {
   margin-bottom: 1em;
@@ -800,6 +797,12 @@ body.tag .managelink {
   clear: both;
   overflow: hidden;
 }
+.path-backup .mform .include_settings {
+  float: left;
+}
+.path-backup .mform .normal_settings {
+  float: left;
+}
 .path-backup .notification.dependencies_enforced {
   text-align: center;
   color: #A00;
@@ -831,19 +834,6 @@ body.tag .managelink {
   margin: 1em auto;
   width: 60%;
   text-align: center;
-}
-.backup-restore .activitytable {
-  width: 60%;
-  min-width: 500px;
-}
-.backup-restore .activitytable .modulename {
-  width: 100px;
-}
-.backup-restore .activitytable .moduleincluded {
-  width: 50px;
-}
-.backup-restore .activitytable .userinfoincluded {
-  width: 50px;
 }
 .backup-restore > .singlebutton {
   text-align: right;
@@ -1125,126 +1115,6 @@ audio.mediaplugin_html5audio {
 .phpinfo table tbody + tbody {
   border-top: 2px solid #ddd;
 }
-.phpinfo table .span1 {
-  float: none;
-  width: 44px;
-  margin-left: 0;
-}
-.phpinfo table .span2 {
-  float: none;
-  width: 124px;
-  margin-left: 0;
-}
-.phpinfo table .span3 {
-  float: none;
-  width: 204px;
-  margin-left: 0;
-}
-.phpinfo table .span4 {
-  float: none;
-  width: 284px;
-  margin-left: 0;
-}
-.phpinfo table .span5 {
-  float: none;
-  width: 364px;
-  margin-left: 0;
-}
-.phpinfo table .span6 {
-  float: none;
-  width: 444px;
-  margin-left: 0;
-}
-.phpinfo table .span7 {
-  float: none;
-  width: 524px;
-  margin-left: 0;
-}
-.phpinfo table .span8 {
-  float: none;
-  width: 604px;
-  margin-left: 0;
-}
-.phpinfo table .span9 {
-  float: none;
-  width: 684px;
-  margin-left: 0;
-}
-.phpinfo table .span10 {
-  float: none;
-  width: 764px;
-  margin-left: 0;
-}
-.phpinfo table .span11 {
-  float: none;
-  width: 844px;
-  margin-left: 0;
-}
-.phpinfo table .span12 {
-  float: none;
-  width: 924px;
-  margin-left: 0;
-}
-.phpinfo table .span13 {
-  float: none;
-  width: 1004px;
-  margin-left: 0;
-}
-.phpinfo table .span14 {
-  float: none;
-  width: 1084px;
-  margin-left: 0;
-}
-.phpinfo table .span15 {
-  float: none;
-  width: 1164px;
-  margin-left: 0;
-}
-.phpinfo table .span16 {
-  float: none;
-  width: 1244px;
-  margin-left: 0;
-}
-.phpinfo table .span17 {
-  float: none;
-  width: 1324px;
-  margin-left: 0;
-}
-.phpinfo table .span18 {
-  float: none;
-  width: 1404px;
-  margin-left: 0;
-}
-.phpinfo table .span19 {
-  float: none;
-  width: 1484px;
-  margin-left: 0;
-}
-.phpinfo table .span20 {
-  float: none;
-  width: 1564px;
-  margin-left: 0;
-}
-.phpinfo table .span21 {
-  float: none;
-  width: 1644px;
-  margin-left: 0;
-}
-.phpinfo table .span22 {
-  float: none;
-  width: 1724px;
-  margin-left: 0;
-}
-.phpinfo table .span23 {
-  float: none;
-  width: 1804px;
-  margin-left: 0;
-}
-.phpinfo table .span24 {
-  float: none;
-  width: 1884px;
-  margin-left: 0;
-}
 .phpinfo .v {
   background-color: #ccc;
 }
@@ -1483,8 +1353,7 @@ div.resourcecontent {
 .categorylist .category .image,
 .categorylist .course .name,
 .categorylist .course .info {
-  float: left;
-  text-align: left;
+  clear: left;
 }
 .categorylist .course {
   padding-left: 18px;
@@ -3673,9 +3542,6 @@ table.message .searchresults td {
 #page-admin-qbehaviours #qbehaviours form {
   display: inline;
 }
-#page-admin-qbehaviours #qbehaviours img.spacer {
-  width: 16px;
-}
 #page-admin-qtypes .disabled {
   color: gray;
 }
@@ -3692,9 +3558,6 @@ table.message .searchresults td {
 #page-admin-qtypes #qtypes div,
 #page-admin-qtypes #qtypes form {
   display: inline;
-}
-#page-admin-qtypes #qtypes img.spacer {
-  width: 16px;
 }
 .path-admin-roles .buttons .singlebutton,
 #page-admin-course-index .buttons .singlebutton,
@@ -3789,44 +3652,6 @@ table.message .searchresults td {
   border-width: 1px;
   border-style: solid;
 }
-.path-admin .roleassigntable #existingcell,
-.path-admin .roleassigntable #potentialcell {
-  width: 42%;
-}
-.path-admin .roleassigntable #existingcell label,
-.path-admin .roleassigntable #potentialcell label {
-  font-weight: bold;
-}
-.path-admin .roleassigntable #buttonscell {
-  width: 16%;
-}
-.path-admin .roleassigntable #buttonscell #add,
-.path-admin .roleassigntable #buttonscell #remove {
-  width: 100%;
-  margin: 0.3em 0;
-  padding: 0.5em 0;
-}
-.path-admin .roleassigntable #buttonscell p {
-  margin: 0.3em 0;
-}
-.path-admin .roleassigntable #buttonscell #assignoptions {
-  font-size: 0.75em;
-}
-.path-admin .roleassigntable #buttonscell #assignoptions .collapsibleregioncaption {
-  font-weight: bold;
-}
-.path-admin .roleassigntable #buttonscell #addcontrols {
-  margin-top: 3em;
-  height: 13em;
-}
-.path-admin .roleassigntable #removeselect_wrapper,
-.path-admin .roleassigntable #addselect_wrapper {
-  width: 100%;
-}
-.path-admin .roleassigntable #removeselect_wrapper label,
-.path-admin .roleassigntable #addselect_wrapper label {
-  font-weight: normal;
-}
 .path-admin table.rolecap tr.rolecap th {
   font-weight: normal;
 }
@@ -3898,15 +3723,6 @@ table.message .searchresults td {
   border: 1px solid #000;
   margin-left: 301px;
   border-top-width: 0;
-}
-.dir-rtl #adminsettings .form-item  .form-setting,
-.dir-rtl #adminsettings .form-item  .form-label,
-.dir-rtl #adminsettings .form-item .form-description {
-  float: right;
-  text-align: right;
-}
-.dir-rtl.path-admin .roleassigntable p {
-  text-align: right;
 }
 #page-admin-index #notice .checkforupdates {
   text-align: center;
@@ -4140,7 +3956,6 @@ sub {
 }
 img {
   max-width: 100%;
-  width: auto \9;
   height: auto;
   vertical-align: middle;
   border: 0;
@@ -4241,9 +4056,9 @@ a:hover {
   background-color: #fff;
   border: 1px solid #ccc;
   border: 1px solid rgba(0,0,0,0.2);
-  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1) X;
-  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.1) X;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1) X;
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 .img-circle {
   -webkit-border-radius: 500px;
@@ -4562,7 +4377,7 @@ p {
 }
 .lead {
   margin-bottom: 20px;
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 200;
   line-height: 30px;
 }
@@ -4580,18 +4395,6 @@ cite {
 }
 .muted {
   color: #999;
-}
-.text-warning {
-  color: #c09853;
-}
-.text-error {
-  color: #b94a48;
-}
-.text-info {
-  color: #3a87ad;
-}
-.text-success {
-  color: #468847;
 }
 h1,
 h2,
@@ -4704,7 +4507,7 @@ dd {
 }
 .dl-horizontal dt {
   float: left;
-  width: 160px;
+  width: 180px;
   clear: left;
   text-align: right;
   overflow: hidden;
@@ -4712,7 +4515,7 @@ dd {
   white-space: nowrap;
 }
 .dl-horizontal dd {
-  margin-left: 180px;
+  margin-left: 200px;
 }
 hr {
   margin: 20px 0;
@@ -4918,9 +4721,9 @@ input[type="color"],
 .uneditable-input {
   background-color: #fff;
   border: 1px solid #ccc;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) X;
-  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) X;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) X;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
   -webkit-transition: border linear .2s, box-shadow linear .2s;
   -moz-transition: border linear .2s, box-shadow linear .2s;
   -o-transition: border linear .2s, box-shadow linear .2s;
@@ -4945,9 +4748,9 @@ input[type="color"]:focus,
   border-color: rgba(82,168,236,0.8);
   outline: 0;
   outline: thin dotted \9;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 8px rgba(82,168,236,0.6);
-  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 8px rgba(82,168,236,0.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 8px rgba(82,168,236,0.6);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
 }
 input[type="radio"],
 input[type="checkbox"] {
@@ -4974,7 +4777,7 @@ input[type="file"] {
 }
 select {
   width: 220px;
-  border: 1px solid #ccc;
+  border: 1px solid #bbb;
   background-color: #fff;
 }
 select[multiple],
@@ -4994,9 +4797,9 @@ input[type="checkbox"]:focus {
   color: #999;
   background-color: #fcfcfc;
   border-color: #ccc;
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.025) X;
-  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.025) X;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.025) X;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.025);
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.025);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.025);
   cursor: not-allowed;
 }
 .uneditable-input {
@@ -5176,17 +4979,17 @@ input[type="checkbox"][readonly] {
 .control-group.warning select,
 .control-group.warning textarea {
   border-color: #c09853;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) X;
-  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) X;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) X;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
 }
 .control-group.warning input:focus,
 .control-group.warning select:focus,
 .control-group.warning textarea:focus {
   border-color: #a47e3c;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 6px #dbc59e;
-  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 6px #dbc59e;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 6px #dbc59e;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #dbc59e;
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #dbc59e;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #dbc59e;
 }
 .control-group.warning .input-prepend .add-on,
 .control-group.warning .input-append .add-on {
@@ -5210,17 +5013,17 @@ input[type="checkbox"][readonly] {
 .control-group.error select,
 .control-group.error textarea {
   border-color: #b94a48;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) X;
-  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) X;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) X;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
 }
 .control-group.error input:focus,
 .control-group.error select:focus,
 .control-group.error textarea:focus {
   border-color: #953b39;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 6px #d59392;
-  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 6px #d59392;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 6px #d59392;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #d59392;
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #d59392;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #d59392;
 }
 .control-group.error .input-prepend .add-on,
 .control-group.error .input-append .add-on {
@@ -5244,17 +5047,17 @@ input[type="checkbox"][readonly] {
 .control-group.success select,
 .control-group.success textarea {
   border-color: #468847;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) X;
-  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) X;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) X;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
 }
 .control-group.success input:focus,
 .control-group.success select:focus,
 .control-group.success textarea:focus {
   border-color: #356635;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 6px #7aba7b;
-  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 6px #7aba7b;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 6px #7aba7b;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #7aba7b;
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #7aba7b;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #7aba7b;
 }
 .control-group.success .input-prepend .add-on,
 .control-group.success .input-append .add-on {
@@ -5278,17 +5081,17 @@ input[type="checkbox"][readonly] {
 .control-group.info select,
 .control-group.info textarea {
   border-color: #3a87ad;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) X;
-  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) X;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) X;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
 }
 .control-group.info input:focus,
 .control-group.info select:focus,
 .control-group.info textarea:focus {
   border-color: #2d6987;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 6px #7ab5d3;
-  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 6px #7ab5d3;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 6px #7ab5d3;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #7ab5d3;
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #7ab5d3;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #7ab5d3;
 }
 .control-group.info .input-prepend .add-on,
 .control-group.info .input-append .add-on {
@@ -5306,9 +5109,9 @@ input:focus:required:invalid:focus,
 textarea:focus:required:invalid:focus,
 select:focus:required:invalid:focus {
   border-color: #e9322d;
-  -webkit-box-shadow: 0 0 6px #f8b9b7 X;
-  -moz-box-shadow: 0 0 6px #f8b9b7 X;
-  box-shadow: 0 0 6px #f8b9b7 X;
+  -webkit-box-shadow: 0 0 6px #f8b9b7;
+  -moz-box-shadow: 0 0 6px #f8b9b7;
+  box-shadow: 0 0 6px #f8b9b7;
 }
 .form-actions {
   padding: 19px 20px 20px;
@@ -5568,18 +5371,18 @@ legend + .control-group {
 }
 .form-horizontal .control-label {
   float: left;
-  width: 160px;
+  width: 180px;
   padding-top: 5px;
   text-align: right;
 }
 .form-horizontal .controls {
   *display: inline-block;
   *padding-left: 20px;
-  margin-left: 180px;
+  margin-left: 200px;
   *margin-left: 0;
 }
 .form-horizontal .controls:first-child {
-  *padding-left: 180px;
+  *padding-left: 200px;
 }
 .form-horizontal .help-block {
   margin-bottom: 0;
@@ -5590,7 +5393,7 @@ legend + .control-group {
   margin-top: 10px;
 }
 .form-horizontal .form-actions {
-  padding-left: 180px;
+  padding-left: 200px;
 }
 table {
   max-width: 100%;
@@ -5714,122 +5517,122 @@ table [class*=span],
   float: none;
   margin-left: 0;
 }
-.table .span1 {
+table .span1 {
   float: none;
   width: 44px;
   margin-left: 0;
 }
-.table .span2 {
+table .span2 {
   float: none;
   width: 124px;
   margin-left: 0;
 }
-.table .span3 {
+table .span3 {
   float: none;
   width: 204px;
   margin-left: 0;
 }
-.table .span4 {
+table .span4 {
   float: none;
   width: 284px;
   margin-left: 0;
 }
-.table .span5 {
+table .span5 {
   float: none;
   width: 364px;
   margin-left: 0;
 }
-.table .span6 {
+table .span6 {
   float: none;
   width: 444px;
   margin-left: 0;
 }
-.table .span7 {
+table .span7 {
   float: none;
   width: 524px;
   margin-left: 0;
 }
-.table .span8 {
+table .span8 {
   float: none;
   width: 604px;
   margin-left: 0;
 }
-.table .span9 {
+table .span9 {
   float: none;
   width: 684px;
   margin-left: 0;
 }
-.table .span10 {
+table .span10 {
   float: none;
   width: 764px;
   margin-left: 0;
 }
-.table .span11 {
+table .span11 {
   float: none;
   width: 844px;
   margin-left: 0;
 }
-.table .span12 {
+table .span12 {
   float: none;
   width: 924px;
   margin-left: 0;
 }
-.table .span13 {
+table .span13 {
   float: none;
   width: 1004px;
   margin-left: 0;
 }
-.table .span14 {
+table .span14 {
   float: none;
   width: 1084px;
   margin-left: 0;
 }
-.table .span15 {
+table .span15 {
   float: none;
   width: 1164px;
   margin-left: 0;
 }
-.table .span16 {
+table .span16 {
   float: none;
   width: 1244px;
   margin-left: 0;
 }
-.table .span17 {
+table .span17 {
   float: none;
   width: 1324px;
   margin-left: 0;
 }
-.table .span18 {
+table .span18 {
   float: none;
   width: 1404px;
   margin-left: 0;
 }
-.table .span19 {
+table .span19 {
   float: none;
   width: 1484px;
   margin-left: 0;
 }
-.table .span20 {
+table .span20 {
   float: none;
   width: 1564px;
   margin-left: 0;
 }
-.table .span21 {
+table .span21 {
   float: none;
   width: 1644px;
   margin-left: 0;
 }
-.table .span22 {
+table .span22 {
   float: none;
   width: 1724px;
   margin-left: 0;
 }
-.table .span23 {
+table .span23 {
   float: none;
   width: 1804px;
   margin-left: 0;
 }
-.table .span24 {
+table .span24 {
   float: none;
   width: 1884px;
   margin-left: 0;
@@ -5872,8 +5675,14 @@ table [class*=span],
   margin-top: 1px;
 }
 .icon-white,
-.nav > .active > a > [class^="icon-"],
-.nav > .active > a > [class*=" icon-"],
+.nav-tabs > .active > a > [class^="icon-"],
+.nav-tabs > .active > a > [class*=" icon-"],
+.nav-pills > .active > a > [class^="icon-"],
+.nav-pills > .active > a > [class*=" icon-"],
+.nav-list > .active > a > [class^="icon-"],
+.nav-list > .active > a > [class*=" icon-"],
+.navbar-inverse .nav > .active > a > [class^="icon-"],
+.navbar-inverse .nav > .active > a > [class*=" icon-"],
 .dropdown-menu > li > a:hover > [class^="icon-"],
 .dropdown-menu > li > a:hover > [class*=" icon-"],
 .dropdown-menu > .active > a > [class^="icon-"],
@@ -6346,9 +6155,9 @@ table [class*=span],
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
-  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2) X;
-  -moz-box-shadow: 0 5px 10px rgba(0,0,0,0.2) X;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.2) X;
+  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   -webkit-background-clip: padding-box;
   -moz-background-clip: padding;
   background-clip: padding-box;
@@ -6486,9 +6295,9 @@ table [class*=span],
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05) X;
-  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05) X;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.05) X;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
 }
 .well blockquote {
   border-color: #ddd;
@@ -6585,9 +6394,9 @@ button.close {
   -moz-border-radius: 4px;
   border-radius: 4px;
   *margin-left: .3em;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2) 0 1px 2px rgba(0,0,0,0.05);
-  -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2) 0 1px 2px rgba(0,0,0,0.05);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2) 0 1px 2px rgba(0,0,0,0.05);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+  -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
 }
 .btn:hover,
 .btn:active,
@@ -6627,9 +6436,9 @@ button.close {
   background-color: #d9d9d9 \9;
   background-image: none;
   outline: 0;
-  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15) 0 1px 2px rgba(0,0,0,0.05);
-  -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15) 0 1px 2px rgba(0,0,0,0.05);
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.15) 0 1px 2px rgba(0,0,0,0.05);
+  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
+  -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
 }
 .btn.disabled,
 .btn[disabled] {
@@ -6638,9 +6447,9 @@ button.close {
   background-image: none;
   opacity: 0.65;
   filter: alpha(opacity=65);
-  -webkit-box-shadow: none X;
-  -moz-box-shadow: none X;
-  box-shadow: none X;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 .btn-large {
   padding: 9px 14px;
@@ -6895,13 +6704,12 @@ input[type="submit"].btn.btn-mini {
   *padding-bottom: 1px;
 }
 .btn-link,
-.btn-link:active,
-.btn-link[disabled] {
+.btn-link:active {
   background-color: transparent;
   background-image: none;
-  -webkit-box-shadow: none X;
-  -moz-box-shadow: none X;
-  box-shadow: none X;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 .btn-link {
   border-color: transparent;
@@ -6915,10 +6723,6 @@ input[type="submit"].btn.btn-mini {
   color: #005580;
   text-decoration: underline;
   background-color: transparent;
-}
-.btn-link[disabled]:hover {
-  color: #333;
-  text-decoration: none;
 }
 .btn-group {
   position: relative;
@@ -7019,9 +6823,9 @@ input[type="submit"].btn.btn-mini {
 .btn-group > .btn + .dropdown-toggle {
   padding-left: 8px;
   padding-right: 8px;
-  -webkit-box-shadow: inset 1px 0 0 rgba(255,255,255,0.125) inset 0 1px 0 rgba(255,255,255,0.2);
-  -moz-box-shadow: inset 1px 0 0 rgba(255,255,255,0.125) inset 0 1px 0 rgba(255,255,255,0.2);
-  box-shadow: inset 1px 0 0 rgba(255,255,255,0.125) inset 0 1px 0 rgba(255,255,255,0.2);
+  -webkit-box-shadow: inset 1px 0 0 rgba(255,255,255,.125), inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+  -moz-box-shadow: inset 1px 0 0 rgba(255,255,255,.125), inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+  box-shadow: inset 1px 0 0 rgba(255,255,255,.125), inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
   *padding-top: 5px;
   *padding-bottom: 5px;
 }
@@ -7043,9 +6847,9 @@ input[type="submit"].btn.btn-mini {
 }
 .btn-group.open .dropdown-toggle {
   background-image: none;
-  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15) 0 1px 2px rgba(0,0,0,0.05);
-  -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15) 0 1px 2px rgba(0,0,0,0.05);
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.15) 0 1px 2px rgba(0,0,0,0.05);
+  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
+  -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
 }
 .btn-group.open .btn.dropdown-toggle {
   background-color: #e6e6e6;
@@ -7527,9 +7331,9 @@ input[type="submit"].btn.btn-mini {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.065) X;
-  -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.065) X;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.065) X;
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+  -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.065);
   *zoom: 1;
   clear: none;
 }
@@ -7686,17 +7490,17 @@ input[type="submit"].btn.btn-mini {
 }
 .navbar-fixed-top .navbar-inner,
 .navbar-static-top .navbar-inner {
-  -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1) 0 1px 10px rgba(0,0,0,0.1);
-  -moz-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1) 0 1px 10px rgba(0,0,0,0.1);
-  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1) 0 1px 10px rgba(0,0,0,0.1);
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.1), 0 1px 10px rgba(0,0,0,.1);
+  -moz-box-shadow: inset 0 -1px 0 rgba(0,0,0,.1), 0 1px 10px rgba(0,0,0,.1);
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.1), 0 1px 10px rgba(0,0,0,.1);
 }
 .navbar-fixed-bottom {
   bottom: 0;
 }
 .navbar-fixed-bottom .navbar-inner {
-  -webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,0.1) 0 -1px 10px rgba(0,0,0,0.1);
-  -moz-box-shadow: inset 0 1px 0 rgba(0,0,0,0.1) 0 -1px 10px rgba(0,0,0,0.1);
-  box-shadow: inset 0 1px 0 rgba(0,0,0,0.1) 0 -1px 10px rgba(0,0,0,0.1);
+  -webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,.1), 0 -1px 10px rgba(0,0,0,.1);
+  -moz-box-shadow: inset 0 1px 0 rgba(0,0,0,.1), 0 -1px 10px rgba(0,0,0,.1);
+  box-shadow: inset 0 1px 0 rgba(0,0,0,.1), 0 -1px 10px rgba(0,0,0,.1);
 }
 .navbar .nav {
   position: relative;
@@ -7734,9 +7538,9 @@ input[type="submit"].btn.btn-mini {
   color: #555;
   text-decoration: none;
   background-color: #e6e6e6;
-  -webkit-box-shadow: inset 0 3px 8px rgba(0,0,0,0.125) X;
-  -moz-box-shadow: inset 0 3px 8px rgba(0,0,0,0.125) X;
-  box-shadow: inset 0 3px 8px rgba(0,0,0,0.125) X;
+  -webkit-box-shadow: inset 0 3px 8px rgba(0,0,0,0.125);
+  -moz-box-shadow: inset 0 3px 8px rgba(0,0,0,0.125);
+  box-shadow: inset 0 3px 8px rgba(0,0,0,0.125);
 }
 .navbar .btn-navbar {
   display: none;
@@ -7758,9 +7562,9 @@ input[type="submit"].btn.btn-mini {
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
   *background-color: #e6e6e6;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.1) 0 1px 0 rgba(255,255,255,0.075);
-  -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.1) 0 1px 0 rgba(255,255,255,0.075);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1) 0 1px 0 rgba(255,255,255,0.075);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);
+  -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);
 }
 .navbar .btn-navbar:hover,
 .navbar .btn-navbar:active,
@@ -7783,9 +7587,9 @@ input[type="submit"].btn.btn-mini {
   -webkit-border-radius: 1px;
   -moz-border-radius: 1px;
   border-radius: 1px;
-  -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.25) X;
-  -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.25) X;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.25) X;
+  -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.25);
+  -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.25);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.25);
 }
 .btn-navbar .icon-bar + .icon-bar {
   margin-top: 3px;
@@ -7929,9 +7733,9 @@ input[type="submit"].btn.btn-mini {
   color: #fff;
   background-color: #515151;
   border-color: #111111;
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) 0 1px 0 rgba(255,255,255,0.15);
-  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) 0 1px 0 rgba(255,255,255,0.15);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) 0 1px 0 rgba(255,255,255,0.15);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.15);
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.15);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.15);
   -webkit-transition: none;
   -moz-transition: none;
   -o-transition: none;
@@ -7953,9 +7757,9 @@ input[type="submit"].btn.btn-mini {
   text-shadow: 0 1px 0 #fff;
   background-color: #fff;
   border: 0;
-  -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.15) X;
-  -moz-box-shadow: 0 0 3px rgba(0,0,0,0.15) X;
-  box-shadow: 0 0 3px rgba(0,0,0,0.15) X;
+  -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.15);
+  -moz-box-shadow: 0 0 3px rgba(0,0,0,0.15);
+  box-shadow: 0 0 3px rgba(0,0,0,0.15);
   outline: 0;
 }
 .navbar-inverse .btn-navbar {
@@ -8022,9 +7826,9 @@ input[type="submit"].btn.btn-mini {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.05) X;
-  -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.05) X;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05) X;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 .pagination ul > li {
   display: inline;
@@ -8166,9 +7970,9 @@ input[type="submit"].btn.btn-mini {
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
-  -webkit-box-shadow: 0 3px 7px rgba(0,0,0,0.3) X;
-  -moz-box-shadow: 0 3px 7px rgba(0,0,0,0.3) X;
-  box-shadow: 0 3px 7px rgba(0,0,0,0.3) X;
+  -webkit-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+  box-shadow: 0 3px 7px rgba(0,0,0,0.3);
   -webkit-background-clip: padding-box;
   -moz-background-clip: padding-box;
   background-clip: padding-box;
@@ -8211,9 +8015,9 @@ input[type="submit"].btn.btn-mini {
   -webkit-border-radius: 0 0 6px 6px;
   -moz-border-radius: 0 0 6px 6px;
   border-radius: 0 0 6px 6px;
-  -webkit-box-shadow: inset 0 1px 0 #fff X;
-  -moz-box-shadow: inset 0 1px 0 #fff X;
-  box-shadow: inset 0 1px 0 #fff X;
+  -webkit-box-shadow: inset 0 1px 0 #fff;
+  -moz-box-shadow: inset 0 1px 0 #fff;
+  box-shadow: inset 0 1px 0 #fff;
   *zoom: 1;
   clear: none;
 }
@@ -8322,9 +8126,9 @@ input[type="submit"].btn.btn-mini {
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
-  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2) X;
-  -moz-box-shadow: 0 5px 10px rgba(0,0,0,0.2) X;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.2) X;
+  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
 }
 .popover.top {
   margin-bottom: 10px;
@@ -8454,9 +8258,9 @@ input[type="submit"].btn.btn-mini {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.055) X;
-  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.055) X;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.055) X;
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.055);
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.055);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.055);
   -webkit-transition: all .2s ease-in-out;
   -moz-transition: all .2s ease-in-out;
   -o-transition: all .2s ease-in-out;
@@ -8464,9 +8268,9 @@ input[type="submit"].btn.btn-mini {
 }
 a.thumbnail:hover {
   border-color: #08c;
-  -webkit-box-shadow: 0 1px 4px rgba(0,105,214,0.25) X;
-  -moz-box-shadow: 0 1px 4px rgba(0,105,214,0.25) X;
-  box-shadow: 0 1px 4px rgba(0,105,214,0.25) X;
+  -webkit-box-shadow: 0 1px 4px rgba(0,105,214,0.25);
+  -moz-box-shadow: 0 1px 4px rgba(0,105,214,0.25);
+  box-shadow: 0 1px 4px rgba(0,105,214,0.25);
 }
 .thumbnail > img {
   display: block;
@@ -8628,9 +8432,9 @@ a.badge-inverse[href] {
   background-image: linear-gradient(to bottom,#f5f5f5,#f9f9f9);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#fff9f9f9', GradientType=0);
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) X;
-  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) X;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) X;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
@@ -8651,9 +8455,9 @@ a.badge-inverse[href] {
   background-image: linear-gradient(to bottom,#149bdf,#0480be);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff149bdf', endColorstr='#ff0480be', GradientType=0);
-  -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15) X;
-  -moz-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15) X;
-  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15) X;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
+  -moz-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -8663,9 +8467,9 @@ a.badge-inverse[href] {
   transition: width .6s ease;
 }
 .progress .bar + .bar {
-  -webkit-box-shadow: inset 1px 0 0 rgba(0,0,0,0.15) inset 0 -1px 0 rgba(0,0,0,0.15);
-  -moz-box-shadow: inset 1px 0 0 rgba(0,0,0,0.15) inset 0 -1px 0 rgba(0,0,0,0.15);
-  box-shadow: inset 1px 0 0 rgba(0,0,0,0.15) inset 0 -1px 0 rgba(0,0,0,0.15);
+  -webkit-box-shadow: inset 1px 0 0 rgba(0,0,0,.15), inset 0 -1px 0 rgba(0,0,0,.15);
+  -moz-box-shadow: inset 1px 0 0 rgba(0,0,0,.15), inset 0 -1px 0 rgba(0,0,0,.15);
+  box-shadow: inset 1px 0 0 rgba(0,0,0,.15), inset 0 -1px 0 rgba(0,0,0,.15);
 }
 .progress-striped .bar {
   background-color: #149bdf;
@@ -8948,9 +8752,9 @@ div.forumpost,
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05) X;
-  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05) X;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.05) X;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
 }
 .mod_introbox blockquote,
 .backup-section blockquote,
@@ -8976,9 +8780,9 @@ div.forumpost blockquote,
   width: 206px;
   background-color: #fff;
   border: 1px solid #ccc;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) X;
-  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) X;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) X;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
   -webkit-transition: border linear .2s, box-shadow linear .2s;
   -moz-transition: border linear .2s, box-shadow linear .2s;
   -o-transition: border linear .2s, box-shadow linear .2s;
@@ -8986,12 +8790,14 @@ div.forumpost blockquote,
   color: #999;
   background-color: #fcfcfc;
   border-color: #ccc;
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.025) X;
-  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.025) X;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.025) X;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.025);
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.025);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.025);
   cursor: not-allowed;
   overflow: hidden;
   white-space: nowrap;
+  width: auto;
+  min-width: 206px;
 }
 .backup-restore .detail-pair-value:focus,
 #page-admin-roles-define div.mform .topfields .felement:focus,
@@ -8999,9 +8805,9 @@ div.forumpost blockquote,
   border-color: rgba(82,168,236,0.8);
   outline: 0;
   outline: thin dotted \9;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 8px rgba(82,168,236,0.6);
-  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 8px rgba(82,168,236,0.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 8px rgba(82,168,236,0.6);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
 }
 .backup-restore .bcs-new-course .detail-pair-value,
 .backup-restore .bcs-current-course .detail-pair-value,
@@ -9009,6 +8815,9 @@ div.forumpost blockquote,
   border: none;
   background: none;
   box-shadow: none;
+  cursor: auto;
+  height: auto;
+  color: inherit;
 }
 img.userpicture,
 .forumpost .picture img {
@@ -9019,9 +8828,9 @@ img.userpicture,
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.055) X;
-  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.055) X;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.055) X;
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.055);
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.055);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.055);
   -webkit-transition: all .2s ease-in-out;
   -moz-transition: all .2s ease-in-out;
   -o-transition: all .2s ease-in-out;
@@ -9094,6 +8903,7 @@ li.activity.label,
   background: inherit;
   color: inherit;
   border: inherit;
+  text-shadow: none;
   padding: 4px 8px;
 }
 .file-picker td.label,
@@ -9146,9 +8956,9 @@ div[id^="bar_pbar"] {
   background-image: linear-gradient(to bottom,#f5f5f5,#f9f9f9);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#fff9f9f9', GradientType=0);
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) X;
-  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) X;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) X;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
@@ -9172,9 +8982,9 @@ div[id^="progress_pbar"] {
   background-image: linear-gradient(to bottom,#149bdf,#0480be) !important;
   background-repeat: repeat-x !important;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff149bdf', endColorstr='#ff0480be', GradientType=0) !important;
-  -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15) X;
-  -moz-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15) X;
-  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15) X;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
+  -moz-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -9285,7 +9095,7 @@ form#login .form-label,
 #page-mod-forum-search td.c0,
 .backup-restore .detail-pair-label {
   float: left;
-  width: 160px;
+  width: 180px;
   padding-top: 5px;
   text-align: right;
 }
@@ -9363,6 +9173,12 @@ div.performanceinfo.pageinfo {
   background-color: #d9edf7;
   border-color: #bce8f1;
   color: #3a87ad;
+}
+.user-enroller-panel,
+div#helppopupbox {
+  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
 }
 .user-enroller-panel,
 .user-enroller-panel .uep-wrap {
@@ -9472,7 +9288,7 @@ table#form td.submit,
 .settingsform .form-buttons,
 .fp-content-center form + div,
 #group_id_buttonar {
-  padding-left: 180px;
+  padding-left: 200px;
 }
 .mform .fitem fieldset.felement,
 .mform .fitem .felement,
@@ -9492,7 +9308,7 @@ form#guestlogin,
 #page-mod-forum-search .c1 {
   *display: inline-block;
   *padding-left: 20px;
-  margin-left: 180px;
+  margin-left: 200px;
   *margin-left: 0;
 }
 .mform .fitem fieldset.felement:first-child,
@@ -9511,7 +9327,7 @@ div.forgetpass:first-child,
 form#guestlogin:first-child,
 .fp-content-center form tr td:first-child,
 #page-mod-forum-search .c1:first-child {
-  *padding-left: 180px;
+  *padding-left: 200px;
 }
 .loginbox {
   padding-left: 200px;
@@ -9565,7 +9381,7 @@ form#guestlogin:first-child,
 .fp-content-center td.mdl-right,
 .backup-restore label.detail-pair-label {
   float: left;
-  width: 160px;
+  width: 180px;
   padding-top: 5px;
   text-align: right;
 }
@@ -9576,7 +9392,10 @@ table#listdirectories,
 table.rolecaps,
 table.userenrolment,
 table#form,
+form#movecourses table,
+form#movecourses table,
 #page-report-log-user .generaltable,
+#page-admin-course-index .editcourse,
 .forumheaderlist,
 .userprofilebox table.list,
 .generaltable {
@@ -9597,8 +9416,14 @@ table.userenrolment th,
 table.userenrolment td,
 table#form th,
 table#form td,
+form#movecourses table th,
+form#movecourses table td,
+form#movecourses table th,
+form#movecourses table td,
 #page-report-log-user .generaltable th,
 #page-report-log-user .generaltable td,
+#page-admin-course-index .editcourse th,
+#page-admin-course-index .editcourse td,
 .forumheaderlist th,
 .forumheaderlist td,
 .userprofilebox table.list th,
@@ -9618,7 +9443,10 @@ table#listdirectories th,
 table.rolecaps th,
 table.userenrolment th,
 table#form th,
+form#movecourses table th,
+form#movecourses table th,
 #page-report-log-user .generaltable th,
+#page-admin-course-index .editcourse th,
 .forumheaderlist th,
 .userprofilebox table.list th,
 .generaltable th {
@@ -9631,7 +9459,10 @@ table#listdirectories thead th,
 table.rolecaps thead th,
 table.userenrolment thead th,
 table#form thead th,
+form#movecourses table thead th,
+form#movecourses table thead th,
 #page-report-log-user .generaltable thead th,
+#page-admin-course-index .editcourse thead th,
 .forumheaderlist thead th,
 .userprofilebox table.list thead th,
 .generaltable thead th {
@@ -9679,12 +9510,30 @@ table#form colgroup + thead tr:first-child th,
 table#form colgroup + thead tr:first-child td,
 table#form thead:first-child tr:first-child th,
 table#form thead:first-child tr:first-child td,
+form#movecourses table caption + thead tr:first-child th,
+form#movecourses table caption + thead tr:first-child td,
+form#movecourses table colgroup + thead tr:first-child th,
+form#movecourses table colgroup + thead tr:first-child td,
+form#movecourses table thead:first-child tr:first-child th,
+form#movecourses table thead:first-child tr:first-child td,
+form#movecourses table caption + thead tr:first-child th,
+form#movecourses table caption + thead tr:first-child td,
+form#movecourses table colgroup + thead tr:first-child th,
+form#movecourses table colgroup + thead tr:first-child td,
+form#movecourses table thead:first-child tr:first-child th,
+form#movecourses table thead:first-child tr:first-child td,
 #page-report-log-user .generaltable caption + thead tr:first-child th,
 #page-report-log-user .generaltable caption + thead tr:first-child td,
 #page-report-log-user .generaltable colgroup + thead tr:first-child th,
 #page-report-log-user .generaltable colgroup + thead tr:first-child td,
 #page-report-log-user .generaltable thead:first-child tr:first-child th,
 #page-report-log-user .generaltable thead:first-child tr:first-child td,
+#page-admin-course-index .editcourse caption + thead tr:first-child th,
+#page-admin-course-index .editcourse caption + thead tr:first-child td,
+#page-admin-course-index .editcourse colgroup + thead tr:first-child th,
+#page-admin-course-index .editcourse colgroup + thead tr:first-child td,
+#page-admin-course-index .editcourse thead:first-child tr:first-child th,
+#page-admin-course-index .editcourse thead:first-child tr:first-child td,
 .forumheaderlist caption + thead tr:first-child th,
 .forumheaderlist caption + thead tr:first-child td,
 .forumheaderlist colgroup + thead tr:first-child th,
@@ -9712,371 +9561,18 @@ table#listdirectories tbody + tbody,
 table.rolecaps tbody + tbody,
 table.userenrolment tbody + tbody,
 table#form tbody + tbody,
+form#movecourses table tbody + tbody,
+form#movecourses table tbody + tbody,
 #page-report-log-user .generaltable tbody + tbody,
+#page-admin-course-index .editcourse tbody + tbody,
 .forumheaderlist tbody + tbody,
 .userprofilebox table.list tbody + tbody,
 .generaltable tbody + tbody {
   border-top: 2px solid #ddd;
 }
-table#explaincaps .span1,
-table#defineroletable .span1,
-table.grading-report .span1,
-table#listdirectories .span1,
-table.rolecaps .span1,
-table.userenrolment .span1,
-table#form .span1,
-#page-report-log-user .generaltable .span1,
-.forumheaderlist .span1,
-.userprofilebox table.list .span1,
-.generaltable .span1 {
-  float: none;
-  width: 44px;
-  margin-left: 0;
-}
-table#explaincaps .span2,
-table#defineroletable .span2,
-table.grading-report .span2,
-table#listdirectories .span2,
-table.rolecaps .span2,
-table.userenrolment .span2,
-table#form .span2,
-#page-report-log-user .generaltable .span2,
-.forumheaderlist .span2,
-.userprofilebox table.list .span2,
-.generaltable .span2 {
-  float: none;
-  width: 124px;
-  margin-left: 0;
-}
-table#explaincaps .span3,
-table#defineroletable .span3,
-table.grading-report .span3,
-table#listdirectories .span3,
-table.rolecaps .span3,
-table.userenrolment .span3,
-table#form .span3,
-#page-report-log-user .generaltable .span3,
-.forumheaderlist .span3,
-.userprofilebox table.list .span3,
-.generaltable .span3 {
-  float: none;
-  width: 204px;
-  margin-left: 0;
-}
-table#explaincaps .span4,
-table#defineroletable .span4,
-table.grading-report .span4,
-table#listdirectories .span4,
-table.rolecaps .span4,
-table.userenrolment .span4,
-table#form .span4,
-#page-report-log-user .generaltable .span4,
-.forumheaderlist .span4,
-.userprofilebox table.list .span4,
-.generaltable .span4 {
-  float: none;
-  width: 284px;
-  margin-left: 0;
-}
-table#explaincaps .span5,
-table#defineroletable .span5,
-table.grading-report .span5,
-table#listdirectories .span5,
-table.rolecaps .span5,
-table.userenrolment .span5,
-table#form .span5,
-#page-report-log-user .generaltable .span5,
-.forumheaderlist .span5,
-.userprofilebox table.list .span5,
-.generaltable .span5 {
-  float: none;
-  width: 364px;
-  margin-left: 0;
-}
-table#explaincaps .span6,
-table#defineroletable .span6,
-table.grading-report .span6,
-table#listdirectories .span6,
-table.rolecaps .span6,
-table.userenrolment .span6,
-table#form .span6,
-#page-report-log-user .generaltable .span6,
-.forumheaderlist .span6,
-.userprofilebox table.list .span6,
-.generaltable .span6 {
-  float: none;
-  width: 444px;
-  margin-left: 0;
-}
-table#explaincaps .span7,
-table#defineroletable .span7,
-table.grading-report .span7,
-table#listdirectories .span7,
-table.rolecaps .span7,
-table.userenrolment .span7,
-table#form .span7,
-#page-report-log-user .generaltable .span7,
-.forumheaderlist .span7,
-.userprofilebox table.list .span7,
-.generaltable .span7 {
-  float: none;
-  width: 524px;
-  margin-left: 0;
-}
-table#explaincaps .span8,
-table#defineroletable .span8,
-table.grading-report .span8,
-table#listdirectories .span8,
-table.rolecaps .span8,
-table.userenrolment .span8,
-table#form .span8,
-#page-report-log-user .generaltable .span8,
-.forumheaderlist .span8,
-.userprofilebox table.list .span8,
-.generaltable .span8 {
-  float: none;
-  width: 604px;
-  margin-left: 0;
-}
-table#explaincaps .span9,
-table#defineroletable .span9,
-table.grading-report .span9,
-table#listdirectories .span9,
-table.rolecaps .span9,
-table.userenrolment .span9,
-table#form .span9,
-#page-report-log-user .generaltable .span9,
-.forumheaderlist .span9,
-.userprofilebox table.list .span9,
-.generaltable .span9 {
-  float: none;
-  width: 684px;
-  margin-left: 0;
-}
-table#explaincaps .span10,
-table#defineroletable .span10,
-table.grading-report .span10,
-table#listdirectories .span10,
-table.rolecaps .span10,
-table.userenrolment .span10,
-table#form .span10,
-#page-report-log-user .generaltable .span10,
-.forumheaderlist .span10,
-.userprofilebox table.list .span10,
-.generaltable .span10 {
-  float: none;
-  width: 764px;
-  margin-left: 0;
-}
-table#explaincaps .span11,
-table#defineroletable .span11,
-table.grading-report .span11,
-table#listdirectories .span11,
-table.rolecaps .span11,
-table.userenrolment .span11,
-table#form .span11,
-#page-report-log-user .generaltable .span11,
-.forumheaderlist .span11,
-.userprofilebox table.list .span11,
-.generaltable .span11 {
-  float: none;
-  width: 844px;
-  margin-left: 0;
-}
-table#explaincaps .span12,
-table#defineroletable .span12,
-table.grading-report .span12,
-table#listdirectories .span12,
-table.rolecaps .span12,
-table.userenrolment .span12,
-table#form .span12,
-#page-report-log-user .generaltable .span12,
-.forumheaderlist .span12,
-.userprofilebox table.list .span12,
-.generaltable .span12 {
-  float: none;
-  width: 924px;
-  margin-left: 0;
-}
-table#explaincaps .span13,
-table#defineroletable .span13,
-table.grading-report .span13,
-table#listdirectories .span13,
-table.rolecaps .span13,
-table.userenrolment .span13,
-table#form .span13,
-#page-report-log-user .generaltable .span13,
-.forumheaderlist .span13,
-.userprofilebox table.list .span13,
-.generaltable .span13 {
-  float: none;
-  width: 1004px;
-  margin-left: 0;
-}
-table#explaincaps .span14,
-table#defineroletable .span14,
-table.grading-report .span14,
-table#listdirectories .span14,
-table.rolecaps .span14,
-table.userenrolment .span14,
-table#form .span14,
-#page-report-log-user .generaltable .span14,
-.forumheaderlist .span14,
-.userprofilebox table.list .span14,
-.generaltable .span14 {
-  float: none;
-  width: 1084px;
-  margin-left: 0;
-}
-table#explaincaps .span15,
-table#defineroletable .span15,
-table.grading-report .span15,
-table#listdirectories .span15,
-table.rolecaps .span15,
-table.userenrolment .span15,
-table#form .span15,
-#page-report-log-user .generaltable .span15,
-.forumheaderlist .span15,
-.userprofilebox table.list .span15,
-.generaltable .span15 {
-  float: none;
-  width: 1164px;
-  margin-left: 0;
-}
-table#explaincaps .span16,
-table#defineroletable .span16,
-table.grading-report .span16,
-table#listdirectories .span16,
-table.rolecaps .span16,
-table.userenrolment .span16,
-table#form .span16,
-#page-report-log-user .generaltable .span16,
-.forumheaderlist .span16,
-.userprofilebox table.list .span16,
-.generaltable .span16 {
-  float: none;
-  width: 1244px;
-  margin-left: 0;
-}
-table#explaincaps .span17,
-table#defineroletable .span17,
-table.grading-report .span17,
-table#listdirectories .span17,
-table.rolecaps .span17,
-table.userenrolment .span17,
-table#form .span17,
-#page-report-log-user .generaltable .span17,
-.forumheaderlist .span17,
-.userprofilebox table.list .span17,
-.generaltable .span17 {
-  float: none;
-  width: 1324px;
-  margin-left: 0;
-}
-table#explaincaps .span18,
-table#defineroletable .span18,
-table.grading-report .span18,
-table#listdirectories .span18,
-table.rolecaps .span18,
-table.userenrolment .span18,
-table#form .span18,
-#page-report-log-user .generaltable .span18,
-.forumheaderlist .span18,
-.userprofilebox table.list .span18,
-.generaltable .span18 {
-  float: none;
-  width: 1404px;
-  margin-left: 0;
-}
-table#explaincaps .span19,
-table#defineroletable .span19,
-table.grading-report .span19,
-table#listdirectories .span19,
-table.rolecaps .span19,
-table.userenrolment .span19,
-table#form .span19,
-#page-report-log-user .generaltable .span19,
-.forumheaderlist .span19,
-.userprofilebox table.list .span19,
-.generaltable .span19 {
-  float: none;
-  width: 1484px;
-  margin-left: 0;
-}
-table#explaincaps .span20,
-table#defineroletable .span20,
-table.grading-report .span20,
-table#listdirectories .span20,
-table.rolecaps .span20,
-table.userenrolment .span20,
-table#form .span20,
-#page-report-log-user .generaltable .span20,
-.forumheaderlist .span20,
-.userprofilebox table.list .span20,
-.generaltable .span20 {
-  float: none;
-  width: 1564px;
-  margin-left: 0;
-}
-table#explaincaps .span21,
-table#defineroletable .span21,
-table.grading-report .span21,
-table#listdirectories .span21,
-table.rolecaps .span21,
-table.userenrolment .span21,
-table#form .span21,
-#page-report-log-user .generaltable .span21,
-.forumheaderlist .span21,
-.userprofilebox table.list .span21,
-.generaltable .span21 {
-  float: none;
-  width: 1644px;
-  margin-left: 0;
-}
-table#explaincaps .span22,
-table#defineroletable .span22,
-table.grading-report .span22,
-table#listdirectories .span22,
-table.rolecaps .span22,
-table.userenrolment .span22,
-table#form .span22,
-#page-report-log-user .generaltable .span22,
-.forumheaderlist .span22,
-.userprofilebox table.list .span22,
-.generaltable .span22 {
-  float: none;
-  width: 1724px;
-  margin-left: 0;
-}
-table#explaincaps .span23,
-table#defineroletable .span23,
-table.grading-report .span23,
-table#listdirectories .span23,
-table.rolecaps .span23,
-table.userenrolment .span23,
-table#form .span23,
-#page-report-log-user .generaltable .span23,
-.forumheaderlist .span23,
-.userprofilebox table.list .span23,
-.generaltable .span23 {
-  float: none;
-  width: 1804px;
-  margin-left: 0;
-}
-table#explaincaps .span24,
-table#defineroletable .span24,
-table.grading-report .span24,
-table#listdirectories .span24,
-table.rolecaps .span24,
-table.userenrolment .span24,
-table#form .span24,
-#page-report-log-user .generaltable .span24,
-.forumheaderlist .span24,
-.userprofilebox table.list .span24,
-.generaltable .span24 {
-  float: none;
-  width: 1884px;
-  margin-left: 0;
+#page-admin-course-index .editcourse tbody tr:first-child th.header,
+form#movecourses table tbody tr:first-child th.header {
+  border-top: 0;
 }
 .path-mod-forum .forumheaderlist td,
 .calendartable th,
@@ -10146,9 +9642,11 @@ table#permissions tbody tr.rolecap:hover th,
 }
 .path-admin .roleassigntable #buttonscell #add,
 .path-admin .roleassigntable #buttonscell #remove input,
+input[id$="_clearbutton"],
 button,
 input.form-submit,
 input[type="submit"],
+input[type="button"],
 input#id_submitbutton,
 input#id_submitbutton2,
 input#id_cancel {
@@ -10184,9 +9682,9 @@ input#id_cancel {
   -moz-border-radius: 4px;
   border-radius: 4px;
   *margin-left: .3em;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2) 0 1px 2px rgba(0,0,0,0.05);
-  -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2) 0 1px 2px rgba(0,0,0,0.05);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2) 0 1px 2px rgba(0,0,0,0.05);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+  -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
   border-color: #c5c5c5;
   border-color: rgba(0,0,0,0.15) rgba(0,0,0,0.15) rgba(0,0,0,0.25);
 }
@@ -10200,6 +9698,11 @@ input#id_cancel {
 .path-admin .roleassigntable #buttonscell #remove input.active,
 .path-admin .roleassigntable #buttonscell #remove input.disabled,
 .path-admin .roleassigntable #buttonscell #remove input[disabled],
+input[id$="_clearbutton"]:hover,
+input[id$="_clearbutton"]:active,
+input[id$="_clearbutton"].active,
+input[id$="_clearbutton"].disabled,
+input[id$="_clearbutton"][disabled],
 button:hover,
 button:active,
 button.active,
@@ -10215,6 +9718,11 @@ input[type="submit"]:active,
 input[type="submit"].active,
 input[type="submit"].disabled,
 input[type="submit"][disabled],
+input[type="button"]:hover,
+input[type="button"]:active,
+input[type="button"].active,
+input[type="button"].disabled,
+input[type="button"][disabled],
 input#id_submitbutton:hover,
 input#id_submitbutton:active,
 input#id_submitbutton.active,
@@ -10238,12 +9746,16 @@ input#id_cancel[disabled] {
 .path-admin .roleassigntable #buttonscell #add.active,
 .path-admin .roleassigntable #buttonscell #remove input:active,
 .path-admin .roleassigntable #buttonscell #remove input.active,
+input[id$="_clearbutton"]:active,
+input[id$="_clearbutton"].active,
 button:active,
 button.active,
 input.form-submit:active,
 input.form-submit.active,
 input[type="submit"]:active,
 input[type="submit"].active,
+input[type="button"]:active,
+input[type="button"].active,
 input#id_submitbutton:active,
 input#id_submitbutton.active,
 input#id_submitbutton2:active,
@@ -10254,9 +9766,11 @@ input#id_cancel.active {
 }
 .path-admin .roleassigntable #buttonscell #add:first-child,
 .path-admin .roleassigntable #buttonscell #remove input:first-child,
+input[id$="_clearbutton"]:first-child,
 button:first-child,
 input.form-submit:first-child,
 input[type="submit"]:first-child,
+input[type="button"]:first-child,
 input#id_submitbutton:first-child,
 input#id_submitbutton2:first-child,
 input#id_cancel:first-child {
@@ -10264,9 +9778,11 @@ input#id_cancel:first-child {
 }
 .path-admin .roleassigntable #buttonscell #add:hover,
 .path-admin .roleassigntable #buttonscell #remove input:hover,
+input[id$="_clearbutton"]:hover,
 button:hover,
 input.form-submit:hover,
 input[type="submit"]:hover,
+input[type="button"]:hover,
 input#id_submitbutton:hover,
 input#id_submitbutton2:hover,
 input#id_cancel:hover {
@@ -10282,9 +9798,11 @@ input#id_cancel:hover {
 }
 .path-admin .roleassigntable #buttonscell #add:focus,
 .path-admin .roleassigntable #buttonscell #remove input:focus,
+input[id$="_clearbutton"]:focus,
 button:focus,
 input.form-submit:focus,
 input[type="submit"]:focus,
+input[type="button"]:focus,
 input#id_submitbutton:focus,
 input#id_submitbutton2:focus,
 input#id_cancel:focus {
@@ -10296,12 +9814,16 @@ input#id_cancel:focus {
 .path-admin .roleassigntable #buttonscell #add:active,
 .path-admin .roleassigntable #buttonscell #remove input.active,
 .path-admin .roleassigntable #buttonscell #remove input:active,
+input[id$="_clearbutton"].active,
+input[id$="_clearbutton"]:active,
 button.active,
 button:active,
 input.form-submit.active,
 input.form-submit:active,
 input[type="submit"].active,
 input[type="submit"]:active,
+input[type="button"].active,
+input[type="button"]:active,
 input#id_submitbutton.active,
 input#id_submitbutton:active,
 input#id_submitbutton2.active,
@@ -10312,20 +9834,24 @@ input#id_cancel:active {
   background-color: #d9d9d9 \9;
   background-image: none;
   outline: 0;
-  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15) 0 1px 2px rgba(0,0,0,0.05);
-  -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15) 0 1px 2px rgba(0,0,0,0.05);
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.15) 0 1px 2px rgba(0,0,0,0.05);
+  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
+  -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
 }
 .path-admin .roleassigntable #buttonscell #add.disabled,
 .path-admin .roleassigntable #buttonscell #add[disabled],
 .path-admin .roleassigntable #buttonscell #remove input.disabled,
 .path-admin .roleassigntable #buttonscell #remove input[disabled],
+input[id$="_clearbutton"].disabled,
+input[id$="_clearbutton"][disabled],
 button.disabled,
 button[disabled],
 input.form-submit.disabled,
 input.form-submit[disabled],
 input[type="submit"].disabled,
 input[type="submit"][disabled],
+input[type="button"].disabled,
+input[type="button"][disabled],
 input#id_submitbutton.disabled,
 input#id_submitbutton[disabled],
 input#id_submitbutton2.disabled,
@@ -10337,20 +9863,24 @@ input#id_cancel[disabled] {
   background-image: none;
   opacity: 0.65;
   filter: alpha(opacity=65);
-  -webkit-box-shadow: none X;
-  -moz-box-shadow: none X;
-  box-shadow: none X;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 .path-admin .roleassigntable #buttonscell #add .label,
 .path-admin .roleassigntable #buttonscell #add .badge,
 .path-admin .roleassigntable #buttonscell #remove input .label,
 .path-admin .roleassigntable #buttonscell #remove input .badge,
+input[id$="_clearbutton"] .label,
+input[id$="_clearbutton"] .badge,
 button .label,
 button .badge,
 input.form-submit .label,
 input.form-submit .badge,
 input[type="submit"] .label,
 input[type="submit"] .badge,
+input[type="button"] .label,
+input[type="button"] .badge,
 input#id_submitbutton .label,
 input#id_submitbutton .badge,
 input#id_submitbutton2 .label,
@@ -10500,6 +10030,7 @@ a.assignrolelink img,
 a.editing_highlight img,
 a.unassignrolelink img,
 .userinforow .groups .group a img,
+li.item_with_icon p a img,
 a.editing_showhide img {
   display: none;
 }
@@ -10620,7 +10151,7 @@ td.mdl-left > input {
 .backup-restore .detail-pair-value,
 #page-admin-roles-define div.mform .topfields .felement,
 .felement.fstatic {
-  min-width: 210px;
+  min-width: 206px;
 }
 .backup-restore .detail-pair-value > span.sub-detail {
   display: block;
@@ -10869,9 +10400,9 @@ header.navbar .logininfo .navbar-search .search-query {
   color: #fff;
   background-color: #515151;
   border-color: #111111;
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) 0 1px 0 rgba(255,255,255,0.15);
-  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) 0 1px 0 rgba(255,255,255,0.15);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) 0 1px 0 rgba(255,255,255,0.15);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.15);
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.15);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.15);
   -webkit-transition: none;
   -moz-transition: none;
   -o-transition: none;
@@ -10893,9 +10424,9 @@ header.navbar .logininfo .navbar-search .search-query.focused {
   text-shadow: 0 1px 0 #fff;
   background-color: #fff;
   border: 0;
-  -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.15) X;
-  -moz-box-shadow: 0 0 3px rgba(0,0,0,0.15) X;
-  box-shadow: 0 0 3px rgba(0,0,0,0.15) X;
+  -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.15);
+  -moz-box-shadow: 0 0 3px rgba(0,0,0,0.15);
+  box-shadow: 0 0 3px rgba(0,0,0,0.15);
   outline: 0;
 }
 header.navbar .logininfo .btn-navbar {
@@ -11396,6 +10927,49 @@ div.glossarydisplay .entrybox a,
 div.glossarydisplay .entrybox b {
   font: 13px Arial;
 }
+div.glossarydisplay .entrybox span.accesshide + b a,
+div.glossarydisplay .entrybox span.accesshide + a {
+  border-left-width: 1px;
+  -webkit-border-radius: 3px 0 0 3px;
+  -moz-border-radius: 3px 0 0 3px;
+  border-radius: 3px 0 0 3px;
+  display: inline-block;
+  margin-top: 1em;
+  min-height: 16px;
+}
+div.glossarydisplay .entrybox span.accesshide + b + a,
+div.glossarydisplay .entrybox span.accesshide + a + b a {
+  -webkit-border-radius: 0 3px 3px 0;
+  -moz-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
+  display: inline-block;
+  margin-top: 1em;
+  min-height: 16px;
+}
+div.glossarydisplay .entrybox span.accesshide + a + b,
+div.glossarydisplay .entrybox span.accesshide + b {
+  border: 0;
+  padding: 0;
+}
+div.glossarydisplay div.entrybox table tbody tr td b {
+  margin: 10px 0;
+  font-family: inherit;
+  font-weight: bold;
+  line-height: 1;
+  color: inherit;
+  text-rendering: optimizelegibility;
+  font-size: 24px;
+  line-height: 40px;
+  color: black;
+  background: none;
+  border: none;
+  font-family: Arial, sans;
+}
+div.glossarydisplay div.entrybox table tbody tr td b small {
+  font-weight: normal;
+  line-height: 1;
+  color: #999;
+}
 div.glossaryexplain {
   padding-bottom: 10px;
 }
@@ -11681,150 +11255,6 @@ div.fitemtitle span.helplink {
 #turnitintool_style #submissionTableId tbody + tbody {
   border-top: 2px solid #ddd;
 }
-#turnitintool_style #uploadtableid .span1,
-#turnitintool_style #submissionTableId .span1 {
-  float: none;
-  width: 44px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span2,
-#turnitintool_style #submissionTableId .span2 {
-  float: none;
-  width: 124px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span3,
-#turnitintool_style #submissionTableId .span3 {
-  float: none;
-  width: 204px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span4,
-#turnitintool_style #submissionTableId .span4 {
-  float: none;
-  width: 284px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span5,
-#turnitintool_style #submissionTableId .span5 {
-  float: none;
-  width: 364px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span6,
-#turnitintool_style #submissionTableId .span6 {
-  float: none;
-  width: 444px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span7,
-#turnitintool_style #submissionTableId .span7 {
-  float: none;
-  width: 524px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span8,
-#turnitintool_style #submissionTableId .span8 {
-  float: none;
-  width: 604px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span9,
-#turnitintool_style #submissionTableId .span9 {
-  float: none;
-  width: 684px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span10,
-#turnitintool_style #submissionTableId .span10 {
-  float: none;
-  width: 764px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span11,
-#turnitintool_style #submissionTableId .span11 {
-  float: none;
-  width: 844px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span12,
-#turnitintool_style #submissionTableId .span12 {
-  float: none;
-  width: 924px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span13,
-#turnitintool_style #submissionTableId .span13 {
-  float: none;
-  width: 1004px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span14,
-#turnitintool_style #submissionTableId .span14 {
-  float: none;
-  width: 1084px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span15,
-#turnitintool_style #submissionTableId .span15 {
-  float: none;
-  width: 1164px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span16,
-#turnitintool_style #submissionTableId .span16 {
-  float: none;
-  width: 1244px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span17,
-#turnitintool_style #submissionTableId .span17 {
-  float: none;
-  width: 1324px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span18,
-#turnitintool_style #submissionTableId .span18 {
-  float: none;
-  width: 1404px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span19,
-#turnitintool_style #submissionTableId .span19 {
-  float: none;
-  width: 1484px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span20,
-#turnitintool_style #submissionTableId .span20 {
-  float: none;
-  width: 1564px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span21,
-#turnitintool_style #submissionTableId .span21 {
-  float: none;
-  width: 1644px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span22,
-#turnitintool_style #submissionTableId .span22 {
-  float: none;
-  width: 1724px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span23,
-#turnitintool_style #submissionTableId .span23 {
-  float: none;
-  width: 1804px;
-  margin-left: 0;
-}
-#turnitintool_style #uploadtableid .span24,
-#turnitintool_style #submissionTableId .span24 {
-  float: none;
-  width: 1884px;
-  margin-left: 0;
-}
 #turnitintool_style .uploadtableid td {
   border-top: none;
 }
@@ -11875,6 +11305,10 @@ div.fitemtitle span.helplink {
   border-right: 0 !important;
   border-left: 0 !important;
 }
+.commands a,
+a.action-icon {
+  padding: 0 2px;
+}
 .block {
   min-height: 20px;
   padding: 19px;
@@ -11884,9 +11318,9 @@ div.fitemtitle span.helplink {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05) X;
-  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05) X;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.05) X;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
 }
 .block blockquote {
   border-color: #ddd;

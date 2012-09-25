@@ -40,6 +40,8 @@ class theme_gu23_core_renderer extends core_renderer {
             'i/move_2d' => 'move',
             'i/backup' => 'cog',
             'i/restore' => 'cog',
+            't/backup' => 'download',
+            't/restore' => 'upload',
             'i/return' => 'repeat',
             'i/reload' => 'refresh',
             'i/roles' => 'user',
@@ -89,6 +91,7 @@ class theme_gu23_core_renderer extends core_renderer {
         }
 
         $icon = $this->render($pixicon);
+        $attributes['title'] = $pixicon->attributes['alt'];
 
         if ($linktext) {
             $text = $pixicon->attributes['alt'];

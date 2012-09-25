@@ -3,6 +3,12 @@
 
 class theme_bootstrap_core_renderer extends core_renderer {
 
+    static $icons_ignore = array(
+            'icon' => '?',      // all the module icons have this name
+            't/groups' => '?',
+            't/groupn' => '?',
+class theme_bootstrap_core_renderer extends core_renderer {
+
     static $icons = array(
             'docs' => 'question-sign',
             'book' => 'book',
@@ -21,14 +27,12 @@ class theme_bootstrap_core_renderer extends core_renderer {
             't/down' => 'arrow-down',
             't/edit' => 'edit',
             't/editstring' => 'tag',
-            't/copy' => 'duplicate',
             't/delete' => 'remove',
             'i/edit' => 'pencil',
+            't/copy' => 'copy', // created png from font awesome
             'i/settings' => 'list-alt',
             'i/grades' => 'grades',
             'i/group' => 'user',
-            //'t/groupn' => '?',
-            //'t/groupv' => '?',
             't/switch_plus' => 'plus-sign',
             't/switch_minus' => 'minus-sign',
             'i/filter' => 'filter',
@@ -101,7 +105,7 @@ class theme_bootstrap_core_renderer extends core_renderer {
 
         if ($this->page->pagetype == 'site-index') {
             $div_attributes['class'] = "sitelink";
-            $text = 'made with ';
+            $text = 'Made with ';
             $a_attributes['href'] = 'http://moodle.org/';
         } else if (!empty($CFG->target_release) &&
                 $CFG->target_release != $CFG->release) {
@@ -125,11 +129,13 @@ class theme_bootstrap_core_renderer extends core_renderer {
 
     protected function render_pix_icon(pix_icon $icon) {
 
-        if (isset(self::$icons[$icon->pix])) {
+        if (isset(self::$icons_ignore[$icon->pix])) {
+            return parent::render_pix_icon($icon);
+        } else if (isset(self::$icons[$icon->pix])) {
             return self::icon(self::$icons[$icon->pix]);
         } else {
-            //return parent::render_pix_icon($icon);
-            return '<i class=icon-not-assigned data-debug-icon="'.$icon->pix.'"></i>';
+            return parent::render_pix_icon($icon);
+            //return '<i class=icon-not-assigned data-debug-icon="'.$icon->pix.'"></i>';
         }
 
 
@@ -1349,8 +1355,8 @@ class theme_bootstrap_core_admin_renderer extends core_admin_renderer {
         }
 
         //put errors first in
-        $servertable->data = array_merge($serverdata['error'], $serverdata['warning'], $serverdata['success']);
-        $othertable->data = array_merge($otherdata['error'], $otherdata['warning'], $otherdata['success']);
+        $servertable->data = array_merge($serverdata['important'], $serverdata['warning'], $serverdata['success']);
+        $othertable->data = array_merge($otherdata['important'], $otherdata['warning'], $otherdata['success']);
 
         // Print table
         $output = '';
