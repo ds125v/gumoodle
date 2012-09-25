@@ -91,6 +91,7 @@ class theme_gu23_core_renderer extends core_renderer {
         }
 
         $icon = $this->render($pixicon);
+        $attributes['title'] = $pixicon->attributes['alt'];
 
         if ($linktext) {
             $text = $pixicon->attributes['alt'];
