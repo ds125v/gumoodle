@@ -8903,6 +8903,7 @@ li.activity.label,
   background: inherit;
   color: inherit;
   border: inherit;
+  text-shadow: none;
   padding: 4px 8px;
 }
 .file-picker td.label,
@@ -10150,7 +10151,7 @@ td.mdl-left > input {
 .backup-restore .detail-pair-value,
 #page-admin-roles-define div.mform .topfields .felement,
 .felement.fstatic {
-  min-width: 210px;
+  min-width: 206px;
 }
 .backup-restore .detail-pair-value > span.sub-detail {
   display: block;
