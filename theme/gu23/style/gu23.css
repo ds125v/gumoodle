@@ -1353,8 +1353,7 @@ div.resourcecontent {
 .categorylist .category .image,
 .categorylist .course .name,
 .categorylist .course .info {
-  float: left;
-  text-align: left;
+  clear: left;
 }
 .categorylist .course {
   padding-left: 18px;
