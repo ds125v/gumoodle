@@ -15,7 +15,9 @@ div.forumpost,
 .backup-restore .detail-pair-value,
 #page-admin-roles-define div.mform .topfields .felement,
 .felement.fstatic {
-  .uneditable-input 
+  .uneditable-input;
+  width: auto;
+  min-width: 206px;
 }
 .backup-restore .bcs-new-course .detail-pair-value,
 .backup-restore .bcs-current-course .detail-pair-value,
@@ -23,6 +25,9 @@ div.forumpost,
   border: none;
   background: none;
   box-shadow: none;
+  cursor: auto;
+  height: auto; // for big category search tables
+  color: inherit;
 }
 
 img.userpicture,
@@ -92,6 +97,7 @@ li.activity.label,
   background: inherit;
   color: inherit;
   border: inherit;
+  text-shadow: none;
   padding: 4px 8px;
 }
 .file-picker td.label,
@@ -217,10 +223,6 @@ a#closehelpbox {
   right:4px;
 }
 
-tr.msg-noneinstalled td,
-tr.msg-noneinstalled th {
- .table tbody tr.info td
-}
 
 #page-admin-roles-assign h2 + .box.generalbox,
 div.notifysuccess,
@@ -264,9 +266,8 @@ div.performanceinfo.pageinfo {
 }
 .user-enroller-panel,
 div#helppopupbox {
-  .popover-inner
-  // width: different
-  // background: transparent?
+  // taken from popover.less
+  .box-shadow(0 5px 10px rgba(0,0,0,.2));
 }
 
 .user-enroller-panel,
@@ -428,12 +429,23 @@ table#listdirectories,
 table.rolecaps,
 table.userenrolment,
 table#form,
+form#movecourses table,
+form#movecourses table,
 #page-report-log-user .generaltable,
+#page-admin-course-index .editcourse,
 .forumheaderlist,
 .userprofilebox table.list,
 .generaltable {
   .table
 }
+// fixing tables with header rows in the tbody
+#page-admin-course-index .editcourse,
+form#movecourses table {
+    tbody tr:first-child th.header {
+        border-top: 0;
+    }
+}
+
 .path-mod-forum .forumheaderlist td,
 .calendartable th,
 .calendartable td,
@@ -501,10 +513,15 @@ table#permissions tbody tr.rolecap:hover th,
   background-color: #f5f5f5;
 }
 
-.path-admin .roleassigntable #buttonscell #add, .path-admin .roleassigntable #buttonscell #remove input,
+
+
+.path-admin .roleassigntable #buttonscell #add,
+.path-admin .roleassigntable #buttonscell #remove input,
+input[id$="_clearbutton"],
 button,
 input.form-submit,
 input[type="submit"],
+input[type="button"],
 input#id_submitbutton,
 input#id_submitbutton2,
 input#id_cancel {
@@ -556,6 +573,7 @@ a.assignrolelink img,
 a.editing_highlight img,
 a.unassignrolelink img,
 .userinforow .groups .group a img,
+li.item_with_icon p a img,
 a.editing_showhide img {
   display: none;
 }
@@ -671,7 +689,7 @@ td.mdl-left > input { // file-picker
 .backup-restore .detail-pair-value,
 #page-admin-roles-define div.mform .topfields .felement,
 .felement.fstatic { // use min-width to allow for long values and help text incorrectly marked up
-  min-width: 210px;
+  min-width: 206px;
 }
 .backup-restore .detail-pair-value > span.sub-detail  { 
   display: block;
@@ -785,7 +803,7 @@ select#id_courserole_rl
 
 .mform div.fdescription.required {
   text-align: left;
-  margin-left: 200px;
+  margin-left: @horizontalComponentOffset;
 }
 
 // additions
@@ -1363,7 +1381,35 @@ div.glossarydisplay .entrybox { // very hacky due to limited HTML
     b {
         font: 13px Arial;
     }
+    span.accesshide + b a,
+    span.accesshide + a {
+        border-left-width: 1px;
+        .border-radius(3px 0 0 3px);
+        display: inline-block;
+        margin-top: 1em;
+        min-height: 16px;
+    }
+    span.accesshide + b + a,
+    span.accesshide + a + b a {
+        .border-radius(0 3px 3px 0);
+        display: inline-block;
+        margin-top: 1em;
+        min-height: 16px;
+    }
 
+    span.accesshide + a + b,
+    span.accesshide + b {
+        border: 0;
+        padding: 0;
+    }
+
+}
+div.glossarydisplay div.entrybox table tbody tr td b {
+    h3;
+    color: black;
+    background: none;
+    border: none;
+    font-family: Arial, sans;
 }
 div.glossaryexplain {
     padding-bottom: 10px;
@@ -1674,4 +1720,8 @@ div.fitemtitle span.helplink {
     background: transparent !important;
     border-right: 0 !important;
     border-left: 0 !important;
+}
+.commands a, 
+a.action-icon {
+    padding: 0 2px; // increase click area for a bit of extra space between these icons
 }
