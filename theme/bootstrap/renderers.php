@@ -7,7 +7,7 @@ class theme_bootstrap_core_renderer extends core_renderer {
             'icon' => '?',      // all the module icons have this name
             't/groups' => '?',
             't/groupn' => '?',
-class theme_bootstrap_core_renderer extends core_renderer {
+            't/groupv' => '?' );
 
     static $icons = array(
             'docs' => 'question-sign',
