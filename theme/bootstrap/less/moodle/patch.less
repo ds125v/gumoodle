@@ -429,15 +429,20 @@ table.rolecaps,
 table.userenrolment,
 table#form,
 form#movecourses table,
+form#movecourses table,
 #page-report-log-user .generaltable,
+#page-admin-course-index .editcourse,
 .forumheaderlist,
 .userprofilebox table.list,
 .generaltable {
   .table
 }
 // fixing tables with header rows in the tbody
-form#movecourses table tbody tr:first-child th.header {
-    border-top: 0;
+#page-admin-course-index .editcourse,
+form#movecourses table {
+    tbody tr:first-child th.header {
+        border-top: 0;
+    }
 }
 
 .path-mod-forum .forumheaderlist td,
