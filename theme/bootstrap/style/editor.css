@@ -2214,44 +2214,64 @@ a.badge:hover {
   text-decoration: none;
   cursor: pointer;
 }
-.label-important,
+.label-important {
+  background-color: #b94a48;
+}
 .badge-important {
   background-color: #b94a48;
 }
-.label-important[href],
-.badge-important[href] {
+a.label-important[href] {
   background-color: #953b39;
 }
-.label-warning,
+a.badge-important[href] {
+  background-color: #953b39;
+}
+.label-warning {
+  background-color: #f89406;
+}
 .badge-warning {
   background-color: #f89406;
 }
-.label-warning[href],
-.badge-warning[href] {
+a.label-warning[href] {
   background-color: #c67605;
 }
-.label-success,
+a.badge-warning[href] {
+  background-color: #c67605;
+}
+.label-success {
+  background-color: #468847;
+}
 .badge-success {
   background-color: #468847;
 }
-.label-success[href],
-.badge-success[href] {
+a.label-success[href] {
   background-color: #356635;
 }
-.label-info,
+a.badge-success[href] {
+  background-color: #356635;
+}
+.label-info {
+  background-color: #3a87ad;
+}
 .badge-info {
   background-color: #3a87ad;
 }
-.label-info[href],
-.badge-info[href] {
+a.label-info[href] {
   background-color: #2d6987;
 }
-.label-inverse,
+a.badge-info[href] {
+  background-color: #2d6987;
+}
+.label-inverse {
+  background-color: #333;
+}
 .badge-inverse {
   background-color: #333;
 }
-.label-inverse[href],
-.badge-inverse[href] {
+a.label-inverse[href] {
+  background-color: #1a1a1a;
+}
+a.badge-inverse[href] {
   background-color: #1a1a1a;
 }
 .btn .label,
