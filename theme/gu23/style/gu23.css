@@ -11280,8 +11280,9 @@ div.fitemtitle span.helplink {
   border-right: 0 !important;
   border-left: 0 !important;
 }
+.commands a,
 a.action-icon {
-  padding: 0 3px;
+  padding: 0 2px;
 }
 body {
   width: 100%;
