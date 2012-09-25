@@ -9571,6 +9571,7 @@ form#movecourses table tbody + tbody,
   border-top: 2px solid #ddd;
 }
 #page-admin-course-index .editcourse tbody tr:first-child th.header,
+table#uploadtableid tbody tr:first-child td,
 form#movecourses table tbody tr:first-child th.header {
   border-top: 0;
 }
@@ -10062,11 +10063,13 @@ a.editing_showhide {
   border: 0;
 }
 span.helplink a {
-  opacity: 0.5;
+  opacity: 0.005;
+  filter: alpha(opacity=0.5);
 }
 .fitem:hover span.helplink a,
 span.helplink:hover a {
-  opacity: 1;
+  opacity: 0.01;
+  filter: alpha(opacity=1);
 }
 #changenumsections,
 span.commands a:hover {
@@ -10640,7 +10643,7 @@ span.editinstructions {
 .block li hr {
   border: none;
   margin: 5px;
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid #eee;
   border-bottom: 1px solid #fff;
 }
 .block_settings .block_tree .tree_item {
@@ -10657,7 +10660,7 @@ span.editinstructions {
 .block_tree .collapsed  .tree_item.emptybranch a:before,
 .block_tree .collapsed  .tree_item.emptybranch span:before {
   content: "► ";
-  color: #ccc;
+  color: #999;
 }
 .block_tree .tree_item.leaf a:before,
 .block_tree .tree_item.leaf span:before,
@@ -10748,7 +10751,11 @@ span.editinstructions {
   background: #eee;
   position: absolute;
   z-index: 9999;
+  -webkit-box-shadow: 2px 2px 5px 1px #ccc;
+  -moz-box-shadow: 2px 2px 5px 1px #ccc;
   box-shadow: 2px 2px 5px 1px #ccc;
+  -webkit-border-radius: 0px 0px 8px 8px;
+  -moz-border-radius: 0px 0px 8px 8px;
   border-radius: 0px 0px 8px 8px;
 }
 .dndupload-preview {
@@ -10757,7 +10764,7 @@ span.editinstructions {
 }
 .dndupload-progress-outer {
   width: 70px;
-  border: solid black 1px;
+  border: solid #000 1px;
   height: 10px;
   display: inline-block;
   margin: 0;
@@ -10768,7 +10775,7 @@ span.editinstructions {
 .dndupload-progress-inner {
   width: 0%;
   height: 100%;
-  background-color: green;
+  background-color: #46a546;
   display: inline-block;
   margin: 0;
   padding: 0;
@@ -10785,7 +10792,7 @@ span.editinstructions {
 }
 div.region-content a.nolink,
 div.content a:visited.nolink {
-  color: #333333;
+  color: #555;
 }
 .course-content .section li.activity {
   padding: 2px;
@@ -10797,7 +10804,8 @@ li.section .content h2 {
   margin-top: 0px;
 }
 li.section.hidden {
-  opacity: 0.5;
+  opacity: 0.005;
+  filter: alpha(opacity=0.5);
 }
 li.section.hidden .content {
   background: #ddd;
@@ -10835,8 +10843,9 @@ a {
 .tabtree ul li.selected a:hover {
   color: #555;
   background-color: #fff;
-  border-color: #ddd;
+  border: 1px solid #ddd;
   border-bottom-color: transparent;
+  cursor: default;
 }
 .tabtree ul li a:hover {
   border-color: #eee #eee #ddd;
@@ -10844,13 +10853,19 @@ a {
 }
 .tabtree ul li a {
   display: block;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  border: 1px solid transparent;
-  border-radius: 4px 4px 0px 0px;
   padding-right: 12px;
   padding-left: 12px;
   margin-right: 2px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  line-height: 20px;
+  border: 1px solid transparent;
+  -webkit-border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
+}
+.tabtree ul li a:hover {
+  border-color: #eee #eee #ddd;
 }
 .tabtree ul li a,
 .tabtree ul li a:hover,
@@ -10920,12 +10935,12 @@ div.glossarydisplay .entrybox {
 }
 div.glossarydisplay .entrybox .glossaryexplain,
 div.glossarydisplay .entrybox .box.generalbox.boxaligncenter.boxwidthwide {
-  font: 13px Arial;
+  font: 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333;
 }
 div.glossarydisplay .entrybox a,
 div.glossarydisplay .entrybox b {
-  font: 13px Arial;
+  font: 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 div.glossarydisplay .entrybox span.accesshide + b a,
 div.glossarydisplay .entrybox span.accesshide + a {
@@ -10963,7 +10978,7 @@ div.glossarydisplay div.entrybox table tbody tr td b {
   color: black;
   background: none;
   border: none;
-  font-family: Arial, sans;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 div.glossarydisplay div.entrybox table tbody tr td b small {
   font-weight: normal;
@@ -11094,9 +11109,13 @@ li.section.current {
   background-color: transparent;
 }
 li.section.current .content {
-  background-color: #f5f5f5;
+  background-color: #eee;
   border: 1px solid rgba(0,0,0,0.05);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
   border-radius: 4px;
+  -webkit-box-shadow: 0px 1px 1px rgba(0,0,0,0.05);
+  -moz-box-shadow: 0px 1px 1px rgba(0,0,0,0.05);
   box-shadow: 0px 1px 1px rgba(0,0,0,0.05);
 }
 #page-course-category #layout {
@@ -11117,7 +11136,7 @@ footer p {
   background: none;
 }
 .user-enroller-panel .uep-search-results .users .user:nth-child(even) {
-  background: white;
+  background: #fff;
 }
 .block.invisible {
   visibility: visible;
@@ -11254,9 +11273,6 @@ div.fitemtitle span.helplink {
 #turnitintool_style #uploadtableid tbody + tbody,
 #turnitintool_style #submissionTableId tbody + tbody {
   border-top: 2px solid #ddd;
-}
-#turnitintool_style .uploadtableid td {
-  border-top: none;
 }
 #turnitintool_style .uploadtableid td.cell.c0,
 #turnitintool_style .uploadtable td.cell.c0 {
