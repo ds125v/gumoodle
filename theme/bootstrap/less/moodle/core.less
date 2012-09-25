@@ -156,9 +156,7 @@ td#potentialcell {
 input#addselect_searchtext { /* try to keep clear button on same level */
   width: auto;
 }
-tbody.empty {
-  display: none;
-}
+
 .groupinfobox {
   border: none;
 }
@@ -346,6 +344,8 @@ body.tag .managelink {padding: 5px;}
 // Backup and Restore CSS
 .path-backup .mform .grouped_settings.section_level {clear:both;}
 .path-backup .mform .grouped_settings {clear:both;overflow:hidden;}
+.path-backup .mform .include_settings {float: left;}
+.path-backup .mform .normal_settings {float: left;}
 .path-backup .notification.dependencies_enforced {text-align:center;color:#A00;font-weight:bold;}
 .path-backup .backup_progress {text-align:center;}
 .path-backup .backup_progress span.backup_stage {color:#999;}
@@ -355,10 +355,6 @@ body.tag .managelink {padding: 5px;}
 #page-backup-restore .filealiasesfailures .aliaseslist {width:90%;margin:0.8em auto;background-color:white;border:1px dotted #666;}
 
 .backup-restore .backup-section .noticebox {margin:1em auto;width:60%;text-align:center;}
-.backup-restore .activitytable {width:60%;min-width:500px;}
-.backup-restore .activitytable .modulename {width:100px;}
-.backup-restore .activitytable .moduleincluded {width:50px;}
-.backup-restore .activitytable .userinfoincluded {width:50px;}
 .backup-restore > .singlebutton {text-align:right;}
 .path-backup .mform .fgroup .proceedbutton {float:right;}
 .restore-course-search .rcs-results {width:70%;min-width:400px;margin:5px 0;}

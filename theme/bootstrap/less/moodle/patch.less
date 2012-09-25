@@ -15,7 +15,9 @@ div.forumpost,
 .backup-restore .detail-pair-value,
 #page-admin-roles-define div.mform .topfields .felement,
 .felement.fstatic {
-  .uneditable-input 
+  .uneditable-input;
+  width: auto;
+  min-width: 206px;
 }
 .backup-restore .bcs-new-course .detail-pair-value,
 .backup-restore .bcs-current-course .detail-pair-value,
@@ -23,6 +25,9 @@ div.forumpost,
   border: none;
   background: none;
   box-shadow: none;
+  cursor: auto;
+  height: auto; // for big category search tables
+  color: inherit;
 }
 
 img.userpicture,
@@ -217,10 +222,6 @@ a#closehelpbox {
   right:4px;
 }
 
-tr.msg-noneinstalled td,
-tr.msg-noneinstalled th {
- .table tbody tr.info td
-}
 
 #page-admin-roles-assign h2 + .box.generalbox,
 div.notifysuccess,
@@ -427,12 +428,18 @@ table#listdirectories,
 table.rolecaps,
 table.userenrolment,
 table#form,
+form#movecourses table,
 #page-report-log-user .generaltable,
 .forumheaderlist,
 .userprofilebox table.list,
 .generaltable {
   .table
 }
+// fixing tables with header rows in the tbody
+form#movecourses table tbody tr:first-child th.header {
+    border-top: 0;
+}
+
 .path-mod-forum .forumheaderlist td,
 .calendartable th,
 .calendartable td,
@@ -500,12 +507,15 @@ table#permissions tbody tr.rolecap:hover th,
   background-color: #f5f5f5;
 }
 
+
+
 .path-admin .roleassigntable #buttonscell #add,
 .path-admin .roleassigntable #buttonscell #remove input,
 input[id$="_clearbutton"],
 button,
 input.form-submit,
 input[type="submit"],
+input[type="button"],
 input#id_submitbutton,
 input#id_submitbutton2,
 input#id_cancel {
@@ -557,6 +567,7 @@ a.assignrolelink img,
 a.editing_highlight img,
 a.unassignrolelink img,
 .userinforow .groups .group a img,
+li.item_with_icon p a img,
 a.editing_showhide img {
   display: none;
 }
@@ -786,7 +797,7 @@ select#id_courserole_rl
 
 .mform div.fdescription.required {
   text-align: left;
-  margin-left: 200px;
+  margin-left: @horizontalComponentOffset;
 }
 
 // additions
