@@ -25,7 +25,7 @@ $OUTPUT->doctype(); // throw it away to avoid warning
     <link rel="shortcut icon" href="<?php echo $favicon_url ?>" />
     <?php echo $OUTPUT->standard_head_html() ?>
 <!--[if lt IE 9]>
-<script src="<?php echo $CFG->wwwroot ?>/theme/simple/html5shiv.js"></script>
+<script src="<?php echo new moodle_url("/theme/bootstrap/html5shiv.js")?>"></script>
 <![endif]-->
 </head>
 
@@ -35,15 +35,15 @@ $OUTPUT->doctype(); // throw it away to avoid warning
 <div id="page">
 
 <header>
-  <h1 class="headermain"></h1>
-	<div id="siteTools"> <h3>Site tools</h3> <ul>
-		<li><a href="http://www.gla.ac.uk/subjects/">Subjects A-Z</a></li>
-		<li><a href="http://www.gla.ac.uk/stafflist/">Staff A-Z</a></li>
-		<li><a href="http://www.gla.ac.uk/academic/">Academic units A-Z</a></li>
+    <h1><a href=http://www.gla.ac.uk/ class=hide-text title="Go to University homepage" >University of Glasgow</a></h1>
+	<div id=siteTools> <h3>Site tools</h3> <ul>
+		<li><a href=http://www.gla.ac.uk/subjects/>Subjects A-Z</a></li>
+		<li><a href=http://www.gla.ac.uk/stafflist/>Staff A-Z</a></li>
+		<li><a href=http://www.gla.ac.uk/academic/>Academic units A-Z</a></li>
 	</ul> </div>
     <?php echo $OUTPUT->login_info(); ?>
 	<?php echo $PAGE->headingmenu; ?>
-	<div id="head-menu">
+	<div id=head-menu>
 		<ul>
 		<li><a title="My Home" href="<?php echo $CFG->wwwroot ?>/my">My Home</a></li>
 		<li><a title="My Profile" href="<?php echo $CFG->wwwroot.'/user/profile.php?id='.$USER->id ?>">My Profile</a></li>
@@ -111,8 +111,8 @@ The University of Glasgow is a registered Scottish charity: registration number 
 
 
 <ul>
-    <li class="helplink"><?php echo page_doc_link(get_string('moodledocslink')) ?></li>
     <li><?php echo $OUTPUT->login_info() ?></li>
+    <li class="helplink"><?php echo page_doc_link(get_string('moodledocslink')) ?></li>
     <li><?php echo $OUTPUT->home_link() ?></li>
     <li><a href="http://www.gla.ac.uk/about/accessibility/">Accessibility</a></li>
     <li><a href="http://www.gla.ac.uk/legal/disclaimer/">Disclaimer</a></li>

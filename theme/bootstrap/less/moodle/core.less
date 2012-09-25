@@ -1,53 +1,62 @@
-/* stuff savlaged from core.css, rest was deleted, probably more to go */
+// stuff savlaged from core.css, rest was deleted, probably more to go 
 
-td, th {border: none; padding: 0;} /* apparently YUI adds a border & padding, lets take it away again */
+td, th {border: none; padding: 0;} // apparently YUI adds a border & padding, lets take it away again
 
 .dir-ltr,
-.mdl-left,
-.dir-rtl .mdl-right {text-align: left;}
-.dir-rtl,
-.mdl-right,
-.dir-rtl .mdl-left {text-align: right;}
+.mdl-left {
+  text-align: left;
+}
+.mdl-right {
+  text-align: right;
+}
+
 #add,
 #remove,
 .centerpara,
-.mdl-align {text-align: center;}
+.mdl-align {
+  text-align: center;
+}
+
 a.dimmed,
-a.dimmed:link,
 a.dimmed:visited,
 a.dimmed_text,
-a.dimmed_text:link,
 a.dimmed_text:visited,
 .dimmed_text,
 .dimmed_text a,
-.dimmed_text a:link,
 .dimmed_text a:visited,
 .usersuspended,
 .usersuspended a,
-.usersuspended a:link,
 .usersuspended a:visited,
 .dimmed_category,
 .dimmed_category a {
-    color: #AAA;
+    .dimmed
 }
-.activity.label .dimmed_text {
+.activity.label .dimmed_text { //TODO opacity mixin
     opacity: 0.5;
-    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    -ms-filter:~"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
     filter: alpha(opacity=50);
 }
-.unlist,
-.unlist li,
-.inline-list,
-.inline-list li,
-.block .list,
-.block .list li,
-.sitetopic .section li.activity,
-.course-content .section li.activity,
-.tabtree li {list-style: none;margin:0;padding:0;}
+.unlist ol,
+.unlist ul,
+.inline-list ul,
+.inline-list ol,
+.sitetopic .section ul,
+ul.section,
+.block ul.list,
+.tabtree ul {
+  ul.unstyled
+}
+div.summary {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+ul.section {
+    margin-left: 20px;
+}
 
-.course-content .current {background:#E3E3E3;}
-
-.inline-list li {display: inline;}
+.inline-list li {
+  display: inline;
+}
 .notifytiny {font-size:0.7em;}
 .notifytiny li,
 .notifytiny td {font-size:100%;}
@@ -55,7 +64,6 @@ a.dimmed_text:visited,
 a.autolink.glossary:hover {cursor: help;}
 .collapsibleregioncaption {white-space: nowrap;}
 .collapsibleregioncaption img {vertical-align: middle;}
-/* Block which is hidden if javascript enabled, prevents fickering visible when JS from footer used! */
 .jsenabled .hiddenifjs {display: none;}
 .visibleifjs {display: none;}
 .jsenabled .visibleifjs {display: inline;}
@@ -63,22 +71,6 @@ a.autolink.glossary:hover {cursor: help;}
 .jsenabled .collapsed .collapsibleregioninner {visibility: hidden;}
 .yui-overlay .yui-widget-bd {background-color:#FFEE69;border:1px solid #A6982B;border-top-color: #D4C237;color:#000000;left:0;padding:2px 5px;position:relative;top:0;z-index:1;}
 .clearer {background:transparent;border-width:0;clear:both;display:block;height:1px;margin:0;padding:0;}
-.clearfix:after {clear: both;content: ".";display: block;height: 0;min-width: 0;visibility: hidden;}
-.bold,
-.warning,
-.errorbox .title,
-.pagingbar .title,
-.pagingbar .thispage,
-.headingblock {font-weight: bold;}
-img.resize {height: 1em;width: 1em;}
-.block img.resize,
-.breadcrumb img.resize {height: 0.9em;width: 0.8em;}
-img.icon {height:16px;vertical-align:middle;width:16px;padding-right:4px;}
-img.iconsmall {height:11px;margin-right:1px;vertical-align:middle;width:11px;}
-img.iconhelp {height:17px;margin-right:4px;vertical-align:middle;width:17px;}
-img.icontoggle {height:17px;vertical-align:middle;width:50px;}
-img.iconkbhelp {height:17px;width:49px;}
-.categorybox .category {font-size:1.2em;font-weight:bold;}
 .boxaligncenter {margin-left:auto;margin-right:auto;}
 .boxalignright {margin-left:auto;margin-right:0;}
 .boxalignleft {margin-left:0;margin-right:auto;}
@@ -87,92 +79,23 @@ img.iconkbhelp {height:17px;width:49px;}
 .boxwidthwide {width: 80%;}
 #maincontent {display: block;height: 1px;overflow: hidden;}
 img.uihint {cursor: help;}
-.helplink img {height: 17px;vertical-align: middle;width: 17px;}
 img.emoticon {vertical-align: middle;width: 15px;height: 15px;}
 form.popupform,
 form.popupform div {display: inline;}
 .arrow_button input {overflow:hidden;}
 
-/** The 1-pixel padding is there to avoid phantom scroll bars on OS X (FF, Safari and Chrome)**/
-.no-overflow {overflow:auto;padding-bottom:1px;}
-.pagelayout-report .no-overflow {overflow:visible;}
-.no-overflow > .generaltable {margin-bottom:0;}
-
-/**
- * Accessibility features
- */
-/*Accessibility: text 'seen' by screen readers but not visual users. */
-.accesshide {position:absolute;left:-10000px;font-weight:normal;font-size:1em;}
-.dir-rtl .accesshide {top:-30000px;left:auto;}
-span.hide,
-div.hide {display:none;}
-.invisiblefieldset {display:inline;border-width:0;padding:0;margin:0;}
-/*Accessibility: Skip block link, for keyboard-only users. */
-a.skip-block,
-a.skip {position: absolute;top: -1000em;font-size: 0.85em;text-decoration:none;}
-a.skip-block:focus,
-a.skip-block:active,
-a.skip:focus,
-a.skip:active {position: static;display: block;}
-.skip-block-to {display: block;height: 1px;overflow: hidden;}
-
-/**
- * Header
- */
-.headermain {float:left;margin:15px;font-size:2.3em;}
-.headermenu {float:right;margin:10px;font-size:0.8em;text-align:right;}
-
-/**
- * Navbar
- */
-.navbar {clear:both;overflow:hidden;}
-.breadcrumb {float:left;}
-.navbutton {text-align:right;}
-.breadcrumb ul {padding:0;margin:0;text-indent:0;list-style:none;}
-.navbutton {float: right;}
-.breadcrumb li,
-.navbutton div,
-.navbutton form {display:inline;}
-
-/**
- * Footer
- */
-#page-footer {text-align:center;font-size:0.9em;}
-#page-footer .homelink {margin: 1em 0;}
-#page-footer .homelink a {padding-left:1em;padding-right:1em;}
-#page-footer .logininfo,
-#page-footer .sitelink,
-#page-footer .helplink {margin:0px 10px;}
-#page-footer .performanceinfo {text-align:center;margin:10px 20%;}
-#page-footer .performanceinfo span {display:block;}
-#page-footer .validators {margin-top:40px;padding-top:5px;border-top: 1px dotted gray;}
-#page-footer .validators ul {margin:0px;padding:0px;list-style-type:none;}
-#page-footer .validators ul li {display:inline;margin-right:10px;margin-left:10px;}
-
-/**
- * Tabs
- */
+// Tabs
 .tabtree {position:relative;margin-bottom:3.5em;}
 .tabtree li {display:inline;}
 .tabtree ul {margin:5px;}
 .tabtree ul li.here ul {position:absolute;top:100%;width:100%;}
 .tabtree ul li.here .empty {display:none;}
 
-/**
- * Mforms
- */
-.mform fieldset .advancedbutton {text-align:right;}
-.mform label .req,
-.mform label .adv {cursor: help;}
-.mform .ftags label.accesshide {display: block;position: static;}
-.mform .ftags select {margin-bottom: 0.7em;min-width: 22em;}
 
 input#id_externalurl {direction:ltr;}
 
 
-/**
- * Blogs
- */
+// Blogs
 .addbloglink {text-align: center;}
 .blog_entry .audience {text-align: right;}
 .blog_entry .tags {margin-top: 15px;}
@@ -191,7 +114,7 @@ table.controls td,
 table.contros th,
 #page-mod-forumsearch table#form, /* should be switched to use a standard forms format */
 table.groupmanagementtable td {
-padding: 0;
+  padding: 0;
 }
 
 .path-admin .roleassigntable td#buttonscell,
@@ -211,9 +134,10 @@ td#potentialcell {
   width: auto;
 }
 td#buttonscell {
-  padding-top: 8em;
+  padding-top: 8em; // vertically centre buttons
   text-align: center;
   max-width: 16em;
+  min-width: 6em; // don't let them get squashed
 }
 .groupmanagementtable td#buttonscell input,
 td#buttonscell input {
@@ -225,7 +149,9 @@ td#potentialcell {
 }
 #userselector_options p {
     margin: 0px;
-    white-space: nowrap;
+}
+#userselector_options label {
+  display: inline;
 }
 input#addselect_searchtext { /* try to keep clear button on same level */
   width: auto;
@@ -238,79 +164,19 @@ tbody.empty {
 }
 
 .path-admin .roleassigntable #buttonscell #addcontrols {
-margin-top: 0;
-height: auto;
+  margin-top: 0;
+  height: auto;
 }
 
-/**
- * Group
- */
-#page-group-index #groupeditform {text-align: center;}
-#doc-contents h1 {margin: 1em 0 0 0;}
-#doc-contents ul {margin: 0;padding: 0;width: 90%;}
-#doc-contents ul li {list-style-type: none;}
-.groupmanagementtable td {vertical-align: top;}
-.groupmanagementtable #existingcell,
-.groupmanagementtable #potentialcell {width: 42%;}
-.groupmanagementtable #buttonscell {width: 16%;}
-.groupmanagementtable #buttonscell input {width: 80%;}
-.groupmanagementtable #removeselect_wrapper,
-.groupmanagementtable #addselect_wrapper {width: 100%;}
-.groupmanagementtable #removeselect_wrapper label,
-.groupmanagementtable #addselect_wrapper label {font-weight: normal;}
-.dir-rtl .groupmanagementtable p {text-align: right;}
-#group-usersummary {width: 14em;}
-.groupselector {
-  margin-top: 3px;
-  margin-bottom: 3px;
-}
 
-/**
- * Login
- */
-.loginbox {margin:15px;overflow:visible;}
-.loginbox.twocolumns {margin:15px;}
-.loginbox h2,
-.loginbox .subcontent {margin:5px;padding:10px;text-align:center;}
-.loginbox .loginpanel .desc {margin:0;padding:0;margin-bottom:5px;}
-.loginbox .signuppanel .subcontent {text-align:left;}
-.loginbox .loginsub {margin-left:0;margin-right:0;}
-.loginbox .guestsub,
-.loginbox .forgotsub,
-.loginbox .potentialidps {margin:5px 12%;}
-.loginbox .potentialidps .potentialidplist {margin-left:40%;}
-.loginbox .potentialidps .potentialidplist div {text-align:left;}
-.loginbox .loginform {margin-top:1em;text-align:left;}
-.loginbox .loginform .form-label {float:left;text-align:right;width:44%;direction:rtl; white-space:nowrap;}
-.dir-rtl .loginbox .loginform .form-label {float:left;text-align:right;width:44%;direction:ltr; white-space:nowrap;}
-.loginbox .loginform .form-input {float:right;width:55%;}
-.loginbox .loginform .form-input input {width: 6em;}
-.loginbox .signupform {margin-top:1em;text-align:center;}
-.loginbox.twocolumns .loginpanel {float:left;width:49.5%;border-right: 1px solid;margin-bottom:-2000px;padding-bottom:2000px;}
-.loginbox.twocolumns .signuppanel {float:right;width:50%;margin-bottom:-2000px;padding-bottom:2000px;}
-
-/**
- * Notes
- */
+// Notes
 .notepost {margin-bottom: 1em;}
 .notepost .userpicture {float: left;margin-right: 5px;}
 .notepost .content,
 .notepost .footer {clear: both;}
 .notesgroup {margin-left:20px;}
 
-/**
- * My Moodle
- */
-.path-my .coursebox .overview .name {margin-left:20px;}
-.path-my .coursebox .overview .info {margin-left:25px;}
-.path-my .coursebox .overview .details {margin-left:25px;}
-.path-my .coursebox .overview {margin-bottom:10px;}
-.path-my .coursebox .info {float: none;}
-
-
-/**
- * Help
- */
+// Help
 #help_icon_tooltip div.bd {width: 35em;}
 #help hr {border: none;height: 1px;background: #ccc;}
 #help .center {text-align: center;}
@@ -321,9 +187,7 @@ height: auto;
 #help #emoticons ul{list-style-type: none;}
 #help #emoticons li{margin-bottom: 3px;width: 120px;border-left: 3px solid gray;padding-left: 7px;float: left;}
 
-/**
- * Comments
- */
+// Comments
 .comment-ctrl {font-size: 12px;display: none;margin:0;padding:0;}
 .comment-ctrl h5 {margin:0;padding: 5px;}
 .comment-area {max-width: 400px;padding: 5px;}
@@ -349,9 +213,7 @@ height: auto;
 .jsenabled .showcommentsnonjs{display:none}
 .jsenabled .comment-report-selectall{display:inline}
 
-/**
- * Completion progress report
- */
+// Completion progress report
 .completion-expired {background:#FFDDDD;}
 .completion-expected {font-size:0.75em;}
 .completion-sortchoice,
@@ -359,9 +221,7 @@ height: auto;
 .completion-progresscell {text-align:right;}
 .completion-expired .completion-expected {font-weight:bold;}
 
-/**
- * Tags
- */
+// Tags
 #page-tag-coursetags_edit .coursetag_edit_centered {position: relative;width: 600px;margin: 20px auto;}
 #page-tag-coursetags_edit .coursetag_edit_row {clear:both;}
 #page-tag-coursetags_edit .coursetag_edit_row .coursetag_edit_left {float:left;width:50%;text-align:right;}
@@ -424,34 +284,15 @@ body.tag .managelink {padding: 5px;}
 .tag_cloud .s1 {font-size: 0.9em;}
 .tag_cloud .s0 {font-size: 0.8em;}
 
-/*
- * Backup and Restore CSS
- */
-.path-backup .mform .grouped_settings.section_level {clear:both;}
-.path-backup .mform .grouped_settings {clear:both;overflow:hidden;}
-.path-backup .notification.dependencies_enforced {text-align:center;color:#A00;font-weight:bold;}
-.path-backup .backup_progress {text-align:center;}
-.path-backup .backup_progress span.backup_stage {color:#999;}
-.path-backup .backup_progress .backup_stage.backup_stage_current {font-weight:bold;color:inherit;}
-.path-backup .backup_progress span.backup_stage.backup_stage_complete {color:inherit;}
-#page-backup-restore .filealiasesfailures {background-color:#ffd3d9}
-#page-backup-restore .filealiasesfailures .aliaseslist {width:90%;margin:0.8em auto;background-color:white;border:1px dotted #666;}
 
-/**
- * Web Service
- */
-#webservice-doc-generator td {text-align: left;border: 0px solid black;}
-
-/** Help Content (pop-up) */
+// Help Content (pop-up) 
 #helppopupbox {z-index: 10000 !important;}
 #helppopupbox .yui3-widget-hd {float:right;}
 #helppopupbox .helpheading {font-size: 1em;}
 #helppopupbox .spinner {margin:1em;}
 
 
-/**
- * Smart Select Element
- */
+// Smart Select Element
 .smartselect {position:absolute;}
 .smartselect .smartselect_mask {background-color:#fff;}
 .smartselect ul  {padding: 0;margin: 0;}
@@ -477,14 +318,7 @@ body.tag .managelink {padding: 5px;}
 .smartselect.compactmenu .smartselect_submenu .smartselect_submenu {z-index: 1020;}
 .smartselect.compactmenu .smartselect_submenuitem:hover > .smartselect_menuitem_label {font-weight:bold;}
 
-/**
- * Registration
- */
-#page-admin-registration-register .registration_textfield {width: 300px;}
-
-/**
- * Enrol
- */
+// Enrol
 .userenrolment td {padding:0;height:41px;}
 .userenrolment .subfield {margin-right:5px;}
 .userenrolment .col_userdetails .subfield_picture {float:left;}
@@ -509,9 +343,17 @@ body.tag .managelink {padding: 5px;}
 #page-enrol-users .enrol_user_buttons .enrolusersbutton form {display:inline;}
 
 
-/**
- * Backup
- */
+// Backup and Restore CSS
+.path-backup .mform .grouped_settings.section_level {clear:both;}
+.path-backup .mform .grouped_settings {clear:both;overflow:hidden;}
+.path-backup .notification.dependencies_enforced {text-align:center;color:#A00;font-weight:bold;}
+.path-backup .backup_progress {text-align:center;}
+.path-backup .backup_progress span.backup_stage {color:#999;}
+.path-backup .backup_progress .backup_stage.backup_stage_current {font-weight:bold;color:inherit;}
+.path-backup .backup_progress span.backup_stage.backup_stage_complete {color:inherit;}
+#page-backup-restore .filealiasesfailures {background-color:#ffd3d9}
+#page-backup-restore .filealiasesfailures .aliaseslist {width:90%;margin:0.8em auto;background-color:white;border:1px dotted #666;}
+
 .backup-restore .backup-section .noticebox {margin:1em auto;width:60%;text-align:center;}
 .backup-restore .activitytable {width:60%;min-width:500px;}
 .backup-restore .activitytable .modulename {width:100px;}
@@ -548,35 +390,21 @@ body.tag .managelink {padding: 5px;}
 .mod-indent-15,
 .mod-indent-huge {margin-left:300px;}
 
-/* Audio player size in 'block' mode (can only change width, height is hardcoded in JS) */
+// Audio player size in 'block' mode (can only change width, height is hardcoded in JS)
 .resourcecontent .mediaplugin_mp3 object {height:25px; width: 600px}
 .resourcecontent audio.mediaplugin_html5audio {width: 600px}
 
-/** Large resource images should avoid hidden overflow **/
+// Large resource images should avoid hidden overflow/
 .resourceimage {max-width: 100%;}
 
-/* Audio player size in 'inline' mode (can only change width, as above) */
+// Audio player size in 'inline' mode (can only change width, as above) 
 .mediaplugin_mp3 object {height:15px;width:300px}
 audio.mediaplugin_html5audio {width: 300px}
 
-/* TinyMCE moodle media preview frame should not have padding */
+// TinyMCE moodle media preview frame should not have padding
 .core_media_preview.pagelayout-embedded #content {padding:0;}
 .core_media_preview.pagelayout-embedded #maincontent {height:0;}
 .core_media_preview.pagelayout-embedded .mediaplugin {margin:0;}
-
-
-.path-rating .ratingtable th.rating {width:100%;}
-.path-rating .ratingtable td.rating,
-.path-rating .ratingtable td.time {white-space:nowrap; text-align:center;}
-
-/* Fix for ordered and unordered list in course topic summary & course weekly summary */
-
-.course-content ul.weeks .content .summary ul,
-.course-content ul.topics .content .summary ul {list-style: disc outside none;}
-
-.course-content ul.weeks .content .summary ol,
-.course-content ul.topics .content .summary ol {list-style: decimal outside none;}
-
 
 /**
  * Chooser Dialogue
@@ -726,12 +554,6 @@ audio.mediaplugin_html5audio {width: 300px}
     line-height: 2em;
 }
 
-.dir-rtl.jsenabled .choosercontainer #chooseform .instruction,
-.dir-rtl.jsenabled .choosercontainer #chooseform .typesummary {
-    left: 0px;
-    right: 18.5em;
-    border-right: 1px solid grey;
-}
 
 /* Selected option settings */
 .jsenabled .choosercontainer #chooseform .instruction,
@@ -746,30 +568,20 @@ audio.mediaplugin_html5audio {width: 300px}
     -moz-box-shadow: 0px 0px 10px 0px #CCCCCC;
 }
 
-/**
- * phpinfo styles
- */
-.phpinfo .center {text-align: center;}
-.phpinfo .center table {margin-left: auto;margin-right: auto;text-align: left;border-collapse: collapse;}
-.phpinfo .center th {text-align: center;}
-.phpinfo .e,
-.phpinfo .v,
-.phpinfo .h {border: 1px solid #000000;font-size: 0.8em;vertical-align: baseline;color: #000000;background-color: #cccccc;}
-.phpinfo .e {background-color: #ccccff;font-weight: bold;}
-.phpinfo .h {background-color: #9999cc;font-weight: bold;}
-
-/** image replacements */
-
-div.felement.fstatic .smallicon:after {
-  content: "hello";
-  border: thick solid purple;
-}
-/* compensate for some broken javascript since #page-header not used MDL-*/
+.phpinfo table  {.table}
+.phpinfo .v {background-color: #ccc;}
+.phpinfo .e {background-color: #ccf;font-weight: bold;}
+.phpinfo .h {background-color: #99c;font-weight: bold;}
+.phpinfo tr:nth-child(odd) .e { background-color: #c6c6f9;}
+.phpinfo tr:nth-child(odd) .v { background-color: #c6c6c6;}
+.phpinfo tr:hover .e { background-color: #c2c2f5;}
+.phpinfo tr:hover .v { background-color: #c2c2c2;}
+// compensate for some broken javascript since #page-header not used MDL-TODO 
 div.resourcecontent { 
-  width:100%;
+  width: 100%;
 }
 #resourceobject {
-  min-width:100%;
+  min-width: 100%;
   max-width: 100%;
   min-height: 600px;
 }

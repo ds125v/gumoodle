@@ -28,6 +28,12 @@ defined('MOODLE_INTERNAL') || die();
 
 if ($ADMIN->fulltree) {
 
+    $average = get_config('enrol_gudatabase', 'average');
+    $average = empty($average) ? '-' : $average;
+    $settings->add(new admin_setting_heading('gudatabase_average', '',
+            get_string('displayaverage', 'enrol_gudatabase',
+            $average)));
+
     //--- general settings -----------------------------------------------------------------------------------
     $settings->add(new admin_setting_heading('enrol_gudatabase_settings', '', get_string('pluginname_desc', 'enrol_database')));
 

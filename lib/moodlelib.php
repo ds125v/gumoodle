@@ -8369,7 +8369,14 @@ function check_php_version($version='5.2.4') {
           if (empty($version)) {
               return true; // no version specified
           }
-          if (preg_match("/Opera\/([0-9\.]+)/i", $agent, $match)) {
+          // Recent Opera useragents have Version/ with the actual version, e.g.:
+          // Opera/9.80 (Windows NT 6.1; WOW64; U; en) Presto/2.10.289 Version/12.01
+          // That's Opera 12.01, not 9.8.
+          if (preg_match("/Version\/([0-9\.]+)/i", $agent, $match)) {
+              if (version_compare($match[1], $version) >= 0) {
+                  return true;
+              }
+          } else if (preg_match("/Opera\/([0-9\.]+)/i", $agent, $match)) {
               if (version_compare($match[1], $version) >= 0) {
                   return true;
               }
@@ -8384,7 +8391,7 @@ function check_php_version($version='5.2.4') {
           if (empty($version)) {
               return true; // no version specified
           }
-          if (preg_match("/AppleWebKit\/([0-9]+)/i", $agent, $match)) {
+          if (preg_match("/AppleWebKit\/([0-9.]+)/i", $agent, $match)) {
               if (version_compare($match[1], $version) >= 0) {
                   return true;
               }
@@ -8420,7 +8427,7 @@ function check_php_version($version='5.2.4') {
           if (empty($version)) {
               return true; // no version specified
           }
-          if (preg_match("/AppleWebKit\/([0-9]+)/i", $agent, $match)) {
+          if (preg_match("/AppleWebKit\/([0-9.]+)/i", $agent, $match)) {
               if (version_compare($match[1], $version) >= 0) {
                   return true;
               }
@@ -8669,7 +8676,10 @@ function get_browser_version_classes() {
  */
 function can_use_rotated_text() {
     global $USER;
-    return ajaxenabled(array('Firefox' => 2.0)) && !$USER->screenreader;;
+    return (check_browser_version('MSIE', 9) || check_browser_version('Firefox', 2) ||
+            check_browser_version('Chrome', 21) || check_browser_version('Safari', 536.25) ||
+            check_browser_version('Opera', 12) || check_browser_version('Safari iOS', 533)) &&
+            !$USER->screenreader;
 }
 
 /**
