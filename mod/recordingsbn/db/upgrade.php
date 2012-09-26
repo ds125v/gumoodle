@@ -6,7 +6,7 @@
  * Authors:
  *    Jesus Federico  (jesus [at] blindsidenetworks [dt] com)
  *
- * @package   mod_bigbluebutton
+ * @package   mod_recordingsbn
  * @copyright 2011-2012 Blindside Networks Inc.
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v2 or later
  */
@@ -53,8 +53,7 @@ function xmldb_recordingsbn_upgrade($oldversion) {
     if ($oldversion < 2012040210) {
         $table = new xmldb_table('recordingsbn');
         
-        $field = new xmldb_field('timecreated', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, '0',
-        		'name');
+        $field = new xmldb_field('timecreated', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, '0',	'name');
         
         if ($dbman->field_exists($table, $field)) {
             $dbman->change_field_default($table, $field, $continue=true, $feedback=true);

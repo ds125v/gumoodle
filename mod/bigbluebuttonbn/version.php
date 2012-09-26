@@ -13,11 +13,9 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$module->version  = 2012042306;         // The current module version (Date: YYYYMMDDXX)
-$module->requires = 2010112400;         // Requires this Moodle version
-$module->cron     = 0;                  // Period for cron to check this module (secs)
-$module->component = 'mod_bigbluebuttonbn'; // To check on upgrade, that module sits in correct place
-$module->maturity = MATURITY_RC;      // [MATURITY_STABLE | MATURITY_RC | MATURITY_BETA | MATURITY_ALPHA]
-$module->release  = '1.0.7'; 
-
-?>
+$module->version  = 2012083100;
+$module->requires = 2010112400;
+$module->cron     = 0;
+$module->component = 'mod_bigbluebuttonbn';
+$module->maturity = MATURITY_BETA;  // [MATURITY_STABLE | MATURITY_RC | MATURITY_BETA | MATURITY_ALPHA]
+$module->release  = '1.0.8'; 
