@@ -28,23 +28,20 @@ a.dimmed_text:visited,
 .usersuspended a,
 .usersuspended a:visited,
 .dimmed_category,
+.activity.label .dimmed_text, 
 .dimmed_category a {
-    .dimmed
-}
-.activity.label .dimmed_text { //TODO opacity mixin
-    opacity: 0.5;
-    -ms-filter:~"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-    filter: alpha(opacity=50);
+    color: @gray
 }
 .unlist ol,
 .unlist ul,
+ul.unlist,
+ol.unlist,
 .inline-list ul,
-.inline-list ol,
 .sitetopic .section ul,
 ul.section,
 .block ul.list,
 .tabtree ul {
-  ul.unstyled
+ ul.unstyled
 }
 div.summary {
     margin-left: 10px;
@@ -442,8 +439,6 @@ audio.mediaplugin_html5audio {width: 300px}
     background: #CCCCCC!important;
     background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#CCCCCC))!important;
     background: -moz-linear-gradient(top,  #FFFFFF,  #CCCCCC)!important;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#CCCCCC')!important;
-    filter: dropshadow(color=#FFFFFF, offx=1, offy=1);
 }
 
 .chooserdialogue .moodle-dialogue-bd {
