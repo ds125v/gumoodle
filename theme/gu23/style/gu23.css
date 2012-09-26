@@ -11768,9 +11768,8 @@ li.section.current h3.sectionname {
   width: 250%;
   margin-bottom: 0.5em;
 }
-.coursebox div.summary p,
-.coursebox div.summarytext p {
-  padding-top: 4em;
+.coursebox div.summary {
+  padding-top: 40px;
 }
 .coursebox,
 .path-course-view .course-content ul.topics div.content,
@@ -11819,17 +11818,17 @@ div.sitetopic,
   margin-bottom: 9px;
   margin-right: 9px;
 }
-..section .summary,
-..section .summarytext {
+.section .summary,
+.section .summarytext {
   padding-left: 15px;
   margin-bottom: 0;
 }
-..section .summary .no-overflow p,
-..section .summarytext .no-overflow p {
+.section .summary .no-overflow p,
+.section .summarytext .no-overflow p {
   padding: 4px;
 }
-..section .summary .no-overflow p:last-child,
-..section .summarytext .no-overflow p:last-child {
+.section .summary .no-overflow p:last-child,
+.section .summarytext .no-overflow p:last-child {
   margin-bottom: 0;
 }
 .categorybox {
