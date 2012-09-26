@@ -471,4 +471,27 @@ input#searchform_search {
 .block li p a i { // hide nav icons
       display: none;
 }
-
+#page-mod-quiz-edit {
+    div.quizcontents {
+        width: 50%;
+        .pagecontrols .singlebutton {
+            clear: left; // move second button below to save horizontal space
+        }
+    }
+    div.quizcontents.quizwhenbankcollapsed {
+        width: 100%;
+        .pagecontrols .singlebutton {
+            clear: none; // arrange buttons horizontally 
+        }
+    }
+    .questionbankwindow {
+        width: 50%;
+        .container {
+            width: 100%; // clash with .container from Bootstrap
+        }
+        .checkbox input {
+            float: none;
+            margin: 0;
+        }
+    }
+}

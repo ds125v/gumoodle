@@ -11847,3 +11847,25 @@ input#searchform_search {
 .block li p a i {
   display: none;
 }
+#page-mod-quiz-edit div.quizcontents {
+  width: 50%;
+}
+#page-mod-quiz-edit div.quizcontents .pagecontrols .singlebutton {
+  clear: left;
+}
+#page-mod-quiz-edit div.quizcontents.quizwhenbankcollapsed {
+  width: 100%;
+}
+#page-mod-quiz-edit div.quizcontents.quizwhenbankcollapsed .pagecontrols .singlebutton {
+  clear: none;
+}
+#page-mod-quiz-edit .questionbankwindow {
+  width: 50%;
+}
+#page-mod-quiz-edit .questionbankwindow .container {
+  width: 100%;
+}
+#page-mod-quiz-edit .questionbankwindow .checkbox input {
+  float: none;
+  margin: 0;
+}
