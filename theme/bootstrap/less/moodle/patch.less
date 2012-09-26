@@ -1,4 +1,4 @@
-// copying styles from bootstrap
+// copying styles from bootstrap to match Moodle HTML classes
 
 .breadcrumb ul li span.sep {
   .breadcrumb .divider
@@ -97,6 +97,7 @@ li.activity.label,
   background: inherit;
   color: inherit;
   border: inherit;
+  text-shadow: none;
   padding: 4px 8px;
 }
 .file-picker td.label,
@@ -415,11 +416,11 @@ form#guestlogin,
 #adminsettings h3.main,
 .backup-section h2.header,
 .backup-restore .backup-section .backup-sub-section h3.subheader {
-  legend 
+    legend 
 }
 .fp-content-center td.mdl-right,
 .backup-restore label.detail-pair-label {
-  .form-horizontal .control-label
+    .form-horizontal .control-label
 }
 table#explaincaps,
 table#defineroletable,
@@ -429,13 +430,17 @@ table.rolecaps,
 table.userenrolment,
 table#form,
 form#movecourses table,
+form#movecourses table,
 #page-report-log-user .generaltable,
+#page-admin-course-index .editcourse,
 .forumheaderlist,
 .userprofilebox table.list,
 .generaltable {
-  .table
+    .table
 }
 // fixing tables with header rows in the tbody
+#page-admin-course-index .editcourse tbody tr:first-child th.header,
+table#uploadtableid tbody tr:first-child td, 
 form#movecourses table tbody tr:first-child th.header {
     border-top: 0;
 }
@@ -445,7 +450,7 @@ form#movecourses table tbody tr:first-child th.header {
 .calendartable td,
 .path-mod-workshop .grading-report,
 .path-mod-workshop table.grading-report td {
-  border: none;
+    border: none;
 }
 #page-admin-user table thead td,
 #page-admin-user table tbody td,
@@ -488,7 +493,7 @@ table#defineroletable tbody tr:nth-child(odd) th,
 .generaltable tbody tr:nth-child(odd) th,
 .table-striped tbody tr:nth-child(odd) td,
 .table-striped tbody tr:nth-child(odd) th {
-  background-color: #f9f9f9;
+  background-color: @tableBackgroundAccent;
 }
 .user-enroller-panel .uep-search-results .users .user:hover,
 table.grading-report tbody tr:hover td,
@@ -504,7 +509,7 @@ table#permissions tbody tr.rolecap:hover td,
 table#permissions tbody tr.rolecap:hover th,
 .table tbody tr:hover td,
 .table tbody tr:hover th {
-  background-color: #f5f5f5;
+  background-color: @tableBackgroundHover;
 }
 
 
@@ -568,6 +573,7 @@ a.editing_highlight img,
 a.unassignrolelink img,
 .userinforow .groups .group a img,
 li.item_with_icon p a img,
+p.hasicon a img,
 a.editing_showhide img {
   display: none;
 }
@@ -683,13 +689,13 @@ td.mdl-left > input { // file-picker
 .backup-restore .detail-pair-value,
 #page-admin-roles-define div.mform .topfields .felement,
 .felement.fstatic { // use min-width to allow for long values and help text incorrectly marked up
-  min-width: 210px;
+  min-width: 206px;
 }
 .backup-restore .detail-pair-value > span.sub-detail  { 
   display: block;
   margin-top: 0.5em;
   font-style: normal;
-  color: #999;
+  color: @grayLight;
   margin-left: 0;
   font-size: 0.8em;
 }
@@ -707,7 +713,6 @@ input[type="password"],
 input[type="text"] { // overrulling a YUI rule, and compensating for a bootstrap width bug
   width: 206px;
 }
-
 
 .mform select:focus {
   min-width: 220px;
@@ -829,7 +834,7 @@ div.categorylist img {
   margin-top: -9px;
   margin-bottom: 0px;
   white-space: normal;
-  margin-left: 200px;
+  margin-left: @horizontalComponentOffset;
 }
 .form-description p:last-child {
   margin-bottom: 0;
@@ -985,7 +990,7 @@ span#id_error_introeditor\[text\].error {
   width: 500px;
 }
 
-tr.rolecap td.risk.spam a:before {
+tr.rolecap td.risk.spam a:before { // this all needs to be put into code for localization
   content: "spam";
 }
 tr.rolecap td.risk.managetrust a:before {
@@ -1062,8 +1067,8 @@ span.editinstructions{
 .block li hr {
   border: none;
   margin: 5px;
-  border-top: 1px solid rgb(229,229,229);
-  border-bottom: 1px solid #fff;
+  border-top: 1px solid @hrBorder;
+  border-bottom: 1px solid @bodyBackground;
 }
 .block_settings .block_tree .tree_item {
     padding-left: 0;
@@ -1080,7 +1085,7 @@ span.editinstructions{
 .block_tree .collapsed  .tree_item.emptybranch a:before,
 .block_tree .collapsed  .tree_item.emptybranch span:before {
   content: "► ";
-  color: #ccc;
+  color: @grayLight;
 }
 .block_tree .tree_item.leaf a:before,
 .block_tree .tree_item.leaf span:before,
@@ -1141,7 +1146,7 @@ span.editinstructions{
 }
 
 #main {
-  width:100%;
+  width: 100%;
 }
 
 #main .region-content {
@@ -1153,14 +1158,14 @@ span.editinstructions{
 .section .editing_highlight img.icon,
 .section .editing_showhide img.icon.hide,
 .section .section-handle {
-  visibility:hidden;
+  visibility: hidden;
 }
 
 .section:hover .commands,
 .section:hover .editing_highlight img.icon,
 .section:hover .editing_showhide img.icon.hide,
 .section:hover .section-handle {
-  visibility:visible;
+  visibility: visible;
 }
 
 #changenumsections {
@@ -1185,36 +1190,38 @@ span.editinstructions{
   margin: auto;
   padding: 6px;
   border:1px solid #ddd;
-  text-align:center;background:#eee;
-  position:absolute;
-  z-index:9999;box-shadow:2px 2px 5px 1px #ccc;
-  border-radius:0px 0px 8px 8px;
+  text-align: center;
+  background: @grayLighter;
+  position: absolute;
+  z-index: 9999;
+  .box-shadow(2px 2px 5px 1px #ccc);
+  .border-radius(0px 0px 8px 8px);
 }
 .dndupload-preview {
   color: #909090;
   border: 1px dashed #909090;
 }
 .dndupload-progress-outer {
-  width:70px;
-  border: solid black 1px;
-  height:10px;
-  display:inline-block;
-  margin:0;
-  padding:0;
-  overflow:hidden;
-  position:relative;
+  width: 70px;
+  border: solid @black 1px;
+  height: 10px;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
 }
 .dndupload-progress-inner {
   width: 0%;
   height: 100%;
-  background-color: green;
+  background-color: @green;
   display: inline-block;
   margin: 0;
   padding: 0;
   float: left;
 }
 .dndupload-hidden {
-  display:none;
+  display: none;
 }
 
 #blocks1 .region-content {
@@ -1225,7 +1232,7 @@ span.editinstructions{
 }
 div.region-content a.nolink,
 div.content a:visited.nolink {
-  color: rgb(51,51,51);
+  color: @gray;
 }
 .course-content .section li.activity {
   padding: 2px;
@@ -1277,24 +1284,29 @@ a {text-decoration: none;}
 }
 .tabtree ul li.selected a, 
 .tabtree ul li.selected a:hover {
-  color: #555;
-  background-color: #fff;
-  border-color: #ddd;
+  color: @gray;
+  background-color: @white;
+  border: 1px solid #ddd;
   border-bottom-color: transparent;
+  cursor: default;
 }
 .tabtree ul li a:hover {
-  border-color: #eee #eee #ddd;
-  background-color: #eee;
+  border-color: @grayLighter @grayLighter #ddd;
+  background-color: @grayLighter;
 }
 .tabtree ul li a {
   display: block;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  border: 1px solid transparent;
-  border-radius: 4px 4px 0px 0px;
   padding-right: 12px;
   padding-left: 12px;
   margin-right: 2px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  line-height: @baseLineHeight;
+  border: 1px solid transparent;
+  .border-radius(4px 4px 0 0);
+  &:hover {
+    border-color: @grayLighter @grayLighter #ddd;
+  }
 }
 .tabtree ul li a,
 .tabtree ul li a:hover,
@@ -1338,7 +1350,7 @@ div.entrybox b,
 div.entrybox a:hover,
 div.initialbar strong,
 div.initialbar a:hover {
-  background-color: #f5f5f5;
+  background-color: @paginationActiveBackground;
 }
 div.entrybox b,
 div.initialbar strong {
@@ -1368,12 +1380,12 @@ div.glossarydisplay .entrybox { // very hacky due to limited HTML
     .hide-text; // first we hide the | text by making it tiny and invisible
     .glossaryexplain,
     .box.generalbox.boxaligncenter.boxwidthwide { // then we bring back the text we want
-        font: 13px Arial;
-        color: #333;
+        font: 13px @sansFontFamily;
+        color: @textColor;
     }
     a,
     b {
-        font: 13px Arial;
+        font: 13px @sansFontFamily;
     }
     span.accesshide + b a,
     span.accesshide + a {
@@ -1403,7 +1415,7 @@ div.glossarydisplay div.entrybox table tbody tr td b {
     color: black;
     background: none;
     border: none;
-    font-family: Arial, sans;
+    font-family: @sansFontFamily;
 }
 div.glossaryexplain {
     padding-bottom: 10px;
@@ -1413,13 +1425,13 @@ div.glossaryexplain {
   border: none;
 }
 .fitem.fitem_feditor {
-  overflow:visible;
+  overflow: visible;
 }
 .felement {
-  margin:0px;
+  margin: 0px;
 }
 .fitemtitle.label {
-  margin:8px;
+  margin: 8px;
 }
 
 td.picture {
@@ -1427,7 +1439,7 @@ td.picture {
 }
 
 h3.sectionname { // limit the width
-  white-space:nowrap;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -1495,24 +1507,6 @@ h2 .helplink img {
   display: block;
 }
 
-/* just let them take up as much space as they want
-#page-admin-roles-assign h2 + .box.generalbox,
-div.notifysuccess,
-div.notifyproblem
-div.redirectmessage,
-div.continuebutton,
-div.box.errorbox,
-#page-report-loglive-index div.info,
-div#notice,
-body.admin div.info,
-div.adminwarning,
-div.releasenoteslink,
-div.forumnodiscuss {
-  margin-left:auto;
-  margin-right:auto;
-  width: 25em;
-} */
-
 #page-report-loglive-index div.info,
 div.continuebutton,
 div.singlebutton,
@@ -1520,7 +1514,7 @@ div.checkforupdates {
   text-align: center;
 }
 
-.generaltable[border="1"] {
+.generaltable[border="1"] { // overriding hard coded styles in old-skool HTML
   border: none;
 }
 
@@ -1555,10 +1549,10 @@ li.section.current {
 }
 
 li.section.current .content {
-  background-color: rgb(245,245,245);
+  background-color: @grayLighter;
   border: 1px solid rgba(0,0,0,0.05);
-  border-radius: 4px;
-  box-shadow: 0px 1px 1px rgba(0,0,0,0.05);
+  .border-radius(4px);
+  .box-shadow(0px 1px 1px rgba(0,0,0,0.05));
 }
 
 #page-course-category #layout {
@@ -1582,7 +1576,7 @@ padding: 0px;
 background: none;
 }
 .user-enroller-panel .uep-search-results .users .user:nth-child(even) {
-  background: white;
+  background: @white;
 }
 
 .block.invisible {
@@ -1615,7 +1609,7 @@ table#form tr {
 }
 table#form td {
   padding: 0px;
-  display:block
+  display: block
 }
 table#form td label {
   margin-bottom: 0px;
@@ -1646,7 +1640,7 @@ div.fitemtitle span.helplink {
 .backup-restore .detail-pair-value {
   margin-left: 20px;
 }
-
+// copied from bootstrap examples pages
 .navbar .brand {
     padding-right: 0;
     padding-left: 0;
@@ -1672,9 +1666,6 @@ div.fitemtitle span.helplink {
     .table
 }
 
-#turnitintool_style .uploadtableid td {
-    border-top: none;
-}
 #turnitintool_style .uploadtableid td.cell.c0,
 #turnitintool_style .uploadtable td.cell.c0 {
     width: 200px !important;
