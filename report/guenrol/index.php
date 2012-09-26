@@ -52,9 +52,11 @@ $PAGE->set_heading($course->fullname);
 echo $OUTPUT->header();
 echo $OUTPUT->heading( get_string('title', 'report_guenrol') . ' : ' . $course->fullname );
 
+// get the codes for this course
+$codes = $DB->get_records( 'enrol_gudatabase_codes', array('courseid'=>$id));
+
 // if codeid=0 we will just show the list of possible codes
 if (empty($codeid)) {
-    $codes = $DB->get_records( 'enrol_gudatabase_codes', array('courseid'=>$id));
     if (empty($codes)) {
         echo "<p>There are no automatic enrolment codes defined in this course</p>";
     }
@@ -71,39 +73,93 @@ if (empty($codeid)) {
             echo "({$code->subjectname}) ";
             echo "</li>";
         }
+
+        // if there is more than 1 show aggregated
+        if (count($codes)>1) {
+            $link = new moodle_url('/report/guenrol/index.php', array('id'=>$id, 'codeid'=>-1));
+            echo "<li><a href=\"$link\">";
+            echo "<strong>" . get_string('showall', 'report_guenrol') . "</strong></a> ";
+            echo "</li>";
+        }
         echo '</ul>';
+
+        // dropdown to get sort order
     }
 }
 else {
 
     // get enrolment info
-    if (!$code = $DB->get_record('enrol_gudatabase_codes', array('id'=>$codeid))) {
-        error('Unable to read codes table');
-        die;
+    if ($codeid>-1) {
+        $selectedcode = $codes[ $codeid ];
+    }
+    else {
+        $selectedcode = NULL;
     }
 
     // get users
-    $users = $DB->get_records('enrol_gudatabase_users', array('courseid'=>$id, 'code'=>$code->code));
+    if ($codeid>-1) {
+        $codename = $codes[$codeid]->code;
+        $coursename = $codes[$codeid]->coursename;
+        $subjectname = $codes[$codeid]->subjectname;
+        $users = $DB->get_records('enrol_gudatabase_users', array('courseid'=>$id, 'code'=>$codename));
+    }
+    else {
+        $users = array();
+        foreach ($codes as $code) {
+            $codeusers = $DB->get_records('enrol_gudatabase_users', array('courseid'=>$id, 'code'=>$code->code));
+            $users = array_merge($users, $codeusers);
+        }    
+    }
+
+    // convert to unique userid table based on code
+    $uniqueusers = array();
+    foreach ($users as $user) {
+        if (empty($uniqueusers[ $user->userid ])) {
+            $moodleuser = $DB->get_record('user', array('id'=>$user->userid));
+            $uniqueusers[ $user->userid ] = $user;
+	    $uniqueusers[ $user->userid ]->firstname = $moodleuser->firstname;
+            $uniqueusers[ $user->userid ]->lastname = $moodleuser->lastname;
+            $uniqueusers[ $user->userid ]->fullname = fullname( $moodleuser );
+            $uniqueusers[ $user->userid ]->deleted = $moodleuser->deleted;
+            $uniqueusers[ $user->userid ]->username = $moodleuser->username;
+        }
+        else {
+            $uniqueusers[ $user->userid]->code .= ", {$user->code}";
+        }
+    }
+
+    // sort
+    usort( $uniqueusers, 'report_guenrol_sort' );
 
     // some information
-    echo "<p>Enrolments relating to code <strong>{$code->code}</strong>. ";
-    echo "Course '{$code->coursename}' in '{$code->subjectname}'</p>";
+    if ($codeid>-1) {
+        echo "<p>Enrolments relating to code <strong>$codename</strong>. ";
+        echo "Course '$coursename' in '$subjectname'</p>";
+    }
+    else {
+        echo "<p>Users for the following coursecodes:<p>";
+        echo "<ul>";
+        foreach ($codes as $code) {
+            echo "<li><strong>{$code->code}</strong> Course '{$code->coursename}' in '{$code->subjectname}'</li>";
+        }
+        echo "</ul>";
+    }
 
     // list users
     echo "<ul id=\"guenrol_users\">";
-    foreach ($users as $user) {
-        $moodleuser = $DB->get_record('user', array('id'=>$user->userid));
+    foreach ($uniqueusers as $user) {
 
         // be sure not to show deleted accounts
-        if ($moodleuser->deleted) {
+        if ($user->deleted) {
             continue;
         }
 
         // display user (profile) link and data
-        $link = new moodle_url( '/user/profile.php', array('id'=>$moodleuser->id));
+        $link = new moodle_url( '/user/profile.php', array('id'=>$user->userid));
         echo "<li>";
-        echo "<a href=\"$link\"><strong>{$moodleuser->username}</strong></a> ";
-        echo fullname( $moodleuser );
+        echo "<a href=\"$link\"><strong>{$user->username}</strong></a> ";
+        echo $user->fullname;
+        echo " <small>({$user->code})</small>";
         echo "</li>";
     }
     echo "</ul>";
@@ -112,4 +168,24 @@ else {
 
 echo $OUTPUT->footer();
 
+function bbb() { }
 
+// callback function for sort
+function report_guenrol_sort( $a, $b ) {
+    $afirstname = strtolower( $a->firstname );
+    $alastname = strtolower( $a->lastname );
+    $bfirstname = strtolower( $b->firstname );
+    $blastname = strtolower( $b->lastname );
+
+    if ($alastname == $blastname) {
+        if ($afirstname == $bfirstname) {
+            return 0;
+        }
+        else {
+            return ($afirstname < $bfirstname) ? -1 : 1;
+        }
+    }
+    else {
+        return ($alastname < $blastname) ? -1 : 1;
+    }
+}
