@@ -1610,7 +1610,7 @@ function turnitintool_introduction($cm,$turnitintool,$notice='') {
 
                 $cells[5]->data='<a href="' . $url . '&export_data=1" onclick="screenOpen(this.href,\'\',\'0\',null,\'width=450,height=200\');'
                         .'return false;" target="_blank" title="'.get_string('downloadorigzip','turnitintool')
-                        .'"><img src="'.$OUTPUT->pix_url('f/docx').'" class="tiiicons" alt="'.get_string('downloadorigzip','turnitintool')
+                        .'"><img src="'.$OUTPUT->pix_url('f/document').'" class="tiiicons" alt="'.get_string('downloadorigzip','turnitintool')
                         .'" id="orig_'.$row.'" /></a></span>'.PHP_EOL;
 
                 $cells[5]->data.='<a href="' . $url . '&export_data=2' .'" onclick="screenOpen(this.href,\'\',\'0\',null,\'width=450,height=200\');'
