@@ -1455,7 +1455,7 @@ function turnitintool_partform($cm,$part) {
  * @return string Returns the output to print to screen
  */
 function turnitintool_introduction($cm,$turnitintool,$notice='') {
-    global $CFG,$USER;
+    global $CFG,$USER,$OUTPUT;
     $output='<style language="text/css">
         .generaltable .c0 {
             font-weight: bold;
