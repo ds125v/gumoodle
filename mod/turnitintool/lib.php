@@ -1511,7 +1511,7 @@ function turnitintool_introduction($cm,$turnitintool,$notice='') {
         $cells[0]->data=get_string('turnitintutors','turnitintool');
         $cells[0]->class='cell c0';
         $cells[1]->data='<a href="'.$CFG->wwwroot.'/mod/turnitintool/view.php?id='.$cm->id.'&do=tutors" title="'.
-                get_string('edit','turnitintool').'"><img src="'.$OUTPUT->pix_url('editicon')." class="tiiicons" alt="'.get_string('edit','turnitintool').'" /></a>';
+                get_string('edit','turnitintool').'"><img src="'.$OUTPUT->pix_url('editicon').'" class="tiiicons" alt="'.get_string('edit','turnitintool').'" /></a>';
         $cells[1]->class='cell c1';
         $table->rows[]->cells=$cells;
     }
