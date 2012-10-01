@@ -1511,7 +1511,7 @@ function turnitintool_introduction($cm,$turnitintool,$notice='') {
         $cells[0]->data=get_string('turnitintutors','turnitintool');
         $cells[0]->class='cell c0';
         $cells[1]->data='<a href="'.$CFG->wwwroot.'/mod/turnitintool/view.php?id='.$cm->id.'&do=tutors" title="'.
-                get_string('edit','turnitintool').'"><img src="'.$OUTPUT->pix_url('editicon').'" class="tiiicons" alt="'.get_string('edit','turnitintool').'" /></a>';
+                get_string('edit','turnitintool').'"><img src="'.$OUTPUT->pix_url('editicon', 'turnitintool').'" class="tiiicons" alt="'.get_string('edit','turnitintool').'" /></a>';
         $cells[1]->class='cell c1';
         $table->rows[]->cells=$cells;
     }
@@ -1786,18 +1786,18 @@ function turnitintool_view_tiitutors($cm,$turnitintool,$tutors) {
             $table->rows[$i]->cells[0]->data='<a href="'.$CFG->wwwroot
                     .'/mod/turnitintool/view.php?id='.$cm->id.'&do=tutors&unenrol='
                     .$tiiuser->userid.'" title="'.get_string('turnitintutorsremove','turnitintool')
-                    .'"><img src="'.$OUTPUT->pix_url('trashicon.gif').'" alt="'
+                    .'"><img src="'.$OUTPUT->pix_url('trashicon', 'turnitintool').'" alt="'
                     .get_string('turnitintutorsremove','turnitintool').'" class="tiiicons" /></a>';
             $table->rows[$i]->cells[1]->class='cell c1 iconcell';
             $owner=turnitintool_get_owner($turnitintool->course);
             if ($owner->id==$user->id) {
-                $table->rows[$i]->cells[1]->data='<a><img src="'.$OUTPUT->pix_url('ownerstar').'" alt="'
+                $table->rows[$i]->cells[1]->data='<a><img src="'.$OUTPUT->pix_url('ownerstar', 'turnitintool').'" alt="'
                         .get_string('turnitintoolowner','turnitintool').'" class="tiiicons" /></a>';
             } else {
                 $table->rows[$i]->cells[1]->data='<a href="'.$CFG->wwwroot
                         .'/mod/turnitintool/view.php?id='.$cm->id.'&do=changeowner&owner='
                         .$tiiuser->userid.'" title="'.get_string('changeowner','turnitintool')
-                        .'"><img src="'.$OUTPUT->pix_url('ownerstar_grey').'" alt="'
+                        .'"><img src="'.$OUTPUT->pix_url('ownerstar_grey', 'turnitintool').'" alt="'
                         .get_string('changeowner','turnitintool').'" class="tiiicons" /></a>';
             }
             $table->rows[$i]->cells[2]->class='cell c2';
@@ -2333,7 +2333,7 @@ function turnitintool_view_student_submissions($cm,$turnitintool) {
                 if (!is_null($submission->submission_objectid)) {
                     $downscript=' onclick="screenOpen(this.href,\''.$submission->id.'\',false,null,\'width=450,height=200\');return false;"';
                     $download='<a href="'.turnitintool_get_filelink($cm,$turnitintool,$submission,true).'" title="'.
-                            get_string('downloadsubmission','turnitintool').'" target="_blank"'.$downscript.'><img src="'.$OUTPUT->pix_url('downloadicon').'" alt="'.
+                            get_string('downloadsubmission','turnitintool').'" target="_blank"'.$downscript.'><img src="'.$OUTPUT->pix_url('downloadicon', 'turnitintool').'" alt="'.
                             get_string('downloadsubmission','turnitintool').'" class="tiiicons" /></a>';
                 } else {
                     $download='';
@@ -2361,7 +2361,7 @@ function turnitintool_view_student_submissions($cm,$turnitintool) {
                         OR has_capability('mod/turnitintool:grade', get_context_instance(CONTEXT_MODULE, $cm->id))) {
                     $delete='<a href="'.$CFG->wwwroot.'/mod/turnitintool/view.php'.'?id='.$cm->id.'&delete='.$submission->id.
                             '&do='.$param_do.'"'.$confirm.' title="'.get_string('deletesubmission','turnitintool').
-                            '"><img src="'.$OUTPUT->pix_url('trashicon').'" alt="'.get_string('deletesubmission','turnitintool').'" class="tiiicons" /></a>';
+                            '"><img src="'.$OUTPUT->pix_url('trashicon', 'turnitintool').'" alt="'.get_string('deletesubmission','turnitintool').'" class="tiiicons" /></a>';
                 } else {
                     $delete='-';
                 }
@@ -2965,13 +2965,13 @@ function turnitintool_doheaderlinks($cm,$turnitintool,$title,$hilo,$lohi) {
     $headerlink='<a href="'.$baselink.'&ob=%%OB%%">'.$title.'</a>';
 
     if (isset($param_ob) AND $param_ob==$hilo) {
-        $headerlink.=' <img src="'.$OUTPUT->pix_url('order_down').'" class="ordericons" />';
+        $headerlink.=' <img src="'.$OUTPUT->pix_url('order_down', 'turnitintool').'" class="ordericons" />';
         $headerlink=str_replace('%%OB%%',$lohi,$headerlink);
     } else if (isset($param_ob) AND $param_ob==$lohi) {
-        $headerlink.=' <img src='.$OUTPUT->pix_url('order_up').'" class="ordericons" />';
+        $headerlink.=' <img src='.$OUTPUT->pix_url('order_up', 'turnitintool').'" class="ordericons" />';
         $headerlink=str_replace('%%OB%%',$hilo,$headerlink);
     } else if (!isset($param_ob) AND $hilo==1) {
-        $headerlink.=' <img src="'.$OUTPUT->pix_url('order_down').'" class="ordericons" />';
+        $headerlink.=' <img src="'.$OUTPUT->pix_url('order_down', 'turnitintool').'" class="ordericons" />';
         $headerlink=str_replace('%%OB%%',$lohi,$headerlink);
     } else {
         $headerlink=str_replace('%%OB%%',$hilo,$headerlink);
@@ -3368,7 +3368,7 @@ function turnitintool_view_all_submissions($cm,$turnitintool,$orderby='1') {
                     </script>';
                 } else { // Draw a place holder spacer if there are less than one submissions
                     $pluslink='
-                    <img src="'.$OUTPUT->pix_url('clearpixel').'" class="plusminus" id="userblock_'.$values->userid.'" />
+                    <img src="'.$OUTPUT->pix_url('clearpixel', 'turnitintool').'" class="plusminus" id="userblock_'.$values->userid.'" />
                     ';
                 }
                 if ( $CFG->turnitin_enablepseudo == 1 AND $CFG->turnitin_pseudolastname > 0 ) {
