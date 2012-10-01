@@ -319,18 +319,18 @@ class assign {
             $this->process_batch_grading_operation();
             $action = 'grading';
          } else if ($action == 'submitgrade') {
-            if (optional_param('saveandshownext', null, PARAM_ALPHA)) {
+            if (optional_param('saveandshownext', null, PARAM_RAW)) {
                 //save and show next
                 $action = 'grade';
                 if ($this->process_save_grade($mform)) {
                     $action = 'nextgrade';
                 }
-            } else if (optional_param('nosaveandprevious', null, PARAM_ALPHA)) {
+            } else if (optional_param('nosaveandprevious', null, PARAM_RAW)) {
                 $action = 'previousgrade';
-            } else if (optional_param('nosaveandnext', null, PARAM_ALPHA)) {
+            } else if (optional_param('nosaveandnext', null, PARAM_RAW)) {
                 //show next button
                 $action = 'nextgrade';
-            } else if (optional_param('savegrade', null, PARAM_ALPHA)) {
+            } else if (optional_param('savegrade', null, PARAM_RAW)) {
                 //save changes button
                 $action = 'grade';
                 if ($this->process_save_grade($mform)) {
@@ -1629,11 +1629,7 @@ class assign {
         if ($rownum == count($useridlist) - 1) {
             $last = true;
         }
-        // the placement of this is important so can pass the list of userids above
-        if ($offset) {
-            $_POST = array();
-        }
-        if(!$userid){
+        if (!$userid) {
             throw new coding_exception('Row is out of bounds for the current grading table: ' . $rownum);
         }
         $user = $DB->get_record('user', array('id' => $userid));
@@ -1762,18 +1758,17 @@ class assign {
         $gradingoptionsdata->filter = $filter;
         $gradingoptionsform->set_data($gradingoptionsdata);
 
+        $actionformtext = $this->output->render($gradingactions);
+        $o .= $this->output->render(new assign_header($this->get_instance(),
+                                                      $this->get_context(), false, $this->get_course_module()->id, get_string('grading', 'assign'), $actionformtext));
+        $o .= groups_print_activity_menu($this->get_course_module(), $CFG->wwwroot . '/mod/assign/view.php?id=' . $this->get_course_module()->id.'&action=grading', true);
+
         // plagiarism update status apearring in the grading book
         if (!empty($CFG->enableplagiarism)) {
             /** Include plagiarismlib.php */
             require_once($CFG->libdir . '/plagiarismlib.php');
             $o .= plagiarism_update_status($this->get_course(), $this->get_course_module());
         }
-
-        $actionformtext = $this->output->render($gradingactions);
-        $o .= $this->output->render(new assign_header($this->get_instance(),
-                                                      $this->get_context(), false, $this->get_course_module()->id, get_string('grading', 'assign'), $actionformtext));
-        $o .= groups_print_activity_menu($this->get_course_module(), $CFG->wwwroot . '/mod/assign/view.php?id=' . $this->get_course_module()->id.'&action=grading', true);
-
 
         // load and print the table of submissions
         if ($showquickgrading && $quickgrading) {
@@ -2624,20 +2619,28 @@ class assign {
         }
         $currentgrades->close();
 
+        $adminconfig = $this->get_admin_config();
+        $gradebookplugin = $adminconfig->feedback_plugin_for_gradebook;
+
         // ok - ready to process the updates
         foreach ($modifiedusers as $userid => $modified) {
             $grade = $this->get_user_grade($userid, true);
             $grade->grade= grade_floatval(unformat_float($modified->grade));
             $grade->grader= $USER->id;
 
-            $this->update_grade($grade);
-
             // save plugins data
             foreach ($this->feedbackplugins as $plugin) {
                 if ($plugin->is_visible() && $plugin->is_enabled() && $plugin->supports_quickgrading()) {
                     $plugin->save_quickgrading_changes($userid, $grade);
+                    if (('assignfeedback_' . $plugin->get_type()) == $gradebookplugin) {
+                        // This is the feedback plugin chose to push comments to the gradebook.
+                        $grade->feedbacktext = $plugin->text_for_gradebook($grade);
+                        $grade->feedbackformat = $plugin->format_for_gradebook($grade);
+                    }
                 }
             }
+
+            $this->update_grade($grade);
 
             // save outcomes
             if ($CFG->enableoutcomes) {
@@ -2923,13 +2926,13 @@ class assign {
         }
 
         if (has_all_capabilities(array('gradereport/grader:view', 'moodle/grade:viewall'), $this->get_course_context())) {
-            $grade = $this->output->action_link(new moodle_url('/grade/report/grader/index.php',
+            $gradestring = $this->output->action_link(new moodle_url('/grade/report/grader/index.php',
                                                               array('id'=>$this->get_course()->id)),
                                                 $gradinginfo->items[0]->grades[$userid]->str_grade);
         } else {
-            $grade = $gradinginfo->items[0]->grades[$userid]->str_grade;
+            $gradestring = $gradinginfo->items[0]->grades[$userid]->str_grade;
         }
-        $mform->addElement('static', 'finalgrade', get_string('currentgrade', 'assign').':' ,$grade);
+        $mform->addElement('static', 'finalgrade', get_string('currentgrade', 'assign').':', $gradestring);
 
 
         $mform->addElement('static', 'progress', '', get_string('gradingstudentprogress', 'assign', array('index'=>$rownum+1, 'count'=>count($useridlist))));
@@ -2942,6 +2945,7 @@ class assign {
         $mform->setType('id', PARAM_INT);
         $mform->addElement('hidden', 'rownum', $rownum);
         $mform->setType('rownum', PARAM_INT);
+        $mform->setConstant('rownum', $rownum);
         $mform->addElement('hidden', 'useridlist', implode(',', $useridlist));
         $mform->setType('useridlist', PARAM_TEXT);
         $mform->addElement('hidden', 'ajax', optional_param('ajax', 0, PARAM_INT));
@@ -3376,7 +3380,7 @@ class assign {
         $graderesults = $DB->get_recordset_sql('SELECT u.id as userid, s.timemodified as datesubmitted, g.grade as rawgrade, g.timemodified as dategraded, g.grader as usermodified
                             FROM {user} u
                             LEFT JOIN {assign_submission} s ON u.id = s.userid and s.assignment = ?
-                            LEFT JOIN {assign_grades} g ON u.id = g.userid and g.assignment = ?
+                            JOIN {assign_grades} g ON u.id = g.userid and g.assignment = ?
                             ' . $where, array($assignmentid, $assignmentid, $userid));
 
 

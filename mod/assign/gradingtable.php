@@ -88,7 +88,7 @@ class assign_grading_table extends table_sql implements renderable {
         $params['assignmentid1'] = (int)$this->assignment->get_instance()->id;
         $params['assignmentid2'] = (int)$this->assignment->get_instance()->id;
 
-        $fields = user_picture::fields('u') . ', u.id as userid, u.firstname as firstname, u.lastname as lastname, ';
+        $fields = user_picture::fields('u') . ', u.id as userid, ';
         $fields .= 's.status as status, s.id as submissionid, s.timecreated as firstsubmission, s.timemodified as timesubmitted, ';
         $fields .= 'g.id as gradeid, g.grade as grade, g.timemodified as timemarked, g.timecreated as firstmarked, g.mailed as mailed, g.locked as locked';
         $from = '{user} u LEFT JOIN {assign_submission} s ON u.id = s.userid AND s.assignment = :assignmentid1' .
@@ -118,12 +118,12 @@ class assign_grading_table extends table_sql implements renderable {
         $headers = array();
 
         // Select
-        $columns[] = 'select';
-        $headers[] = get_string('select') . '<div class="selectall"><input type="checkbox" name="selectall" title="' . get_string('selectall') . '"/></div>';
-
-        // Edit links
         if (!$this->is_downloading()) {
-            $columns[] = 'edit';
+            $columns[] = 'select';
+            $headers[] = get_string('select') . '<div class="selectall"><input type="checkbox" name="selectall" title="' . get_string('selectall') . '"/></div>';
+
+            // We have to call this column userid so we can use userid as a default sortable column.
+            $columns[] = 'userid';
             $headers[] = get_string('edit');
         }
 
@@ -187,8 +187,10 @@ class assign_grading_table extends table_sql implements renderable {
         // set the columns
         $this->define_columns($columns);
         $this->define_headers($headers);
+        // We require at least one unique column for the sort.
+        $this->sortable(true, 'userid');
         $this->no_sorting('finalgrade');
-        $this->no_sorting('edit');
+        $this->no_sorting('userid');
         $this->no_sorting('select');
         $this->no_sorting('outcomes');
 
@@ -287,13 +289,15 @@ class assign_grading_table extends table_sql implements renderable {
     }
 
     /**
-     * Format a user record for display (don't link to profile)
+     * Format a user record for display (link to profile)
      *
      * @param stdClass $row
      * @return string
      */
     function col_fullname($row) {
-        return fullname($row);
+        $courseid = $this->assignment->get_course()->id;
+        $link= new moodle_url('/user/view.php', array('id' =>$row->id, 'course'=>$courseid));
+        return $this->output->action_link($link, fullname($row));
     }
 
     /**
@@ -428,7 +432,7 @@ class assign_grading_table extends table_sql implements renderable {
      * @param stdClass $row
      * @return string
      */
-    function col_edit(stdClass $row) {
+    function col_userid(stdClass $row) {
         $edit = '';
         if ($this->rownum < 0) {
             $this->rownum = $this->currpage * $this->pagesize;

@@ -65,8 +65,9 @@ abstract class format_section_renderer_base extends plugin_renderer_base {
      */
     public function section_title($section, $course) {
         $title = get_section_name($course, $section);
-        if ($section->section != 0 && $course->coursedisplay == COURSE_DISPLAY_MULTIPAGE) {
-            $title = html_writer::link(course_get_url($course, $section->section), $title);
+        $url = course_get_url($course, $section->section, array('navigation' => true));
+        if ($url) {
+            $title = html_writer::link($url, $title);
         }
         return $title;
     }
@@ -125,7 +126,7 @@ abstract class format_section_renderer_base extends plugin_renderer_base {
      * @param int $sectionreturn The section to return to after an action
      * @return string HTML to output.
      */
-    protected function section_header($section, $course, $onsectionpage, $sectionreturn=0) {
+    protected function section_header($section, $course, $onsectionpage, $sectionreturn=null) {
         global $PAGE;
 
         $o = '';
@@ -168,7 +169,8 @@ abstract class format_section_renderer_base extends plugin_renderer_base {
         if ($PAGE->user_is_editing() && has_capability('moodle/course:update', $context)) {
             $url = new moodle_url('/course/editsection.php', array('id'=>$section->id, 'sr'=>$sectionreturn));
             $o.= html_writer::link($url,
-                html_writer::empty_tag('img', array('src' => $this->output->pix_url('t/edit'), 'class' => 'iconsmall edit')),
+                html_writer::empty_tag('img', array('src' => $this->output->pix_url('t/edit'),
+                    'class' => 'iconsmall edit', 'alt' => get_string('edit'))),
                 array('title' => get_string('editsummary')));
         }
         $o.= html_writer::end_tag('div');
@@ -291,8 +293,11 @@ abstract class format_section_renderer_base extends plugin_renderer_base {
         $o .= html_writer::tag('div', '', array('class' => 'right side'));
         $o .= html_writer::start_tag('div', array('class' => 'content'));
 
-        $title = html_writer::tag('a', get_section_name($course, $section),
-                array('href' => course_get_url($course, $section->section), 'class' => $linkclasses));
+        $title = get_section_name($course, $section);
+        if ($section->uservisible) {
+            $title = html_writer::tag('a', $title,
+                    array('href' => course_get_url($course, $section->section), 'class' => $linkclasses));
+        }
         $o .= $this->output->heading($title, 3, 'section-title');
 
         $o.= html_writer::start_tag('div', array('class' => 'summarytext'));
@@ -410,7 +415,7 @@ abstract class format_section_renderer_base extends plugin_renderer_base {
      * @param int $sectionno The section number in the coruse which is being dsiplayed
      * @return string HTML to output.
      */
-    protected function course_activity_clipboard($course, $sectionno = 0) {
+    protected function course_activity_clipboard($course, $sectionno = null) {
         global $USER;
 
         $o = '';
@@ -448,7 +453,7 @@ abstract class format_section_renderer_base extends plugin_renderer_base {
         $links = array('previous' => '', 'next' => '');
         $back = $sectionno - 1;
         while ($back > 0 and empty($links['previous'])) {
-            if ($canviewhidden || $sections[$back]->visible) {
+            if ($canviewhidden || $sections[$back]->uservisible) {
                 $params = array();
                 if (!$sections[$back]->visible) {
                     $params = array('class' => 'dimmed_text');
@@ -462,7 +467,7 @@ abstract class format_section_renderer_base extends plugin_renderer_base {
 
         $forward = $sectionno + 1;
         while ($forward <= $course->numsections and empty($links['next'])) {
-            if ($canviewhidden || $sections[$forward]->visible) {
+            if ($canviewhidden || $sections[$forward]->uservisible) {
                 $params = array();
                 if (!$sections[$forward]->visible) {
                     $params = array('class' => 'dimmed_text');
@@ -639,7 +644,7 @@ abstract class format_section_renderer_base extends plugin_renderer_base {
         echo $this->output->heading($this->page_title(), 2, 'accesshide');
 
         // Copy activity clipboard..
-        echo $this->course_activity_clipboard($course);
+        echo $this->course_activity_clipboard($course, 0);
 
         // Now the list of sections..
         echo $this->start_section_list();
@@ -648,10 +653,10 @@ abstract class format_section_renderer_base extends plugin_renderer_base {
         $thissection = $sections[0];
         unset($sections[0]);
         if ($thissection->summary or $thissection->sequence or $PAGE->user_is_editing()) {
-            echo $this->section_header($thissection, $course, false);
-            print_section($course, $thissection, $mods, $modnamesused, true);
+            echo $this->section_header($thissection, $course, false, 0);
+            print_section($course, $thissection, $mods, $modnamesused, true, "100%", false, 0);
             if ($PAGE->user_is_editing()) {
-                print_section_add_menus($course, 0, $modnames);
+                print_section_add_menus($course, 0, $modnames, false, false, 0);
             }
             echo $this->section_footer();
         }
@@ -690,11 +695,11 @@ abstract class format_section_renderer_base extends plugin_renderer_base {
                 // Display section summary only.
                 echo $this->section_summary($thissection, $course, $mods);
             } else {
-                echo $this->section_header($thissection, $course, false);
+                echo $this->section_header($thissection, $course, false, 0);
                 if ($thissection->uservisible) {
-                    print_section($course, $thissection, $mods, $modnamesused);
+                    print_section($course, $thissection, $mods, $modnamesused, true, "100%", false, 0);
                     if ($PAGE->user_is_editing()) {
-                        print_section_add_menus($course, $section, $modnames);
+                        print_section_add_menus($course, $section, $modnames, false, false, 0);
                     }
                 }
                 echo $this->section_footer();
@@ -711,7 +716,7 @@ abstract class format_section_renderer_base extends plugin_renderer_base {
                     continue;
                 }
                 echo $this->stealth_section_header($section);
-                print_section($course, $thissection, $mods, $modnamesused);
+                print_section($course, $thissection, $mods, $modnamesused, true, "100%", false, $displaysection);
                 echo $this->stealth_section_footer();
             }
 

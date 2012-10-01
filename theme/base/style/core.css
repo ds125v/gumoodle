@@ -211,6 +211,7 @@ a.skip:active {position: static;display: block;}
 .mform .fitem .fitemtitle div {display: inline;}
 .mform .fitem .felement {border-width: 0;width:80%;margin-left:16%;}
 .mform .fitem fieldset.felement {margin-left:15%;padding-left:1%;margin-bottom:0}
+.dir-rtl .mform .fitem fieldset.felement {padding-right: 1%;margin-right: 15%;}
 .mform .error,
 .mform .required {color:#A00;}
 .mform .required .fgroup span label {color:#000;}
@@ -284,6 +285,7 @@ input#id_externalurl {direction:ltr;}
 .loginbox .subcontent {margin:5px;padding:10px;text-align:center;}
 .loginbox .loginpanel .desc {margin:0;padding:0;margin-bottom:5px;}
 .loginbox .signuppanel .subcontent {text-align:left;}
+.dir-rtl .loginbox .signuppanel .subcontent {text-align: right;}
 .loginbox .loginsub {margin-left:0;margin-right:0;}
 .loginbox .guestsub,
 .loginbox .forgotsub,
@@ -508,7 +510,7 @@ body.tag .managelink {padding: 5px;}
 #custommenu .yui3-menu-horizontal .yui3-menu-label,
 #custommenu .yui3-menu-horizontal .yui3-menu-content {background-image:none;background-position:right center;background-repeat:no-repeat;}
 #custommenu .yui3-menu-label,
-#custommenu .yui3-menu .yui3-menu .yui3-menu-label {background-image:url([[pix:theme|vertical-menu-submenu-indicator]]);}
+#custommenu .yui3-menu .yui3-menu .yui3-menu-label {background-image:url([[pix:theme|vertical-menu-submenu-indicator]]); padding-right: 20px;}
 #custommenu .yui3-menu .yui3-menu .yui3-menu-label-menuvisible {background-image:url([[pix:theme|horizontal-menu-submenu-indicator]]);}
 
 /**
@@ -664,6 +666,12 @@ body.tag .managelink {padding: 5px;}
 
 .dir-rtl .felement.feditor select {margin-right:18.75%;margin-left:auto;}
 .dir-rtl .mform .fitem .felement {margin-right: 16%;margin-left:auto;text-align: right;}
+.dir-rtl .mform .fitem .felement input[name=email],
+.dir-rtl .mform .fitem .felement input[name=email2],
+.dir-rtl .mform .fitem .felement input[name=url],
+.dir-rtl .mform .fitem .felement input[name=idnumber],
+.dir-rtl .mform .fitem .felement input[name=phone1],
+.dir-rtl .mform .fitem .felement input[name=phone2] {text-align: left; direction: ltr;}
 
 /* Audio player size in 'block' mode (can only change width, height is hardcoded in JS) */
 .resourcecontent .mediaplugin_mp3 object {height:25px; width: 600px}
@@ -855,6 +863,10 @@ sup {vertical-align: super;}
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#CCCCCC')!important;
     filter: dropshadow(color=#FFFFFF, offx=1, offy=1);
 }
+/* Activity Chooser "Close" button */
+.dir-rtl .moodle-dialogue-base .closebutton {float: left;}
+/* Question Bank - Question Chooser "Close" button */
+#page-question-edit.dir-rtl a.container-close {right:auto;left:6px;}
 
 .chooserdialogue .moodle-dialogue-bd {
     font-size: 12px;

@@ -233,6 +233,7 @@ function tag_print_search_box($return=false) {
     $output = $OUTPUT->box_start('','tag-search-box');
     $output .= '<form action="'.$CFG->wwwroot.'/tag/search.php" style="display:inline">';
     $output .= '<div>';
+    $output .= '<label class="accesshide" for="searchform_search">'.get_string('searchtags', 'tag').'</label>';
     $output .= '<input id="searchform_search" name="query" type="text" size="40" />';
     $output .= '<button id="searchform_button" type="submit">'. get_string('search', 'tag') .'</button><br />';
     $output .= '</div>';
@@ -261,7 +262,8 @@ function tag_print_search_results($query,  $page, $perpage, $return=false) {
 
     global $CFG, $USER, $OUTPUT;
 
-    $query = array_shift(tag_normalize($query, TAG_CASE_ORIGINAL));
+    $norm = tag_normalize($query, TAG_CASE_ORIGINAL);
+    $query = array_shift($norm);
 
     $count = sizeof(tag_find_tags($query, false));
     $tags = array();

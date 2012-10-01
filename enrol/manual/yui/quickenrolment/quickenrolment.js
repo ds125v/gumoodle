@@ -141,12 +141,19 @@ YUI.add('moodle-enrol_manual-quickenrolment', function(Y) {
             base.dd.addHandle('.'+CSS.HEADER+' h2');
             base.one('.'+CSS.HEADER+' h2').setStyle('cursor', 'move');
 
-            this.get(UEP.BASE).one('.'+CSS.SEARCHOPTIONS+' .'+CSS.COLLAPSIBLEHEADING).one('img').setAttribute('src', M.util.image_url('t/collapsed', 'moodle'));
+            var collapsedimage = 't/collapsed'; // ltr mode
+            if ( Y.one(document.body).hasClass('dir-rtl') ) {
+                collapsedimage = 't/collapsed_rtl';
+            } else {
+                collapsedimage = 't/collapsed';
+            }
+
+            this.get(UEP.BASE).one('.'+CSS.SEARCHOPTIONS+' .'+CSS.COLLAPSIBLEHEADING).one('img').setAttribute('src', M.util.image_url(collapsedimage, 'moodle'));
             this.get(UEP.BASE).one('.'+CSS.SEARCHOPTIONS+' .'+CSS.COLLAPSIBLEHEADING).on('click', function(){
                 this.get(UEP.BASE).one('.'+CSS.SEARCHOPTIONS+' .'+CSS.COLLAPSIBLEHEADING).toggleClass(CSS.ACTIVE);
                 this.get(UEP.BASE).one('.'+CSS.SEARCHOPTIONS+' .'+CSS.COLLAPSIBLEAREA).toggleClass(CSS.HIDDEN);
                 if (this.get(UEP.BASE).one('.'+CSS.SEARCHOPTIONS+' .'+CSS.COLLAPSIBLEAREA).hasClass(CSS.HIDDEN)) {
-                    this.get(UEP.BASE).one('.'+CSS.SEARCHOPTIONS+' .'+CSS.COLLAPSIBLEHEADING).one('img').setAttribute('src', M.util.image_url('t/collapsed', 'moodle'));
+                    this.get(UEP.BASE).one('.'+CSS.SEARCHOPTIONS+' .'+CSS.COLLAPSIBLEHEADING).one('img').setAttribute('src', M.util.image_url(collapsedimage, 'moodle'));
                 } else {
                     this.get(UEP.BASE).one('.'+CSS.SEARCHOPTIONS+' .'+CSS.COLLAPSIBLEHEADING).one('img').setAttribute('src', M.util.image_url('t/expanded', 'moodle'));
                 }
@@ -339,7 +346,7 @@ YUI.add('moodle-enrol_manual-quickenrolment', function(Y) {
                 count++;
                 var user = result.response.users[i];
                 users.append(create('<div class="'+CSS.USER+' clearfix" rel="'+user.id+'"></div>')
-                    .addClass((i%2)?CSS.ODD:CSS.EVEN)
+                    .addClass((count%2)?CSS.ODD:CSS.EVEN)
                     .append(create('<div class="'+CSS.COUNT+'">'+count+'</div>'))
                     .append(create('<div class="'+CSS.PICTURE+'"></div>')
                         .append(create(user.picture)))

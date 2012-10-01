@@ -35,10 +35,11 @@ if ($hassiteconfig
     $temp->add(new admin_setting_configselect('moodlecourse/showgrades', new lang_string('showgrades'), new lang_string('coursehelpshowgrades'), 1,array(0 => new lang_string('no'), 1 => new lang_string('yes'))));
     $temp->add(new admin_setting_configselect('moodlecourse/showreports', new lang_string('showreports'), '', 0,array(0 => new lang_string('no'), 1 => new lang_string('yes'))));
 
+    $currentmaxbytes = get_config('moodlecourse', 'maxbytes');
     if (isset($CFG->maxbytes)) {
-        $choices = get_max_upload_sizes($CFG->maxbytes);
+        $choices = get_max_upload_sizes($CFG->maxbytes, 0, 0, $currentmaxbytes);
     } else {
-        $choices = get_max_upload_sizes();
+        $choices = get_max_upload_sizes(0, 0, 0, $currentmaxbytes);
     }
     $temp->add(new admin_setting_configselect('moodlecourse/maxbytes', new lang_string('maximumupload'), new lang_string('coursehelpmaximumupload'), key($choices), $choices));
 
@@ -46,6 +47,11 @@ if ($hassiteconfig
         $choices = array('0'=>new lang_string('no'), '2'=>new lang_string('yes'));
         $temp->add(new admin_setting_configselect('moodlecourse/legacyfiles', new lang_string('courselegacyfiles'), new lang_string('courselegacyfiles_help'), key($choices), $choices));
     }
+
+    $choices = array();
+    $choices[COURSE_DISPLAY_SINGLEPAGE] = new lang_string('coursedisplay_single');
+    $choices[COURSE_DISPLAY_MULTIPAGE] = new lang_string('coursedisplay_multi');
+    $temp->add(new admin_setting_configselect('moodlecourse/coursedisplay', new lang_string('coursedisplay'), new lang_string('coursedisplay_help'), COURSE_DISPLAY_SINGLEPAGE, $choices));
 
     $temp->add(new admin_setting_heading('groups', new lang_string('groups', 'group'), ''));
     $choices = array();
