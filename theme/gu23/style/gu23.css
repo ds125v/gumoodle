@@ -10225,12 +10225,30 @@ select.menutohour,
 select.menutohour:hover,
 select.menutominute,
 select.menutominute:hover,
+#turnitintool_style select#id_dtstart_day,
+#turnitintool_style select#id_dtstart_month,
+#turnitintool_style select#id_dtstart_year,
+#turnitintool_style select#id_dtstart_minute,
+#turnitintool_style select#id_dtstart_hour,
+#turnitintool_style select#id_dtdue_day,
+#turnitintool_style select#id_dtdue_month,
+#turnitintool_style select#id_dtdue_year,
+#turnitintool_style select#id_dtdue_minute,
+#turnitintool_style select#id_dtdue_hour,
+#turnitintool_style select#id_dtpost_day,
+#turnitintool_style select#id_dtpost_month,
+#turnitintool_style select#id_dtpost_year,
+#turnitintool_style select#id_dtpost_minute,
+#turnitintool_style select#id_dtpost_hour,
 .form-time select,
 .form-time select:focus,
 .fdate_time_selector select,
 .fdate_time_selector select:focus {
-  min-width: 60px;
-  width: 71px;
+  min-width: 60px !important;
+  width: 71px !important;
+}
+#turnitintool_style #uploadtableid td.cell.c0 {
+  text-align: right;
 }
 select#id_timelimit_timeunit,
 select#mid_timelimit_timeunit:hover,
