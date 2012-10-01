@@ -1455,7 +1455,7 @@ function turnitintool_partform($cm,$part) {
  * @return string Returns the output to print to screen
  */
 function turnitintool_introduction($cm,$turnitintool,$notice='') {
-    global $CFG,$USER;
+    global $CFG,$USER,$OUTPUT;
     $output='<style language="text/css">
         .generaltable .c0 {
             font-weight: bold;
@@ -1511,7 +1511,7 @@ function turnitintool_introduction($cm,$turnitintool,$notice='') {
         $cells[0]->data=get_string('turnitintutors','turnitintool');
         $cells[0]->class='cell c0';
         $cells[1]->data='<a href="'.$CFG->wwwroot.'/mod/turnitintool/view.php?id='.$cm->id.'&do=tutors" title="'.
-                get_string('edit','turnitintool').'"><img src="pix/editicon.gif" class="tiiicons" alt="'.get_string('edit','turnitintool').'" /></a>';
+                get_string('edit','turnitintool').'"><img src="'.$OUTPUT->pix_url('editicon').'" class="tiiicons" alt="'.get_string('edit','turnitintool').'" /></a>';
         $cells[1]->class='cell c1';
         $table->rows[]->cells=$cells;
     }
@@ -1610,15 +1610,15 @@ function turnitintool_introduction($cm,$turnitintool,$notice='') {
 
                 $cells[5]->data='<a href="' . $url . '&export_data=1" onclick="screenOpen(this.href,\'\',\'0\',null,\'width=450,height=200\');'
                         .'return false;" target="_blank" title="'.get_string('downloadorigzip','turnitintool')
-                        .'"><img src="'.$CFG->wwwroot.'/pix/f/docx.gif" class="tiiicons" alt="'.get_string('downloadorigzip','turnitintool')
+                        .'"><img src="'.$OUTPUT->pix_url('f/document').'" class="tiiicons" alt="'.get_string('downloadorigzip','turnitintool')
                         .'" id="orig_'.$row.'" /></a></span>'.PHP_EOL;
 
                 $cells[5]->data.='<a href="' . $url . '&export_data=2' .'" onclick="screenOpen(this.href,\'\',\'0\',null,\'width=450,height=200\');'
                         .'return false;" target="_blank" title="'.get_string('downloadpdfzip','turnitintool')
-                        .'"><img src="'.$CFG->wwwroot.'/pix/f/pdf.gif" class="tiiicons" alt="'.get_string('downloadpdfzip','turnitintool')
+                        .'"><img src="'.$OUTPUT->pix_url('f/pdf').'" class="tiiicons" alt="'.get_string('downloadpdfzip','turnitintool')
                         .'" id="pdf_'.$row.'" /></a></span>'.PHP_EOL.'<a href="'.$CFG->wwwroot.'/mod/turnitintool/filelink.php?id='.$cm->id
                         .'&part='.$part->id.'" title="'.get_string('downloadgradexls','turnitintool')
-                        .'"><img src="'.$CFG->wwwroot.'/pix/f/excel.gif" class="tiiicons" alt="'.get_string('downloadgradexls','turnitintool')
+                        .'"><img src="'.$OUTPUT->pix_url('f/excel').'" class="tiiicons" alt="'.get_string('downloadgradexls','turnitintool')
                         .'" id="excel_'.$row.'" /></a></span>';
 
             } else {

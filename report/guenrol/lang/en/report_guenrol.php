@@ -27,4 +27,5 @@ $string['listofcodes'] = 'The following automatic enrolment codes have been set 
 $string['page-report-guenrol-x'] = 'Any participation report';
 $string['page-report-guenrol-index'] = 'Course participation report';
 $string['pluginname'] = 'UofG enrolment status';
+$string['showall'] = 'Show all enrolments';
 $string['title'] = 'Automatic enrolment status';

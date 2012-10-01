@@ -5,7 +5,7 @@
  * Authors:
  *    Jesus Federico  (jesus [at] blindsidenetworks [dt] com)
  *
- * @package   mod_bigbluebutton
+ * @package   mod_recordingsbn
  * @copyright 2011-2012 Blindside Networks Inc.
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v2 or later
  */
@@ -30,11 +30,6 @@ $PAGE->set_url('/mod/recordingsbn/index.php', array('id' => $id));
 $PAGE->set_title(format_string($course->fullname));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($context);
-
-// other things you may want to set - remove if not needed
-//$PAGE->set_cacheable(false);
-//$PAGE->set_focuscontrol('some-html-id');
-//$PAGE->add_body_class('recordingsbn-'.$somevar);
 
 // Output starts here
 echo $OUTPUT->header();
