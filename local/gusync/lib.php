@@ -162,7 +162,7 @@ function local_gusync_processcourse( $extdb, $id ) {
     if (!$visible) {
         $sql = 'delete from moodleenrolments ';
         $sql .= "where moodlecoursesid={$extcourse->id}";
-        block_gusync_query( $extdb, $sql );
+        local_gusync_query( $extdb, $sql );
         mtrace( 'local_gusync: all users removed for hidden course ' . $course->shortname );
         return;
     }
