@@ -25,12 +25,12 @@ require_once($CFG->dirroot."/lib/uploadlib.php");
 activityLog("uploadlib.php Loaded","REQUIRE_ONCE");
 
 if (isset($PAGE) AND is_callable(array($PAGE->requires, 'js'))) { // Are we using new moodle or old?
-    $jsurl = new moodle_url($CFG->wwwroot.'/mod/turnitintool/turnitintool.js');
+    $jsurl = new moodle_url($CFG->wwwroot.'/mod/turnitintool/scripts/turnitintool.js');
     $PAGE->requires->js($jsurl,true);
     $cssurl = new moodle_url($CFG->wwwroot.'/mod/turnitintool/styles.css');
     $PAGE->requires->css($cssurl);
 } else {
-    require_js($CFG->wwwroot.'/mod/turnitintool/turnitintool.js');
+    require_js($CFG->wwwroot.'/mod/turnitintool/scripts/turnitintool.js');
 }
 activityLog("turnitintool.js Loaded","REQUIRE_JS");
 
@@ -182,7 +182,7 @@ if (!is_null($param_do) AND $turnitintool->autoupdates==1 AND $param_do=="allsub
 }
 
 if (!is_null($param_updategrade) OR isset($post['updategrade']) OR isset($post["updategrade_x"])) {
-    turnitintool_update_grades($cm,$turnitintool,$post);
+    turnitintool_update_form_grades($cm,$turnitintool,$post);
 }
 
 if (!is_null($param_up)) { // Manual Submission to Turnitin

@@ -419,6 +419,31 @@ function xmldb_turnitintool_upgrade($oldversion) {
         }
     }
 
+    if ($result && $oldversion < 2012081301) {
+    	if (is_callable(array($DB,'get_manager'))) {
+            $dbman=$DB->get_manager();
+            $table = new xmldb_table('turnitintool_submissions');
+            $field = new xmldb_field('submission_transmatch', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, null, null, 0, 'submission_unanonreason');
+            if (!$dbman->field_exists($table, $field)) {
+            	$dbman->add_field($table, $field);
+            }
+            $table = new xmldb_table('turnitintool');
+            $field = new xmldb_field('transmatch', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, null, null, 0, 'erater_style');
+            if (!$dbman->field_exists($table, $field)) {
+            	$dbman->add_field($table, $field);
+            }
+        } else {
+            $table = new XMLDBTable('turnitintool_submissions');
+            $field = new XMLDBField('submission_transmatch');
+            $field->setAttributes(XMLDB_TYPE_INTEGER, '10', null, null, null, null, null, 0, 'submission_unanonreason');
+            $result = $result && add_field($table, $field);
+            $table = new XMLDBTable('turnitintool');
+            $field = new XMLDBField('transmatch');
+            $field->setAttributes(XMLDB_TYPE_INTEGER, '10', null, null, null, null, null, 0, 'erater_style');
+            $result = $result && add_field($table, $field);
+        }
+    }
+
     return $result;
 }
 

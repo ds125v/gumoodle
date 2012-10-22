@@ -1,6 +1,15 @@
 Moodle Direct Release Notes
 ------------------------------------------------------------------------------------
 ####################################################################################
+Date:       2012-Sept-24
+Release:    v2012092401
+
+- Added support for Translated Matching
+- Update icons with current Turnitin icons, update icons to allow multi version support
+- Added a config level mod_turnitintool component file browser when using Moodle 2.0+ for mod_turnitintool
+- Re-factored Unlink / Relink users page to paginate user data and reduce memory usage
+
+####################################################################################
 Date:       2011-Aug-18
 Release:    v2011081801
 

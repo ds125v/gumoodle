@@ -69,6 +69,7 @@ if (!is_null($param_sub)) {
     $loaderbar = null;
     $tii = new turnitintool_commclass(turnitintool_getUID($owner),$owner->firstname,$owner->lastname,$owner->email,2,$loaderbar);
 
+    $post = new stdClass();
     $post->cid=turnitintool_getCID($course->id);
     $post->assignid=turnitintool_getAID($param_part);
     $post->ctl=turnitintool_getCTL($course->id);

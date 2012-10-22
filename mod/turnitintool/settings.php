@@ -16,8 +16,13 @@ $toplinks = '<div><a href="'.$CFG->wwwroot.'/mod/turnitintool/extras.php">'.get_
             .'</a> | <a href="'.$CFG->wwwroot.'/mod/turnitintool/extras.php?do=viewreport">'.get_string("showusage", "turnitintool")
             .'</a> | <a href="'.$CFG->wwwroot.'/mod/turnitintool/extras.php?do=savereport">'.get_string("saveusage", "turnitintool")
             .'</a> | <a href="'.$CFG->wwwroot.'/mod/turnitintool/extras.php?do=commslog">'.get_string("logs")
-            .'</a> | <a href="'.$CFG->wwwroot.'/mod/turnitintool/extras.php?do=unlinkusers">'.get_string("unlinkusers", "turnitintool")
-            .'</a> - ('.get_string('moduleversion','turnitintool').': '.$module->version . $upgradeavailable . ')</div>';
+            .'</a> | <a href="'.$CFG->wwwroot.'/mod/turnitintool/extras.php?do=unlinkusers">'.get_string("unlinkusers", "turnitintool");
+
+if (is_callable("get_file_storage")) {
+    $toplinks .= '</a> | <a href="'.$CFG->wwwroot.'/mod/turnitintool/extras.php?do=files">'.get_string("files", "turnitintool");
+}
+
+$toplinks .= '</a> - ('.get_string('moduleversion','turnitintool').': '.$module->version . $upgradeavailable . ')</div>';
 
 $settings->add(new admin_setting_heading('turnitin_header', '', $toplinks));
 
@@ -34,7 +39,7 @@ $options = array(0 => get_string('no', 'turnitintool'),
                     1 => get_string('yes', 'turnitintool'),
                  );
 $settings->add(new admin_setting_configselect('turnitin_usegrademark', get_string('turnitinusegrademark', 'turnitintool'),
-                   get_string('turnitinusegrademark_desc', 'turnitintool'), 0, $options));
+                   get_string('turnitinusegrademark_desc', 'turnitintool'), 1, $options));
 
 $settings->add(new admin_setting_configselect('turnitin_useerater', get_string('turnitinuseerater', 'turnitintool'),
                     get_string('turnitinuseerater_desc', 'turnitintool'), 0, $options));
@@ -44,6 +49,9 @@ $settings->add(new admin_setting_configselect('turnitin_userepository', get_stri
 
 $settings->add(new admin_setting_configselect('turnitin_useanon', get_string('turnitinuseanon', 'turnitintool'),
                    get_string('turnitinuseanon_desc', 'turnitintool'), 0, $options));
+
+$settings->add(new admin_setting_configselect('turnitin_transmatch', get_string('transmatch', 'turnitintool'),
+                   get_string('transmatch_desc', 'turnitintool'), 0, $options));
 
 if (!isset($CFG->turnitin_agreement)) {
     $CFG->turnitin_agreement=get_string('turnitintoolagreement_default','turnitintool');

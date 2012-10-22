@@ -65,12 +65,13 @@ class turnitintool_commclass {
     var $curlerror;
     /**
      * A backward compatible constructor / destructor method that works in PHP4 to emulate the PHP5 magic method __construct
+     * Disabled to remove strict warnings, only useful for PHP 4 and there shouldn't be too many PHP 4 installs around by now
      */
-    function turnitintool_commclass($iUid,$iUfn,$iUln,$iUem,$iUtp,&$iLoaderBar) {
+    /*function turnitintool_commclass($iUid,$iUfn,$iUln,$iUem,$iUtp,&$iLoaderBar) {
         if (version_compare(PHP_VERSION,"5.0.0","<")) {
             $this->__construct($iUid,$iUfn,$iUln,$iUem,$iUtp,$iLoaderBar);
         }
-    }
+    }*/
     /**
      * The constructor for the class, Calls the startsession() method if we are using sessions
      *
@@ -263,10 +264,20 @@ class turnitintool_commclass {
             $output[$objectid]["lastname"]=(isset($values['LASTNAME']['value'])) ? $values['LASTNAME']['value'] : '';
             $output[$objectid]["title"] = html_entity_decode($values['TITLE']['value'],ENT_QUOTES,"UTF-8");
             $output[$objectid]["similarityscore"]=(isset($values['SIMILARITYSCORE']['value']) AND $values['SIMILARITYSCORE']['value']!="-1") ? $values['SIMILARITYSCORE']['value'] : NULL;
-
+            
+            $overlap = $values['OVERLAP']['value'];
+            $transmatch_overlap = ( isset( $values['TRANSLATED_MATCHING'][0] ) ) ? $values['TRANSLATED_MATCHING'][0]['OVERLAP']['value'] : 0;
+            if ( $transmatch_overlap > $overlap ) {
+                $high_overlap = $transmatch_overlap;
+                $output[$objectid]["transmatch"] = 1;
+            } else {
+                $high_overlap = $overlap;
+                $output[$objectid]["transmatch"] = 0;
+            }
+            
             $output[$objectid]["overlap"]=(isset($values['OVERLAP']['value']) // this is the Originality Percentage Score
                 AND $values['OVERLAP']['value']!="-1"
-                AND !is_null($output[$objectid]["similarityscore"])) ? $values['OVERLAP']['value'] : NULL;
+                AND !is_null($output[$objectid]["similarityscore"])) ? $high_overlap : NULL;
 
             $output[$objectid]["grademark"]=(isset($values['SCORE']['value'])
                 AND $values['SCORE']['value']!="-1"
@@ -659,6 +670,9 @@ class turnitintool_commclass {
             $assigndata["ets_mechanics"]=$post->erater_mechanics;
             $assigndata["ets_style"]=$post->erater_style;
         }
+        if (isset($post->transmatch)) {
+            $assigndata["translated_matching"]=$post->transmatch;
+        }
         if (isset($post->idsync)) {
             $assigndata['idsync']=$post->idsync;
         }
@@ -794,6 +808,7 @@ class turnitintool_commclass {
                 $pos13 = $this->_xmlkeys['ANON'][$i];
                 $pos14 = $this->_xmlkeys['MAXPOINTS'][$i];
 
+                $output = new stdClass();
                 $output->assign = $this->_xmlvalues[$pos1]['value'];
                 $output->dtstart = strtotime($this->_xmlvalues[$pos2]['value']);
                 $output->dtdue = strtotime($this->_xmlvalues[$pos3]['value']);
@@ -1533,7 +1548,9 @@ class turnitintool_commclass {
             'tr'=>'tr',
             'ca'=>'es',
             'sv'=>'sv',
-            'nl'=>'nl'
+            'nl'=>'nl',
+            'fi'=>'fi',
+            'ar'=>'ar'
         );
         $langcode = (isset($langarray[$langcode])) ? $langarray[$langcode] : 'en_us';
         return $langcode;

@@ -1,29 +1,14 @@
 /**
  * @package   turnitintool
- * @copyright 2010 iParadigms LLC
+ * @copyright 2010 nLearning Ltd
  *
- * Contains styles used pre Moodle 2.0
+ * Contains styles used with Moodle 2.0
  */
-
-#turnitintool_style th,
-#turnitintool_style td {
-    font-size: 0.8em;
-    padding: 0.5em;
+#turnitintool_style,
+#turnitintool_style td,
+#turnitintool_style th {
+     font-size: 1em;
 }
-
-#turnitintool_style tr.leftmark td.c0,
-#turnitintool_style tr.lastmark td.c0{
-    padding-left: 15px;
-}
-
-#turnitintool_style tr.leftmark td {
-    padding-bottom: 0;
-}
-
-#turnitintool_style tr.lastmark td {
-    padding-bottom: 0.5em;
-}
-
 #turnitintool_style .submittoLink {
     display: block;
     border: 0px solid red;
@@ -49,14 +34,11 @@
 #turnitintool_style .origLink a.scoreLink {
     vertical-align: middle;
     display: inline-block;
-    width: 50px;
     text-align: center;
-    border: 1px solid black;
+    border: 0px solid black;
     padding: 0px;
-    font-size: 11px;
-    line-height: 14px;
+    font-size: 1em;
     text-decoration: none;
-    color: black;
 }
 #turnitintool_style .origLink a.refreshLink {
     margin-left: 3px;
@@ -64,6 +46,13 @@
 }
 #turnitintool_style .origLink .scoreBox {
     padding: 0px 14px 0px 0px;
+}
+#turnitintool_style .origLink .scoreColor {
+    padding: 0px 4px 0px 4px;
+    margin: 0px 0px 0px 6px;
+    border: 0px solid black;
+    font-size: 85%;
+    color: white;
 }
 #turnitintool_style .gradeTable .top td {
 
@@ -337,13 +326,6 @@
     font-weight: bold;
     border: 1px solid #CDCDCD;
 }
-#turnitintool_style #unlink .c0 {
-    text-align: right;
-    font-weight: bold;
-}
-#turnitintool_style #unlink .c1 select {
-    width: 98%;
-}
 #turnitintool_style .cellthin {
     width: 15%;
 }
@@ -389,4 +371,113 @@
 }
 #turnitintool_style .linksLine .linkactive {
     font-weight: bold;
+}
+#turnitintool_style .dataTable {
+    width: 100% !important;
+    margin: 0px;
+}
+#turnitintool_style .dataTable .header {
+    padding: 0px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#turnitintool_style .dataTable .header div {
+    padding: 6px;
+}
+#turnitintool_style .dataTable td.group {
+    background-color: #EEEEEE;
+    font-weight: bold;
+}
+#turnitintool_style .dataTable .toggle,
+#turnitintool_style .dataTable .turnitin_uid {
+    text-align: center;
+}
+#turnitintool_style .dataTable .filename {
+    text-align: left;
+    padding-left: 15px;
+}
+#turnitintool_style .dataTable .fullname {
+    text-align: left;
+}
+#turnitintool_style .dataTable .created {
+    text-align: center;
+}
+#turnitintool_style .dataTable .remove {
+    text-align: center;
+}
+#turnitintool_style #unlink_wrapper .top,
+#turnitintool_style #files_wrapper .top {
+    padding: 5px;
+    background-color: #E4E4E4;
+    border: 1px solid #DDDDDD;
+    margin: 0px 0px 8px 0px;
+}
+#turnitintool_style #unlink_wrapper #unlink_length,
+#turnitintool_style #files_wrapper #files_length {
+    float: right;
+}
+#turnitintool_style #unlink_wrapper #unlink_filter label,
+#turnitintool_style #files_wrapper #files_filter label {
+    font-weight: bold;
+    display: inline-block;
+}
+#turnitintool_style #unlink_wrapper #unlink_filter label input,
+#turnitintool_style #files_wrapper #files_filter label input {
+    margin: 0px 1px;
+}
+#turnitintool_style #unlink_wrapper #unlink_filter label#check_filter,
+#turnitintool_style #unlink_wrapper #unlink_filter label#inactive_filter,
+#turnitintool_style #files_wrapper #files_filter label#check_filter,
+#turnitintool_style #files_wrapper #files_filter label#inactive_filter {
+    font-weight: normal;
+    line-height: 90%;
+    margin: 0px 0px 0px 6px;
+}
+#turnitintool_style #unlink_wrapper #unlink_filter .deletecheck,
+#turnitintool_style #unlink_wrapper #unlink_filter .inactivecheck
+#turnitintool_style #files_wrapper #files_filter .deletecheck,
+#turnitintool_style #files_wrapper #files_filter .inactivecheck {
+    position: relative;
+    top: 2px;
+}
+#turnitintool_style .dataTables_info {
+    text-align: center;
+}
+#turnitintool_style .dataTables_processing {
+    text-align: center;
+}
+#turnitintool_style .dt_page {
+    height: 1.6em;
+    text-align: center;
+}
+#turnitintool_style .bottom {
+    height: 6px;
+}
+#turnitintool_style .paginate_disabled_previous {
+    float: left;
+    color: #888;
+    padding: 0px 0px 0px 14px;
+}
+#turnitintool_style .paginate_disabled_next {
+    float: right;
+    color: #888;
+    padding: 0px 14px 0px 0px;
+}
+#turnitintool_style .paginate_disabled_previous:hover,
+#turnitintool_style .paginate_disabled_next:hover {
+    text-decoration: none;
+}
+#turnitintool_style .paginate_enabled_previous {
+    float: left;
+    cursor: pointer;
+    padding: 0px 0px 0px 14px;
+}
+#turnitintool_style .paginate_enabled_next {
+    float: right;
+    cursor: pointer;
+    padding: 0px 14px 0px 0px;
 }

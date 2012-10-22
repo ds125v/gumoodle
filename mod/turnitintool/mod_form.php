@@ -22,6 +22,7 @@ class mod_turnitintool_mod_form extends moodleform_mod {
             $mform->setType('name', PARAM_CLEAN);
         }
         $mform->addRule('name', null, 'required', null, 'client');
+        $input = new stdClass();
         $input->length=40;
         $input->field=get_string('turnitintoolname','turnitintool');
         $mform->addRule('name', get_string('maxlength','turnitintool',$input), 'maxlength', 40, 'client');
@@ -33,6 +34,7 @@ class mod_turnitintool_mod_form extends moodleform_mod {
             $mform->addElement('htmleditor', 'intro', get_string('turnitintoolintro', 'turnitintool'));
             $mform->setType('intro', PARAM_RAW);
             $mform->addRule('intro', get_string('required'), 'required', null, 'client');
+            $input = new stdClass();
             $input->length=1000;
             $input->field=get_string('turnitintoolintro','turnitintool');
             $mform->addRule('intro', get_string('maxlength','turnitintool',$input), 'maxlength', 1000, 'client');
@@ -108,7 +110,8 @@ class mod_turnitintool_mod_form extends moodleform_mod {
         } else if ($CFG->turnitin_useanon) {
             $mform->addElement('select', 'anon', get_string('turnitinanon', 'turnitintool'), $ynoptions);
             turnitintool_modform_help_icon('anon', 'turnitinanon', 'turnitintool', $mform);
-            $mform->setDefault('anon', $CFG->turnitin_default_anon);
+            $anon_default = isset($CFG->turnitin_default_anon) ? $CFG->turnitin_default_anon : 0;
+            $mform->setDefault('anon', $anon_default);
         } else {
             $mform->addElement('hidden', 'anon', 0);
         }
@@ -171,6 +174,7 @@ class mod_turnitintool_mod_form extends moodleform_mod {
             $mform->setDefault('excludequoted', $CFG->turnitin_default_excludequoted);
 
             $mform->addElement('text', 'excludevalue', get_string('excludevalue', 'turnitintool'), array('size'=>'12'));
+            $input = new stdClass();
             $input->length=9;
             $input->field=get_string('excludevalue','turnitintool');
             $mform->addRule('excludevalue', get_string('maxlength','turnitintool',$input), 'maxlength', 9, 'client');
@@ -229,7 +233,14 @@ class mod_turnitintool_mod_form extends moodleform_mod {
         	$mform->disabledIf('erater_style','erater', 'eq', 0);
         	
         }
+        
+        if ( isset($CFG->turnitin_transmatch) && $CFG->turnitin_transmatch=='1') {
+        
+            $mform->addElement('select', 'transmatch', get_string('transmatch', 'turnitintool'), $ynoptions);
+            $mform->setDefault('transmatch', false);
 
+        }
+        
         $mform->addElement('hidden','ownerid',NULL);
 
         $features = new stdClass;

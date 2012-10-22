@@ -1,3 +1,11 @@
+2012-09-24 : Update icons with current Turnitin icons, update icons to allow multi version support
+2012-09-24 : Fixed bug where Erater settings would reset when editing an assignment part
+2012-09-24 : Added support for Translated Matching
+2012-09-24 : Fixed numerous PHP strict standards warnings
+2012-09-24 : Re-factored Unlink / Relink users page to paginate user data and reduce memory usage
+2012-09-24 : Added a config level mod_turnitintool component file browser when using Moodle 2.0+ for mod_turnitintool
+2012-09-24 : Fixed issue when defaults are used in a course reset
+2012-09-24 : Fixed Tutor management screen HTML bug
 2012-04-27 : Fixed assignment start, due and post dates to correctly use server default timezone rather than user default timezone
 2012-04-27 : Fixed issue where invalid HTML was generated after an inbox refresh
 2012-04-27 : Added feature to allow anonymized student name data during API calls
