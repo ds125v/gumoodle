@@ -6,12 +6,12 @@ $hasfooter = (empty($PAGE->layout_options['nofooter']));
 $hasblocks1 = $PAGE->blocks->region_has_content('side-pre', $OUTPUT);
 $hasblocks2 = $PAGE->blocks->region_has_content('side-post', $OUTPUT);
 $bodyclasses = array();
-if ($hasblocks1 && !$hasblocks2) {
-    $bodyclasses[] = 'blocks1-only';
-} else if ($hasblocks2 && !$hasblocks1) {
-    $bodyclasses[] = 'blocks2-only';
-} else if (!$hasblocks1 && !$hasblocks2) {
-    $bodyclasses[] = 'no-blocks';
+if ($hassidepre && !$hassidepost) {
+    $bodyclasses[] = 'side-pre-only';
+} else if ($hassidepost && !$hassidepre) {
+    $bodyclasses[] = 'side-post-only';
+} else if (!$hassidepost && !$hassidepre) {
+    $bodyclasses[] = 'content-only';
 }
 $favicon_url = $OUTPUT->pix_url('favicon', 'theme');
 $OUTPUT->doctype(); // throw it away to avoid warning
@@ -34,7 +34,7 @@ $OUTPUT->doctype(); // throw it away to avoid warning
 
 <div id="page">
 
-<header>
+<header id=page-header>
     <h1><a href=http://www.gla.ac.uk/ class=hide-text title="Go to University homepage" >University of Glasgow</a></h1>
 	<div id=siteTools> <h3>Site tools</h3> <ul>
 		<li><a href=http://www.gla.ac.uk/subjects/>Subjects A-Z</a></li>
@@ -63,7 +63,7 @@ $OUTPUT->doctype(); // throw it away to avoid warning
       <div class="content-header"><h1><?php echo $PAGE->heading ?></h1> </div>
 	<div id="layout" class="yui3-g">
 
-		<div id="blocks1" class="yui3-u">
+		<div id="region-pre" class="yui3-u">
 		<?php if ($hasblocks1) { ?>
 		    <div class="region-content">
 			<?php echo $OUTPUT->blocks_for_region('side-pre') ?>
@@ -71,7 +71,7 @@ $OUTPUT->doctype(); // throw it away to avoid warning
 		<?php } ?>
 		</div>
 
-	    <div id="main" class="yui3-u">
+	    <div id="region-main" class="yui3-u">
             <div class="navbar clearfix">
                 <div class="breadcrumb"><?php echo $OUTPUT->navbar(); ?></div>
                 <div class="navbutton"> <?php echo $PAGE->button; ?></div>
@@ -82,7 +82,7 @@ $OUTPUT->doctype(); // throw it away to avoid warning
 		</div>
             </div>
 
-		<div id="blocks2" class="yui3-u">
+		<div id="region-post" class="yui3-u">
 		<?php if ($hasblocks2) { ?>
 		    <div class="region-content">
 			<?php echo $OUTPUT->blocks_for_region('side-post') ?>
