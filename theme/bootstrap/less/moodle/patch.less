@@ -99,6 +99,7 @@ li.activity.label,
   border: inherit;
   text-shadow: none;
   padding: 4px 8px;
+  white-space: normal;
 }
 .file-picker td.label,
 .userprofile table.list tr th.label {
@@ -591,11 +592,12 @@ a.editing_showhide {
   [class^="icon-"] 
 }
 span.helplink a {
-  opacity: 0.5;
+  .opacity(50);
+
 }
 .fitem:hover span.helplink a, 
 span.helplink:hover a {
-  opacity: 1;
+  .opacity(100);
 }
 
 #changenumsections,
@@ -1262,7 +1264,7 @@ li.section .content h2 {
   margin-top: 0px;
 }
 li.section.hidden {
-  opacity: 0.5;
+  .opacity(50);
 }
 li.section.hidden h3.sectionname {
   .dimmed
@@ -1598,7 +1600,7 @@ background: none;
 }
 
 .block.invisible {
-  .dimmed;
+  .opacity(50);
   visibility: visible;
 }
 // need to fix the things affected by .rows, which include forum, turnitin, probably others
@@ -1727,4 +1729,15 @@ div.fitemtitle span.helplink {
 .commands a, 
 a.action-icon {
     padding: 0 2px; // increase click area for a bit of extra space between these icons
+}
+
+.block.hidden,
+.block.invisible {
+  visibility: visible;
+  display: block;
+}
+
+fieldset.hidden {
+  display: block;
+  visibility: visible;
 }

@@ -8914,6 +8914,7 @@ li.activity.label,
   border: inherit;
   text-shadow: none;
   padding: 4px 8px;
+  white-space: normal;
 }
 .file-picker td.label,
 .userprofile table.list tr th.label {
@@ -10074,10 +10075,12 @@ a.editing_showhide {
 }
 span.helplink a {
   opacity: 0.5;
+  filter: alpha(opacity=50);
 }
 .fitem:hover span.helplink a,
 span.helplink:hover a {
   opacity: 1;
+  filter: alpha(opacity=100);
 }
 #changenumsections,
 span.commands a:hover {
@@ -10831,6 +10834,7 @@ li.section .content h2 {
 }
 li.section.hidden {
   opacity: 0.5;
+  filter: alpha(opacity=50);
 }
 li.section.hidden .content {
   background: #ddd;
@@ -11164,6 +11168,8 @@ footer p {
   background: #fff;
 }
 .block.invisible {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
   visibility: visible;
 }
 .forumsearch button,
@@ -11349,6 +11355,15 @@ div.fitemtitle span.helplink {
 .commands a,
 a.action-icon {
   padding: 0 2px;
+}
+.block.hidden,
+.block.invisible {
+  visibility: visible;
+  display: block;
+}
+fieldset.hidden {
+  display: block;
+  visibility: visible;
 }
 body {
   width: 100%;
