@@ -3,8 +3,8 @@
 $hasheading = ($PAGE->heading);
 $hasnavbar = (empty($PAGE->layout_options['nonavbar']) && $PAGE->has_navbar());
 $hasfooter = (empty($PAGE->layout_options['nofooter']));
-$hasblocks1 = $PAGE->blocks->region_has_content('side-pre', $OUTPUT);
-$hasblocks2 = $PAGE->blocks->region_has_content('side-post', $OUTPUT);
+$hassidepre = $PAGE->blocks->region_has_content('side-pre', $OUTPUT);
+$hassidepost = $PAGE->blocks->region_has_content('side-post', $OUTPUT);
 $bodyclasses = array();
 if ($hassidepre && !$hassidepost) {
     $bodyclasses[] = 'side-pre-only';
@@ -21,6 +21,7 @@ $OUTPUT->doctype(); // throw it away to avoid warning
 
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $PAGE->title ?></title>
     <link rel="shortcut icon" href="<?php echo $favicon_url ?>" />
     <?php echo $OUTPUT->standard_head_html() ?>
@@ -32,7 +33,7 @@ $OUTPUT->doctype(); // throw it away to avoid warning
 <body id="<?php p($PAGE->bodyid) ?>" class="<?php p($PAGE->bodyclasses.' '.join(' ', $bodyclasses)) ?>">
 <?php echo $OUTPUT->standard_top_of_body_html() ?>
 
-<div id="page">
+<div class=container>
 
 <header id=page-header>
     <h1><a href=http://www.gla.ac.uk/ class=hide-text title="Go to University homepage" >University of Glasgow</a></h1>
@@ -61,35 +62,30 @@ $OUTPUT->doctype(); // throw it away to avoid warning
     <div id="page-content">
 
       <div class="content-header"><h1><?php echo $PAGE->heading ?></h1> </div>
-	<div id="layout" class="yui3-g">
+	<div class=container>
+<div class=row-fluid>
 
-		<div id="region-pre" class="yui3-u">
-		<?php if ($hasblocks1) { ?>
-		    <div class="region-content">
-			<?php echo $OUTPUT->blocks_for_region('side-pre') ?>
-		    </div>
-		<?php } ?>
-		</div>
+<?php if ($hassidepre) : ?>
+    <aside class="span3">
+    <?php echo $OUTPUT->blocks_for_region('side-pre') ?>
+    </aside>
+<?php endif; ?>
 
-	    <div id="region-main" class="yui3-u">
-            <div class="navbar clearfix">
-                <div class="breadcrumb"><?php echo $OUTPUT->navbar(); ?></div>
-                <div class="navbutton"> <?php echo $PAGE->button; ?></div>
-            </div>
+<?php if ($hassidepre AND $hassidepost) : ?>
+    <article class="span6">
+<?php else : ?>
+    <article class="span9">
+<?php endif; ?>
+        <?php echo core_renderer::MAIN_CONTENT_TOKEN ?>
+    </article>
 
-		<div class="region-content">
-		   <?php echo $OUTPUT->main_content() ?>
-		</div>
-            </div>
-
-		<div id="region-post" class="yui3-u">
-		<?php if ($hasblocks2) { ?>
-		    <div class="region-content">
-			<?php echo $OUTPUT->blocks_for_region('side-post') ?>
-		    </div>
-		<?php } ?>
-		</div>
-	 </div>
+<?php if ($hassidepost) : ?>
+    <aside class="span3">
+    <?php echo $OUTPUT->blocks_for_region('side-post') ?>
+    </aside>
+<?php endif; ?>
+</div>
+</div>
 </div>
 
 <footer>

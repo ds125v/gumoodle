@@ -1,7 +1,7 @@
 <?php
 $THEME->name = 'gu23';
 $THEME->parents = array();
-$THEME->sheets = array('gu23');
+$THEME->sheets = array('gu23', 'responsive', 'mform');
 $THEME->rendererfactory = 'theme_overridden_renderer_factory';
 $THEME->layouts = array(
     'base' => array(
