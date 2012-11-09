@@ -5,9 +5,8 @@ php:
 before_script:
  - mysql -e 'create database moodle default character set UTF8 collate UTF8_bin;'
  - pear channel-discover pear.phpunit.de
+ - pear channel-discover pear.symfony.com
  - pear install pear.phpunit.de/DbUnit
- - pyrus channel-discover pear.symfony.com
- - pyrus install phpunit/DbUnit
  - mv config-test.php config.php
  - mkdir -m777 moodledata
  - mkdir -p -m777 phpu/moodledata
