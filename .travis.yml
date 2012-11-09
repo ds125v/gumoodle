@@ -2,4 +2,7 @@ language: php
 php:
   - "5.4"
   - "5.3"
-before-script: pear install phpunit/DbUnit
+before-script:
+ - mv config-test.php config.php
+ - mkdir -m777 /var/phpu_moodledata
+ - pear install phpunit/DbUnit
