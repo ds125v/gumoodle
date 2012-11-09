@@ -7,4 +7,5 @@ before-script:
  - pear install phpunit/DbUnit
  - mv config-test.php config.php
  - mkdir -m777 /var/phpu_moodledata
+ - mkdir -m777 /var/travis_moodledata
  - php admin/tool/phpunit/cli/init.php
