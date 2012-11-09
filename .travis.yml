@@ -4,6 +4,7 @@ php:
   - "5.3"
 before_script:
  - mysql -e 'create database travis default character set UTF8 collate UTF8_bin;'
+- pyrus channel-discover pear.symfony.com
  - pyrus install --force phpunit/DbUnit
  - mv config-test.php config.php
  - mkdir -m777 /var/phpu_moodledata
