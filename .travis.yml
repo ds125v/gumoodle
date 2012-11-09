@@ -5,6 +5,6 @@ php:
 before-script:
  - mysql -e 'create database travis default character set UTF8 collate UTF8_bin;'
  - mv config-test.php config.php
- - mkdir -m777 /var/phpu_moodledata
  - pear install phpunit/DbUnit
+ - mkdir -m777 /var/phpu_moodledata
  - php admin/tool/phpunit/cli/init.php
