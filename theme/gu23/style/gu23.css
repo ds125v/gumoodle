@@ -15401,6 +15401,14 @@ li.section.hidden {
   filter: alpha(opacity=50);
   opacity: 0.5;
   filter: alpha(opacity=50);
+  display: block;
+  visibility: visible;
+}
+a.dimmed + .commands {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+  filter: alpha(opacity=50);
 }
 li.section.hidden .content {
   background: #ddd;
