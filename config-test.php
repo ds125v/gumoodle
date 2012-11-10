@@ -509,7 +509,7 @@ $CFG->admin = 'admin';
 // 9. PHPUNIT SUPPORT
 //=========================================================================
  $CFG->phpunit_prefix = 'phpu_';
- $CFG->phpunit_dataroot = '/home/travis/phpu/moodledata';
+ $CFG->phpunit_dataroot = '/home/travis/phpu_moodledata';
 // $CFG->phpunit_directorypermissions = 02777; // optional
 
 //=========================================================================
