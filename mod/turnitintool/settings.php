@@ -161,7 +161,7 @@ $ynoptions = array(0 => get_string('no', 'turnitintool'),
                    1 => get_string('yes', 'turnitintool')
                  );
 
-if ( $CFG->turnitin_useanon ) {
+if (isset($CFG->turnitin_useanon) && $CFG->turnitin_useanon) {
     $settings->add(new admin_setting_configselect('turnitin_default_anon', get_string('anon','turnitintool'),
                     '', 0, $ynoptions ));
 }
@@ -177,7 +177,7 @@ $settings->add(new admin_setting_configselect('turnitin_default_reportgenspeed',
                    '', 0, $genoptions ));
 
 $suboptions = array( 0 => get_string('norepository','turnitintool'), 1 => get_string('standardrepository','turnitintool'));
-if ( $CFG->turnitin_userepository ) {
+if (isset($CFG->turnitin_userepository) && $CFG->turnitin_userepository) {
     array_push( $suboptions, get_string('institutionalrepository','turnitintool') );
 }
 
