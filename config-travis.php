@@ -110,7 +110,7 @@ $CFG->wwwroot   = 'http://localhost/moodle';
 //
 // - On Windows systems you might specify something like 'c:\moodledata'
 
-$CFG->dataroot  = '/home/travis/moodledata';
+$CFG->dataroot  = getvar('HOME').'/moodledata';
 
 
 //=========================================================================
@@ -509,7 +509,7 @@ $CFG->admin = 'admin';
 // 9. PHPUNIT SUPPORT
 //=========================================================================
  $CFG->phpunit_prefix = 'phpu_';
- $CFG->phpunit_dataroot = '/home/travis/phpu_moodledata';
+$CFG->phpunit_dataroot = getvar('HOME').'/phpu_moodledata';
 // $CFG->phpunit_directorypermissions = 02777; // optional
 //=========================================================================
 // ALL DONE!  To continue installation, visit your main page with a browser

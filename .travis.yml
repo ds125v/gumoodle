@@ -8,5 +8,5 @@ before_script:
  - pear channel-discover pear.symfony.com
  - pear install pear.phpunit.de/DbUnit
  - mv config-travis.php config.php
- - mkdir -m777 /home/travis/moodledata
+ - mkdir -m777 $HOME/moodledata
  - php admin/tool/phpunit/cli/init.php
