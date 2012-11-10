@@ -491,7 +491,7 @@ class turnitintool_commclass {
      */
     function doLogging($vars,$result) {
         global $CFG;
-        if ( $CFG->turnitin_enablediagnostic AND !empty( $vars ) ) {
+        if ( isset($CFG->turnitin_enablediagnostic) AND $CFG->turnitin_enablediagnostic AND !empty( $vars ) ) {
             $this->result=$result;
             // ###### DELETE SURPLUS LOGS #########
             $numkeeps=10;
