@@ -511,8 +511,6 @@ $CFG->admin = 'admin';
  $CFG->phpunit_prefix = 'phpu_';
  $CFG->phpunit_dataroot = '/home/travis/phpu_moodledata';
 // $CFG->phpunit_directorypermissions = 02777; // optional
-$CFG->turnitin_apiurl = "http://www.example.com";
-$CFG->turnitin_account_id = 12345;
 //=========================================================================
 // ALL DONE!  To continue installation, visit your main page with a browser
 //=========================================================================

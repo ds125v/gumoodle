@@ -86,8 +86,12 @@ class turnitintool_commclass {
     function __construct($iUid,$iUfn,$iUln,$iUem,$iUtp,&$iLoaderBar) {
         global $CFG;
         $this->callback=false;
-        $this->apiurl=$CFG->turnitin_apiurl;
-        $this->accountid=$CFG->turnitin_account_id;
+        if (isset($CFG->turnitin_apiurl)) {
+            $this->apiurl=$CFG->turnitin_apiurl;
+        }
+        if (isset($CFG->turnitin_account_id)) {
+            $this->accountid=$CFG->turnitin_account_id;
+        }
         $this->uid=$iUid;
         
         // Convert the email, firstname and lastname to psuedos for students if the option is set in config
