@@ -37,6 +37,7 @@ function xmldb_adobeconnect_install() {
         if ($rid = create_role(get_string('adobeconnectpresenter', 'adobeconnect'), 'adobeconnectpresenter',
                                get_string('adobeconnectpresenterdescription', 'adobeconnect'), 'adobeconnectpresenter')) {
 
+            $mrole = new stdClass();
             $mrole->id = $rid;
             $result = /*$result && */assign_capability('mod/adobeconnect:meetingpresenter', CAP_ALLOW, $mrole->id, $sysctx->id);
 
@@ -70,6 +71,7 @@ function xmldb_adobeconnect_install() {
                                get_string('adobeconnectparticipantdescription', 'adobeconnect'), 'adobeconnectparticipant')) {
 
 
+            $mrole = new stdClass();
             $mrole->id  = $rid;
             $result = /*$result && */assign_capability('mod/adobeconnect:meetingparticipant', CAP_ALLOW, $mrole->id, $sysctx->id);
             set_role_contextlevels($mrole->id, $levels);
@@ -99,7 +101,7 @@ function xmldb_adobeconnect_install() {
     if (/*$result && */!$mrole = $DB->get_record('role', $param)) {
         if ($rid = create_role(get_string('adobeconnecthost', 'adobeconnect'), 'adobeconnecthost',
                                get_string('adobeconnecthostdescription', 'adobeconnect'), 'adobeconnecthost')) {
-
+            $mrole = new stdClass();
             $mrole->id  = $rid;
             $result = /*$result && */assign_capability('mod/adobeconnect:meetinghost', CAP_ALLOW, $mrole->id, $sysctx->id);
             set_role_contextlevels($mrole->id, $levels);
