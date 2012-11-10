@@ -9,5 +9,4 @@ before_script:
  - pear install pear.phpunit.de/DbUnit
  - mv config-test.php config.php
  - mkdir -m777 /home/travis/moodledata
- - mkdir -p -m777 /home/travis/phpu/moodledata
  - php admin/tool/phpunit/cli/init.php
