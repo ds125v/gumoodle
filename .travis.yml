@@ -2,8 +2,12 @@ language: php
 php:
   - "5.4"
   - "5.3"
+env:
+ - DB=mysql
+ - DB=postgres
 before_script:
- - mysql -e 'create database moodle default character set UTF8 collate UTF8_bin;'
+ - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'create database moodle default character set UTF8 collate UTF8_bin;'; fi"
+ - sh -c "if [ '$DB' = 'postgres' ]; then psql -c 'create database moodle;' -U postgres; fi"
  - pear channel-discover pear.phpunit.de
  - pear channel-discover pear.symfony.com
  - pear install pear.phpunit.de/DbUnit
