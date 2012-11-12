@@ -38,11 +38,17 @@ $CFG = new stdClass();
 // will be stored.  This database must already have been created         //
 // and a username/password created to access it.                         //
 
-$CFG->dbtype    = getenv('DB');      // 'pgsql', 'mysqli', 'mssql', 'sqlsrv' or 'oci'
+$DB = getenv('DB');
+
+$CFG->dbtype    = $DB;      // 'pgsql', 'mysqli', 'mssql', 'sqlsrv' or 'oci'
 $CFG->dblibrary = 'native';     // 'native' only at the moment
 $CFG->dbhost    = 'localhost';  // eg 'localhost' or 'db.isp.com' or IP
 $CFG->dbname    = 'moodle';     // database name, eg moodle
-$CFG->dbuser    = 'root';   // your database username
+if ($DB == 'myqsli') {
+    $CFG->dbuser    = 'root';   // your database username
+} else if ($DB == 'pgsql') {
+    $CFG->dbuser    = 'postgres';   // your database username
+}
 $CFG->dbpass    = '';   // your database password
 $CFG->prefix    = 'mdl_';       // prefix to use for all table names
 $CFG->dboptions = array(
