@@ -11,7 +11,7 @@ before_script:
  - pear install pear.phpunit.de/DbUnit
  - phpenv rehash
  - cp config-dist.php config.php
- - sh -c "sed -i -e s/'username'/'root'/ -e s/'password'/''/ -e s/example.com/localhost/ -e s-/home/example-$HOME- -e s-//.*\$CFG\-\>phpu\-\$CFG\-\>phpu- config.php"
+ - sh -c "sed -i -e s/'username'/'root'/ -e s/'password'/''/ -e s/example.com/localhost/ -e s%/home/example%$HOME% -e s%//.*\$CFG\-\>phpu\%\$CFG\-\>phpu% config.php"
  - cat config.php
  - sh -c "if [ '$DB' = 'mysqli' ]; then mysql -e 'create database moodle default character set UTF8 collate UTF8_bin;'; fi"
  - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'create database moodle;' -U postgres; fi"
