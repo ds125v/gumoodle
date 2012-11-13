@@ -14,8 +14,8 @@ before_script:
  - sed -i s/\'username\'/\'root\'/ config.php
  - sed -i s/\'password\'/\'\'/ config.php
  - sed -i s/example.com/localhost/ config.php
- - sed -i s:/home/example:$HOME: config.php
- - sed -i s://.*\$CFG-\>phpu:\$CFG-\>phpu: config.php
+ - sed -i s|/home/example|$HOME| config.php
+ - sed -i s|//.\*\$CFG-\>phpu|\$CFG-\>phpu| config.php
  - sh -c "if [ '$DB' = 'mysqli' ]; then mysql -e 'create database moodle default character set UTF8 collate UTF8_bin;'; fi"
  - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'create database moodle;' -U postgres; fi"
  - sh -c "if [ '$DB' = 'pgsql' ]; then sed -i s/\'mysqli\'/\'pgsql\'/ config.php; fi"
