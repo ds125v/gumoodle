@@ -11,14 +11,11 @@ before_script:
  - pear install pear.phpunit.de/DbUnit
  - phpenv rehash
  - cp config-dist.php config.php
- - sed -i s/\'username\'/\'root\'/ config.php
- - sed -i s/\'password\'/\'\'/ config.php
- - sed -i s/example.com/localhost/ config.php
- - sed -i s:/home/example:$HOME: config.php
- - sed -i s://.*\$CFG-\>phpu:\$CFG-\>phpu: config.php
+ - echo "$CFG->dbuser='root';$CFG->dbpassword='';" >> config.php
+ - echo "$CFG->wwwroot='http://localhost/moodle';$CFG->dataroot='/home/travis/moodledata';" >> config.php
+ - echo "$CFG->phpunit_prefix='phpu_';$CFG->phpunit_dataroot='/home/travis/phpu_moodledata';" >> config.php
  - sh -c "if [ '$DB' = 'mysqli' ]; then mysql -e 'create database moodle default character set UTF8 collate UTF8_bin;'; fi"
  - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'create database moodle;' -U postgres; fi"
- - sh -c "if [ '$DB' = 'pgsql' ]; then sed -i s/\'mysqli\'/\'pgsql\'/ config.php; fi"
- - sh -c "if [ '$DB' = 'pgsql' ]; then sed -i s/\'root\'/\'postgres\'/ config.php; fi"
+ - sh -c "if [ '$DB' = 'pgsql' ]; then echo \"$CFG->dbtype='pgsql';$CFG->dbuser='postgres';\" >> config.php; fi"
  - mkdir -m777 $HOME/moodledata
  - php admin/tool/phpunit/cli/init.php
