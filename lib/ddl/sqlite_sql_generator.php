@@ -390,6 +390,12 @@ class sqlite_sql_generator extends sql_generator {
     public function getDropDefaultSQL($xmldb_table, $xmldb_field) {
         return $this->getAlterTableSchema($xmldb_table, $xmldb_field, $xmldb_field);
     }
+    public function getCreateTempTableSQL($xmldb_table) {
+        $this->temptables->add_temptable($xmldb_table->getName());
+        $sqlarr = $this->getCreateTableSQL($xmldb_table);
+        $sqlarr = preg_replace('/^CREATE TABLE/', "CREATE TEMPORARY TABLE", $sqlarr);
+        return $sqlarr;
+    }
 
     /**
      * Returns the code (array of statements) needed to add one comment to the table.
