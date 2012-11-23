@@ -94,6 +94,12 @@ class sqlite_sql_generator extends sql_generator {
         return array("UPDATE sqlite_sequence SET seq=$value WHERE name='{$this->prefix}{$table}'");
     }
 
+    public function getCreateTempTableSQL($xmldb_table) {
+        $this->temptables->add_temptable($xmldb_table->getName());
+        $sqlarr = $this->getCreateTableSQL($xmldb_table);
+        $sqlarr = preg_replace('/^CREATE TABLE/', "CREATE TEMPORARY TABLE", $sqlarr);
+        return $sqlarr;
+    }
     /**
      * Given one correct xmldb_key, returns its specs
      */
@@ -130,6 +136,10 @@ class sqlite_sql_generator extends sql_generator {
         }
 
         return $key;
+    }
+    public function getDropTableSQL($xmldb_table) {
+        $sqlarr = parent::getDropTableSQL($xmldb_table);
+        return $sqlarr;
     }
 
     /**
