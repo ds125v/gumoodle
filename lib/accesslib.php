@@ -786,7 +786,7 @@ function get_user_access_sitewide($userid) {
         list($sqlcids, $cids) = $DB->get_in_or_equal($ras, SQL_PARAMS_NAMED, 'c'.$cp.'_');
         $params = array_merge($params, $cids);
         $params['r'.$cp] = $roleid;
-        $sqls[] = "(SELECT ctx.path, rc.roleid, rc.capability, rc.permission
+        $sqls[] = "SELECT ctx.path, rc.roleid, rc.capability, rc.permission
                      FROM {role_capabilities} rc
                      JOIN {context} ctx
                           ON (ctx.id = rc.contextid)
@@ -801,11 +801,11 @@ function get_user_access_sitewide($userid) {
                           ON (bpctx.id = bi.parentcontextid)
                     WHERE rc.roleid = :r{$cp}
                           AND (ctx.contextlevel <= ".CONTEXT_COURSE." OR bpctx.contextlevel < ".CONTEXT_COURSE.")
-                   )";
+                   ";
     }
 
     // fixed capability order is necessary for rdef dedupe
-    $rs = $DB->get_recordset_sql(implode("\nUNION\n", $sqls). "ORDER BY capability", $params);
+    $rs = $DB->get_recordset_sql('select * from ('.implode("\nUNION\n", $sqls). ") ORDER BY capability", $params);
 
     foreach ($rs as $rd) {
         $k = $rd->path.':'.$rd->roleid;
