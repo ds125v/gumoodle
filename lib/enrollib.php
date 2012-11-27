@@ -599,6 +599,9 @@ function enrol_get_my_courses($fields = NULL, $sort = 'visible DESC,sortorder AS
     $params['now2']    = $params['now1'];
 
     $courses = $DB->get_records_sql($sql, $params, 0, $limit);
+    if ($courses === false) {
+        return array();
+    }
 
     // preload contexts and check visibility
     foreach ($courses as $id=>$course) {
