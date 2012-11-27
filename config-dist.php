@@ -40,10 +40,10 @@ $CFG = new stdClass();
 
 $CFG->dbtype    = 'sqlite3';      // 'pgsql', 'mysqli', 'mssql', 'sqlsrv' or 'oci'
 $CFG->dblibrary = 'pdo';     // 'native' only at the moment
-$CFG->dbhost    = null;  // eg 'localhost' or 'db.isp.com' or IP
-$CFG->dbname    = null;     // database name, eg moodle
-$CFG->dbuser    = null;   // your database username
-$CFG->dbpass    = null;   // your database password
+$CFG->dbhost    = 'localhost';  // eg 'localhost' or 'db.isp.com' or IP
+$CFG->dbname    = 'moodle';     // database name, eg moodle
+$CFG->dbuser    = 'user';   // your database username
+$CFG->dbpass    = 'pass';   // your database password
 $CFG->prefix    = '';       // prefix to use for all table names
 $CFG->dboptions = array();
 
@@ -497,6 +497,11 @@ $CFG->admin = 'admin';
 // $CFG->phpunit_prefix = 'phpu_';
 // $CFG->phpunit_dataroot = '/home/example/phpu_moodledata';
 // $CFG->phpunit_directorypermissions = 02777; // optional
+
+$CFG->phpunit_extra_drivers = array(
+       9=>array('dbtype'=>'sqlite3', 'dblibrary'=>'pdo','dbhost'=>'localhost', 'dbname'=>'moodle', 'dbuser'=>'user', 'dbpass'=>'', 'prefix'=>''),
+  );
+define('PHPUNIT_TEST_DRIVER', 9); //number is index in the previous array
 
 //=========================================================================
 // ALL DONE!  To continue installation, visit your main page with a browser
