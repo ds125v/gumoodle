@@ -540,7 +540,7 @@ abstract class pdo_moodle_database extends moodle_database {
         } catch(PDOException $ex) {
             $this->lastError = $ex->getMessage();
         }
-        $this->query_end($result);
+        $this->query_end(true);
     }
 
     protected function commit_transaction() {
@@ -551,7 +551,7 @@ abstract class pdo_moodle_database extends moodle_database {
         } catch(PDOException $ex) {
             $this->lastError = $ex->getMessage();
         }
-        $this->query_end($result);
+        $this->query_end(true);
     }
 
     protected function rollback_transaction() {
@@ -562,7 +562,7 @@ abstract class pdo_moodle_database extends moodle_database {
         } catch(PDOException $ex) {
             $this->lastError = $ex->getMessage();
         }
-        $this->query_end($result);
+        $this->query_end(true);
     }
 
     /**
