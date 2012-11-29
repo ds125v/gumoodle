@@ -746,7 +746,7 @@ class ddl_testcase extends database_driver_testcase {
         $this->assertTrue($dbman->field_exists($table, 'onetext'));
         $columns = $DB->get_columns('test_table1');
         $this->assertEquals($columns['onetext']->name         ,'onetext');
-        $this->assertEquals($columns['onetext']->max_length   , -1); // -1 means unknown or big
+        $this->assertEquals($columns['onetext']->max_length   , null); // -1 means unknown or big
         $this->assertEquals($columns['onetext']->scale        , null);
         $this->assertEquals($columns['onetext']->not_null     , false);
         $this->assertEquals($columns['onetext']->primary_key  , false);
@@ -760,14 +760,14 @@ class ddl_testcase extends database_driver_testcase {
         $field->set_attributes(XMLDB_TYPE_TEXT, 'medium');
         $dbman->add_field($table, $field);
         $columns = $DB->get_columns('test_table1');
-        $this->assertTrue(($columns['mediumtext']->max_length == -1) or ($columns['mediumtext']->max_length >= 16777215)); // -1 means unknown or big
+        $this->assertTrue(($columns['mediumtext']->max_length == null) or ($columns['mediumtext']->max_length >= 16777215)); // -1 means unknown or big
 
         // add one small text field and check it
         $field = new xmldb_field('smalltext');
         $field->set_attributes(XMLDB_TYPE_TEXT, 'small');
         $dbman->add_field($table, $field);
         $columns = $DB->get_columns('test_table1');
-        $this->assertTrue(($columns['smalltext']->max_length == -1) or ($columns['smalltext']->max_length >= 65535)); // -1 means unknown or big
+        $this->assertTrue(($columns['smalltext']->max_length == null) or ($columns['smalltext']->max_length >= 65535)); // -1 means unknown or big
 
         // add one binary field and check it
         $field = new xmldb_field('onebinary');
@@ -776,7 +776,7 @@ class ddl_testcase extends database_driver_testcase {
         $this->assertTrue($dbman->field_exists($table, 'onebinary'));
         $columns = $DB->get_columns('test_table1');
         $this->assertEquals($columns['onebinary']->name         ,'onebinary');
-        $this->assertEquals($columns['onebinary']->max_length   , -1);
+        $this->assertEquals($columns['onebinary']->max_length   , null);
         $this->assertEquals($columns['onebinary']->scale        , null);
         $this->assertEquals($columns['onebinary']->not_null     , false);
         $this->assertEquals($columns['onebinary']->primary_key  , false);
