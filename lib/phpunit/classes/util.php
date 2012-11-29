@@ -520,6 +520,9 @@ class phpunit_util {
             if (in_array($item, $skip)) {
                 continue;
             }
+            if (strpos($item, 'sq3.php')) {
+                continue;
+            }
             if (is_dir("$CFG->dataroot/$item")) {
                 remove_dir("$CFG->dataroot/$item", false);
             } else {
