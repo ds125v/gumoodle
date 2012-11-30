@@ -5,6 +5,7 @@ php:
 env:
  - DB=mysqli
  - DB=pgsql
+ - DB=sqlite
 before_script:
  - pear channel-discover pear.phpunit.de
  - pear channel-discover pear.symfony.com
