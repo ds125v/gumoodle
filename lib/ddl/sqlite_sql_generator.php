@@ -304,6 +304,9 @@ class sqlite_sql_generator extends sql_generator {
      * note that underlying indexes will be added as parametrised by $xxxx_keys and $xxxx_index parameters
      */
     public function getAddKeySQL($xmldb_table, $xmldb_key) {
+        if ('' === $this->getKeySQL($xmldb_table, $xmldb_key)) {
+            return array();
+        }
         $xmldb_table->addKey($xmldb_key);
         return $this->getAlterTableSchema($xmldb_table);
     }
