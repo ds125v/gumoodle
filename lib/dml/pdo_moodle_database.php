@@ -142,7 +142,7 @@ abstract class pdo_moodle_database extends moodle_database {
      * @return array Array containing 'description' and 'version' info
      */
     public function get_server_info() {
-        $result = array();
+        $result = array('description'=>null);
         try {
             $result['description'] = $this->pdb->getAttribute(PDO::ATTR_SERVER_INFO);
         } catch(PDOException $ex) {}
@@ -195,7 +195,7 @@ abstract class pdo_moodle_database extends moodle_database {
             $this->reset_caches();
         } catch (PDOException $ex) {
             $this->lastError = $ex->getMessage();
-            $result = false;
+            throw new ddl_change_structure_exception($ex->getMessage());
         }
         $this->query_end($result);
         return $result;

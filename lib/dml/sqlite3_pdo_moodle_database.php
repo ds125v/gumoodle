@@ -25,6 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 require_once(__DIR__.'/pdo_moodle_database.php');
+require_once(__DIR__.'/sqlite3_pdo_moodle_temptables.php');
 
 /**
  * Experimental pdo database class
@@ -94,6 +95,7 @@ class sqlite3_pdo_moodle_database extends pdo_moodle_database {
         $filepath = $this->get_dbfilepath();
         $dirpath = dirname($filepath);
         @mkdir($dirpath);
+        $this->temptables = new sqlite3_pdo_moodle_temptables($this);
         return touch($filepath);
     }
 
@@ -201,13 +203,13 @@ class sqlite3_pdo_moodle_database extends pdo_moodle_database {
             return $this->columns[$table];
         }
         // get table's CREATE TABLE command (we'll need it for autoincrement fields)
-        $sql = 'SELECT sql FROM sqlite_master WHERE type="table" AND tbl_name="'.$this->prefix.$table.'"';
+        $sql = "SELECT sql FROM sqlite_master WHERE type='table' AND tbl_name='$this->prefix$table'";
         if ($this->debug) {
             $this->debug_query($sql);
         }
         $createsql = $this->pdb->query($sql)->fetch();
         if (!$createsql) {
-            return false;
+            return array();
         }
         $createsql = $createsql['sql'];
 
@@ -313,11 +315,15 @@ class sqlite3_pdo_moodle_database extends pdo_moodle_database {
      * @return string the SQL statement with limiting clauses
      */
     protected function get_limit_clauses($sql, $limitfrom=0, $limitnum=0) {
-        if ($limitnum) {
-            $sql .= ' LIMIT '.$limitnum;
-            if ($limitfrom) {
-                $sql .= ' OFFSET '.$limitfrom;
-            }
+        if ($limitfrom === 0 && $limitnum === 0) {
+            return $sql;
+        }
+        if ($limitnum === 0) {
+            $limitnum = PHP_INT_MAX;
+        }
+        $sql .= ' LIMIT '.$limitnum;
+        if ($limitfrom !== 0) {
+            $sql .= ' OFFSET '.$limitfrom;
         }
         return $sql;
     }
