@@ -805,7 +805,7 @@ function get_user_access_sitewide($userid) {
     }
 
     // fixed capability order is necessary for rdef dedupe
-    $rs = $DB->get_recordset_sql('select * from ('.implode("\nUNION\n", $sqls). ") ORDER BY capability", $params);
+    $rs = $DB->get_recordset_sql('select * from ('.implode("\nUNION\n", $sqls). ") as U ORDER BY capability", $params);
 
     foreach ($rs as $rd) {
         $k = $rd->path.':'.$rd->roleid;
