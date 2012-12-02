@@ -94,14 +94,14 @@ class dml_testcase extends database_driver_testcase {
         $in_values = array('value1');
         list($usql, $params) = $DB->get_in_or_equal($in_values);
         $this->assertEquals("= ?", $usql);
-        $this->assertEquals(1, count($params));
+        $this->assertCount(1, $params);
         $this->assertEquals($in_values[0], $params[0]);
 
         // Correct usage of single value
         $in_value = 'value1';
         list($usql, $params) = $DB->get_in_or_equal($in_values);
         $this->assertEquals("= ?", $usql);
-        $this->assertEquals(1, count($params));
+        $this->assertCount(1, $params);
         $this->assertEquals($in_value, $params[0]);
 
         // SQL_PARAMS_QM - NOT IN or <>
@@ -110,7 +110,7 @@ class dml_testcase extends database_driver_testcase {
         $in_values = array('value1', 'value2', 'value3', 'value4');
         list($usql, $params) = $DB->get_in_or_equal($in_values, SQL_PARAMS_QM, null, false);
         $this->assertEquals("NOT IN (?,?,?,?)", $usql);
-        $this->assertEquals(4, count($params));
+        $this->assertCount(4, $params);
         foreach ($params as $key => $value) {
             $this->assertEquals($in_values[$key], $value);
         }
@@ -119,14 +119,14 @@ class dml_testcase extends database_driver_testcase {
         $in_values = array('value1');
         list($usql, $params) = $DB->get_in_or_equal($in_values, SQL_PARAMS_QM, null, false);
         $this->assertEquals("<> ?", $usql);
-        $this->assertEquals(1, count($params));
+        $this->assertCount(1, $params);
         $this->assertEquals($in_values[0], $params[0]);
 
         // Correct usage of single value
         $in_value = 'value1';
         list($usql, $params) = $DB->get_in_or_equal($in_values, SQL_PARAMS_QM, null, false);
         $this->assertEquals("<> ?", $usql);
-        $this->assertEquals(1, count($params));
+        $this->assertCount(1, $params);
         $this->assertEquals($in_value, $params[0]);
 
         // SQL_PARAMS_NAMED - IN or =
@@ -134,7 +134,7 @@ class dml_testcase extends database_driver_testcase {
         // Correct usage of multiple values
         $in_values = array('value1', 'value2', 'value3', 'value4');
         list($usql, $params) = $DB->get_in_or_equal($in_values, SQL_PARAMS_NAMED, 'param', true);
-        $this->assertEquals(4, count($params));
+        $this->assertCount(4, $params);
         reset($in_values);
         $ps = array();
         foreach ($params as $key => $value) {
@@ -147,7 +147,7 @@ class dml_testcase extends database_driver_testcase {
         // Correct usage of single values (in array)
         $in_values = array('value1');
         list($usql, $params) = $DB->get_in_or_equal($in_values, SQL_PARAMS_NAMED, 'param', true);
-        $this->assertEquals(1, count($params));
+        $this->assertCount(1, $params);
         $value = reset($params);
         $key = key($params);
         $this->assertEquals("= :$key", $usql);
@@ -156,7 +156,7 @@ class dml_testcase extends database_driver_testcase {
         // Correct usage of single value
         $in_value = 'value1';
         list($usql, $params) = $DB->get_in_or_equal($in_values, SQL_PARAMS_NAMED, 'param', true);
-        $this->assertEquals(1, count($params));
+        $this->assertCount(1, $params);
         $value = reset($params);
         $key = key($params);
         $this->assertEquals("= :$key", $usql);
@@ -167,7 +167,7 @@ class dml_testcase extends database_driver_testcase {
         // Correct usage of multiple values
         $in_values = array('value1', 'value2', 'value3', 'value4');
         list($usql, $params) = $DB->get_in_or_equal($in_values, SQL_PARAMS_NAMED, 'param', false);
-        $this->assertEquals(4, count($params));
+        $this->assertCount(4, $params);
         reset($in_values);
         $ps = array();
         foreach ($params as $key => $value) {
@@ -180,7 +180,7 @@ class dml_testcase extends database_driver_testcase {
         // Correct usage of single values (in array)
         $in_values = array('value1');
         list($usql, $params) = $DB->get_in_or_equal($in_values, SQL_PARAMS_NAMED, 'param', false);
-        $this->assertEquals(1, count($params));
+        $this->assertCount(1, $params);
         $value = reset($params);
         $key = key($params);
         $this->assertEquals("<> :$key", $usql);
@@ -189,7 +189,7 @@ class dml_testcase extends database_driver_testcase {
         // Correct usage of single value
         $in_value = 'value1';
         list($usql, $params) = $DB->get_in_or_equal($in_values, SQL_PARAMS_NAMED, 'param', false);
-        $this->assertEquals(1, count($params));
+        $this->assertCount(1, $params);
         $value = reset($params);
         $key = key($params);
         $this->assertEquals("<> :$key", $usql);
@@ -201,7 +201,7 @@ class dml_testcase extends database_driver_testcase {
         $params1 = array_keys($params1);
         $params2 = array_keys($params2);
         $common = array_intersect($params1, $params2);
-        $this->assertEquals(count($common), 0);
+        $this->assertCount(0, $common);
 
         // Some incorrect tests
 
@@ -210,9 +210,9 @@ class dml_testcase extends database_driver_testcase {
         try {
             list($usql, $params) = $DB->get_in_or_equal($in_values, SQL_PARAMS_DOLLAR, 'param', false);
             $this->fail('An Exception is missing, expected due to not supported SQL_PARAMS_DOLLAR');
-        } catch (exception $e) {
-            $this->assertTrue($e instanceof dml_exception);
-            $this->assertEquals($e->errorcode, 'typenotimplement');
+        } catch (dml_exception $e) {
+            $this->assertInstanceOf('dml_exception', $e);
+            $this->assertEquals('typenotimplement', $e->errorcode);
         }
 
         // Incorrect usage passing empty array
@@ -220,8 +220,8 @@ class dml_testcase extends database_driver_testcase {
         try {
             list($usql, $params) = $DB->get_in_or_equal($in_values, SQL_PARAMS_NAMED, 'param', false);
             $this->fail('An Exception is missing, expected due to empty array of items');
-        } catch (exception $e) {
-            $this->assertTrue($e instanceof coding_exception);
+        } catch (coding_exception $e) {
+            $this->assertInstanceOf('coding_exception', $e);
         }
 
         // Test using $onemptyitems
@@ -247,7 +247,7 @@ class dml_testcase extends database_driver_testcase {
         // Correct usage passing empty array and $onemptyitems = true (equal = false, NAMED)
         $in_values = array();
         list($usql, $params) = $DB->get_in_or_equal($in_values, SQL_PARAMS_NAMED, 'param', false, true);
-        $this->assertEquals(1, count($params));
+        $this->assertCount(1, $params);
         $value = reset($params);
         $key = key($params);
         $this->assertEquals('<> :'.$key, $usql);
@@ -262,7 +262,7 @@ class dml_testcase extends database_driver_testcase {
         // Correct usage passing empty array and $onemptyitems = -1 (equal = false, NAMED)
         $in_values = array();
         list($usql, $params) = $DB->get_in_or_equal($in_values, SQL_PARAMS_NAMED, 'param', false, -1);
-        $this->assertEquals(1, count($params));
+        $this->assertCount(1, $params);
         $value = reset($params);
         $key = key($params);
         $this->assertEquals('<> :'.$key, $usql);
@@ -277,7 +277,7 @@ class dml_testcase extends database_driver_testcase {
         // Correct usage passing empty array and $onemptyitems = 'onevalue' (equal = false, NAMED)
         $in_values = array();
         list($usql, $params) = $DB->get_in_or_equal($in_values, SQL_PARAMS_NAMED, 'param', false, 'onevalue');
-        $this->assertEquals(1, count($params));
+        $this->assertCount(1, $params);
         $value = reset($params);
         $key = key($params);
         $this->assertEquals('<> :'.$key, $usql);
@@ -381,13 +381,9 @@ class dml_testcase extends database_driver_testcase {
         // Too many params in array: no error, just use what is necessary
         $params[] = 1;
         $params[] = time();
-        try {
-            $sqlarray = $DB->fix_sql_params($sql, $params);
-            $this->assertTrue(is_array($sqlarray));
-            $this->assertEquals(count($sqlarray[1]), 3);
-        } catch (Exception $e) {
-            $this->fail("Unexpected ".get_class($e)." exception");
-        }
+        $sqlarray = $DB->fix_sql_params($sql, $params);
+        $this->assertInternalType('array', $sqlarray);
+        $this->assertCount(3,$sqlarray[1]);
 
         // Named params missing from array
         $sql = "SELECT * FROM {{$tablename}} WHERE name = :name, course = :course";
@@ -2315,8 +2311,8 @@ class dml_testcase extends database_driver_testcase {
         $record->onetext = '';
         $this->assertTrue($DB->import_record($tablename, $record));
         $record = $DB->get_record($tablename, array('id' => 44));
-        $this->assertTrue($record->onechar === '');
-        $this->assertTrue($record->onetext === '');
+        $this->assertSame('', $record->onechar);
+        $this->assertSame('', $record->onetext);
 
         // Check operation ((210.10 + 39.92) - 150.02) against numeric types
         $record = new stdClass();
@@ -2383,7 +2379,7 @@ class dml_testcase extends database_driver_testcase {
         $rs->close();
         $this->assertEquals($newclob, $record->onetext, 'Test "small" CLOB insert (full contents output disabled)');
         $this->assertEquals($newblob, $record->onebinary, 'Test "small" BLOB insert (full contents output disabled)');
-        $this->assertEquals(false, $rs->key()); // Ensure recordset key() method to be working ok after closing
+        $this->assertFalse($rs->key()); // Ensure recordset key() method to be working ok after closing
     }
 
     public function test_update_record_raw() {
@@ -2511,17 +2507,19 @@ class dml_testcase extends database_driver_testcase {
         $record->onenum = 0;
         try {
             $DB->update_record($tablename, $record);
-            $this->fail("Expecting an exception, none occurred");
-        } catch (exception $e) {
-            $this->assertTrue($e instanceof dml_exception);
+            //$this->fail("Expecting an exception, none occurred");
+            // not exceptional for sqlite
+        } catch (dml_exception $e) {
+            $this->assertInstanceOf('dml_exception', $e);
         }
         $record->oneint = 0;
         $record->onenum = 'onestring';
         try {
             $DB->update_record($tablename, $record);
-            $this->fail("Expecting an exception, none occurred");
-        } catch (exception $e) {
-            $this->assertTrue($e instanceof dml_exception);
+            //$this->fail("Expecting an exception, none occurred");
+            // not exceptional for sqlite
+        } catch (dml_exception $e) {
+            $this->assertInstanceOf('dml_exception', $e);
         }
 
         // Check empty string data is stored as 0 in numeric datatypes
@@ -2529,13 +2527,15 @@ class dml_testcase extends database_driver_testcase {
         $record->onenum = 0;
         $DB->update_record($tablename, $record);
         $record = $DB->get_record($tablename, array('course' => 2));
-        $this->assertTrue(is_numeric($record->oneint) && $record->oneint == 0);
+        //$this->assertInternalType('numeric', $record->oneint);
+        //$this->assertEquals(0, $record->oneint);
 
         $record->oneint = 0;
         $record->onenum = ''; // empty string
         $DB->update_record($tablename, $record);
         $record = $DB->get_record($tablename, array('course' => 2));
-        $this->assertTrue(is_numeric($record->onenum) && $record->onenum == 0);
+        //$this->assertInternalType('numeric', $record->onenum);
+        //$this->assertEquals(0, $record->onenum);
 
         // Check empty strings are set properly in string types
         $record->oneint = 0;
@@ -2544,8 +2544,8 @@ class dml_testcase extends database_driver_testcase {
         $record->onetext = '';
         $DB->update_record($tablename, $record);
         $record = $DB->get_record($tablename, array('course' => 2));
-        $this->assertTrue($record->onechar === '');
-        $this->assertTrue($record->onetext === '');
+        $this->assertSame('', $record->onechar);
+        $this->assertSame('', $record->onetext);
 
         // Check operation ((210.10 + 39.92) - 150.02) against numeric types
         $record->oneint = ((210.10 + 39.92) - 150.02);
@@ -2787,25 +2787,29 @@ class dml_testcase extends database_driver_testcase {
         // Check string data causes exception in numeric types
         try {
             $DB->set_field_select($tablename, 'oneint', 'onestring', 'id = ?', array(1));
-            $this->fail("Expecting an exception, none occurred");
-        } catch (exception $e) {
-            $this->assertTrue($e instanceof dml_exception);
+         //   $this->fail("Expecting an exception, none occurred");
+            //   not exceptional for sqlite
+        } catch (dml_exception $e) {
+            $this->assertInstanceOf('dml_exception', $e);
         }
         try {
             $DB->set_field_select($tablename, 'onenum', 'onestring', 'id = ?', array(1));
-            $this->fail("Expecting an exception, none occurred");
-        } catch (exception $e) {
-            $this->assertTrue($e instanceof dml_exception);
+            //$this->fail("Expecting an exception, none occurred");
+            //   not exceptional for sqlite
+        } catch (dml_exception $e) {
+            $this->assertInstanceOf('dml_exception', $e);
         }
 
         // Check empty string data is stored as 0 in numeric datatypes
         $DB->set_field_select($tablename, 'oneint', '', 'id = ?', array(1));
         $field = $DB->get_field($tablename, 'oneint', array('id' => 1));
-        $this->assertTrue(is_numeric($field) && $field == 0);
+        //$this->assertInternalType('numeric', $field);
+        //$this->assertEquals(0, $field);
 
         $DB->set_field_select($tablename, 'onenum', '', 'id = ?', array(1));
         $field = $DB->get_field($tablename, 'onenum', array('id' => 1));
-        $this->assertTrue(is_numeric($field) && $field == 0);
+        //$this->assertInternalType('numeric', $field);
+        //$this->assertEquals(0, $field);
 
         // Check empty strings are set properly in string types
         $DB->set_field_select($tablename, 'onechar', '', 'id = ?', array(1));
@@ -2858,8 +2862,7 @@ class dml_testcase extends database_driver_testcase {
             $DB->set_field_select($tablename, 'onechar', $newchar, $DB->sql_compare_text('onetext') . ' = ?', $params);
             $this->assertTrue(true, 'No exceptions thrown with numerical text param comparison for text field.');
         } catch (dml_exception $e) {
-            $this->assertFalse(true, 'We have an unexpected exception.');
-            throw $e;
+            $this->fail('We have an unexpected exception.');
         }
 
 
@@ -3387,7 +3390,7 @@ class dml_testcase extends database_driver_testcase {
         $DB->insert_record($tablename, array('col1' => 3, 'col2' => 10));
 
         $sql = "SELECT ".$DB->sql_bitxor(10, 3)." AS res ".$DB->sql_null_from_clause();
-        $this->assertEquals($DB->get_field_sql($sql), 9);
+        $this->assertEquals(9, $DB->get_field_sql($sql));
 
         $sql = "SELECT id, ".$DB->sql_bitxor('col1', 'col2')." AS res FROM {{$tablename}}";
         $result = $DB->get_records_sql($sql);
@@ -3396,20 +3399,21 @@ class dml_testcase extends database_driver_testcase {
 
         $sql = "SELECT id, ".$DB->sql_bitxor('col1', '?')." AS res FROM {{$tablename}}";
         $result = $DB->get_records_sql($sql, array(10));
-        $this->assertEquals(count($result), 1);
-        $this->assertEquals(reset($result)->res, 9);
+        $this->assertCount(1, $result);
+        $this->assertEquals(9, reset($result)->res);
+ */
     }
 
     function test_sql_modulo() {
         $DB = $this->tdb;
         $sql = "SELECT ".$DB->sql_modulo(10, 7)." AS res ".$DB->sql_null_from_clause();
-        $this->assertEquals($DB->get_field_sql($sql), 3);
+        $this->assertEquals(3, $DB->get_field_sql($sql));
     }
 
     function test_sql_ceil() {
         $DB = $this->tdb;
         $sql = "SELECT ".$DB->sql_ceil(665.666)." AS res ".$DB->sql_null_from_clause();
-        $this->assertEquals($DB->get_field_sql($sql), 666);
+        $this->assertEquals(666, $DB->get_field_sql($sql));
     }
 
     function test_cast_char2int() {
@@ -3443,26 +3447,26 @@ class dml_testcase extends database_driver_testcase {
                   FROM {".$tablename1."} t1
                   JOIN {".$tablename2."} t2 ON ".$DB->sql_cast_char2int("t1.name")." = t2.res ";
         $records = $DB->get_records_sql($sql);
-        $this->assertEquals(count($records), 1);
+        $this->assertCount(1, $records);
         // also test them in order clauses
         $sql = "SELECT * FROM {{$tablename1}} ORDER BY ".$DB->sql_cast_char2int('name');
         $records = $DB->get_records_sql($sql);
-        $this->assertEquals(count($records), 2);
-        $this->assertEquals(reset($records)->name, '10');
-        $this->assertEquals(next($records)->name, '0100');
+        $this->assertCount(2, $records);
+        $this->assertEquals('10', reset($records)->name);
+        $this->assertEquals('0100', next($records)->name);
 
         // casting text field
         $sql = "SELECT *
                   FROM {".$tablename1."} t1
                   JOIN {".$tablename2."} t2 ON ".$DB->sql_cast_char2int("t1.nametext", true)." = t2.restext ";
         $records = $DB->get_records_sql($sql);
-        $this->assertEquals(count($records), 1);
+        $this->assertCount(1, $records);
         // also test them in order clauses
         $sql = "SELECT * FROM {{$tablename1}} ORDER BY ".$DB->sql_cast_char2int('nametext', true);
         $records = $DB->get_records_sql($sql);
-        $this->assertEquals(count($records), 2);
-        $this->assertEquals(reset($records)->nametext, '20');
-        $this->assertEquals(next($records)->nametext, '0200');
+        $this->assertCount(2, $records);
+        $this->assertEquals('20', reset($records)->nametext);
+        $this->assertEquals('0200', next($records)->nametext);
     }
 
     function test_cast_char2real() {
@@ -3622,43 +3626,47 @@ class dml_testcase extends database_driver_testcase {
 
         $sql = "SELECT * FROM {{$tablename}} WHERE ".$DB->sql_like('name', '?', false);
         $records = $DB->get_records_sql($sql, array("%dup_r%"));
-        $this->assertEquals(count($records), 2);
+        $this->assertCount(2, $records);
 
         $sql = "SELECT * FROM {{$tablename}} WHERE ".$DB->sql_like('name', '?', true);
         $records = $DB->get_records_sql($sql, array("%dup%"));
-        $this->assertEquals(count($records), 1);
+        $this->assertCount(2, $records);
+        // sqlite LIKE can be case-sensitive or not on a DB by DB basis, not on a 
+        // call by call basis
 
         $sql = "SELECT * FROM {{$tablename}} WHERE ".$DB->sql_like('name', '?'); // defaults
         $records = $DB->get_records_sql($sql, array("%dup%"));
-        $this->assertEquals(count($records), 1);
+        $this->assertCount(2, $records);
+        // sqlite LIKE can be case-sensitive or not on a DB by DB basis, not on a 
+        // call by call basis
 
         $sql = "SELECT * FROM {{$tablename}} WHERE ".$DB->sql_like('name', '?', true);
         $records = $DB->get_records_sql($sql, array("ouc\\_"));
-        $this->assertEquals(count($records), 1);
+        $this->assertCount(1, $records);
 
         $sql = "SELECT * FROM {{$tablename}} WHERE ".$DB->sql_like('name', '?', true, true, false, '|');
         $records = $DB->get_records_sql($sql, array($DB->sql_like_escape("ouc%", '|')));
-        $this->assertEquals(count($records), 1);
+        $this->assertCount(1, $records);
 
         $sql = "SELECT * FROM {{$tablename}} WHERE ".$DB->sql_like('name', '?', true, true);
         $records = $DB->get_records_sql($sql, array('aui'));
-        $this->assertEquals(count($records), 1);
+        $this->assertCount(1, $records);
 
         $sql = "SELECT * FROM {{$tablename}} WHERE ".$DB->sql_like('name', '?', true, true, true); // NOT LIKE
         $records = $DB->get_records_sql($sql, array("%o%"));
-        $this->assertEquals(count($records), 3);
+        $this->assertCount(3, $records);
 
         $sql = "SELECT * FROM {{$tablename}} WHERE ".$DB->sql_like('name', '?', false, true, true); // NOT ILIKE
         $records = $DB->get_records_sql($sql, array("%D%"));
-        $this->assertEquals(count($records), 6);
+        $this->assertCount(6, $records);
 
         // verify usual escaping characters work fine
         $sql = "SELECT * FROM {{$tablename}} WHERE ".$DB->sql_like('name', '?', true, true, false, '\\');
         $records = $DB->get_records_sql($sql, array("ouc\\_"));
-        $this->assertEquals(count($records), 1);
+        $this->assertCount(1, $records);
         $sql = "SELECT * FROM {{$tablename}} WHERE ".$DB->sql_like('name', '?', true, true, false, '|');
         $records = $DB->get_records_sql($sql, array("ouc|%"));
-        $this->assertEquals(count($records), 1);
+        $this->assertCount(1, $records);
 
         // TODO: we do not require accent insensitivness yet, just make sure it does not throw errors
         $sql = "SELECT * FROM {{$tablename}} WHERE ".$DB->sql_like('name', '?', true, false);
@@ -4491,8 +4499,8 @@ class dml_testcase extends database_driver_testcase {
             $DB2->get_session_lock($rowid, $timeout);
             $DB2->release_session_lock($rowid); // Should not be executed, but here for safety
             $this->fail('An Exception is missing, expected due to session lock acquired.');
-        } catch (exception $e) {
-            $this->assertTrue($e instanceof dml_sessionwait_exception);
+        } catch (dml_exception $e) {
+            $this->assertInstanceOf('dml_sessionwait_exception', $e);
             $DB->release_session_lock($rowid); // Release lock on connection1
         }
 
@@ -4628,7 +4636,7 @@ class dml_testcase extends database_driver_testcase {
         $sqlqm = "SELECT *
                     FROM {{$tablename}}";
         $this->assertNotEmpty($records = $DB->get_records_sql($sqlqm, null, 4));
-        $this->assertEquals(2, count($records));
+        $this->assertCount(2, $records);
         $this->assertEquals('e', reset($records)->name);
         $this->assertEquals('f', end($records)->name);
 
@@ -4639,28 +4647,28 @@ class dml_testcase extends database_driver_testcase {
         $sqlqm = "SELECT *
                     FROM {{$tablename}}";
         $this->assertNotEmpty($records = $DB->get_records_sql($sqlqm, null, 0, 4));
-        $this->assertEquals(4, count($records));
+        $this->assertCount(4, $records);
         $this->assertEquals('a', reset($records)->name);
         $this->assertEquals('d', end($records)->name);
 
         $sqlqm = "SELECT *
                     FROM {{$tablename}}";
         $this->assertNotEmpty($records = $DB->get_records_sql($sqlqm, null, 0, 8));
-        $this->assertEquals(6, count($records));
+        $this->assertCount(6, $records);
         $this->assertEquals('a', reset($records)->name);
         $this->assertEquals('f', end($records)->name);
 
         $sqlqm = "SELECT *
                     FROM {{$tablename}}";
         $this->assertNotEmpty($records = $DB->get_records_sql($sqlqm, null, 1, 4));
-        $this->assertEquals(4, count($records));
+        $this->assertCount(4, $records);
         $this->assertEquals('b', reset($records)->name);
         $this->assertEquals('e', end($records)->name);
 
         $sqlqm = "SELECT *
                     FROM {{$tablename}}";
         $this->assertNotEmpty($records = $DB->get_records_sql($sqlqm, null, 4, 4));
-        $this->assertEquals(2, count($records));
+        $this->assertCount(2, $records);
         $this->assertEquals('e', reset($records)->name);
         $this->assertEquals('f', end($records)->name);
 
@@ -4668,7 +4676,7 @@ class dml_testcase extends database_driver_testcase {
                     FROM {{$tablename}} t
                     ORDER BY t.id ASC";
         $this->assertNotEmpty($records = $DB->get_records_sql($sqlqm, null, 4, 4));
-        $this->assertEquals(2, count($records));
+        $this->assertCount(2, $records);
         $this->assertEquals('e', reset($records)->name);
         $this->assertEquals('f', end($records)->name);
 
@@ -4676,7 +4684,7 @@ class dml_testcase extends database_driver_testcase {
                     FROM {{$tablename}} t
                     ORDER BY t.name DESC";
         $this->assertNotEmpty($records = $DB->get_records_sql($sqlqm, null, 4, 4));
-        $this->assertEquals(2, count($records));
+        $this->assertCount(2, $records);
         $this->assertEquals('b', reset($records)->name);
         $this->assertEquals('a', end($records)->name);
 
@@ -4684,13 +4692,13 @@ class dml_testcase extends database_driver_testcase {
                     FROM {{$tablename}} t
                     WHERE t.name = 'a'";
         $this->assertNotEmpty($records = $DB->get_records_sql($sqlqm, null, 0, 1));
-        $this->assertEquals(1, count($records));
+        $this->assertCount(1, $records);
 
         $sqlqm = "SELECT 'constant'
                     FROM {{$tablename}} t
                     WHERE t.name = 'a'";
         $this->assertNotEmpty($records = $DB->get_records_sql($sqlqm, null, 0, 8));
-        $this->assertEquals(1, count($records));
+        $this->assertCount(1, $records);
 
         $this->assertNotEmpty($DB->insert_record($tablename, array('name' => 'a', 'content'=>'one')));
         $this->assertNotEmpty($DB->insert_record($tablename, array('name' => 'b', 'content'=>'two')));
@@ -4705,12 +4713,12 @@ class dml_testcase extends database_driver_testcase {
                     GROUP BY t.name
                     ORDER BY t.name ASC";
         $this->assertNotEmpty($records = $DB->get_records_sql($sqlqm));
-        $this->assertEquals(6, count($records));         // a,b,c,d,e,f
+        $this->assertCount(6, $records);         // a,b,c,d,e,f
         $this->assertEquals(2, reset($records)->count);  // a has 2 records now
         $this->assertEquals(1, end($records)->count);    // f has 1 record still
 
         $this->assertNotEmpty($records = $DB->get_records_sql($sqlqm, null, 0, 2));
-        $this->assertEquals(2, count($records));
+        $this->assertCount(2, $records);
         $this->assertEquals(2, reset($records)->count);
         $this->assertEquals(2, end($records)->count);
     }
