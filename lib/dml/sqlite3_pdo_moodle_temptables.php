@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * PGSQL specific temptables store. Needed because temporary tables
+ * SQLite specific temptables store. Needed because temporary tables
  * are named differently than normal tables. Also used to be able to retrieve
  * temp table names included in the get_tables() method of the DB.
  *
