@@ -1323,7 +1323,7 @@ class dml_testcase extends database_driver_testcase {
 
         // All records
         $records = $DB->get_records($tablename);
-        $this->assertEquals(4, count($records));
+        $this->assertCount(4, $records);
         $this->assertEquals(3, $records[1]->course);
         $this->assertEquals(3, $records[2]->course);
         $this->assertEquals(5, $records[3]->course);
@@ -1331,13 +1331,13 @@ class dml_testcase extends database_driver_testcase {
 
         // Records matching certain conditions
         $records = $DB->get_records($tablename, array('course' => 3));
-        $this->assertEquals(2, count($records));
+        $this->assertCount(2, $records);
         $this->assertEquals(3, $records[1]->course);
         $this->assertEquals(3, $records[2]->course);
 
         // All records sorted by course
         $records = $DB->get_records($tablename, null, 'course');
-        $this->assertEquals(4, count($records));
+        $this->assertCount(4, $records);
         $current_record = reset($records);
         $this->assertEquals(4, $current_record->id);
         $current_record = next($records);
@@ -1351,13 +1351,13 @@ class dml_testcase extends database_driver_testcase {
         $records = $DB->get_records($tablename, null, '', 'id');
         $this->assertFalse(isset($records[1]->course));
         $this->assertTrue(isset($records[1]->id));
-        $this->assertEquals(4, count($records));
+        $this->assertCount(4, $records);
 
         // Booleans into params
         $records = $DB->get_records($tablename, array('course' => true));
-        $this->assertEquals(0, count($records));
+        $this->assertCount(0, $records);
         $records = $DB->get_records($tablename, array('course' => false));
-        $this->assertEquals(0, count($records));
+        $this->assertCount(0, $records);
 
         // test for exception throwing on text conditions being compared. (MDL-24863, unwanted auto conversion of param to int)
         $conditions = array('onetext' => '1');
@@ -1367,9 +1367,9 @@ class dml_testcase extends database_driver_testcase {
                 // only in debug mode - hopefully all devs test code in debug mode...
                 $this->fail('An Exception is missing, expected due to equating of text fields');
             }
-        } catch (exception $e) {
-            $this->assertTrue($e instanceof dml_exception);
-            $this->assertEquals($e->errorcode, 'textconditionsnotallowed');
+        } catch (dml_exception $e) {
+            $this->assertInstanceOf('dml_exception', $e);
+            $this->assertEquals('textconditionsnotallowed', $e->errorcode);
         }
 
         // test get_records passing non-existing table
@@ -1377,35 +1377,26 @@ class dml_testcase extends database_driver_testcase {
         try {
             $records = $DB->get_records('xxxx', array('id' => 0));
             $this->fail('An Exception is missing, expected due to query against non-existing table');
-        } catch (exception $e) {
-            $this->assertTrue($e instanceof dml_exception);
-            if (debugging()) {
-                // information for developers only, normal users get general error message
-                $this->assertEquals($e->errorcode, 'ddltablenotexist');
-            }
+        } catch (dml_exception $e) {
+            $this->assertInstanceOf('dml_exception', $e);
+            $this->assertEquals('ddltablenotexist', $e->errorcode);
         }
         // and without params
         try {
             $records = $DB->get_records('xxxx', array());
             $this->fail('An Exception is missing, expected due to query against non-existing table');
-        } catch (exception $e) {
-            $this->assertTrue($e instanceof dml_exception);
-            if (debugging()) {
-                // information for developers only, normal users get general error message
-                $this->assertEquals($e->errorcode, 'ddltablenotexist');
-            }
+        } catch (dml_exception $e) {
+            $this->assertInstanceOf('dml_exception', $e);
+            $this->assertEquals('ddltablenotexist', $e->errorcode);
         }
 
         // test get_records passing non-existing column
         try {
             $records = $DB->get_records($tablename, array('xxxx' => 0));
             $this->fail('An Exception is missing, expected due to query against non-existing column');
-        } catch (exception $e) {
-            $this->assertTrue($e instanceof dml_exception);
-            if (debugging()) {
-                // information for developers only, normal users get general error message
-                $this->assertEquals($e->errorcode, 'ddlfieldnotexist');
-            }
+        } catch (dml_exception $e) {
+            $this->assertInstanceOf('dml_exception', $e);
+            $this->assertEquals('ddlfieldnotexist', $e->errorcode);
         }
 
         // note: delegate limits testing to test_get_records_sql()
@@ -2044,18 +2035,20 @@ class dml_testcase extends database_driver_testcase {
         $record->onenum = 0;
         try {
             $DB->insert_record($tablename, $record);
-            $this->fail("Expecting an exception, none occurred");
-        } catch (exception $e) {
-            $this->assertTrue($e instanceof dml_exception);
+            //$this->fail("Expecting an exception, none occurred");
+            // not an exceptional event for sqlite
+        } catch (dml_exception $e) {
+            $this->assertInstanceOf('dml_exception', $e);
         }
         $record = new stdClass();
         $record->oneint = 0;
         $record->onenum = 'onestring';
         try {
             $DB->insert_record($tablename, $record);
-            $this->fail("Expecting an exception, none occurred");
-        } catch (exception $e) {
-            $this->assertTrue($e instanceof dml_exception);
+            //$this->fail("Expecting an exception, none occurred");
+            // not an exceptional event for sqlite
+        } catch (dml_exception $e) {
+            $this->assertInstanceOf('dml_exception', $e);
         }
 
         // Check empty string data is stored as 0 in numeric datatypes
@@ -2081,8 +2074,8 @@ class dml_testcase extends database_driver_testcase {
         $record->onetext = '';
         $recid = $DB->insert_record($tablename, $record);
         $record = $DB->get_record($tablename, array('id' => $recid));
-        $this->assertTrue($record->onechar === '');
-        $this->assertTrue($record->onetext === '');
+        $this->assertSame('', $record->onechar);
+        $this->assertSame('', $record->onetext);
 
         // Check operation ((210.10 + 39.92) - 150.02) against numeric types
         $record = new stdClass();

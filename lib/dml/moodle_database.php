@@ -533,10 +533,10 @@ abstract class moodle_database {
             }
         }
 
-        $allowed_types = $this->allowed_param_types();
         if (empty($conditions)) {
             return array('', array());
         }
+        $allowed_types = $this->allowed_param_types();
         $where = array();
         $params = array();
 
