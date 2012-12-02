@@ -386,4 +386,7 @@ class sqlite3_pdo_moodle_database extends pdo_moodle_database {
     public function sql_bitxor($int1, $int2) {
         return '( ~' . $this->sql_bitand($int1, $int2) . ' & ' . $this->sql_bitor($int1, $int2) . ')';
     }
+    public function sql_ceil($fieldname) {
+     return " ROUND ( $fieldname + 0.5)";
+    }
 }
