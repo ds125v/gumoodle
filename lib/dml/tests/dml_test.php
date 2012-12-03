@@ -2054,7 +2054,7 @@ class dml_testcase extends database_driver_testcase {
         $recid = $DB->insert_record($tablename, $record);
         $record = $DB->get_record($tablename, array('id' => $recid));
         $this->assertInternalType('numeric', $record->oneint);
-        $this->assertEqual(0, $record->oneint);
+        $this->assertEquals(0, $record->oneint);
 
         $record = new stdClass();
         $record->oneint = 0;
@@ -2062,7 +2062,7 @@ class dml_testcase extends database_driver_testcase {
         $recid = $DB->insert_record($tablename, $record);
         $record = $DB->get_record($tablename, array('id' => $recid));
         $this->assertInternalType('numeric', $record->onenum);
-        $this->assertEqual(0, $record->onenum);
+        $this->assertEquals(0, $record->onenum);
 
         // Check empty strings are set properly in string types
         $record = new stdClass();
