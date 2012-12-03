@@ -780,7 +780,8 @@ class ddl_testcase extends database_driver_testcase {
         $this->assertTrue($dbman->field_exists($table, 'onebinary'));
         $columns = $DB->get_columns('test_table1');
         $this->assertEquals($columns['onebinary']->name         ,'onebinary');
-        $this->assertEquals($columns['onebinary']->max_length   , null);
+        $this->assertTrue($columns['onebinary']->max_length == null
+        or $columns['onebinary']->max_length == -1);
         $this->assertEquals($columns['onebinary']->scale        , null);
         $this->assertEquals($columns['onebinary']->not_null     , false);
         $this->assertEquals($columns['onebinary']->primary_key  , false);
