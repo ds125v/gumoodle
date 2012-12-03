@@ -1368,10 +1368,10 @@ class ddl_testcase extends database_driver_testcase {
     }
 
     public function testRenameField() {
-        $this->markTestIncomplete(
-                      'This test never returns, for reasons unknown.'
-                              );
         $DB = $this->tdb; // do not use global $DB!
+        if ($DB->get_dbfamily() === 'sqlite') {
+            $this->markTestSkipped( 'This test never returns when using sqlite for reasons unknown.');
+        }
         $dbman = $this->tdb->get_manager();
 
         $table = $this->create_deftable('test_table0');
@@ -1382,8 +1382,8 @@ class ddl_testcase extends database_driver_testcase {
 
         $columns = $DB->get_columns('test_table0');
 
-        $this->assertFalse(array_key_exists('type', $columns));
-        $this->assertTrue(array_key_exists('newfieldname', $columns));
+        $this->assertArrayNotHasKey('type', $columns);
+        $this->assertArrayHasKey('newfieldname', $columns);
     }
 
     public function testIndexExists() {
@@ -1496,6 +1496,9 @@ class ddl_testcase extends database_driver_testcase {
         global $CFG;
 
         $DB = $this->tdb; // do not use global $DB!
+        if ($DB->get_dbfamily() === 'sqlite') {
+            $this->markTestSkipped('This test fails, need to create a moodle_temptable object for sqlite but not sure where to create it.');
+        }
         $dbman = $this->tdb->get_manager();
 
         // Create temp table0
@@ -1575,10 +1578,10 @@ class ddl_testcase extends database_driver_testcase {
     }
 
     public function test_concurrent_temp_tables() {
-        $this->markTestIncomplete(
-                      'This test fails, need to create a moodle_temptable object for sqlite but not sure where to create it.'
-                              );
         $DB = $this->tdb; // do not use global $DB!
+        if ($DB->get_dbfamily() === 'sqlite') {
+            $this->markTestSkipped('This test fails, need to create a moodle_temptable object for sqlite but not sure where to create it.');
+        }
         $dbman = $this->tdb->get_manager();
 
         // Define 2 records

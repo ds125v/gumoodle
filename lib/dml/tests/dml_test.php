@@ -1009,12 +1009,11 @@ class dml_testcase extends database_driver_testcase {
     }
 
     public function test_get_recordset_static() {
-        $this->markTestIncomplete(
-                      'SQLite appears to update the recordset on deletion, which I think this is expecting it not to.'
-                              );
         $DB = $this->tdb;
         $dbman = $DB->get_manager();
-
+        if ($DB->get_dbfamily() === 'sqlite') {
+            $this->markTestSkipped( 'SQLite appears to update the recordset on deletion, which I think this is expecting it not to.');
+        }
         $table = $this->get_test_table();
         $tablename = $table->getName();
 
@@ -2031,8 +2030,10 @@ class dml_testcase extends database_driver_testcase {
         $record->onenum = 0;
         try {
             $DB->insert_record($tablename, $record);
-            //$this->fail("Expecting an exception, none occurred");
-            // not an exceptional event for sqlite
+            if (!$DB->get_dbfamily() === 'sqlite') {
+                $this->fail("Expecting an exception, none occurred");
+                // not an exceptional event for sqlite
+            }
         } catch (dml_exception $e) {
             $this->assertInstanceOf('dml_exception', $e);
         }
@@ -2041,8 +2042,10 @@ class dml_testcase extends database_driver_testcase {
         $record->onenum = 'onestring';
         try {
             $DB->insert_record($tablename, $record);
-            //$this->fail("Expecting an exception, none occurred");
-            // not an exceptional event for sqlite
+            if (!$DB->get_dbfamily() === 'sqlite') {
+                $this->fail("Expecting an exception, none occurred");
+                // not an exceptional event for sqlite
+            }
         } catch (dml_exception $e) {
             $this->assertInstanceOf('dml_exception', $e);
         }
@@ -2289,9 +2292,12 @@ class dml_testcase extends database_driver_testcase {
         $record->onenum = 0;
         try {
             $DB->import_record($tablename, $record);
-            $this->fail("Expecting an exception, none occurred");
-        } catch (exception $e) {
-            $this->assertTrue($e instanceof dml_exception);
+            if (!$DB->get_dbfamily() === 'sqlite') {
+                $this->fail("Expecting an exception, none occurred");
+                // not an exceptional event for sqlite
+            }
+        } catch (dml_exception $e) {
+            $this->assertInstanceOf('dml_exception', $e);
         }
         $record = new stdClass();
         $record->id = 35;
@@ -2299,9 +2305,12 @@ class dml_testcase extends database_driver_testcase {
         $record->onenum = 'onestring';
         try {
             $DB->import_record($tablename, $record);
-            $this->fail("Expecting an exception, none occurred");
-        } catch (exception $e) {
-            $this->assertTrue($e instanceof dml_exception);
+            if (!$DB->get_dbfamily() === 'sqlite') {
+                $this->fail("Expecting an exception, none occurred");
+                // not an exceptional event for sqlite
+            }
+        } catch (dml_exception $e) {
+            $this->assertInstanceOf('dml_exception', $e);
         }
 
         // Check empty strings are set properly in string types
@@ -2509,8 +2518,10 @@ class dml_testcase extends database_driver_testcase {
         $record->onenum = 0;
         try {
             $DB->update_record($tablename, $record);
-            //$this->fail("Expecting an exception, none occurred");
-            // not exceptional for sqlite
+            if (!$DB->get_dbfamily() === 'sqlite') {
+                $this->fail("Expecting an exception, none occurred");
+                // not an exceptional event for sqlite
+            }
         } catch (dml_exception $e) {
             $this->assertInstanceOf('dml_exception', $e);
         }
@@ -2518,26 +2529,31 @@ class dml_testcase extends database_driver_testcase {
         $record->onenum = 'onestring';
         try {
             $DB->update_record($tablename, $record);
-            //$this->fail("Expecting an exception, none occurred");
-            // not exceptional for sqlite
+            if (!$DB->get_dbfamily() === 'sqlite') {
+                $this->fail("Expecting an exception, none occurred");
+                // not an exceptional event for sqlite
+            }
         } catch (dml_exception $e) {
             $this->assertInstanceOf('dml_exception', $e);
         }
 
-        // Check empty string data is stored as 0 in numeric datatypes
-        $record->oneint = ''; // empty string
-        $record->onenum = 0;
-        $DB->update_record($tablename, $record);
-        $record = $DB->get_record($tablename, array('course' => 2));
-        $this->assertInternalType('numeric', $record->oneint);
-        $this->assertEquals(0, $record->oneint);
+        if (!$DB->get_dbfamily() === 'sqlite') {
+            // no type cnversion happens with sqlite
+            // Check empty string data is stored as 0 in numeric datatypes
+            $record->oneint = ''; // empty string
+            $record->onenum = 0;
+            $DB->update_record($tablename, $record);
+            $record = $DB->get_record($tablename, array('course' => 2));
+            $this->assertInternalType('numeric', $record->oneint);
+            $this->assertEquals(0, $record->oneint);
 
-        $record->oneint = 0;
-        $record->onenum = ''; // empty string
-        $DB->update_record($tablename, $record);
-        $record = $DB->get_record($tablename, array('course' => 2));
-        $this->assertInternalType('numeric', $record->onenum);
-        $this->assertEquals(0, $record->onenum);
+            $record->oneint = 0;
+            $record->onenum = ''; // empty string
+            $DB->update_record($tablename, $record);
+            $record = $DB->get_record($tablename, array('course' => 2));
+            $this->assertInternalType('numeric', $record->onenum);
+            $this->assertEquals(0, $record->onenum);
+        }
 
         // Check empty strings are set properly in string types
         $record->oneint = 0;
@@ -2789,15 +2805,19 @@ class dml_testcase extends database_driver_testcase {
         // Check string data causes exception in numeric types
         try {
             $DB->set_field_select($tablename, 'oneint', 'onestring', 'id = ?', array(1));
-         //   $this->fail("Expecting an exception, none occurred");
-            //   not exceptional for sqlite
+            if (!$DB->get_dbfamily() === 'sqlite') {
+                $this->fail("Expecting an exception, none occurred");
+                // not an exceptional event for sqlite
+            }
         } catch (dml_exception $e) {
             $this->assertInstanceOf('dml_exception', $e);
         }
         try {
             $DB->set_field_select($tablename, 'onenum', 'onestring', 'id = ?', array(1));
-            //$this->fail("Expecting an exception, none occurred");
-            //   not exceptional for sqlite
+            if (!$DB->get_dbfamily() === 'sqlite') {
+                $this->fail("Expecting an exception, none occurred");
+                // not an exceptional event for sqlite
+            }
         } catch (dml_exception $e) {
             $this->assertInstanceOf('dml_exception', $e);
         }
@@ -3398,14 +3418,16 @@ class dml_testcase extends database_driver_testcase {
         $result = $DB->get_records_sql($sql);
         $this->assertCount(1, $result);
         $this->assertEquals(9, reset($result)->res);
-/*
- * The syntax for bitwise XOR in sqlite features the same placeholder twice
- * which confuses matters. I'm not sure it matters much.
-        $sql = "SELECT id, ".$DB->sql_bitxor('col1', '?')." AS res FROM {{$tablename}}";
-        $result = $DB->get_records_sql($sql, array(10));
-        $this->assertCount(1, $result);
-        $this->assertEquals(9, reset($result)->res);
- */
+        if (!$DB->get_dbfamily() === 'sqlite') {
+            // The syntax for bitwise XOR in sqlite features the same placeholder twice
+            // which confuses matters. I'm not sure it matters much as we 
+            // don't use bitwise xor anywhere and should be using named placeholders
+            // anyway, which should work either way.
+            $sql = "SELECT id, ".$DB->sql_bitxor('col1', '?')." AS res FROM {{$tablename}}";
+            $result = $DB->get_records_sql($sql, array(10));
+            $this->assertCount(1, $result);
+            $this->assertEquals(9, reset($result)->res);
+        }
     }
 
     function test_sql_modulo() {
@@ -3634,15 +3656,19 @@ class dml_testcase extends database_driver_testcase {
 
         $sql = "SELECT * FROM {{$tablename}} WHERE ".$DB->sql_like('name', '?', true);
         $records = $DB->get_records_sql($sql, array("%dup%"));
-        //$this->assertCount(1, $records);
-        // sqlite LIKE can be case-sensitive or not on a DB by DB basis, not on a 
-        // call by call basis
+        if (!$DB->get_dbfamily() === 'sqlite') {
+            $this->assertCount(1, $records);
+            // sqlite LIKE can be case-sensitive or not on a DB by DB basis, not on a 
+            // call by call basis
+        }
 
         $sql = "SELECT * FROM {{$tablename}} WHERE ".$DB->sql_like('name', '?'); // defaults
         $records = $DB->get_records_sql($sql, array("%dup%"));
-        //$this->assertCount(1, $records);
-        // sqlite LIKE can be case-sensitive or not on a DB by DB basis, not on a 
-        // call by call basis
+        if (!$DB->get_dbfamily() === 'sqlite') {
+            $this->assertCount(1, $records);
+            // sqlite LIKE can be case-sensitive or not on a DB by DB basis, not on a 
+            // call by call basis
+        }
 
         $sql = "SELECT * FROM {{$tablename}} WHERE ".$DB->sql_like('name', '?', true);
         $records = $DB->get_records_sql($sql, array("ouc\\_"));
@@ -4003,7 +4029,7 @@ class dml_testcase extends database_driver_testcase {
         $params = array('a$');
         if ($DB->sql_regex_supported()) {
             $records = $DB->get_records_sql($sql, $params);
-            $this->assertEquals(count($records), 2);
+            $this->assertCount(2, $records);
         } else {
             $this->assertTrue(true, 'Regexp operations not supported. Test skipped');
         }
@@ -4012,7 +4038,7 @@ class dml_testcase extends database_driver_testcase {
         $params = array('.a');
         if ($DB->sql_regex_supported()) {
             $records = $DB->get_records_sql($sql, $params);
-            $this->assertEquals(count($records), 1);
+            $this->assertCount(1, $records);
         } else {
             $this->assertTrue(true, 'Regexp operations not supported. Test skipped');
         }
@@ -4087,17 +4113,17 @@ class dml_testcase extends database_driver_testcase {
                  ORDER BY course";
         // only limitfrom
         $records = $DB->get_records_sql($sql, null, 1);
-        $this->assertEquals(2, count($records));
+        $this->assertCount(2, $records);
         $this->assertEquals(3, reset($records)->course);
         $this->assertEquals(5, next($records)->course);
         // only limitnum
         $records = $DB->get_records_sql($sql, null, 0, 2);
-        $this->assertEquals(2, count($records));
+        $this->assertCount(2, $records);
         $this->assertEquals(2, reset($records)->course);
         $this->assertEquals(3, next($records)->course);
         // both limitfrom and limitnum
         $records = $DB->get_records_sql($sql, null, 2, 2);
-        $this->assertEquals(1, count($records));
+        $this->assertCount(1, $records);
         $this->assertEquals(5, reset($records)->course);
 
         // we have sql like this in moodle, this syntax breaks on older versions of sqlite for example..
@@ -4107,7 +4133,7 @@ class dml_testcase extends database_driver_testcase {
                  WHERE a.course = ?";
 
         $records = $DB->get_records_sql($sql, array(3));
-        $this->assertEquals(2, count($records));
+        $this->assertCount(2, $records);
         $this->assertEquals(1, reset($records)->id);
         $this->assertEquals(2, next($records)->id);
 
@@ -4119,17 +4145,17 @@ class dml_testcase extends database_driver_testcase {
         $sql = "SELECT *
                   FROM {{$tablename}} c
                  WHERE name = ?";
-        $this->assertEquals(count($DB->get_records_sql($sql, array(10))), 0);
-        $this->assertEquals(count($DB->get_records_sql($sql, array("10"))), 0);
+        $this->assertCount(0, $DB->get_records_sql($sql, array(10)));
+        $this->assertCount(0, $DB->get_records_sql($sql, array("10")));
         $DB->insert_record($tablename, array('course' => 7, 'content' => 'xx', 'name'=>'1'));
         $DB->insert_record($tablename, array('course' => 7, 'content' => 'yy', 'name'=>'2'));
-        $this->assertEquals(count($DB->get_records_sql($sql, array(1))), 1);
-        $this->assertEquals(count($DB->get_records_sql($sql, array("1"))), 1);
-        $this->assertEquals(count($DB->get_records_sql($sql, array(10))), 0);
-        $this->assertEquals(count($DB->get_records_sql($sql, array("10"))), 0);
+        $this->assertCount(1, $DB->get_records_sql($sql, array(1)));
+        $this->assertCount(1, $DB->get_records_sql($sql, array("1")));
+        $this->assertCount(0, $DB->get_records_sql($sql, array(10)));
+        $this->assertCount(0, $DB->get_records_sql($sql, array("10")));
         $DB->insert_record($tablename, array('course' => 7, 'content' => 'xx', 'name'=>'1abc'));
-        $this->assertEquals(count($DB->get_records_sql($sql, array(1))), 1);
-        $this->assertEquals(count($DB->get_records_sql($sql, array("1"))), 1);
+        $this->assertCount(1, $DB->get_records_sql($sql, array(1)));
+        $this->assertCount(1, $DB->get_records_sql($sql, array("1")));
     }
 
     function test_onelevel_commit() {
@@ -4413,16 +4439,15 @@ class dml_testcase extends database_driver_testcase {
     }
 
     function test_concurent_transactions() {
-        $this->markTestIncomplete(
-                      'This test never returns, for reasons unknown, not sure if sqlite supports this.'
-                              );
         // Notes about this test:
         // 1- MySQL needs to use one engine with transactions support (InnoDB).
         // 2- MSSQL needs to have enabled versioning for read committed
         //    transactions (ALTER DATABASE xxx SET READ_COMMITTED_SNAPSHOT ON)
         $DB = $this->tdb;
+        if ($DB->get_dbfamily() === 'sqlite') {
+            $this->markTestSkipped( 'This test never returns, for reasons unknown, not sure if sqlite supports this.');
+        }
         $dbman = $DB->get_manager();
-
         $table = $this->get_test_table();
         $tablename = $table->getName();
 
@@ -4482,6 +4507,9 @@ class dml_testcase extends database_driver_testcase {
 
     public function test_session_locks() {
         $DB = $this->tdb;
+        if ($DB->get_dbfamily() === 'sqlite') {
+            $this->markTestSkipped( 'Not sure if sqlite supports this.');
+        }
         $dbman = $DB->get_manager();
 
         // Open second connection
