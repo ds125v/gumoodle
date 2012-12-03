@@ -315,7 +315,7 @@ class sqlite3_pdo_moodle_database extends pdo_moodle_database {
      * @return string the SQL statement with limiting clauses
      */
     protected function get_limit_clauses($sql, $limitfrom=0, $limitnum=0) {
-        if ($limitfrom === 0 && $limitnum === 0) {
+        if ($limitfrom == 0 && $limitnum == 0) {
             return $sql;
         }
         if ($limitnum === 0) {

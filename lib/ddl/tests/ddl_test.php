@@ -1489,9 +1489,6 @@ class ddl_testcase extends database_driver_testcase {
     }
 
     public function test_temp_tables() {
-        $this->markTestIncomplete(
-                      'This test fails, need to create a moodle_temptable object for sqlite but not sure where to create it.'
-                              );
         global $CFG;
 
         $DB = $this->tdb; // do not use global $DB!
@@ -1506,18 +1503,18 @@ class ddl_testcase extends database_driver_testcase {
         $dupetable = $this->tables['test_table0'];
         try {
             $dbman->create_temp_table($dupetable);
-            $this->assertTrue(false);
-        } catch (Exception $e) {
-            $this->assertTrue($e instanceof ddl_exception);
+            $this->fail('An exception was expected to be thrown before reaching here');
+        } catch (ddl_exception $e) {
+            $this->assertInstanceOf('ddl_exception', $e);
         }
 
         // Try to create table with same name, must throw exception
         $dupetable = $this->tables['test_table0'];
         try {
             $dbman->create_table($dupetable);
-            $this->assertTrue(false);
-        } catch (Exception $e) {
-            $this->assertTrue($e instanceof ddl_exception);
+            $this->fail('An exception was expected to be thrown before reaching here');
+        } catch (ddl_exception $e) {
+            $this->assertInstanceOf('ddl_exception', $e);
         }
 
         // Create another temp table1
@@ -1549,9 +1546,9 @@ class ddl_testcase extends database_driver_testcase {
         $noetable = $this->tables['test_table1'];
         try {
             $dbman->drop_table($noetable);
-            $this->assertTrue(false);
-        } catch (Exception $e) {
-            $this->assertTrue($e instanceof ddl_table_missing_exception);
+            $this->fail('An exception was expected to be thrown before reaching here');
+        } catch (ddl_exception $e) {
+            $this->assertTrue('ddl_table_missing_exception', $e);
         }
 
         // Fill/modify/delete a few table0 records
