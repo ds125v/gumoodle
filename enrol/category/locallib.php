@@ -300,7 +300,7 @@ function enrol_category_sync_full($verbose = false) {
 
     // First of all add necessary enrol instances to all courses.
     $parentcat = $DB->sql_concat("cat.path", "'/%'");
-    $parentcctx = $DB->sql_concat("cctx.path", "'/%'");
+    $parentcctx = $DB->sql_concat("pcctx.path", "'/%'");
     // Need whole course records to be used by add_instance(), use inner view (ci) to
     // get distinct records only.
     // TODO: Moodle 2.1. Improve enrol API to accept courseid / courserec
@@ -332,8 +332,8 @@ function enrol_category_sync_full($verbose = false) {
          LEFT JOIN ({course_categories} cc
                       JOIN {context} cctx ON (cctx.instanceid = cc.id AND cctx.contextlevel = :catlevel)
                       JOIN {role_assignments} ra ON (ra.contextid = cctx.id AND ra.roleid $roleids)
-                   ) ON (ctx.path LIKE $parentcctx)
-             WHERE e.enrol = 'category' AND cc.id IS NULL";
+                   ) pcctx ON (ctx.path LIKE $parentcctx)
+             WHERE e.enrol = 'category' AND pcctx.instanceid IS NULL";
 
     $rs = $DB->get_recordset_sql($sql, $params);
     foreach($rs as $instance) {

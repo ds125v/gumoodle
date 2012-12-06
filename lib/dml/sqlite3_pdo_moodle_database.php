@@ -88,15 +88,9 @@ class sqlite3_pdo_moodle_database extends pdo_moodle_database {
      * @return bool success
      */
     public function create_database($dbhost, $dbuser, $dbpass, $dbname, array $dboptions=null) {
-        $this->dbhost = $dbhost;
-        $this->dbuser = $dbuser;
-        $this->dbpass = $dbpass;
-        $this->dbname = $dbname;
-        $filepath = $this->get_dbfilepath();
-        $dirpath = dirname($filepath);
-        @mkdir($dirpath);
-        $this->temptables = new sqlite3_pdo_moodle_temptables($this);
-        return touch($filepath);
+        return false;
+        // This appears not to be used, the database info is transmitted via
+        // the get_dsn() function below to the PDO_moodle_database parent class.
     }
 
     /**
@@ -388,5 +382,11 @@ class sqlite3_pdo_moodle_database extends pdo_moodle_database {
     }
     public function sql_ceil($fieldname) {
      return " ROUND ( $fieldname + 0.5)";
+    }
+    public function sql_cast_char2int($fieldname, $text=false) {
+        return "CAST ($fieldname AS INTEGER)";
+    }
+    public function sql_cast_char2real($fieldname, $text=false) {
+        return "CAST ($fieldname AS REAL)";
     }
 }

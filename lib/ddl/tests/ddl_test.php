@@ -923,9 +923,10 @@ class ddl_testcase extends database_driver_testcase {
         $field->set_attributes(XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, '5');
         try {
             $dbman->change_field_type($table, $field);
-            //$this->fail('a ddl_change_structure_exception should have been thrown before reaching this point');
-            // TODO Commenting this out for now, not sure the best way to skip this test if 
-            // using SQLite since it doesn't throw exceptions for this. See // MDL-36928
+            if (!$DB->get_dbfamily() === 'sqlite') {
+                $this->fail('a ddl_change_structure_exception should have been thrown before reaching this point');
+                // Sqlite doesn't throw exceptions for this.
+            }
         } catch (ddl_exception $e) {
             $this->assertInstanceOf('ddl_change_structure_exception', $e);
         }
@@ -1047,8 +1048,10 @@ class ddl_testcase extends database_driver_testcase {
         $field->set_attributes(XMLDB_TYPE_CHAR, '10', null, XMLDB_NOTNULL, null, null);
         try {
             $dbman->change_field_precision($table, $field);
-            //$this->fail('a ddl_change_structure_exception should have been thrown before reaching this point');
-            // TODO Commenting this out for now, not sure the best way to skip this test if 
+            if (!$DB->get_dbfamily() === 'sqlite') {
+                $this->fail('a ddl_change_structure_exception should have been thrown before reaching this point');
+                // Sqlite doesn't throw exceptions for this.
+            }
             // using SQLite since it doesn't throw exceptions for this. See // MDL-36928
         } catch (ddl_exception $e) {
             $this->assertInstanceOf('ddl_change_structure_exception', $e);
@@ -1095,9 +1098,10 @@ class ddl_testcase extends database_driver_testcase {
         $field->set_attributes(XMLDB_TYPE_INTEGER, '2', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, '0');
         try {
             $dbman->change_field_precision($table, $field);
-            //$this->fail('A ddl_change_structure_exception should have been thrown before reaching this point.');
-            // TODO Commenting this out for now, not sure the best way to skip this test if 
-            // using SQLite since it doesn't throw exceptions for this. See // MDL-36928
+            if (!$DB->get_dbfamily() === 'sqlite') {
+                $this->fail('a ddl_change_structure_exception should have been thrown before reaching this point');
+                // Sqlite doesn't throw exceptions for this.
+            }
         } catch (Exception $e) {
             $this->assertInstanceOf('ddl_change_structure_exception', $e);
         }
@@ -1497,9 +1501,6 @@ class ddl_testcase extends database_driver_testcase {
         global $CFG;
 
         $DB = $this->tdb; // do not use global $DB!
-        if ($DB->get_dbfamily() === 'sqlite') {
-            $this->markTestSkipped('This test fails, need to create a moodle_temptable object for sqlite but not sure where to create it.');
-        }
         $dbman = $this->tdb->get_manager();
 
         // Create temp table0
@@ -1580,9 +1581,6 @@ class ddl_testcase extends database_driver_testcase {
 
     public function test_concurrent_temp_tables() {
         $DB = $this->tdb; // do not use global $DB!
-        if ($DB->get_dbfamily() === 'sqlite') {
-            $this->markTestSkipped('This test fails, need to create a moodle_temptable object for sqlite but not sure where to create it.');
-        }
         $dbman = $this->tdb->get_manager();
 
         // Define 2 records
