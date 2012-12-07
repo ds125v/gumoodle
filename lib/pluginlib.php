@@ -1769,7 +1769,6 @@ abstract class plugininfo_base {
      */
     public function get_dir() {
         global $CFG;
-
         return substr($this->rootdir, strlen($CFG->dirroot));
     }
 
@@ -2456,6 +2455,14 @@ class plugininfo_theme extends plugininfo_base {
             return true;
         } else {
             return parent::is_enabled();
+        }
+    }
+    public function get_dir() {
+        global $CFG;
+        if (isset($CFG->themedir)) {
+            return substr($this->rootdir, strlen($CFG->themedir));
+        } else {
+            return substr($this->rootdir, strlen($CFG->dirroot));
         }
     }
 }
