@@ -77,6 +77,10 @@ class sqlite3_pdo_moodle_database extends pdo_moodle_database {
         $this->pdb->exec('PRAGMA case_sensitive_like=0');
         $this->pdb->exec('PRAGMA locking_mode=NORMAL');
     }
+    public function init_temptables() {
+        // needs to be called after DB created.
+        $this->temptables = new sqlite3_pdo_moodle_temptables($this);
+    }
 
     /**
      * Attempt to create the database
@@ -152,6 +156,7 @@ class sqlite3_pdo_moodle_database extends pdo_moodle_database {
             }
             $tables[$table] = $table;
         }
+        $tables = array_merge($tables, $this->temptables->get_temptables());
         return $tables;
     }
 
