@@ -66,13 +66,6 @@ echo $OUTPUT->header();
 // Recordings plugin code
 $dbman = $DB->get_manager(); // loads ddl manager and xmldb classes
 if ($dbman->table_exists('bigbluebuttonbn_log') ) {
-    // BigBlueButton Setup
-    $salt = trim($CFG->BigBlueButtonBNSecuritySalt);
-    $url = trim(trim($CFG->BigBlueButtonBNServerURL),'/').'/';
-    $logoutURL = $CFG->wwwroot;
-    $username = $USER->firstname.' '.$USER->lastname;
-    $userID = $USER->id;
-    
     $meetingID='';
     $results = $DB->get_records_sql('SELECT DISTINCT meetingid, courseid, bigbluebuttonbnid FROM '.$CFG->prefix.'bigbluebuttonbn_log WHERE '.$CFG->prefix.'bigbluebuttonbn_log.courseid='.$course->id. ' AND '.$CFG->prefix.'bigbluebuttonbn_log.record = 1 AND '.$CFG->prefix.'bigbluebuttonbn_log.event = \'Create\';' );
     
@@ -109,6 +102,7 @@ if ($dbman->table_exists('bigbluebuttonbn_log') ) {
     echo '    var view_recording_list_activity = "'.get_string('view_recording_list_activity', 'bigbluebuttonbn').'";'."\n";
     echo '    var view_recording_list_description = "'.get_string('view_recording_list_description', 'bigbluebuttonbn').'";'."\n";
     echo '    var view_recording_list_date = "'.get_string('view_recording_list_date', 'bigbluebuttonbn').'";'."\n";
+    echo '    var view_recording_list_duration = "'.get_string('view_recording_list_duration', 'bigbluebuttonbn').'";'."\n";
     echo '    var view_recording_list_actionbar = "'.get_string('view_recording_list_actionbar', 'bigbluebuttonbn').'";'."\n";
     echo '    var view_recording_list_actionbar_hide = "'.get_string('view_recording_list_actionbar_hide', 'bigbluebuttonbn').'";'."\n";
     echo '    var view_recording_list_actionbar_show = "'.get_string('view_recording_list_actionbar_show', 'bigbluebuttonbn').'";'."\n";
