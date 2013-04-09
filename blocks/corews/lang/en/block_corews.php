@@ -26,6 +26,7 @@
 $string['configpassword'] = 'Web service authentication, password';
 $string['configusername'] = 'Web service authentication, username.';
 $string['configwsdl'] = 'URL of core webservice wsdl';
+$string['corews:addinstance'] = 'Add an instance of Core web service client';
 $string['coursecode'] = 'Course code';
 $string['courseid'] = 'Course id';
 $string['notconfigured'] = 'Block is not configured!';

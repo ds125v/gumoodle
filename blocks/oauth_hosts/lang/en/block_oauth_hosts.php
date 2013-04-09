@@ -31,5 +31,6 @@ $string['db_password'] = 'Password';
 $string['db_tablename'] = 'Course list table name';
 $string['pluginname'] = 'OAuth Moodle Courses';
 $string['nocoursesfound'] = 'No courses found';
+$string['oauth_hosts:addinstance'] = 'Add an instance of OAuth Moodle Courses';
 ?>
 
