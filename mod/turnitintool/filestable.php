@@ -44,26 +44,26 @@ $sQuery = 'SELECT
     cs.id AS course,
     sb.submission_filename AS filename,
     sb.submission_objectid AS objectid
-FROM '.$CFG->prefix.'files AS fl
+FROM '.$CFG->prefix.'files fl
 LEFT JOIN
-    '.$CFG->prefix.'turnitintool_submissions AS sb ON fl.itemid = sb.id
+    '.$CFG->prefix.'turnitintool_submissions sb ON fl.itemid = sb.id
 LEFT JOIN
-    '.$CFG->prefix.'user AS us ON fl.userid = us.id
+    '.$CFG->prefix.'user us ON fl.userid = us.id
 LEFT JOIN
-    '.$CFG->prefix.'course_modules AS cm ON fl.contextid = cm.id AND cm.module = '.$param_module.'
+    '.$CFG->prefix.'course_modules cm ON fl.contextid = cm.id AND cm.module = '.$param_module.'
 LEFT JOIN
-    '.$CFG->prefix.'turnitintool AS tu ON cm.instance = tu.id
+    '.$CFG->prefix.'turnitintool tu ON cm.instance = tu.id
 LEFT JOIN
-    '.$CFG->prefix.'course AS cs ON tu.course = cs.id
+    '.$CFG->prefix.'course cs ON tu.course = cs.id
 WHERE
     fl.component = \'mod_turnitintool\' AND fl.filesize != 0';
 
 $sCountQuery = 'SELECT
     fl.id AS id
 FROM
-    '.$CFG->prefix.'files AS fl
+    '.$CFG->prefix.'files fl
 LEFT JOIN
-    '.$CFG->prefix.'turnitintool_submissions AS sb ON fl.itemid = sb.id
+    '.$CFG->prefix.'turnitintool_submissions sb ON fl.itemid = sb.id
 WHERE
     fl.component = "mod_turnitintool" AND fl.filesize != 0';
 

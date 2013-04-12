@@ -1,3 +1,7 @@
+2013-03-19 : Adding alternative method for adding curl certificate bundles
+2013-03-19 : Fixed issue with using 'AS' in Oracle DB column aliases in JOIN clauses
+2013-03-19 : Fixed regression where 0% OR was displayed as 'Pending'
+2013-03-19 : Added missing support for groups in new inbox function
 2013-03-05 : Added fix for differing profile language when loading javascript before login
 2013-03-05 : Added some user checks to the javascript jump to page
 2013-02-25 : Fixed a warning when refreshing inbox, which caused unnecessary database updates

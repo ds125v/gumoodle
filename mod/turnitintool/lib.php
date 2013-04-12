@@ -3283,6 +3283,9 @@ function turnitintool_view_all_submissions($cm,$turnitintool,$orderby='1') {
         $usifieldid = $CFG->turnitin_pseudolastname;
     }
 
+    $group_in = join(',', $studentuser_array);
+    $groupselect = ( $module_group != 0 ) ? "( u.id IN ( select gm.userid from {groups_members} gm where gm.groupid = $module_group ) OR s.userid = 0 ) AND" : "";
+
     $query = "
 SELECT
     $concat AS keyid,
@@ -3321,18 +3324,19 @@ SELECT
     s.submission_unanon AS submission_unanon,
     s.submission_unanonreason AS submission_unanonreason,
     s.submission_transmatch AS submission_transmatch
-FROM {turnitintool_submissions} AS s
+FROM {turnitintool_submissions} s
     LEFT JOIN
-        {user} AS u ON u.id = s.userid
+        {user} u ON u.id = s.userid
     LEFT JOIN
-        {turnitintool_parts} AS p ON p.id = s.submission_part
+        {turnitintool_parts} p ON p.id = s.submission_part
     LEFT JOIN
-        {turnitintool} AS t ON t.id = p.turnitintoolid
+        {turnitintool} t ON t.id = p.turnitintoolid
     LEFT JOIN
-        {turnitintool_users} AS tu ON u.id = tu.userid
+        {turnitintool_users} tu ON u.id = tu.userid
     LEFT JOIN
-        {user_info_data} AS ud ON u.id = ud.userid AND ud.fieldid = $usifieldid
+        {user_info_data} ud ON u.id = ud.userid AND ud.fieldid = $usifieldid
 WHERE
+    $groupselect
     s.turnitintoolid = ".$turnitintool->id."
 ORDER BY s.submission_grade DESC
 ";
@@ -4324,8 +4328,8 @@ function turnitintool_update_all_report_scores($cm,$turnitintool,$trigger,$loade
                         $insert->submission_filename=str_replace(" ","_",$value["title"]).'.doc';
                         $insert->submission_objectid=$key;
                         $insert->submission_score=$value["overlap"];
-                        if ($value["overlap"]==null || empty( $value["overlap"] ) ) {
-                            unset($insert->submission_score);
+                        if ( $value["overlap"] !== '0' && empty( $value["overlap"] ) ) {
+                            $insert->submission_score = null;
                         }
                         $insert->submission_grade=turnitintool_processgrade($value["grademark"],$part,$owner,$post,$key,$tii,$loaderbar);
                         $insert->submission_status=get_string('submissionuploadsuccess','turnitintool');
@@ -4421,7 +4425,7 @@ function turnitintool_update_all_report_scores($cm,$turnitintool,$trigger,$loade
             $redirectlink.=(!is_null($param_fr)) ? '&fr='.$param_fr : '';
             $redirectlink.=(!is_null($param_sh)) ? '&sh='.$param_sh : '';
             $redirectlink.=(!is_null($param_ob)) ? '&ob='.$param_ob : '';
-            
+
             turnitintool_redirect($redirectlink);
             
         }
@@ -5151,6 +5155,7 @@ function turnitintool_checkforsubmission($cm,$turnitintool,$partid,$userid) {
             $subupdate['submission_nmfirstname']='';
             $subupdate['submission_nmlastname']='';
             if (!$updateid=turnitintool_update_record('turnitintool_submissions',$subupdate)) {
+exit();
                 turnitintool_print_error('submissionupdateerror', 'turnitintool', null, null, __FILE__, __LINE__);
                 exit();
             }
@@ -6471,6 +6476,7 @@ function turnitintool_get_record_select($table,$select,$fields='*') {
  */
 function turnitintool_update_record($table,$dataobject) {
     global $DB;
+    $dataobject = json_decode(json_encode($dataobject));
     if (is_callable(array($DB,'update_record'))) {
         return $DB->update_record($table,$dataobject);
     } else {
@@ -6489,6 +6495,7 @@ function turnitintool_update_record($table,$dataobject) {
  */
 function turnitintool_insert_record($table,$dataobject,$returnid=true,$primarykey='id') {
     global $DB;
+    $dataobject = json_decode(json_encode($dataobject));
     if (is_callable(array($DB,'insert_record'))) {
         return $DB->insert_record($table,$dataobject,$returnid,$primarykey);
     } else {

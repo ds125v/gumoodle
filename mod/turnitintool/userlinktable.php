@@ -32,14 +32,14 @@ $sQuery = 'SELECT
     mu.firstname AS firstname,
     mu.lastname AS lastname,
     mu.email AS email
-FROM '.$CFG->prefix.'turnitintool_users AS tu
+FROM '.$CFG->prefix.'turnitintool_users tu
 LEFT JOIN
-    '.$CFG->prefix.'user AS mu ON tu.userid = mu.id';
+    '.$CFG->prefix.'user mu ON tu.userid = mu.id';
 
 $sCountQuery = 'SELECT
     tu.id AS id
 FROM
-    '.$CFG->prefix.'turnitintool_users AS tu';
+    '.$CFG->prefix.'turnitintool_users tu';
 
 $param_sortcol[0] = optional_param('iSortCol_0', null, PARAM_INT);  // sortcol
 $param_sortingcols = optional_param('iSortingCols', 0, PARAM_INT);  // sortingcols

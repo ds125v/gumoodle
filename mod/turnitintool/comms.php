@@ -163,7 +163,7 @@ class turnitintool_commclass {
         global $CFG;
         if ( ($this->utp==1 AND $CFG->turnitin_receiptemail!="1" AND $submission) OR  // If student and submission and sends receipts = no
              ($this->utp==1 AND $CFG->turnitin_studentemail!="1" AND !$submission) OR // If student and not submission and student emails = no
-             ($this->utp==2 AND $CFG->turnitin_tutoremail!="1")	) {                   // If instructor and instructor emails = no
+             ($this->utp==2 AND $CFG->turnitin_tutoremail!="1") ) {                   // If instructor and instructor emails = no
             return "1";
         } else {
             return "0";
@@ -211,23 +211,29 @@ class turnitintool_commclass {
             $output[$objectid]["lastname"] = (string)$object->lastname;
             $output[$objectid]["title"] = html_entity_decode( (string)$object->title, ENT_QUOTES, "UTF-8" );
             
-            $similarityscore = $object->similarityScore;
-            $output[$objectid]["similarityscore"] = ( !is_null( $similarityscore ) AND $similarityscore != "-1" ) ? $similarityscore : null;
+            $output[$objectid]["similarityscore"] = ( !is_null( $object->similarityScore ) AND $object->similarityScore != "-1" ) ? $object->similarityScore : null;
+
+            $transsimilarityscore = (integer)$object->translated_matching->similarityScore < 0 ? null : $object->translated_matching->similarityScore;
             
-            $overlap = (string)$object->overlap;
-            $transmatch = (string)$object->translated_matching->overlap;
-            $transmatch_overlap = ( !is_null( $transmatch ) ) ? $transmatch : null;
-            if ( !is_null( $transmatch ) AND (integer)$transmatch_overlap > (integer)$overlap ) {
-                $high_overlap = $transmatch_overlap;
-                $output[$objectid]["transmatch"] = 1;
+            if ( !is_null( $transsimilarityscore ) ) {
+                if ( (integer)$object->overlap > (integer)$object->translated_matching->overlap ) {
+                    $output[$objectid]["transmatch"] = 0;
+                    $high_overlap = $object->overlap;
+                    $similarityscore = $object->similarityScore;
+                } else {
+                    $output[$objectid]["transmatch"] = 1;
+                    $high_overlap = $object->translated_matching->overlap;
+                    $similarityscore = $object->translated_matching->similarityScore;
+                }
             } else {
-                $high_overlap = $overlap;
+                $high_overlap = $object->overlap;
                 $output[$objectid]["transmatch"] = 0;
+                $similarityscore = $object->similarityScore;
             }
-            
+
             // note overlap is the Originality Percentage Score
-            $output[$objectid]["overlap"]=( $overlap === '0' OR ( !is_null( $overlap ) AND $overlap != "-1" AND !is_null( $output[$objectid]["similarityscore"] ) ) ) ? $high_overlap : null;
-            
+            $output[$objectid]["overlap"] = ( !is_null( $high_overlap ) AND $similarityscore != "-1" ) ? (string)$high_overlap : null;
+
             $score = (string)$object->score;
             $output[$objectid]["grademark"] = ( $score === '0' OR ( !is_null( $score ) AND $score != "-1" ) ) ? $score : null;
 
@@ -240,11 +246,10 @@ class turnitintool_commclass {
             $date_submitted = (string)$object->date_submitted;
             $output[$objectid]["date_submitted"]=( !is_null( $date_submitted ) AND $date_submitted != "-1" ) ? $date_submitted : null;
 
-            $student_view = (string)$object->student_responses->student_response->response_time;
-            $output[$objectid]["student_view"]=( !is_null( $student_view ) AND !empty( $student_view ) ) ? $student_view : 0;
+            $student_view = isset($object->student_responses) ? (string)$object->student_responses->student_response->response_time : null;
+            $output[$objectid]["student_view"]=( isset( $object->student_responses ) AND !is_null( $student_view ) AND !empty( $student_view ) ) ? $student_view : 0;
         
         }
-        
         return $output;
 
     }
@@ -403,6 +408,12 @@ class turnitintool_commclass {
         curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+
+        $cacertfile = $CFG->dataroot . '/moodleorgca.crt';
+        if ( is_readable( $cacertfile ) ) {
+            curl_setopt( $ch, CURLOPT_CAINFO, $cacertfile );
+        }
+
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 20);
         if (isset($CFG->turnitin_proxyurl) AND !empty($CFG->turnitin_proxyurl)) {
             curl_setopt($ch, CURLOPT_PROXY, $CFG->turnitin_proxyurl.':'.$CFG->turnitin_proxyport);
@@ -428,6 +439,7 @@ class turnitintool_commclass {
         $this->doLogging($vars,$result);
         return utf8_decode($result);
         curl_close($ch);
+        fclose($temp_pem);
 
     }
     /**
