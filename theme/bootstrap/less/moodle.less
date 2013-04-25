@@ -29,8 +29,22 @@ td, th {
 @navbarInverseBackgroundHighlight: @glasgowBlue;
 @navbarInverseBorder:              @glasgowBlue;
 
-@linkColor: @glasgowBlue;
+@navbarHeight: 50px;
 
+.navbar .brand {
+    padding: 5px 20px;
+    img {
+        height: 40px;
+    }
+}
+@navbarInverseText:                      #fff;
+@navbarInverseLinkColor:                 #fff;
+@navbarInverseLinkColorHover:            #fff;
+@navbarInverseLinkColorActive:           @navbarInverseLinkColorHover;
+@navbarInverseLinkBackgroundHover:       transparent;
+@navbarInverseLinkBackgroundActive:      @navbarInverseBackground;
+
+@linkColor: @glasgowBlue;
 
 // Roll back nameclashes.
 @import "moodle/undo";
