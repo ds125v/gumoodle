@@ -40,6 +40,7 @@ if ($ADMIN->fulltree) {
     $setting->set_updatedcallback('theme_reset_all_caches');
     $settings->add($setting);
 
+
     // Custom CSS file.
     $name = 'theme_clean/customcss';
     $title = get_string('customcss', 'theme_clean');
