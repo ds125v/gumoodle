@@ -12004,15 +12004,15 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar-inverse .navbar-inner {
-  background-color: #005288;
-  background-image: -moz-linear-gradient(top, #005288, #005288);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#005288), to(#005288));
-  background-image: -webkit-linear-gradient(top, #005288, #005288);
-  background-image: -o-linear-gradient(top, #005288, #005288);
-  background-image: linear-gradient(to bottom, #005288, #005288);
+  background-color: #005b97;
+  background-image: -moz-linear-gradient(top, #0061a2, #005288);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0061a2), to(#005288));
+  background-image: -webkit-linear-gradient(top, #0061a2, #005288);
+  background-image: -o-linear-gradient(top, #0061a2, #005288);
+  background-image: linear-gradient(to bottom, #0061a2, #005288);
   background-repeat: repeat-x;
-  border-color: #005288;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff005288', endColorstr='#ff005288', GradientType=0);
+  border-color: #00436f;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0061a2', endColorstr='#ff005288', GradientType=0);
 }
 
 .navbar-inverse .brand,
@@ -12059,7 +12059,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar-inverse .divider-vertical {
-  border-right-color: #005288;
+  border-right-color: #0061a2;
   border-left-color: #005288;
 }
 
@@ -12129,17 +12129,17 @@ input[type="submit"].btn.btn-mini {
 .navbar-inverse .btn-navbar {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #00436f;
+  background-color: #004c7e;
   *background-color: #00436f;
-  background-image: -moz-linear-gradient(top, #00436f, #00436f);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#00436f), to(#00436f));
-  background-image: -webkit-linear-gradient(top, #00436f, #00436f);
-  background-image: -o-linear-gradient(top, #00436f, #00436f);
-  background-image: linear-gradient(to bottom, #00436f, #00436f);
+  background-image: -moz-linear-gradient(top, #005288, #00436f);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#005288), to(#00436f));
+  background-image: -webkit-linear-gradient(top, #005288, #00436f);
+  background-image: -o-linear-gradient(top, #005288, #00436f);
+  background-image: linear-gradient(to bottom, #005288, #00436f);
   background-repeat: repeat-x;
   border-color: #00436f #00436f #001422;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff00436f', endColorstr='#ff00436f', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff005288', endColorstr='#ff00436f', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 
