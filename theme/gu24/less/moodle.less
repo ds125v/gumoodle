@@ -1,0 +1,27 @@
+@import "../../bootstrapbase/less/moodle";
+
+// Glasgow variables
+@glasgowBlue: #005288;
+@navbarInverseBackground:          @glasgowBlue;
+@navbarInverseBackgroundHighlight: lighten(@glasgowBlue, 5%);
+@navbarInverseBorder:              darken(@glasgowBlue, 5%);
+
+@navbarHeight: 50px;
+
+.navbar .brand {
+    padding: 5px 20px;
+    img {
+        height: 40px;
+    }
+}
+.navbar .logininfo a {
+    color: #fff;
+}
+@navbarInverseText:                      #fff;
+@navbarInverseLinkColor:                 #fff;
+@navbarInverseLinkColorHover:            #fff;
+@navbarInverseLinkColorActive:           @navbarInverseLinkColorHover;
+@navbarInverseLinkBackgroundHover:       transparent;
+@navbarInverseLinkBackgroundActive:      @navbarInverseBackground;
+
+@linkColor: @glasgowBlue;

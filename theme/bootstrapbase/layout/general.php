@@ -14,20 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-/**
- * Moodle's Simple theme, an example of how to make a Bootstrap theme
- *
- * DO NOT MODIFY THIS THEME!
- * COPY IT FIRST, THEN RENAME THE COPY AND MODIFY IT INSTEAD.
- *
- * For full information about creating Moodle themes, see:
- * http://docs.moodle.org/dev/Themes_2.0
- *
- * @package   theme_simple
- * @copyright 2013 Moodle, moodle.org
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
 $hasheading = ($PAGE->heading);
 $hasnavbar = (empty($PAGE->layout_options['nonavbar']) && $PAGE->has_navbar());
 $hasfooter = (empty($PAGE->layout_options['nofooter']));
@@ -39,9 +25,6 @@ $hassidepost = (empty($PAGE->layout_options['noblocks']) && $PAGE->blocks->regio
 $showsidepre = ($hassidepre && !$PAGE->blocks->region_completely_docked('side-pre', $OUTPUT));
 $showsidepost = ($hassidepost && !$PAGE->blocks->region_completely_docked('side-post', $OUTPUT));
 
-$haslogo = (!empty($PAGE->theme->settings->logo));
-
-$hasfootnote = (!empty($PAGE->theme->settings->footnote));
 $custommenu = $OUTPUT->custom_menu();
 $hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custommenu));
 
@@ -74,8 +57,7 @@ if ($showsidepre && !$showsidepost) {
 }
 $bodyclasses[] = $layout;
 
-$throwaway = $OUTPUT->doctype() ?>
-<!doctype html>
+echo $OUTPUT->doctype() ?>
 <html <?php echo $OUTPUT->htmlattributes() ?>>
 <head>
     <title><?php echo $PAGE->title ?></title>
@@ -88,10 +70,10 @@ $throwaway = $OUTPUT->doctype() ?>
 
 <?php echo $OUTPUT->standard_top_of_body_html() ?>
 
-<header role="banner" class="navbar navbar-inverse navbar-fixed-top">
+<header role="banner" class="navbar navbar-fixed-top">
     <nav role="navigation" class="navbar-inner">
         <div class="container-fluid">
-            <a class="brand" href="<?php echo $CFG->wwwroot;?>"><img src="http://www.gla.ac.uk/0t4/generic/images/logo.gif" alt="<?php echo $SITE->shortname; ?>"></a>
+            <a class="brand" href="<?php echo $CFG->wwwroot;?>"><?php echo $SITE->shortname; ?></a>
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -118,15 +100,7 @@ $throwaway = $OUTPUT->doctype() ?>
         <nav class="breadcrumb-button"><?php echo $PAGE->button; ?></nav>
         <?php echo $OUTPUT->navbar(); ?>
     <?php } ?>
-
-        <?php
-    if (!$haslogo) { ?>
-        <h1><?php echo $PAGE->heading ?></h1>
-        <?php
-    } else { ?>
-         <a class="logo" href="<?php echo $CFG->wwwroot; ?>" title="<?php print_string('home'); ?>"></a>
-        <?php
-    } ?>
+    <h1><?php echo $PAGE->heading ?></h1>
 
     <?php if (!empty($courseheader)) { ?>
         <div id="course-header"><?php echo $courseheader; ?></div>
@@ -157,9 +131,9 @@ $throwaway = $OUTPUT->doctype() ?>
 
 <?php if ($layout !== 'content-only') {
           if ($layout === 'pre-and-post') { ?>
-            <aside id="region-pre" class="span4 desktop-first-column">
+            <aside class="span4 desktop-first-column">
     <?php } else if ($layout === 'side-pre-only') { ?>
-            <aside id="region-pre" class="span3 desktop-first-column">
+            <aside class="span3 desktop-first-column">
     <?php } ?>
           <div id="region-pre" class="block-region">
           <div class="region-content">
@@ -168,8 +142,7 @@ $throwaway = $OUTPUT->doctype() ?>
                     echo $OUTPUT->blocks_for_region('side-pre');
                 } else if ($hassidepost) {
                     echo $OUTPUT->blocks_for_region('side-post');
-                }
-          ?>
+                } ?>
           </div>
           </div>
           </aside>
@@ -194,29 +167,12 @@ $throwaway = $OUTPUT->doctype() ?>
 </div>
 
 <footer id="page-footer">
-    <p><?php echo $OUTPUT->login_info() ?></p>
     <p class="helplink"><?php echo page_doc_link(get_string('moodledocslink')) ?></p>
-
-    <?php
-if ($hasfootnote) { ?>
-   <div class="footnote text-center">
-   <?php echo $PAGE->theme->settings->footnote; ?>
-   </div>
-    <?php
-} ?>
-
     <?php echo $OUTPUT->standard_footer_html(); ?>
 </footer>
 
 <?php echo $OUTPUT->standard_end_of_body_html() ?>
 
 </div>
-<!--[if lt IE 9]>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<![endif]-->
-<!--[if gte IE 9]><!-->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<!--<![endif]-->
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

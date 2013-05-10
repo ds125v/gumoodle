@@ -37,8 +37,9 @@ $THEME->name = 'gu24';
 //////////////////////////////////
 //
 $THEME->doctype = 'html5';
-$THEME->parents = array('bootstrap');
-$THEME->sheets = array('custom');
+$THEME->parents = array('bootstrapbase');
+$THEME->parent_exclude_sheets = array('moodle');
+$THEME->sheets = array('moodle', 'custom');
 $THEME->supportscssoptimisation = false;
 $THEME->yuicssmodules = array();
 
