@@ -1,3 +1,9 @@
+2013-04-26 : Using conventional names for all classes, constants and method names outside classes should begin TURNITINTOOL_ or turnitintool_
+2013-04-26 : Added support for quick name change in course home page where applicable to Moodle version
+2013-04-26 : Added support for .odt and .hwp files
+2013-04-26 : Fixed issue where old records that no longer exist in Turnitin were not being purged from inbox
+2013-04-26 : Added ability to refresh individual rows, this will also purge duplicates if found
+2013-04-26 : Fixed issue where db calls were called inside a loop on the submission form screen
 2013-03-19 : Adding alternative method for adding curl certificate bundles
 2013-03-19 : Fixed issue with using 'AS' in Oracle DB column aliases in JOIN clauses
 2013-03-19 : Fixed regression where 0% OR was displayed as 'Pending'
