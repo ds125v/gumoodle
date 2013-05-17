@@ -19,10 +19,10 @@ if (!turnitintool_check_config()) {
 $viewpage='view.php';
 $viewpage .= (isset($_REQUEST['id'])) ? '?id='.$_REQUEST['id'] : '';
 $viewpage .= (isset($_REQUEST['do'])) ? '&do='.$_REQUEST['do'] : '';
-activityLog($viewpage,"REQUEST");
-activityLog("lib.php Loaded","REQUIRE_ONCE");
+turnitintool_activitylog($viewpage,"REQUEST");
+turnitintool_activitylog("lib.php Loaded","REQUIRE_ONCE");
 require_once($CFG->dirroot."/lib/uploadlib.php");
-activityLog("uploadlib.php Loaded","REQUIRE_ONCE");
+turnitintool_activitylog("uploadlib.php Loaded","REQUIRE_ONCE");
 
 turnitintool_process_api_error();
 
@@ -73,7 +73,7 @@ if (isset($PAGE) AND is_callable(array($PAGE->requires, 'js'))) { // Are we usin
     require_js($CFG->wwwroot.'/mod/turnitintool/scripts/jquery-1.7.2.min.js');
     require_js($CFG->wwwroot.'/mod/turnitintool/scripts/turnitintool.js');
 }
-activityLog("turnitintool.js Loaded","REQUIRE_JS");
+turnitintool_activitylog("turnitintool.js Loaded","REQUIRE_JS");
 
 $param_jumppage=optional_param('jumppage',null,PARAM_CLEAN);
 $param_userid=optional_param('userid',null,PARAM_CLEAN);
@@ -100,6 +100,7 @@ $param_objectid=optional_param('objectid',null,PARAM_CLEAN);
 $param_partid=optional_param('partid',null,PARAM_CLEAN);
 $param_utp=optional_param('utp',null,PARAM_CLEAN);
 $param_enrollstudent=optional_param('enrollstudent',null,PARAM_CLEAN);
+$param_reloadrow=optional_param('reloadrow',null,PARAM_CLEAN);
 
 // Clean the post array so we can pass it into the functions below
 $post = array();
@@ -131,6 +132,11 @@ $redirectlink.=(!is_null($param_do)) ? '&do='.$param_do : '&do=intro';
 $redirectlink.=(!is_null($param_fr)) ? '&fr='.$param_fr : '';
 $redirectlink.=(!is_null($param_sh)) ? '&sh='.$param_sh : '';
 $redirectlink.=(!is_null($param_ob)) ? '&ob='.$param_ob : '';
+
+if (!is_null($param_reloadrow)) {
+    turnitintool_reloadinbox_row($cm,$turnitintool,$param_reloadrow);
+    exit();
+}
 
 if (!is_null($param_update)) {
     $loaderbar = new turnitintool_loaderbarclass(2);

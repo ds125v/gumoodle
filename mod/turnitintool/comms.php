@@ -110,7 +110,7 @@ class turnitintool_commclass {
     function startSession() {
         global $CFG;
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fid'=>1,
@@ -124,18 +124,18 @@ class turnitintool_commclass {
         $assigndata['dis']=$this->disableEmail();
         $assigndata['md5']=$this->doMD5($assigndata);
         $assigndata['create_session']=1;
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
         $this->result=$this->doRequest("POST", $this->apiurl, $assigndata,true);
         $this->tiisession=$this->getSessionid();
-        sleep(TII_LATENCY_SLEEP);
+        sleep(TURNITINTOOL_LATENCY_SLEEP);
     }
     /**
      * Calls FID18, FCMD 2 to kill the session for this user / object call
      */
     function endSession() {
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fid'=>18,
@@ -149,7 +149,7 @@ class turnitintool_commclass {
         $assigndata['dis']=$this->disableEmail();
         $assigndata['md5']=$this->doMD5($assigndata);
         $assigndata['session-id']=$this->tiisession;
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
         $this->result=$this->doRequest("POST", $this->apiurl, $assigndata,true);
     }
@@ -322,7 +322,7 @@ class turnitintool_commclass {
      * @return boolean True API call success or False API failure
      */
     function getRerror() {
-        if (is_null($this->getRcode()) OR $this->getRcode()>=API_ERROR_START) {
+        if (is_null($this->getRcode()) OR $this->getRcode()>=TURNITINTOOL_API_ERROR_START) {
             return true;
         } else {
             return false;
@@ -372,6 +372,18 @@ class turnitintool_commclass {
     function getScore() {
         if ( $this->xmlToSimple( $this->result ) AND !is_null( $this->simplexml->originalityscore ) ) {
             return (string)$this->simplexml->originalityscore;
+        } else {
+            return '';
+        }
+    }
+    /**
+     * Returns the Overall Grade (SCORE) for the API call
+     *
+     * @return string The SCORE or Empty String if not available
+     */
+    function getGrade() {
+        if ( $this->xmlToSimple( $this->result ) AND !is_null( $this->simplexml->originalityscore ) ) {
+            return (string)$this->simplexml->score;
         } else {
             return '';
         }
@@ -504,7 +516,7 @@ class turnitintool_commclass {
         }
 
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>6,
@@ -522,7 +534,7 @@ class turnitintool_commclass {
         $assigndata['dis']=$this->disableEmail();
         $assigndata["md5"]=$this->doMD5($assigndata);
         $assigndata['session-id']=$this->tiisession;
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
         $this->result=$this->doRequest("POST", $this->apiurl, $assigndata,true,$status);
     }
@@ -553,7 +565,7 @@ class turnitintool_commclass {
         $timezone = isset( $CFG->timezone ) ? $CFG->timezone : 20;
 
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>$thisfcmd,
@@ -635,7 +647,7 @@ class turnitintool_commclass {
         if (isset($post->idsync)) {
             $assigndata['idsync']=$post->idsync;
         }
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
         $this->result=$this->doRequest("POST", $this->apiurl, $assigndata,true,$status);
     }
@@ -648,7 +660,7 @@ class turnitintool_commclass {
     function changeOwner($post,$status) {
 
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>4,
@@ -665,7 +677,7 @@ class turnitintool_commclass {
         $assigndata['dis']=$this->disableEmail();
         $assigndata['md5']=$this->doMD5($assigndata);
         $assigndata['session-id']=$this->tiisession;
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
         $assigndata['new_teacher_email']=$post->new_teacher_email;
 
@@ -681,7 +693,7 @@ class turnitintool_commclass {
     function submitPaper($post,$filedata,$status) {
 
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>2,
@@ -703,7 +715,7 @@ class turnitintool_commclass {
         $assigndata['dis']=$this->disableEmail(true);
         $assigndata['md5']=$this->doMD5($assigndata);
         $assigndata['session-id']=$this->tiisession;
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
         $assigndata['pdata']='@'.$filedata;
 
@@ -718,7 +730,7 @@ class turnitintool_commclass {
     function queryAssignment($post,$status) {
 
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>7,
@@ -736,7 +748,7 @@ class turnitintool_commclass {
         $assigndata['dis']=$this->disableEmail();
         $assigndata['md5']=$this->doMD5($assigndata);
         $assigndata['session-id']=$this->tiisession;
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
         $this->result=$this->doRequest("POST", $this->apiurl, $assigndata,true,$status);
     }
@@ -778,7 +790,7 @@ class turnitintool_commclass {
     function joinClass($post,$status) {
 
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>2,
@@ -795,7 +807,7 @@ class turnitintool_commclass {
         $assigndata['dis']=$this->disableEmail();
         $assigndata['md5']=$this->doMD5($assigndata);
         $assigndata['session-id']=$this->tiisession;
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
         $this->result=$this->doRequest("POST", $this->apiurl, $assigndata,true,$status);
     }
@@ -807,7 +819,7 @@ class turnitintool_commclass {
      */
     function createUser($post,$status) {
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>2,
@@ -824,7 +836,7 @@ class turnitintool_commclass {
         if (isset($post->idsync)) {
             $assigndata['idsync']=$post->idsync;
         }
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
         $this->result=$this->doRequest("POST", $this->apiurl, $assigndata,true,$status);
     }
@@ -850,7 +862,7 @@ class turnitintool_commclass {
         }
 
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>$fcmd,
@@ -870,7 +882,7 @@ class turnitintool_commclass {
         if (isset($post->idsync)) {
             $assigndata['idsync']=$post->idsync;
         }
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
         $this->result=$this->doRequest("POST", $this->apiurl, $assigndata,true,$status);
     }
@@ -888,7 +900,7 @@ class turnitintool_commclass {
         }
 
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>2,
@@ -903,7 +915,40 @@ class turnitintool_commclass {
         $assigndata['dis']=$this->disableEmail();
         $assigndata["md5"]=$this->doMD5($assigndata);
         $assigndata['session-id']=$this->tiisession;
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
+        $assigndata['apilang']=$this->getLang();
+        $this->result=$this->doRequest("POST", $this->apiurl, $assigndata,true,$status);
+    }
+    /**
+     * Call to API FID15, FCMD2 to get the GradeMark score
+     *
+     * @param object $post The post object that contains the necessary query parameters for the call
+     * @param string $status The status to pass to the loaderbar class
+     */
+    function getGradeMark($post,$status) {
+
+        if (!turnitintool_check_config()) {
+            turnitintool_print_error('configureerror','turnitintool',NULL,NULL,__FILE__,__LINE__);
+            exit();
+        }
+
+        $assigndata=array('gmtime'=>$this->tiiGmtime(),
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
+                'aid'=>$this->accountid,
+                'diagnostic'=>0,
+                'fcmd'=>2,
+                'oid'=>$post->oid,
+                'utp'=>2,
+                'fid'=>15,
+                'uid'=>$this->uid,
+                'uem'=>$this->uem,
+                'ufn'=>$this->ufn,
+                'uln'=>$this->uln
+        );
+        $assigndata['dis']=$this->disableEmail();
+        $assigndata["md5"]=$this->doMD5($assigndata);
+        $assigndata['session-id']=$this->tiisession;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
         $this->result=$this->doRequest("POST", $this->apiurl, $assigndata,true,$status);
     }
@@ -924,7 +969,7 @@ class turnitintool_commclass {
         $tem = (isset($post->tem)) ? $post->tem : '';
 
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>$fcmd,
@@ -943,7 +988,7 @@ class turnitintool_commclass {
         $assigndata['dis']=$this->disableEmail();
         $assigndata["md5"]=$this->doMD5($assigndata);
         if ( !is_null( $this->tiisession ) ) $assigndata['session-id']=$this->tiisession;
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
         $this->result=$this->doRequest("POST", $this->apiurl, $assigndata,true,$status);
     }
@@ -961,7 +1006,7 @@ class turnitintool_commclass {
         }
 
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>5,
@@ -977,7 +1022,7 @@ class turnitintool_commclass {
         $assigndata['dis']=$this->disableEmail();
         $assigndata["md5"]=$this->doMD5($assigndata);
         $assigndata['session-id']=$this->tiisession;
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
         $this->result=$this->doRequest("POST", $this->apiurl, $assigndata,true,$status);
     }
@@ -995,7 +1040,7 @@ class turnitintool_commclass {
         }
 
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>2,
@@ -1011,7 +1056,7 @@ class turnitintool_commclass {
         $assigndata['dis']=$this->disableEmail();
         $assigndata["md5"]=$this->doMD5($assigndata);
         $assigndata['session-id']=$this->tiisession;
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
         $this->result=$this->doRequest("POST", $this->apiurl, $assigndata,true,$status);
     }
@@ -1029,7 +1074,7 @@ class turnitintool_commclass {
         }
 
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>2,
@@ -1045,7 +1090,7 @@ class turnitintool_commclass {
         $assigndata['dis']=$this->disableEmail();
         $assigndata["md5"]=$this->doMD5($assigndata);
         $assigndata['session-id']=$this->tiisession;
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
         $this->result=$this->doRequest("POST", $this->apiurl, $assigndata,true,$status);
     }
@@ -1088,7 +1133,7 @@ class turnitintool_commclass {
     function getReportLink($post) {
 
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>1,
@@ -1101,7 +1146,7 @@ class turnitintool_commclass {
                 'uln'=>$this->uln
         );
         $assigndata['md5']=$this->doMD5($assigndata);
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
 
         $keys = array_keys($assigndata);
@@ -1123,7 +1168,7 @@ class turnitintool_commclass {
      */
     function getGradeMarkLink($post) {
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>1,
@@ -1136,7 +1181,7 @@ class turnitintool_commclass {
                 'uln'=>$this->uln
         );
         $assigndata['md5']=$this->doMD5($assigndata);
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
 
         $keys = array_keys($assigndata);
@@ -1159,7 +1204,7 @@ class turnitintool_commclass {
      */
     function getSubmissionURL($post) {
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>1,
@@ -1177,7 +1222,7 @@ class turnitintool_commclass {
                 'uln'=>$this->uln
         );
         $assigndata['md5']=$this->doMD5($assigndata);
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
 
         $keys = array_keys($assigndata);
@@ -1199,7 +1244,7 @@ class turnitintool_commclass {
      */
     function getSubmissionDownload($post) {
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>2,
@@ -1217,7 +1262,7 @@ class turnitintool_commclass {
                 'uln'=>$this->uln
         );
         $assigndata['md5']=$this->doMD5($assigndata);
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
 
         $keys = array_keys($assigndata);
@@ -1245,7 +1290,7 @@ class turnitintool_commclass {
         }
 
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>3,
@@ -1262,7 +1307,7 @@ class turnitintool_commclass {
         $assigndata["md5"]=$this->doMD5($assigndata);
         $assigndata['session-id']=$this->tiisession;
         $assigndata["score"]=$post->score;
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
         $this->result=$this->doRequest("POST", $this->apiurl, $assigndata,true,$status);
     }
@@ -1275,7 +1320,7 @@ class turnitintool_commclass {
     function deleteSubmission($post,$status) {
 
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>2,
@@ -1290,7 +1335,7 @@ class turnitintool_commclass {
         $assigndata['dis']=$this->disableEmail();
         $assigndata['md5']=$this->doMD5($assigndata);
         $assigndata['session-id']=$this->tiisession;
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
         $this->result=$this->doRequest("POST", $this->apiurl, $assigndata,true,$status);
     }
@@ -1303,7 +1348,7 @@ class turnitintool_commclass {
     function revealAnon($post,$status) {
 
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>3,
@@ -1319,7 +1364,7 @@ class turnitintool_commclass {
         $assigndata['md5']=$this->doMD5($assigndata);
         $assigndata['session-id']=$this->tiisession;
         $assigndata['anon_reason']=$post->anon_reason;
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $assigndata['apilang']=$this->getLang();
         $this->result=$this->doRequest("POST", $this->apiurl, $assigndata,true,$status);
     }
@@ -1332,7 +1377,7 @@ class turnitintool_commclass {
     function bulkDownload($post,$status) {
 
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>1,
@@ -1350,7 +1395,7 @@ class turnitintool_commclass {
         $assigndata['md5']=$this->doMD5($assigndata);
         $assigndata['session-id']=$this->tiisession;
         $assigndata['export_data']=$post->export_data;
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
 
         $assigndata['apilang']=$this->getLang();
         $keys = array_keys($assigndata);
@@ -1384,7 +1429,7 @@ class turnitintool_commclass {
     function migrateSRCData() {
 
         $assigndata=array('gmtime'=>$this->tiiGmtime(),
-                'encrypt'=>TII_ENCRYPT,
+                'encrypt'=>TURNITINTOOL_ENCRYPT,
                 'aid'=>$this->accountid,
                 'diagnostic'=>0,
                 'fcmd'=>2,
@@ -1395,7 +1440,7 @@ class turnitintool_commclass {
                 'uln'=>$this->uln
         );
         $assigndata['md5']=$this->doMD5($assigndata);
-        $assigndata['src']=TURNITIN_APISRC;
+        $assigndata['src']=TURNITINTOOL_APISRC;
         $this->result=$this->doRequest("POST", $this->apiurl, $assigndata,true,"");
     }
     /**

@@ -24,6 +24,7 @@
                     { "bSearchable": false, "bSortable": false, "bVisible": true }, // [12] Student View Indicator column
                     { "bSearchable": false, "bSortable": false, "bVisible": true }, // [13] Comments / Feed Back column
                     { "bSearchable": false, "bSortable": false, "bVisible": true }, // [14] Download Button column
+                    { "bSearchable": false, "bSortable": false, "bVisible": true }, // [14] Refresh Row column
                     { "bSearchable": false, "bSortable": false, "bVisible": true } // [15] Delete Button column
                 ],
             "fnDrawCallback": function ( oSettings ) {
@@ -40,7 +41,7 @@
                 var sLastGroup = "";
                 for ( var i=0 ; i < nTrs.length; i++ ) {
                     
-                    colspan = ( displayusi ) ? 12 : 11;
+                    colspan = ( displayusi ) ? 13 : 12;
                     studentcol = 2;
                     usicol = ( displayusi ) ? 3 : 99;
                     gradecol = ( displayusi ) ? 7 : 6;
@@ -147,5 +148,18 @@
         oTable.fnSetFilteringDelay(1000);
         return oTable;
     };
+
+    $('.refreshrow').bind('click', function( ev ) {
+        element = $(ev.currentTarget);
+        id = element.prop('id').split('-')[1];
+        objectid = element.prop('id').split('-')[4];
+        jQuery('#inboxNotice').css( 'display', 'block' );
+        $.ajax({
+            url: 'view.php?do=allsubmissions&reloadrow='+objectid+'&id='+id,
+            success: function() {
+                window.location.href = 'view.php?do=allsubmissions&id='+id;
+            }
+        });
+    });
     
 })(jQuery);

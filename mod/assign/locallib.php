@@ -759,7 +759,9 @@ class assign {
         $update->cutoffdate = $formdata->cutoffdate;
         $update->allowsubmissionsfromdate = $formdata->allowsubmissionsfromdate;
         $update->grade = $formdata->grade;
-        $update->completionsubmit = !empty($formdata->completionsubmit);
+        if (!empty($formdata->completionunlocked)) {
+            $update->completionsubmit = !empty($formdata->completionsubmit);
+        }
         $update->teamsubmission = $formdata->teamsubmission;
         $update->requireallteammemberssubmit = $formdata->requireallteammemberssubmit;
         $update->teamsubmissiongroupingid = $formdata->teamsubmissiongroupingid;
@@ -2025,6 +2027,8 @@ class assign {
 
         // More efficient to load this here.
         require_once($CFG->libdir.'/filelib.php');
+
+        require_capability('mod/assign:grade', $this->context);
 
         // Load all users with submit.
         $students = get_enrolled_users($this->context, "mod/assign:submit");
@@ -4215,7 +4219,7 @@ class assign {
         } else {
             $usergrade = '-';
             if (isset($gradinginfo->items[0]->grades[$userid]) &&
-                    !$grading_info->items[0]->grades[$userid]->hidden) {
+                    !$gradinginfo->items[0]->grades[$userid]->hidden) {
                 $usergrade = $gradinginfo->items[0]->grades[$userid]->str_grade;
             }
             $gradestring = $usergrade;
