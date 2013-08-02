@@ -1,3 +1,13 @@
+2013-05-20 : Refresh individual inbox row now fetches Translated Matching similarity
+2013-05-20 : Fixed issue where deleted parts were being flagged as duplicates after course reset
+2013-05-20 : Added support for backing up / restoring activity logs
+2013-05-20 : Added support for .wpd and .ps file types
+2013-05-20 : Warning that grades will be overwritten now correctly disables after due date rather than post date
+2013-05-20 : Fixed issue where user's were not able to resubmit for the option 'Generate reports on due date'
+2013-05-20 : Fixed issue with Student data privacy auto generated last name
+2013-05-20 : Fixed isse where submission modified dates
+2013-05-20 : Fixed issue in database delete call when updating inbox and purging old records
+2013-05-20 : Fixed issue where updating individual row set the submitted date to now()
 2013-04-26 : Using conventional names for all classes, constants and method names outside classes should begin TURNITINTOOL_ or turnitintool_
 2013-04-26 : Added support for quick name change in course home page where applicable to Moodle version
 2013-04-26 : Added support for .odt and .hwp files

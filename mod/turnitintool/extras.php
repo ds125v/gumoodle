@@ -149,7 +149,7 @@
                     $user->turnitin_uid = 0;
                     turnitintool_update_record('turnitintool_users',$user);
                 } else {
-                    turnitintool_delete_records('turnitintool_users','id',$userlink);
+                    turnitintool_delete_records_select('turnitintool_users','id',$userlink);
                 }
             }
         }
