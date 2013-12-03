@@ -1,0 +1,39 @@
+language: php
+php:
+  - "5.5"
+env:
+ - DB=mysqli
+ - DB=pgsql
+before_install:
+ - "export DISPLAY=:99.0"
+ - "sh -e /etc/init.d/xvfb start"
+before_script:
+ - sudo apt-get update > /dev/null
+ - composer self-update
+ - composer install --dev --prefer-dist
+ - pear channel-discover pear.phpunit.de
+ - pear channel-discover pear.symfony.com
+ - pear install pear.phpunit.de/DbUnit
+ - phpenv rehash
+ - cp config-dist.php config.php
+ - sh -c "sed -i -e s/'password'/''/ -e s/example.com/localhost/ -e s%/home/example%$HOME% -e 's%\(\$CFG.*phpu\)%\n\1%' config.php"
+ - sh -c "sed -i -e s/'password'/''/ -e s/example.com/localhost/ -e s%/home/example%$HOME% -e 's%\(\$CFG.*bht\)%\n\1%' config.ph<<p"
+ - sh -c "if [ '$DB' = 'mysqli' ]; then mysql -e 'create database moodle default character set UTF8 collate UTF8_bin;'; fi"
+ - sh -c "if [ '$DB' = 'mysqli' ]; then sed -i -e s/\'pgsql\'/\'mysqli\'/ -e s/\'username\'/\'root\'/ config.php; fi"
+ - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'create database moodle;' -U postgres; fi"
+ - sh -c "if [ '$DB' = 'pgsql' ]; then sed -i s/\'username\'/\'postgres\'/ config.php; fi"
+ - mkdir -m777 $HOME/moodledata
+ - php admin/tool/phpunit/cli/init.php
+ - "(php -S localhost:8000 &) 2> /dev/null > /dev/null"
+ - "wget http://selenium.googlecode.com/files/selenium-server-standalone-2.31.0.jar"
+ - "(java -jar selenium-server-standalone-2.31.0.jar &) 2> /dev/null > /dev/null"
+ - php admin/tool/behat/cli/init.php
+
+script:
+ - vendor/bin/behat --config /home/travis/bht_moodledata/behat/behat.yml
+ - phpunit
+
+notifications:
+  email:
+    - david.scotson@gla.ac.uk
+    - howard.miller@gla.ac.uk
