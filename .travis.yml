@@ -18,16 +18,11 @@ before_script:
  - cp config-dist.php config.php
  - sh -c "sed -i -e s/'password'/''/ -e s/example.com/localhost/ -e s%/home/example%$HOME% -e 's%\(\$CFG.*phpu\)%\n\1%' config.php"
  - sh -c "sed -i -e s/'password'/''/ -e s/example.com/localhost/ -e s%/home/example%$HOME% -e 's%\(\$CFG.*bht\)%\n\1%' config.php"
- - if [ '$DB' = 'mysqli' ]; then sh -c "mysql -e 'create database moodle default character set UTF8 collate UTF8_bin;'; \
-             sed -i -e s/\'pgsql\'/\'mysqli\'/ -e s/\'username\'/\'root\'/ config.php"; fi
- - if [ '$DB' = 'pgsql' ]; then sh -c "psql -c 'create database moodle;' -U postgres; \
-         sed -i s/\'username\'/\'postgres\'/ config.php"; fi
+ - if [ '$DB' = 'mysqli' ]; then sh -c "mysql -e 'create database moodle default character set UTF8 collate UTF8_bin;'; sed -i -e s/\'pgsql\'/\'mysqli\'/ -e s/\'username\'/\'root\'/ config.php"; fi
+ - if [ '$DB' = 'pgsql' ]; then sh -c "psql -c 'create database moodle;' -U postgres; sed -i s/\'username\'/\'postgres\'/ config.php"; fi
  - mkdir -m777 $HOME/moodledata
  - php admin/tool/phpunit/cli/init.php
- - if [ '$TEST = 'behat' ]; then sh -c " (php -S localhost:8000 &) 2> /dev/null > /dev/null; \
-            wget http://selenium.googlecode.com/files/selenium-server-standalone-2.31.0.jar; \
-            (java -jar selenium-server-standalone-2.31.0.jar &) 2> /dev/null > /dev/null; \
-            php admin/tool/behat/cli/init.php"; fi
+ - if [ '$TEST = 'behat' ]; then sh -c " (php -S localhost:8000 &) 2> /dev/null > /dev/null; wget http://selenium.googlecode.com/files/selenium-server-standalone-2.31.0.jar; (java -jar selenium-server-standalone-2.31.0.jar &) 2> /dev/null > /dev/null; php admin/tool/behat/cli/init.php"; fi
 
 script:
  - if [ '$TEST = 'behat' ]; vendor/bin/behat --config /home/travis/bht_moodledata/behat/behat.yml; fi
