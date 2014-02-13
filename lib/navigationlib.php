@@ -1850,9 +1850,6 @@ class global_navigation extends navigation_node {
             }
             foreach ($modinfo->sections[$section->section] as $cmid) {
                 $cm = $modinfo->cms[$cmid];
-                if (!$cm->uservisible) {
-                    continue;
-                }
                 $activity = new stdClass;
                 $activity->id = $cm->id;
                 $activity->course = $course->id;
@@ -1870,7 +1867,7 @@ class global_navigation extends navigation_node {
                     $activity->display = false;
                 } else {
                     $activity->url = $cm->get_url()->out();
-                    $activity->display = true;
+                    $activity->display = $cm->uservisible ? true : false;
                     if (self::module_extends_navigation($cm->modname)) {
                         $activity->nodetype = navigation_node::NODETYPE_BRANCH;
                     }
@@ -2009,9 +2006,6 @@ class global_navigation extends navigation_node {
             return null;
         }
         $cm = $modinfo->cms[$this->page->cm->id];
-        if (!$cm->uservisible) {
-            return null;
-        }
         if ($cm->icon) {
             $icon = new pix_icon($cm->icon, get_string('modulename', $cm->modname), $cm->iconcomponent);
         } else {
@@ -2021,7 +2015,11 @@ class global_navigation extends navigation_node {
         $activitynode = $coursenode->add(format_string($cm->name), $url, navigation_node::TYPE_ACTIVITY, null, $cm->id, $icon);
         $activitynode->title(get_string('modulename', $cm->modname));
         $activitynode->hidden = (!$cm->visible);
-        if (!$url) {
+        if (!$cm->uservisible) {
+            // Do not show any error here, let the page handle exception that activity is not visible for the current user.
+            // Also there may be no exception at all in case when teacher is logged in as student.
+            $activitynode->display = false;
+        } else if (!$url) {
             // Don't show activities that don't have links!
             $activitynode->display = false;
         } else if (self::module_extends_navigation($cm->modname)) {
@@ -2455,22 +2453,19 @@ class global_navigation extends navigation_node {
         //Participants
         if (has_capability('moodle/course:viewparticipants', $this->page->context)) {
             $participants = $coursenode->add(get_string('participants'), new moodle_url('/user/index.php?id='.$course->id), self::TYPE_CONTAINER, get_string('participants'), 'participants');
-            $currentgroup = groups_get_course_group($course, true);
-            if ($course->id == $SITE->id) {
-                $filtervar = 'courseid';
-                $filterselect = '';
-            } else if ($course->id && !$currentgroup) {
-                $filtervar = 'courseid';
-                $filterselect = $course->id;
-            } else {
-                $filtervar = 'groupid';
-                $filterselect = $currentgroup;
-            }
-            $filterselect = clean_param($filterselect, PARAM_INT);
-            if (($CFG->bloglevel == BLOG_GLOBAL_LEVEL or ($CFG->bloglevel == BLOG_SITE_LEVEL and (isloggedin() and !isguestuser())))
-               and has_capability('moodle/blog:view', context_system::instance())) {
-                $blogsurls = new moodle_url('/blog/index.php', array($filtervar => $filterselect));
-                $participants->add(get_string('blogscourse','blog'), $blogsurls->out());
+            if (!empty($CFG->enableblogs)) {
+                if (($CFG->bloglevel == BLOG_GLOBAL_LEVEL or ($CFG->bloglevel == BLOG_SITE_LEVEL and (isloggedin() and !isguestuser())))
+                   and has_capability('moodle/blog:view', context_system::instance())) {
+                    $blogsurls = new moodle_url('/blog/index.php');
+                    if ($course->id == $SITE->id) {
+                        $blogsurls->param('courseid', 0);
+                    } else if ($currentgroup = groups_get_course_group($course, true)) {
+                        $blogsurls->param('groupid', $currentgroup);
+                    } else {
+                        $blogsurls->param('courseid', $course->id);
+                    }
+                    $participants->add(get_string('blogscourse','blog'), $blogsurls->out());
+                }
             }
             if (!empty($CFG->enablenotes) && (has_capability('moodle/notes:manage', $this->page->context) || has_capability('moodle/notes:view', $this->page->context))) {
                 $participants->add(get_string('notes','notes'), new moodle_url('/notes/index.php', array('filtertype'=>'course', 'filterselect'=>$course->id)));
@@ -2753,6 +2748,9 @@ class global_navigation_for_ajax extends global_navigation {
         $this->rootnodes['site']    = $this->add_course($SITE);
         $this->rootnodes['mycourses'] = $this->add(get_string('mycourses'), new moodle_url('/my'), self::TYPE_ROOTNODE, null, 'mycourses');
         $this->rootnodes['courses'] = $this->add(get_string('courses'), null, self::TYPE_ROOTNODE, null, 'courses');
+        // The courses branch is always displayed, and is always expandable (although may be empty).
+        // This mimicks what is done during {@link global_navigation::initialise()}.
+        $this->rootnodes['courses']->isexpandable = true;
 
         // Branchtype will be one of navigation_node::TYPE_*
         switch ($this->branchtype) {
@@ -4494,6 +4492,10 @@ class settings_navigation_ajax extends settings_navigation {
             return false;
         }
         $this->load_administration_settings();
+
+        // Check if local plugins is adding node to site admin.
+        $this->load_local_plugin_settings();
+
         $this->initialised = true;
     }
 }

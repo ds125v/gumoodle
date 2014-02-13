@@ -85,7 +85,7 @@ defined('MOODLE_INTERNAL') || die();
  * @return bool always true
  */
 function xmldb_main_upgrade($oldversion) {
-    global $CFG, $USER, $DB, $OUTPUT, $SITE;
+    global $CFG, $USER, $DB, $OUTPUT, $SITE, $COURSE;
 
     require_once($CFG->libdir.'/db/upgradelib.php'); // Core Upgrade-related functions
 
@@ -316,6 +316,10 @@ function xmldb_main_upgrade($oldversion) {
             $dbman->drop_field($table, $field);
         }
 
+        // Since structure of 'course' table has changed we need to re-read $SITE from DB.
+        $SITE = $DB->get_record('course', array('id' => $SITE->id));
+        $COURSE = clone($SITE);
+
         upgrade_main_savepoint(true, 2012031500.02);
     }
 
@@ -447,6 +451,10 @@ function xmldb_main_upgrade($oldversion) {
             $dbman->add_field($table, $field);
         }
 
+        // Since structure of 'course' table has changed we need to re-read $SITE from DB.
+        $SITE = $DB->get_record('course', array('id' => $SITE->id));
+        $COURSE = clone($SITE);
+
         // Main savepoint reached
         upgrade_main_savepoint(true, 2012050300.03);
     }
@@ -562,6 +570,10 @@ function xmldb_main_upgrade($oldversion) {
         if (!$dbman->field_exists($table, $field)) {
             $dbman->add_field($table, $field);
         }
+
+        // Since structure of 'course' table has changed we need to re-read $SITE from DB.
+        $SITE = $DB->get_record('course', array('id' => $SITE->id));
+        $COURSE = clone($SITE);
 
         // Add course_sections_availability to add completion & grade availability conditions
         $table = new xmldb_table('course_sections_availability');
@@ -1334,6 +1346,10 @@ function xmldb_main_upgrade($oldversion) {
         // Launch change of type for field format
         $dbman->change_field_type($table, $field);
 
+        // Since structure of 'course' table has changed we need to re-read $SITE from DB.
+        $SITE = $DB->get_record('course', array('id' => $SITE->id));
+        $COURSE = clone($SITE);
+
         // Main savepoint reached
         upgrade_main_savepoint(true, 2012110200.00);
     }
@@ -1385,6 +1401,10 @@ function xmldb_main_upgrade($oldversion) {
                 $dbman->drop_field($table, $field);
             }
         }
+
+        // Since structure of 'course' table has changed we need to re-read $SITE from DB.
+        $SITE = $DB->get_record('course', array('id' => $SITE->id));
+        $COURSE = clone($SITE);
 
         // Main savepoint reached
         upgrade_main_savepoint(true, 2012110201.00);
@@ -1501,6 +1521,7 @@ function xmldb_main_upgrade($oldversion) {
         if ($SITE->format !== 'site') {
             $DB->set_field('course', 'format', 'site', array('id' => $SITE->id));
             $SITE->format = 'site';
+            $COURSE->format = 'site';
         }
 
         // Main savepoint reached
@@ -1989,6 +2010,10 @@ function xmldb_main_upgrade($oldversion) {
             $dbman->drop_field($table, $field);
         }
 
+        // Since structure of 'course' table has changed we need to re-read $SITE from DB.
+        $SITE = $DB->get_record('course', array('id' => $SITE->id));
+        $COURSE = clone($SITE);
+
         // Main savepoint reached.
         upgrade_main_savepoint(true, 2013040300.01);
     }
@@ -2376,6 +2401,10 @@ function xmldb_main_upgrade($oldversion) {
             $dbman->add_field($table, $field);
         }
 
+        // Since structure of 'course' table has changed we need to re-read $SITE from DB.
+        $SITE = $DB->get_record('course', array('id' => $SITE->id));
+        $COURSE = clone($SITE);
+
         // Define field calendartype to be added to user.
         $table = new xmldb_table('user');
         $field = new xmldb_field('calendartype', XMLDB_TYPE_CHAR, '30', null, XMLDB_NOTNULL, null, 'gregorian');
@@ -2400,6 +2429,10 @@ function xmldb_main_upgrade($oldversion) {
             $dbman->add_field($table, $field);
         }
 
+        // Since structure of 'course' table has changed we need to re-read $SITE from DB.
+        $SITE = $DB->get_record('course', array('id' => $SITE->id));
+        $COURSE = clone($SITE);
+
         // Main savepoint reached.
         upgrade_main_savepoint(true, 2013091000.02);
     }
@@ -2422,6 +2455,10 @@ function xmldb_main_upgrade($oldversion) {
         if ($dbman->field_exists($table, $field)) {
             $dbman->drop_field($table, $field);
         }
+
+        // Since structure of 'course' table has changed we need to re-read $SITE from DB.
+        $SITE = $DB->get_record('course', array('id' => $SITE->id));
+        $COURSE = clone($SITE);
 
         // Main savepoint reached.
         upgrade_main_savepoint(true, 2013091000.03);
@@ -2860,6 +2897,69 @@ function xmldb_main_upgrade($oldversion) {
 
         // Main savepoint reached.
         upgrade_main_savepoint(true, 2013111800.01);
+    }
+
+    if ($oldversion < 2013111800.08) {
+        // Purge stored passwords from config_log table, ideally this should be in each plugin
+        // but that would complicate backporting...
+        $items = array(
+            'core/cronremotepassword', 'core/proxypassword', 'core/smtppass', 'core/jabberpassword',
+            'enrol_database/dbpass', 'enrol_ldap/bind_pw', 'url/secretphrase');
+        foreach ($items as $item) {
+            list($plugin, $name) = explode('/', $item);
+            $sqlcomparevalue =  $DB->sql_compare_text('value');
+            $sqlcompareoldvalue = $DB->sql_compare_text('oldvalue');
+            if ($plugin === 'core') {
+                $sql = "UPDATE {config_log}
+                           SET value = :value
+                         WHERE name = :name AND plugin IS NULL AND $sqlcomparevalue <> :empty";
+                $params = array('value' => '********', 'name' => $name, 'empty' => '');
+                $DB->execute($sql, $params);
+
+                $sql = "UPDATE {config_log}
+                           SET oldvalue = :value
+                         WHERE name = :name AND plugin IS NULL AND $sqlcompareoldvalue <> :empty";
+                $params = array('value' => '********', 'name' => $name, 'empty' => '');
+                $DB->execute($sql, $params);
+
+            } else {
+                $sql = "UPDATE {config_log}
+                           SET value = :value
+                         WHERE name = :name AND plugin = :plugin AND $sqlcomparevalue <> :empty";
+                $params = array('value' => '********', 'name' => $name, 'plugin' => $plugin, 'empty' => '');
+                $DB->execute($sql, $params);
+
+                $sql = "UPDATE {config_log}
+                           SET oldvalue = :value
+                         WHERE name = :name AND plugin = :plugin AND  $sqlcompareoldvalue <> :empty";
+                $params = array('value' => '********', 'name' => $name, 'plugin' => $plugin, 'empty' => '');
+                $DB->execute($sql, $params);
+            }
+        }
+        // Main savepoint reached.
+        upgrade_main_savepoint(true, 2013111800.08);
+    }
+
+    if ($oldversion < 2013111801.02) {
+        // Fix gradebook sortorder duplicates.
+        upgrade_grade_item_fix_sortorder();
+
+        // Main savepoint reached.
+        upgrade_main_savepoint(true, 2013111801.02);
+    }
+
+    if ($oldversion < 2013111801.04) {
+        // Remove deleted users home pages.
+        $sql = "DELETE FROM {my_pages}
+                WHERE EXISTS (SELECT {user}.id
+                                  FROM {user}
+                                  WHERE {user}.id = {my_pages}.userid
+                                  AND {user}.deleted = 1)
+                AND {my_pages}.private = 1";
+        $DB->execute($sql);
+
+        // Main savepoint reached.
+        upgrade_main_savepoint(true, 2013111801.04);
     }
 
     return true;

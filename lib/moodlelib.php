@@ -1229,16 +1229,10 @@ function fix_utf8($value) {
         // No null bytes expected in our data, so let's remove it.
         $value = str_replace("\0", '', $value);
 
-        // Lower error reporting because glibc throws bogus notices.
-        $olderror = error_reporting();
-        if ($olderror & E_NOTICE) {
-            error_reporting($olderror ^ E_NOTICE);
-        }
-
         // Note: this duplicates min_fix_utf8() intentionally.
         static $buggyiconv = null;
         if ($buggyiconv === null) {
-            $buggyiconv = (!function_exists('iconv') or iconv('UTF-8', 'UTF-8//IGNORE', '100'.chr(130).'€') !== '100€');
+            $buggyiconv = (!function_exists('iconv') or @iconv('UTF-8', 'UTF-8//IGNORE', '100'.chr(130).'€') !== '100€');
         }
 
         if ($buggyiconv) {
@@ -1254,11 +1248,7 @@ function fix_utf8($value) {
             }
 
         } else {
-            $result = iconv('UTF-8', 'UTF-8//IGNORE', $value);
-        }
-
-        if ($olderror & E_NOTICE) {
-            error_reporting($olderror);
+            $result = @iconv('UTF-8', 'UTF-8//IGNORE', $value);
         }
 
         return $result;
@@ -3220,8 +3210,8 @@ function require_logout() {
  */
 function require_course_login($courseorid, $autologinguest = true, $cm = null, $setwantsurltome = true, $preventredirect = false) {
     global $CFG, $PAGE, $SITE;
-    $issite = (is_object($courseorid) and $courseorid->id == SITEID)
-          or (!is_object($courseorid) and $courseorid == SITEID);
+    $issite = ((is_object($courseorid) and $courseorid->id == SITEID)
+          or (!is_object($courseorid) and $courseorid == SITEID));
     if ($issite && !empty($cm) && !($cm instanceof cm_info)) {
         // Note: nearly all pages call get_fast_modinfo anyway and it does not make any
         // db queries so this is not really a performance concern, however it is obviously
@@ -3407,9 +3397,7 @@ function get_user_key($script, $userid, $instance=null, $iprestriction=null, $va
  * @return bool Always returns true
  */
 function update_user_login_times() {
-    global $USER, $DB, $CFG;
-
-    require_once($CFG->dirroot.'/user/lib.php');
+    global $USER, $DB;
 
     if (isguestuser()) {
         // Do not update guest access times/ips for performance.
@@ -3435,7 +3423,9 @@ function update_user_login_times() {
     $USER->lastaccess = $user->lastaccess = $now;
     $USER->lastip = $user->lastip = getremoteaddr();
 
-    user_update_user($user, false);
+    // Note: do not call user_update_user() here because this is part of the login process,
+    //       the login event means that these fields were updated.
+    $DB->update_record('user', $user);
     return true;
 }
 
@@ -3638,7 +3628,7 @@ function fullname($user, $override=false) {
     // The special characters are Japanese brackets that are common enough to make allowances for them (not covered by :punct:).
     $patterns[] = '/[[:punct:]「」]*EMPTY[[:punct:]「」]*/u';
     // This regular expression is to remove any double spaces in the display name.
-    $patterns[] = '/\s{2,}/';
+    $patterns[] = '/\s{2,}/u';
     foreach ($patterns as $pattern) {
         $displayname = preg_replace($pattern, ' ', $displayname);
     }
@@ -4242,6 +4232,9 @@ function delete_user(stdClass $user) {
 
     // Remove users private keys.
     $DB->delete_records('user_private_key', array('userid' => $user->id));
+
+    // Remove users customised pages.
+    $DB->delete_records('my_pages', array('userid' => $user->id, 'private' => 1));
 
     // Force logout - may fail if file based sessions used, sorry.
     \core\session\manager::kill_user_sessions($user->id);
@@ -7660,7 +7653,6 @@ function random_string ($length=15) {
     $pool .= 'abcdefghijklmnopqrstuvwxyz';
     $pool .= '0123456789';
     $poollen = strlen($pool);
-    mt_srand ((double) microtime() * 1000000);
     $string = '';
     for ($i = 0; $i < $length; $i++) {
         $string .= substr($pool, (mt_rand()%($poollen)), 1);
@@ -7681,7 +7673,6 @@ function complex_random_string($length=null) {
     $pool  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     $pool .= '`~!@#%^&*()_+-=[];,./<>?:{} ';
     $poollen = strlen($pool);
-    mt_srand ((double) microtime() * 1000000);
     if ($length===null) {
         $length = floor(rand(24, 32));
     }
@@ -7981,7 +7972,6 @@ function unformat_float($localefloat, $strict = false) {
  */
 function swapshuffle($array) {
 
-    srand ((double) microtime() * 10000000);
     $last = count($array) - 1;
     for ($i = 0; $i <= $last; $i++) {
         $from = rand(0, $last);
@@ -8021,7 +8011,6 @@ function swapshuffle_assoc($array) {
  * @return array
  */
 function draw_rand_array($array, $draws) {
-    srand ((double) microtime() * 10000000);
 
     $return = array();
 

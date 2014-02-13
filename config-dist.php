@@ -589,10 +589,16 @@ $CFG->admin = 'admin';
 // $CFG->behat_prefix = 'bht_';
 // $CFG->behat_dataroot = '/home/example/bht_moodledata';
 //
-// Behat uses http://localhost:8000 as default URL to run
-// the acceptance tests, you can override this value.
+// To set a seperate wwwroot for Behat to use, use $CFG->behat_wwwroot; this is set automatically
+// to http://localhost:8000 as it is the proposed PHP built-in server URL. Instead of that you can,
+// for example, use an alias, add a host to /etc/hosts or add a new virtual host having a URL
+// poiting to your production site and another one poiting to your test site. Note that you need
+// to ensure that this URL is not accessible from the www as the behat test site uses "sugar"
+// credentials (admin/admin) and can be easily hackable.
+//
 // Example:
 //   $CFG->behat_wwwroot = 'http://192.168.1.250:8000';
+//   $CFG->behat_wwwroot = 'http://localhost/moodlesitetesting';
 //
 // You can override default Moodle configuration for Behat and add your own
 // params; here you can add more profiles, use different Mink drivers than Selenium...
@@ -660,6 +666,12 @@ $CFG->admin = 'admin';
 // used to expand the default white list with an array of extra settings.
 // Example:
 //   $CFG->behat_extraallowedsettings = array('logsql', 'dblogerror');
+//
+// You can make behat save several dumps when a scenario fails. The dumps currently saved are:
+// * a dump of the DOM in it's state at the time of failure; and
+// * a screenshot (JavaScript is required for the screenshot functionality, so not all browsers support this option)
+// Example:
+//   $CFG->behat_faildump_path = '/my/path/to/save/failure/dumps';
 //
 //=========================================================================
 // 12. DEVELOPER DATA GENERATOR

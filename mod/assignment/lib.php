@@ -1245,7 +1245,7 @@ class assignment_base {
         $tabindex = 1; //tabindex for quick grading tabbing; Not working for dropdowns yet
         add_to_log($course->id, 'assignment', 'view submission', 'submissions.php?id='.$this->cm->id, $this->assignment->id, $this->cm->id);
 
-        $PAGE->set_title(format_string($this->assignment->name,true));
+        $PAGE->set_title($this->assignment->name);
         $PAGE->set_heading($this->course->fullname);
         echo $OUTPUT->header();
 
@@ -1933,7 +1933,7 @@ class assignment_base {
         $context = context_module::instance($this->cm->id);
 
         // Get ids of users enrolled in the given course.
-        list($enroledsql, $params) = get_enrolled_sql($context, 'mod/assignment:view', $groupid);
+        list($enroledsql, $params) = get_enrolled_sql($context, 'mod/assignment:submit', $groupid);
         $params['assignmentid'] = $this->cm->instance;
 
         // Get ids of users enrolled in the given course.

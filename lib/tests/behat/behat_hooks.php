@@ -68,6 +68,23 @@ class behat_hooks extends behat_base {
     protected static $initprocessesfinished = false;
 
     /**
+     * Some exceptions can only be caught in a before or after step hook,
+     * they can not be thrown there as they will provoke a framework level
+     * failure, but we can store them here to fail the step in i_look_for_exceptions()
+     * which result will be parsed by the framework as the last step result.
+     *
+     * @var Null or the exception last step throw in the before or after hook.
+     */
+    protected static $currentstepexception = null;
+
+    /**
+     * If we are saving any kind of dump on failure we should use the same parent dir during a run.
+     *
+     * @var The parent dir name
+     */
+    protected static $faildumpdirname = false;
+
+    /**
      * Gives access to moodle codebase, ensures all is ready and sets up the test lock.
      *
      * Includes config.php to use moodle codebase with $CFG->behat_*
@@ -123,6 +140,10 @@ class behat_hooks extends behat_base {
         if (!empty($CFG->behat_restart_browser_after)) {
             // Store the initial browser session opening.
             self::$lastbrowsersessionstart = time();
+        }
+
+        if (!empty($CFG->behat_faildump_path) && !is_writable($CFG->behat_faildump_path)) {
+            throw new Exception('You set $CFG->behat_faildump_path to a non-writable directory');
         }
     }
 
@@ -210,54 +231,204 @@ class behat_hooks extends behat_base {
             self::$initprocessesfinished = true;
         }
 
-        // Closing JS dialogs if present. Otherwise they would block this scenario execution.
-        if ($this->running_javascript()) {
-            try {
-                $session->getDriver()->getWebDriverSession()->accept_alert();
-            } catch (NoAlertOpenError $e) {
-                // All ok, there should not be JS dialogs in theory.
-            }
-        }
-
     }
 
     /**
-     * Checks that all DOM is ready.
+     * Wait for JS to complete before beginning interacting with the DOM.
      *
-     * Executed only when running against a real browser.
+     * Executed only when running against a real browser. We wrap it
+     * all in a try & catch to forward the exception to i_look_for_exceptions
+     * so the exception will be at scenario level, which causes a failure, by
+     * default would be at framework level, which will stop the execution of
+     * the run.
+     *
+     * @BeforeStep @javascript
+     */
+    public function before_step_javascript($event) {
+
+        try {
+            $this->wait_for_pending_js();
+            self::$currentstepexception = null;
+        } catch (Exception $e) {
+            self::$currentstepexception = $e;
+        }
+    }
+
+    /**
+     * Wait for JS to complete after finishing the step.
+     *
+     * With this we ensure that there are not AJAX calls
+     * still in progress.
+     *
+     * Executed only when running against a real browser. We wrap it
+     * all in a try & catch to forward the exception to i_look_for_exceptions
+     * so the exception will be at scenario level, which causes a failure, by
+     * default would be at framework level, which will stop the execution of
+     * the run.
      *
      * @AfterStep @javascript
      */
     public function after_step_javascript($event) {
+        global $CFG;
 
-        // If it doesn't have definition or it fails there is no need to check it.
-        if ($event->getResult() != StepEvent::PASSED ||
-            !$event->hasDefinition()) {
-            return;
+        // Save a screenshot if the step failed.
+        if (!empty($CFG->behat_faildump_path) &&
+                $event->getResult() === StepEvent::FAILED) {
+            $this->take_screenshot($event);
         }
 
-       // Wait until the page is ready.
-       // We are already checking that we use a JS browser, this could
-       // change in case we use another JS driver.
-       try {
+        try {
+            $this->wait_for_pending_js();
+            self::$currentstepexception = null;
+        } catch (UnexpectedAlertOpen $e) {
+            self::$currentstepexception = $e;
 
-            // Safari and Internet Explorer requires time between steps,
-            // otherwise Selenium tries to click in the previous page's DOM.
-            if ($this->getSession()->getDriver()->getBrowserName() == 'safari' ||
-                    $this->getSession()->getDriver()->getBrowserName() == 'internet explorer') {
-                $this->getSession()->wait(self::TIMEOUT * 1000, false);
+            // Accepting the alert so the framework can continue properly running
+            // the following scenarios. Some browsers already closes the alert, so
+            // wrapping in a try & catch.
+            try {
+                $this->getSession()->getDriver()->getWebDriverSession()->accept_alert();
+            } catch (Exception $e) {
+                // Catching the generic one as we never know how drivers reacts here.
+            }
+        } catch (Exception $e) {
+            self::$currentstepexception = $e;
+        }
+    }
 
-            } else {
-                // With other browsers we just wait for the DOM ready.
-                $this->getSession()->wait(self::TIMEOUT * 1000, '(document.readyState === "complete")');
+    /**
+     * Execute any steps required after the step has finished.
+     *
+     * This includes creating an HTML dump of the content if there was a failure.
+     *
+     * @AfterStep
+     */
+    public function after_step($event) {
+        global $CFG;
+
+        // Save the page content if the step failed.
+        if (!empty($CFG->behat_faildump_path) &&
+                $event->getResult() === StepEvent::FAILED) {
+            $this->take_contentdump($event);
+        }
+    }
+
+    /**
+     * Getter for self::$faildumpdirname
+     *
+     * @return string
+     */
+    protected function get_run_faildump_dir() {
+        return self::$faildumpdirname;
+    }
+
+    /**
+     * Take screenshot when a step fails.
+     *
+     * @throws Exception
+     * @param StepEvent $event
+     */
+    protected function take_screenshot(StepEvent $event) {
+        // Goutte can't save screenshots.
+        if (!$this->running_javascript()) {
+            return false;
+        }
+
+        list ($dir, $filename) = $this->get_faildump_filename($event, 'png');
+        $this->saveScreenshot($filename, $dir);
+    }
+
+    /**
+     * Take a dump of the page content when a step fails.
+     *
+     * @throws Exception
+     * @param StepEvent $event
+     */
+    protected function take_contentdump(StepEvent $event) {
+        list ($dir, $filename) = $this->get_faildump_filename($event, 'html');
+
+        $fh = fopen($dir . DIRECTORY_SEPARATOR . $filename, 'w');
+        fwrite($fh, $this->getSession()->getPage()->getContent());
+        fclose($fh);
+    }
+
+    /**
+     * Determine the full pathname to store a failure-related dump.
+     *
+     * This is used for content such as the DOM, and screenshots.
+     *
+     * @param StepEvent $event
+     * @param String $filetype The file suffix to use.
+     */
+    protected function get_faildump_filename(StepEvent $event, $filetype) {
+        global $CFG;
+
+        // All the contentdumps should be in the same parent dir.
+        if (!$faildumpdir = self::get_run_faildump_dir()) {
+            $faildumpdir = self::$faildumpdirname = date('Ymd_His');
+
+            $dir = $CFG->behat_faildump_path . DIRECTORY_SEPARATOR . $faildumpdir;
+
+            if (!is_dir($dir) && !mkdir($dir, $CFG->directorypermissions, true)) {
+                // It shouldn't, we already checked that the directory is writable.
+                throw new Exception('No directories can be created inside $CFG->behat_faildump_path, check the directory permissions.');
+            }
+        } else {
+            // We will always need to know the full path.
+            $dir = $CFG->behat_faildump_path . DIRECTORY_SEPARATOR . $faildumpdir;
+        }
+
+        // The scenario title + the failed step text.
+        // We want a i-am-the-scenario-title_i-am-the-failed-step.$filetype format.
+        $filename = $event->getStep()->getParent()->getTitle() . '_' . $event->getStep()->getText();
+        $filename = preg_replace('/([^a-zA-Z0-9\_]+)/', '-', $filename) . '.' . $filetype;
+
+        return array($dir, $filename);
+    }
+
+    /**
+     * Waits for all the JS to be loaded.
+     *
+     * @throws \Exception
+     * @throws NoSuchWindow
+     * @throws UnknownError
+     * @return bool True or false depending whether all the JS is loaded or not.
+     */
+    protected function wait_for_pending_js() {
+
+        // We don't use behat_base::spin() here as we don't want to end up with an exception
+        // if the page & JSs don't finish loading properly.
+        for ($i = 0; $i < self::EXTENDED_TIMEOUT * 10; $i++) {
+            $pending = '';
+            try {
+                $jscode = 'return ' . self::PAGE_READY_JS . ' ? "" : M.util.pending_js.join(":");';
+                $pending = $this->getSession()->evaluateScript($jscode);
+            } catch (NoSuchWindow $nsw) {
+                // We catch an exception here, in case we just closed the window we were interacting with.
+                // No javascript is running if there is no window right?
+                $pending = '';
+            } catch (UnknownError $e) {
+                // M is not defined when the window or the frame don't exist anymore.
+                if (strstr($e->getMessage(), 'M is not defined') != false) {
+                    $pending = '';
+                }
             }
 
-        } catch (NoSuchWindow $e) {
-            // If we were interacting with a popup window it will not exists after closing it.
-        } catch (UnknownError $e) {
-            // Custom exception to provide more feedback about possible solutions.
-            $this->throw_unknown_exception($e);
+            // If there are no pending JS we stop waiting.
+            if ($pending === '') {
+                return true;
+            }
+
+            // 0.1 seconds.
+            usleep(100000);
         }
+
+        // Timeout waiting for JS to complete. It will be catched and forwarded to behat_hooks::i_look_for_exceptions().
+        // It is unlikely that Javascript code of a page or an AJAX request needs more than self::EXTENDED_TIMEOUT seconds
+        // to be loaded, although when pages contains Javascript errors M.util.js_complete() can not be executed, so the
+        // number of JS pending code and JS completed code will not match and we will reach this point.
+        throw new \Exception('Javascript code and/or AJAX requests are not ready after ' . self::EXTENDED_TIMEOUT .
+            ' seconds. There is a Javascript error or the code is extremely slow.');
     }
 
     /**
@@ -267,9 +438,15 @@ class behat_hooks extends behat_base {
      * after each step so no features will splicitly use it.
      *
      * @Given /^I look for exceptions$/
+     * @throw Exception Unknown type, depending on what we caught in the hook or basic \Exception.
      * @see Moodle\BehatExtension\Tester\MoodleStepTester
      */
     public function i_look_for_exceptions() {
+
+        // If the step already failed in a hook throw the exception.
+        if (!is_null(self::$currentstepexception)) {
+            throw self::$currentstepexception;
+        }
 
         // Wrap in try in case we were interacting with a closed window.
         try {
@@ -342,13 +519,6 @@ class behat_hooks extends behat_base {
 
         } catch (NoSuchWindow $e) {
             // If we were interacting with a popup window it will not exists after closing it.
-        } catch (UnexpectedAlertOpen $e) {
-            // We fail the scenario if we find an opened JS alert/confirm, in most of the cases it
-            // will be there because we are leaving an edited form without submitting/cancelling
-            // it, but moodle is using JS confirms and we can not just cancel the JS dialog
-            // as in some cases (delete activity with JS enabled for example) the test writer should
-            // use extra steps to deal with moodle's behaviour.
-            throw new Exception('Modal window present. Ensure there are no edited forms pending to submit/cancel.');
         }
     }
 
@@ -387,3 +557,4 @@ class behat_hooks extends behat_base {
     }
 
 }
+

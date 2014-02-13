@@ -186,7 +186,7 @@ abstract class format_section_renderer_base extends plugin_renderer_base {
         if ($PAGE->user_is_editing() && has_capability('moodle/course:update', $context)) {
             $url = new moodle_url('/course/editsection.php', array('id'=>$section->id, 'sr'=>$sectionreturn));
             $o.= html_writer::link($url,
-                html_writer::empty_tag('img', array('src' => $this->output->pix_url('t/edit'),
+                html_writer::empty_tag('img', array('src' => $this->output->pix_url('i/settings'),
                     'class' => 'iconsmall edit', 'alt' => get_string('edit'))),
                 array('title' => get_string('editsummary')));
         }
@@ -373,7 +373,8 @@ abstract class format_section_renderer_base extends plugin_renderer_base {
                 if ($cancomplete && $completioninfo->is_enabled($thismod) != COMPLETION_TRACKING_NONE) {
                     $total++;
                     $completiondata = $completioninfo->get_data($thismod, true);
-                    if ($completiondata->completionstate == COMPLETION_COMPLETE) {
+                    if ($completiondata->completionstate == COMPLETION_COMPLETE ||
+                            $completiondata->completionstate == COMPLETION_COMPLETE_PASS) {
                         $complete++;
                     }
                 }

@@ -327,7 +327,7 @@ class mssql_native_moodle_database extends moodle_database {
         if ($result) {
             while ($row = mssql_fetch_row($result)) {
                 $tablename = reset($row);
-                if ($this->prefix !== '') {
+                if ($this->prefix !== false && $this->prefix !== '') {
                     if (strpos($tablename, $this->prefix) !== 0) {
                         continue;
                     }
@@ -1250,6 +1250,16 @@ s only returning name of SQL substring function, it now requires all parameters.
         } else {
             return "SUBSTRING($expr, $start, $length)";
         }
+    }
+
+    /**
+     * Does this driver support tool_replace?
+     *
+     * @since 2.6.1
+     * @return bool
+     */
+    public function replace_all_text_supported() {
+        return true;
     }
 
     public function session_lock_supported() {
