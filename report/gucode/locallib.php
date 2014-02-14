@@ -36,6 +36,7 @@ class gucode_form extends moodleform {
         // Main part.
         $mform->addElement('html', '<div>'.get_string('instructions', 'report_gucode' ) );
         $mform->addElement('text', 'code', get_string('code', 'report_gucode') );
+        $mform->setType('code', PARAM_ALPHANUM);
 
         // Action buttons.
         $this->add_action_buttons(true, get_string('search', 'report_guid'));

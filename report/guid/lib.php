@@ -466,9 +466,13 @@ class guidreport_form extends moodleform {
         // Main part.
         $mform->addElement('html', '<div>'.get_string('instructions', 'report_guid' ) );
         $mform->addElement('text', 'firstname', get_string('firstname', 'report_guid' ) );
+        $mform->setType('firstname', PARAM_RAW);
         $mform->addElement('text', 'lastname', get_string('lastname', 'report_guid' ) );
+        $mform->setType('lastname', PARAM_RAW);
         $mform->addElement('text', 'email', get_string('email', 'report_guid' ) );
+        $mform->setType('email', PARAM_EMAIL);
         $mform->addElement('text', 'guid', get_string('guidform', 'report_guid' ) );
+        $mform->setType('guid', PARAM_ALPHANUM);
 
         // Action buttons.
         $this->add_action_buttons(true, get_string('search', 'report_guid'));
