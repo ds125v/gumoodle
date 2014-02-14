@@ -1,0 +1,38 @@
+<?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * Strings for component 'enrol_database', language 'en', branch 'MOODLE_20_STABLE'
+ *
+ * @package   enrol_gudatabase
+ * @copyright 1999 onwards Martin Dougiamas  {@link http://moodle.com}
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+$string['cannotunenrol'] = 'You are not permitted to unenrol yourself from this course. You must unenrol in MyCampus first and then wait at
+    least 24 hours before trying again.';
+$string['codesenroltable'] = 'Remote codes table';
+$string['codesenroltable_desc'] = 'Table containing information about course codes';
+$string['displayaverage'] = 'Approx mean courses process each cron = {$a}';
+$string['gudatabase:manage'] = 'Manage gudatabase plugin';
+$string['gudatabase:unenrol'] = 'Unenrol users from gudatabase';
+$string['gudatabase:unenrolself'] = 'Can unenrol self if not in external database';
+$string['pluginname'] = 'UofG Enrolment database';
+$string['pluginname_desc'] = 'You can use an external database (of nearly any kind) to control your enrolments. It is assumed your external database contains at least a field containing a course ID, and a field containing a user ID. These are compared against fields that you choose in the local course and user tables.';
+$string['settingsheadercodes'] = 'Remote codes table';
+$string['timelimit'] = 'Cron time limit';
+$string['timelimit_desc'] = 'Maximum time that cron process may run for';
+$string['unenrolselfconfirm'] = 'Are you sure you want to unenrol from this course?';
