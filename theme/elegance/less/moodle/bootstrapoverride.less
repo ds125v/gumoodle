@@ -1,0 +1,26 @@
+/**
+ * bootstrapoverride.less
+ *
+ * This file is meant to contain rules which specifically override
+ * rules defined in Bootstrap.
+*/
+
+// Printing.
+@media print {
+  a[href]:after {
+    content: "";
+  }
+}
+
+// glyphicons.less
+// Import the fonts
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('[[font:theme|@{icon-font-name}.eot]]');
+  src: url('[[font:theme|@{icon-font-name}.eot]]') format('embedded-opentype'),
+       url('[[font:theme|@{icon-font-name}.woff]]') format('woff'),
+       url('[[font:theme|@{icon-font-name}.ttf]]') format('truetype'),
+       url('[[font:theme|@{icon-font-name}.svg]]#glyphicons_halflingsregular') format('svg');
+}
+
+
